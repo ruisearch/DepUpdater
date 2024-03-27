@@ -10,4 +10,5 @@ path_to_folder = os.path.normpath(sys.argv[1])
 path_to_pom = os.path.join(path_to_folder, "pom.xml")
 # declear maven-shade-plugin in pom.xml
 maven_shade_plugin.insert(path_to_pom)
+# execute mvn clean and mvn package to generate Uber jar and jar
 exec_maven_command.mvn_package(path_to_folder)

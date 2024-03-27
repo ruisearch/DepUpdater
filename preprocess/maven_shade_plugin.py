@@ -1,71 +1,92 @@
-import xml.etree.ElementTree as ET
+from bs4 import BeautifulSoup
 ## insert maven-shade-plugin into the <build><plugins> in pom.xml
 # input : path to pom.xml
 # output : the inserted pom.xml
 def insert(pom_file_path:str):
-    # Load the pom.xml file
-    tree = ET.parse(pom_file_path)
-    root = tree.getroot()
+    # Read the XML file
+    with open(pom_file_path, 'r') as file:
+        xml_data = file.read()
+
+    # Create a BeautifulSoup object
+    soup = BeautifulSoup(xml_data, 'xml')
+    # soup = BeautifulSoup(xml_data, 'xml', parser='lxml')
+    # soup = BeautifulSoup(xml_data, 'lxml-xml')
+
+    # Find the <build> section
+    build_section = soup.find('build')
+
+    # # Find the <plugins> section within the <build> section
+    # plugins_section = build_section.find('plugins')
     
-    ## Define the namespace mappings
-    ## map URI to prefix
-    ns = {
-        "xmlns":"http://maven.apache.org/POM/4.0.0"
-    }
-    # # Define the namespace URI
-    # namespace_uri = "http://example.com/namespace"
-
-    # # Register the namespace with an empty prefix
-    # ET.register_namespace("", namespace_uri)
-
-    # Check if Maven Shade Plugin is already declared
-    is_maven_shade_plugin_declared = False
-    for plugin in root.findall(".//build/plugins/plugin"):
-    # for plugin in root.findall(".//xmlns:build/xmlns:plugins/xmlns:plugin", ns):
-        # groupId = plugin.find("xmlns:groupId", ns)
-        groupId = plugin.find("groupId")
-        # artifactId = plugin.find("xmlns:artifactId", ns)
-        artifactId = plugin.find("artifactId")
-        if groupId is not None and groupId.text == "org.apache.maven.plugins" and artifactId is not None and artifactId.text == "maven-shade-plugin":
-            is_maven_shade_plugin_declared = True
+    # Find the <plugins> section within the <build> section
+    plugins_section = None
+    for child in build_section.children:
+        if child.name == 'plugins':
+            plugins_section = child
             break
 
-    # Only add Maven Shade Plugin if it's not already declared
-    if not is_maven_shade_plugin_declared:
-        # Find the <build> tag
-        # build_tag = root.find("xmlns:build", ns)
-        build_tag = root.find("build")
+    # Check if the plugin already exists
+    # existing_plugin = plugins_section.find('plugin', artifactId='maven-shade-plugin')
+    existing_plugin = None
+    all_plugins = plugins_section.find_all('plugin')
+    for plugin in all_plugins:
+        artifact_id = plugin.find('artifactId')
+        if artifact_id and artifact_id.text.strip() == 'maven-shade-plugin':
+            existing_plugin = plugin
+            break
+    
+
+    # Add the plugin only if it doesn't already exist
+    if not existing_plugin:
+        # Create a new <plugin> element for Maven Shade Plugin
+        plugin_element = soup.new_tag('plugin')
+
+        # Create the <groupId> element
+        group_id_element = soup.new_tag('groupId')
+        group_id_element.string = 'org.apache.maven.plugins'
+        plugin_element.append(group_id_element)
+
+        # Create the <artifactId> element
+        artifact_id_element = soup.new_tag('artifactId')
+        artifact_id_element.string = 'maven-shade-plugin'
+        plugin_element.append(artifact_id_element)
+
+        # Create the <version> element
+        version_element = soup.new_tag('version')
+        version_element.string = '3.5.2'
+        plugin_element.append(version_element)
         
-        # Find or create the <plugins> tag within <build>
-        # plugins_tag = build_tag.find("xmlns:plugins", ns)
-        plugins_tag = build_tag.find("plugins")
-        if plugins_tag is None:
-            plugins_tag = ET.SubElement(build_tag, "plugins")
+        # Create the <executions> element
+        executions_element = soup.new_tag('executions')
 
-        # Create the <plugin> element and its child elements
-        plugin_element = ET.Element("plugin")
-        groupId_element = ET.SubElement(plugin_element, "groupId")
-        groupId_element.text = "org.apache.maven.plugins" 
-        artifactId_element = ET.SubElement(plugin_element, "artifactId")
-        artifactId_element.text = "maven-shade-plugin" 
-        version_element = ET.SubElement(plugin_element, "version")
-        version_element.text = "3.5.2" 
+        # Create the <execution> element
+        execution_element = soup.new_tag('execution')
 
-        # Create <executions> element
-        executions_element = ET.SubElement(plugin_element, "executions")
-        execution_element = ET.SubElement(executions_element, "execution")
-        phase_element = ET.SubElement(execution_element, "phase")
-        phase_element.text = "package"
-        goals_element = ET.SubElement(execution_element, "goals")
-        goal_element = ET.SubElement(goals_element, "goal")
-        goal_element.text = "shade"
+        # Create the <phase> element
+        phase_element = soup.new_tag('phase')
+        phase_element.string = 'package'
+        execution_element.append(phase_element)
 
-        # Append the <plugin> element to <plugins> tag
-        plugins_tag.append(plugin_element)
+        # Create the <goals> element
+        goals_element = soup.new_tag('goals')
 
-        # Save the modified pom.xml file
-        tree.write(pom_file_path)
+        # Create the <goal> element
+        goal_element = soup.new_tag('goal')
+        goal_element.string = 'shade'
+        goals_element.append(goal_element)
 
+        # Append elements to the corresponding sections
+        execution_element.append(goals_element)
+        executions_element.append(execution_element)
+        plugin_element.append(executions_element)
+        
+        # Append the <plugin> element to the <plugins> section
+        plugins_section.append(plugin_element)
+
+        # Save the modified XML to the original file
+        with open(pom_file_path, 'w') as file:
+            # file.write(str(soup))
+            file.write(str(soup.prettify()))
 ## test
 if __name__ == "__main__":
     insert("/home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/pom.xml")
