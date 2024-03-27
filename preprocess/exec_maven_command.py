@@ -7,3 +7,14 @@ def mvn_package(path_to_folder:str):
     print("mvn clean and mvn package...")
     os.system(command)
     print("Uber jar and jar are generated successfully")
+
+# execute "mvn dependency:tree"
+def mvn_dependency_tree(path_to_folder:str):
+    MainProcess_pwd = os.getcwd()
+    log_path = os.path.join(MainProcess_pwd, "out/preprocess/dependency_tree.txt")
+    command = f"cd {path_to_folder} && mvn dependency:tree > {log_path}"
+    print("generating dependency tree")
+    os.system(command)
+    print("dependency tree is generated successfully")
+    
+    
