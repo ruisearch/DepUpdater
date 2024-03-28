@@ -16,13 +16,24 @@ def create_folder(folder_path:str):
     os.makedirs(folder_path)
 
 ## parse tree to get GAV of deps(exclude test and provided)
+# return a list of dicts containing gav
 def parse_dep_gav(all_dep_gav:str):
-    dep_gav_pattern = r"(.+?):(.+?):.+?:(.+?):(.+?)\n"
+    dep_gav_pattern = r"- (.+?):(.+?):.+?:(.+?):(.+?)\n"
+    dep_matches = re.finditer(dep_gav_pattern, all_dep_gav)
+    dep_gav = []
+    for dep_match in dep_matches:
+        # ignore test and provided dep
+        if dep_match.group(4) != 'test' and dep_match.group(4) != "provided":
+            dep = {}
+            dep.update({'group_id':f'{dep_match.group(1)}'})
+            dep.update({'artifact_id':f'{dep_match.group(2)}'})
+            dep.update({'version':f'{dep_match.group(3)}'})
+            dep_gav.append(dep)
+    return dep_gav    
     # ---------- to be continued--------#
     
 ## get dep jar using GAV from maven central repository
 def get_dep_jar(dep_folder:str, group_id:str, artifact_id:str, version:str):
-    create_folder(dep_folder)
     jar_url = f"https://repo1.maven.org/maven2/{group_id.replace('.', '/')}/{artifact_id}/{version}/{artifact_id}-{version}.jar"
     response = requests.get(jar_url)
     print(f"url:{jar_url}")
@@ -80,8 +91,11 @@ def parse_for_jar(dependency_tree:str, path_to_cloned_folder:str):
             ## get dep jar using GAV from maven central repository
             # create dep folder
             dep = os.path.join(folder, "dep")
+            create_folder(dep)
             # parse tree to get GAV of deps(exclude test and provided)
-            parse_dep_gav(block.group(7))
+            deps_gav = parse_dep_gav(block.group(7))
+            for dep_gav in deps_gav:
+                get_dep_jar(dep, dep_gav['group_id'], dep_gav['artifact_id'], dep_gav['version'])
             
             
     
