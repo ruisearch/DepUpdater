@@ -2,6 +2,7 @@
 import os
 import shutil
 import re
+import requests
 from constants import JAR_FOLDER, DEPENDENCY_TREE_FILE
 
 ## create a folder
@@ -14,6 +15,26 @@ def create_folder(folder_path:str):
     # Create the new folder
     os.makedirs(folder_path)
 
+## parse tree to get GAV of deps(exclude test and provided)
+def parse_dep_gav(all_dep_gav:str):
+    dep_gav_pattern = r"(.+?):(.+?):.+?:(.+?):(.+?)\n"
+    # ---------- to be continued--------#
+    
+## get dep jar using GAV from maven central repository
+def get_dep_jar(dep_folder:str, group_id:str, artifact_id:str, version:str):
+    create_folder(dep_folder)
+    jar_url = f"https://repo1.maven.org/maven2/{group_id.replace('.', '/')}/{artifact_id}/{version}/{artifact_id}-{version}.jar"
+    response = requests.get(jar_url)
+    print(f"url:{jar_url}")
+    
+    if response.status_code == 200:
+        file_name = os.path.join(dep_folder,f"{artifact_id}-{version}.jar")
+        with open(file_name, "wb") as jar_file:
+            jar_file.write(response.content)
+        print(f"Dependency {artifact_id}-{version}.jar downloaded successfully.")
+    else:
+        print(f"Failed to download dependency {artifact_id}-{version}.jar. Reason : {response.reason}")
+
 ## parse tree
 # dependency_tree : content of dependency_tree file
 # path_to_folder : path to the clone folder
@@ -21,29 +42,46 @@ def parse_for_jar(dependency_tree:str, path_to_cloned_folder:str):
     ## regular expression to get a block
     block_pattern = r"\[INFO\] -+?<.+?\n\[INFO\] .+?\[(\d+?)/\d+\]\n\[INFO\].+?from (.+?)/pom.xml\n\[INFO\] -+?\[ (.+?) \]-+?\n.+?\n.+?\n\[INFO\] (.+?):(.+?):.+?:(.+?)\n(.+?)\[INFO\] \n"
     blocks = re.finditer(block_pattern, dependency_tree, flags=re.DOTALL)
+    print("get client jar / Uber jar/ dep jar...")
     for block in blocks:
         # print(block.group(0)) # block
         # print(block.group(1)) # number
         # print(block.group(2)) # module folder
         # print(block.group(3)) # type(like jar)
-        # print(block.group(4)) # groupId
-        # print(block.group(5)) # artifactId
-        # print(block.group(6)) # version
+        # print(block.group(4)) # client groupId
+        # print(block.group(5)) # client artifactId
+        # print(block.group(6)) # client version
         # print(block.group(7)) # dep
         if block.group(3) == 'jar':
             ## copy client jar and Uber jar into out/preprocess
             # jar: artifactId[block.group(5)]-version[block.group(6)].jar / Uber jar: original-jar
             # create folder in out/preprocess
-            print("get client...")
             folder = os.path.join(JAR_FOLDER, block.group(1))
             create_folder(folder)
             # write GAV of client in client_name.txt
-            with open(os.path.join(folder,'client_name.txt'), 'w') as f:
-                f.write("{block.group(4)}:{block.group(5)}:{block.group(6)}")
+            with open(os.path.join(folder,'client_gav.txt'), 'w') as f:
+                f.write(f"{block.group(4)}:{block.group(5)}:{block.group(6)}")
+                
             # copy client jar to folder/client
             target = os.path.join(path_to_cloned_folder, f"{block.group(2)}/target")
             client = os.path.join(folder, "client")
             create_folder(client)
+            client_jar = f"{block.group(5)}-{block.group(6)}.jar"
+            path_to_client_jar = os.path.join(target, client_jar)
+            shutil.copy(path_to_client_jar, client)
+            
+            # copy Uber jar to folder/Uber
+            Uber = os.path.join(folder, "Uber")
+            create_folder(Uber)
+            Uber_jar = f"original-{client_jar}"
+            path_to_Uber_jar = os.path.join(target, Uber_jar)
+            shutil.copy(path_to_Uber_jar, Uber)
+            
+            ## get dep jar using GAV from maven central repository
+            # create dep folder
+            dep = os.path.join(folder, "dep")
+            # parse tree to get GAV of deps(exclude test and provided)
+            parse_dep_gav(block.group(7))
             
             
     
@@ -59,6 +97,8 @@ def Get(path_to_cloned_folder:str):
         # parse tree
         parse_for_jar(dependency_tree, path_to_cloned_folder)
         
+        
+# test   
 if __name__ == "__main__":
     # def expand_resolve_abspath(path):
     #     expanded_path = os.path.expanduser(path)
@@ -88,4 +128,5 @@ if __name__ == "__main__":
 [INFO] \- org.projectlombok:lombok:jar:1.18.24:provided
 [INFO] 
 '''
-    parse_for_jar(tree)
+    # download in /preprocess/out/preprocess/Jar rather than /out/preprocess/Jar in test
+    parse_for_jar(tree, f"/home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns")
