@@ -1,5 +1,2 @@
 # ignore out/, as it is the date to be extracted #
 out/
-
-# ignore .venv
-.venv/
