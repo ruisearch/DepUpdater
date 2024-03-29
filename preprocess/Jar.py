@@ -3,7 +3,8 @@ import os
 import shutil
 import re
 import requests
-from constants import JAR_FOLDER, DEPENDENCY_TREE_FILE
+from preprocess.constants import JAR_FOLDER, DEPENDENCY_TREE_FILE
+# from constants import JAR_FOLDER, DEPENDENCY_TREE_FILE
 
 ## create a folder
 ## folder_path : path to folder
@@ -18,7 +19,7 @@ def create_folder(folder_path:str):
 ## parse tree to get GAV of deps(exclude test and provided)
 # return a list of dicts containing gav
 def parse_dep_gav(all_dep_gav:str):
-    dep_gav_pattern = r"- (.+?):(.+?):.+?:(.+?):(.+?)\n"
+    dep_gav_pattern = r"- (.+?):(.+?):.+?:(.+?):(.+?)\s"
     dep_matches = re.finditer(dep_gav_pattern, all_dep_gav)
     dep_gav = []
     for dep_match in dep_matches:
@@ -30,13 +31,16 @@ def parse_dep_gav(all_dep_gav:str):
             dep.update({'version':f'{dep_match.group(3)}'})
             dep_gav.append(dep)
     return dep_gav    
-    # ---------- to be continued--------#
     
 ## get dep jar using GAV from maven central repository
 def get_dep_jar(dep_folder:str, group_id:str, artifact_id:str, version:str):
+    # debug
+    # print(f'dep {group_id}:{artifact_id}:{version}')
+    
     jar_url = f"https://repo1.maven.org/maven2/{group_id.replace('.', '/')}/{artifact_id}/{version}/{artifact_id}-{version}.jar"
     response = requests.get(jar_url)
-    print(f"url:{jar_url}")
+    # debug
+    # print(f"url:{jar_url}")
     
     if response.status_code == 200:
         file_name = os.path.join(dep_folder,f"{artifact_id}-{version}.jar")
@@ -51,10 +55,18 @@ def get_dep_jar(dep_folder:str, group_id:str, artifact_id:str, version:str):
 # path_to_folder : path to the clone folder
 def parse_for_jar(dependency_tree:str, path_to_cloned_folder:str):
     ## regular expression to get a block
-    block_pattern = r"\[INFO\] -+?<.+?\n\[INFO\] .+?\[(\d+?)/\d+\]\n\[INFO\].+?from (.+?)/pom.xml\n\[INFO\] -+?\[ (.+?) \]-+?\n.+?\n.+?\n\[INFO\] (.+?):(.+?):.+?:(.+?)\n(.+?)\[INFO\] \n"
+    # block_pattern = r'\[INFO\] Building .+?\[(\d+?)/\d+\]\n\[INFO\].+?from (.*?)pom.xml\n\[INFO\] -+?\[ (.+?) \]-+?\[INFO\].+?\n\[INFO\].+?\n\[INFO\] (.+?):(.+?):.+?:(.+?)\n\[INFO\] (.+?)\[INFO\] -'
+    block_pattern = r'\[INFO\] Building .+?\[(\d+?)/\d+\]\n\[INFO\].+?from (.*?)pom.xml\n\[INFO\] -+?\[ (.+?) \]-+?\n\[INFO\].+?\n\[INFO\].+?\n\[INFO\] (.+?):(.+?):.+?:(.+?)\n(.+?)\[INFO\] -'
     blocks = re.finditer(block_pattern, dependency_tree, flags=re.DOTALL)
-    print("get client jar / Uber jar/ dep jar...")
+    print("\n****** get client jar / Uber jar/ dep jar... ******\n")
+    # sometimes, the jar name is not as expect;
+    # sometimes, the client is war;
+    # above clients are ignored
+    ignore_client = os.path.join(JAR_FOLDER, f'ignore.txt')
+    if os.path.exists(ignore_client):
+        os.remove(ignore_client)
     for block in blocks:
+        ## finditer
         # print(block.group(0)) # block
         # print(block.group(1)) # number
         # print(block.group(2)) # module folder
@@ -63,30 +75,51 @@ def parse_for_jar(dependency_tree:str, path_to_cloned_folder:str):
         # print(block.group(5)) # client artifactId
         # print(block.group(6)) # client version
         # print(block.group(7)) # dep
+        # print("***************")
         if block.group(3) == 'jar':
             ## copy client jar and Uber jar into out/preprocess
             # jar: artifactId[block.group(5)]-version[block.group(6)].jar / Uber jar: original-jar
             # create folder in out/preprocess
+            print(f"**** process {block.group(4)}:{block.group(5)}:{block.group(6)} ****")
             folder = os.path.join(JAR_FOLDER, block.group(1))
             create_folder(folder)
             # write GAV of client in client_name.txt
             with open(os.path.join(folder,'client_gav.txt'), 'w') as f:
                 f.write(f"{block.group(4)}:{block.group(5)}:{block.group(6)}")
-                
-            # copy client jar to folder/client
-            target = os.path.join(path_to_cloned_folder, f"{block.group(2)}/target")
-            client = os.path.join(folder, "client")
-            create_folder(client)
-            client_jar = f"{block.group(5)}-{block.group(6)}.jar"
-            path_to_client_jar = os.path.join(target, client_jar)
-            shutil.copy(path_to_client_jar, client)
             
             # copy Uber jar to folder/Uber
+            target = os.path.join(path_to_cloned_folder, f"{block.group(2)}target")
             Uber = os.path.join(folder, "Uber")
             create_folder(Uber)
-            Uber_jar = f"original-{client_jar}"
+            Uber_jar = f"{block.group(5)}-{block.group(6)}.jar"
             path_to_Uber_jar = os.path.join(target, Uber_jar)
-            shutil.copy(path_to_Uber_jar, Uber)
+            
+            try:
+                shutil.copy(path_to_Uber_jar, Uber)
+            except FileNotFoundError as e:
+                # the jar name is not as expect
+                # record the jar 
+                print(e)
+                with open(ignore_client, 'a') as f:
+                    f.write(f'{block.group(4)}:{block.group(5)}:{block.group(6)}\n')
+                shutil.rmtree(folder)
+                continue
+                
+            # copy client jar to folder/client
+            client = os.path.join(folder, "client")
+            create_folder(client)
+            client_jar = f"original-{Uber_jar}"
+            path_to_client_jar = os.path.join(target, client_jar)
+            try:
+                shutil.copy(path_to_client_jar, client)
+            except FileNotFoundError as e:
+                # the jar name is not as expect
+                # record the jar 
+                print(e)
+                with open(ignore_client, 'a') as f:
+                    f.write(f'{block.group(4)}:{block.group(5)}:{block.group(6)}\n')
+                shutil.rmtree(folder)
+                continue
             
             ## get dep jar using GAV from maven central repository
             # create dep folder
@@ -96,10 +129,11 @@ def parse_for_jar(dependency_tree:str, path_to_cloned_folder:str):
             deps_gav = parse_dep_gav(block.group(7))
             for dep_gav in deps_gav:
                 get_dep_jar(dep, dep_gav['group_id'], dep_gav['artifact_id'], dep_gav['version'])
+        # ignore war
+        if block.group(3) == 'war':
+            with open(ignore_client, 'a') as f:
+                f.write(f'{block.group(4)}:{block.group(5)}:{block.group(6)}')
             
-            
-    
-
 ## main method in this file
 # path_to_folder:path to cloned folder
 def Get(path_to_cloned_folder:str):

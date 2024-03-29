@@ -1,0 +1,1 @@
+com.iluwatar:special-case:1.26.0-SNAPSHOT

@@ -1,0 +1,1 @@
+com.iluwatar:single-table-inheritance:1.26.0-SNAPSHOT

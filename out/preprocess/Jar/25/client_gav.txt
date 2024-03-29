@@ -1,0 +1,1 @@
+com.iluwatar:observer:1.26.0-SNAPSHOT
