@@ -1,2 +1,0 @@
-com.iluwatar:layers:3.0.2
-com.iluwatar:model-view-viewmodel:1.26.0-SNAPSHOT

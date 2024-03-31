@@ -1,1 +1,0 @@
-com.iluwatar:collection-pipeline:1.26.0-SNAPSHOT

@@ -1,1 +1,0 @@
-com.iluwatar:business-delegate:1.26.0-SNAPSHOT

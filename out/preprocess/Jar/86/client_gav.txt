@@ -1,1 +1,0 @@
-com.iluwatar:inventory-microservice:1.26.0-SNAPSHOT

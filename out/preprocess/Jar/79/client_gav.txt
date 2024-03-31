@@ -1,1 +1,0 @@
-com.iluwatar:monad:1.26.0-SNAPSHOT

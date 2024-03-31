@@ -1,1 +1,0 @@
-com.iluwatar:optimistic-offline-lock:1.26.0-SNAPSHOT

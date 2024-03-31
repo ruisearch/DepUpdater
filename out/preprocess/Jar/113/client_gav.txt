@@ -1,1 +1,0 @@
-com.iluwatar:master-worker-pattern:1.26.0-SNAPSHOT

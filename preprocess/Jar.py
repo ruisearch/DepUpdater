@@ -46,17 +46,17 @@ def get_dep_jar(dep_folder:str, group_id:str, artifact_id:str, version:str):
         file_name = os.path.join(dep_folder,f"{artifact_id}-{version}.jar")
         with open(file_name, "wb") as jar_file:
             jar_file.write(response.content)
-        print(f"Dependency {artifact_id}-{version}.jar downloaded successfully.")
+        print(f"{artifact_id}-{version}.jar downloaded successfully.")
     else:
-        print(f"Failed to download dependency {artifact_id}-{version}.jar. Reason : {response.reason}")
+        print(f"Failed to download {artifact_id}-{version}.jar; Reason : {response.reason}")
 
 ## parse tree
 # dependency_tree : content of dependency_tree file
 # path_to_folder : path to the clone folder
 def parse_for_jar(dependency_tree:str, path_to_cloned_folder:str):
     ## regular expression to get a block
-    # block_pattern = r'\[INFO\] Building .+?\[(\d+?)/\d+\]\n\[INFO\].+?from (.*?)pom.xml\n\[INFO\] -+?\[ (.+?) \]-+?\[INFO\].+?\n\[INFO\].+?\n\[INFO\] (.+?):(.+?):.+?:(.+?)\n\[INFO\] (.+?)\[INFO\] -'
-    block_pattern = r'\[INFO\] Building .+?\[(\d+?)/\d+\]\n\[INFO\].+?from (.*?)pom.xml\n\[INFO\] -+?\[ (.+?) \]-+?\n\[INFO\].+?\n\[INFO\].+?\n\[INFO\] (.+?):(.+?):.+?:(.+?)\n(.+?)\[INFO\] -'
+    # block_pattern = r'\[INFO\] Building .+?\[(\d+?)/\d+\]\n\[INFO\].+?from (.*?)pom.xml\n\[INFO\] -+?\[ (.+?) \]-+?\n\[INFO\].+?\n\[INFO\].+?\n\[INFO\] (.+?):(.+?):.+?:(.+?)\n(.+?)\[INFO\] -'
+    block_pattern = r'\[INFO\] Building .+?\[(\d+?)/\d+\]\n\[INFO\].+?from (.*?)pom.xml\n\[INFO\] -+?\[ (.+?) \]-+?\n.*?\[INFO\] (\S+?):(\S+?):\S+?:(\S+?)\n(.+?)\[INFO\] -'
     blocks = re.finditer(block_pattern, dependency_tree, flags=re.DOTALL)
     print("\n****** get client jar / Uber jar/ dep jar... ******\n")
     # sometimes, the jar name is not as expect;
@@ -76,10 +76,11 @@ def parse_for_jar(dependency_tree:str, path_to_cloned_folder:str):
         # print(block.group(6)) # client version
         # print(block.group(7)) # dep
         # print("***************")
+        # print(f"type: {block.group(3)}, num: {block.group(1)}")
         if block.group(3) == 'jar':
-            ## copy client jar and Uber jar into out/preprocess
+            ## copy client jar and Uber jar into data/preprocess
             # jar: artifactId[block.group(5)]-version[block.group(6)].jar / Uber jar: original-jar
-            # create folder in out/preprocess
+            # create folder in data/preprocess
             print(f"**** process {block.group(4)}:{block.group(5)}:{block.group(6)} ****")
             folder = os.path.join(JAR_FOLDER, block.group(1))
             create_folder(folder)
@@ -132,7 +133,7 @@ def parse_for_jar(dependency_tree:str, path_to_cloned_folder:str):
         # ignore war
         if block.group(3) == 'war':
             with open(ignore_client, 'a') as f:
-                f.write(f'{block.group(4)}:{block.group(5)}:{block.group(6)}')
+                f.write(f'{block.group(4)}:{block.group(5)}:{block.group(6)}\n')
             
 ## main method in this file
 # path_to_folder:path to cloned folder
@@ -153,7 +154,7 @@ if __name__ == "__main__":
     #     resolved_path = os.path.normpath(expanded_path)
     #     absolute_path = os.path.abspath(resolved_path)
     #     return absolute_path
-    # path = expand_resolve_abspath(f"~/Work/Tool/Tool/out/preprocess/dependency_tree.txt")
+    # path = expand_resolve_abspath(f"~/Work/Tool/Tool/data/preprocess/dependency_tree.txt")
     # with open(path, 'r') as f:
     #     dependency_tree = f.read()
     #     parse_for_jar(dependency_tree)
@@ -176,5 +177,5 @@ if __name__ == "__main__":
 [INFO] \- org.projectlombok:lombok:jar:1.18.24:provided
 [INFO] 
 '''
-    # download in /preprocess/out/preprocess/Jar rather than /out/preprocess/Jar in test
+    # download in /preprocess/data/preprocess/Jar rather than /data/preprocess/Jar in test
     parse_for_jar(tree, f"/home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns")
