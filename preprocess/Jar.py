@@ -3,6 +3,7 @@ import os
 import shutil
 import re
 import requests
+import json
 from preprocess.constants import JAR_FOLDER, DEPENDENCY_TREE_FILE
 # from constants import JAR_FOLDER, DEPENDENCY_TREE_FILE
 
@@ -128,8 +129,23 @@ def parse_for_jar(dependency_tree:str, path_to_cloned_folder:str):
             create_folder(dep)
             # parse tree to get GAV of deps(exclude test and provided)
             deps_gav = parse_dep_gav(block.group(7))
+            # get dep jar and update the list of dicts which will be displayed in json
+            # jarname ----> gav
+            mappings = []
             for dep_gav in deps_gav:
                 get_dep_jar(dep, dep_gav['group_id'], dep_gav['artifact_id'], dep_gav['version'])
+                mapping = {
+                    "JarFileName": f"{dep_gav['artifact_id']}-{dep_gav['version']}.jar",
+                    "GroupId": f"{dep_gav['group_id']}",
+                    "ArtifactId": f"{dep_gav['artifact_id']}",
+                    "Version": f"{dep_gav['version']}"
+                }
+                mappings.append(mapping)
+            # create json
+            json_path = os.path.join(dep, 'match.json')
+            with open(json_path, 'a') as json_file:
+                json.dump(mappings, json_file, indent=4)
+                
         # ignore war
         if block.group(3) == 'war':
             with open(ignore_client, 'a') as f:

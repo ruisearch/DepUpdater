@@ -36,6 +36,6 @@ print("\n****** preprocess.getjar done! ******\n")
 print("\n****** preprocess done! ******\n")
 
 ## match:
-## input ：the ./data/preprocess folder containing all jar
+## input ：the ./data/preprocess folder containing all jars
 ## output : the mapping from dep jars to APIs which are called directly or transitively by client
 print("\n****** match ... ******\n")
