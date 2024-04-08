@@ -3,6 +3,7 @@ import os
 from preprocess import exec_maven_command
 from preprocess import maven_shade_plugin
 from preprocess import Jar
+from match import CG
 
 ## expand the path to absolute path
 def expand_resolve_abspath(path):
@@ -39,3 +40,4 @@ print("\n****** preprocess done! ******\n")
 ## input ：the ./data/preprocess folder containing all jars
 ## output : the mapping from dep jars to APIs which are called directly or transitively by client
 print("\n****** match ... ******\n")
+CG.gen_all()
