@@ -1,0 +1,158 @@
+[
+    {
+        "JarFileName": "htmlunit-3.11.0.jar",
+        "GroupId": "org.htmlunit",
+        "ArtifactId": "htmlunit",
+        "Version": "3.11.0"
+    },
+    {
+        "JarFileName": "httpmime-4.5.13.jar",
+        "GroupId": "org.apache.httpcomponents",
+        "ArtifactId": "httpmime",
+        "Version": "4.5.13"
+    },
+    {
+        "JarFileName": "httpclient-4.5.13.jar",
+        "GroupId": "org.apache.httpcomponents",
+        "ArtifactId": "httpclient",
+        "Version": "4.5.13"
+    },
+    {
+        "JarFileName": "httpcore-4.4.15.jar",
+        "GroupId": "org.apache.httpcomponents",
+        "ArtifactId": "httpcore",
+        "Version": "4.4.15"
+    },
+    {
+        "JarFileName": "htmlunit-core-js-3.11.0.jar",
+        "GroupId": "org.htmlunit",
+        "ArtifactId": "htmlunit-core-js",
+        "Version": "3.11.0"
+    },
+    {
+        "JarFileName": "neko-htmlunit-3.11.2.jar",
+        "GroupId": "org.htmlunit",
+        "ArtifactId": "neko-htmlunit",
+        "Version": "3.11.2"
+    },
+    {
+        "JarFileName": "htmlunit-cssparser-3.11.0.jar",
+        "GroupId": "org.htmlunit",
+        "ArtifactId": "htmlunit-cssparser",
+        "Version": "3.11.0"
+    },
+    {
+        "JarFileName": "htmlunit-xpath-3.11.0.jar",
+        "GroupId": "org.htmlunit",
+        "ArtifactId": "htmlunit-xpath",
+        "Version": "3.11.0"
+    },
+    {
+        "JarFileName": "htmlunit-csp-3.11.0.jar",
+        "GroupId": "org.htmlunit",
+        "ArtifactId": "htmlunit-csp",
+        "Version": "3.11.0"
+    },
+    {
+        "JarFileName": "commons-lang3-3.12.0.jar",
+        "GroupId": "org.apache.commons",
+        "ArtifactId": "commons-lang3",
+        "Version": "3.12.0"
+    },
+    {
+        "JarFileName": "commons-text-1.11.0.jar",
+        "GroupId": "org.apache.commons",
+        "ArtifactId": "commons-text",
+        "Version": "1.11.0"
+    },
+    {
+        "JarFileName": "commons-io-2.15.1.jar",
+        "GroupId": "commons-io",
+        "ArtifactId": "commons-io",
+        "Version": "2.15.1"
+    },
+    {
+        "JarFileName": "commons-logging-1.3.0.jar",
+        "GroupId": "commons-logging",
+        "ArtifactId": "commons-logging",
+        "Version": "1.3.0"
+    },
+    {
+        "JarFileName": "commons-net-3.10.0.jar",
+        "GroupId": "commons-net",
+        "ArtifactId": "commons-net",
+        "Version": "3.10.0"
+    },
+    {
+        "JarFileName": "commons-codec-1.15.jar",
+        "GroupId": "commons-codec",
+        "ArtifactId": "commons-codec",
+        "Version": "1.15"
+    },
+    {
+        "JarFileName": "dec-0.1.2.jar",
+        "GroupId": "org.brotli",
+        "ArtifactId": "dec",
+        "Version": "0.1.2"
+    },
+    {
+        "JarFileName": "websocket-client-9.4.49.v20220914.jar",
+        "GroupId": "org.eclipse.jetty.websocket",
+        "ArtifactId": "websocket-client",
+        "Version": "9.4.49.v20220914"
+    },
+    {
+        "JarFileName": "jetty-client-9.4.49.v20220914.jar",
+        "GroupId": "org.eclipse.jetty",
+        "ArtifactId": "jetty-client",
+        "Version": "9.4.49.v20220914"
+    },
+    {
+        "JarFileName": "jetty-http-9.4.49.v20220914.jar",
+        "GroupId": "org.eclipse.jetty",
+        "ArtifactId": "jetty-http",
+        "Version": "9.4.49.v20220914"
+    },
+    {
+        "JarFileName": "jetty-util-9.4.49.v20220914.jar",
+        "GroupId": "org.eclipse.jetty",
+        "ArtifactId": "jetty-util",
+        "Version": "9.4.49.v20220914"
+    },
+    {
+        "JarFileName": "jetty-io-9.4.49.v20220914.jar",
+        "GroupId": "org.eclipse.jetty",
+        "ArtifactId": "jetty-io",
+        "Version": "9.4.49.v20220914"
+    },
+    {
+        "JarFileName": "websocket-common-9.4.49.v20220914.jar",
+        "GroupId": "org.eclipse.jetty.websocket",
+        "ArtifactId": "websocket-common",
+        "Version": "9.4.49.v20220914"
+    },
+    {
+        "JarFileName": "websocket-api-9.4.49.v20220914.jar",
+        "GroupId": "org.eclipse.jetty.websocket",
+        "ArtifactId": "websocket-api",
+        "Version": "9.4.49.v20220914"
+    },
+    {
+        "JarFileName": "slf4j-api-2.0.12.jar",
+        "GroupId": "org.slf4j",
+        "ArtifactId": "slf4j-api",
+        "Version": "2.0.12"
+    },
+    {
+        "JarFileName": "logback-classic-1.5.3.jar",
+        "GroupId": "ch.qos.logback",
+        "ArtifactId": "logback-classic",
+        "Version": "1.5.3"
+    },
+    {
+        "JarFileName": "logback-core-1.5.3.jar",
+        "GroupId": "ch.qos.logback",
+        "ArtifactId": "logback-core",
+        "Version": "1.5.3"
+    }
+]

@@ -1,0 +1,1 @@
+com.iluwatar:queue-load-leveling:1.26.0-SNAPSHOT

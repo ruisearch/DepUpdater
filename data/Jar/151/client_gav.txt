@@ -1,0 +1,1 @@
+com.iluwatar:service-to-worker:1.26.0-SNAPSHOT

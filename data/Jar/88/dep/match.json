@@ -1,0 +1,236 @@
+[
+    {
+        "JarFileName": "spring-webmvc-6.1.5.jar",
+        "GroupId": "org.springframework",
+        "ArtifactId": "spring-webmvc",
+        "Version": "6.1.5"
+    },
+    {
+        "JarFileName": "spring-aop-6.1.5.jar",
+        "GroupId": "org.springframework",
+        "ArtifactId": "spring-aop",
+        "Version": "6.1.5"
+    },
+    {
+        "JarFileName": "spring-beans-6.1.5.jar",
+        "GroupId": "org.springframework",
+        "ArtifactId": "spring-beans",
+        "Version": "6.1.5"
+    },
+    {
+        "JarFileName": "spring-core-6.1.5.jar",
+        "GroupId": "org.springframework",
+        "ArtifactId": "spring-core",
+        "Version": "6.1.5"
+    },
+    {
+        "JarFileName": "spring-jcl-6.1.5.jar",
+        "GroupId": "org.springframework",
+        "ArtifactId": "spring-jcl",
+        "Version": "6.1.5"
+    },
+    {
+        "JarFileName": "spring-expression-6.1.5.jar",
+        "GroupId": "org.springframework",
+        "ArtifactId": "spring-expression",
+        "Version": "6.1.5"
+    },
+    {
+        "JarFileName": "spring-web-6.1.5.jar",
+        "GroupId": "org.springframework",
+        "ArtifactId": "spring-web",
+        "Version": "6.1.5"
+    },
+    {
+        "JarFileName": "spring-boot-starter-web-3.2.4.jar",
+        "GroupId": "org.springframework.boot",
+        "ArtifactId": "spring-boot-starter-web",
+        "Version": "3.2.4"
+    },
+    {
+        "JarFileName": "spring-boot-starter-3.2.4.jar",
+        "GroupId": "org.springframework.boot",
+        "ArtifactId": "spring-boot-starter",
+        "Version": "3.2.4"
+    },
+    {
+        "JarFileName": "spring-boot-3.2.4.jar",
+        "GroupId": "org.springframework.boot",
+        "ArtifactId": "spring-boot",
+        "Version": "3.2.4"
+    },
+    {
+        "JarFileName": "spring-boot-autoconfigure-3.2.4.jar",
+        "GroupId": "org.springframework.boot",
+        "ArtifactId": "spring-boot-autoconfigure",
+        "Version": "3.2.4"
+    },
+    {
+        "JarFileName": "spring-boot-starter-logging-3.2.4.jar",
+        "GroupId": "org.springframework.boot",
+        "ArtifactId": "spring-boot-starter-logging",
+        "Version": "3.2.4"
+    },
+    {
+        "JarFileName": "log4j-to-slf4j-2.21.1.jar",
+        "GroupId": "org.apache.logging.log4j",
+        "ArtifactId": "log4j-to-slf4j",
+        "Version": "2.21.1"
+    },
+    {
+        "JarFileName": "log4j-api-2.21.1.jar",
+        "GroupId": "org.apache.logging.log4j",
+        "ArtifactId": "log4j-api",
+        "Version": "2.21.1"
+    },
+    {
+        "JarFileName": "jul-to-slf4j-2.0.12.jar",
+        "GroupId": "org.slf4j",
+        "ArtifactId": "jul-to-slf4j",
+        "Version": "2.0.12"
+    },
+    {
+        "JarFileName": "jakarta.annotation-api-2.1.1.jar",
+        "GroupId": "jakarta.annotation",
+        "ArtifactId": "jakarta.annotation-api",
+        "Version": "2.1.1"
+    },
+    {
+        "JarFileName": "snakeyaml-2.2.jar",
+        "GroupId": "org.yaml",
+        "ArtifactId": "snakeyaml",
+        "Version": "2.2"
+    },
+    {
+        "JarFileName": "spring-boot-starter-json-3.2.4.jar",
+        "GroupId": "org.springframework.boot",
+        "ArtifactId": "spring-boot-starter-json",
+        "Version": "3.2.4"
+    },
+    {
+        "JarFileName": "jackson-databind-2.15.4.jar",
+        "GroupId": "com.fasterxml.jackson.core",
+        "ArtifactId": "jackson-databind",
+        "Version": "2.15.4"
+    },
+    {
+        "JarFileName": "jackson-annotations-2.15.4.jar",
+        "GroupId": "com.fasterxml.jackson.core",
+        "ArtifactId": "jackson-annotations",
+        "Version": "2.15.4"
+    },
+    {
+        "JarFileName": "jackson-core-2.15.4.jar",
+        "GroupId": "com.fasterxml.jackson.core",
+        "ArtifactId": "jackson-core",
+        "Version": "2.15.4"
+    },
+    {
+        "JarFileName": "jackson-datatype-jdk8-2.15.4.jar",
+        "GroupId": "com.fasterxml.jackson.datatype",
+        "ArtifactId": "jackson-datatype-jdk8",
+        "Version": "2.15.4"
+    },
+    {
+        "JarFileName": "jackson-datatype-jsr310-2.15.4.jar",
+        "GroupId": "com.fasterxml.jackson.datatype",
+        "ArtifactId": "jackson-datatype-jsr310",
+        "Version": "2.15.4"
+    },
+    {
+        "JarFileName": "jackson-module-parameter-names-2.15.4.jar",
+        "GroupId": "com.fasterxml.jackson.module",
+        "ArtifactId": "jackson-module-parameter-names",
+        "Version": "2.15.4"
+    },
+    {
+        "JarFileName": "spring-boot-starter-tomcat-3.2.4.jar",
+        "GroupId": "org.springframework.boot",
+        "ArtifactId": "spring-boot-starter-tomcat",
+        "Version": "3.2.4"
+    },
+    {
+        "JarFileName": "tomcat-embed-core-10.1.19.jar",
+        "GroupId": "org.apache.tomcat.embed",
+        "ArtifactId": "tomcat-embed-core",
+        "Version": "10.1.19"
+    },
+    {
+        "JarFileName": "tomcat-embed-el-10.1.19.jar",
+        "GroupId": "org.apache.tomcat.embed",
+        "ArtifactId": "tomcat-embed-el",
+        "Version": "10.1.19"
+    },
+    {
+        "JarFileName": "tomcat-embed-websocket-10.1.19.jar",
+        "GroupId": "org.apache.tomcat.embed",
+        "ArtifactId": "tomcat-embed-websocket",
+        "Version": "10.1.19"
+    },
+    {
+        "JarFileName": "spring-context-6.1.5.jar",
+        "GroupId": "org.springframework",
+        "ArtifactId": "spring-context",
+        "Version": "6.1.5"
+    },
+    {
+        "JarFileName": "micrometer-observation-1.12.4.jar",
+        "GroupId": "io.micrometer",
+        "ArtifactId": "micrometer-observation",
+        "Version": "1.12.4"
+    },
+    {
+        "JarFileName": "micrometer-commons-1.12.4.jar",
+        "GroupId": "io.micrometer",
+        "ArtifactId": "micrometer-commons",
+        "Version": "1.12.4"
+    },
+    {
+        "JarFileName": "spring-boot-starter-thymeleaf-3.2.4.jar",
+        "GroupId": "org.springframework.boot",
+        "ArtifactId": "spring-boot-starter-thymeleaf",
+        "Version": "3.2.4"
+    },
+    {
+        "JarFileName": "thymeleaf-spring6-3.1.2.RELEASE.jar",
+        "GroupId": "org.thymeleaf",
+        "ArtifactId": "thymeleaf-spring6",
+        "Version": "3.1.2.RELEASE"
+    },
+    {
+        "JarFileName": "thymeleaf-3.1.2.RELEASE.jar",
+        "GroupId": "org.thymeleaf",
+        "ArtifactId": "thymeleaf",
+        "Version": "3.1.2.RELEASE"
+    },
+    {
+        "JarFileName": "attoparser-2.0.7.RELEASE.jar",
+        "GroupId": "org.attoparser",
+        "ArtifactId": "attoparser",
+        "Version": "2.0.7.RELEASE"
+    },
+    {
+        "JarFileName": "unbescape-1.1.6.RELEASE.jar",
+        "GroupId": "org.unbescape",
+        "ArtifactId": "unbescape",
+        "Version": "1.1.6.RELEASE"
+    },
+    {
+        "JarFileName": "slf4j-api-2.0.12.jar",
+        "GroupId": "org.slf4j",
+        "ArtifactId": "slf4j-api",
+        "Version": "2.0.12"
+    },
+    {
+        "JarFileName": "logback-classic-1.5.3.jar",
+        "GroupId": "ch.qos.logback",
+        "ArtifactId": "logback-classic",
+        "Version": "1.5.3"
+    },
+    {
+        "JarFileName": "logback-core-1.5.3.jar",
+        "GroupId": "ch.qos.logback",
+        "ArtifactId": "logback-core",
+        "Version": "1.5.3"
+    }
+]

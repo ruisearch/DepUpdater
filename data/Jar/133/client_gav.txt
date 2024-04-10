@@ -1,0 +1,1 @@
+com.iluwatar:arrange-act-assert:1.26.0-SNAPSHOT

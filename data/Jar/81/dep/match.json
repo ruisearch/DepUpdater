@@ -1,0 +1,110 @@
+[
+    {
+        "JarFileName": "guice-5.1.0.jar",
+        "GroupId": "com.google.inject",
+        "ArtifactId": "guice",
+        "Version": "5.1.0"
+    },
+    {
+        "JarFileName": "javax.inject-1.jar",
+        "GroupId": "javax.inject",
+        "ArtifactId": "javax.inject",
+        "Version": "1"
+    },
+    {
+        "JarFileName": "aopalliance-1.0.jar",
+        "GroupId": "aopalliance",
+        "ArtifactId": "aopalliance",
+        "Version": "1.0"
+    },
+    {
+        "JarFileName": "guava-30.1-jre.jar",
+        "GroupId": "com.google.guava",
+        "ArtifactId": "guava",
+        "Version": "30.1-jre"
+    },
+    {
+        "JarFileName": "failureaccess-1.0.1.jar",
+        "GroupId": "com.google.guava",
+        "ArtifactId": "failureaccess",
+        "Version": "1.0.1"
+    },
+    {
+        "JarFileName": "listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar",
+        "GroupId": "com.google.guava",
+        "ArtifactId": "listenablefuture",
+        "Version": "9999.0-empty-to-avoid-conflict-with-guava"
+    },
+    {
+        "JarFileName": "jsr305-3.0.2.jar",
+        "GroupId": "com.google.code.findbugs",
+        "ArtifactId": "jsr305",
+        "Version": "3.0.2"
+    },
+    {
+        "JarFileName": "checker-qual-3.5.0.jar",
+        "GroupId": "org.checkerframework",
+        "ArtifactId": "checker-qual",
+        "Version": "3.5.0"
+    },
+    {
+        "JarFileName": "error_prone_annotations-2.3.4.jar",
+        "GroupId": "com.google.errorprone",
+        "ArtifactId": "error_prone_annotations",
+        "Version": "2.3.4"
+    },
+    {
+        "JarFileName": "j2objc-annotations-1.3.jar",
+        "GroupId": "com.google.j2objc",
+        "ArtifactId": "j2objc-annotations",
+        "Version": "1.3"
+    },
+    {
+        "JarFileName": "bson-4.6.1.jar",
+        "GroupId": "org.mongodb",
+        "ArtifactId": "bson",
+        "Version": "4.6.1"
+    },
+    {
+        "JarFileName": "mongodb-driver-legacy-4.6.1.jar",
+        "GroupId": "org.mongodb",
+        "ArtifactId": "mongodb-driver-legacy",
+        "Version": "4.6.1"
+    },
+    {
+        "JarFileName": "mongodb-driver-core-4.6.1.jar",
+        "GroupId": "org.mongodb",
+        "ArtifactId": "mongodb-driver-core",
+        "Version": "4.6.1"
+    },
+    {
+        "JarFileName": "bson-record-codec-4.6.1.jar",
+        "GroupId": "org.mongodb",
+        "ArtifactId": "bson-record-codec",
+        "Version": "4.6.1"
+    },
+    {
+        "JarFileName": "mongodb-driver-sync-4.6.1.jar",
+        "GroupId": "org.mongodb",
+        "ArtifactId": "mongodb-driver-sync",
+        "Version": "4.6.1"
+    },
+    {
+        "JarFileName": "slf4j-api-2.0.12.jar",
+        "GroupId": "org.slf4j",
+        "ArtifactId": "slf4j-api",
+        "Version": "2.0.12"
+    },
+    {
+        "JarFileName": "logback-classic-1.5.3.jar",
+        "GroupId": "ch.qos.logback",
+        "ArtifactId": "logback-classic",
+        "Version": "1.5.3"
+    },
+    {
+        "JarFileName": "logback-core-1.5.3.jar",
+        "GroupId": "ch.qos.logback",
+        "ArtifactId": "logback-core",
+        "Version": "1.5.3"
+    }
+]

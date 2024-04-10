@@ -1,0 +1,302 @@
+[
+    {
+        "JarFileName": "spring-boot-starter-3.2.4.jar",
+        "GroupId": "org.springframework.boot",
+        "ArtifactId": "spring-boot-starter",
+        "Version": "3.2.4"
+    },
+    {
+        "JarFileName": "spring-boot-3.2.4.jar",
+        "GroupId": "org.springframework.boot",
+        "ArtifactId": "spring-boot",
+        "Version": "3.2.4"
+    },
+    {
+        "JarFileName": "spring-context-6.1.5.jar",
+        "GroupId": "org.springframework",
+        "ArtifactId": "spring-context",
+        "Version": "6.1.5"
+    },
+    {
+        "JarFileName": "spring-expression-6.1.5.jar",
+        "GroupId": "org.springframework",
+        "ArtifactId": "spring-expression",
+        "Version": "6.1.5"
+    },
+    {
+        "JarFileName": "micrometer-observation-1.12.4.jar",
+        "GroupId": "io.micrometer",
+        "ArtifactId": "micrometer-observation",
+        "Version": "1.12.4"
+    },
+    {
+        "JarFileName": "micrometer-commons-1.12.4.jar",
+        "GroupId": "io.micrometer",
+        "ArtifactId": "micrometer-commons",
+        "Version": "1.12.4"
+    },
+    {
+        "JarFileName": "spring-boot-autoconfigure-3.2.4.jar",
+        "GroupId": "org.springframework.boot",
+        "ArtifactId": "spring-boot-autoconfigure",
+        "Version": "3.2.4"
+    },
+    {
+        "JarFileName": "spring-boot-starter-logging-3.2.4.jar",
+        "GroupId": "org.springframework.boot",
+        "ArtifactId": "spring-boot-starter-logging",
+        "Version": "3.2.4"
+    },
+    {
+        "JarFileName": "log4j-to-slf4j-2.21.1.jar",
+        "GroupId": "org.apache.logging.log4j",
+        "ArtifactId": "log4j-to-slf4j",
+        "Version": "2.21.1"
+    },
+    {
+        "JarFileName": "log4j-api-2.21.1.jar",
+        "GroupId": "org.apache.logging.log4j",
+        "ArtifactId": "log4j-api",
+        "Version": "2.21.1"
+    },
+    {
+        "JarFileName": "jul-to-slf4j-2.0.12.jar",
+        "GroupId": "org.slf4j",
+        "ArtifactId": "jul-to-slf4j",
+        "Version": "2.0.12"
+    },
+    {
+        "JarFileName": "jakarta.annotation-api-2.1.1.jar",
+        "GroupId": "jakarta.annotation",
+        "ArtifactId": "jakarta.annotation-api",
+        "Version": "2.1.1"
+    },
+    {
+        "JarFileName": "spring-core-6.1.5.jar",
+        "GroupId": "org.springframework",
+        "ArtifactId": "spring-core",
+        "Version": "6.1.5"
+    },
+    {
+        "JarFileName": "spring-jcl-6.1.5.jar",
+        "GroupId": "org.springframework",
+        "ArtifactId": "spring-jcl",
+        "Version": "6.1.5"
+    },
+    {
+        "JarFileName": "snakeyaml-2.2.jar",
+        "GroupId": "org.yaml",
+        "ArtifactId": "snakeyaml",
+        "Version": "2.2"
+    },
+    {
+        "JarFileName": "spring-boot-starter-data-jpa-3.2.4.jar",
+        "GroupId": "org.springframework.boot",
+        "ArtifactId": "spring-boot-starter-data-jpa",
+        "Version": "3.2.4"
+    },
+    {
+        "JarFileName": "spring-boot-starter-aop-3.2.4.jar",
+        "GroupId": "org.springframework.boot",
+        "ArtifactId": "spring-boot-starter-aop",
+        "Version": "3.2.4"
+    },
+    {
+        "JarFileName": "spring-aop-6.1.5.jar",
+        "GroupId": "org.springframework",
+        "ArtifactId": "spring-aop",
+        "Version": "6.1.5"
+    },
+    {
+        "JarFileName": "aspectjweaver-1.9.21.jar",
+        "GroupId": "org.aspectj",
+        "ArtifactId": "aspectjweaver",
+        "Version": "1.9.21"
+    },
+    {
+        "JarFileName": "spring-boot-starter-jdbc-3.2.4.jar",
+        "GroupId": "org.springframework.boot",
+        "ArtifactId": "spring-boot-starter-jdbc",
+        "Version": "3.2.4"
+    },
+    {
+        "JarFileName": "HikariCP-5.0.1.jar",
+        "GroupId": "com.zaxxer",
+        "ArtifactId": "HikariCP",
+        "Version": "5.0.1"
+    },
+    {
+        "JarFileName": "spring-jdbc-6.1.5.jar",
+        "GroupId": "org.springframework",
+        "ArtifactId": "spring-jdbc",
+        "Version": "6.1.5"
+    },
+    {
+        "JarFileName": "hibernate-core-6.4.4.Final.jar",
+        "GroupId": "org.hibernate.orm",
+        "ArtifactId": "hibernate-core",
+        "Version": "6.4.4.Final"
+    },
+    {
+        "JarFileName": "jakarta.persistence-api-3.1.0.jar",
+        "GroupId": "jakarta.persistence",
+        "ArtifactId": "jakarta.persistence-api",
+        "Version": "3.1.0"
+    },
+    {
+        "JarFileName": "jakarta.transaction-api-2.0.1.jar",
+        "GroupId": "jakarta.transaction",
+        "ArtifactId": "jakarta.transaction-api",
+        "Version": "2.0.1"
+    },
+    {
+        "JarFileName": "jboss-logging-3.5.3.Final.jar",
+        "GroupId": "org.jboss.logging",
+        "ArtifactId": "jboss-logging",
+        "Version": "3.5.3.Final"
+    },
+    {
+        "JarFileName": "hibernate-commons-annotations-6.0.6.Final.jar",
+        "GroupId": "org.hibernate.common",
+        "ArtifactId": "hibernate-commons-annotations",
+        "Version": "6.0.6.Final"
+    },
+    {
+        "JarFileName": "jandex-3.1.2.jar",
+        "GroupId": "io.smallrye",
+        "ArtifactId": "jandex",
+        "Version": "3.1.2"
+    },
+    {
+        "JarFileName": "classmate-1.6.0.jar",
+        "GroupId": "com.fasterxml",
+        "ArtifactId": "classmate",
+        "Version": "1.6.0"
+    },
+    {
+        "JarFileName": "byte-buddy-1.14.12.jar",
+        "GroupId": "net.bytebuddy",
+        "ArtifactId": "byte-buddy",
+        "Version": "1.14.12"
+    },
+    {
+        "JarFileName": "jaxb-runtime-4.0.5.jar",
+        "GroupId": "org.glassfish.jaxb",
+        "ArtifactId": "jaxb-runtime",
+        "Version": "4.0.5"
+    },
+    {
+        "JarFileName": "jaxb-core-4.0.5.jar",
+        "GroupId": "org.glassfish.jaxb",
+        "ArtifactId": "jaxb-core",
+        "Version": "4.0.5"
+    },
+    {
+        "JarFileName": "angus-activation-2.0.2.jar",
+        "GroupId": "org.eclipse.angus",
+        "ArtifactId": "angus-activation",
+        "Version": "2.0.2"
+    },
+    {
+        "JarFileName": "txw2-4.0.5.jar",
+        "GroupId": "org.glassfish.jaxb",
+        "ArtifactId": "txw2",
+        "Version": "4.0.5"
+    },
+    {
+        "JarFileName": "istack-commons-runtime-4.1.2.jar",
+        "GroupId": "com.sun.istack",
+        "ArtifactId": "istack-commons-runtime",
+        "Version": "4.1.2"
+    },
+    {
+        "JarFileName": "jakarta.inject-api-2.0.1.jar",
+        "GroupId": "jakarta.inject",
+        "ArtifactId": "jakarta.inject-api",
+        "Version": "2.0.1"
+    },
+    {
+        "JarFileName": "antlr4-runtime-4.13.0.jar",
+        "GroupId": "org.antlr",
+        "ArtifactId": "antlr4-runtime",
+        "Version": "4.13.0"
+    },
+    {
+        "JarFileName": "spring-data-jpa-3.2.4.jar",
+        "GroupId": "org.springframework.data",
+        "ArtifactId": "spring-data-jpa",
+        "Version": "3.2.4"
+    },
+    {
+        "JarFileName": "spring-data-commons-3.2.4.jar",
+        "GroupId": "org.springframework.data",
+        "ArtifactId": "spring-data-commons",
+        "Version": "3.2.4"
+    },
+    {
+        "JarFileName": "spring-orm-6.1.5.jar",
+        "GroupId": "org.springframework",
+        "ArtifactId": "spring-orm",
+        "Version": "6.1.5"
+    },
+    {
+        "JarFileName": "spring-tx-6.1.5.jar",
+        "GroupId": "org.springframework",
+        "ArtifactId": "spring-tx",
+        "Version": "6.1.5"
+    },
+    {
+        "JarFileName": "spring-beans-6.1.5.jar",
+        "GroupId": "org.springframework",
+        "ArtifactId": "spring-beans",
+        "Version": "6.1.5"
+    },
+    {
+        "JarFileName": "spring-aspects-6.1.5.jar",
+        "GroupId": "org.springframework",
+        "ArtifactId": "spring-aspects",
+        "Version": "6.1.5"
+    },
+    {
+        "JarFileName": "h2-2.2.224.jar",
+        "GroupId": "com.h2database",
+        "ArtifactId": "h2",
+        "Version": "2.2.224"
+    },
+    {
+        "JarFileName": "lombok-1.18.30.jar",
+        "GroupId": "org.projectlombok",
+        "ArtifactId": "lombok",
+        "Version": "1.18.30"
+    },
+    {
+        "JarFileName": "jakarta.xml.bind-api-4.0.2.jar",
+        "GroupId": "jakarta.xml.bind",
+        "ArtifactId": "jakarta.xml.bind-api",
+        "Version": "4.0.2"
+    },
+    {
+        "JarFileName": "jakarta.activation-api-2.1.3.jar",
+        "GroupId": "jakarta.activation",
+        "ArtifactId": "jakarta.activation-api",
+        "Version": "2.1.3"
+    },
+    {
+        "JarFileName": "slf4j-api-2.0.12.jar",
+        "GroupId": "org.slf4j",
+        "ArtifactId": "slf4j-api",
+        "Version": "2.0.12"
+    },
+    {
+        "JarFileName": "logback-classic-1.5.3.jar",
+        "GroupId": "ch.qos.logback",
+        "ArtifactId": "logback-classic",
+        "Version": "1.5.3"
+    },
+    {
+        "JarFileName": "logback-core-1.5.3.jar",
+        "GroupId": "ch.qos.logback",
+        "ArtifactId": "logback-core",
+        "Version": "1.5.3"
+    }
+]

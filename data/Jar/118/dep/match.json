@@ -1,0 +1,26 @@
+[
+    {
+        "JarFileName": "gson-2.10.1.jar",
+        "GroupId": "com.google.code.gson",
+        "ArtifactId": "gson",
+        "Version": "2.10.1"
+    },
+    {
+        "JarFileName": "slf4j-api-2.0.12.jar",
+        "GroupId": "org.slf4j",
+        "ArtifactId": "slf4j-api",
+        "Version": "2.0.12"
+    },
+    {
+        "JarFileName": "logback-classic-1.5.3.jar",
+        "GroupId": "ch.qos.logback",
+        "ArtifactId": "logback-classic",
+        "Version": "1.5.3"
+    },
+    {
+        "JarFileName": "logback-core-1.5.3.jar",
+        "GroupId": "ch.qos.logback",
+        "ArtifactId": "logback-core",
+        "Version": "1.5.3"
+    }
+]

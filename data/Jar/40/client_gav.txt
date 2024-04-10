@@ -1,0 +1,1 @@
+com.iluwatar:producer-consumer:1.26.0-SNAPSHOT

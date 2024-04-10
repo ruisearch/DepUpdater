@@ -1,0 +1,122 @@
+[
+    {
+        "JarFileName": "hibernate-core-5.6.12.Final.jar",
+        "GroupId": "org.hibernate",
+        "ArtifactId": "hibernate-core",
+        "Version": "5.6.12.Final"
+    },
+    {
+        "JarFileName": "jboss-logging-3.4.3.Final.jar",
+        "GroupId": "org.jboss.logging",
+        "ArtifactId": "jboss-logging",
+        "Version": "3.4.3.Final"
+    },
+    {
+        "JarFileName": "javax.persistence-api-2.2.jar",
+        "GroupId": "javax.persistence",
+        "ArtifactId": "javax.persistence-api",
+        "Version": "2.2"
+    },
+    {
+        "JarFileName": "byte-buddy-1.12.18.jar",
+        "GroupId": "net.bytebuddy",
+        "ArtifactId": "byte-buddy",
+        "Version": "1.12.18"
+    },
+    {
+        "JarFileName": "antlr-2.7.7.jar",
+        "GroupId": "antlr",
+        "ArtifactId": "antlr",
+        "Version": "2.7.7"
+    },
+    {
+        "JarFileName": "jboss-transaction-api_1.2_spec-1.1.1.Final.jar",
+        "GroupId": "org.jboss.spec.javax.transaction",
+        "ArtifactId": "jboss-transaction-api_1.2_spec",
+        "Version": "1.1.1.Final"
+    },
+    {
+        "JarFileName": "jandex-2.4.2.Final.jar",
+        "GroupId": "org.jboss",
+        "ArtifactId": "jandex",
+        "Version": "2.4.2.Final"
+    },
+    {
+        "JarFileName": "classmate-1.5.1.jar",
+        "GroupId": "com.fasterxml",
+        "ArtifactId": "classmate",
+        "Version": "1.5.1"
+    },
+    {
+        "JarFileName": "javax.activation-api-1.2.0.jar",
+        "GroupId": "javax.activation",
+        "ArtifactId": "javax.activation-api",
+        "Version": "1.2.0"
+    },
+    {
+        "JarFileName": "hibernate-commons-annotations-5.1.2.Final.jar",
+        "GroupId": "org.hibernate.common",
+        "ArtifactId": "hibernate-commons-annotations",
+        "Version": "5.1.2.Final"
+    },
+    {
+        "JarFileName": "jaxb-api-2.3.1.jar",
+        "GroupId": "javax.xml.bind",
+        "ArtifactId": "jaxb-api",
+        "Version": "2.3.1"
+    },
+    {
+        "JarFileName": "jaxb-runtime-2.3.7.jar",
+        "GroupId": "org.glassfish.jaxb",
+        "ArtifactId": "jaxb-runtime",
+        "Version": "2.3.7"
+    },
+    {
+        "JarFileName": "jakarta.xml.bind-api-2.3.3.jar",
+        "GroupId": "jakarta.xml.bind",
+        "ArtifactId": "jakarta.xml.bind-api",
+        "Version": "2.3.3"
+    },
+    {
+        "JarFileName": "txw2-2.3.7.jar",
+        "GroupId": "org.glassfish.jaxb",
+        "ArtifactId": "txw2",
+        "Version": "2.3.7"
+    },
+    {
+        "JarFileName": "istack-commons-runtime-3.0.12.jar",
+        "GroupId": "com.sun.istack",
+        "ArtifactId": "istack-commons-runtime",
+        "Version": "3.0.12"
+    },
+    {
+        "JarFileName": "jakarta.activation-1.2.2.jar",
+        "GroupId": "com.sun.activation",
+        "ArtifactId": "jakarta.activation",
+        "Version": "1.2.2"
+    },
+    {
+        "JarFileName": "h2-2.1.214.jar",
+        "GroupId": "com.h2database",
+        "ArtifactId": "h2",
+        "Version": "2.1.214"
+    },
+    {
+        "JarFileName": "slf4j-api-2.0.12.jar",
+        "GroupId": "org.slf4j",
+        "ArtifactId": "slf4j-api",
+        "Version": "2.0.12"
+    },
+    {
+        "JarFileName": "logback-classic-1.5.3.jar",
+        "GroupId": "ch.qos.logback",
+        "ArtifactId": "logback-classic",
+        "Version": "1.5.3"
+    },
+    {
+        "JarFileName": "logback-core-1.5.3.jar",
+        "GroupId": "ch.qos.logback",
+        "ArtifactId": "logback-core",
+        "Version": "1.5.3"
+    }
+]

@@ -1,0 +1,1 @@
+com.iluwatar:image-microservice:1.26.0-SNAPSHOT
