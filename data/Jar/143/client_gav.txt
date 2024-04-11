@@ -1,1 +1,0 @@
-com.iluwatar:composite-entity:1.26.0-SNAPSHOT

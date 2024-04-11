@@ -1,1 +1,0 @@
-com.iluwatar:test-automation:1.26.0-SNAPSHOT

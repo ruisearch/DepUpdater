@@ -1,1 +1,0 @@
-com.iluwatar:double-checked-locking:1.26.0-SNAPSHOT

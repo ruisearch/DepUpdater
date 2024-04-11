@@ -1,1 +1,0 @@
-com.iluwatar:reader-writer-lock:1.26.0-SNAPSHOT

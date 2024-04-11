@@ -1,1 +1,0 @@
-com.iluwatar:price-microservice:1.26.0-SNAPSHOT

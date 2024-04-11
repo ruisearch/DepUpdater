@@ -1,1 +1,0 @@
-com.iluwatar:mediator:1.26.0-SNAPSHOT

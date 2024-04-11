@@ -1,1 +1,0 @@
-com.iluwatar:log-aggregation:1.26.0-SNAPSHOT

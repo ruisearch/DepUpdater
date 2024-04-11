@@ -1,1 +1,0 @@
-com.iluwatar:value-object:1.26.0-SNAPSHOT

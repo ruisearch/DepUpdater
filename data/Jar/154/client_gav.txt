@@ -1,1 +1,0 @@
-com.iluwatar:embedded-value:1.26.0-SNAPSHOT

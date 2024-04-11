@@ -1,1 +1,0 @@
-com.iluwatar:data-locality:1.26.0-SNAPSHOT

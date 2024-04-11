@@ -1,1 +1,0 @@
-com.iluwatar:event-driven-architecture:1.26.0-SNAPSHOT
