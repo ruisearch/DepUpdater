@@ -85,9 +85,15 @@ def parse_for_jar(dependency_tree:str, path_to_cloned_folder:str):
             print(f"**** process {block.group(4)}:{block.group(5)}:{block.group(6)} ****")
             folder = os.path.join(JAR_FOLDER, block.group(1))
             create_folder(folder)
-            # write GAV of client in client_name.txt
-            with open(os.path.join(folder,'client_gav.txt'), 'w') as f:
-                f.write(f"{block.group(4)}:{block.group(5)}:{block.group(6)}")
+            # # write GAV of client in client_name.txt
+            # with open(os.path.join(folder,'client_gav.txt'), 'w') as f:
+            #     f.write(f"{block.group(4)}:{block.group(5)}:{block.group(6)}")
+            
+            # record client_gav and Module_folder in inform.json
+            with open(os.path.join(folder, 'inform.json'), 'w') as f:
+                inform = {"GAV":f"{block.group(4)}:{block.group(5)}:{block.group(6)}",
+                           "Module":f"{block.group(2)}"}
+                json.dump(inform, f, indent=4)
             
             # copy Uber jar to folder/Uber
             target = os.path.join(path_to_cloned_folder, f"{block.group(2)}target")

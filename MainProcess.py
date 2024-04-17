@@ -4,6 +4,7 @@ from preprocess import exec_maven_command
 from preprocess import maven_shade_plugin
 from preprocess import Jar
 from match import match
+from calculate import cal
 
 ## expand the path to absolute path
 def expand_resolve_abspath(path):
@@ -42,3 +43,11 @@ path_to_pom = os.path.join(path_to_folder, "pom.xml")
 print("\n****** match ... ******\n")
 match.all()
 print("\n****** match done ! ******\n")
+
+## calculate:
+## input : the ./data/Jar folder containing match.json
+## output : the newest compatible version of each dep in match.json and finial lag result(after test)
+print("\n****** calculate: ******\n")
+cal.select_best_version()
+cal.calculate_lag()
+print("\n****** calculate done ! ******\n")
