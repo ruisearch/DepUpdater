@@ -8,4 +8,5 @@ DEPENDENCY_TREE_FILE = os.path.join(MainProcess_pwd, DATA + f"dependency_tree.tx
 ## absolute path to Jar folder in data
 JAR_FOLDER = os.path.join(MainProcess_pwd, DATA + f"Jar/")
 
-##  
+## absolute path to revapi-0.12.0 folder
+REVAPI_FOLDER = os.path.join(MainProcess_pwd, 'utils/revapi-0.12.0/')

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2018-2023 Lukas Krejci
+    and other contributors as indicated by the @author tags.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>org.revapi</groupId>
+        <artifactId>revapi-build</artifactId>
+        <version>37</version>
+    </parent>
+
+    <groupId>org.revapi.classif</groupId>
+    <artifactId>classif-parent</artifactId>
+    <version>0.1.1</version>
+
+    <name>Classif :: Parent</name>
+    <description>Structural search on Java classes</description>
+    <url>https://github.com/revapi/classif</url>
+
+    <modules>
+        <module>classif</module>
+        <module>classif-dsl</module>
+    </modules>
+
+    <inceptionYear>2018</inceptionYear>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <organization>
+        <name>Lukas Krejci</name>
+        <url>http://lukas.krejci.pw</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <name>Lukas Krejci</name>
+            <email>lukas@krejci.pw</email>
+            <url>http://lukas.krejci.pw</url>
+            <timezone>+1</timezone>
+        </developer>
+    </developers>
+
+    <issueManagement>
+        <system>github-issues</system>
+        <url>https://github.com/revapi/classif/issues</url>
+    </issueManagement>
+
+
+    <scm>
+        <connection>scm:git:git://github.com/revapi/classif.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/revapi/classif.git</developerConnection>
+        <url>https://github.com/revapi/classif</url>
+        <tag>classif-0.1.1</tag>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <properties>
+        <version.org.apache.logging.log4j>2.17.1</version.org.apache.logging.log4j>
+        <version.org.junit.jupiter>5.4.0</version.org.junit.jupiter>
+
+        <sonar.projectKey>revapi_classif</sonar.projectKey>
+        <sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
+        <sonar.organization>revapi</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${version.org.apache.logging.log4j}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${version.org.apache.logging.log4j}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${version.org.junit.jupiter}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${version.org.junit.jupiter}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>${version.org.junit.jupiter}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.revapi.testjars</groupId>
+            <artifactId>testjars-junit5</artifactId>
+            <version>0.1.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.3</version>
+                <configuration>
+                    <!-- Jacoco currently causes test instability. Let's just wait for the new version. -->
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <configuration>
+                    <!-- exclude the generated-sources from checkstyle -->
+                    <sourceDirectories>${project.build.sourceDirectory}</sourceDirectories>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <configuration>
+                    <mapping>
+                        <g4>SLASHSTAR_STYLE</g4>
+                    </mapping>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.1</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>common-checks</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireJavaVersion>
+                                    <version>1.8</version>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <releaseProfiles>release,release-profile</releaseProfiles>
+                    <pushChanges>false</pushChanges>
+                    <preparationGoals>clean verify</preparationGoals>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

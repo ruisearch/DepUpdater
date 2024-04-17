@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2014-2018 Lukas Krejci
+    and other contributors as indicated by the @author tags.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>revapi-parent</artifactId>
+        <groupId>org.revapi</groupId>
+        <version>11</version>
+        <relativePath>../revapi-parent</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <name>Revapi Build Parent</name>
+    <description>
+        This module is meant to serve as parent for other modules that actually contain code and
+        need to depend on other libraries.
+    </description>
+
+    <artifactId>revapi-build</artifactId>
+    <version>37</version>
+    <packaging>pom</packaging>
+    <url>${web.url}</url>
+
+    <properties>
+        <self-api-check.maven-version>0.10.4</self-api-check.maven-version>
+        <self-api-check.java-extension-version>0.18.0</self-api-check.java-extension-version>
+
+        <version.ch.qos.logback>1.1.2</version.ch.qos.logback>
+        <version.com.google.code.findbugs>3.0.0</version.com.google.code.findbugs>
+        <version.junit>4.11</version.junit>
+        <version.org.revapi.revapi-site-shared>3</version.org.revapi.revapi-site-shared>
+        <version.org.slf4j>1.7.5</version.org.slf4j>
+
+        <version.revapi-build-support>5</version.revapi-build-support>
+
+        <version.pw.krejci.multi-release-jar-maven-plugin>0.1.4</version.pw.krejci.multi-release-jar-maven-plugin>
+
+        <automatic.module.name>define this in child modules</automatic.module.name>
+
+	<!--
+            Work around Intellij's lack for maven.compiler.release attribute
+            See https://youtrack.jetbrains.com/issue/IDEA-173143
+	-->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${version.ch.qos.logback}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.code.findbugs</groupId>
+                <artifactId>annotations</artifactId>
+                <version>${version.com.google.code.findbugs}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${version.junit}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.revapi</groupId>
+                <artifactId>revapi-site-shared</artifactId>
+                <version>${version.org.revapi.revapi-site-shared}</version>
+                <type>zip</type>
+                <classifier>resources</classifier>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${version.org.slf4j}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.revapi</groupId>
+            <artifactId>revapi-site-shared</artifactId>
+            <classifier>resources</classifier>
+            <type>zip</type>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>annotations</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <extensions>
+            <extension>
+                <groupId>pw.krejci</groupId>
+                <artifactId>multi-release-jar-maven-plugin</artifactId>
+                <version>${version.pw.krejci.multi-release-jar-maven-plugin}</version>
+            </extension>
+        </extensions>
+
+        <plugins>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Automatic-Module-Name>${automatic.module.name}</Automatic-Module-Name>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>pw.krejci</groupId>
+                <artifactId>multi-release-jar-maven-plugin</artifactId>
+                <version>${version.pw.krejci.multi-release-jar-maven-plugin}</version>
+                <configuration>
+                    <mainModuleInfo>9</mainModuleInfo>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>java-version-check</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireJavaVersion>
+                                    <version>9</version>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-site-plugin</artifactId>
+                <configuration>
+                    <relativizeDecorationLinks>false</relativizeDecorationLinks>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-sitexml</id>
+                        <phase>package</phase>
+                        <goals><goal>attach-descriptor</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack-site-shared</id>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <phase>site</phase>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/site/modules/${project.artifactId}</outputDirectory>
+                            <includeArtifactIds>revapi-site-shared</includeArtifactIds>
+                            <includeGroupIds>org.revapi</includeGroupIds>
+                            <includeClassifiers>resources</includeClassifiers>
+                            <includeTypes>zip</includeTypes>
+                            <excludeTransitive>true</excludeTransitive>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <forkCount>5</forkCount>
+                    <reuseForks>true</reuseForks>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.2</version>
+                <executions>
+                    <execution>
+                        <id>prepare-unit-test</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                        <configuration>
+                            <destFile>${project.build.directory}/jacoco-ut.exec</destFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>prepare-it-tests</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>prepare-agent-integration</goal>
+                        </goals>
+                        <configuration>
+                            <destFile>${project.build.directory}/jacoco-it.exec</destFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                      <id>report-unit-tests</id>
+                      <phase>test</phase>
+                      <goals>
+                          <goal>report</goal>
+                      </goals>
+                        <configuration>
+                            <dataFile>${project.build.directory}/jacoco-ut.exec</dataFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>report-integration-tests</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>report-integration</goal>
+                        </goals>
+                        <configuration>
+                            <dataFile>${project.build.directory}/jacoco-it.exec</dataFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <configuration>
+                    <header>license-template.ftl</header>
+                    <excludes>
+                        <exclude>**/README</exclude>
+                        <exclude>**/README.*</exclude>
+                        <exclude>LICENSE</exclude>
+                        <exclude>**/*.adoc</exclude>
+                    </excludes>
+                    <mapping>
+                        <css>SLASHSTAR_STYLE</css>
+                        <java>SLASHSTAR_STYLE</java>
+                        <groovy>SLASHSTAR_STYLE</groovy>
+                        <atom>XML_STYLE</atom>
+                    </mapping>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.mycila</groupId>
+                        <artifactId>license-maven-plugin-git</artifactId>
+                        <version>3.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.revapi</groupId>
+                        <artifactId>revapi-build-support</artifactId>
+                        <version>${version.revapi-build-support}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.revapi</groupId>
+                        <artifactId>revapi-build-support</artifactId>
+                        <version>${version.revapi-build-support}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <consoleOutput>true</consoleOutput>
+                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                    <configLocation>checkstyle.xml</configLocation>
+                    <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals><goal>check</goal></goals>
+                        <phase>verify</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.7</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>index</report>
+                            <report>license</report>
+                            <report>mailing-list</report>
+                            <report>issue-tracking</report>
+                            <report>scm</report>
+                            <report>project-team</report>
+                            <report>cim</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>javadoc</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <groupId>org.asciidoctor</groupId>
+                <artifactId>asciidoctor-maven-plugin</artifactId>
+                <configuration>
+                    <sourceHighlighter>highlightjs</sourceHighlighter>
+                    <attributes>
+                        <base_url>${web.url}</base_url>
+                        <scm>${project.scm.url}</scm>
+                    </attributes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.revapi</groupId>
+                <artifactId>revapi-maven-plugin</artifactId>
+                <version>${self-api-check.maven-version}</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+                <configuration>
+                    <analysisConfiguration>
+                        <revapi.filter>
+                            <archives>
+                                <include>
+                                    <item>${project.groupId}:${project.artifactId}:.*</item>
+                                </include>
+                            </archives>
+                        </revapi.filter>
+                    </analysisConfiguration>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+
+    <profiles>
+        <profile>
+            <id>java9</id>
+            <activation>
+                <jdk>[9,]</jdk>
+            </activation>
+            <properties>
+                <maven.compiler.release>8</maven.compiler.release>
+            </properties>
+        </profile>
+        <profile>
+            <id>java8</id>
+            <activation>
+                <jdk>[,1.8]</jdk>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- skip the java9 enforcer check -->
+                    <plugin>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>java-version-check</id>
+                                <configuration>
+                                    <skip>true</skip>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>api-check</id>
+            <activation>
+		    <jdk>[,]</jdk>
+            </activation>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>parse-version</id>
+                                <goals>
+                                    <goal>parse-version</goal>
+                                </goals>
+                                <phase>validate</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.revapi</groupId>
+                        <artifactId>revapi-maven-plugin</artifactId>
+                        <version>${self-api-check.maven-version}</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.revapi</groupId>
+                                <artifactId>revapi-java</artifactId>
+                                <version>${self-api-check.java-extension-version}</version>
+                            </dependency>
+                        </dependencies>
+                        <configuration>
+                            <failOnMissingConfigurationFiles>false</failOnMissingConfigurationFiles>
+                            <analysisConfiguration>
+                                <revapi.java>
+                                    <missing-classes>
+                                        <behavior>report</behavior>
+                                    </missing-classes>
+                                </revapi.java>
+                                <revapi.semver.ignore>
+                                    <enabled>true</enabled>
+                                    <passThroughDifferences>
+                                        <item>java.class.nonPublicPartOfAPI</item>
+                                    </passThroughDifferences>
+                                </revapi.semver.ignore>
+                            </analysisConfiguration>
+                            <analysisConfigurationFiles>
+                                <configurationFile>
+                                    <path>api-changes.json</path>
+                                    <roots>
+                                        <!--suppress MavenModelInspection -->
+                                        <root>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}</root>
+                                    </roots>
+                                </configurationFile>
+                            </analysisConfigurationFiles>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>api-check</id>
+                                <goals><goal>check</goal></goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <distributionManagement>
+        <site>
+            <id>site</id>
+            <url>${web.repo}</url>
+        </site>
+    </distributionManagement>
+
+    <scm>
+        <connection>scm:git:git://github.com/revapi/revapi.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/revapi/revapi.git</developerConnection>
+        <url>https://github.com/revapi/revapi</url>
+        <tag>revapi-build-37</tag>
+    </scm>
+</project>

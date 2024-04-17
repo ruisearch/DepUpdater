@@ -1,0 +1,164 @@
+16:35:56.229 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+16:35:56.264 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+16:39:46.588 [main] INFO  org.revapi.standalone.Main - Starting analysis
+16:39:55.123 [main] INFO  org.revapi.standalone.Main - Analysis took 8533ms.
+16:39:59.109 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+16:39:59.152 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+16:40:03.125 [main] INFO  org.revapi.standalone.Main - Starting analysis
+16:40:13.782 [main] INFO  org.revapi.standalone.Main - Analysis took 10656ms.
+16:40:23.558 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+16:40:23.605 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+16:40:27.180 [main] INFO  org.revapi.standalone.Main - Starting analysis
+16:40:40.767 [main] INFO  org.revapi.standalone.Main - Analysis took 13586ms.
+21:26:36.230 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+21:26:36.263 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+21:26:40.911 [main] INFO  org.revapi.standalone.Main - Starting analysis
+21:26:51.253 [main] INFO  org.revapi.standalone.Main - Analysis took 10341ms.
+21:26:55.759 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+21:26:55.783 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+21:27:00.257 [main] INFO  org.revapi.standalone.Main - Starting analysis
+21:27:13.966 [main] INFO  org.revapi.standalone.Main - Analysis took 13705ms.
+21:27:17.896 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+21:27:17.920 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+21:27:22.138 [main] INFO  org.revapi.standalone.Main - Starting analysis
+21:27:37.145 [main] INFO  org.revapi.standalone.Main - Analysis took 15006ms.
+21:57:46.420 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+21:57:46.473 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+21:57:50.655 [main] INFO  org.revapi.standalone.Main - Starting analysis
+21:57:58.801 [main] INFO  org.revapi.standalone.Main - Analysis took 8146ms.
+21:58:03.133 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+21:58:03.172 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+21:58:07.254 [main] INFO  org.revapi.standalone.Main - Starting analysis
+21:58:20.245 [main] INFO  org.revapi.standalone.Main - Analysis took 12989ms.
+21:58:23.074 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+21:58:23.097 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+21:58:27.151 [main] INFO  org.revapi.standalone.Main - Starting analysis
+21:58:39.304 [main] INFO  org.revapi.standalone.Main - Analysis took 12152ms.
+21:58:43.417 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+21:58:43.488 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+21:58:47.811 [main] INFO  org.revapi.standalone.Main - Starting analysis
+21:59:01.322 [main] INFO  org.revapi.standalone.Main - Analysis took 13507ms.
+21:59:04.181 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+21:59:04.221 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+21:59:08.840 [main] INFO  org.revapi.standalone.Main - Starting analysis
+21:59:21.452 [main] INFO  org.revapi.standalone.Main - Analysis took 12609ms.
+22:04:14.328 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:04:14.352 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:04:18.622 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:04:25.859 [main] INFO  org.revapi.standalone.Main - Analysis took 7236ms.
+22:04:29.867 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:04:29.938 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:04:33.981 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:04:44.968 [main] INFO  org.revapi.standalone.Main - Analysis took 10983ms.
+22:04:48.102 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:04:48.136 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:04:52.604 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:05:03.852 [main] INFO  org.revapi.standalone.Main - Analysis took 11245ms.
+22:05:07.962 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:05:08.010 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:05:12.459 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:05:25.224 [main] INFO  org.revapi.standalone.Main - Analysis took 12764ms.
+22:05:28.293 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:05:28.343 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:05:32.592 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:05:45.618 [main] INFO  org.revapi.standalone.Main - Analysis took 13023ms.
+22:45:07.413 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:45:07.465 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:45:12.517 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:45:14.976 [main] INFO  org.revapi.standalone.Main - Analysis took 2456ms.
+22:45:16.931 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:45:16.970 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:45:21.162 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:45:23.260 [main] INFO  org.revapi.standalone.Main - Analysis took 2096ms.
+22:45:26.228 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:45:26.253 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:45:30.345 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:45:32.369 [main] INFO  org.revapi.standalone.Main - Analysis took 2020ms.
+22:45:34.306 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:45:34.333 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:45:38.654 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:45:41.254 [main] INFO  org.revapi.standalone.Main - Analysis took 2599ms.
+22:45:48.069 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:45:48.102 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:45:52.217 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:46:13.805 [main] INFO  org.revapi.standalone.Main - Analysis took 21587ms.
+22:46:17.607 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:46:17.699 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:46:22.186 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:46:43.612 [main] INFO  org.revapi.standalone.Main - Analysis took 21425ms.
+22:46:52.474 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:46:52.538 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:46:56.809 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:47:24.610 [main] INFO  org.revapi.standalone.Main - Analysis took 27796ms.
+22:47:28.396 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:47:28.453 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:47:32.965 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:48:00.278 [main] INFO  org.revapi.standalone.Main - Analysis took 27309ms.
+22:48:04.607 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:48:04.637 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:48:08.549 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:48:10.496 [main] INFO  org.revapi.standalone.Main - Analysis took 1945ms.
+22:48:12.694 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:48:12.725 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:48:16.772 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:48:18.994 [main] INFO  org.revapi.standalone.Main - Analysis took 2221ms.
+22:48:21.772 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:48:21.795 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:48:25.997 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:48:33.128 [main] INFO  org.revapi.standalone.Main - Analysis took 7130ms.
+22:48:35.184 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:48:35.231 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:48:39.847 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:48:46.543 [main] INFO  org.revapi.standalone.Main - Analysis took 6693ms.
+22:48:48.573 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:48:48.637 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:48:52.880 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:48:59.539 [main] INFO  org.revapi.standalone.Main - Analysis took 6657ms.
+22:49:01.507 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:49:01.549 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:49:06.004 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:49:11.961 [main] INFO  org.revapi.standalone.Main - Analysis took 5957ms.
+22:49:13.918 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:49:13.963 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:49:18.022 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:49:24.259 [main] INFO  org.revapi.standalone.Main - Analysis took 6237ms.
+22:49:26.336 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:49:26.390 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:49:30.372 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:49:36.406 [main] INFO  org.revapi.standalone.Main - Analysis took 6032ms.
+22:49:40.248 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:49:40.321 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:49:44.464 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:50:00.937 [main] INFO  org.revapi.standalone.Main - Analysis took 16470ms.
+22:50:03.504 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:50:03.529 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:50:07.744 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:50:23.824 [main] INFO  org.revapi.standalone.Main - Analysis took 16072ms.
+22:50:28.818 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:50:28.878 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:50:32.919 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:50:48.447 [main] INFO  org.revapi.standalone.Main - Analysis took 15524ms.
+22:50:51.654 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:50:51.704 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:50:56.055 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:51:12.398 [main] INFO  org.revapi.standalone.Main - Analysis took 16341ms.
+22:51:14.916 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:51:14.957 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:51:18.709 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:51:35.139 [main] INFO  org.revapi.standalone.Main - Analysis took 16427ms.
+22:51:38.284 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:51:38.366 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:51:42.322 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:51:58.332 [main] INFO  org.revapi.standalone.Main - Analysis took 16009ms.
+22:52:01.265 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:52:01.298 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:52:05.153 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:52:10.792 [main] INFO  org.revapi.standalone.Main - Analysis took 5637ms.
+22:52:13.640 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:52:13.711 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:52:17.524 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:52:23.241 [main] INFO  org.revapi.standalone.Main - Analysis took 5715ms.
+22:52:25.181 [main] INFO  org.revapi.standalone.Main - Downloading checked archives
+22:52:25.217 [main] INFO  org.revapi.standalone.Main - Downloading extensions
+22:52:29.113 [main] INFO  org.revapi.standalone.Main - Starting analysis
+22:52:34.918 [main] INFO  org.revapi.standalone.Main - Analysis took 5802ms.
