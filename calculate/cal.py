@@ -28,8 +28,10 @@ def select_best_version():
 
     ## test : just deal with one module folder in data/Jar
     # item_path = os.path.join(JAR_FOLDER, '2')
+    # item_path = os.path.join(JAR_FOLDER, '3')
     # item_path = os.path.join(JAR_FOLDER, '169')
-    item_path = os.path.join(JAR_FOLDER, '165')
+    # item_path = os.path.join(JAR_FOLDER, '165')
+    item_path = os.path.join(JAR_FOLDER, '148')
     # travel the match.json and pass one dep for Dep
     json_path = os.path.join(item_path, f"dep/match.json")
     dep_path = os.path.join(item_path, f"dep/")

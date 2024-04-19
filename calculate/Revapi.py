@@ -75,10 +75,13 @@ class Revapi:
         
         # match records with ReachableAPIs
         for record in records:
+            # old: is followed by <none>, has BC
+            if record is None:
+                return False
             for API in self.api:
                 new_api = API.replace('$','.')
                 # new_api : replace '$' with '.' in ReachAPIs
-                if new_api.startwith(record):
+                if new_api.startswith(record):
                     # new_api is breaking
                     return False
         return True
@@ -87,22 +90,37 @@ class Revapi:
     def parse_ret(self, ret_path):
         with open(ret_path, 'r') as f:
             content = f.read()
+        # filtered_records = self.filter_record(content)
         filtered_records = self.filter_record(content)
-        for record in filtered_records:
+        for i in range(len(filtered_records)):
             # get the content after "old: "
-            pattern = r'old: (.+?)$'
-            match = re.search(pattern, record)
-            record = self.transform(match.group(1))
+            # # test
+            # print("before: ", filtered_records[i])
+            
+            pattern = r'old: (.+?)\n'
+            match = re.search(pattern, filtered_records[i])
+            filtered_records[i] = self.transform(match.group(1))
+            
+            # # test
+            # print("after: ",filtered_records[i])
+            
         return filtered_records
 
     # get the records whose SORUCE is BREAKING
     def filter_record(self, content):
         pattern = r"old: .+?^$"
-        all_records = re.findall(pattern, content, flags=re.DOTALL)
+        # pattern = r"old: .+?$"
+        all_records = re.findall(pattern, content, flags=re.DOTALL | re.MULTILINE)
+        
+        # # test
+        # print("all records:\n", all_records)
+        
         filtered_records = []
         for record in all_records:
             if "SOURCE: BREAKING" in record:
                 filtered_records.append(record)
+        # # test
+        # print("select source breaking:\n", filtered_records)
         return filtered_records
     
     # transform a record into the format which is comparable with BCEL api writing(return value)
@@ -118,22 +136,42 @@ class Revapi:
             return ''
         
         text = re.sub(pattern1, remove_tags, revapi_format_api)
+        # text = revapi_format_api
         # method
         if text.startswith("method"):
-            pattern2 = r'method (.*?) (.*?)::(.*?)\((.*?)\)'
+            pattern2 = r'method (.+?) (.*?)::(.*?)\((.*?)\)'
             match = re.search(pattern2, text)
             return_type = match.group(1)
+            # process generics for return value
+            if return_type == ' T':
+                return_type = 'java.lang.Object'
+            elif return_type == ' T[]':
+                return_type == 'java.lang.Object[]'
+            elif return_type == 'E':
+                return_type = 'java.lang.Object'
+            
             class_name = match.group(2)
             method_name = match.group(3)
             parameters = match.group(4).replace(' ','')
+            # # test
+            # print("text\n", text)
+        
             api = f"{class_name}: {return_type} {method_name}({parameters})"
             return api
 
         # parameter
         if text.startswith("parameter"):
-            pattern3 = r'parameter (.*?) (.*?)::(.*?)\((.*?)\)'
+            pattern3 = r'parameter (.+?) (.*?)::(.*?)\((.*?)\)'
             match = re.search(pattern3, text)
             return_type = match.group(1)
+            # process generics for return value
+            if return_type == ' T':
+                return_type = 'java.lang.Object'
+            elif return_type == ' T[]':
+                return_type == 'java.lang.Object[]'
+            elif return_type == 'E':
+                return_type = 'java.lang.Object'
+            
             class_name = match.group(2)
             method_name = match.group(3)
             parameters = match.group(4).replace(' ','').replace('===','')
@@ -142,7 +180,7 @@ class Revapi:
         
         # class/interface/enum
         if text.startswith("class") or text.startswith("interface") or text.startswith("enum"):
-            pattern4 = r' (.*?)$'
+            pattern4 = r' (.+?)$'
             match = re.search(pattern4, text)
             name = match.group(1)
             api = f"{name}:"

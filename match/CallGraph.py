@@ -1,4 +1,5 @@
-# a class that encapsulates all operations on the call graph of a Uber jar
+# a class that encapsulates all operations on the call graphs of a module
+# note : generate client cg in client/, dep cg in dep/
 import os 
 import json
 import re
@@ -6,33 +7,74 @@ from match.constants import SOOTCG_PATH
 
 class CallGraph:
     def __init__(self,path_to_module:str):
-        # get path to Uber folder
-        self.Uber_folder = os.path.join(path_to_module, f"Uber")
-        # get path to Uber jar
-        contents = os.listdir(self.Uber_folder)
+        # get path to dep/
+        self.dep_folder = os.path.join(path_to_module, f"dep/")
+        # get path to client/
+        self.client_folder = os.path.join(path_to_module, f"client/")
+        # get path to client jar
+        contents = os.listdir(self.client_folder)
         for item in contents:
             if item.endswith('.jar'):
-                self.Uber_jar = os.path.join(self.Uber_folder, item)
+                self.client_jar = os.path.join(self.client_folder, item)
                 break
-        # set path to call_graph.txt
-        self.txt_path = os.path.join(self.Uber_folder, f"call_graph.txt")
-        # set path to call_graph.json
-        self.json_path = os.path.join(self.Uber_folder, f"call_graph.json")
+        # get paths to dep jars
+        self.dep_jars = []
+        contents = os.listdir(self.dep_folder)
+        for item in contents:
+            if item.endswith(".jar"):
+                self.dep_jars.append(os.path.join(self.dep_folder,item))
+        
+        # path to call_graph.json containing the total call graph
+        self.json_path = os.path.join(path_to_module, 'Uber/call_graph.json')
+        # path to Uber/call_graph.txt
+        self.txt_path = os.path.join(path_to_module, 'Uber/call_graph.txt')
+        # # set path to call_graph.txt
+        # self.txt_path = os.path.join(self.Uber_folder, f"call_graph.txt")
+        # # set path to call_graph.json
+        # self.json_path = os.path.join(self.Uber_folder, f"call_graph.json")
         
     ## generate call_graph.json
     def gen_json(self):
         # execute sootCG
-        cg_command = f"java -jar {SOOTCG_PATH} {self.Uber_jar} > {self.txt_path}"
-        print(f"**** generating call graph of {self.Uber_jar}...****")
-        os.system(cg_command)
-        print("**** call graph generated ****")
-        self.parse_cg()
+        self.gen_client_cg()
+        self.gen_deps_cg()
+        self.get_total_cg()
+        self.parse_cg(self.txt_path, self.json_path)
         
-    ## parse the call graph to generate call_graph.json
-    def parse_cg(self):
+    ## generate client call graph
+    def gen_client_cg(self):
+        cg_command = f"java -jar {SOOTCG_PATH} {self.client_jar} > {self.client_jar}_cg.txt"
+        print(f"**** generating call graph of client: {self.client_jar}... ****")
+        os.system(cg_command)
+        # self.parse_cg(f"{self.client_jar}_cg.txt",f"{self.client_jar}_cg.json")
+        # print("**** call graph generated ****")
+        
+    ## generate call graphs of deps
+    def gen_deps_cg(self):
+        for dep_jar in self.dep_jars:
+            cg_command = f"java -jar {SOOTCG_PATH} {dep_jar} > {dep_jar}_cg.txt"
+            print(f"**** generating call graph of dep: {dep_jar}... ****")
+            os.system(cg_command)
+            # self.parse_cg(f"{dep_jar}_cg.txt",f"{dep_jar}_cg.json")
+            # print("**** call graph generated ****")
+            
+    ##  *_cg.txt into Uber/call_graph.txt
+    def get_total_cg(self):
+        total_call_graph = ""
+        with open(f"{self.client_jar}_cg.txt", "r") as f:
+            total_call_graph = total_call_graph + f.read()
+        for dep_jar in self.dep_jars:
+            with open(f"{dep_jar}_cg.txt", 'r') as f:
+                total_call_graph = total_call_graph + f.read()
+        with open(self.txt_path, 'w') as f:
+            f.write(total_call_graph)
+            
+    ## parse the call_graph.txt to generate call_graph.json
+    def parse_cg(self, txt_path, json_path):
         # generate a dictionary containing the mapping from caller to its callees
+        print("**** generating total call graph ... ****")
         map_dict = {}
-        with open(self.txt_path, 'r') as f:
+        with open(txt_path, 'r') as f:
             for line in f:
                 pattern = r"<(.*?)> ==> <(.*?)>$"
                 matches = re.findall(pattern, line)
@@ -49,11 +91,11 @@ class CallGraph:
                     map_dict[caller].append(callee)
                 else :
                     map_dict[caller] = [callee]        
-        
-        print(f"**** generating {self.json_path}...****")
         # dictionary to json
-        with open(self.json_path, 'w') as J:
+        with open(json_path, 'w') as J:
             json.dump(map_dict, J, indent=4)
-        print("**** call_graph.json generated !****")
+        # remove call_graph.txt
+        os.remove(txt_path)
+        print("**** total call graph got ****")
     
         

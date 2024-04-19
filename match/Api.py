@@ -8,9 +8,7 @@ from match.constants import BCEL_PATH
 class Api:
     # module:path to module folder
     def __init__(self, module:str, cg:CallGraph):
-        # cg : the CallGraph object of Uber jar
-        # cg.Uber_folder : path to Uber folder
-        # cg.json_path : path to call_graph.json
+        # cg : the CallGraph object of a module
         self.cg = cg
         # client_folder : path to client folder
         self.client_folder = os.path.join(module, "client")
@@ -19,6 +17,7 @@ class Api:
         for item in contents:
             if item.endswith(".jar"):
                 self.client = os.path.join(self.client_folder, item)
+                break
         # dep : path to dep folder   
         self.dep = os.path.join(module, "dep")
         # txt_path: path to client_api.txt
@@ -45,7 +44,7 @@ class Api:
         print(f"get api of client jar: {self.client}\n")
     ## extract api of a dep jar
     def extract_dep_api(self, dep_jar_name:str):
-        txt_name = dep_jar_name + ".txt"
+        txt_name = dep_jar_name + "_api.txt"
         api_txt_path = os.path.join(self.dep, txt_name)
         dep_path = os.path.join(self.dep, dep_jar_name)
         command = f"java -jar {BCEL_PATH} {dep_path} > {api_txt_path}"
@@ -72,7 +71,7 @@ class Api:
         with open(json_file, 'r') as f:
             return json.load(f)
     ## Perform BFS to find all reachable APIs from the start APIs.
-    def bfs(self, call_graph, start_apis):
+    def bfs(self, call_graph:dict, start_apis:set):
         visited = set()
         queue = deque(start_apis)
         while queue:
@@ -90,8 +89,8 @@ class Api:
         print("****map dep jar to reachable api...****")
         json_content = self.update_format_of_json()
         for file in files:
-            if file.endswith(".txt"):
-                dep_jar_name = file[:file.find(".txt")]
+            if file.endswith("_api.txt"):
+                dep_jar_name = file[:file.find("_api.txt")]
                 with open(os.path.join(self.dep, file), 'r') as f:
                     for line in f:
                         if line.strip() in self.reachable_apis:

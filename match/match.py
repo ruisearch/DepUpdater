@@ -29,8 +29,9 @@ def all():
     # item_path = os.path.join(JAR_FOLDER, '2')
     # item_path = os.path.join(JAR_FOLDER, '170')
     # item_path = os.path.join(JAR_FOLDER, '169')
-    item_path = os.path.join(JAR_FOLDER, '165')
+    # item_path = os.path.join(JAR_FOLDER, '165')
     # item_path = os.path.join(JAR_FOLDER, '3')
+    item_path = os.path.join(JAR_FOLDER, '148')
     # item_path = os.path.join(JAR_FOLDER, '4')
     cg = CallGraph(item_path)
     ## generate call_graph.txt as well as call_graph.json
