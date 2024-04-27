@@ -10,3 +10,6 @@ JAR_FOLDER = os.path.join(MainProcess_pwd, DATA + f"Jar/")
 
 ## absolute path to revapi-0.12.0 folder
 REVAPI_FOLDER = os.path.join(MainProcess_pwd, 'utils/revapi-0.12.0/')
+
+## absolute to BCEL_method_addedToInterface-1.0-SNAPSHOT-jar-with-dependencies.jar
+ADDEDTOINTERFACE_PATH = os.path.join(MainProcess_pwd, 'utils/BCEL_method_addedToInterface-1.0-SNAPSHOT-jar-with-dependencies.jar')

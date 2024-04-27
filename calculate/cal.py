@@ -27,11 +27,11 @@ def select_best_version():
 #                 json.dump(dict_list, f, indent=4)
 
     ## test : just deal with one module folder in data/Jar
-    # item_path = os.path.join(JAR_FOLDER, '2')
+    item_path = os.path.join(JAR_FOLDER, '2')
     # item_path = os.path.join(JAR_FOLDER, '3')
     # item_path = os.path.join(JAR_FOLDER, '169')
     # item_path = os.path.join(JAR_FOLDER, '165')
-    item_path = os.path.join(JAR_FOLDER, '148')
+    # item_path = os.path.join(JAR_FOLDER, '148')
     # travel the match.json and pass one dep for Dep
     json_path = os.path.join(item_path, f"dep/match.json")
     dep_path = os.path.join(item_path, f"dep/")
@@ -40,7 +40,7 @@ def select_best_version():
     for one_dict in dict_list:
         dep = Dep(one_dict, dep_path)
         # get all version of each dep
-        print(f"** sort versions of ... ** ")
+        print(f"** sort versions... ** ")
         one_dict.update({'AllVersion':dep.fetch_versions_sorted()})
         # get the newest compatible versoin
         one_dict.update({'BestVersion':dep.get_best_version()})
