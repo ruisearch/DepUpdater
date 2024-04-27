@@ -4,6 +4,7 @@ import shutil
 import re
 import requests
 from calculate.constants import REVAPI_FOLDER
+from calculate.constants import ADDEDTOINTERFACE_PATH
 class Revapi:
     def __init__(self, gav:dict, ReachableAPIs:list, AllVersion:list, Pwd:str, JarName:str):
         self.gav = gav
@@ -36,6 +37,7 @@ class Revapi:
             new_dep_jar, ret_txt = self.download_new_dep(self.gav['g'],self.gav['a'],self.allVersion[i]['version'])
             # compare current jar with new jar
             if self.compare(self.jar, new_dep_jar, ret_txt):
+                # no BC
                 best_version = self.allVersion[i]['version']
             else :
             # new dep is incompatible, break
@@ -69,15 +71,25 @@ class Revapi:
         sh_path = os.path.join(REVAPI_FOLDER, "revapi.sh")
         command = f'''{sh_path} --extensions=org.revapi:revapi-java:0.28.1,org.revapi:revapi-reporter-text:0.15.0 --old={old_jar} --new={new_jar} -D revapi.reporter.text.minSeverity=BREAKING > {ret_txt_path}'''
         os.system(command)
-        records = self.parse_ret(ret_txt_path)
+        flag, records = self.parse_ret(ret_txt_path)
+        if flag is False:
+            return False
         # test
         # print("test\n",records)
         
         # match records with ReachableAPIs
+        # # test
+        # print("records",records)
+        
         for record in records:
-            # old: is followed by <none>, has BC
+            # # old: is followed by <none>, has BC
+            # if record is None:
+            #     return False
+        
+            # skip None, as None is the reture value of some corner cases, which is not handled by reachable API
+            # like java.method.addedToInterface
             if record is None:
-                return False
+                continue
             for API in self.api:
                 new_api = API.replace('$','.')
                 # new_api : replace '$' with '.' in ReachAPIs
@@ -87,6 +99,10 @@ class Revapi:
         return True
         
     # parse the ret.txt
+    # return the flag, filtered_records
+    # if flag == True, use filtered_records containing breaing api to match the reachable api
+    # if flag == False, then the version is breaking, so filtered_records is useless
+    # flag == False is used to handle the corner case which cann't be handled by reachableAPI, like java.method.addedToInterface
     def parse_ret(self, ret_path):
         with open(ret_path, 'r') as f:
             content = f.read()
@@ -97,6 +113,17 @@ class Revapi:
             # # test
             # print("before: ", filtered_records[i])
             
+            # handle java.method.addedToInterface
+            if "java.method.addedToInterface" in filtered_records[i] :
+                print("== java.method.addedToInterface ==")
+                flag = self.java_method_addedToInterface(filtered_records[i])
+                if flag == False:
+                    return False, []
+                # java.method.addedToInterface doesn't break
+                # set filter_records[i] as None, compare will skip None
+                filtered_records[i] = None
+                continue
+            # using reachable API
             pattern = r'old: (.+?)\n'
             match = re.search(pattern, filtered_records[i])
             filtered_records[i] = self.transform(match.group(1))
@@ -104,7 +131,8 @@ class Revapi:
             # # test
             # print("after: ",filtered_records[i])
             
-        return filtered_records
+        # return filtered_records
+        return True, filtered_records
 
     # get the records whose SORUCE is BREAKING
     def filter_record(self, content):
@@ -193,3 +221,49 @@ class Revapi:
             class_name = match.group(1)
             api = f"{class_name}:"
             return api
+    
+    # handle java.method.addedToInterface
+    # record contains "java.method.addedToInterface"
+    # check whether any class implements the interface
+    # exist : return False; non-exist : return True
+    def java_method_addedToInterface(self, record:str):
+        # get the interface, in new:
+        # note : ignore inner interface($) now
+        pattern = r"new: method .*? (.*?)::.*?\n"
+        match = re.search(pattern, record)
+        interface = match.group(1)
+        # use common BCEL to check whether any class implements interface
+        # file to store the ret
+        log_ret = os.path.join(self.Pwd, 'java_method_addedToInterface.txt')
+        # travel class in client jar 
+        client_folder = os.path.join(self.Pwd, '../client/')
+        contents = os.listdir(client_folder)
+        for item in contents:
+            if item != self.jar_name and item.endswith(".jar"):
+                jar_path = os.path.join(client_folder, item)
+                command = f"java -jar {ADDEDTOINTERFACE_PATH} {jar_path} {interface} >{log_ret}"
+                os.system(command)
+                # # test
+                # print(f"{item} analysised")
+                with open(log_ret, 'r') as f:
+                    log = f.read()
+                    if "implements" in log:
+                        # client jar has the class
+                        print(f"java.method.addedToInterface breaks {item}")
+                        return False
+        # travel all dep jar(excluding self.jar_name)
+        contents = os.listdir(self.Pwd)
+        for item in contents:
+            if item != self.jar_name and item.endswith(".jar"):
+                jar_path = os.path.join(self.Pwd, item)
+                command = f"java -jar {ADDEDTOINTERFACE_PATH} {jar_path} {interface} >{log_ret}"
+                os.system(command)
+                # # test
+                # print(f"{item} analysised")
+                with open(log_ret, 'r') as f:
+                    log = f.read()
+                    if "implements" in log:
+                        # dep jar has the class
+                        print(f"java.method.addedToInterface breaks {item}")
+                        return False
+        return True
