@@ -40,9 +40,9 @@ path_to_pom = os.path.join(path_to_folder, "pom.xml")
 ## match:
 ## input ：the ./data/Jar folder containing all jars
 ## output : the mapping from dep jars to APIs which are called directly or transitively by client
-print("\n****** match ... ******\n")
-match.all()
-print("\n****** match done ! ******\n")
+# print("\n****** match ... ******\n")
+# match.all()
+# print("\n****** match done ! ******\n")
 
 ## calculate:
 ## input : the ./data/Jar folder containing match.json

@@ -40,7 +40,8 @@ def select_best_version():
     for one_dict in dict_list:
         dep = Dep(one_dict, dep_path)
         # get all version of each dep
-        one_dict.update({'AllVersion':dep.fetch_versions_sorted_by_date()})
+        print(f"** sort versions of ... ** ")
+        one_dict.update({'AllVersion':dep.fetch_versions_sorted()})
         # get the newest compatible versoin
         one_dict.update({'BestVersion':dep.get_best_version()})
     with open(json_path, 'w') as f:
