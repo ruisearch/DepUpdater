@@ -26,6 +26,9 @@ class Revapi:
     def get_best_version(self):
         self.new_dep_folder()
         idx = self.find_current_version_idx()
+        # something wrong,return current version
+        if idx is None:
+            return self.gav['v']
         length = len(self.allVersion)
         # current_version is the lastest version
         if idx == length - 1:

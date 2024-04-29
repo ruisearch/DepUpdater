@@ -18,7 +18,7 @@ def mvn_package(path_to_folder:str):
     command = f"cd {path_to_folder} && mvn clean && mvn package -DskipTests"
     print("mvn clean and mvn package...")
     os.system(command)
-    print("Uber jar and jar are generated successfully")
+    print("client jar are generated successfully")
 
 # execute "mvn dependency:tree"
 def mvn_dependency_tree(path_to_folder:str):
