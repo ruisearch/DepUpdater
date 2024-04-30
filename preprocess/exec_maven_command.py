@@ -14,7 +14,9 @@ def create_folder(folder_path:str):
     os.makedirs(folder_path)
     
 # execute "mvn package"
-def mvn_package(path_to_folder:str):
+def mvn_package(path_to_folder:str, relative_path_to_module:str):
+    if relative_path_to_module != '.':
+        path_to_folder = os.path.join(path_to_folder, relative_path_to_module)
     command = f"cd {path_to_folder} && mvn clean && mvn package -DskipTests"
     print("mvn clean and mvn package...")
     os.system(command)

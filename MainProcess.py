@@ -1,7 +1,6 @@
 import sys
 import os
 from preprocess import exec_maven_command
-# from preprocess import maven_shade_plugin
 from preprocess import Jar
 from match import match
 from calculate import cal
@@ -21,12 +20,8 @@ path_to_folder = expand_resolve_abspath(sys.argv[1])
 path_to_pom = os.path.join(path_to_folder, "pom.xml")
 # only handle the module in relative_path_to_module;'.' means handling all modules
 relative_path_to_module = sys.argv[2]
-# # declear maven-shade-plugin in pom.xml
 print("\n****** preprocess.package ... ******\n")
-# maven_shade_plugin.insert(path_to_pom)
-# # execute mvn clean and mvn package to generate Uber jar and jar
-# execute mvn clean and mvn package to generate client jar
-exec_maven_command.mvn_package(path_to_folder)
+exec_maven_command.mvn_package(path_to_folder, relative_path_to_module)
 print("\n****** preprocess.package done! ******\n")
 # execute mvn dependency:tree to generate dependency tree file in convenience of extracting GAV of dependencies
 # result is in ./data/preprocess/dependency_tree.txt
