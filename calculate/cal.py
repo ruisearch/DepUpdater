@@ -47,10 +47,12 @@ def select_best_version(relative_path_to_module:str):
         for one_dict in dict_list:
             dep = Dep(one_dict, dep_path)
             # get all version of each dep
-            print(f"** sort versions... ** ")
+            print(f"-- sort versions of {one_dict['GroupId']}:{one_dict['ArtifactId']} ... -- ")
             one_dict.update({'AllVersion':dep.fetch_versions_sorted()})
             # get the newest compatible versoin
+            print(f"-- calculate best version of {one_dict['GroupId']}:{one_dict['ArtifactId']} ... -- ")
             one_dict.update({'BestVersion':dep.get_best_version()})
+            print(f"-- best version got -- ")
         with open(json_path, 'w') as f:
             json.dump(dict_list, f, indent=4)
             

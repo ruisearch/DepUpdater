@@ -94,6 +94,9 @@ def check_version_module(module_data_folder:str, path_to_cloned_folder:str, modu
     print("\n search fn : \n")
     for dep in deps:
         print(f"{dep['GroupId']}:{dep['ArtifactId']}:{dep['Version']} ---> {dep['BestVersion']}")
+        if dep['Version'] == dep['BestVersion']:
+            print(" BestVersion is same as original version, skip")
+            continue
         set_one_dep(dep, pom_path)
         # recompile to test
         flag, result = recompile(module_path)
@@ -101,6 +104,7 @@ def check_version_module(module_data_folder:str, path_to_cloned_folder:str, modu
             # recompilation error, store the log, it's a fn, should be added into module_error_folder/fn
             dep_list = []
             dep_list.append(dep)
+            print(" find a fn")
             store_error(module_data_folder, dep_list, result, os.path.join(module_error_folder, 'fn'))
         # back to original pom
         reset(original_tree, pom_path)
@@ -112,6 +116,7 @@ def check_version_module(module_data_folder:str, path_to_cloned_folder:str, modu
     flag, result = recompile(module_path)
     if flag == False:
         # recompilation error, store the log, it's a fn, should be added into module_error_folder/fn
+        print(" find a fn")
         store_error(module_data_folder, deps, result, os.path.join(module_error_folder, 'fn'))
     # back to original pom
     reset(original_tree, pom_path)
@@ -127,6 +132,7 @@ def check_version_module(module_data_folder:str, path_to_cloned_folder:str, modu
                 break
         if idx == len(AllVersion)-1:
             # best version is newest
+            print(" Bestversion is the newest version, skip")
             continue
         calculated_version = dep["BestVersion"]
         dep["BestVersion"] = AllVersion[idx+1]["version"]
@@ -137,6 +143,7 @@ def check_version_module(module_data_folder:str, path_to_cloned_folder:str, modu
             # next version is compatible, fp
             dep_list = []
             dep_list.append(dep)
+            print(" find a fp")
             store_error(module_data_folder, dep_list, result, os.path.join(module_error_folder, 'fp'))
         # back to original pom
         reset(original_tree, pom_path)
@@ -199,7 +206,7 @@ def add_or_update_transitive_dependency(file_path, group_id, artifact_id, versio
     if dependencyManagement is None:
         dependencyManagement = etree.SubElement(root, '{http://maven.apache.org/POM/4.0.0}dependencyManagement')
     
-    dependencies = dependencyManagement.find('m:dependencies', namespace=ns)
+    dependencies = dependencyManagement.find('m:dependencies', namespaces=ns)
     if dependencies is None:
         dependencies = etree.SubElement(dependencyManagement, '{http://maven.apache.org/POM/4.0.0}dependencies')
     
@@ -232,10 +239,10 @@ def reset(original_tree, pom_path):
 # exeucte MainProcess.py
 path_to_cloned_folder = expand_resolve_abspath(sys.argv[1])
 relative_path_to_module = sys.argv[2]
-command = f"python MainProcess.py {path_to_cloned_folder} {relative_path_to_module}"
-print("\n*** launch Tool ***\n")
-os.system(command)
-print("\n*** done ***\n")
+# command = f"python MainProcess.py {path_to_cloned_folder} {relative_path_to_module}"
+# print("\n*** launch Tool ***\n")
+# os.system(command)
+# print("\n*** done ***\n")
 print("**** test ****\n")
 # project_error_folder represents a project. the folder won't be deleted by this script, can only be created
 # if it is outdated, please remove project_error_folder firstly
