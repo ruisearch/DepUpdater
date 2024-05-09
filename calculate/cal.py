@@ -1,6 +1,7 @@
 ## calculate best version and then calcute lag(after testing)
 import os
 import json
+import concurrent.futures
 from calculate.constants import JAR_FOLDER
 from calculate.Dep import Dep
 
@@ -44,18 +45,30 @@ def select_best_version(relative_path_to_module:str):
         dep_path = os.path.join(item_path, f"dep/")
         with open(json_path, 'r') as f:
             dict_list = json.load(f)
-        for one_dict in dict_list:
-            dep = Dep(one_dict, dep_path)
-            # get all version of each dep
-            print(f"-- sort versions of {one_dict['GroupId']}:{one_dict['ArtifactId']} ... -- ")
-            one_dict.update({'AllVersion':dep.fetch_versions_sorted()})
-            # get the newest compatible versoin
-            print(f"-- calculate best version of {one_dict['GroupId']}:{one_dict['ArtifactId']} ... -- ")
-            one_dict.update({'BestVersion':dep.get_best_version()})
-            print(f"-- best version got -- ")
+        # for one_dict in dict_list:
+        num_workers = os.cpu_count()
+        with concurrent.futures.ProcessPoolExecutor(max_workers=num_workers) as executor:
+            futures = [executor.submit(calculation, one_dict, dep_path) for one_dict in dict_list]
+        result = [future.result() for future in futures]
         with open(json_path, 'w') as f:
-            json.dump(dict_list, f, indent=4)
-            
+            # json.dump(dict_list, f, indent=4)
+            json.dump(result, f, indent=4)
+# main method of a process
+# one_dict: a dict containing the information of a dep after preprocessing
+# dep_path: path to dep/ folder
+# res_dict: the resulting dict containing all versions as well as best version
+def calculation(one_dict:str, dep_path:str):
+    dep = Dep(one_dict, dep_path)
+    res_dict = one_dict
+    # get all version of each dep
+    print(f"-- start sorting versions of {one_dict['GroupId']}:{one_dict['ArtifactId']} -- ")
+    res_dict.update({'AllVersion':dep.fetch_versions_sorted()})
+    print(f"-- get all versions of {one_dict['GroupId']}:{one_dict['ArtifactId']} -- ")
+    # get the newest compatible versoin
+    print(f"-- start calculating  best version of {one_dict['GroupId']}:{one_dict['ArtifactId']} -- ")
+    res_dict.update({'BestVersion':dep.get_best_version()})
+    print(f"-- best version of {one_dict['GroupId']}:{one_dict['ArtifactId']} got -- ")
+    return res_dict
 ## calculate lag
 def calculate_lag():
     print("cal")

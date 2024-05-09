@@ -44,10 +44,10 @@ class CallGraph:
     ## generate client call graph
     def gen_client_cg(self):
         cg_command = f"java -jar {SOOTCG_PATH} {self.client_jar} > {self.client_jar}_cg.txt"
-        print(f"**** generating call graph of client: {self.client_jar}... ****")
+        print(f"**** start generating call graph of client: {self.client_jar}... ****")
         os.system(cg_command)
         # self.parse_cg(f"{self.client_jar}_cg.txt",f"{self.client_jar}_cg.json")
-        # print("**** call graph generated ****")
+        print(f"**** call graph of {self.client_jar} generated ****")
         
     ## generate call graphs of deps
     def gen_deps_cg(self):
@@ -56,7 +56,7 @@ class CallGraph:
             print(f"**** generating call graph of dep: {dep_jar}... ****")
             os.system(cg_command)
             # self.parse_cg(f"{dep_jar}_cg.txt",f"{dep_jar}_cg.json")
-            # print("**** call graph generated ****")
+            print(f"**** call graph of {dep_jar} generated ****")
             
     ##  *_cg.txt into Uber/call_graph.txt
     def get_total_cg(self):

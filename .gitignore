@@ -9,3 +9,6 @@ sootOutput/
 
 # ignore logs/ containing revapi log
 logs/
+
+# ignore .vscode/
+.vscode/

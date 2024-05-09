@@ -5,6 +5,8 @@ import re
 import requests
 from calculate.constants import REVAPI_FOLDER
 from calculate.constants import ADDEDTOINTERFACE_PATH
+# from constants import REVAPI_FOLDER
+# from constants import ADDEDTOINTERFACE_PATH
 class Revapi:
     def __init__(self, gav:dict, ReachableAPIs:list, AllVersion:list, Pwd:str, JarName:str):
         self.gav = gav
@@ -27,6 +29,8 @@ class Revapi:
         self.new_dep_folder()
         idx = self.find_current_version_idx()
         # something wrong,return current version
+        # sometimes,a dep is a jar of another module, which cann't be downloaded from maven repo
+        # as the result, the AllVersion is empty,so cann't find current version. idx is None
         if idx is None:
             return self.gav['v']
         length = len(self.allVersion)
@@ -64,7 +68,7 @@ class Revapi:
             file_name = f"{artifact_id}-{version}.jar"
             with open(os.path.join(self.new_dep,file_name), "wb") as jar_file:
                 jar_file.write(response.content)
-            print(f"Analysis dependency {artifact_id}-{version}.jar ...")
+            print(f"start analysising dependency {artifact_id}-{version}.jar ")
             return os.path.join(self.new_dep,file_name), os.path.join(self.new_dep,f"{file_name}.ret.txt")
         else:
             print(f"Failed to download dependency {artifact_id}-{version}.jar. Reason: {response.reason}")
@@ -109,6 +113,8 @@ class Revapi:
     def parse_ret(self, ret_path):
         with open(ret_path, 'r') as f:
             content = f.read()
+        new_jar_pattern = r"New API: (.*?)\n"
+        new_jar = (re.search(new_jar_pattern, content)).group(1)
         # filtered_records = self.filter_record(content)
         filtered_records = self.filter_record(content)
         for i in range(len(filtered_records)):
@@ -118,8 +124,8 @@ class Revapi:
             
             # handle java.method.addedToInterface
             if "java.method.addedToInterface" in filtered_records[i] :
-                print("== java.method.addedToInterface ==")
-                flag = self.java_method_addedToInterface(filtered_records[i])
+                print(f"== java.method.addedToInterface in {new_jar} ==")
+                flag = self.java_method_addedToInterface(filtered_records[i], new_jar)
                 if flag == False:
                     return False, []
                 # java.method.addedToInterface doesn't break
@@ -227,17 +233,22 @@ class Revapi:
     
     # handle java.method.addedToInterface
     # record contains "java.method.addedToInterface"
+    # new_jar: the name of the new version dep jar
     # check whether any class implements the interface
     # exist : return False; non-exist : return True
-    def java_method_addedToInterface(self, record:str):
+    def java_method_addedToInterface(self, record:str, new_jar:str):
         # get the interface, in new:
         # note : ignore inner interface($) now
-        pattern = r"new: method .*? (.*?)::.*?\n"
+        # pattern = r"new: method .*? (.*?)::.*?\n"
+        pattern = r"new: method .* (.*?)::.*?\n"
         match = re.search(pattern, record)
         interface = match.group(1)
+        print(f"  changed interface in {new_jar}: {interface}")
+        # # test
+        # print(f"{interface}")
         # use common BCEL to check whether any class implements interface
         # file to store the ret
-        log_ret = os.path.join(self.Pwd, 'java_method_addedToInterface.txt')
+        log_ret = os.path.join(self.Pwd, f'new_dep/{new_jar}.java_method_addedToInterface.txt')
         # travel class in client jar 
         client_folder = os.path.join(self.Pwd, '../client/')
         contents = os.listdir(client_folder)
@@ -252,9 +263,9 @@ class Revapi:
                     log = f.read()
                     if "implements" in log:
                         # client jar has the class
-                        print(f"java.method.addedToInterface breaks {item}")
+                        print(f"java.method.addedToInterface: {interface} breaks {item}")
                         return False
-        # travel all dep jar(excluding self.jar_name)
+        # travel all dep jar(excluding self.jar_name)-->to be optimized: travel the dep jars which dependend on self.jar_name
         contents = os.listdir(self.Pwd)
         for item in contents:
             if item != self.jar_name and item.endswith(".jar"):
@@ -267,6 +278,23 @@ class Revapi:
                     log = f.read()
                     if "implements" in log:
                         # dep jar has the class
-                        print(f"java.method.addedToInterface breaks {item}")
+                        print(f"java.method.addedToInterface: {interface} breaks {item}")
                         return False
+        # no non-abstract class implements the interface
+        # remove the log_ret, as it is empty
+        os.remove(log_ret)
         return True
+    
+if __name__ == "__main__":
+    REVAPI_FOLDER = "/home/ray/Work/Tool/Tool/utils/revapi-0.12.0"
+    ADDEDTOINTERFACE_PATH = "/home/ray/Work/Tool/Tool/utils/BCEL_method_addedToInterface-1.0-SNAPSHOT-jar-with-dependencies.jar"
+    test_dep = Revapi({},[],[],'/home/ray/Work/Tool/Tool/data/Jar/server_/dep','config-1.2.1.jar')
+#     record = '''old: <none>
+# new: method <T extends java.lang.Enum<T>> T com.typesafe.config.Config::getEnum(java.lang.Class<T>, java.lang.String)
+# java.method.addedToInterface: Method was added to an interface.
+# SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING, SOURCE: BREAKING'''
+    record = '''old: <none>
+new: method java.util.List<java.time.Duration> com.typesafe.config.Config::getDurationList(java.lang.String)
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING'''
+    test_dep.java_method_addedToInterface(record)

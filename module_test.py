@@ -16,8 +16,10 @@ def create_new_folder(folder:str):
     # Create the new folder
     os.makedirs(folder)
 # recompile to test
-def recompile(module_path:str):
-    command = f"cd {module_path} && mvn clean && mvn compile -DskipTests"
+# path_to_cloned_folder: path to root dir
+# relative_path_to_module_folder: relative path to the module folder from root dir
+def recompile(path_to_cloned_folder: str, relative_path_to_module_folder: str):
+    command = f"cd {path_to_cloned_folder} && mvn clean && mvn compile -Dmaven.test.skip=true -Dcheckstyle.skip=true -pl {relative_path_to_module_folder} -am"
     try:
         result = subprocess.run(command, shell=True, text=True, capture_output=True)
         # check if the command was successful
@@ -59,8 +61,17 @@ def store_error(module_data_folder:str, dep_list:list, result, folder:str):
             log_txt.write(f'artifactId: {dep["ArtifactId"]}\n')
             log_txt.write(f'old version: {dep["Version"]}\n')
             log_txt.write(f'new version: {dep["BestVersion"]}\n')
+            log_txt.write(f'reachable api of old version:\n')
+            for reachable_api in dep['ReachableAPIs']:
+                log_txt.write(f'    {reachable_api}\n')
+            log_txt.write(f'* * *\nrevapi log of new version:\n')
+            revapi_log_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["ArtifactId"]}-{dep["BestVersion"]}.jar.ret.txt')
+            with open(revapi_log_path, 'r') as revapi_log:
+                log_txt.write(f'{revapi_log.read()}')
             log_txt.write(f'\n* * * * * * * *\n')
         log_txt.write(f"log:\n{result.stdout}")
+        log_txt.write(f'\n* * * * * * * *\n')
+        
    
 ## expand the path to absolute path
 def expand_resolve_abspath(path):
@@ -99,7 +110,7 @@ def check_version_module(module_data_folder:str, path_to_cloned_folder:str, modu
             continue
         set_one_dep(dep, pom_path)
         # recompile to test
-        flag, result = recompile(module_path)
+        flag, result = recompile(path_to_cloned_folder, relative_path_to_module_folder)
         if flag == False:
             # recompilation error, store the log, it's a fn, should be added into module_error_folder/fn
             dep_list = []
@@ -113,7 +124,7 @@ def check_version_module(module_data_folder:str, path_to_cloned_folder:str, modu
     for dep in deps:
         set_one_dep(dep, pom_path)
     # recompile to test
-    flag, result = recompile(module_path)
+    flag, result = recompile(path_to_cloned_folder, relative_path_to_module_folder)
     if flag == False:
         # recompilation error, store the log, it's a fn, should be added into module_error_folder/fn
         print(" find a fn")
@@ -138,7 +149,7 @@ def check_version_module(module_data_folder:str, path_to_cloned_folder:str, modu
         dep["BestVersion"] = AllVersion[idx+1]["version"]
         print(f"{dep['GroupId']}:{dep['ArtifactId']}:{calculated_version} ---> {dep['BestVersion']}")
         # recompile to test
-        flag, result = recompile(module_path)
+        flag, result = recompile(path_to_cloned_folder, relative_path_to_module_folder)
         if flag:
             # next version is compatible, fp
             dep_list = []
@@ -239,10 +250,10 @@ def reset(original_tree, pom_path):
 # exeucte MainProcess.py
 path_to_cloned_folder = expand_resolve_abspath(sys.argv[1])
 relative_path_to_module = sys.argv[2]
-# command = f"python MainProcess.py {path_to_cloned_folder} {relative_path_to_module}"
-# print("\n*** launch Tool ***\n")
-# os.system(command)
-# print("\n*** done ***\n")
+command = f"python MainProcess.py {path_to_cloned_folder} {relative_path_to_module}"
+print("\n*** launch Tool ***\n")
+os.system(command)
+print("\n*** done ***\n")
 print("**** test ****\n")
 # project_error_folder represents a project. the folder won't be deleted by this script, can only be created
 # if it is outdated, please remove project_error_folder firstly

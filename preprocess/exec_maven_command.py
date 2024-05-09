@@ -15,9 +15,12 @@ def create_folder(folder_path:str):
     
 # execute "mvn package"
 def mvn_package(path_to_folder:str, relative_path_to_module:str):
-    if relative_path_to_module != '.':
-        path_to_folder = os.path.join(path_to_folder, relative_path_to_module)
-    command = f"cd {path_to_folder} && mvn clean && mvn package -DskipTests"
+    # if relative_path_to_module != '.':
+    #     path_to_folder = os.path.join(path_to_folder, relative_path_to_module)
+    if relative_path_to_module == '.':
+        command = f"cd {path_to_folder} && mvn clean && mvn package -Dmaven.test.skip=true -Dcheckstyle.skip=true"
+    else :
+        command = f"cd {path_to_folder} && mvn clean && mvn package -Dmaven.test.skip=true -Dcheckstyle.skip=true -pl {relative_path_to_module} -am"
     print("mvn clean and mvn package...")
     os.system(command)
     print("client jar are generated successfully")

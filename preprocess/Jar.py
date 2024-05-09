@@ -34,7 +34,7 @@ def parse_dep_gav(all_dep_gav:str):
         #     dep.update({'artifact_id':f'{dep_match.group(2)}'})
         #     dep.update({'version':f'{dep_match.group(3)}'})
         #     dep_gav.append(dep)
-        if dep_match.group(5) != 'test' and dep_match.group(5) != "provided":
+        if dep_match.group(5) != 'test' and dep_match.group(5) != "provided" and dep_match.group(5) != 'test (optional)' and dep_match.group(5) != 'provided (optional)':
             dep = {}
             dep.update({'group_id':f'{dep_match.group(2)}'})
             dep.update({'artifact_id':f'{dep_match.group(3)}'})
