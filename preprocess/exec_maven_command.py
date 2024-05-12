@@ -18,12 +18,12 @@ def mvn_package(path_to_folder:str, relative_path_to_module:str):
     # if relative_path_to_module != '.':
     #     path_to_folder = os.path.join(path_to_folder, relative_path_to_module)
     if relative_path_to_module == '.':
-        command = f"cd {path_to_folder} && mvn clean && mvn package -Dmaven.test.skip=true -Dcheckstyle.skip=true"
+        command = f"cd {path_to_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true clean package"
     else :
-        command = f"cd {path_to_folder} && mvn clean && mvn package -Dmaven.test.skip=true -Dcheckstyle.skip=true -pl {relative_path_to_module} -am"
+        command = f"cd {os.path.join(path_to_folder, relative_path_to_module)} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true clean package"
     print("mvn clean and mvn package...")
-    os.system(command)
-    print("client jar are generated successfully")
+    exit_status = os.system(command)
+    return exit_status
 
 # execute "mvn dependency:tree"
 def mvn_dependency_tree(path_to_folder:str):

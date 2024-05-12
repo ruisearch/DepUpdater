@@ -61,10 +61,11 @@ def store_error(module_data_folder:str, dep_list:list, result, folder:str):
             log_txt.write(f'artifactId: {dep["ArtifactId"]}\n')
             log_txt.write(f'old version: {dep["Version"]}\n')
             log_txt.write(f'new version: {dep["BestVersion"]}\n')
+            log_txt.write(f'depth: {dep["Depth"]}\n')
             log_txt.write(f'reachable api of old version:\n')
             for reachable_api in dep['ReachableAPIs']:
                 log_txt.write(f'    {reachable_api}\n')
-            log_txt.write(f'* * *\nrevapi log of new version:\n')
+            log_txt.write(f'/ / / / / / / / /\nrevapi log of new version:\n')
             revapi_log_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["ArtifactId"]}-{dep["BestVersion"]}.jar.ret.txt')
             with open(revapi_log_path, 'r') as revapi_log:
                 log_txt.write(f'{revapi_log.read()}')
@@ -146,8 +147,10 @@ def check_version_module(module_data_folder:str, path_to_cloned_folder:str, modu
             print(" Bestversion is the newest version, skip")
             continue
         calculated_version = dep["BestVersion"]
+        # change the BestVersion to a newer version
         dep["BestVersion"] = AllVersion[idx+1]["version"]
         print(f"{dep['GroupId']}:{dep['ArtifactId']}:{calculated_version} ---> {dep['BestVersion']}")
+        set_one_dep(dep, pom_path)
         # recompile to test
         flag, result = recompile(path_to_cloned_folder, relative_path_to_module_folder)
         if flag:
@@ -169,12 +172,12 @@ def set_one_dep(dep:dict, pom_path:str):
     # direct dep
     if dep['Depth'] == 1:
         # set <dependencies>
-        add_or_update_direst_dependency(pom_path, group_id, artifact_id, new_version)
+        add_or_update_direct_dependency(pom_path, group_id, artifact_id, new_version)
     else :
         # transitive dep, set <dependencyManagement>
         add_or_update_transitive_dependency(pom_path, group_id, artifact_id, new_version)
 
-def add_or_update_direst_dependency(file_path, group_id, artifact_id, version):
+def add_or_update_direct_dependency(file_path, group_id, artifact_id, version):
     parser = etree.XMLParser(remove_blank_text=True)
     tree = etree.parse(file_path, parser)
     root = tree.getroot()
@@ -247,38 +250,39 @@ def add_or_update_transitive_dependency(file_path, group_id, artifact_id, versio
 def reset(original_tree, pom_path):
     original_tree.write(pom_path, pretty_print=True, xml_declaration=True, encoding='UTF-8')
 
-# exeucte MainProcess.py
-path_to_cloned_folder = expand_resolve_abspath(sys.argv[1])
-relative_path_to_module = sys.argv[2]
-command = f"python MainProcess.py {path_to_cloned_folder} {relative_path_to_module}"
-print("\n*** launch Tool ***\n")
-os.system(command)
-print("\n*** done ***\n")
-print("**** test ****\n")
-# project_error_folder represents a project. the folder won't be deleted by this script, can only be created
-# if it is outdated, please remove project_error_folder firstly
-project_name = path_to_cloned_folder.replace('/','_')
-project_error_folder = os.path.join(False_case_path, project_name)
-if os.path.isdir(project_error_folder) is False:
-    os.makedirs(project_error_folder)
-# analysis data from data/Jar
-pwd = os.getcwd()
-path_to_Jar_folder = os.path.join(pwd,'data/Jar')
-items = os.listdir(path_to_Jar_folder)
-for item in items:
-    item_path = os.path.join(path_to_Jar_folder, item)
-    # a module folder
-    if os.path.isdir(item_path):
-        # test a module
-        # the false case will be stored in the following folder
-        module_error_folder = os.path.join(project_error_folder, item)
-        with open(os.path.join(item_path, 'inform.json')) as f:
-            inform = json.load(f)
-        module_name = inform["Module"]
-        print(f"** test module : {module_name} **")
-        create_new_folder(module_error_folder)
-        create_new_folder(os.path.join(module_error_folder, 'fp'))
-        create_new_folder(os.path.join(module_error_folder, 'fn'))
-        check_version_module(item_path, path_to_cloned_folder, module_error_folder)
-        print(f"** module : {module_name}  test done **")
-print("**** test done !!!****")      
+if __name__ == "__main__":
+    # exeucte MainProcess.py
+    path_to_cloned_folder = expand_resolve_abspath(sys.argv[1])
+    relative_path_to_module = sys.argv[2]
+    command = f"python MainProcess.py {path_to_cloned_folder} {relative_path_to_module}"
+    print("\n*** launch Tool ***\n")
+    os.system(command)
+    print("\n*** done ***\n")
+    print("**** test ****\n")
+    # project_error_folder represents a project. the folder won't be deleted by this script, can only be created
+    # if it is outdated, please remove project_error_folder firstly
+    project_name = path_to_cloned_folder.replace('/','_')
+    project_error_folder = os.path.join(False_case_path, project_name)
+    if os.path.isdir(project_error_folder) is False:
+        os.makedirs(project_error_folder)
+    # analysis data from data/Jar
+    pwd = os.getcwd()
+    path_to_Jar_folder = os.path.join(pwd,'data/Jar')
+    items = os.listdir(path_to_Jar_folder)
+    for item in items:
+        item_path = os.path.join(path_to_Jar_folder, item)
+        # a module folder
+        if os.path.isdir(item_path):
+            # test a module
+            # the false case will be stored in the following folder
+            module_error_folder = os.path.join(project_error_folder, item)
+            with open(os.path.join(item_path, 'inform.json')) as f:
+                inform = json.load(f)
+            module_name = inform["Module"]
+            print(f"** test module : {module_name} **")
+            create_new_folder(module_error_folder)
+            create_new_folder(os.path.join(module_error_folder, 'fp'))
+            create_new_folder(os.path.join(module_error_folder, 'fn'))
+            check_version_module(item_path, path_to_cloned_folder, module_error_folder)
+            print(f"** module : {module_name}  test done **")
+    print("**** test done !!!****")      

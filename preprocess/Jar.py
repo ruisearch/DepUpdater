@@ -124,6 +124,7 @@ def parse_for_jar(dependency_tree:str, path_to_cloned_folder:str, relative_path_
             print(f"**** process {block.group(3)}:{block.group(4)}:{block.group(5)} ****")
             module = block.group(1)
             if module == '':
+                # the module pom is at the root of project
                 module = '_'
             folder = os.path.join(JAR_FOLDER, module.replace('/','_'))
             create_folder(folder)

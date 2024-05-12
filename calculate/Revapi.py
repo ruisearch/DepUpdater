@@ -3,6 +3,7 @@ import os
 import shutil
 import re
 import requests
+import time
 from calculate.constants import REVAPI_FOLDER
 from calculate.constants import ADDEDTOINTERFACE_PATH
 # from constants import REVAPI_FOLDER
@@ -62,16 +63,33 @@ class Revapi:
         
     # download a jar according to its gav in dep/new_dep
     def download_new_dep(self, group_id, artifact_id, version):
+        def handle_error_get(jar_url,  retries=5, backoff_factor=0.3):
+        # This inner function attempts to get the content from the jar_url with retries
+            for attempt in range(retries):
+                try:
+                    response = requests.get(jar_url, timeout=10)  # Set timeout to prevent hanging
+                    response.raise_for_status()  # Will raise an HTTPError for bad responses
+                    return response
+                except requests.RequestException as e:
+                    print(f"Attempt {attempt + 1} failed for {artifact_id}-{version}.jar: {str(e)}")
+                    time.sleep(backoff_factor * (2 ** attempt))  # Exponential backoff
+                    if attempt == retries - 1:
+                        raise  # Re-raise the last exception if all retries fail
+        
         jar_url = f"https://repo1.maven.org/maven2/{group_id.replace('.', '/')}/{artifact_id}/{version}/{artifact_id}-{version}.jar"
-        response = requests.get(jar_url)
-        if response.status_code == 200:
-            file_name = f"{artifact_id}-{version}.jar"
-            with open(os.path.join(self.new_dep,file_name), "wb") as jar_file:
-                jar_file.write(response.content)
-            print(f"start analysising dependency {artifact_id}-{version}.jar ")
-            return os.path.join(self.new_dep,file_name), os.path.join(self.new_dep,f"{file_name}.ret.txt")
-        else:
-            print(f"Failed to download dependency {artifact_id}-{version}.jar. Reason: {response.reason}")
+        # response = requests.get(jar_url)
+        try:
+            response = handle_error_get(jar_url)
+            # Proceed if the download was successful
+            if response.status_code == 200:
+                file_name = f"{artifact_id}-{version}.jar"
+                with open(os.path.join(self.new_dep,file_name), "wb") as jar_file:
+                    jar_file.write(response.content)
+                print(f"start analysising dependency {artifact_id}-{version}.jar ")
+                return os.path.join(self.new_dep,file_name), os.path.join(self.new_dep,f"{file_name}.ret.txt")
+        except Exception as e:
+            print(f"Failed to download {artifact_id}-{version}.jar from central repository; Reason: {str(e)}")
+
     # compare old jar and new jar
     # True : no BC ; False : has BC
     def compare(self, old_jar, new_jar, ret_txt_path):
