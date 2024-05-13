@@ -70,9 +70,9 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
             # recompile to test
             flag, result = recompile(path_to_cloned_folder, relative_path_to_module_folder)
             if flag == False:
-                # recompilation error, store the log, it's a fn, should be added into module_error_folder/fn
+                # recompilation error, store the log, it's a fp, should be added into module_error_folder/fn
                 print(" find a fn")
-                store_error(lock, item_path, result_deps, result, os.path.join(module_error_folder, 'fn'))
+                store_error(lock, item_path, result_deps, result, os.path.join(module_error_folder, 'fp'))
             # back to original pom
             reset(original_tree, pom_path)
             
@@ -140,7 +140,7 @@ def cal_test_a_dep(lock, one_dict:dict, dep_path:str, path_to_cloned_folder:str,
     return res_dict
 # set one dep to the version calculated
 # dep: the dict of the dep which is pared from match.json
-# pom_path: path to the pom.xml
+# pom_path: path to the pom.xml rather than temporary xml
 def change_dep_in_pom(dep:dict, pom_path:str):
     group_id = dep["GroupId"]
     artifact_id = dep["ArtifactId"]

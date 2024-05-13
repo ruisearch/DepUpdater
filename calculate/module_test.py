@@ -85,7 +85,7 @@ def set_one_dep(dep:dict, module_path:str, pom_path:str)->str:
     artifact_id = dep["ArtifactId"]
     new_version = dep["BestVersion"]
     # copy the pom.xml to a temp pom to prevent multiple process conflict
-    temp_pom_path = os.path.join(module_path, f'_temp_{group_id}_{artifact_id}_{new_version}_pom.xml')
+    temp_pom_path = os.path.join(module_path, f'_temp_{group_id}_{artifact_id}_{new_version}_.xml')
     shutil.copy(pom_path, temp_pom_path)
     # direct dep
     if dep['Depth'] == 1:
@@ -111,54 +111,115 @@ def check_version_module(lock, res_dict:dict, dep_path:str, path_to_cloned_folde
     # get the pom location
     module_path = os.path.join(path_to_cloned_folder, relative_path_to_module_folder)
     pom_path = os.path.join(module_path, "pom.xml")
-    # first, check whether best version is compatible
-    print(f"-- start checking {res_dict['GroupId']}:{res_dict['ArtifactId']}:{res_dict['Version']} ---> {res_dict['BestVersion']}")
-    if res_dict['BestVersion'] == res_dict['Version']:
-        print(f" BestVersion of {res_dict['GroupId']}:{res_dict['ArtifactId']} is same as original version, skip")
-    else:
-        # create a new xml setting the dep to best version
-        new_pom_path = set_one_dep(res_dict, module_path, pom_path)
-        # recompile to test
-        flag, result = recompile(path_to_cloned_folder, new_pom_path)
-        if flag == False:
-            # recompilation error, store the log, it's a fn, should be added into module_error_folder/fn
-            dep_list = []
-            dep_list.append(res_dict)
-            print(f" find a fn: {res_dict['GroupId']}:{res_dict['ArtifactId']}:{res_dict['Version']} ---> {res_dict['BestVersion']}")
-            # module_data_folder: path to a module data folder in data/Jar,like abstract-factory_
-            module_data_folder = os.path.join(dep_path, '..')
-            store_error(lock, module_data_folder, dep_list, result, os.path.join(module_error_folder, 'fn'))
-    # second, check whether best version is the newest
-    # get the idx of best version in order to find the following version
+    # test: check the actual tags of the Version ~ the version after the BestVersion
+    # get the idxs of the version after Version(first) and the version after the breaking verion which is after BestVersion(last)
     AllVersion = res_dict["AllVersion"]
-    idx = 0
+    first = 0
+    last = 0
+    best = 0 # idx of BestVersion
     for i in range(0, len(AllVersion)):
+        if AllVersion[i]["version"] == res_dict["Version"]:
+            if i == len(AllVersion)-1:
+                # current version is the newest version, no need to check
+                print(f"BestVersion of {res_dict['GroupId']}:{res_dict['ArtifactId']} is same as original version, skip")
+                return
+            first = i+1
         if AllVersion[i]["version"] == res_dict["BestVersion"]:
-            idx = i
-            break
-    # len(AllVersion) == 0 means that the dep can not be  dwonloaded from Maven central repository
-    if len(AllVersion) == 0 or idx == len(AllVersion)-1:
-            # best version is newest
-            print(f" Bestversion of {res_dict['GroupId']}:{res_dict['ArtifactId']} is the newest version, skip")
-    else :
+            best = i
+            last = min(best+2, len(AllVersion)-1)
+        
+    # recompilation from first version to last version to find the fn and fp
+    # fp: BestVersion is not the actual newest version which is compatible(record the recompliation of the BestVersion)
+    # fn: the actual newest version which is compatible is not BestVersion(record the recompliation of newest version which is compatible)
+    # key: find the actual newest version which is compatible(this version may not exist from first version to last version)
+    # note: last may be the actual last version in AllVersion
+    real_positive_version_idx = i
+    positive_result = None
+    real_positive_result = None
+    # find actual newest version which is compatible(real_positive_version)
+    # first ~ last
+    for i in range(first, last+1):
         temp_dict = res_dict
-        temp_dict["BestVersion"]  = AllVersion[idx+1]["version"]
+        temp_dict["BestVersion"]  = AllVersion[i]["version"]
         print(f"{res_dict['GroupId']}:{res_dict['ArtifactId']}:{res_dict['Version']} ---> {temp_dict['BestVersion']}")
         new_pom_path = set_one_dep(temp_dict, module_path, pom_path)
         # recompile to test
         flag, result = recompile(path_to_cloned_folder, new_pom_path)
+        if i == best:
+            # get the recompilation result of the Bestverion, cause it may be the record of fp
+            positive_result = result
         if flag:
-            # next version is compatible, fp
+            real_positive_version_idx = i
+            # get the recompilation result of the real positive version, cause it may be the record of fn
+            real_positive_result = result
+    # record fp and fn
+    if real_positive_version_idx != best:
+        # fp: BestVersion is not the actual newest version which is compatible(record the recompliation of the BestVersion)
+        dep_list = []
+        dep_list.append(res_dict)
+        print(f" find a fp: {res_dict['GroupId']}:{res_dict['ArtifactId']}:{res_dict['Version']} ---> {res_dict['BestVersion']}")
+        # module_data_folder: path to a module data folder in data/Jar,like abstract-factory_
+        module_data_folder = os.path.join(dep_path, '..')
+        store_error(lock, module_data_folder, dep_list, positive_result, os.path.join(module_error_folder, 'fp'))
+        # fn: the actual newest version which is compatible is not BestVersion(record the recompliation of newest version which is compatible)
+        # note: if this version is the last version recompiled, cann't get the actual newest compatible version, as the version after it is not recompiled
+        # unless this version is the newest version
+        if real_positive_version_idx != last or real_positive_version_idx == last and last == len(AllVersion)-1:
+            temp_dict = res_dict
+            temp_dict['BestVersion'] = AllVersion[real_positive_version_idx]['version']
             dep_list = []
             dep_list.append(temp_dict)
-            print(f" find a fp: {res_dict['GroupId']}:{res_dict['ArtifactId']}:{res_dict['Version']} ---> {temp_dict['BestVersion']}")
-            # module_data_folder: path to a module data folder in data/Jar,like abstract-factory_
-            module_data_folder = os.path.join(dep_path, '..')
-            store_error(lock, module_data_folder, dep_list, result, os.path.join(module_error_folder, 'fp'))
+            print(f" find a fn: {res_dict['GroupId']}:{res_dict['ArtifactId']}:{res_dict['Version']} ---> {temp_dict['BestVersion']}")
+            store_error(lock, module_data_folder, dep_list, real_positive_result, os.path.join(module_error_folder, 'fn'))
+
+    # # first, check whether best version is compatible
+    # print(f"-- start checking {res_dict['GroupId']}:{res_dict['ArtifactId']}:{res_dict['Version']} ---> {res_dict['BestVersion']}")
+    # if res_dict['BestVersion'] == res_dict['Version']:
+    #     print(f" BestVersion of {res_dict['GroupId']}:{res_dict['ArtifactId']} is same as original version, skip")
+    # else:
+    #     # create a new xml setting the dep to best version
+    #     new_pom_path = set_one_dep(res_dict, module_path, pom_path)
+    #     # recompile to test
+    #     flag, result = recompile(path_to_cloned_folder, new_pom_path)
+    #     if flag == False:
+    #         # recompilation error, store the log, it's a fn, should be added into module_error_folder/fn
+    #         dep_list = []
+    #         dep_list.append(res_dict)
+    #         print(f" find a fn: {res_dict['GroupId']}:{res_dict['ArtifactId']}:{res_dict['Version']} ---> {res_dict['BestVersion']}")
+    #         # module_data_folder: path to a module data folder in data/Jar,like abstract-factory_
+    #         module_data_folder = os.path.join(dep_path, '..')
+    #         store_error(lock, module_data_folder, dep_list, result, os.path.join(module_error_folder, 'fn'))
+    # # second, check whether best version is the newest
+    # # get the idx of best version in order to find the following version
+    # AllVersion = res_dict["AllVersion"]
+    # idx = 0
+    # for i in range(0, len(AllVersion)):
+    #     if AllVersion[i]["version"] == res_dict["BestVersion"]:
+    #         idx = i
+    #         break
+    # # len(AllVersion) == 0 means that the dep can not be  dwonloaded from Maven central repository
+    # if len(AllVersion) == 0 or idx == len(AllVersion)-1:
+    #         # best version is newest
+    #         print(f" Bestversion of {res_dict['GroupId']}:{res_dict['ArtifactId']} is the newest version, skip")
+    # else :
+    #     temp_dict = res_dict
+    #     temp_dict["BestVersion"]  = AllVersion[idx+1]["version"]
+    #     print(f"{res_dict['GroupId']}:{res_dict['ArtifactId']}:{res_dict['Version']} ---> {temp_dict['BestVersion']}")
+    #     new_pom_path = set_one_dep(temp_dict, module_path, pom_path)
+    #     # recompile to test
+    #     flag, result = recompile(path_to_cloned_folder, new_pom_path)
+    #     if flag:
+    #         # next version is compatible, fp
+    #         dep_list = []
+    #         dep_list.append(temp_dict)
+    #         print(f" find a fp: {res_dict['GroupId']}:{res_dict['ArtifactId']}:{res_dict['Version']} ---> {temp_dict['BestVersion']}")
+    #         # module_data_folder: path to a module data folder in data/Jar,like abstract-factory_
+    #         module_data_folder = os.path.join(dep_path, '..')
+    #         store_error(lock, module_data_folder, dep_list, result, os.path.join(module_error_folder, 'fp'))
 
 # recompile to test
 # path_to_cloned_folder: path to root dir
-# new_pom_path: path to the new pom file
+# new_pom_path: absolute path to the new pom file
 def recompile(path_to_cloned_folder: str, new_pom_path: str):
     # command = f"cd {path_to_cloned_folder} && mvn clean && mvn compile -Dmaven.test.skip=true -Dcheckstyle.skip=true -pl {relative_path_to_module_folder} -am"
     command = f"cd {path_to_cloned_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -f {new_pom_path} clean compile"
@@ -167,11 +228,17 @@ def recompile(path_to_cloned_folder: str, new_pom_path: str):
         # check if the command was successful
         if result.returncode != 0:
             # Command failed, means a false negative
+            # remove the temporary pom.xml
+            if new_pom_path.endswith('pom.xml') is False:
+                os.remove(new_pom_path)
             return False, result
         else:
+            if new_pom_path.endswith('pom.xml') is False:
+                os.remove(new_pom_path)
             return True, result
     except subprocess.SubprocessError as e:
         print(f"An error occurred while executing the command: {e}")
+        # in this situration, don't remove temporary xml file
         return False, result
 
 # add an error in a subfolder of module_error_folder(fp or fn), named folder(already exist)
