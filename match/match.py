@@ -29,13 +29,6 @@ def all(relative_path_to_module:str):
     # handle a specific module
     else :
         ## test : just deal with one module folder in data/Jar
-        # item_path = os.path.join(JAR_FOLDER, '2')
-        # item_path = os.path.join(JAR_FOLDER, '170')
-        # item_path = os.path.join(JAR_FOLDER, '169')
-        # item_path = os.path.join(JAR_FOLDER, '165')
-        # item_path = os.path.join(JAR_FOLDER, '3')
-        # item_path = os.path.join(JAR_FOLDER, '148')
-        # item_path = os.path.join(JAR_FOLDER, '4')
         items = os.listdir(JAR_FOLDER)
         for item in items:
             if os.path.isdir(os.path.join(JAR_FOLDER, item)):

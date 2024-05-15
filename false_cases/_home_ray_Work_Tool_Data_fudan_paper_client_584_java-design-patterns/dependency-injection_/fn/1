@@ -4,7 +4,7 @@ module name: dependency-injection/
 groudId: com.google.inject
 artifactId: guice
 old version: 5.1.0
-new version: 5.1.0
+new version: 6.0.0
 depth: 1
 reachable api of old version:
     com.google.inject.AbstractModule: void <init>()
@@ -1039,7 +1039,71 @@ reachable api of old version:
     com.google.inject.util.Types: java.lang.reflect.ParameterizedType mapOf(java.lang.reflect.Type,java.lang.reflect.Type)
     com.google.inject.util.Types: java.lang.reflect.ParameterizedType providerOf(java.lang.reflect.Type)
     com.google.inject.util.Types: java.lang.reflect.Type javaxProviderOf(java.lang.reflect.Type)
+/ / / / / / / / /
+revapi log of new version:
+13:04:49.196 INFO  Downloading checked archives
+13:04:49.417 INFO  Downloading extensions
+13:04:58.793 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: guice-5.1.0.jar
+New API: guice-6.0.0.jar
+old: class com.google.inject.internal.Errors
+new: class com.google.inject.internal.Errors
+java.class.defaultSerializationChanged: The default serialization ID for the class has changed. This means that the new version of the class is not deserializable from the byte stream of a serialized old class.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: BREAKING
+
+old: class com.google.inject.internal.InjectorImpl
+new: class com.google.inject.internal.InjectorImpl
+java.class.nonPublicPartOfAPI: Class 'com.google.inject.internal.InjectorImpl' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+
+old: class com.google.inject.internal.InternalContext
+new: class com.google.inject.internal.InternalContext
+java.class.nonPublicPartOfAPI: Class 'com.google.inject.internal.InternalContext' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+
+old: interface com.google.inject.internal.InternalFactory<T>
+new: interface com.google.inject.internal.InternalFactory<T>
+java.class.nonPublicPartOfAPI: Class 'com.google.inject.internal.InternalFactory<T>' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+
+old: method java.lang.StackTraceElement com.google.inject.internal.util.SourceProvider::get(java.lang.StackTraceElement[])
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+13:05:28.907 INFO  Analysis took 30113ms.
 
 * * * * * * * *
+log:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------< com.iluwatar:dependency-injection >------------------
+[INFO] Building dependency-injection 1.26.0-SNAPSHOT
+[INFO]   from _temp_com.google.inject_guice_6.0.0_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ dependency-injection ---
+[INFO] Deleting /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/target
+[INFO] 
+[INFO] --- checkstyle:3.3.0:check (validate) @ dependency-injection ---
+[INFO] 
+[INFO] --- jacoco:0.8.11:prepare-agent (prepare-agent) @ dependency-injection ---
+[INFO] argLine set to -javaagent:/home/ray/.m2/repository/org/jacoco/org.jacoco.agent/0.8.11/org.jacoco.agent-0.8.11-runtime.jar=destfile=/home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/target/jacoco.exec
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ dependency-injection ---
+[INFO] skip non existing resourceDirectory /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ dependency-injection ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 11 source files with javac [debug target 17] to target/classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  12.087 s
+[INFO] Finished at: 2024-05-15T13:08:03+08:00
+[INFO] ------------------------------------------------------------------------
 
 * * * * * * * *

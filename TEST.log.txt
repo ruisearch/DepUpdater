@@ -1,0 +1,525 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------< com.iluwatar:dependency-injection >------------------
+[INFO] Building dependency-injection 1.26.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ dependency-injection ---
+[INFO] Deleting /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/target
+[INFO] 
+[INFO] --- checkstyle:3.3.0:check (validate) @ dependency-injection ---
+[INFO] 
+[INFO] --- jacoco:0.8.11:prepare-agent (prepare-agent) @ dependency-injection ---
+[INFO] argLine set to -javaagent:/home/ray/.m2/repository/org/jacoco/org.jacoco.agent/0.8.11/org.jacoco.agent-0.8.11-runtime.jar=destfile=/home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/target/jacoco.exec
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ dependency-injection ---
+[INFO] skip non existing resourceDirectory /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ dependency-injection ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 11 source files with javac [debug target 17] to target/classes
+[INFO] 
+[INFO] --- urm:2.1.1:map (default) @ dependency-injection ---
+[INFO] dependency-injection.urm.puml already exists, file was not overwritten!
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ dependency-injection ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ dependency-injection ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ dependency-injection ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.3.0:jar (default-jar) @ dependency-injection ---
+[INFO] Building jar: /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/target/dependency-injection-1.26.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- assembly:3.6.0:single (default) @ dependency-injection ---
+[INFO] Building jar: /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/target/dependency-injection.jar
+[WARNING] Configuration option 'appendAssemblyId' is set to false.
+Instead of attaching the assembly file: /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/target/dependency-injection.jar, it will become the file for main project artifact.
+NOTE: If multiple descriptors or descriptor-formats are provided for this project, the value of this file will be non-deterministic!
+[WARNING] Replacing pre-existing project main-artifact file: /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/target/dependency-injection-1.26.0-SNAPSHOT.jar
+with assembly file: /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/target/dependency-injection.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  12.012 s
+[INFO] Finished at: 2024-05-14T18:59:14+08:00
+[INFO] ------------------------------------------------------------------------
+
+****** preprocessing ... ******
+
+
+****** preprocess.package ... ******
+
+mvn clean and mvn package...
+
+****** preprocess.package done! ******
+
+
+****** preprocess.analysis_tree ... ******
+
+generating dependency tree...
+dependency tree is generated in ./data/dependency_tree.txt successfully
+
+****** preprocess.analysis_tree done! ******
+
+
+****** preprocess.getjar ... ******
+
+
+****** get client jar / dep jar... ******
+
+**** process com.iluwatar:dependency-injection:1.26.0-SNAPSHOT ****
+guice-5.1.0.jar downloaded successfully.
+javax.inject-1.jar downloaded successfully.
+aopalliance-1.0.jar downloaded successfully.
+guava-30.1-jre.jar downloaded successfully.
+failureaccess-1.0.1.jar downloaded successfully.
+listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar downloaded successfully.
+jsr305-3.0.2.jar downloaded successfully.
+checker-qual-3.5.0.jar downloaded successfully.
+error_prone_annotations-2.3.4.jar downloaded successfully.
+j2objc-annotations-1.3.jar downloaded successfully.
+slf4j-api-2.0.12.jar downloaded successfully.
+logback-classic-1.5.3.jar downloaded successfully.
+logback-core-1.5.3.jar downloaded successfully.
+
+****** preprocess.getjar done! ******
+
+
+****** preprocess done! ******
+
+
+****** match ... ******
+
+**** start generating call graph of client: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/client/dependency-injection-1.26.0-SNAPSHOT.jar... ****
+**** call graph of /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/client/dependency-injection-1.26.0-SNAPSHOT.jar generated ****
+**** generating call graph of dep: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/logback-core-1.5.3.jar... ****
+**** call graph of /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/logback-core-1.5.3.jar generated ****
+**** generating call graph of dep: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/javax.inject-1.jar... ****
+**** call graph of /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/javax.inject-1.jar generated ****
+**** generating call graph of dep: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/checker-qual-3.5.0.jar... ****
+**** call graph of /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/checker-qual-3.5.0.jar generated ****
+**** generating call graph of dep: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/logback-classic-1.5.3.jar... ****
+**** call graph of /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/logback-classic-1.5.3.jar generated ****
+**** generating call graph of dep: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/j2objc-annotations-1.3.jar... ****
+**** call graph of /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/j2objc-annotations-1.3.jar generated ****
+**** generating call graph of dep: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/aopalliance-1.0.jar... ****
+**** call graph of /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/aopalliance-1.0.jar generated ****
+**** generating call graph of dep: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/guice-5.1.0.jar... ****
+**** call graph of /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/guice-5.1.0.jar generated ****
+**** generating call graph of dep: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/error_prone_annotations-2.3.4.jar... ****
+**** call graph of /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/error_prone_annotations-2.3.4.jar generated ****
+**** generating call graph of dep: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/jsr305-3.0.2.jar... ****
+**** call graph of /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/jsr305-3.0.2.jar generated ****
+**** generating call graph of dep: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/failureaccess-1.0.1.jar... ****
+**** call graph of /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/failureaccess-1.0.1.jar generated ****
+**** generating call graph of dep: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/slf4j-api-2.0.12.jar... ****
+**** call graph of /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/slf4j-api-2.0.12.jar generated ****
+**** generating call graph of dep: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/guava-30.1-jre.jar... ****
+**** call graph of /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/guava-30.1-jre.jar generated ****
+**** generating call graph of dep: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar... ****
+**** call graph of /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar generated ****
+**** generating total call graph ... ****
+**** total call graph got ****
+extract api of client jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/client/dependency-injection-1.26.0-SNAPSHOT.jar ...
+get api of client jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/client/dependency-injection-1.26.0-SNAPSHOT.jar
+
+extract api of dep jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/logback-core-1.5.3.jar ...
+get api of dep jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/logback-core-1.5.3.jar
+
+extract api of dep jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/javax.inject-1.jar ...
+get api of dep jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/javax.inject-1.jar
+
+extract api of dep jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/checker-qual-3.5.0.jar ...
+get api of dep jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/checker-qual-3.5.0.jar
+
+extract api of dep jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/logback-classic-1.5.3.jar ...
+get api of dep jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/logback-classic-1.5.3.jar
+
+extract api of dep jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/j2objc-annotations-1.3.jar ...
+get api of dep jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/j2objc-annotations-1.3.jar
+
+extract api of dep jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/aopalliance-1.0.jar ...
+get api of dep jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/aopalliance-1.0.jar
+
+extract api of dep jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/guice-5.1.0.jar ...
+get api of dep jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/guice-5.1.0.jar
+
+extract api of dep jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/error_prone_annotations-2.3.4.jar ...
+get api of dep jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/error_prone_annotations-2.3.4.jar
+
+extract api of dep jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/jsr305-3.0.2.jar ...
+get api of dep jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/jsr305-3.0.2.jar
+
+extract api of dep jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/failureaccess-1.0.1.jar ...
+get api of dep jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/failureaccess-1.0.1.jar
+
+extract api of dep jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/slf4j-api-2.0.12.jar ...
+get api of dep jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/slf4j-api-2.0.12.jar
+
+extract api of dep jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/guava-30.1-jre.jar ...
+get api of dep jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/guava-30.1-jre.jar
+
+extract api of dep jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar ...
+get api of dep jar: /home/ray/Work/Tool/Tool/data/Jar/dependency-injection_/dep/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar
+
+**** get reachable api... ****
+**** reachable api got ****
+
+****map dep jar to reachable api...****
+****map done****
+
+
+****** match done ! ******
+
+
+****** calculate: ******
+
+-- start sorting versions of javax.inject:javax.inject -- 
+-- get all versions of javax.inject:javax.inject -- 
+-- start calculating  best version of javax.inject:javax.inject in dependency-injection/ -- 
+-- best version of javax.inject:javax.inject is 1 -- 
+-- start validating the best version of javax.inject:javax.inject in dependency-injection/ --
+BestVersion of javax.inject:javax.inject is same as original version, skip
+-- validation to the best version of javax.inject:javax.inject in dependency-injection/  done --
+-- start sorting versions of com.google.guava:guava -- 
+-- get all versions of com.google.guava:guava -- 
+-- start calculating  best version of com.google.guava:guava in dependency-injection/ -- 
+start analysising dependency guava-30.1.1-android.jar 
+start analysising dependency guava-30.1.1-jre.jar 
+start analysising dependency guava-31.0-android.jar 
+start analysising dependency guava-31.0-jre.jar 
+start analysising dependency guava-31.0.1-android.jar 
+start analysising dependency guava-31.0.1-jre.jar 
+start analysising dependency guava-31.1-android.jar 
+start analysising dependency guava-31.1-jre.jar 
+start analysising dependency guava-32.0.0-android.jar 
+start analysising dependency guava-32.0.0-jre.jar 
+start analysising dependency guava-32.0.1-android.jar 
+start analysising dependency guava-32.0.1-jre.jar 
+start analysising dependency guava-32.1.0-android.jar 
+start analysising dependency guava-32.1.0-jre.jar 
+start analysising dependency guava-32.1.1-android.jar 
+start analysising dependency guava-32.1.1-jre.jar 
+start analysising dependency guava-32.1.2-android.jar 
+start analysising dependency guava-32.1.2-jre.jar 
+start analysising dependency guava-32.1.3-android.jar 
+start analysising dependency guava-32.1.3-jre.jar 
+start analysising dependency guava-33.0.0-android.jar 
+start analysising dependency guava-33.0.0-jre.jar 
+start analysising dependency guava-33.1.0-android.jar 
+start analysising dependency guava-33.1.0-jre.jar 
+start analysising dependency guava-33.2.0-android.jar 
+start analysising dependency guava-33.2.0-jre.jar 
+-- best version of com.google.guava:guava is 30.1.1-jre -- 
+-- start validating the best version of com.google.guava:guava in dependency-injection/ --
+com.google.guava:guava:30.1-jre ---> 30.1.1-android
+com.google.guava:guava:30.1-jre ---> 30.1.1-jre
+com.google.guava:guava:30.1-jre ---> 31.0-android
+com.google.guava:guava:30.1-jre ---> 31.0-jre
+com.google.guava:guava:30.1-jre ---> 31.0.1-android
+com.google.guava:guava:30.1-jre ---> 31.0.1-jre
+com.google.guava:guava:30.1-jre ---> 31.1-android
+com.google.guava:guava:30.1-jre ---> 31.1-jre
+com.google.guava:guava:30.1-jre ---> 32.0.0-android
+com.google.guava:guava:30.1-jre ---> 32.0.0-jre
+com.google.guava:guava:30.1-jre ---> 32.0.1-android
+com.google.guava:guava:30.1-jre ---> 32.0.1-jre
+com.google.guava:guava:30.1-jre ---> 32.1.0-android
+com.google.guava:guava:30.1-jre ---> 32.1.0-jre
+com.google.guava:guava:30.1-jre ---> 32.1.1-android
+com.google.guava:guava:30.1-jre ---> 32.1.1-jre
+com.google.guava:guava:30.1-jre ---> 32.1.2-android
+com.google.guava:guava:30.1-jre ---> 32.1.2-jre
+com.google.guava:guava:30.1-jre ---> 32.1.3-android
+com.google.guava:guava:30.1-jre ---> 32.1.3-jre
+com.google.guava:guava:30.1-jre ---> 33.0.0-android
+com.google.guava:guava:30.1-jre ---> 33.0.0-jre
+com.google.guava:guava:30.1-jre ---> 33.1.0-android
+com.google.guava:guava:30.1-jre ---> 33.1.0-jre
+com.google.guava:guava:30.1-jre ---> 33.2.0-android
+com.google.guava:guava:30.1-jre ---> 33.2.0-jre
+ find a fp: com.google.guava:guava:30.1-jre ---> 33.2.0-jre
+ find a fn: com.google.guava:guava:30.1-jre ---> 33.2.0-jre
+-- validation to the best version of com.google.guava:guava in dependency-injection/  done --
+-- start sorting versions of aopalliance:aopalliance -- 
+-- get all versions of aopalliance:aopalliance -- 
+-- start calculating  best version of aopalliance:aopalliance in dependency-injection/ -- 
+-- best version of aopalliance:aopalliance is 1.0 -- 
+-- start validating the best version of aopalliance:aopalliance in dependency-injection/ --
+BestVersion of aopalliance:aopalliance is same as original version, skip
+-- validation to the best version of aopalliance:aopalliance in dependency-injection/  done --
+-- start sorting versions of com.google.code.findbugs:jsr305 -- 
+-- get all versions of com.google.code.findbugs:jsr305 -- 
+-- start calculating  best version of com.google.code.findbugs:jsr305 in dependency-injection/ -- 
+-- best version of com.google.code.findbugs:jsr305 is 3.0.2 -- 
+-- start validating the best version of com.google.code.findbugs:jsr305 in dependency-injection/ --
+BestVersion of com.google.code.findbugs:jsr305 is same as original version, skip
+-- validation to the best version of com.google.code.findbugs:jsr305 in dependency-injection/  done --
+-- start sorting versions of com.google.guava:failureaccess -- 
+-- get all versions of com.google.guava:failureaccess -- 
+-- start calculating  best version of com.google.guava:failureaccess in dependency-injection/ -- 
+start analysising dependency failureaccess-1.0.2.jar 
+-- best version of com.google.guava:failureaccess is 1.0.2 -- 
+-- start validating the best version of com.google.guava:failureaccess in dependency-injection/ --
+com.google.guava:failureaccess:1.0.1 ---> 1.0.2
+-- validation to the best version of com.google.guava:failureaccess in dependency-injection/  done --
+-- start sorting versions of org.slf4j:slf4j-api -- 
+-- get all versions of org.slf4j:slf4j-api -- 
+-- start calculating  best version of org.slf4j:slf4j-api in dependency-injection/ -- 
+start analysising dependency slf4j-api-2.0.13.jar 
+start analysising dependency slf4j-api-2.1.0-alpha0.jar 
+start analysising dependency slf4j-api-2.1.0-alpha1.jar 
+-- best version of org.slf4j:slf4j-api is 2.1.0-alpha1 -- 
+-- start validating the best version of org.slf4j:slf4j-api in dependency-injection/ --
+org.slf4j:slf4j-api:2.0.12 ---> 2.0.13
+org.slf4j:slf4j-api:2.0.12 ---> 2.1.0-alpha0
+org.slf4j:slf4j-api:2.0.12 ---> 2.1.0-alpha1
+-- validation to the best version of org.slf4j:slf4j-api in dependency-injection/  done --
+-- start sorting versions of com.google.j2objc:j2objc-annotations -- 
+-- get all versions of com.google.j2objc:j2objc-annotations -- 
+-- start calculating  best version of com.google.j2objc:j2objc-annotations in dependency-injection/ -- 
+start analysising dependency j2objc-annotations-2.8.jar 
+start analysising dependency j2objc-annotations-3.0.0.jar 
+-- best version of com.google.j2objc:j2objc-annotations is 3.0.0 -- 
+-- start validating the best version of com.google.j2objc:j2objc-annotations in dependency-injection/ --
+com.google.j2objc:j2objc-annotations:1.3 ---> 2.8
+com.google.j2objc:j2objc-annotations:1.3 ---> 3.0.0
+-- validation to the best version of com.google.j2objc:j2objc-annotations in dependency-injection/  done --
+-- start sorting versions of ch.qos.logback:logback-classic -- 
+-- get all versions of ch.qos.logback:logback-classic -- 
+-- start calculating  best version of ch.qos.logback:logback-classic in dependency-injection/ -- 
+start analysising dependency logback-classic-1.5.4.jar 
+start analysising dependency logback-classic-1.5.5.jar 
+start analysising dependency logback-classic-1.5.6.jar 
+-- best version of ch.qos.logback:logback-classic is 1.5.6 -- 
+-- start validating the best version of ch.qos.logback:logback-classic in dependency-injection/ --
+ch.qos.logback:logback-classic:1.5.3 ---> 1.5.4
+ch.qos.logback:logback-classic:1.5.3 ---> 1.5.5
+ch.qos.logback:logback-classic:1.5.3 ---> 1.5.6
+-- validation to the best version of ch.qos.logback:logback-classic in dependency-injection/  done --
+-- start sorting versions of ch.qos.logback:logback-core -- 
+-- get all versions of ch.qos.logback:logback-core -- 
+-- start calculating  best version of ch.qos.logback:logback-core in dependency-injection/ -- 
+start analysising dependency logback-core-1.5.4.jar 
+start analysising dependency logback-core-1.5.5.jar 
+== java.method.addedToInterface in logback-core-1.5.5.jar ==
+  changed interface in logback-core-1.5.5.jar: ch.qos.logback.core.joran.spi.RuleStore
+start analysising dependency logback-core-1.5.6.jar 
+== java.method.addedToInterface in logback-core-1.5.6.jar ==
+  changed interface in logback-core-1.5.6.jar: ch.qos.logback.core.joran.spi.RuleStore
+-- best version of ch.qos.logback:logback-core is 1.5.6 -- 
+-- start validating the best version of ch.qos.logback:logback-core in dependency-injection/ --
+ch.qos.logback:logback-core:1.5.3 ---> 1.5.4
+ch.qos.logback:logback-core:1.5.3 ---> 1.5.5
+ch.qos.logback:logback-core:1.5.3 ---> 1.5.6
+-- validation to the best version of ch.qos.logback:logback-core in dependency-injection/  done --
+-- start sorting versions of com.google.inject:guice -- 
+-- get all versions of com.google.inject:guice -- 
+-- start calculating  best version of com.google.inject:guice in dependency-injection/ -- 
+start analysising dependency guice-6.0.0-rc1.jar 
+start analysising dependency guice-6.0.0-rc2.jar 
+start analysising dependency guice-6.0.0.jar 
+start analysising dependency guice-7.0.0-rc1.jar 
+start analysising dependency guice-7.0.0.jar 
+-- best version of com.google.inject:guice is 5.1.0 -- 
+-- start validating the best version of com.google.inject:guice in dependency-injection/ --
+com.google.inject:guice:5.1.0 ---> 6.0.0-rc1
+com.google.inject:guice:5.1.0 ---> 6.0.0-rc2
+com.google.inject:guice:5.1.0 ---> 6.0.0
+com.google.inject:guice:5.1.0 ---> 7.0.0-rc1
+com.google.inject:guice:5.1.0 ---> 7.0.0
+ find a fp: com.google.inject:guice:5.1.0 ---> 7.0.0
+ find a fn: com.google.inject:guice:5.1.0 ---> 6.0.0
+-- validation to the best version of com.google.inject:guice in dependency-injection/  done --
+-- start sorting versions of com.google.errorprone:error_prone_annotations -- 
+-- get all versions of com.google.errorprone:error_prone_annotations -- 
+-- start calculating  best version of com.google.errorprone:error_prone_annotations in dependency-injection/ -- 
+start analysising dependency error_prone_annotations-2.4.0.jar 
+start analysising dependency error_prone_annotations-2.5.0.jar 
+start analysising dependency error_prone_annotations-2.5.1.jar 
+start analysising dependency error_prone_annotations-2.6.0.jar 
+start analysising dependency error_prone_annotations-2.7.0.jar 
+start analysising dependency error_prone_annotations-2.7.1.jar 
+start analysising dependency error_prone_annotations-2.8.0.jar 
+start analysising dependency error_prone_annotations-2.8.1.jar 
+start analysising dependency error_prone_annotations-2.9.0.jar 
+start analysising dependency error_prone_annotations-2.10.0.jar 
+start analysising dependency error_prone_annotations-2.11.0.jar 
+start analysising dependency error_prone_annotations-2.12.0.jar 
+start analysising dependency error_prone_annotations-2.12.1.jar 
+start analysising dependency error_prone_annotations-2.13.0.jar 
+start analysising dependency error_prone_annotations-2.13.1.jar 
+start analysising dependency error_prone_annotations-2.14.0.jar 
+start analysising dependency error_prone_annotations-2.15.0.jar 
+start analysising dependency error_prone_annotations-2.15.jar 
+start analysising dependency error_prone_annotations-2.16.jar 
+start analysising dependency error_prone_annotations-2.17.0.jar 
+start analysising dependency error_prone_annotations-2.18.0.jar 
+start analysising dependency error_prone_annotations-2.19.0.jar 
+start analysising dependency error_prone_annotations-2.19.1.jar 
+start analysising dependency error_prone_annotations-2.20.0.jar 
+start analysising dependency error_prone_annotations-2.21.0.jar 
+start analysising dependency error_prone_annotations-2.21.1.jar 
+start analysising dependency error_prone_annotations-2.22.0.jar 
+start analysising dependency error_prone_annotations-2.23.0.jar 
+start analysising dependency error_prone_annotations-2.24.0.jar 
+start analysising dependency error_prone_annotations-2.24.1.jar 
+start analysising dependency error_prone_annotations-2.25.0.jar 
+start analysising dependency error_prone_annotations-2.26.0.jar 
+start analysising dependency error_prone_annotations-2.26.1.jar 
+start analysising dependency error_prone_annotations-2.27.0.jar 
+start analysising dependency error_prone_annotations-2.27.1.jar 
+-- best version of com.google.errorprone:error_prone_annotations is 2.27.1 -- 
+-- start validating the best version of com.google.errorprone:error_prone_annotations in dependency-injection/ --
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.4.0
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.5.0
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.5.1
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.6.0
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.7.0
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.7.1
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.8.0
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.8.1
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.9.0
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.10.0
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.11.0
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.12.0
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.12.1
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.13.0
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.13.1
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.14.0
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.15.0
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.15
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.16
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.17.0
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.18.0
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.19.0
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.19.1
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.20.0
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.21.0
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.21.1
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.22.0
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.23.0
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.24.0
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.24.1
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.25.0
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.26.0
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.26.1
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.27.0
+com.google.errorprone:error_prone_annotations:2.3.4 ---> 2.27.1
+-- validation to the best version of com.google.errorprone:error_prone_annotations in dependency-injection/  done --
+-- start sorting versions of org.checkerframework:checker-qual -- 
+-- get all versions of org.checkerframework:checker-qual -- 
+-- start calculating  best version of org.checkerframework:checker-qual in dependency-injection/ -- 
+start analysising dependency checker-qual-3.6.0.jar 
+start analysising dependency checker-qual-3.6.1.jar 
+start analysising dependency checker-qual-3.7.0.jar 
+start analysising dependency checker-qual-3.7.1.jar 
+start analysising dependency checker-qual-3.8.0.jar 
+start analysising dependency checker-qual-3.9.0.jar 
+start analysising dependency checker-qual-3.9.1.jar 
+start analysising dependency checker-qual-3.10.0.jar 
+start analysising dependency checker-qual-3.11.0.jar 
+start analysising dependency checker-qual-3.12.0.jar 
+start analysising dependency checker-qual-3.13.0.jar 
+start analysising dependency checker-qual-3.14.0.jar 
+start analysising dependency checker-qual-3.15.0.jar 
+start analysising dependency checker-qual-3.16.0.jar 
+start analysising dependency checker-qual-3.17.0.jar 
+start analysising dependency checker-qual-3.18.0.jar 
+start analysising dependency checker-qual-3.18.1.jar 
+start analysising dependency checker-qual-3.19.0.jar 
+start analysising dependency checker-qual-3.20.0.jar 
+start analysising dependency checker-qual-3.21.0.jar 
+start analysising dependency checker-qual-3.21.1.jar 
+start analysising dependency checker-qual-3.21.2.jar 
+start analysising dependency checker-qual-3.21.3.jar 
+start analysising dependency checker-qual-3.21.4.jar 
+start analysising dependency checker-qual-3.22.0.jar 
+start analysising dependency checker-qual-3.22.1.jar 
+start analysising dependency checker-qual-3.22.2.jar 
+start analysising dependency checker-qual-3.23.0.jar 
+start analysising dependency checker-qual-3.24.0.jar 
+start analysising dependency checker-qual-3.25.0.jar 
+start analysising dependency checker-qual-3.26.0.jar 
+start analysising dependency checker-qual-3.27.0.jar 
+start analysising dependency checker-qual-3.28.0.jar 
+start analysising dependency checker-qual-3.29.0.jar 
+start analysising dependency checker-qual-3.30.0.jar 
+start analysising dependency checker-qual-3.31.0.jar 
+start analysising dependency checker-qual-3.32.0.jar 
+start analysising dependency checker-qual-3.33.0.jar 
+start analysising dependency checker-qual-3.34.0.jar 
+start analysising dependency checker-qual-3.35.0.jar 
+start analysising dependency checker-qual-3.36.0.jar 
+start analysising dependency checker-qual-3.37.0.jar 
+start analysising dependency checker-qual-3.38.0.jar 
+start analysising dependency checker-qual-3.39.0.jar 
+start analysising dependency checker-qual-3.40.0.jar 
+start analysising dependency checker-qual-3.41.0.jar 
+start analysising dependency checker-qual-3.42.0.jar 
+start analysising dependency checker-qual-3.43.0.jar 
+-- best version of org.checkerframework:checker-qual is 3.43.0 -- 
+-- start validating the best version of org.checkerframework:checker-qual in dependency-injection/ --
+org.checkerframework:checker-qual:3.5.0 ---> 3.6.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.6.1
+org.checkerframework:checker-qual:3.5.0 ---> 3.7.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.7.1
+org.checkerframework:checker-qual:3.5.0 ---> 3.8.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.9.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.9.1
+org.checkerframework:checker-qual:3.5.0 ---> 3.10.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.11.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.12.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.13.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.14.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.15.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.16.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.17.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.18.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.18.1
+org.checkerframework:checker-qual:3.5.0 ---> 3.19.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.20.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.21.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.21.1
+org.checkerframework:checker-qual:3.5.0 ---> 3.21.2
+org.checkerframework:checker-qual:3.5.0 ---> 3.21.3
+org.checkerframework:checker-qual:3.5.0 ---> 3.21.4
+org.checkerframework:checker-qual:3.5.0 ---> 3.22.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.22.1
+org.checkerframework:checker-qual:3.5.0 ---> 3.22.2
+org.checkerframework:checker-qual:3.5.0 ---> 3.23.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.24.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.25.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.26.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.27.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.28.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.29.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.30.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.31.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.32.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.33.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.34.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.35.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.36.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.37.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.38.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.39.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.40.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.41.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.42.0
+org.checkerframework:checker-qual:3.5.0 ---> 3.43.0
+-- validation to the best version of org.checkerframework:checker-qual in dependency-injection/  done --
+-- start sorting versions of com.google.guava:listenablefuture -- 
+-- get all versions of com.google.guava:listenablefuture -- 
+-- start calculating  best version of com.google.guava:listenablefuture in dependency-injection/ -- 
+-- best version of com.google.guava:listenablefuture is 9999.0-empty-to-avoid-conflict-with-guava -- 
+-- start validating the best version of com.google.guava:listenablefuture in dependency-injection/ --
+BestVersion of com.google.guava:listenablefuture is same as original version, skip
+-- validation to the best version of com.google.guava:listenablefuture in dependency-injection/  done --
+set all dep to best version 
+

@@ -22,7 +22,8 @@ def create_new_folder(folder:str):
 def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
     ## create a lock so that the store_error will be process mutual excluison
     manager = multiprocessing.Manager()
-    lock = manager.Lock()
+    false_folder_lock = manager.Lock()
+    json_lock = manager.Lock()
     # handle the folders in data/Jar represent the modules
     Jar_contents = os.listdir(JAR_FOLDER)
     for item in Jar_contents:
@@ -40,16 +41,36 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
             dep_path = os.path.join(item_path, f"dep/")
             with open(json_path, 'r') as f:
                 dict_list = json.load(f)
+            # create dep/new_dep/
+            new_dep_path = os.path.join(dep_path, 'new_dep/')
+             # Check if the folder already exists
+            if os.path.exists(new_dep_path) is False:
+                # Create the new folder
+                os.makedirs(new_dep_path)
             # for one_dict in dict_list:
             num_workers = os.cpu_count()
             with concurrent.futures.ProcessPoolExecutor(max_workers=num_workers) as executor:
-                futures = [executor.submit(cal_test_a_dep, lock, one_dict, dep_path, path_to_cloned_folder, module_error_folder) for one_dict in dict_list]
-            result_deps = [future.result() for future in futures]
-            
+                futures = [executor.submit(cal_test_a_dep, false_folder_lock, json_lock, one_dict, dep_path, path_to_cloned_folder, module_error_folder) for one_dict in dict_list]
+            result_deps = []
+            error_dep_count = 0
+            dep_count = 0
+            for future in futures:
+                result_dep, flag = future.result()
+                result_deps.append(result_dep)
+                if flag is False:
+                    error_dep_count = error_dep_count + 1
+                dep_count = dep_count + 1
+            # result_deps = [future.result() for future in futures]
             # write the result_deps into match.json    
             with open(json_path, 'w') as f:
                 # json.dump(dict_list, f, indent=4)
                 json.dump(result_deps, f, indent=4)
+            # write the weight of error_dep in dep
+            error_dep_count_txt_path = os.path.join(module_error_folder, 'error_dep_count.txt')
+            with open(error_dep_count_txt_path, 'w') as f:
+                f.write(f'total dep: {dep_count}\n')
+                f.write(f'error dep: {error_dep_count}\n')
+                f.write(f'weight: {error_dep_count / dep_count}\n')
             
             ## set all dep to best version then validate whether it is compatible
             inform_json_path = os.path.join(item_path, 'inform.json')
@@ -68,11 +89,14 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
             for dep in result_deps:
                 change_dep_in_pom(dep, pom_path)
             # recompile to test
-            flag, result = recompile(path_to_cloned_folder, relative_path_to_module_folder)
+            absolute_module_path = os.path.join(path_to_cloned_folder, relative_path_to_module_folder)
+            flag, result = recompile(path_to_cloned_folder, os.path.join(absolute_module_path, 'pom.xml'))
             if flag == False:
                 # recompilation error, store the log, it's a fp, should be added into module_error_folder/fn
                 print(" find a fn")
-                store_error(lock, item_path, result_deps, result, os.path.join(module_error_folder, 'fp'))
+                store_error(false_folder_lock, item_path, result_deps, result, os.path.join(module_error_folder, 'fp'))
+                with open(error_dep_count_txt_path, 'a') as f:
+                    f.write('note: set all dep to best version cause compilation error!\n')
             # back to original pom
             reset(original_tree, pom_path)
             
@@ -110,13 +134,15 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
     #         # json.dump(dict_list, f, indent=4)
     #         json.dump(result, f, indent=4)
 # main method of a subprocess
-# lock: lock to guarantee process mutual exclusion
+# false_folder_lock: lock to guarantee process mutual exclusion when writing fp or fn to false_cases/'
+# json_lock: lock to write to match.json
 # one_dict: a dict containing the information of a dep after matching
 # dep_path: path to dep/ folder(a parameter of Dep constractor; get inform.json to get module relative path)
 # path_to_cloned_folder: path to the root of cloned project
 # module_error_folder: path to module folder in false_cases 
 # res_dict: the resulting dict containing all versions as well as best version
-def cal_test_a_dep(lock, one_dict:dict, dep_path:str, path_to_cloned_folder:str, module_error_folder: str):
+# flag: if this dep is true positive, flag is True, False otherwise
+def cal_test_a_dep(false_folder_lock, json_lock, one_dict:dict, dep_path:str, path_to_cloned_folder:str, module_error_folder: str):
     dep = Dep(one_dict, dep_path)
     res_dict = one_dict
     # get the module name
@@ -134,10 +160,29 @@ def cal_test_a_dep(lock, one_dict:dict, dep_path:str, path_to_cloned_folder:str,
     print(f"-- start calculating  best version of {one_dict['GroupId']}:{one_dict['ArtifactId']} in {module_name} -- ")
     res_dict.update({'BestVersion':dep.get_best_version()})
     print(f"-- best version of {one_dict['GroupId']}:{one_dict['ArtifactId']} is {res_dict['BestVersion']} -- ")
+    write_a_dep(json_lock, os.path.join(dep_path, 'match.json'), res_dict)
     print(f"-- start validating the best version of {one_dict['GroupId']}:{one_dict['ArtifactId']} in {module_name} --")
-    check_version_module(lock, res_dict, dep_path, path_to_cloned_folder, module_error_folder)
+    flag = check_version_module(false_folder_lock, res_dict, dep_path, path_to_cloned_folder, module_error_folder)
     print(f"-- validation to the best version of {one_dict['GroupId']}:{one_dict['ArtifactId']} in {module_name}  done --")
-    return res_dict
+    return res_dict,flag
+
+# write the dep into match.json after calculating its BestVersion
+# json_lock: lock to write to match.json
+# path_to_match_json: path to match.json
+# res_dict: dep which got its BestVersion recently
+def write_a_dep(json_lock, path_to_match_json:str, res_dict:dict):
+    with json_lock:
+        with open(path_to_match_json, 'r') as f_json:
+            deps = json.load(f_json)
+            # find the dep
+            for i in range(len(deps)):
+                if i == res_dict['Index']:
+                    deps[i] = res_dict
+                    break
+        with open(path_to_match_json, 'w') as f_json:
+            # write back
+            json.dump(deps, f_json, indent=4)
+                  
 # set one dep to the version calculated
 # dep: the dict of the dep which is pared from match.json
 # pom_path: path to the pom.xml rather than temporary xml

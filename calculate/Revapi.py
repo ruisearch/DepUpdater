@@ -9,7 +9,7 @@ from calculate.constants import ADDEDTOINTERFACE_PATH
 # from constants import REVAPI_FOLDER
 # from constants import ADDEDTOINTERFACE_PATH
 class Revapi:
-    def __init__(self, gav:dict, ReachableAPIs:list, AllVersion:list, Pwd:str, JarName:str):
+    def __init__(self, gav:dict, ReachableAPIs:list, AllVersion:list, Pwd:str, JarName:str, DependedBy:list):
         self.gav = gav
         self.api = ReachableAPIs
         self.allVersion = AllVersion
@@ -17,17 +17,18 @@ class Revapi:
         self.jar_name = JarName
         self.jar = os.path.join(Pwd, JarName) # jar path
         self.new_dep = os.path.join(Pwd, f'new_dep/')
-    # create dep/new_dep to contain new jar
-    def new_dep_folder(self):
-        # Check if the folder already exists
-        if os.path.exists(self.new_dep):
-            return
-        # Create the new folder
-        os.makedirs(self.new_dep)
+        self.DependedBy = DependedBy
+    # # create dep/new_dep to contain new jar
+    # def new_dep_folder(self):
+    #     # Check if the folder already exists
+    #     if os.path.exists(self.new_dep):
+    #         return
+    #     # Create the new folder
+    #     os.makedirs(self.new_dep)
     
     # return the best version
     def get_best_version(self):
-        self.new_dep_folder()
+        # self.new_dep_folder()
         idx = self.find_current_version_idx()
         # something wrong,return current version
         # sometimes,a dep is a jar of another module, which cann't be downloaded from maven repo
@@ -47,9 +48,9 @@ class Revapi:
             if self.compare(self.jar, new_dep_jar, ret_txt):
                 # no BC
                 best_version = self.allVersion[i]['version']
-            else :
-            # new dep is incompatible, break
-                break
+            # else :
+            # # new dep is incompatible, break
+            #     break
             # test:
             # self.compare(self.jar, new_dep_jar, ret_txt)
             # break
@@ -285,19 +286,20 @@ class Revapi:
                         return False
         # travel all dep jar(excluding self.jar_name)-->to be optimized: travel the dep jars which dependend on self.jar_name
         contents = os.listdir(self.Pwd)
-        for item in contents:
-            if item != self.jar_name and item.endswith(".jar"):
-                jar_path = os.path.join(self.Pwd, item)
-                command = f"java -jar {ADDEDTOINTERFACE_PATH} {jar_path} {interface} >{log_ret}"
-                os.system(command)
-                # # test
-                # print(f"{item} analysised")
-                with open(log_ret, 'r') as f:
-                    log = f.read()
-                    if "implements" in log:
-                        # dep jar has the class
-                        print(f"java.method.addedToInterface: {interface} breaks {item}")
-                        return False
+        for item in self.DependedBy:
+            # if item != self.jar_name and item.endswith(".jar"):
+            # just consider the dependencies which depend on this dep
+            jar_path = os.path.join(self.Pwd, item)
+            command = f"java -jar {ADDEDTOINTERFACE_PATH} {jar_path} {interface} >{log_ret}"
+            os.system(command)
+            # # test
+            # print(f"{item} analysised")
+            with open(log_ret, 'r') as f:
+                log = f.read()
+                if "implements" in log:
+                    # dep jar has the class
+                    print(f"java.method.addedToInterface: {interface} breaks {item}")
+                    return False
         # no non-abstract class implements the interface
         # remove the log_ret, as it is empty
         os.remove(log_ret)

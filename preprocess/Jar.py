@@ -2,6 +2,7 @@
 import os
 import shutil
 import re
+import concurrent.futures
 import requests
 import time
 import json
@@ -18,9 +19,9 @@ def create_folder(folder_path:str):
     # Create the new folder
     os.makedirs(folder_path)
 
-## parse tree to get GAV of deps(exclude test and provided)
-# return a list of dicts containing gav as well as transitive or direct
-def parse_dep_gav(all_dep_gav:str):
+## parse tree to get information of deps(exclude test and provided)
+# return a list of dicts containing gav and depth as well as transitive or direct
+def parse_dep(all_dep_gav:str):
     # dep_gav_pattern = r"- (.+?):(.+?):.+?:(.+?):(.+?)\s"
     # dep_matches = re.finditer(dep_gav_pattern, all_dep_gav)
     dep_gav_pattern = r"^\[INFO\] (.*?)- (.+?):(.+?):.+?:(.+?):(.+?)$"
@@ -111,7 +112,7 @@ def parse_for_jar(dependency_tree:str, path_to_cloned_folder:str, relative_path_
         # print(block.group(3)) # client groupId
         # print(block.group(4)) # client artifactId
         # print(block.group(5)) # client version
-        # print(block.group(6)) # dep
+        # print(block.group(6)) # deps
         
         # only handle the specific module
         # if relative_path_to_module is ., then handling all modules
@@ -155,33 +156,73 @@ def parse_for_jar(dependency_tree:str, path_to_cloned_folder:str, relative_path_
             
             ## get dep jar using GAV from maven central repository
             # create dep folder
-            dep = os.path.join(folder, "dep")
-            create_folder(dep)
+            path_to_dep = os.path.join(folder, "dep")
+            create_folder(path_to_dep)
             # parse tree to get GAV of deps(exclude test and provided)
-            deps_gav = parse_dep_gav(block.group(6))
+            deps = parse_dep(block.group(6))
             # get dep jar and update the list of dicts which will be displayed in json
             # jarname ----> gav
             mappings = []
-            for dep_gav in deps_gav:
-                get_dep_jar(dep, dep_gav['group_id'], dep_gav['artifact_id'], dep_gav['version'])
-                mapping = {
-                    "JarFileName": f"{dep_gav['artifact_id']}-{dep_gav['version']}.jar",
-                    "GroupId": f"{dep_gav['group_id']}",
-                    "ArtifactId": f"{dep_gav['artifact_id']}",
-                    "Version": f"{dep_gav['version']}",
-                    "Depth": dep_gav['depth']
-                }
-                mappings.append(mapping)
+            
+            # for i in range(len(deps_gav)):
+            #     get_dep_jar(dep, deps_gav[i]['group_id'], deps_gav[i]['artifact_id'], deps_gav[i]['version'])
+            #     mapping = {
+            #         "JarFileName": f"{deps_gav[i]['artifact_id']}-{deps_gav[i]['version']}.jar",
+            #         "GroupId": f"{deps_gav[i]['group_id']}",
+            #         "ArtifactId": f"{deps_gav[i]['artifact_id']}",
+            #         "Version": f"{deps_gav[i]['version']}",
+            #         "Depth": deps_gav[i]['depth'],
+            #         "Index": i
+            #     }
+            #     mappings.append(mapping)
+            num_workers = os.cpu_count()
+            with concurrent.futures.ProcessPoolExecutor(max_workers=num_workers) as executor:
+                futures = []
+                # for dep in deps:
+                for i in range(len(deps)):
+                    futures.append(executor.submit(download_all_dep_jar, path_to_dep, deps[i], i))
+            for future in futures:
+                mappings.append(future.result())
+            
+            # for each dep in mappings, get the deps which are depended by this dep
+            for mapping in mappings:
+                depended_by = []
+                depth = mapping['Depth']-1
+                idx = mapping['Index']
+                for i in range(idx, -1, -1):
+                    if depth == 0:
+                        break
+                    if mappings[i]['Depth'] == depth:
+                        depended_by.append(mappings[i]['JarFileName'])
+                        depth = depth-1
+                mappings[idx].update({'DependedBy': depended_by})
             # create json
-            json_path = os.path.join(dep, 'match.json')
-            with open(json_path, 'a') as json_file:
+            json_path = os.path.join(path_to_dep, 'match.json')
+            with open(json_path, 'w') as json_file:
                 json.dump(mappings, json_file, indent=4)
                 
         # ignore war
         if block.group(2) == 'war':
             with open(ignore_client, 'a') as f:
                 f.write(f'{block.group(3)}:{block.group(4)}:{block.group(5)}\n')
-            
+       
+# download dep jar concurrently
+# path_to_dep: path to dep/
+# dep: a dict in deps_gav, dep['group_id'] is groupId, dep['artifact_id'] is artifactId, dep['version'] is version
+# mapping: mapping of a dep;
+# idx: index of the dep in deps_gav
+def download_all_dep_jar(path_to_dep:str, dep:dict, idx:int):
+    get_dep_jar(path_to_dep, dep['group_id'], dep['artifact_id'], dep['version'])
+    mapping = {
+        "JarFileName": f"{dep['artifact_id']}-{dep['version']}.jar",
+        "GroupId": f"{dep['group_id']}",
+        "ArtifactId": f"{dep['artifact_id']}",
+        "Version": f"{dep['version']}",
+        "Depth": dep['depth'],
+        "Index": idx
+    }
+    return mapping
+
 ## main method in this file
 # path_to_folder:path to cloned folder
 # relative_path_to_module: relative path from project root 

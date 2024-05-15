@@ -15,6 +15,7 @@ class Dep:
         self.ArtifactId = dep_dict["ArtifactId"]
         self.Version = dep_dict["Version"]
         self.ReachableAPIs = dep_dict["ReachableAPIs"]
+        self.DependedBy = dep_dict['DependedBy']
         self.Pwd = dep_path
 
     def fetch_versions_sorted(self):
@@ -80,7 +81,7 @@ class Dep:
     ## get newest compatible version
     def get_best_version(self):
         gav = {'g':self.GroupId, 'a':self.ArtifactId, 'v':self.Version}
-        rev = Revapi(gav, self.ReachableAPIs, self.AllVersion, self.Pwd, self.JarFileName)
+        rev = Revapi(gav, self.ReachableAPIs, self.AllVersion, self.Pwd, self.JarFileName, self.DependedBy)
         return rev.get_best_version()
         
     
