@@ -355,4 +355,4 @@ if __name__ == "__main__":
 [INFO] +- org.slf4j:slf4j-api:jar:2.0.12:compile
 [INFO] +- ch.qos.logback:logback-classic:jar:1.5.3:compile
 [INFO] \- ch.qos.logback:logback-core:jar:1.5.3:compile'''
-    parse_dep_gav(dep)
+    # parse_dep_gav(dep)

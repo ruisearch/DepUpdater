@@ -3,6 +3,7 @@
 import os 
 import json
 import re
+from tqdm import tqdm
 from match.constants import SOOTCG_PATH
 
 class CallGraph:
@@ -51,7 +52,8 @@ class CallGraph:
         
     ## generate call graphs of deps
     def gen_deps_cg(self):
-        for dep_jar in self.dep_jars:
+        # for dep_jar in self.dep_jars:
+        for dep_jar in tqdm(self.dep_jars, desc='Generating call graphs of deps'):
             cg_command = f"java -jar {SOOTCG_PATH} {dep_jar} > {dep_jar}_cg.txt"
             print(f"**** generating call graph of dep: {dep_jar}... ****")
             os.system(cg_command)

@@ -5,6 +5,7 @@ import concurrent.futures
 import multiprocessing
 import shutil
 from lxml import etree
+from tqdm import tqdm
 from calculate.constants import JAR_FOLDER
 from calculate.Dep import Dep
 from calculate.module_test import check_version_module, recompile, store_error, reset, add_or_update_direct_dependency,add_or_update_transitive_dependency
@@ -50,21 +51,35 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
             # for one_dict in dict_list:
             num_workers = os.cpu_count()
             with concurrent.futures.ProcessPoolExecutor(max_workers=num_workers) as executor:
+                # initializing the progress bar
+                pbar = tqdm(total=len(dict_list), desc=f"Dep in {item}")
+                # submit tasks
                 futures = [executor.submit(cal_test_a_dep, false_folder_lock, json_lock, one_dict, dep_path, path_to_cloned_folder, module_error_folder) for one_dict in dict_list]
-            result_deps = []
-            error_dep_count = 0
-            dep_count = 0
-            for future in futures:
-                result_dep, flag = future.result()
-                result_deps.append(result_dep)
-                if flag is False:
-                    error_dep_count = error_dep_count + 1
-                dep_count = dep_count + 1
-            # result_deps = [future.result() for future in futures]
-            # write the result_deps into match.json    
-            with open(json_path, 'w') as f:
-                # json.dump(dict_list, f, indent=4)
-                json.dump(result_deps, f, indent=4)
+                
+                result_deps = []
+                error_dep_count = 0
+                dep_count = 0
+                # for future in futures:
+                #     result_dep, flag = future.result()
+                #     result_deps.append(result_dep)
+                #     if flag is False:
+                #         error_dep_count = error_dep_count + 1
+                #     dep_count = dep_count + 1
+                
+                for future in concurrent.futures.as_completed(futures):
+                    result_dep, flag = future.result()
+                    # add 1 in progress bar, meaning a dep is handled
+                    pbar.update(1)
+                    result_deps.append(result_dep)
+                    if flag is False:
+                        error_dep_count = error_dep_count + 1
+                    dep_count = dep_count + 1
+                pbar.close()    
+                     
+            # # write the result_deps into match.json    
+            # with open(json_path, 'w') as f:
+            #     # json.dump(dict_list, f, indent=4)
+            #     json.dump(result_deps, f, indent=4)
             # write the weight of error_dep in dep
             error_dep_count_txt_path = os.path.join(module_error_folder, 'error_dep_count.txt')
             with open(error_dep_count_txt_path, 'w') as f:
@@ -100,39 +115,6 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
             # back to original pom
             reset(original_tree, pom_path)
             
-    ## handle a specific module
-    ## test : just deal with one module folder in data/Jar
-    # item_path = os.path.join(JAR_FOLDER, '148')
-    # item_path = os.path.join(JAR_FOLDER, '3')
-    # item_path = os.path.join(JAR_FOLDER, '169')
-    # item_path = os.path.join(JAR_FOLDER, '165')
-    # item_path = os.path.join(JAR_FOLDER, '2')
-    # travel the match.json and pass one dep for Dep
-    # else:
-    #     items = os.listdir(JAR_FOLDER)
-    #     for item in items:
-    #         if os.path.isdir(os.path.join(JAR_FOLDER, item)):
-    #             item_path = os.path.join(JAR_FOLDER, item)
-    #             # test a module
-    #             # the false case will be stored in the following folder
-    #             module_error_folder = os.path.join(project_error_folder, item)
-    #             module_name = relative_path_to_module
-    #             create_new_folder(module_error_folder)
-    #             create_new_folder(os.path.join(module_error_folder, 'fp'))
-    #             create_new_folder(os.path.join(module_error_folder, 'fn'))
-    #             break
-    #     json_path = os.path.join(item_path, f"dep/match.json")
-    #     dep_path = os.path.join(item_path, f"dep/")
-    #     with open(json_path, 'r') as f:
-    #         dict_list = json.load(f)
-    #     # for one_dict in dict_list:
-    #     num_workers = os.cpu_count()
-    #     with concurrent.futures.ProcessPoolExecutor(max_workers=num_workers) as executor:
-    #         futures = [executor.submit(cal_test_a_dep, lock, one_dict, dep_path, path_to_cloned_folder, module_error_folder) for one_dict in dict_list]
-    #     result = [future.result() for future in futures]
-    #     with open(json_path, 'w') as f:
-    #         # json.dump(dict_list, f, indent=4)
-    #         json.dump(result, f, indent=4)
 # main method of a subprocess
 # false_folder_lock: lock to guarantee process mutual exclusion when writing fp or fn to false_cases/'
 # json_lock: lock to write to match.json
@@ -156,6 +138,7 @@ def cal_test_a_dep(false_folder_lock, json_lock, one_dict:dict, dep_path:str, pa
     print(f"-- start sorting versions of {one_dict['GroupId']}:{one_dict['ArtifactId']} -- ")
     res_dict.update({'AllVersion':dep.fetch_versions_sorted()})
     print(f"-- get all versions of {one_dict['GroupId']}:{one_dict['ArtifactId']} -- ")
+    write_a_dep(json_lock, os.path.join(dep_path, 'match.json'), res_dict)
     # get the newest compatible versoin
     print(f"-- start calculating  best version of {one_dict['GroupId']}:{one_dict['ArtifactId']} in {module_name} -- ")
     res_dict.update({'BestVersion':dep.get_best_version()})

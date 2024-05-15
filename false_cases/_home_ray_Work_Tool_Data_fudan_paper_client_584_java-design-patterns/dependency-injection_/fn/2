@@ -2680,9 +2680,9 @@ reachable api of old version:
     com.google.common.util.concurrent.Uninterruptibles: java.lang.Object getUninterruptibly(java.util.concurrent.Future)
 / / / / / / / / /
 revapi log of new version:
-13:27:29.362 INFO  Downloading checked archives
-13:27:29.393 INFO  Downloading extensions
-13:27:32.841 INFO  Starting analysis
+17:14:08.849 INFO  Downloading checked archives
+17:14:08.879 INFO  Downloading extensions
+17:14:11.849 INFO  Starting analysis
 Analysis results
 ----------------
 
@@ -2700,7 +2700,7 @@ new: method <T> com.google.common.base.Predicate<T> com.google.common.base.Predi
 java.method.returnTypeTypeParametersChanged: The return type changed from 'com.google.common.base.Predicate<java.lang.Object>' to 'com.google.common.base.Predicate<T>'.
 SOURCE: BREAKING, BINARY: NON_BREAKING
 java.generics.elementNowParameterized: Element now defines formal type parameters.
-SOURCE: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: NON_BREAKING, BINARY: NON_BREAKING
 java.generics.formalTypeParameterAdded: A new formal type parameter added to element: 'T'.
 SOURCE: BREAKING, BINARY: NON_BREAKING
 
@@ -2711,14 +2711,14 @@ SOURCE: BREAKING, BINARY: BREAKING
 java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'com.google.common.collect.ImmutableSet.CachingAsList<C extends java.lang.Comparable>'.
 SOURCE: POTENTIALLY_BREAKING, BINARY: POTENTIALLY_BREAKING
 java.annotation.added: Element newly annotated with 'com.google.common.collect.ElementTypesAreNonnullByDefault'.
-SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
 
 old: class com.google.common.collect.ImmutableBiMap<K, V>
 new: class com.google.common.collect.ImmutableBiMap<K, V>
 java.class.noLongerInheritsFromClass: Class no longer inherits from 'com.google.common.collect.ImmutableBiMapFauxverideShim<K, V>'.
 SOURCE: BREAKING, BINARY: BREAKING
 java.annotation.added: Element newly annotated with 'com.google.common.collect.ElementTypesAreNonnullByDefault'.
-SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
 
 old: method <K, V> java.util.Map<K, V> java.util.Map<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V) @ com.google.common.collect.ImmutableBiMap<K, V>
 new: method <K, V> com.google.common.collect.ImmutableBiMap<K, V> com.google.common.collect.ImmutableBiMap<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V)
@@ -2765,12 +2765,12 @@ SOURCE: EQUIVALENT, BINARY: EQUIVALENT
 old: <none>
 new: field com.google.common.collect.ImmutableCollection<E>.serialVersionUID
 java.field.serialVersionUIDChanged: serialVersionUID constant changed. Objects serialized using the old version of the class will no longer be deserializable.
-SOURCE: EQUIVALENT, SEMANTIC: BREAKING, BINARY: EQUIVALENT
+SEMANTIC: BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
 
 old: <none>
 new: field com.google.common.collect.ImmutableMap<K, V>.serialVersionUID
 java.field.serialVersionUIDChanged: serialVersionUID constant changed. Objects serialized using the old version of the class will no longer be deserializable.
-SOURCE: EQUIVALENT, SEMANTIC: BREAKING, BINARY: EQUIVALENT
+SEMANTIC: BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
 
 old: method <K, V> java.util.Map<K, V> java.util.Map<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V) @ com.google.common.collect.ImmutableMap<K, V>
 new: method <K, V> com.google.common.collect.ImmutableMap<K, V> com.google.common.collect.ImmutableMap<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V)
@@ -2819,7 +2819,7 @@ new: class com.google.common.collect.ImmutableSortedMap<K, V>
 java.class.noLongerInheritsFromClass: Class no longer inherits from 'com.google.common.collect.ImmutableSortedMapFauxverideShim<K, V>'.
 SOURCE: BREAKING, BINARY: BREAKING
 java.annotation.added: Element newly annotated with 'com.google.common.collect.ElementTypesAreNonnullByDefault'.
-SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
 
 old: method <K, V> java.util.Map<K, V> java.util.Map<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V, K, V) @ com.google.common.collect.ImmutableSortedMap<K, V>
 new: method <K extends java.lang.Comparable<? super K>, V> com.google.common.collect.ImmutableSortedMap<K, V> com.google.common.collect.ImmutableSortedMap<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V)
@@ -2846,7 +2846,7 @@ SOURCE: NON_BREAKING, BINARY: BREAKING
 java.method.inheritedMovedToClass: The method was previously declared in superclass 'java.util.Map<K, V>' but is now declared in class 'com.google.common.collect.ImmutableSortedMap<K, V>'.
 SOURCE: EQUIVALENT, BINARY: EQUIVALENT
 java.annotation.added: Element newly annotated with 'com.google.errorprone.annotations.DoNotCall'.
-SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
 java.element.nowDeprecated: The element is now deprecated.
 SOURCE: EQUIVALENT, BINARY: EQUIVALENT
 
@@ -2857,7 +2857,7 @@ SOURCE: BREAKING, BINARY: BREAKING
 java.method.returnTypeChangedCovariantly: The return type changed covariantly from 'java.util.Map<K, V>' to 'com.google.common.collect.ImmutableSortedMap<K, V>'.
 SOURCE: NON_BREAKING, BINARY: BREAKING
 java.annotation.added: Element newly annotated with 'com.google.errorprone.annotations.DoNotCall'.
-SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
 java.element.nowDeprecated: The element is now deprecated.
 SOURCE: EQUIVALENT, BINARY: EQUIVALENT
 
@@ -2868,7 +2868,7 @@ SOURCE: BREAKING, BINARY: BREAKING
 java.method.returnTypeChangedCovariantly: The return type changed covariantly from 'java.util.Map<K, V>' to 'com.google.common.collect.ImmutableSortedMap<K, V>'.
 SOURCE: NON_BREAKING, BINARY: BREAKING
 java.annotation.added: Element newly annotated with 'com.google.errorprone.annotations.DoNotCall'.
-SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
 java.element.nowDeprecated: The element is now deprecated.
 SOURCE: EQUIVALENT, BINARY: EQUIVALENT
 
@@ -2877,7 +2877,7 @@ new: class com.google.common.collect.ImmutableSortedMultiset<E>
 java.class.noLongerInheritsFromClass: Class no longer inherits from 'com.google.common.collect.ImmutableSortedMultisetFauxverideShim<E>'.
 SOURCE: BREAKING, BINARY: BREAKING
 java.annotation.added: Element newly annotated with 'com.google.common.collect.ElementTypesAreNonnullByDefault'.
-SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
 
 old: class com.google.common.collect.ImmutableSortedSet<E>
 new: class com.google.common.collect.ImmutableSortedSet<E>
@@ -2886,12 +2886,12 @@ SOURCE: BREAKING, BINARY: BREAKING
 java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'com.google.common.collect.ImmutableSet.CachingAsList<E>'.
 SOURCE: POTENTIALLY_BREAKING, BINARY: POTENTIALLY_BREAKING
 java.annotation.added: Element newly annotated with 'com.google.common.collect.ElementTypesAreNonnullByDefault'.
-SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
 
 old: <none>
 new: field com.google.common.collect.ImmutableTable<R, C, V>.serialVersionUID
 java.field.serialVersionUIDChanged: serialVersionUID constant changed. Objects serialized using the old version of the class will no longer be deserializable.
-SOURCE: EQUIVALENT, SEMANTIC: BREAKING, BINARY: EQUIVALENT
+SEMANTIC: BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
 
 old: method <N> java.util.Set<N> com.google.common.graph.Graphs::reachableNodes(com.google.common.graph.Graph<N>, N)
 new: method <N> com.google.common.collect.ImmutableSet<N> com.google.common.graph.Graphs::reachableNodes(com.google.common.graph.Graph<N>, N)
@@ -2971,7 +2971,7 @@ SOURCE: BREAKING, BINARY: BREAKING
 old: <none>
 new: field com.google.common.hash.BloomFilter<T>.serialVersionUID
 java.field.serialVersionUIDChanged: serialVersionUID constant changed. Objects serialized using the old version of the class will no longer be deserializable.
-SOURCE: EQUIVALENT, SEMANTIC: BREAKING, BINARY: EQUIVALENT
+SEMANTIC: BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
 
 old: <none>
 new: method com.google.common.io.BaseEncoding com.google.common.io.BaseEncoding::ignoreCase()
@@ -2987,9 +2987,9 @@ SOURCE: NON_BREAKING, BINARY: NON_BREAKING
 java.class.nowImplementsInterface: Class now implements interface 'java.lang.reflect.Member'.
 SOURCE: NON_BREAKING, BINARY: NON_BREAKING
 java.annotation.removed: Element no longer annotated with 'com.google.common.annotations.Beta'.
-SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
 java.annotation.added: Element newly annotated with 'com.google.common.reflect.ElementTypesAreNonnullByDefault'.
-SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
 
 old: method boolean java.lang.reflect.AccessibleObject::canAccess(java.lang.Object) @ com.google.common.reflect.Invokable<T, R>
 new: <none>
@@ -3004,7 +3004,7 @@ SOURCE: BREAKING, BINARY: BREAKING
 old: class com.google.common.util.concurrent.CycleDetectingLockFactory.ExampleStackTrace
 new: class com.google.common.util.concurrent.CycleDetectingLockFactory.ExampleStackTrace
 java.class.nonPublicPartOfAPI: Class 'com.google.common.util.concurrent.CycleDetectingLockFactory.ExampleStackTrace' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
-SOURCE: NON_BREAKING, SEMANTIC: BREAKING, BINARY: NON_BREAKING
+SEMANTIC: BREAKING, SOURCE: NON_BREAKING, BINARY: NON_BREAKING
 
 old: enum com.google.common.util.concurrent.Service.State
 new: enum com.google.common.util.concurrent.Service.State
@@ -3013,7 +3013,7 @@ SOURCE: EQUIVALENT, BINARY: EQUIVALENT
 java.class.nowFinal: Class is now final.
 SOURCE: BREAKING, BINARY: BREAKING
 
-13:28:05.313 INFO  Analysis took 32471ms.
+17:14:38.946 INFO  Analysis took 27097ms.
 
 * * * * * * * *
 log:
@@ -3041,8 +3041,8 @@ log:
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  5.744 s
-[INFO] Finished at: 2024-05-15T13:32:33+08:00
+[INFO] Total time:  5.590 s
+[INFO] Finished at: 2024-05-15T17:18:39+08:00
 [INFO] ------------------------------------------------------------------------
 
 * * * * * * * *

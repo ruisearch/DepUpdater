@@ -1041,9 +1041,9 @@ reachable api of old version:
     com.google.inject.util.Types: java.lang.reflect.Type javaxProviderOf(java.lang.reflect.Type)
 / / / / / / / / /
 revapi log of new version:
-13:04:49.196 INFO  Downloading checked archives
-13:04:49.417 INFO  Downloading extensions
-13:04:58.793 INFO  Starting analysis
+16:48:21.412 INFO  Downloading checked archives
+16:48:21.569 INFO  Downloading extensions
+16:48:33.675 INFO  Starting analysis
 Analysis results
 ----------------
 
@@ -1074,7 +1074,7 @@ new: <none>
 java.method.removed: Method was removed.
 BINARY: BREAKING, SOURCE: BREAKING
 
-13:05:28.907 INFO  Analysis took 30113ms.
+16:49:16.605 INFO  Analysis took 42929ms.
 
 * * * * * * * *
 log:
@@ -1102,8 +1102,8 @@ log:
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  12.087 s
-[INFO] Finished at: 2024-05-15T13:08:03+08:00
+[INFO] Total time:  12.042 s
+[INFO] Finished at: 2024-05-15T16:51:55+08:00
 [INFO] ------------------------------------------------------------------------
 
 * * * * * * * *

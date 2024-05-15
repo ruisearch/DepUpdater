@@ -2680,9 +2680,9 @@ reachable api of old version:
     com.google.common.util.concurrent.Uninterruptibles: java.lang.Object getUninterruptibly(java.util.concurrent.Future)
 / / / / / / / / /
 revapi log of new version:
-13:07:46.367 INFO  Downloading checked archives
-13:07:46.408 INFO  Downloading extensions
-13:07:54.360 INFO  Starting analysis
+16:48:29.061 INFO  Downloading checked archives
+16:48:29.281 INFO  Downloading extensions
+16:48:48.120 INFO  Starting analysis
 Analysis results
 ----------------
 
@@ -2691,14 +2691,14 @@ New API: guava-30.1.1-jre.jar
 old: interface com.google.common.graph.BaseGraph<N>
 new: interface com.google.common.graph.BaseGraph<N>
 java.class.nonPublicPartOfAPI: Class 'com.google.common.graph.BaseGraph<N>' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
-BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+SOURCE: NON_BREAKING, SEMANTIC: BREAKING, BINARY: NON_BREAKING
 
 old: class com.google.common.util.concurrent.CycleDetectingLockFactory.ExampleStackTrace
 new: class com.google.common.util.concurrent.CycleDetectingLockFactory.ExampleStackTrace
 java.class.nonPublicPartOfAPI: Class 'com.google.common.util.concurrent.CycleDetectingLockFactory.ExampleStackTrace' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
-BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+SOURCE: NON_BREAKING, SEMANTIC: BREAKING, BINARY: NON_BREAKING
 
-13:08:42.000 INFO  Analysis took 47639ms.
+16:49:55.881 INFO  Analysis took 67760ms.
 
 * * * * * * * *
 log:
@@ -2710,6 +2710,7 @@ log:
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
 [INFO] --- clean:3.2.0:clean (default-clean) @ dependency-injection ---
+[INFO] Deleting /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/target
 [INFO] 
 [INFO] --- checkstyle:3.3.0:check (validate) @ dependency-injection ---
 [INFO] 
@@ -2725,8 +2726,8 @@ log:
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  7.507 s
-[INFO] Finished at: 2024-05-15T13:28:28+08:00
+[INFO] Total time:  5.442 s
+[INFO] Finished at: 2024-05-15T17:14:57+08:00
 [INFO] ------------------------------------------------------------------------
 
 * * * * * * * *
