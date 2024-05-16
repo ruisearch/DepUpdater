@@ -3,11 +3,9 @@ import os
 import shutil
 import re
 import requests
-import subprocess
 import time
-from tqdm import tqdm
-from calculate.constants import REVAPI_FOLDER
-from calculate.constants import ADDEDTOINTERFACE_PATH
+from ripple_calculate.constants import REVAPI_FOLDER
+from ripple_calculate.constants import ADDEDTOINTERFACE_PATH
 # from constants import REVAPI_FOLDER
 # from constants import ADDEDTOINTERFACE_PATH
 class Revapi:
@@ -29,8 +27,7 @@ class Revapi:
     #     os.makedirs(self.new_dep)
     
     # return the best version
-    # tqdm_log_module_folder: path to tqdm_log/{module_name}/ containing files denoting the progress of each process
-    def get_best_version(self, tqdm_log_module_folder: str):
+    def get_best_version(self):
         # self.new_dep_folder()
         idx = self.find_current_version_idx()
         # something wrong,return current version
@@ -45,24 +42,18 @@ class Revapi:
             shutil.copy(self.jar, dest)
             return self.gav['v']
         best_version = self.gav['v']
-        
-        # file to contain tqdm log
-        dep_tqdm_log_file = os.path.join(tqdm_log_module_folder, f"{self.gav['g']}_{self.gav['a']}_tqdm_log.txt")
-        with open(dep_tqdm_log_file, 'a') as f:
-            with tqdm(total=length-idx, desc=f'Calculate version', file=f) as pbar:
-                for i in range(idx+1, length):
-                    new_dep_jar, ret_txt = self.download_new_dep(self.gav['g'],self.gav['a'],self.allVersion[i]['version'])
-                    # compare current jar with new jar
-                    if self.compare(self.jar, new_dep_jar, ret_txt):
-                        # no BC
-                        best_version = self.allVersion[i]['version']
-                    pbar.update(1)
-                    # else :
-                    # # new dep is incompatible, break
-                    #     break
-                    # test:
-                    # self.compare(self.jar, new_dep_jar, ret_txt)
-                    # break
+        for i in range(idx+1, length):
+            new_dep_jar, ret_txt = self.download_new_dep(self.gav['g'],self.gav['a'],self.allVersion[i]['version'])
+            # compare current jar with new jar
+            if self.compare(self.jar, new_dep_jar, ret_txt):
+                # no BC
+                best_version = self.allVersion[i]['version']
+            # else :
+            # # new dep is incompatible, break
+            #     break
+            # test:
+            # self.compare(self.jar, new_dep_jar, ret_txt)
+            # break
         return best_version
             
     # return the idx of current version in allversion
@@ -265,14 +256,6 @@ class Revapi:
     # check whether any class implements the interface
     # exist : return False; non-exist : return True
     def java_method_addedToInterface(self, record:str, new_jar:str):
-        # remove all substring containing '<' and '>'
-        # eg: 
-        # new: method void com.google.common.collect.RangeMap<K extends java.lang.Comparable, V>::putCoalescing(com.google.common.collect.Range<K>, V)
-        # -> new: method void com.google.common.collect.RangeMap::putCoalescing(com.google.common.collect.Range, V)
-        surplus_substring_pattern = r'<.*?>'
-        def remove_surplus_substring(match):
-            return ''
-        record = re.sub(surplus_substring_pattern, remove_surplus_substring, record)
         # get the interface, in new:
         # note : ignore inner interface($) now
         # pattern = r"new: method .*? (.*?)::.*?\n"
@@ -291,11 +274,8 @@ class Revapi:
         for item in contents:
             if item != self.jar_name and item.endswith(".jar"):
                 jar_path = os.path.join(client_folder, item)
-                # command = f"java -jar {ADDEDTOINTERFACE_PATH} {jar_path} {interface} >{log_ret}"
-                # os.system(command)
-                # use run rather than os.system to redirect the output, as the redirection works well when executing the python using 'script -q -c' rather than exeucting directly
-                with open(log_ret, 'w') as f:
-                    subprocess.run(['java', '-jar', f'{ADDEDTOINTERFACE_PATH}', f'{jar_path}', f'{interface}'], stdout=f)
+                command = f"java -jar {ADDEDTOINTERFACE_PATH} {jar_path} {interface} >{log_ret}"
+                os.system(command)
                 # # test
                 # print(f"{item} analysised")
                 with open(log_ret, 'r') as f:
@@ -310,16 +290,14 @@ class Revapi:
             # if item != self.jar_name and item.endswith(".jar"):
             # just consider the dependencies which depend on this dep
             jar_path = os.path.join(self.Pwd, item)
-            # command = f"java -jar {ADDEDTOINTERFACE_PATH} {jar_path} {interface} >{log_ret}"
-            # os.system(command)
-            with open(log_ret, 'w') as f:
-                subprocess.run(['java', '-jar', f'{ADDEDTOINTERFACE_PATH}', f'{jar_path}', f'{interface}'], stdout=f)
+            command = f"java -jar {ADDEDTOINTERFACE_PATH} {jar_path} {interface} >{log_ret}"
+            os.system(command)
             # # test
             # print(f"{item} analysised")
             with open(log_ret, 'r') as f:
                 log = f.read()
                 if "implements" in log:
-                    # client jar has the class
+                    # dep jar has the class
                     print(f"java.method.addedToInterface: {interface} breaks {item}")
                     return False
         # no non-abstract class implements the interface

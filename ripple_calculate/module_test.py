@@ -4,7 +4,6 @@ import json
 import subprocess
 import shutil
 import copy
-from tqdm import tqdm
 from lxml import etree
 # set transitive dependency in pom
 def add_or_update_transitive_dependency(file_path, group_id, artifact_id, version):
@@ -103,9 +102,8 @@ def set_one_dep(dep:dict, module_path:str, pom_path:str)->str:
 # dep_path: path to dep/ folder in data/Jar, meaning all dep of a module
 # path_to_cloned_folder: path to the root of cloned project
 # module_error_folder: path to the folder containing the errors of the module
-# tqdm_log_module_folder: path to tqdm_log/{module_name}/ containing files denoting the progress of each process
 # flag: if this dep is true positive, flag is True, False otherwise
-def check_version_module(lock, res_dict:dict, dep_path:str, path_to_cloned_folder:str, module_error_folder: str, tqdm_log_module_folder:str)->bool:
+def check_version_module(lock, res_dict:dict, dep_path:str, path_to_cloned_folder:str, module_error_folder: str)->bool:
     flag = True
     # path to inform.json in module data folder
     inform_json_path = os.path.join(dep_path, '../inform.json')
@@ -142,27 +140,20 @@ def check_version_module(lock, res_dict:dict, dep_path:str, path_to_cloned_folde
     real_positive_result = None
     # find actual newest version which is compatible(real_positive_version)
     # first ~ last
-     
-    # file to contain tqdm log
-    dep_tqdm_log_file = os.path.join(tqdm_log_module_folder, f"{res_dict['GroupId']}_{res_dict['ArtifactId']}_tqdm_log.txt")
-    with open(dep_tqdm_log_file, 'a') as f:
-        with tqdm(total=last-first+1, desc=f'Validate version', file=f) as pbar:
-            for i in range(first, last+1):
-                temp_dict = copy.deepcopy(res_dict)
-                temp_dict["BestVersion"]  = AllVersion[i]["version"]
-                print(f"{res_dict['GroupId']}:{res_dict['ArtifactId']}:{res_dict['Version']} ---> {temp_dict['BestVersion']}")
-                new_pom_path = set_one_dep(temp_dict, module_path, pom_path)
-                # recompile to test
-                flag, result = recompile(path_to_cloned_folder, new_pom_path)
-                if i == best:
-                    # get the recompilation result of the Bestverion, cause it may be the record of fp
-                    positive_result = result
-                if flag:
-                    real_positive_version_idx = i
-                    # get the recompilation result of the real positive version, cause it may be the record of fn
-                    real_positive_result = result
-                pbar.update(1)
-    
+    for i in range(first, last+1):
+        temp_dict = copy.deepcopy(res_dict)
+        temp_dict["BestVersion"]  = AllVersion[i]["version"]
+        print(f"{res_dict['GroupId']}:{res_dict['ArtifactId']}:{res_dict['Version']} ---> {temp_dict['BestVersion']}")
+        new_pom_path = set_one_dep(temp_dict, module_path, pom_path)
+        # recompile to test
+        flag, result = recompile(path_to_cloned_folder, new_pom_path)
+        if i == best:
+            # get the recompilation result of the Bestverion, cause it may be the record of fp
+            positive_result = result
+        if flag:
+            real_positive_version_idx = i
+            # get the recompilation result of the real positive version, cause it may be the record of fn
+            real_positive_result = result
     # record fp and fn
     if real_positive_version_idx != best:
         flag = False

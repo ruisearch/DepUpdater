@@ -6,9 +6,9 @@ import multiprocessing
 import shutil
 from lxml import etree
 from tqdm import tqdm
-from calculate.constants import JAR_FOLDER, TQDM_LOG_PATH
-from calculate.Dep import Dep
-from calculate.module_test import check_version_module, recompile, store_error, reset, add_or_update_direct_dependency,add_or_update_transitive_dependency
+from ripple_calculate.constants import JAR_FOLDER
+from ripple_calculate.Dep import Dep
+from ripple_calculate.module_test import check_version_module, recompile, store_error, reset, add_or_update_direct_dependency,add_or_update_transitive_dependency
 
 def create_new_folder(folder:str):
     # Check if folder already exists
@@ -25,9 +25,6 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
     manager = multiprocessing.Manager()
     false_folder_lock = manager.Lock()
     json_lock = manager.Lock()
-    # create tqdm_log/ containing the progress of each process denoting a dep
-    create_new_folder(TQDM_LOG_PATH)
-    
     # handle the folders in data/Jar represent the modules
     Jar_contents = os.listdir(JAR_FOLDER)
     for item in Jar_contents:
@@ -36,8 +33,7 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
         if os.path.isdir(item_path):
             # test a module after calculating 
             # the false cases will be stored in the following folder
-            module_error_folder = os.path.join(project_error_folder, item)\
-            # existing module_error_folder is outdate, so delete it and create a new one
+            module_error_folder = os.path.join(project_error_folder, item)
             create_new_folder(module_error_folder)
             create_new_folder(os.path.join(module_error_folder, 'fp'))
             create_new_folder(os.path.join(module_error_folder, 'fn'))
@@ -46,7 +42,6 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
             dep_path = os.path.join(item_path, f"dep/")
             with open(json_path, 'r') as f:
                 dict_list = json.load(f)
-                
             # create dep/new_dep/
             new_dep_path = os.path.join(dep_path, 'new_dep/')
              # Check if the folder already exists
@@ -54,27 +49,16 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
                 # Create the new folder
                 os.makedirs(new_dep_path)
             
-            # create tqdm_log/{module_name}/
-            tqdm_log_module_folder = os.path.join(TQDM_LOG_PATH, f'{item}')
-            create_new_folder(tqdm_log_module_folder)
-            
-            # for one_dict in dict_list:
             num_workers = os.cpu_count()
             with concurrent.futures.ProcessPoolExecutor(max_workers=num_workers) as executor:
                 # initializing the progress bar
                 pbar = tqdm(total=len(dict_list), desc=f"Dep in {item}")
                 # submit tasks
-                futures = [executor.submit(cal_test_a_dep, false_folder_lock, json_lock, one_dict, dep_path, path_to_cloned_folder, module_error_folder, tqdm_log_module_folder) for one_dict in dict_list]
+                futures = [executor.submit(cal_test_a_dep, false_folder_lock, json_lock, one_dict, dep_path, path_to_cloned_folder, module_error_folder) for one_dict in dict_list]
                 
                 result_deps = []
                 error_dep_count = 0
                 dep_count = 0
-                # for future in futures:
-                #     result_dep, flag = future.result()
-                #     result_deps.append(result_dep)
-                #     if flag is False:
-                #         error_dep_count = error_dep_count + 1
-                #     dep_count = dep_count + 1
                 
                 for future in concurrent.futures.as_completed(futures):
                     result_dep, flag = future.result()
@@ -85,11 +69,12 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
                         error_dep_count = error_dep_count + 1
                     dep_count = dep_count + 1
                 pbar.close()    
+            
+            # # Serial processing of dependencies while versions in dependencies are processed in parallel
+            # for one_dict in dict_list:
+            #     print(f'>>>> processing dep: f{one_dict[]}')
                      
-            # # write the result_deps into match.json    
-            # with open(json_path, 'w') as f:
-            #     # json.dump(dict_list, f, indent=4)
-            #     json.dump(result_deps, f, indent=4)
+            
             # write the weight of error_dep in dep
             error_dep_count_txt_path = os.path.join(module_error_folder, 'error_dep_count.txt')
             with open(error_dep_count_txt_path, 'w') as f:
@@ -132,10 +117,9 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
 # dep_path: path to dep/ folder(a parameter of Dep constractor; get inform.json to get module relative path)
 # path_to_cloned_folder: path to the root of cloned project
 # module_error_folder: path to module folder in false_cases 
-# tqdm_log_module_folder: path to tqdm_log/{module_name}/ containing files denoting the progress of each process
 # res_dict: the resulting dict containing all versions as well as best version
 # flag: if this dep is true positive, flag is True, False otherwise
-def cal_test_a_dep(false_folder_lock, json_lock, one_dict:dict, dep_path:str, path_to_cloned_folder:str, module_error_folder: str, tqdm_log_module_folder:str):
+def cal_test_a_dep(false_folder_lock, json_lock, one_dict:dict, dep_path:str, path_to_cloned_folder:str, module_error_folder: str):
     dep = Dep(one_dict, dep_path)
     res_dict = one_dict
     # get the module name
@@ -152,11 +136,11 @@ def cal_test_a_dep(false_folder_lock, json_lock, one_dict:dict, dep_path:str, pa
     write_a_dep(json_lock, os.path.join(dep_path, 'match.json'), res_dict)
     # get the newest compatible versoin
     print(f"-- start calculating  best version of {one_dict['GroupId']}:{one_dict['ArtifactId']} in {module_name} -- ")
-    res_dict.update({'BestVersion':dep.get_best_version(tqdm_log_module_folder)})
+    res_dict.update({'BestVersion':dep.get_best_version()})
     print(f"-- best version of {one_dict['GroupId']}:{one_dict['ArtifactId']} is {res_dict['BestVersion']} -- ")
     write_a_dep(json_lock, os.path.join(dep_path, 'match.json'), res_dict)
     print(f"-- start validating the best version of {one_dict['GroupId']}:{one_dict['ArtifactId']} in {module_name} --")
-    flag = check_version_module(false_folder_lock, res_dict, dep_path, path_to_cloned_folder, module_error_folder, tqdm_log_module_folder)
+    flag = check_version_module(false_folder_lock, res_dict, dep_path, path_to_cloned_folder, module_error_folder)
     print(f"-- validation to the best version of {one_dict['GroupId']}:{one_dict['ArtifactId']} in {module_name}  done --")
     return res_dict,flag
 

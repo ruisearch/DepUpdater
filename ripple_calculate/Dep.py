@@ -3,7 +3,7 @@ import requests
 import json
 from functools import cmp_to_key
 # from operator import itemgetter
-from calculate.Revapi import Revapi
+from ripple_calculate.Revapi import Revapi
 import semver
 class Dep:
     # dep_path : path to dep/
@@ -79,10 +79,9 @@ class Dep:
             else:
                 return 0
     ## get newest compatible version
-    # tqdm_log_module_folder: path to tqdm_log/{module_name}/ containing files denoting the progress of each process
-    def get_best_version(self, tqdm_log_module_folder:str):
+    def get_best_version(self):
         gav = {'g':self.GroupId, 'a':self.ArtifactId, 'v':self.Version}
         rev = Revapi(gav, self.ReachableAPIs, self.AllVersion, self.Pwd, self.JarFileName, self.DependedBy)
-        return rev.get_best_version(tqdm_log_module_folder)
+        return rev.get_best_version()
         
     

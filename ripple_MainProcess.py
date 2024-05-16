@@ -4,7 +4,7 @@ import os
 from preprocess import exec_maven_command
 from preprocess import Jar
 from match import match
-from calculate import cal
+from ripple_calculate import cal
 
 ## expand the path to absolute path
 def expand_resolve_abspath(path):
@@ -21,6 +21,10 @@ path_to_folder = expand_resolve_abspath(sys.argv[1])
 path_to_pom = os.path.join(path_to_folder, "pom.xml")
 # only handle the module in relative_path_to_module;'.' means handling all modules or the project has just one module whose pom is at the root of the project
 relative_path_to_module = sys.argv[2]
+# set the git repository to the lastest tag status
+status_command = f'cd {path_to_folder} && git clean -fd && git reset --hard && git fetch --tags && git tag --sort=-creatordate | head -1 | xargs git checkout'
+print("****** set the git repository to the lastest tag status ******")
+os.system(status_command)
 print("\n****** preprocess.package ... ******\n")
 exit_code = exec_maven_command.mvn_package(path_to_folder, relative_path_to_module)
 if exit_code != 0:
@@ -48,13 +52,15 @@ match.all(relative_path_to_module)
 print("\n****** match done ! ******\n")
 
 # create folder to contain false_cases; the false negative cases and false positive cases will be stored in false_cases/
-# project_error_folder represents a project. the folder won't be deleted by this script, can only be created
-# if it is outdated, please remove project_error_folder firstly
-# False_case_path is the folder to store false cases(already exists)
+# project_error_folder(like _home_ray_Work_Tool_Data_fudan_paper_client_584_java-design-patterns/ in false_cases/) represents a project rather than a module
+# False_case_path is the folder to store false cases/
 False_case_path = os.path.join(os.getcwd(), 'false_cases/')
 project_name = path_to_folder.replace('/','_')
 project_error_folder = os.path.join(False_case_path, project_name)
 if os.path.isdir(project_error_folder) is False:
+    # if project_error_folder doesn't exist, create one
+    # don't delete the existing one as the it may contain other modules
+    # note: folder representing module of the project is the subfolder of project_error_folder
     os.makedirs(project_error_folder)
     
 

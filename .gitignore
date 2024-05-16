@@ -12,3 +12,6 @@ logs/
 
 # ignore .vscode/
 .vscode/
+
+# ignore tqdm_log/
+tqdm_log/

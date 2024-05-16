@@ -13,6 +13,3 @@ REVAPI_FOLDER = os.path.join(MainProcess_pwd, 'utils/revapi-0.12.0/')
 
 ## absolute to BCEL_method_addedToInterface-1.0-SNAPSHOT-jar-with-dependencies.jar
 ADDEDTOINTERFACE_PATH = os.path.join(MainProcess_pwd, 'utils/BCEL_method_addedToInterface-1.0-SNAPSHOT-jar-with-dependencies.jar')
-
-## absolute to tqdm_log/
-TQDM_LOG_PATH = os.path.join(MainProcess_pwd, 'tqdm_log/')
