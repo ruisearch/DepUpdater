@@ -2,6 +2,7 @@
 # path_to_folder : the path where pom.xml locates
 import os
 import shutil
+import subprocess
 from preprocess.constants import DEPENDENCY_TREE_FILE, DATA
 
 # create a folder
@@ -31,9 +32,12 @@ def mvn_dependency_tree(path_to_folder:str):
     # log_path = os.path.join(MainProcess_pwd, "data/dependency_tree.txt")
     # create ./DATA
     create_folder(DATA)
-    command = f"cd {path_to_folder} && mvn dependency:tree > {DEPENDENCY_TREE_FILE}"
+    command = f"cd {path_to_folder} && mvn dependency:tree"
     print("generating dependency tree...")
-    os.system(command)
+    result = subprocess.run(command, shell=True, text=True, capture_output=True)
+    with open(DEPENDENCY_TREE_FILE, 'w') as f:
+        f.write(f'{result.stdout}')
+    # os.system(command)
     print("dependency tree is generated in ./data/dependency_tree.txt successfully")
     
     

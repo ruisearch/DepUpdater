@@ -24,7 +24,8 @@ def create_folder(folder_path:str):
 def parse_dep(all_dep_gav:str):
     # dep_gav_pattern = r"- (.+?):(.+?):.+?:(.+?):(.+?)\s"
     # dep_matches = re.finditer(dep_gav_pattern, all_dep_gav)
-    dep_gav_pattern = r"^\[INFO\] (.*?)- (.+?):(.+?):.+?:(.+?):(.+?)$"
+    # dep_gav_pattern = r"^\[INFO\] (.*?)- (.+?):(.+?):.+?:(.+?):(.+?)$"
+    dep_gav_pattern = r"^\[INFO\] (.*?)- (.+?):(.+?):.+:(.+?):(.+?)$"
     dep_matches = re.finditer(dep_gav_pattern, all_dep_gav, re.MULTILINE)
     dep_gav = []
     for dep_match in dep_matches:
@@ -35,11 +36,14 @@ def parse_dep(all_dep_gav:str):
         #     dep.update({'artifact_id':f'{dep_match.group(2)}'})
         #     dep.update({'version':f'{dep_match.group(3)}'})
         #     dep_gav.append(dep)
-        if dep_match.group(5) != 'test' and dep_match.group(5) != "provided" and dep_match.group(5) != 'test (optional)' and dep_match.group(5) != 'provided (optional)':
+        # if dep_match.group(5) != 'test' and dep_match.group(5) != "provided" and dep_match.group(5) != 'test (optional)' and dep_match.group(5) != 'provided (optional)':
+        if dep_match.group(5).endswith('test') is False and dep_match.group(5).endswith("provided") is False:
             dep = {}
             dep.update({'group_id':f'{dep_match.group(2)}'})
             dep.update({'artifact_id':f'{dep_match.group(3)}'})
             dep.update({'version':f'{dep_match.group(4)}'})
+            # # test
+            # dep.update({'relationship':f'{dep_match.group(5)}'})
             # vertical_count = dep_match.group(1).count('|')
             # get depth from the lenth of substring between "[INFO] " and "-"
             depth = (int)((len(dep_match.group(1))+2) / 3)
@@ -48,7 +52,7 @@ def parse_dep(all_dep_gav:str):
             dep_gav.append(dep)
     # # test
     # print(dep_gav)
-    return dep_gav    
+    return dep_gav
     
 ## get dep jar using GAV from maven central repository
 def get_dep_jar(dep_folder:str, group_id:str, artifact_id:str, version:str):
@@ -279,80 +283,8 @@ if __name__ == "__main__":
 # [INFO] +- ch.qos.logback:logback-classic:jar:1.5.3:compile
 # [INFO] +- ch.qos.logback:logback-core:jar:1.5.3:compile
 # [INFO] \- org.projectlombok:lombok:jar:1.18.24:provided'''
-    dep = '''[INFO] +- org.springframework.boot:spring-boot-starter:jar:3.2.4:compile
-[INFO] |  +- org.springframework.boot:spring-boot:jar:3.2.4:compile
-[INFO] |  |  \- org.springframework:spring-context:jar:6.1.5:compile
-[INFO] |  |     +- org.springframework:spring-expression:jar:6.1.5:compile
-[INFO] |  |     \- io.micrometer:micrometer-observation:jar:1.12.4:compile
-[INFO] |  |        \- io.micrometer:micrometer-commons:jar:1.12.4:compile
-[INFO] |  +- org.springframework.boot:spring-boot-autoconfigure:jar:3.2.4:compile
-[INFO] |  +- org.springframework.boot:spring-boot-starter-logging:jar:3.2.4:compile
-[INFO] |  |  +- org.apache.logging.log4j:log4j-to-slf4j:jar:2.21.1:compile
-[INFO] |  |  |  \- org.apache.logging.log4j:log4j-api:jar:2.21.1:compile
-[INFO] |  |  \- org.slf4j:jul-to-slf4j:jar:2.0.12:compile
-[INFO] |  +- jakarta.annotation:jakarta.annotation-api:jar:2.1.1:compile
-[INFO] |  +- org.springframework:spring-core:jar:6.1.5:compile
-[INFO] |  |  \- org.springframework:spring-jcl:jar:6.1.5:compile
-[INFO] |  \- org.yaml:snakeyaml:jar:2.2:compile
-[INFO] +- org.springframework.boot:spring-boot-starter-data-jpa:jar:3.2.4:compile
-[INFO] |  +- org.springframework.boot:spring-boot-starter-aop:jar:3.2.4:compile
-[INFO] |  |  +- org.springframework:spring-aop:jar:6.1.5:compile
-[INFO] |  |  \- org.aspectj:aspectjweaver:jar:1.9.21:compile
-[INFO] |  +- org.springframework.boot:spring-boot-starter-jdbc:jar:3.2.4:compile
-[INFO] |  |  +- com.zaxxer:HikariCP:jar:5.0.1:compile
-[INFO] |  |  \- org.springframework:spring-jdbc:jar:6.1.5:compile
-[INFO] |  +- org.hibernate.orm:hibernate-core:jar:6.4.4.Final:compile
-[INFO] |  |  +- jakarta.persistence:jakarta.persistence-api:jar:3.1.0:compile
-[INFO] |  |  +- jakarta.transaction:jakarta.transaction-api:jar:2.0.1:compile
-[INFO] |  |  +- org.jboss.logging:jboss-logging:jar:3.5.3.Final:runtime
-[INFO] |  |  +- org.hibernate.common:hibernate-commons-annotations:jar:6.0.6.Final:runtime
-[INFO] |  |  +- io.smallrye:jandex:jar:3.1.2:runtime
-[INFO] |  |  +- com.fasterxml:classmate:jar:1.6.0:runtime
-[INFO] |  |  +- net.bytebuddy:byte-buddy:jar:1.14.12:runtime
-[INFO] |  |  +- org.glassfish.jaxb:jaxb-runtime:jar:4.0.5:runtime
-[INFO] |  |  |  \- org.glassfish.jaxb:jaxb-core:jar:4.0.5:runtime
-[INFO] |  |  |     +- org.eclipse.angus:angus-activation:jar:2.0.2:runtime
-[INFO] |  |  |     +- org.glassfish.jaxb:txw2:jar:4.0.5:runtime
-[INFO] |  |  |     \- com.sun.istack:istack-commons-runtime:jar:4.1.2:runtime
-[INFO] |  |  +- jakarta.inject:jakarta.inject-api:jar:2.0.1:runtime
-[INFO] |  |  \- org.antlr:antlr4-runtime:jar:4.13.0:compile
-[INFO] |  +- org.springframework.data:spring-data-jpa:jar:3.2.4:compile
-[INFO] |  |  +- org.springframework.data:spring-data-commons:jar:3.2.4:compile
-[INFO] |  |  +- org.springframework:spring-orm:jar:6.1.5:compile
-[INFO] |  |  +- org.springframework:spring-tx:jar:6.1.5:compile
-[INFO] |  |  \- org.springframework:spring-beans:jar:6.1.5:compile
-[INFO] |  \- org.springframework:spring-aspects:jar:6.1.5:compile
-[INFO] +- com.h2database:h2:jar:2.2.224:runtime
-[INFO] +- org.projectlombok:lombok:jar:1.18.30:compile
-[INFO] +- org.springframework.boot:spring-boot-starter-test:jar:3.2.4:test
-[INFO] |  +- org.springframework.boot:spring-boot-test:jar:3.2.4:test
-[INFO] |  +- org.springframework.boot:spring-boot-test-autoconfigure:jar:3.2.4:test
-[INFO] |  +- com.jayway.jsonpath:json-path:jar:2.9.0:test
-[INFO] |  +- jakarta.xml.bind:jakarta.xml.bind-api:jar:4.0.2:runtime
-[INFO] |  |  \- jakarta.activation:jakarta.activation-api:jar:2.1.3:runtime
-[INFO] |  +- net.minidev:json-smart:jar:2.5.0:test
-[INFO] |  |  \- net.minidev:accessors-smart:jar:2.5.0:test
-[INFO] |  |     \- org.ow2.asm:asm:jar:9.3:test
-[INFO] |  +- org.assertj:assertj-core:jar:3.24.2:test
-[INFO] |  +- org.awaitility:awaitility:jar:4.2.0:test
-[INFO] |  +- org.hamcrest:hamcrest:jar:2.2:test
-[INFO] |  +- org.junit.jupiter:junit-jupiter:jar:5.10.2:test
-[INFO] |  |  +- org.junit.jupiter:junit-jupiter-api:jar:5.10.2:test
-[INFO] |  |  |  +- org.opentest4j:opentest4j:jar:1.3.0:test
-[INFO] |  |  |  +- org.junit.platform:junit-platform-commons:jar:1.10.2:test
-[INFO] |  |  |  \- org.apiguardian:apiguardian-api:jar:1.1.2:test
-[INFO] |  |  +- org.junit.jupiter:junit-jupiter-params:jar:5.10.2:test
-[INFO] |  |  \- org.junit.jupiter:junit-jupiter-engine:jar:5.10.2:test
-[INFO] |  |     \- org.junit.platform:junit-platform-engine:jar:1.10.2:test
-[INFO] |  +- org.mockito:mockito-core:jar:5.7.0:test
-[INFO] |  |  +- net.bytebuddy:byte-buddy-agent:jar:1.14.12:test
-[INFO] |  |  \- org.objenesis:objenesis:jar:3.3:test
-[INFO] |  +- org.mockito:mockito-junit-jupiter:jar:5.7.0:test
-[INFO] |  +- org.skyscreamer:jsonassert:jar:1.5.1:test
-[INFO] |  |  \- com.vaadin.external.google:android-json:jar:0.0.20131108.vaadin1:test
-[INFO] |  +- org.springframework:spring-test:jar:6.1.5:test
-[INFO] |  \- org.xmlunit:xmlunit-core:jar:2.9.1:test
-[INFO] +- org.slf4j:slf4j-api:jar:2.0.12:compile
-[INFO] +- ch.qos.logback:logback-classic:jar:1.5.3:compile
-[INFO] \- ch.qos.logback:logback-core:jar:1.5.3:compile'''
-    # parse_dep_gav(dep)
+    dep = '''[INFO] |  |  +- io.netty:netty-resolver-dns-classes-macos:jar:4.1.100.Final:compile
+[INFO] |  |  +- io.netty:netty-transport-native-epoll:jar:linux-x86_64:4.1.100.Final:runtime
+[INFO] |  |     |  +- io.grpc:grpc-api:jar:1.27.1:compile (version selected from constraint [1.27.1,1.27.1])
+[INFO] |  |  \- com.vaadin.external.google:android-json:jar:0.0.20131108.vaadin1:test'''
+    print(parse_dep(dep))

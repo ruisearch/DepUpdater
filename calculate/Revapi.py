@@ -269,10 +269,22 @@ class Revapi:
         # eg: 
         # new: method void com.google.common.collect.RangeMap<K extends java.lang.Comparable, V>::putCoalescing(com.google.common.collect.Range<K>, V)
         # -> new: method void com.google.common.collect.RangeMap::putCoalescing(com.google.common.collect.Range, V)
-        surplus_substring_pattern = r'<.*?>'
-        def remove_surplus_substring(match):
-            return ''
-        record = re.sub(surplus_substring_pattern, remove_surplus_substring, record)
+        # surplus_substring_pattern = r'<.*?>'
+        def remove_surplus_substring(input_string:str):
+            result = []
+            bracket_depth = 0
+            for char in input_string:
+                if char == '<':
+                    bracket_depth += 1
+                elif char == '>':
+                    if bracket_depth > 0:
+                        bracket_depth -= 1
+                    continue 
+                elif bracket_depth == 0:
+                    result.append(char)
+            return ''.join(result)
+        # record = re.sub(surplus_substring_pattern, remove_surplus_substring, record)
+        record = remove_surplus_substring(record)
         # get the interface, in new:
         # note : ignore inner interface($) now
         # pattern = r"new: method .*? (.*?)::.*?\n"

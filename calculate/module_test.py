@@ -146,7 +146,7 @@ def check_version_module(lock, res_dict:dict, dep_path:str, path_to_cloned_folde
     # file to contain tqdm log
     dep_tqdm_log_file = os.path.join(tqdm_log_module_folder, f"{res_dict['GroupId']}_{res_dict['ArtifactId']}_tqdm_log.txt")
     with open(dep_tqdm_log_file, 'a') as f:
-        with tqdm(total=last-first+1, desc=f'Validate version', file=f) as pbar:
+        with tqdm(total=last-first+1, desc=f'Validate version of {res_dict["GroupId"]}:{res_dict["ArtifactId"]}  ', file=f) as pbar:
             for i in range(first, last+1):
                 temp_dict = copy.deepcopy(res_dict)
                 temp_dict["BestVersion"]  = AllVersion[i]["version"]
