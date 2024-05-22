@@ -1,0 +1,553 @@
+module name: dependency-injection/
+
+* * * * * * * *
+groudId: ch.qos.logback
+artifactId: logback-core
+old version: 1.2.3
+new version: 1.3.0-alpha4
+breaking reason by Tool:
+  breaking version:1.3.0-alpha5
+ breaking reason:ch.qos.logback.core.util.OptionHelper: boolean isEmpty(java.lang.String)
+depth: 1
+reachable api of old version:
+    ch.qos.logback.core.BasicStatusManager: void <init>()
+    ch.qos.logback.core.ConsoleAppender: void <init>()
+    ch.qos.logback.core.ContextBase: void <init>()
+    ch.qos.logback.core.ContextBase: java.lang.String getName()
+    ch.qos.logback.core.ContextBase: void setName(java.lang.String)
+    ch.qos.logback.core.CoreConstants: void <clinit>()
+    ch.qos.logback.core.encoder.EncoderBase: void <init>()
+    ch.qos.logback.core.encoder.LayoutWrappingEncoder: void <init>()
+    ch.qos.logback.core.helpers.CyclicBuffer: void <init>(int)
+    ch.qos.logback.core.helpers.CyclicBuffer: void init(int)
+    ch.qos.logback.core.helpers.ThrowableToStringArray: java.lang.String[] convert(java.lang.Throwable)
+    ch.qos.logback.core.helpers.ThrowableToStringArray: void extract(java.util.List,java.lang.Throwable,java.lang.StackTraceElement[])
+    ch.qos.logback.core.helpers.ThrowableToStringArray: java.lang.String formatFirstLine(java.lang.Throwable,java.lang.StackTraceElement[])
+    ch.qos.logback.core.helpers.ThrowableToStringArray: int findNumberOfCommonFrames(java.lang.StackTraceElement[],java.lang.StackTraceElement[])
+    ch.qos.logback.core.joran.JoranConfiguratorBase: void <init>()
+    ch.qos.logback.core.joran.spi.ConsoleTarget$1: void <init>()
+    ch.qos.logback.core.joran.spi.ConsoleTarget$2: void <init>()
+    ch.qos.logback.core.joran.spi.ConsoleTarget: void <init>(java.lang.String,int,java.lang.String,java.io.OutputStream)
+    ch.qos.logback.core.joran.spi.ConsoleTarget: void <clinit>()
+    ch.qos.logback.core.LayoutBase: void <init>()
+    ch.qos.logback.core.LayoutBase: void start()
+    ch.qos.logback.core.LogbackException: void <init>(java.lang.String)
+    ch.qos.logback.core.LogbackException: void <init>(java.lang.String,java.lang.Throwable)
+    ch.qos.logback.core.pattern.DynamicConverter: void <init>()
+    ch.qos.logback.core.pattern.DynamicConverter: void start()
+    ch.qos.logback.core.pattern.DynamicConverter: void addError(java.lang.String)
+    ch.qos.logback.core.spi.AppenderAttachableImpl: void <init>()
+    ch.qos.logback.core.spi.ContextAwareBase: void <init>()
+    ch.qos.logback.core.spi.ContextAwareBase: void <init>(ch.qos.logback.core.spi.ContextAware)
+    ch.qos.logback.core.spi.ContextAwareBase: void setContext(ch.qos.logback.core.Context)
+    ch.qos.logback.core.spi.ContextAwareBase: java.lang.Object getDeclaredOrigin()
+    ch.qos.logback.core.spi.ContextAwareBase: void addStatus(ch.qos.logback.core.status.Status)
+    ch.qos.logback.core.spi.ContextAwareBase: void addInfo(java.lang.String)
+    ch.qos.logback.core.spi.LogbackLock: void <init>()
+    ch.qos.logback.core.spi.ScanException: java.lang.Throwable getCause()
+    ch.qos.logback.core.status.ErrorStatus: void <init>(java.lang.String,java.lang.Object)
+    ch.qos.logback.core.status.ErrorStatus: void <init>(java.lang.String,java.lang.Object,java.lang.Throwable)
+    ch.qos.logback.core.status.InfoStatus: void <init>(java.lang.String,java.lang.Object)
+    ch.qos.logback.core.status.OnConsoleStatusListener: void <init>()
+    ch.qos.logback.core.status.OnConsoleStatusListener: java.io.PrintStream getPrintStream()
+    ch.qos.logback.core.status.OnPrintStreamStatusListenerBase: void <init>()
+    ch.qos.logback.core.status.OnPrintStreamStatusListenerBase: void print(ch.qos.logback.core.status.Status)
+    ch.qos.logback.core.status.OnPrintStreamStatusListenerBase: void retrospectivePrint()
+    ch.qos.logback.core.status.OnPrintStreamStatusListenerBase: boolean isElapsedTimeLongerThanThreshold(long,long)
+    ch.qos.logback.core.status.OnPrintStreamStatusListenerBase: void start()
+    ch.qos.logback.core.status.StatusBase: void <init>(int,java.lang.String,java.lang.Object)
+    ch.qos.logback.core.status.StatusBase: void <init>(int,java.lang.String,java.lang.Object,java.lang.Throwable)
+    ch.qos.logback.core.status.StatusBase: void <clinit>()
+    ch.qos.logback.core.status.StatusUtil: void <init>(ch.qos.logback.core.Context)
+    ch.qos.logback.core.status.StatusUtil: boolean contextHasStatusListener(ch.qos.logback.core.Context)
+    ch.qos.logback.core.status.StatusUtil: java.util.List filterStatusListByTimeThreshold(java.util.List,long)
+    ch.qos.logback.core.status.StatusUtil: int getHighestLevel(long)
+    ch.qos.logback.core.status.WarnStatus: void <init>(java.lang.String,java.lang.Object)
+    ch.qos.logback.core.util.CachingDateFormatter: void <init>(java.lang.String)
+    ch.qos.logback.core.util.CachingDateFormatter: java.lang.String format(long)
+    ch.qos.logback.core.util.COWArrayList: void <init>(java.lang.Object[])
+    ch.qos.logback.core.util.DynamicClassLoadingException: void <init>(java.lang.String,java.lang.Throwable)
+    ch.qos.logback.core.util.IncompatibleClassException: void <init>(java.lang.Class,java.lang.Class)
+    ch.qos.logback.core.util.Loader$1: void <init>()
+    ch.qos.logback.core.util.Loader$1: java.lang.Boolean run()
+    ch.qos.logback.core.util.Loader: java.util.Set getResources(java.lang.String,java.lang.ClassLoader)
+    ch.qos.logback.core.util.Loader: java.net.URL getResource(java.lang.String,java.lang.ClassLoader)
+    ch.qos.logback.core.util.Loader: java.lang.ClassLoader getTCL()
+    ch.qos.logback.core.util.Loader: java.lang.ClassLoader getClassLoaderOfObject(java.lang.Object)
+    ch.qos.logback.core.util.Loader: java.lang.ClassLoader getClassLoaderOfClass(java.lang.Class)
+    ch.qos.logback.core.util.Loader: java.lang.Class loadClass(java.lang.String)
+    ch.qos.logback.core.util.Loader: void <clinit>()
+    ch.qos.logback.core.util.OptionHelper: java.lang.Object instantiateByClassName(java.lang.String,java.lang.Class,ch.qos.logback.core.Context)
+    ch.qos.logback.core.util.OptionHelper: java.lang.Object instantiateByClassName(java.lang.String,java.lang.Class,java.lang.ClassLoader)
+    ch.qos.logback.core.util.OptionHelper: java.lang.Object instantiateByClassNameAndParameter(java.lang.String,java.lang.Class,java.lang.ClassLoader,java.lang.Class,java.lang.Object)
+    ch.qos.logback.core.util.OptionHelper: java.lang.String getSystemProperty(java.lang.String,java.lang.String)
+    ch.qos.logback.core.util.OptionHelper: java.lang.String getSystemProperty(java.lang.String)
+    ch.qos.logback.core.util.OptionHelper: boolean toBoolean(java.lang.String,boolean)
+    ch.qos.logback.core.util.OptionHelper: boolean isEmpty(java.lang.String)
+    ch.qos.logback.core.util.StatusListenerConfigHelper: void installIfAsked(ch.qos.logback.core.Context)
+    ch.qos.logback.core.util.StatusListenerConfigHelper: void addStatusListener(ch.qos.logback.core.Context,java.lang.String)
+    ch.qos.logback.core.util.StatusListenerConfigHelper: void initAndAddListener(ch.qos.logback.core.Context,ch.qos.logback.core.status.StatusListener)
+    ch.qos.logback.core.util.StatusListenerConfigHelper: ch.qos.logback.core.status.StatusListener createListenerPerClassName(ch.qos.logback.core.Context,java.lang.String)
+    ch.qos.logback.core.util.StatusPrinter: void printInCaseOfErrorsOrWarnings(ch.qos.logback.core.Context)
+    ch.qos.logback.core.util.StatusPrinter: void printInCaseOfErrorsOrWarnings(ch.qos.logback.core.Context,long)
+    ch.qos.logback.core.util.StatusPrinter: void print(ch.qos.logback.core.status.StatusManager,long)
+    ch.qos.logback.core.util.StatusPrinter: void buildStrFromStatusList(java.lang.StringBuilder,java.util.List)
+    ch.qos.logback.core.util.StatusPrinter: void appendThrowable(java.lang.StringBuilder,java.lang.Throwable)
+    ch.qos.logback.core.util.StatusPrinter: void buildStr(java.lang.StringBuilder,java.lang.String,ch.qos.logback.core.status.Status)
+    ch.qos.logback.core.util.StatusPrinter: void <clinit>()
+/ / / / / / / / /
+revapi log of former version:
+18:27:07.854 INFO  Downloading checked archives
+18:27:07.910 INFO  Downloading extensions
+18:27:15.239 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: ch.qos.logback-logback-core-1.2.3.jar
+New API: ch.qos.logback-logback-core-1.3.0-alpha4.jar
+old: field ch.qos.logback.core.CoreConstants.FA_FILENAME_COLLISION_MAP
+new: field ch.qos.logback.core.CoreConstants.FA_FILENAME_COLLISION_MAP
+java.field.constantValueChanged: Constant field changed value from 'FA_FILENAME_COLLISION_MAP' to 'FA_FILENAMES_MAP'.
+SOURCE: NON_BREAKING, BINARY: NON_BREAKING, SEMANTIC: BREAKING
+
+old: field ch.qos.logback.core.CoreConstants.SCHEDULED_EXECUTOR_POOL_SIZE
+new: field ch.qos.logback.core.CoreConstants.SCHEDULED_EXECUTOR_POOL_SIZE
+java.field.constantValueChanged: Constant field changed value from '8' to '1'.
+SOURCE: NON_BREAKING, BINARY: NON_BREAKING, SEMANTIC: BREAKING
+
+old: class ch.qos.logback.core.hook.DelayingShutdownHook
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class ch.qos.logback.core.html.NOPThrowableRenderer
+new: class ch.qos.logback.core.html.NOPThrowableRenderer
+java.class.noLongerImplementsInterface: Class no longer implements interface 'ch.qos.logback.core.html.IThrowableRenderer'.
+SOURCE: BREAKING, BINARY: BREAKING
+java.class.nowImplementsInterface: Class now implements interface 'ch.qos.logback.core.html.IThrowableRenderer<java.lang.Object>'.
+SOURCE: NON_BREAKING, BINARY: NON_BREAKING
+java.class.superTypeTypeParametersChanged: Super type's type parameters changed from 'ch.qos.logback.core.html.IThrowableRenderer' to 'ch.qos.logback.core.html.IThrowableRenderer<java.lang.Object>'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: POTENTIALLY_BREAKING
+
+old: interface ch.qos.logback.core.net.server.RemoteReceiverClient
+new: interface ch.qos.logback.core.net.server.RemoteReceiverClient
+java.class.nonPublicPartOfAPI: Class 'ch.qos.logback.core.net.server.RemoteReceiverClient' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+SOURCE: NON_BREAKING, BINARY: NON_BREAKING, SEMANTIC: BREAKING
+
+old: enum ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP.Usage
+new: enum ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP.Usage
+java.class.nonPublicPartOfAPI: Class 'ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP.Usage' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+SOURCE: NON_BREAKING, BINARY: NON_BREAKING, SEMANTIC: BREAKING
+
+old: enum ch.qos.logback.core.subst.Node.Type
+new: enum ch.qos.logback.core.subst.Node.Type
+java.class.nonPublicPartOfAPI: Class 'ch.qos.logback.core.subst.Node.Type' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+SOURCE: NON_BREAKING, BINARY: NON_BREAKING, SEMANTIC: BREAKING
+
+old: method java.lang.String ch.qos.logback.core.util.ContextUtil::getLocalHostName() throws java.net.UnknownHostException, java.net.SocketException
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method java.lang.String ch.qos.logback.core.util.ContextUtil::safelyGetLocalHostName()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void ch.qos.logback.core.util.EnvUtil::<init>()
+new: method void ch.qos.logback.core.util.EnvUtil::<init>()
+java.method.visibilityReduced: visibility reduced
+SOURCE: BREAKING, BINARY: BREAKING
+
+18:27:35.308 INFO  Analysis took 20068ms.
+
+/ / / / / / / / /
+revapi log of the subsequent version:
+18:27:40.694 INFO  Downloading checked archives
+18:27:40.774 INFO  Downloading extensions
+18:27:50.287 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: ch.qos.logback-logback-core-1.2.3.jar
+New API: ch.qos.logback-logback-core-1.3.0-alpha5.jar
+old: <none>
+new: method ch.qos.logback.core.spi.SequenceNumberGenerator ch.qos.logback.core.Context::getSequenceNumberGenerator()
+java.method.addedToInterface: Method was added to an interface.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: <none>
+new: method void ch.qos.logback.core.Context::setSequenceNumberGenerator(ch.qos.logback.core.spi.SequenceNumberGenerator)
+java.method.addedToInterface: Method was added to an interface.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: field ch.qos.logback.core.CoreConstants.FA_FILENAME_COLLISION_MAP
+new: field ch.qos.logback.core.CoreConstants.FA_FILENAME_COLLISION_MAP
+java.field.constantValueChanged: Constant field changed value from 'FA_FILENAME_COLLISION_MAP' to 'FA_FILENAMES_MAP'.
+SEMANTIC: BREAKING, SOURCE: NON_BREAKING, BINARY: NON_BREAKING
+
+old: field ch.qos.logback.core.CoreConstants.SCHEDULED_EXECUTOR_POOL_SIZE
+new: field ch.qos.logback.core.CoreConstants.SCHEDULED_EXECUTOR_POOL_SIZE
+java.field.constantValueChanged: Constant field changed value from '8' to '1'.
+SEMANTIC: BREAKING, SOURCE: NON_BREAKING, BINARY: NON_BREAKING
+
+old: class ch.qos.logback.core.hook.DelayingShutdownHook
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class ch.qos.logback.core.html.NOPThrowableRenderer
+new: class ch.qos.logback.core.html.NOPThrowableRenderer
+java.class.noLongerImplementsInterface: Class no longer implements interface 'ch.qos.logback.core.html.IThrowableRenderer'.
+SOURCE: BREAKING, BINARY: BREAKING
+java.class.nowImplementsInterface: Class now implements interface 'ch.qos.logback.core.html.IThrowableRenderer<java.lang.Object>'.
+SOURCE: NON_BREAKING, BINARY: NON_BREAKING
+java.class.superTypeTypeParametersChanged: Super type's type parameters changed from 'ch.qos.logback.core.html.IThrowableRenderer' to 'ch.qos.logback.core.html.IThrowableRenderer<java.lang.Object>'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: POTENTIALLY_BREAKING
+
+old: field ch.qos.logback.core.joran.GenericConfigurator.interpreter
+new: field ch.qos.logback.core.joran.GenericConfigurator.interpreter
+java.field.typeChanged: The type of the field changed from 'ch.qos.logback.core.joran.spi.Interpreter' to 'ch.qos.logback.core.joran.spi.SaxEventInterpreter'.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: parameter void ch.qos.logback.core.joran.GenericConfigurator::addImplicitRules(===ch.qos.logback.core.joran.spi.Interpreter===)
+new: parameter void ch.qos.logback.core.joran.GenericConfigurator::addImplicitRules(===ch.qos.logback.core.joran.spi.SaxEventInterpreter===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.Interpreter' to 'ch.qos.logback.core.joran.spi.SaxEventInterpreter'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method void ch.qos.logback.core.joran.GenericConfigurator::doConfigure(java.util.List<ch.qos.logback.core.joran.event.SaxEvent>) throws ch.qos.logback.core.joran.spi.JoranException
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method ch.qos.logback.core.joran.util.beans.BeanDescriptionCache ch.qos.logback.core.joran.GenericConfigurator::getBeanDescriptionCache()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: parameter void ch.qos.logback.core.joran.JoranConfiguratorBase<E>::addImplicitRules(===ch.qos.logback.core.joran.spi.Interpreter===)
+new: parameter void ch.qos.logback.core.joran.JoranConfiguratorBase<E>::addImplicitRules(===ch.qos.logback.core.joran.spi.SaxEventInterpreter===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.Interpreter' to 'ch.qos.logback.core.joran.spi.SaxEventInterpreter'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: class ch.qos.logback.core.joran.action.AbstractEventEvaluatorAction
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method int ch.qos.logback.core.joran.action.Action::getLineNumber(ch.qos.logback.core.joran.spi.InterpretationContext)
+new: method int ch.qos.logback.core.joran.action.Action::getLineNumber(ch.qos.logback.core.joran.spi.InterpretationContext)
+java.method.visibilityIncreased: visibility increased
+SOURCE: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+java.method.nowStatic: method now static
+SOURCE: NON_BREAKING, BINARY: BREAKING
+
+old: class ch.qos.logback.core.joran.action.ActionConst
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class ch.qos.logback.core.joran.action.AppenderAction<E>
+new: class ch.qos.logback.core.joran.action.AppenderAction
+java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'ch.qos.logback.core.joran.action.BaseModelAction'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: POTENTIALLY_BREAKING
+java.generics.formalTypeParameterRemoved: The formal type parameter 'E' was removed from the element.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: method void ch.qos.logback.core.joran.action.AppenderAction<E>::end(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String)
+new: method void ch.qos.logback.core.joran.action.BaseModelAction::end(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.AppenderAction
+java.method.exception.checkedAdded: Method newly throws checked exceptions: ch.qos.logback.core.joran.spi.ActionException.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+java.method.movedToSuperClass: The method used to be declared in class 'ch.qos.logback.core.joran.action.AppenderAction<E>' but is now declared in superclass 'ch.qos.logback.core.joran.action.BaseModelAction'.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+
+old: class ch.qos.logback.core.joran.action.AppenderRefAction<E>
+new: class ch.qos.logback.core.joran.action.AppenderRefAction
+java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'ch.qos.logback.core.joran.action.BaseModelAction'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: POTENTIALLY_BREAKING
+java.generics.formalTypeParameterRemoved: The formal type parameter 'E' was removed from the element.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: method void ch.qos.logback.core.joran.action.AppenderRefAction<E>::begin(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String, org.xml.sax.Attributes)
+new: method void ch.qos.logback.core.joran.action.BaseModelAction::begin(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.AppenderRefAction
+java.method.exception.checkedAdded: Method newly throws checked exceptions: ch.qos.logback.core.joran.spi.ActionException.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+java.method.movedToSuperClass: The method used to be declared in class 'ch.qos.logback.core.joran.action.AppenderRefAction<E>' but is now declared in superclass 'ch.qos.logback.core.joran.action.BaseModelAction'.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+
+old: method void ch.qos.logback.core.joran.action.AppenderRefAction<E>::end(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String)
+new: method void ch.qos.logback.core.joran.action.BaseModelAction::end(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.AppenderRefAction
+java.method.exception.checkedAdded: Method newly throws checked exceptions: ch.qos.logback.core.joran.spi.ActionException.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+java.method.movedToSuperClass: The method used to be declared in class 'ch.qos.logback.core.joran.action.AppenderRefAction<E>' but is now declared in superclass 'ch.qos.logback.core.joran.action.BaseModelAction'.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+
+old: method void ch.qos.logback.core.joran.action.DefinePropertyAction::end(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String)
+new: method void ch.qos.logback.core.joran.action.BaseModelAction::end(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.DefinePropertyAction
+java.method.exception.checkedAdded: Method newly throws checked exceptions: ch.qos.logback.core.joran.spi.ActionException.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+java.method.movedToSuperClass: The method used to be declared in class 'ch.qos.logback.core.joran.action.DefinePropertyAction' but is now declared in superclass 'ch.qos.logback.core.joran.action.BaseModelAction'.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+
+old: class ch.qos.logback.core.joran.action.IADataForComplexProperty
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class ch.qos.logback.core.joran.action.ImplicitAction
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class ch.qos.logback.core.joran.action.IncludeAction
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class ch.qos.logback.core.joran.action.NestedBasicPropertyIA
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class ch.qos.logback.core.joran.action.NestedComplexPropertyIA
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void ch.qos.logback.core.joran.action.ParamAction::<init>(ch.qos.logback.core.joran.util.beans.BeanDescriptionCache)
+new: method void ch.qos.logback.core.joran.action.ParamAction::<init>()
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void ch.qos.logback.core.joran.action.ParamAction::begin(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String, org.xml.sax.Attributes)
+new: method void ch.qos.logback.core.joran.action.BaseModelAction::begin(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.ParamAction
+java.method.exception.checkedAdded: Method newly throws checked exceptions: ch.qos.logback.core.joran.spi.ActionException.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+java.method.movedToSuperClass: The method used to be declared in class 'ch.qos.logback.core.joran.action.ParamAction' but is now declared in superclass 'ch.qos.logback.core.joran.action.BaseModelAction'.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+
+old: method void ch.qos.logback.core.joran.action.ParamAction::end(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String)
+new: method void ch.qos.logback.core.joran.action.BaseModelAction::end(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.ParamAction
+java.method.exception.checkedAdded: Method newly throws checked exceptions: ch.qos.logback.core.joran.spi.ActionException.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+java.method.movedToSuperClass: The method used to be declared in class 'ch.qos.logback.core.joran.action.ParamAction' but is now declared in superclass 'ch.qos.logback.core.joran.action.BaseModelAction'.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+
+old: method void ch.qos.logback.core.joran.action.ParamAction::finish(ch.qos.logback.core.joran.spi.InterpretationContext)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void ch.qos.logback.core.joran.action.PropertyAction::begin(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String, org.xml.sax.Attributes)
+new: method void ch.qos.logback.core.joran.action.BaseModelAction::begin(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.PropertyAction
+java.method.exception.checkedAdded: Method newly throws checked exceptions: ch.qos.logback.core.joran.spi.ActionException.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+java.method.movedToSuperClass: The method used to be declared in class 'ch.qos.logback.core.joran.action.PropertyAction' but is now declared in superclass 'ch.qos.logback.core.joran.action.BaseModelAction'.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+
+old: method void ch.qos.logback.core.joran.action.PropertyAction::end(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String)
+new: method void ch.qos.logback.core.joran.action.BaseModelAction::end(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.PropertyAction
+java.method.exception.checkedAdded: Method newly throws checked exceptions: ch.qos.logback.core.joran.spi.ActionException.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+java.method.movedToSuperClass: The method used to be declared in class 'ch.qos.logback.core.joran.action.PropertyAction' but is now declared in superclass 'ch.qos.logback.core.joran.action.BaseModelAction'.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+
+old: method void ch.qos.logback.core.joran.action.PropertyAction::finish(ch.qos.logback.core.joran.spi.InterpretationContext)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void ch.qos.logback.core.joran.action.StatusListenerAction::end(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String)
+new: method void ch.qos.logback.core.joran.action.BaseModelAction::end(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.StatusListenerAction
+java.method.exception.checkedAdded: Method newly throws checked exceptions: ch.qos.logback.core.joran.spi.ActionException.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+java.method.movedToSuperClass: The method used to be declared in class 'ch.qos.logback.core.joran.action.StatusListenerAction' but is now declared in superclass 'ch.qos.logback.core.joran.action.BaseModelAction'.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+
+old: method void ch.qos.logback.core.joran.action.StatusListenerAction::finish(ch.qos.logback.core.joran.spi.InterpretationContext)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class ch.qos.logback.core.joran.conditional.ElseAction
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class ch.qos.logback.core.joran.conditional.IfAction
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class ch.qos.logback.core.joran.conditional.ThenAction
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class ch.qos.logback.core.joran.conditional.ThenOrElseActionBase
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface ch.qos.logback.core.joran.event.InPlayListener
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: parameter void ch.qos.logback.core.joran.spi.EventPlayer::<init>(===ch.qos.logback.core.joran.spi.Interpreter===)
+new: parameter void ch.qos.logback.core.joran.spi.EventPlayer::<init>(===ch.qos.logback.core.joran.spi.SaxEventInterpreter===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.Interpreter' to 'ch.qos.logback.core.joran.spi.SaxEventInterpreter'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: parameter void ch.qos.logback.core.joran.spi.InterpretationContext::<init>(ch.qos.logback.core.Context, ===ch.qos.logback.core.joran.spi.Interpreter===)
+new: parameter void ch.qos.logback.core.joran.spi.InterpretationContext::<init>(ch.qos.logback.core.Context, ===ch.qos.logback.core.joran.spi.SaxEventInterpreter===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.Interpreter' to 'ch.qos.logback.core.joran.spi.SaxEventInterpreter'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method void ch.qos.logback.core.joran.spi.InterpretationContext::addInPlayListener(ch.qos.logback.core.joran.event.InPlayListener)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method ch.qos.logback.core.joran.spi.Interpreter ch.qos.logback.core.joran.spi.InterpretationContext::getJoranInterpreter()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method boolean ch.qos.logback.core.joran.spi.InterpretationContext::isListenerListEmpty()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method boolean ch.qos.logback.core.joran.spi.InterpretationContext::removeInPlayListener(ch.qos.logback.core.joran.event.InPlayListener)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class ch.qos.logback.core.joran.spi.Interpreter
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface ch.qos.logback.core.net.server.RemoteReceiverClient
+new: interface ch.qos.logback.core.net.server.RemoteReceiverClient
+java.class.nonPublicPartOfAPI: Class 'ch.qos.logback.core.net.server.RemoteReceiverClient' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+SEMANTIC: BREAKING, SOURCE: NON_BREAKING, BINARY: NON_BREAKING
+
+old: enum ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP.Usage
+new: enum ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP.Usage
+java.class.nonPublicPartOfAPI: Class 'ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP.Usage' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+SEMANTIC: BREAKING, SOURCE: NON_BREAKING, BINARY: NON_BREAKING
+
+old: class ch.qos.logback.core.sift.AbstractAppenderFactoryUsingJoran<E>
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class ch.qos.logback.core.sift.SiftingAppenderBase<E>
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class ch.qos.logback.core.sift.SiftingJoranConfiguratorBase<E>
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: enum ch.qos.logback.core.subst.Node.Type
+new: enum ch.qos.logback.core.subst.Node.Type
+java.class.nonPublicPartOfAPI: Class 'ch.qos.logback.core.subst.Node.Type' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+SEMANTIC: BREAKING, SOURCE: NON_BREAKING, BINARY: NON_BREAKING
+
+old: method java.lang.String ch.qos.logback.core.util.ContextUtil::getLocalHostName() throws java.net.UnknownHostException, java.net.SocketException
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method java.lang.String ch.qos.logback.core.util.ContextUtil::safelyGetLocalHostName()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void ch.qos.logback.core.util.EnvUtil::<init>()
+new: method void ch.qos.logback.core.util.EnvUtil::<init>()
+java.method.visibilityReduced: visibility reduced
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method boolean ch.qos.logback.core.util.OptionHelper::isEmpty(java.lang.String)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+18:28:07.455 INFO  Analysis took 17130ms.
+
+
+* * * * * * * *
+>>>>>>
+compilation log:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------< com.iluwatar:dependency-injection >------------------
+[INFO] Building dependency-injection 1.25.0
+[INFO]   from _temp_ch.qos.logback_logback-core_1.3.0-alpha4_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ dependency-injection ---
+[INFO] Deleting /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/target
+[INFO] 
+[INFO] --- checkstyle:3.1.0:check (validate) @ dependency-injection ---
+[INFO] 
+[INFO] --- directory:0.3.1:directory-of (directories) @ dependency-injection ---
+[INFO] Directory of com.iluwatar:java-design-patterns set to: /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns
+[INFO] 
+[INFO] --- jacoco:0.8.6:prepare-agent (prepare-agent) @ dependency-injection ---
+[INFO] argLine set to -javaagent:/home/ray/.m2/repository/org/jacoco/org.jacoco.agent/0.8.6/org.jacoco.agent-0.8.6-runtime.jar=destfile=/home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/target/jacoco.exec
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ dependency-injection ---
+[INFO] skip non existing resourceDirectory /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.8.1:compile (default-compile) @ dependency-injection ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 11 source files to /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/target/classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  8.698 s
+[INFO] Finished at: 2024-05-22T18:56:22+08:00
+[INFO] ------------------------------------------------------------------------
+
+>>>>>>
+subsequent compilation log:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------< com.iluwatar:dependency-injection >------------------
+[INFO] Building dependency-injection 1.25.0
+[INFO]   from _temp_ch.qos.logback_logback-core_1.3.0-alpha5_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ dependency-injection ---
+[INFO] Deleting /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/target
+[INFO] 
+[INFO] --- checkstyle:3.1.0:check (validate) @ dependency-injection ---
+[INFO] 
+[INFO] --- directory:0.3.1:directory-of (directories) @ dependency-injection ---
+[INFO] Directory of com.iluwatar:java-design-patterns set to: /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns
+[INFO] 
+[INFO] --- jacoco:0.8.6:prepare-agent (prepare-agent) @ dependency-injection ---
+[INFO] argLine set to -javaagent:/home/ray/.m2/repository/org/jacoco/org.jacoco.agent/0.8.6/org.jacoco.agent-0.8.6-runtime.jar=destfile=/home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/target/jacoco.exec
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ dependency-injection ---
+[INFO] skip non existing resourceDirectory /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.8.1:compile (default-compile) @ dependency-injection ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 11 source files to /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/target/classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  9.523 s
+[INFO] Finished at: 2024-05-22T18:56:38+08:00
+[INFO] ------------------------------------------------------------------------
+
+
+* * * * * * * *

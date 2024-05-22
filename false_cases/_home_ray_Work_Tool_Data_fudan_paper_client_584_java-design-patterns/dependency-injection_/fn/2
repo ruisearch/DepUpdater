@@ -1,0 +1,191 @@
+module name: dependency-injection/
+
+* * * * * * * *
+groudId: org.slf4j
+artifactId: slf4j-api
+old version: 1.7.30
+new version: 2.1.0-alpha1
+breaking reason by Tool:
+  breaking version:2.0.0-alpha2
+ breaking reason:org.slf4j.helpers.NOPLogger: void <init>()
+depth: 1
+reachable api of old version:
+    org.slf4j.helpers.MarkerIgnoringBase: void <init>()
+    org.slf4j.helpers.NamedLoggerBase: void <init>()
+    org.slf4j.helpers.NOPLogger: void <init>()
+    org.slf4j.helpers.NOPLogger: java.lang.String getName()
+    org.slf4j.helpers.NOPLogger: void <clinit>()
+    org.slf4j.helpers.NOPLoggerFactory: void <init>()
+    org.slf4j.helpers.NOPLoggerFactory: org.slf4j.Logger getLogger(java.lang.String)
+    org.slf4j.helpers.SubstituteLogger: void <init>(java.lang.String,java.util.Queue,boolean)
+    org.slf4j.helpers.SubstituteLogger: java.lang.String getName()
+    org.slf4j.helpers.SubstituteLoggerFactory: void <init>()
+    org.slf4j.helpers.SubstituteLoggerFactory: org.slf4j.Logger getLogger(java.lang.String)
+    org.slf4j.helpers.SubstituteLoggerFactory: java.util.List getLoggers()
+    org.slf4j.helpers.SubstituteLoggerFactory: java.util.concurrent.LinkedBlockingQueue getEventQueue()
+    org.slf4j.helpers.SubstituteLoggerFactory: void postInitialization()
+    org.slf4j.helpers.SubstituteLoggerFactory: void clear()
+    org.slf4j.helpers.Util$ClassContextSecurityManager: void <init>()
+    org.slf4j.helpers.Util$ClassContextSecurityManager: java.lang.Class[] getClassContext()
+    org.slf4j.helpers.Util$ClassContextSecurityManager: void <init>(org.slf4j.helpers.Util$1)
+    org.slf4j.helpers.Util: java.lang.String safeGetSystemProperty(java.lang.String)
+    org.slf4j.helpers.Util: boolean safeGetBooleanSystemProperty(java.lang.String)
+    org.slf4j.helpers.Util: org.slf4j.helpers.Util$ClassContextSecurityManager getSecurityManager()
+    org.slf4j.helpers.Util: org.slf4j.helpers.Util$ClassContextSecurityManager safeCreateSecurityManager()
+    org.slf4j.helpers.Util: java.lang.Class getCallingClass()
+    org.slf4j.helpers.Util: void report(java.lang.String,java.lang.Throwable)
+    org.slf4j.helpers.Util: void report(java.lang.String)
+    org.slf4j.helpers.Util: void <clinit>()
+    org.slf4j.LoggerFactory: void performInitialization()
+    org.slf4j.LoggerFactory: boolean messageContainsOrgSlf4jImplStaticLoggerBinder(java.lang.String)
+    org.slf4j.LoggerFactory: void bind()
+    org.slf4j.LoggerFactory: void postBindCleanUp()
+    org.slf4j.LoggerFactory: void fixSubstituteLoggers()
+    org.slf4j.LoggerFactory: void failedBinding(java.lang.Throwable)
+    org.slf4j.LoggerFactory: void replayEvents()
+    org.slf4j.LoggerFactory: void emitReplayOrSubstituionWarning(org.slf4j.event.SubstituteLoggingEvent,int)
+    org.slf4j.LoggerFactory: void replaySingleEvent(org.slf4j.event.SubstituteLoggingEvent)
+    org.slf4j.LoggerFactory: void emitSubstitutionWarning()
+    org.slf4j.LoggerFactory: void emitReplayWarning(int)
+    org.slf4j.LoggerFactory: void versionSanityCheck()
+    org.slf4j.LoggerFactory: java.util.Set findPossibleStaticLoggerBinderPathSet()
+    org.slf4j.LoggerFactory: boolean isAmbiguousStaticLoggerBinderPathSet(java.util.Set)
+    org.slf4j.LoggerFactory: void reportMultipleBindingAmbiguity(java.util.Set)
+    org.slf4j.LoggerFactory: boolean isAndroid()
+    org.slf4j.LoggerFactory: void reportActualBinding(java.util.Set)
+    org.slf4j.LoggerFactory: org.slf4j.Logger getLogger(java.lang.String)
+    org.slf4j.LoggerFactory: org.slf4j.Logger getLogger(java.lang.Class)
+    org.slf4j.LoggerFactory: boolean nonMatchingClasses(java.lang.Class,java.lang.Class)
+    org.slf4j.LoggerFactory: org.slf4j.ILoggerFactory getILoggerFactory()
+    org.slf4j.LoggerFactory: void <clinit>()
+/ / / / / / / / /
+revapi log of former version:
+18:31:45.466 INFO  Downloading checked archives
+18:31:45.564 INFO  Downloading extensions
+18:31:53.794 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.slf4j-slf4j-api-1.7.30.jar
+New API: org.slf4j-slf4j-api-2.1.0-alpha1.jar
+old: class org.slf4j.event.EventRecodingLogger
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: <none>
+new: method java.util.List<java.lang.Object> org.slf4j.event.LoggingEvent::getArguments()
+java.method.addedToInterface: Method was added to an interface.
+SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: <none>
+new: method java.util.List<org.slf4j.event.KeyValuePair> org.slf4j.event.LoggingEvent::getKeyValuePairs()
+java.method.addedToInterface: Method was added to an interface.
+SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: method org.slf4j.Marker org.slf4j.event.LoggingEvent::getMarker()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: <none>
+new: method java.util.List<org.slf4j.Marker> org.slf4j.event.LoggingEvent::getMarkers()
+java.method.addedToInterface: Method was added to an interface.
+SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: method org.slf4j.Marker org.slf4j.event.SubstituteLoggingEvent::getMarker()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.slf4j.event.SubstituteLoggingEvent::setMarker(org.slf4j.Marker)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.slf4j.helpers.NOPLogger
+new: class org.slf4j.helpers.NOPLogger
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'org.slf4j.helpers.MarkerIgnoringBase'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nowImplementsInterface: Class now implements interface 'org.slf4j.Logger'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+
+old: method void org.slf4j.helpers.Util::report(java.lang.String)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.slf4j.helpers.Util::report(java.lang.String, java.lang.Throwable)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface org.slf4j.spi.LoggerFactoryBinder
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: <none>
+new: method void org.slf4j.spi.MDCAdapter::clearDequeByKey(java.lang.String)
+java.method.addedToInterface: Method was added to an interface.
+SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: <none>
+new: method java.util.Deque<java.lang.String> org.slf4j.spi.MDCAdapter::getCopyOfDequeByKey(java.lang.String)
+java.method.addedToInterface: Method was added to an interface.
+SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: <none>
+new: method java.lang.String org.slf4j.spi.MDCAdapter::popByKey(java.lang.String)
+java.method.addedToInterface: Method was added to an interface.
+SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: <none>
+new: method void org.slf4j.spi.MDCAdapter::pushByKey(java.lang.String, java.lang.String)
+java.method.addedToInterface: Method was added to an interface.
+SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: interface org.slf4j.spi.MarkerFactoryBinder
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+18:32:02.772 INFO  Analysis took 8977ms.
+
+
+* * * * * * * *
+>>>>>>
+compilation log:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------< com.iluwatar:dependency-injection >------------------
+[INFO] Building dependency-injection 1.25.0
+[INFO]   from _temp_org.slf4j_slf4j-api_2.1.0-alpha1_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ dependency-injection ---
+[INFO] Deleting /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/target
+[INFO] 
+[INFO] --- checkstyle:3.1.0:check (validate) @ dependency-injection ---
+[INFO] 
+[INFO] --- directory:0.3.1:directory-of (directories) @ dependency-injection ---
+[INFO] Directory of com.iluwatar:java-design-patterns set to: /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns
+[INFO] 
+[INFO] --- jacoco:0.8.6:prepare-agent (prepare-agent) @ dependency-injection ---
+[INFO] argLine set to -javaagent:/home/ray/.m2/repository/org/jacoco/org.jacoco.agent/0.8.6/org.jacoco.agent-0.8.6-runtime.jar=destfile=/home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/target/jacoco.exec
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ dependency-injection ---
+[INFO] skip non existing resourceDirectory /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.8.1:compile (default-compile) @ dependency-injection ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 11 source files to /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/target/classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  11.850 s
+[INFO] Finished at: 2024-05-22T18:43:46+08:00
+[INFO] ------------------------------------------------------------------------
+
+
+* * * * * * * *

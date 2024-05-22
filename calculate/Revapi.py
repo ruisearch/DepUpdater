@@ -11,8 +11,8 @@ from calculate.constants import ADDEDTOINTERFACE_PATH
 # from constants import REVAPI_FOLDER
 # from constants import ADDEDTOINTERFACE_PATH
 class Revapi:
-    def __init__(self, gav:dict, ReachableAPIs:list, AllVersion:list, Pwd:str, JarName:str, DependedBy:list):
-        self.gav = gav
+    def __init__(self, gavc:dict, ReachableAPIs:list, AllVersion:list, Pwd:str, JarName:str, DependedBy:list):
+        self.gavc = gavc
         self.api = ReachableAPIs
         self.allVersion = AllVersion
         self.Pwd = Pwd # dep/ folder path
@@ -28,7 +28,7 @@ class Revapi:
     #     # Create the new folder
     #     os.makedirs(self.new_dep)
     
-    # return the best version
+    # return the best version as well as the breaking reason
     # tqdm_log_module_folder: path to tqdm_log/{module_name}/ containing files denoting the progress of each process
     def get_best_version(self, tqdm_log_module_folder: str):
         # self.new_dep_folder()
@@ -37,42 +37,52 @@ class Revapi:
         # sometimes,a dep is a jar of another module, which cann't be downloaded from maven repo
         # as the result, the AllVersion is empty,so cann't find current version. idx is None
         if idx is None:
-            return self.gav['v']
+            return self.gavc['v'], ''
         length = len(self.allVersion)
         # current_version is the lastest version
         if idx == length - 1:
             dest = os.path.join(self.new_dep, self.jar_name)
             shutil.copy(self.jar, dest)
-            return self.gav['v']
-        best_version = self.gav['v']
+            return self.gavc['v'], ''
+        best_version = self.gavc['v']
         
         # file to contain tqdm log
-        dep_tqdm_log_file = os.path.join(tqdm_log_module_folder, f"{self.gav['g']}_{self.gav['a']}_tqdm_log.txt")
+        if self.gavc['c'] == '':
+            dep_tqdm_log_file = os.path.join(tqdm_log_module_folder, f"{self.gavc['g']}_{self.gavc['a']}_tqdm_log.txt")
+        else:
+            dep_tqdm_log_file = os.path.join(tqdm_log_module_folder, f"{self.gavc['g']}_{self.gavc['a']}_{self.gavc['c']}_tqdm_log.txt")
         with open(dep_tqdm_log_file, 'a') as f:
             with tqdm(total=length-idx, desc=f'Calculate version', file=f) as pbar:
+                # containing the breaking version which is detected by tool as well as the breaking reason
+                Breaking_Reason_Dict = {}
+                former_flag = True
                 for i in range(idx+1, length):
-                    new_dep_jar, ret_txt = self.download_new_dep(self.gav['g'],self.gav['a'],self.allVersion[i]['version'])
+                    new_dep_jar, ret_txt = self.download_new_dep(self.gavc['g'],self.gavc['a'],self.allVersion[i]['version'], self.gavc['c'])
+                    flag, breaking_reason = self.compare(self.jar, new_dep_jar, ret_txt)
                     # compare current jar with new jar
-                    if self.compare(self.jar, new_dep_jar, ret_txt):
+                    # if self.compare(self.jar, new_dep_jar, ret_txt):
+                    if flag :
                         # no BC
                         best_version = self.allVersion[i]['version']
+                    elif former_flag is True and flag is False:
+                        # new dep is incompatible, recording the breaking reason
+                        Breaking_Reason_Dict.update({'breaking_version': self.allVersion[i]['version']})
+                        Breaking_Reason_Dict.update({'breaking_reason': breaking_reason})
+                    former_flag = flag
                     pbar.update(1)
-                    # else :
-                    # # new dep is incompatible, break
-                    #     break
                     # test:
                     # self.compare(self.jar, new_dep_jar, ret_txt)
                     # break
-        return best_version
+        return best_version, Breaking_Reason_Dict
             
     # return the idx of current version in allversion
     def find_current_version_idx(self):
         for idx in range(0, len(self.allVersion)):
-            if self.allVersion[idx]['version'] == self.gav['v']:
+            if self.allVersion[idx]['version'] == self.gavc['v']:
                 return idx
         
     # download a jar according to its gav in dep/new_dep
-    def download_new_dep(self, group_id, artifact_id, version):
+    def download_new_dep(self, group_id, artifact_id, version, classifier):
         def handle_error_get(jar_url,  retries=5, backoff_factor=0.3):
         # This inner function attempts to get the content from the jar_url with retries
             for attempt in range(retries):
@@ -85,30 +95,44 @@ class Revapi:
                     time.sleep(backoff_factor * (2 ** attempt))  # Exponential backoff
                     if attempt == retries - 1:
                         raise  # Re-raise the last exception if all retries fail
-        
-        jar_url = f"https://repo1.maven.org/maven2/{group_id.replace('.', '/')}/{artifact_id}/{version}/{artifact_id}-{version}.jar"
+        if classifier == '':
+            jar_url = f"https://repo1.maven.org/maven2/{group_id.replace('.', '/')}/{artifact_id}/{version}/{artifact_id}-{version}.jar"
+        else :
+            jar_url = f"https://repo1.maven.org/maven2/{group_id.replace('.', '/')}/{artifact_id}/{version}/{artifact_id}-{version}-{classifier}.jar"
         # response = requests.get(jar_url)
         try:
             response = handle_error_get(jar_url)
             # Proceed if the download was successful
             if response.status_code == 200:
-                file_name = f"{artifact_id}-{version}.jar"
+                if classifier == '':
+                    file_name = f"{group_id}-{artifact_id}-{version}.jar"
+                else:
+                    file_name = f"{group_id}-{artifact_id}-{version}-{classifier}.jar"
                 with open(os.path.join(self.new_dep,file_name), "wb") as jar_file:
                     jar_file.write(response.content)
-                print(f"start analysising dependency {artifact_id}-{version}.jar ")
+                if classifier == '':
+                    print(f"start analysising dependency {group_id}-{artifact_id}-{version}.jar ")
+                else :
+                    print(f"start analysising dependency {group_id}-{artifact_id}-{version}-{classifier}.jar ")
                 return os.path.join(self.new_dep,file_name), os.path.join(self.new_dep,f"{file_name}.ret.txt")
         except Exception as e:
-            print(f"Failed to download {artifact_id}-{version}.jar from central repository; Reason: {str(e)}")
+            if classifier == '':
+                print(f"Failed to download {group_id}-{artifact_id}-{version}.jar from central repository; Reason: {str(e)}")
+            else:
+                print(f"Failed to download {group_id}-{artifact_id}-{version}-{classifier}.jar from central repository; Reason: {str(e)}")
 
     # compare old jar and new jar
-    # True : no BC ; False : has BC
+    # return value: True : no BC ; False : has BC
+    # return value: breaking reason(which api breaks)
     def compare(self, old_jar, new_jar, ret_txt_path):
         sh_path = os.path.join(REVAPI_FOLDER, "revapi.sh")
         command = f'''{sh_path} --extensions=org.revapi:revapi-java:0.28.1,org.revapi:revapi-reporter-text:0.15.0 --old={old_jar} --new={new_jar} -D revapi.reporter.text.minSeverity=BREAKING > {ret_txt_path}'''
         os.system(command)
+        # flag, records = self.parse_ret(ret_txt_path)
         flag, records = self.parse_ret(ret_txt_path)
         if flag is False:
-            return False
+            # this records is which class implements a breaking interface
+            return False, records
         # test
         # print("test\n",records)
         
@@ -116,13 +140,14 @@ class Revapi:
         # # test
         # print("records",records)
         
+        # for record in records:
         for record in records:
             # # old: is followed by <none>, has BC
             # if record is None:
             #     return False
         
             # skip None, as None is the reture value of some corner cases, which is not handled by reachable API
-            # like java.method.addedToInterface
+            # like java.method.addedToInterface(deprecated)
             if record is None:
                 continue
             for API in self.api:
@@ -130,13 +155,13 @@ class Revapi:
                 # new_api : replace '$' with '.' in ReachAPIs
                 if new_api.startswith(record):
                     # new_api is breaking
-                    return False
-        return True
+                    return False, API
+        return True, ''
         
     # parse the ret.txt
     # return the flag, filtered_records
-    # if flag == True, use filtered_records containing breaing api to match the reachable api
-    # if flag == False, then the version is breaking, so filtered_records is useless
+    # if flag == True, use filtered_records containing breaking api to match the reachable api
+    # if flag == False, then the version is breaking, letting filtered_records[i] be None, won't be handled by reachable api afterwards
     # flag == False is used to handle the corner case which cann't be handled by reachableAPI, like java.method.addedToInterface
     def parse_ret(self, ret_path):
         with open(ret_path, 'r') as f:
@@ -153,9 +178,11 @@ class Revapi:
             # handle java.method.addedToInterface
             if "java.method.addedToInterface" in filtered_records[i] :
                 print(f"== java.method.addedToInterface in {new_jar} ==")
-                flag = self.java_method_addedToInterface(filtered_records[i], new_jar)
+                flag, breaking_reason = self.java_method_addedToInterface(filtered_records[i], new_jar)
                 if flag == False:
-                    return False, []
+                    # return False, []
+                    # breaking_reason: which api implements a breaking interface
+                    return False, breaking_reason
                 # java.method.addedToInterface doesn't break
                 # set filter_records[i] as None, compare will skip None
                 filtered_records[i] = None
@@ -315,7 +342,7 @@ class Revapi:
                     if "implements" in log:
                         # client jar has the class
                         print(f"java.method.addedToInterface: {interface} breaks {item}")
-                        return False
+                        return False, f"java.method.addedToInterface: {interface} breaks {item}"
         # travel all dep jar(excluding self.jar_name)-->to be optimized: travel the dep jars which dependend on self.jar_name
         contents = os.listdir(self.Pwd)
         for item in self.DependedBy:
@@ -333,11 +360,11 @@ class Revapi:
                 if "implements" in log:
                     # client jar has the class
                     print(f"java.method.addedToInterface: {interface} breaks {item}")
-                    return False
+                    return False, f"java.method.addedToInterface: {interface} breaks {item}"
         # no non-abstract class implements the interface
         # remove the log_ret, as it is empty
         os.remove(log_ret)
-        return True
+        return True, ''
     
 if __name__ == "__main__":
     REVAPI_FOLDER = "/home/ray/Work/Tool/Tool/utils/revapi-0.12.0"

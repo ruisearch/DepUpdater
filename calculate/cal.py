@@ -36,7 +36,7 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
         if os.path.isdir(item_path):
             # test a module after calculating 
             # the false cases will be stored in the following folder
-            module_error_folder = os.path.join(project_error_folder, item)\
+            module_error_folder = os.path.join(project_error_folder, item)
             # existing module_error_folder is outdate, so delete it and create a new one
             create_new_folder(module_error_folder)
             create_new_folder(os.path.join(module_error_folder, 'fp'))
@@ -44,6 +44,7 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
             # travel the match.json and pass one dep for Dep
             json_path = os.path.join(item_path, f"dep/match.json")
             dep_path = os.path.join(item_path, f"dep/")
+            
             with open(json_path, 'r') as f:
                 dict_list = json.load(f)
                 
@@ -85,6 +86,21 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
                         error_dep_count = error_dep_count + 1
                     dep_count = dep_count + 1
                 pbar.close()    
+            
+            # copy match.json, Uber/call_graph.json, client/client_api.txt into the module_error_folder
+            shutil.copy(json_path, module_error_folder)
+            client_folder = os.path.join(item_path, 'client')
+            for file in os.listdir(client_folder):
+                if file.endswith('api.txt'):
+                    api_file_path = os.path.join(client_folder, file)
+                    shutil.copy(api_file_path, module_error_folder)
+                    break
+            Uber_folder = os.path.join(item_path, 'Uber')
+            for file in os.listdir(Uber_folder):
+                if file.endswith('json'):
+                    cg_json_path = os.path.join(Uber_folder, file)
+                    shutil.copy(cg_json_path, module_error_folder)
+                    break
                      
             # # write the result_deps into match.json    
             # with open(json_path, 'w') as f:
@@ -119,7 +135,7 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
             if flag == False:
                 # recompilation error, store the log, it's a fp, should be added into module_error_folder/fn
                 print(" find a fn")
-                store_error(false_folder_lock, item_path, result_deps, result, os.path.join(module_error_folder, 'fp'))
+                store_error(false_folder_lock, item_path, result_deps, result, None, os.path.join(module_error_folder, 'fp'))
                 with open(error_dep_count_txt_path, 'a') as f:
                     f.write('note: set all dep to best version cause compilation error!\n')
             # back to original pom
@@ -152,7 +168,10 @@ def cal_test_a_dep(false_folder_lock, json_lock, one_dict:dict, dep_path:str, pa
     write_a_dep(json_lock, os.path.join(dep_path, 'match.json'), res_dict)
     # get the newest compatible versoin
     print(f"-- start calculating  best version of {one_dict['GroupId']}:{one_dict['ArtifactId']} in {module_name} -- ")
-    res_dict.update({'BestVersion':dep.get_best_version(tqdm_log_module_folder)})
+    bestversion, breaking_reason = dep.get_best_version(tqdm_log_module_folder)
+    # res_dict.update({'BestVersion':dep.get_best_version(tqdm_log_module_folder)})
+    res_dict.update({'BestVersion': bestversion})
+    res_dict.update({'Breaking_Reason': breaking_reason})
     print(f"-- best version of {one_dict['GroupId']}:{one_dict['ArtifactId']} is {res_dict['BestVersion']} -- ")
     write_a_dep(json_lock, os.path.join(dep_path, 'match.json'), res_dict)
     print(f"-- start validating the best version of {one_dict['GroupId']}:{one_dict['ArtifactId']} in {module_name} --")
@@ -184,13 +203,14 @@ def change_dep_in_pom(dep:dict, pom_path:str):
     group_id = dep["GroupId"]
     artifact_id = dep["ArtifactId"]
     new_version = dep["BestVersion"]
+    classifier = dep["Classifier"]
     # direct dep
     if dep['Depth'] == 1:
         # set <dependencies>
-        add_or_update_direct_dependency(pom_path, group_id, artifact_id, new_version)
+        add_or_update_direct_dependency(pom_path, group_id, artifact_id, new_version, classifier)
     else :
         # transitive dep, set <dependencyManagement>
-        add_or_update_transitive_dependency(pom_path, group_id, artifact_id, new_version)
+        add_or_update_transitive_dependency(pom_path, group_id, artifact_id, new_version, classifier)
 ## calculate lag
 def calculate_lag():
     print("cal")

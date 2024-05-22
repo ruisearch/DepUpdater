@@ -22,40 +22,43 @@ def create_folder(folder_path:str):
 ## parse tree to get information of deps(exclude test and provided)
 # return a list of dicts containing gav and depth as well as transitive or direct
 def parse_dep(all_dep_gav:str):
-    # dep_gav_pattern = r"- (.+?):(.+?):.+?:(.+?):(.+?)\s"
-    # dep_matches = re.finditer(dep_gav_pattern, all_dep_gav)
-    # dep_gav_pattern = r"^\[INFO\] (.*?)- (.+?):(.+?):.+?:(.+?):(.+?)$"
-    dep_gav_pattern = r"^\[INFO\] (.*?)- (.+?):(.+?):.+:(.+?):(.+?)$"
+    # dep_gav_pattern = r"^\[INFO\] (.*?)- (.+?):(.+?):.+:(.+?):(.+?)$"
+    dep_gav_pattern = r"^\[INFO\] (.*?)- (.+?):(.+?):jar(.*):(.+?):(.+?)$"
     dep_matches = re.finditer(dep_gav_pattern, all_dep_gav, re.MULTILINE)
+    # group(1): lag
+    # group(2): groupId
+    # group(3): artifactId
+    # group(4): ':'+classifier
+    # group(5): version
+    # group(6): type, like compile
     dep_gav = []
     for dep_match in dep_matches:
-        # # ignore test and provided dep
-        # if dep_match.group(4) != 'test' and dep_match.group(4) != "provided":
+        # if dep_match.group(5).endswith('test') is False and dep_match.group(5).endswith("provided") is False:
         #     dep = {}
-        #     dep.update({'group_id':f'{dep_match.group(1)}'})
-        #     dep.update({'artifact_id':f'{dep_match.group(2)}'})
-        #     dep.update({'version':f'{dep_match.group(3)}'})
+        #     dep.update({'group_id':f'{dep_match.group(2)}'})
+        #     dep.update({'artifact_id':f'{dep_match.group(3)}'})
+        #     dep.update({'version':f'{dep_match.group(4)}'})
+        #     # get depth from the lenth of substring between "[INFO] " and "-"
+        #     depth = (int)((len(dep_match.group(1))+2) / 3)
+        #     # depth == 1 means direct which depth > 1 means transitive
+        #     dep.update({'depth': depth})
         #     dep_gav.append(dep)
-        # if dep_match.group(5) != 'test' and dep_match.group(5) != "provided" and dep_match.group(5) != 'test (optional)' and dep_match.group(5) != 'provided (optional)':
-        if dep_match.group(5).endswith('test') is False and dep_match.group(5).endswith("provided") is False:
+        if dep_match.group(6).endswith('test') is False and dep_match.group(6).endswith("provided") is False:
             dep = {}
             dep.update({'group_id':f'{dep_match.group(2)}'})
             dep.update({'artifact_id':f'{dep_match.group(3)}'})
-            dep.update({'version':f'{dep_match.group(4)}'})
-            # # test
-            # dep.update({'relationship':f'{dep_match.group(5)}'})
-            # vertical_count = dep_match.group(1).count('|')
+            dep.update({'classifier':f'{dep_match.group(4).replace(":","")}'})
+            dep.update({'version':f'{dep_match.group(5)}'})
+            dep.update({'type':f'{dep_match.group(6)}'})
             # get depth from the lenth of substring between "[INFO] " and "-"
             depth = (int)((len(dep_match.group(1))+2) / 3)
             # depth == 1 means direct which depth > 1 means transitive
             dep.update({'depth': depth})
             dep_gav.append(dep)
-    # # test
-    # print(dep_gav)
     return dep_gav
     
 ## get dep jar using GAV from maven central repository
-def get_dep_jar(dep_folder:str, group_id:str, artifact_id:str, version:str):
+def get_dep_jar(dep_folder:str, group_id:str, artifact_id:str, version:str, classifier:str):
     # debug
     # print(f'dep {group_id}:{artifact_id}:{version}')
     
@@ -72,20 +75,31 @@ def get_dep_jar(dep_folder:str, group_id:str, artifact_id:str, version:str):
                 if attempt == retries - 1:
                     raise  # Re-raise the last exception if all retries fail
     
-        
-    jar_url = f"https://repo1.maven.org/maven2/{group_id.replace('.', '/')}/{artifact_id}/{version}/{artifact_id}-{version}.jar"
+    if classifier == '':
+        jar_url = f"https://repo1.maven.org/maven2/{group_id.replace('.', '/')}/{artifact_id}/{version}/{artifact_id}-{version}.jar"
+    else :
+        jar_url = f"https://repo1.maven.org/maven2/{group_id.replace('.', '/')}/{artifact_id}/{version}/{artifact_id}-{version}-{classifier}.jar"
     
      # Call the function with retry logic
     try:
         response = handle_error_get(jar_url)
         # Proceed if the download was successful
         if response and response.status_code == 200:
-            file_name = os.path.join(dep_folder, f"{artifact_id}-{version}.jar")
+            if classifier == '':
+                file_name = os.path.join(dep_folder, f"{group_id}-{artifact_id}-{version}.jar")
+            else :
+                file_name = os.path.join(dep_folder, f"{group_id}-{artifact_id}-{version}-{classifier}.jar")
             with open(file_name, "wb") as jar_file:
                 jar_file.write(response.content)
-            print(f"{artifact_id}-{version}.jar downloaded successfully.")
+            if classifier == '':
+                print(f"{group_id}-{artifact_id}-{version}.jar downloaded successfully.")
+            else :
+                print(f"{group_id}-{artifact_id}-{version}-{classifier}.jar downloaded successfully.")
     except Exception as e:
-        print(f"Failed to download {artifact_id}-{version}.jar from central repository; Reason: {str(e)}")
+        if classifier == '':
+            print(f"Failed to download {artifact_id}-{version}.jar from central repository; Reason: {str(e)}")
+        else:
+            print(f"Failed to download {artifact_id}-{version}-{classifier}.jar from central repository; Reason: {str(e)}")
         # # sometimes, the dep is a local artifact, so try to get the jar from local repository
         # print("try to get it from local repository:")
         # command = f"mvn dependency:copy -Dartifact={group_id}:{artifact_id}:{version} -DoutputDirectory={dep_folder}"
@@ -123,6 +137,7 @@ def parse_for_jar(dependency_tree:str, path_to_cloned_folder:str, relative_path_
         if relative_path_to_module == '.':
             flag = True
         else:
+            # so, argv[2] should end with '/'
             flag = (block.group(1) == relative_path_to_module)
         if block.group(2) == 'jar' and flag:
             # create folder in data/Jar
@@ -184,7 +199,7 @@ def parse_for_jar(dependency_tree:str, path_to_cloned_folder:str, relative_path_
                 futures = []
                 # for dep in deps:
                 for i in range(len(deps)):
-                    futures.append(executor.submit(download_all_dep_jar, path_to_dep, deps[i], i))
+                    futures.append(executor.submit(download_a_dep_jar, path_to_dep, deps[i], i))
             for future in futures:
                 mappings.append(future.result())
             
@@ -215,13 +230,19 @@ def parse_for_jar(dependency_tree:str, path_to_cloned_folder:str, relative_path_
 # dep: a dict in deps_gav, dep['group_id'] is groupId, dep['artifact_id'] is artifactId, dep['version'] is version
 # mapping: mapping of a dep;
 # idx: index of the dep in deps_gav
-def download_all_dep_jar(path_to_dep:str, dep:dict, idx:int):
-    get_dep_jar(path_to_dep, dep['group_id'], dep['artifact_id'], dep['version'])
+def download_a_dep_jar(path_to_dep:str, dep:dict, idx:int):
+    get_dep_jar(path_to_dep, dep['group_id'], dep['artifact_id'], dep['version'], dep['classifier'])
+    if dep['classifier'] == "":
+        JarFileName = f'{dep["group_id"]}-{dep["artifact_id"]}-{dep["version"]}.jar'
+    else:
+        JarFileName = f'{dep["group_id"]}-{dep["artifact_id"]}-{dep["version"]}-{dep["classifier"]}.jar'
     mapping = {
-        "JarFileName": f"{dep['artifact_id']}-{dep['version']}.jar",
+        "JarFileName": JarFileName,
         "GroupId": f"{dep['group_id']}",
         "ArtifactId": f"{dep['artifact_id']}",
+        "Classifier": f"{dep['classifier']}",
         "Version": f"{dep['version']}",
+        "Type": f"{dep['type']}",
         "Depth": dep['depth'],
         "Index": idx
     }
@@ -283,8 +304,22 @@ if __name__ == "__main__":
 # [INFO] +- ch.qos.logback:logback-classic:jar:1.5.3:compile
 # [INFO] +- ch.qos.logback:logback-core:jar:1.5.3:compile
 # [INFO] \- org.projectlombok:lombok:jar:1.18.24:provided'''
-    dep = '''[INFO] |  |  +- io.netty:netty-resolver-dns-classes-macos:jar:4.1.100.Final:compile
+    dep = '''[INFO] |  |  +- io.netty:netty-transport-native-unix-common:jar:4.1.100.Final:compile
+[INFO] |  |  +- io.netty:netty-handler-proxy:jar:4.1.100.Final:compile
+[INFO] |  |  +- io.netty:netty-handler-ssl-ocsp:jar:4.1.100.Final:compile
+[INFO] |  |  +- io.netty:netty-resolver:jar:4.1.100.Final:compile
+[INFO] |  |  +- io.netty:netty-resolver-dns:jar:4.1.100.Final:compile
+[INFO] |  |  +- io.netty:netty-transport:jar:4.1.100.Final:compile
+[INFO] |  |  +- io.netty:netty-transport-rxtx:jar:4.1.100.Final:compile
+[INFO] |  |  +- io.netty:netty-transport-sctp:jar:4.1.100.Final:compile
+[INFO] |  |  +- io.netty:netty-transport-udt:jar:4.1.100.Final:compile
+[INFO] |  |  +- io.netty:netty-transport-classes-epoll:jar:4.1.100.Final:compile
+[INFO] |  |  +- io.netty:netty-transport-classes-kqueue:jar:4.1.100.Final:compile
+[INFO] |  |  +- io.netty:netty-resolver-dns-classes-macos:jar:4.1.100.Final:compile
 [INFO] |  |  +- io.netty:netty-transport-native-epoll:jar:linux-x86_64:4.1.100.Final:runtime
-[INFO] |  |     |  +- io.grpc:grpc-api:jar:1.27.1:compile (version selected from constraint [1.27.1,1.27.1])
-[INFO] |  |  \- com.vaadin.external.google:android-json:jar:0.0.20131108.vaadin1:test'''
+[INFO] |  |  +- io.netty:netty-transport-native-epoll:jar:linux-aarch_64:4.1.100.Final:runtime
+[INFO] |  |  +- io.netty:netty-transport-native-kqueue:jar:osx-x86_64:4.1.100.Final:runtime
+[INFO] |  |  +- io.netty:netty-transport-native-kqueue:jar:osx-aarch_64:4.1.100.Final:runtime
+[INFO] |  |  +- io.netty:netty-resolver-dns-native-macos:jar:osx-x86_64:4.1.100.Final:runtime
+[INFO] |  |  \- io.netty:netty-resolver-dns-native-macos:jar:osx-aarch_64:4.1.100.Final:runtime'''
     print(parse_dep(dep))

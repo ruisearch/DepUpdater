@@ -21,7 +21,7 @@ path_to_pom = os.path.join(path_to_folder, "pom.xml")
 # only handle the module in relative_path_to_module;'.' means handling all modules or the project has just one module whose pom is at the root of the project
 relative_path_to_module = sys.argv[2]
 # set the git repository to the lastest tag status
-status_command = f'cd {path_to_folder} && git clean -fd && git reset --hard && git fetch --tags && git tag --sort=-creatordate | head -1 | xargs git checkout'
+status_command = f'cd {path_to_folder} && git add . && git reset --hard && git fetch --tags && git tag --sort=-creatordate | head -1 | xargs git checkout'
 print("****** set the git repository to the lastest tag status ******")
 os.system(status_command)
 print("\n****** preprocess.package ... ******\n")

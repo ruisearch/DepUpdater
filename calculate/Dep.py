@@ -15,6 +15,7 @@ class Dep:
         self.ArtifactId = dep_dict["ArtifactId"]
         self.Version = dep_dict["Version"]
         self.ReachableAPIs = dep_dict["ReachableAPIs"]
+        self.Classifier = dep_dict['Classifier']
         self.DependedBy = dep_dict['DependedBy']
         self.Pwd = dep_path
 
@@ -81,8 +82,8 @@ class Dep:
     ## get newest compatible version
     # tqdm_log_module_folder: path to tqdm_log/{module_name}/ containing files denoting the progress of each process
     def get_best_version(self, tqdm_log_module_folder:str):
-        gav = {'g':self.GroupId, 'a':self.ArtifactId, 'v':self.Version}
-        rev = Revapi(gav, self.ReachableAPIs, self.AllVersion, self.Pwd, self.JarFileName, self.DependedBy)
+        gavc = {'g':self.GroupId, 'a':self.ArtifactId, 'v':self.Version, 'c':self.Classifier}
+        rev = Revapi(gavc, self.ReachableAPIs, self.AllVersion, self.Pwd, self.JarFileName, self.DependedBy)
         return rev.get_best_version(tqdm_log_module_folder)
         
     

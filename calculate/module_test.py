@@ -7,7 +7,7 @@ import copy
 from tqdm import tqdm
 from lxml import etree
 # set transitive dependency in pom
-def add_or_update_transitive_dependency(file_path, group_id, artifact_id, version):
+def add_or_update_transitive_dependency(file_path, group_id, artifact_id, version, classifier):
     parser = etree.XMLParser(remove_blank_text=True)
     tree = etree.parse(file_path, parser)
     root = tree.getroot()
@@ -42,10 +42,17 @@ def add_or_update_transitive_dependency(file_path, group_id, artifact_id, versio
         ver = etree.SubElement(dependency, '{http://maven.apache.org/POM/4.0.0}version')
     ver.text = version
 
+    # add classifier if it exists
+    cla = dependency.find('m:classifier', namespaces=ns)
+    if classifier != '':
+        if cla is None:
+            cla = etree.SubElememt(dependency, '{http://maven.apache.org/POM/4.0.0}classifier')
+        cla.text = classifier
+    
     tree.write(file_path, pretty_print=True, xml_declaration=True, encoding='UTF-8')
 
 # set direct dependency in pom
-def add_or_update_direct_dependency(file_path, group_id, artifact_id, version):
+def add_or_update_direct_dependency(file_path, group_id, artifact_id, version, classifier):
     parser = etree.XMLParser(remove_blank_text=True)
     tree = etree.parse(file_path, parser)
     root = tree.getroot()
@@ -75,6 +82,13 @@ def add_or_update_direct_dependency(file_path, group_id, artifact_id, version):
     if ver is None:
         ver = etree.SubElement(dependency, '{http://maven.apache.org/POM/4.0.0}version')
     ver.text = version
+    
+    # add classifier if it exists
+    cla = dependency.find('m:classifier', namespaces=ns)
+    if classifier != '':
+        if cla is None:
+            cla = etree.SubElememt(dependency, '{http://maven.apache.org/POM/4.0.0}classifier')
+        cla.text = classifier
 
     tree.write(file_path, pretty_print=True, xml_declaration=True, encoding='UTF-8')
 # set one dep to the version calculated; create a new xml to achieve it 
@@ -86,16 +100,20 @@ def set_one_dep(dep:dict, module_path:str, pom_path:str)->str:
     group_id = dep["GroupId"]
     artifact_id = dep["ArtifactId"]
     new_version = dep["BestVersion"]
+    classifier = dep['Classifier']
     # copy the pom.xml to a temp pom to prevent multiple process conflict
-    temp_pom_path = os.path.join(module_path, f'_temp_{group_id}_{artifact_id}_{new_version}_.xml')
+    if classifier == '':
+        temp_pom_path = os.path.join(module_path, f'_temp_{group_id}_{artifact_id}_{new_version}_.xml')
+    else:
+        temp_pom_path = os.path.join(module_path, f'_temp_{group_id}_{artifact_id}_{new_version}_{classifier}.xml')
     shutil.copy(pom_path, temp_pom_path)
     # direct dep
     if dep['Depth'] == 1:
         # set <dependencies>
-        add_or_update_direct_dependency(temp_pom_path, group_id, artifact_id, new_version)
+        add_or_update_direct_dependency(temp_pom_path, group_id, artifact_id, new_version ,classifier)
     else :
         # transitive dep, set <dependencyManagement>
-        add_or_update_transitive_dependency(temp_pom_path,group_id, artifact_id, new_version)
+        add_or_update_transitive_dependency(temp_pom_path,group_id, artifact_id, new_version, classifier)
     return temp_pom_path
     
 # main method to check(one module)
@@ -144,25 +162,49 @@ def check_version_module(lock, res_dict:dict, dep_path:str, path_to_cloned_folde
     # first ~ last
      
     # file to contain tqdm log
+    # for fp, record two recompilation results: positive_result + subsequent_positive_result(the version after positive version);
+    # for fn, record two recompilation results: real_positive_result + subsequent_real_positive_result(the version after real positive version);
     dep_tqdm_log_file = os.path.join(tqdm_log_module_folder, f"{res_dict['GroupId']}_{res_dict['ArtifactId']}_tqdm_log.txt")
     with open(dep_tqdm_log_file, 'a') as f:
         with tqdm(total=last-first+1, desc=f'Validate version of {res_dict["GroupId"]}:{res_dict["ArtifactId"]}  ', file=f) as pbar:
+            subsequent_positive_result = None
+            positive_result = None
+            subsequent_real_positive_result = None
+            real_positive_result = None
+            former_flag = True
             for i in range(first, last+1):
                 temp_dict = copy.deepcopy(res_dict)
                 temp_dict["BestVersion"]  = AllVersion[i]["version"]
-                print(f"{res_dict['GroupId']}:{res_dict['ArtifactId']}:{res_dict['Version']} ---> {temp_dict['BestVersion']}")
+                if res_dict['Classifier'] == '':
+                    print(f"{res_dict['GroupId']}:{res_dict['ArtifactId']}:{res_dict['Version']} ---> {temp_dict['BestVersion']}")
+                else:
+                    print(f"{res_dict['GroupId']}:{res_dict['ArtifactId']}:{res_dict['Version']}:{res_dict['Classifier']} ---> {temp_dict['BestVersion']}")
                 new_pom_path = set_one_dep(temp_dict, module_path, pom_path)
                 # recompile to test
                 flag, result = recompile(path_to_cloned_folder, new_pom_path)
                 if i == best:
                     # get the recompilation result of the Bestverion, cause it may be the record of fp
                     positive_result = result
+                if i-1 == best:
+                    # get the recompilation result of the version after the positive version
+                    subsequent_positive_result = result
                 if flag:
                     real_positive_version_idx = i
                     # get the recompilation result of the real positive version, cause it may be the record of fn
                     real_positive_result = result
+                if flag is False and former_flag is True:
+                    # get the recompilation result of the version after the real positive version
+                    # the last subsequent_real_positive_result records the result
+                    subsequent_real_positive_result = result
+                former_flag = flag
                 pbar.update(1)
-    
+            if real_positive_version_idx == last:
+                # real positive is the last version, means that 
+                subsequent_real_positive_result = None
+    if res_dict['Classifier'] == '':
+        print(f"Actually best version of {res_dict['GroupId']}:{res_dict['ArtifactId']} is {AllVersion[real_positive_version_idx]['version']}")
+    else:
+        print(f"Actually best version of {res_dict['GroupId']}:{res_dict['ArtifactId']}:{res_dict['Classifier']} is {AllVersion[real_positive_version_idx]['version']}")
     # record fp and fn
     if real_positive_version_idx != best:
         flag = False
@@ -172,7 +214,7 @@ def check_version_module(lock, res_dict:dict, dep_path:str, path_to_cloned_folde
         print(f" find a fp: {res_dict['GroupId']}:{res_dict['ArtifactId']}:{res_dict['Version']} ---> {res_dict['BestVersion']}")
         # module_data_folder: path to a module data folder in data/Jar,like abstract-factory_
         module_data_folder = os.path.join(dep_path, '..')
-        store_error(lock, module_data_folder, dep_list, positive_result, os.path.join(module_error_folder, 'fp'))
+        store_error(lock, module_data_folder, dep_list, positive_result, subsequent_positive_result, os.path.join(module_error_folder, 'fp'))
         # fn: the actual newest version which is compatible is not BestVersion(record the recompliation of newest version which is compatible)
         # if real_positive_version_idx != last or real_positive_version_idx == last and last == len(AllVersion)-1:
         temp_dict = copy.deepcopy(res_dict)
@@ -180,7 +222,7 @@ def check_version_module(lock, res_dict:dict, dep_path:str, path_to_cloned_folde
         dep_list = []
         dep_list.append(temp_dict)
         print(f" find a fn: {res_dict['GroupId']}:{res_dict['ArtifactId']}:{res_dict['Version']} ---> {temp_dict['BestVersion']}")
-        store_error(lock, module_data_folder, dep_list, real_positive_result, os.path.join(module_error_folder, 'fn'))
+        store_error(lock, module_data_folder, dep_list, real_positive_result, subsequent_real_positive_result, os.path.join(module_error_folder, 'fn'))
     return flag
 
 # recompile to test
@@ -213,7 +255,7 @@ def recompile(path_to_cloned_folder: str, new_pom_path: str):
 # + dep new version + dep depth + recompilation log
 # note: if there are multiply dep data, means all dep are set to the version that tool outputs
 # use lock to achieve process mutually exclusive
-def store_error(lock, module_data_folder:str, dep_list:list, result, folder:str):
+def store_error(lock, module_data_folder:str, dep_list:list, result, subsuquent_result, folder:str):
     with lock:
         # get the name of the txt;all name is a number
         if os.listdir(folder):
@@ -239,19 +281,45 @@ def store_error(lock, module_data_folder:str, dep_list:list, result, folder:str)
                 log_txt.write(f'artifactId: {dep["ArtifactId"]}\n')
                 log_txt.write(f'old version: {dep["Version"]}\n')
                 log_txt.write(f'new version: {dep["BestVersion"]}\n')
+                log_txt.write(f'breaking reason by Tool:\n  breaking version:{dep["Breaking_Reason"]["breaking_version"]}\n breaking reason:{dep["Breaking_Reason"]["breaking_reason"]}\n')
                 log_txt.write(f'depth: {dep["Depth"]}\n')
                 log_txt.write(f'reachable api of old version:\n')
                 for reachable_api in dep['ReachableAPIs']:
                     log_txt.write(f'    {reachable_api}\n')
+                # current version revapi log
                 if dep['Version'] != dep['BestVersion']:
-                    log_txt.write(f'/ / / / / / / / /\nrevapi log of new version:\n')
-                    revapi_log_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["ArtifactId"]}-{dep["BestVersion"]}.jar.ret.txt')
+                    log_txt.write(f'/ / / / / / / / /\nrevapi log of former version:\n')
+                    if dep['Classifier'] == '':
+                        revapi_log_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{dep["BestVersion"]}.jar.ret.txt')
+                    else:
+                        revapi_log_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{dep["BestVersion"]}-{dep["Classifier"]}.jar.ret.txt')
                     with open(revapi_log_path, 'r') as revapi_log:
-                        log_txt.write(f'{revapi_log.read()}')
+                        log_txt.write(f'{revapi_log.read()}\n')
+                # subsequent version(breaking version) revapi log
+                idx = 0
+                for i in range(len(dep['AllVersion'])):
+                    if dep['AllVersion'][i]['version'] == dep['BestVersion']:
+                        idx = i
+                        break
+                if idx != len(dep['AllVersion'])-1:
+                    subsequent_idx = idx+1
+                    subsequent_version = dep['AllVersion'][subsequent_idx]['version']
+                    if dep['Classifier'] == '':
+                        revapi_log_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{subsequent_version}.jar.ret.txt')
+                    else:
+                        revapi_log_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{subsequent_version}-{dep["Classifier"]}.jar.ret.txt')
+                    log_txt.write(f'/ / / / / / / / /\nrevapi log of the subsequent version:\n')
+                    with open(revapi_log_path, 'r') as revapi_log:
+                        log_txt.write(f'{revapi_log.read()}\n')
+                
                 log_txt.write(f'\n* * * * * * * *\n')
+            print(f">>>>>> compilation log for former version")
             if result is not None:
-                log_txt.write(f"log:\n{result.stdout}")
-            log_txt.write(f'\n* * * * * * * *\n')
+                log_txt.write(f">>>>>>\ncompilation log:\n{result.stdout}\n")
+            print(f">>>>>> compilation log for later version")
+            if subsuquent_result is not None:
+                log_txt.write(f">>>>>>\nsubsequent compilation log:\n{subsuquent_result.stdout}\n")
+            log_txt.write(f'\n* * * * * * * *\n') 
 
 # back to original pom
 def reset(original_tree, pom_path):
