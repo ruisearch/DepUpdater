@@ -4,7 +4,8 @@ module name: dependency-injection/
 groudId: com.google.guava
 artifactId: guava
 old version: 19.0
-new version: 33.2.0-jre
+new version: 19.0
+classifier: 
 breaking reason by Tool:
   breaking version:20.0-rc1
  breaking reason:com.google.common.collect.MapMaker: void <init>()
@@ -2458,816 +2459,189 @@ reachable api of old version:
     com.google.common.util.concurrent.TrustedListenableFutureTask: void interruptTask()
     com.google.common.util.concurrent.Uninterruptibles: java.lang.Object getUninterruptibly(java.util.concurrent.Future)
 / / / / / / / / /
-revapi log of former version:
-19:57:30.452 INFO  Downloading checked archives
-19:57:30.481 INFO  Downloading extensions
-19:57:33.291 INFO  Starting analysis
+revapi log of the subsequent version -- 20.0-rc1:
+11:21:40.112 INFO  Downloading checked archives
+11:21:40.257 INFO  Downloading extensions
+11:21:48.093 INFO  Starting analysis
 Analysis results
 ----------------
 
 Old API: com.google.guava-guava-19.0.jar
-New API: com.google.guava-guava-33.2.0-jre.jar
-old: field com.google.common.base.CharMatcher.ANY
-new: <none>
-java.field.removed: Field removed from class.
-SOURCE: BREAKING, BINARY: BREAKING
+New API: com.google.guava-guava-20.0-rc1.jar
+old: class com.google.common.collect.ImmutableCollection<E>
+new: class com.google.common.collect.ImmutableCollection<E>
+java.class.defaultSerializationChanged: The default serialization ID for the class has changed. This means that the new version of the class is not deserializable from the byte stream of a serialized old class.
+BINARY: EQUIVALENT, SEMANTIC: BREAKING, SOURCE: EQUIVALENT
 
-old: field com.google.common.base.CharMatcher.ASCII
-new: <none>
-java.field.removed: Field removed from class.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: field com.google.common.base.CharMatcher.BREAKING_WHITESPACE
-new: <none>
-java.field.removed: Field removed from class.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: field com.google.common.base.CharMatcher.DIGIT
-new: <none>
-java.field.removed: Field removed from class.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: field com.google.common.base.CharMatcher.INVISIBLE
-new: <none>
-java.field.removed: Field removed from class.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: field com.google.common.base.CharMatcher.JAVA_DIGIT
-new: <none>
-java.field.removed: Field removed from class.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: field com.google.common.base.CharMatcher.JAVA_ISO_CONTROL
-new: <none>
-java.field.removed: Field removed from class.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: field com.google.common.base.CharMatcher.JAVA_LETTER
-new: <none>
-java.field.removed: Field removed from class.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: field com.google.common.base.CharMatcher.JAVA_LETTER_OR_DIGIT
-new: <none>
-java.field.removed: Field removed from class.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: field com.google.common.base.CharMatcher.JAVA_LOWER_CASE
-new: <none>
-java.field.removed: Field removed from class.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: field com.google.common.base.CharMatcher.JAVA_UPPER_CASE
-new: <none>
-java.field.removed: Field removed from class.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: field com.google.common.base.CharMatcher.NONE
-new: <none>
-java.field.removed: Field removed from class.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: field com.google.common.base.CharMatcher.SINGLE_WIDTH
-new: <none>
-java.field.removed: Field removed from class.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: field com.google.common.base.CharMatcher.WHITESPACE
-new: <none>
-java.field.removed: Field removed from class.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: method <T> com.google.common.base.Function<java.lang.Object, T> com.google.common.base.Functions::forSupplier(com.google.common.base.Supplier<T>)
-new: method <F, T> com.google.common.base.Function<F, T> com.google.common.base.Functions::forSupplier(com.google.common.base.Supplier<T>)
-java.method.returnTypeTypeParametersChanged: The return type changed from 'com.google.common.base.Function<java.lang.Object, T>' to 'com.google.common.base.Function<F, T>'.
-SOURCE: BREAKING, BINARY: NON_BREAKING
-java.generics.formalTypeParameterAdded: A new formal type parameter added to element: 'T'.
-SOURCE: BREAKING, BINARY: NON_BREAKING
-java.annotation.removed: Element no longer annotated with 'com.google.common.annotations.Beta'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: class com.google.common.base.Objects.ToStringHelper
-new: <none>
-java.class.removed: Class was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: method <T> T com.google.common.base.Objects::firstNonNull(T, T)
-new: <none>
-java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: method com.google.common.base.Objects.ToStringHelper com.google.common.base.Objects::toStringHelper(java.lang.Class<?>)
-new: <none>
-java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: method com.google.common.base.Objects.ToStringHelper com.google.common.base.Objects::toStringHelper(java.lang.Object)
-new: <none>
-java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: method com.google.common.base.Objects.ToStringHelper com.google.common.base.Objects::toStringHelper(java.lang.String)
-new: <none>
-java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: method com.google.common.base.Predicate<java.lang.Class<?>> com.google.common.base.Predicates::assignableFrom(java.lang.Class<?>)
-new: <none>
-java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: method com.google.common.base.Predicate<java.lang.Object> com.google.common.base.Predicates::instanceOf(java.lang.Class<?>)
-new: method <T> com.google.common.base.Predicate<T> com.google.common.base.Predicates::instanceOf(java.lang.Class<?>)
-java.method.returnTypeTypeParametersChanged: The return type changed from 'com.google.common.base.Predicate<java.lang.Object>' to 'com.google.common.base.Predicate<T>'.
-SOURCE: BREAKING, BINARY: NON_BREAKING
-java.generics.elementNowParameterized: Element now defines formal type parameters.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: NON_BREAKING, BINARY: NON_BREAKING
-java.generics.formalTypeParameterAdded: A new formal type parameter added to element: 'T'.
-SOURCE: BREAKING, BINARY: NON_BREAKING
-java.annotation.attributeRemoved: Attribute 'com.google.common.annotations.GwtIncompatible' of annotation '@com.google.common.annotations.GwtIncompatible' is no longer explicitly set.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: method java.lang.reflect.Field com.google.common.base.internal.Finalizer::getInheritableThreadLocalsField()
-new: method java.lang.reflect.Field com.google.common.base.internal.Finalizer::getInheritableThreadLocalsField()
-java.method.visibilityReduced: visibility reduced
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: class com.google.common.collect.BinaryTreeTraverser<T>
-new: <none>
-java.class.removed: Class was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: enum com.google.common.collect.BoundType
-new: enum com.google.common.collect.BoundType
-java.class.noLongerAbstract: Class is no longer abstract.
-SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-java.class.nowFinal: Class is now final.
-SOURCE: BREAKING, BINARY: BREAKING
-java.annotation.added: Element newly annotated with 'com.google.common.collect.ElementTypesAreNonnullByDefault'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: parameter <E> com.google.common.collect.ConcurrentHashMultiset<E> com.google.common.collect.ConcurrentHashMultiset<E>::create(===com.google.common.collect.MapMaker===)
-new: parameter <E> com.google.common.collect.ConcurrentHashMultiset<E> com.google.common.collect.ConcurrentHashMultiset<E>::create(===java.util.concurrent.ConcurrentMap<E, java.util.concurrent.atomic.AtomicInteger>===)
-java.method.parameterTypeChanged: The type of the parameter changed from 'com.google.common.collect.MapMaker' to 'java.util.concurrent.ConcurrentMap<E, java.util.concurrent.atomic.AtomicInteger>'.
-SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
-
-old: class com.google.common.collect.ContiguousSet<C extends java.lang.Comparable>
-new: class com.google.common.collect.ContiguousSet<C extends java.lang.Comparable>
-java.class.noLongerInheritsFromClass: Class no longer inherits from 'com.google.common.collect.ImmutableSortedSetFauxverideShim<C extends java.lang.Comparable>'.
-SOURCE: BREAKING, BINARY: BREAKING
-java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'com.google.common.collect.ImmutableSet.CachingAsList<C extends java.lang.Comparable>'.
-SOURCE: POTENTIALLY_BREAKING, BINARY: POTENTIALLY_BREAKING
-java.annotation.removed: Element no longer annotated with 'com.google.common.annotations.Beta'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-java.annotation.added: Element newly annotated with 'com.google.common.collect.ElementTypesAreNonnullByDefault'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: class com.google.common.collect.EnumMultiset<E extends java.lang.Enum<E>>
-new: class com.google.common.collect.EnumMultiset<E extends java.lang.Enum<E>>
-java.class.noLongerInheritsFromClass: Class no longer inherits from 'com.google.common.collect.AbstractMapBasedMultiset<E extends java.lang.Enum<E>>'.
-SOURCE: BREAKING, BINARY: BREAKING
-java.class.nowImplementsInterface: Class now implements interface 'java.io.Serializable'.
-SOURCE: NON_BREAKING, BINARY: NON_BREAKING
-java.annotation.added: Element newly annotated with 'com.google.common.annotations.J2ktIncompatible'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-java.annotation.added: Element newly annotated with 'com.google.common.collect.ElementTypesAreNonnullByDefault'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: parameter int com.google.common.collect.AbstractMapBasedMultiset<E>::add(===E===, int) @ com.google.common.collect.EnumMultiset<E extends java.lang.Enum<E>>
-new: parameter int com.google.common.collect.EnumMultiset<E extends java.lang.Enum<E>>::add(===E===, int)
-java.method.parameterTypeErasureChanged: The erasure of the type of the parameter changed from 'java.lang.Object' to 'java.lang.Enum'.
-SOURCE: NON_BREAKING, BINARY: BREAKING
-java.annotation.removed: Element no longer annotated with 'javax.annotation.Nullable'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: parameter int com.google.common.collect.AbstractMapBasedMultiset<E>::setCount(===E===, int) @ com.google.common.collect.EnumMultiset<E extends java.lang.Enum<E>>
-new: parameter int com.google.common.collect.EnumMultiset<E extends java.lang.Enum<E>>::setCount(===E===, int)
-java.method.parameterTypeErasureChanged: The erasure of the type of the parameter changed from 'java.lang.Object' to 'java.lang.Enum'.
-SOURCE: NON_BREAKING, BINARY: BREAKING
-java.annotation.removed: Element no longer annotated with 'javax.annotation.Nullable'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: method <E> com.google.common.collect.FluentIterable<E> com.google.common.collect.FluentIterable<E>::of(E[])
-new: method <E> com.google.common.collect.FluentIterable<E> com.google.common.collect.FluentIterable<E>::of()
-java.method.numberOfParametersChanged: The number of parameters of the method have changed.
-SOURCE: BREAKING, BINARY: BREAKING
-java.annotation.removed: Element no longer annotated with 'com.google.common.annotations.Beta'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-java.annotation.removed: Element no longer annotated with 'javax.annotation.CheckReturnValue'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: method <K, V> java.util.Map<K, V> java.util.Map<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V) @ com.google.common.collect.ImmutableBiMap<K, V>
-new: method <K, V> com.google.common.collect.ImmutableBiMap<K, V> com.google.common.collect.ImmutableBiMap<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V)
-java.method.returnTypeChangedCovariantly: The return type changed covariantly from 'java.util.Map<K, V>' to 'com.google.common.collect.ImmutableBiMap<K, V>'.
-SOURCE: NON_BREAKING, BINARY: BREAKING
-java.method.inheritedMovedToClass: The method was previously declared in superclass 'java.util.Map<K, V>' but is now declared in class 'com.google.common.collect.ImmutableBiMap<K, V>'.
-SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: method <K, V> java.util.Map<K, V> java.util.Map<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V, K, V) @ com.google.common.collect.ImmutableBiMap<K, V>
-new: method <K, V> com.google.common.collect.ImmutableBiMap<K, V> com.google.common.collect.ImmutableBiMap<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V, K, V)
-java.method.returnTypeChangedCovariantly: The return type changed covariantly from 'java.util.Map<K, V>' to 'com.google.common.collect.ImmutableBiMap<K, V>'.
-SOURCE: NON_BREAKING, BINARY: BREAKING
-java.method.inheritedMovedToClass: The method was previously declared in superclass 'java.util.Map<K, V>' but is now declared in class 'com.google.common.collect.ImmutableBiMap<K, V>'.
-SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: method <K, V> java.util.Map<K, V> java.util.Map<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V) @ com.google.common.collect.ImmutableBiMap<K, V>
-new: method <K, V> com.google.common.collect.ImmutableBiMap<K, V> com.google.common.collect.ImmutableBiMap<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V)
-java.method.returnTypeChangedCovariantly: The return type changed covariantly from 'java.util.Map<K, V>' to 'com.google.common.collect.ImmutableBiMap<K, V>'.
-SOURCE: NON_BREAKING, BINARY: BREAKING
-java.method.inheritedMovedToClass: The method was previously declared in superclass 'java.util.Map<K, V>' but is now declared in class 'com.google.common.collect.ImmutableBiMap<K, V>'.
-SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: method <K, V> java.util.Map<K, V> java.util.Map<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V) @ com.google.common.collect.ImmutableBiMap<K, V>
-new: method <K, V> com.google.common.collect.ImmutableBiMap<K, V> com.google.common.collect.ImmutableBiMap<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V)
-java.method.returnTypeChangedCovariantly: The return type changed covariantly from 'java.util.Map<K, V>' to 'com.google.common.collect.ImmutableBiMap<K, V>'.
-SOURCE: NON_BREAKING, BINARY: BREAKING
-java.method.inheritedMovedToClass: The method was previously declared in superclass 'java.util.Map<K, V>' but is now declared in class 'com.google.common.collect.ImmutableBiMap<K, V>'.
-SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: method <K, V> java.util.Map<K, V> java.util.Map<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V) @ com.google.common.collect.ImmutableBiMap<K, V>
-new: method <K, V> com.google.common.collect.ImmutableBiMap<K, V> com.google.common.collect.ImmutableBiMap<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V)
-java.method.returnTypeChangedCovariantly: The return type changed covariantly from 'java.util.Map<K, V>' to 'com.google.common.collect.ImmutableBiMap<K, V>'.
-SOURCE: NON_BREAKING, BINARY: BREAKING
-java.method.inheritedMovedToClass: The method was previously declared in superclass 'java.util.Map<K, V>' but is now declared in class 'com.google.common.collect.ImmutableBiMap<K, V>'.
-SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: method <K, V> java.util.Map<K, V> java.util.Map<K, V>::ofEntries(java.util.Map.Entry<? extends K, ? extends V>[]) @ com.google.common.collect.ImmutableBiMap<K, V>
-new: method <K, V> com.google.common.collect.ImmutableBiMap<K, V> com.google.common.collect.ImmutableBiMap<K, V>::ofEntries(java.util.Map.Entry<? extends K, ? extends V>[])
-java.method.returnTypeChangedCovariantly: The return type changed covariantly from 'java.util.Map<K, V>' to 'com.google.common.collect.ImmutableBiMap<K, V>'.
-SOURCE: NON_BREAKING, BINARY: BREAKING
-java.method.inheritedMovedToClass: The method was previously declared in superclass 'java.util.Map<K, V>' but is now declared in class 'com.google.common.collect.ImmutableBiMap<K, V>'.
-SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: <none>
-new: field com.google.common.collect.ImmutableCollection<E>.serialVersionUID
-java.field.serialVersionUIDChanged: serialVersionUID constant changed. Objects serialized using the old version of the class will no longer be deserializable.
-SEMANTIC: BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: class com.google.common.collect.ImmutableList.Builder<E>
-new: class com.google.common.collect.ImmutableList.Builder<E>
-java.class.noLongerInheritsFromClass: Class no longer inherits from 'com.google.common.collect.ImmutableCollection.ArrayBasedBuilder<E>'.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: <none>
-new: field com.google.common.collect.ImmutableMap<K, V>.serialVersionUID
-java.field.serialVersionUIDChanged: serialVersionUID constant changed. Objects serialized using the old version of the class will no longer be deserializable.
-SEMANTIC: BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: method <K, V> java.util.Map<K, V> java.util.Map<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V) @ com.google.common.collect.ImmutableMap<K, V>
-new: method <K, V> com.google.common.collect.ImmutableMap<K, V> com.google.common.collect.ImmutableMap<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V)
-java.method.returnTypeChangedCovariantly: The return type changed covariantly from 'java.util.Map<K, V>' to 'com.google.common.collect.ImmutableMap<K, V>'.
-SOURCE: NON_BREAKING, BINARY: BREAKING
-java.method.inheritedMovedToClass: The method was previously declared in superclass 'java.util.Map<K, V>' but is now declared in class 'com.google.common.collect.ImmutableMap<K, V>'.
-SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: method <K, V> java.util.Map<K, V> java.util.Map<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V, K, V) @ com.google.common.collect.ImmutableMap<K, V>
-new: method <K, V> com.google.common.collect.ImmutableMap<K, V> com.google.common.collect.ImmutableMap<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V, K, V)
-java.method.returnTypeChangedCovariantly: The return type changed covariantly from 'java.util.Map<K, V>' to 'com.google.common.collect.ImmutableMap<K, V>'.
-SOURCE: NON_BREAKING, BINARY: BREAKING
-java.method.inheritedMovedToClass: The method was previously declared in superclass 'java.util.Map<K, V>' but is now declared in class 'com.google.common.collect.ImmutableMap<K, V>'.
-SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: method <K, V> java.util.Map<K, V> java.util.Map<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V) @ com.google.common.collect.ImmutableMap<K, V>
-new: method <K, V> com.google.common.collect.ImmutableMap<K, V> com.google.common.collect.ImmutableMap<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V)
-java.method.returnTypeChangedCovariantly: The return type changed covariantly from 'java.util.Map<K, V>' to 'com.google.common.collect.ImmutableMap<K, V>'.
-SOURCE: NON_BREAKING, BINARY: BREAKING
-java.method.inheritedMovedToClass: The method was previously declared in superclass 'java.util.Map<K, V>' but is now declared in class 'com.google.common.collect.ImmutableMap<K, V>'.
-SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: method <K, V> java.util.Map<K, V> java.util.Map<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V) @ com.google.common.collect.ImmutableMap<K, V>
-new: method <K, V> com.google.common.collect.ImmutableMap<K, V> com.google.common.collect.ImmutableMap<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V)
-java.method.returnTypeChangedCovariantly: The return type changed covariantly from 'java.util.Map<K, V>' to 'com.google.common.collect.ImmutableMap<K, V>'.
-SOURCE: NON_BREAKING, BINARY: BREAKING
-java.method.inheritedMovedToClass: The method was previously declared in superclass 'java.util.Map<K, V>' but is now declared in class 'com.google.common.collect.ImmutableMap<K, V>'.
-SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: method <K, V> java.util.Map<K, V> java.util.Map<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V) @ com.google.common.collect.ImmutableMap<K, V>
-new: method <K, V> com.google.common.collect.ImmutableMap<K, V> com.google.common.collect.ImmutableMap<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V)
-java.method.returnTypeChangedCovariantly: The return type changed covariantly from 'java.util.Map<K, V>' to 'com.google.common.collect.ImmutableMap<K, V>'.
-SOURCE: NON_BREAKING, BINARY: BREAKING
-java.method.inheritedMovedToClass: The method was previously declared in superclass 'java.util.Map<K, V>' but is now declared in class 'com.google.common.collect.ImmutableMap<K, V>'.
-SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: method <K, V> java.util.Map<K, V> java.util.Map<K, V>::ofEntries(java.util.Map.Entry<? extends K, ? extends V>[]) @ com.google.common.collect.ImmutableMap<K, V>
-new: method <K, V> com.google.common.collect.ImmutableMap<K, V> com.google.common.collect.ImmutableMap<K, V>::ofEntries(java.util.Map.Entry<? extends K, ? extends V>[])
-java.method.returnTypeChangedCovariantly: The return type changed covariantly from 'java.util.Map<K, V>' to 'com.google.common.collect.ImmutableMap<K, V>'.
-SOURCE: NON_BREAKING, BINARY: BREAKING
-java.method.inheritedMovedToClass: The method was previously declared in superclass 'java.util.Map<K, V>' but is now declared in class 'com.google.common.collect.ImmutableMap<K, V>'.
-SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: method java.util.Set<E> com.google.common.collect.Multiset<E>::elementSet() @ com.google.common.collect.ImmutableMultiset<E>
-new: method com.google.common.collect.ImmutableSet<E> com.google.common.collect.ImmutableMultiset<E>::elementSet()
-java.method.returnTypeChangedCovariantly: The return type changed covariantly from 'java.util.Set<E>' to 'com.google.common.collect.ImmutableSet<E>'.
-SOURCE: NON_BREAKING, BINARY: BREAKING
-java.method.inheritedMovedToClass: The method was previously declared in superclass 'com.google.common.collect.Multiset<E>' but is now declared in class 'com.google.common.collect.ImmutableMultiset<E>'.
-SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+old: class com.google.common.collect.ImmutableMap<K, V>
+new: class com.google.common.collect.ImmutableMap<K, V>
+java.class.defaultSerializationChanged: The default serialization ID for the class has changed. This means that the new version of the class is not deserializable from the byte stream of a serialized old class.
+BINARY: EQUIVALENT, SEMANTIC: BREAKING, SOURCE: EQUIVALENT
 
 old: class com.google.common.collect.ImmutableRangeSet<C extends java.lang.Comparable>
 new: class com.google.common.collect.ImmutableRangeSet<C extends java.lang.Comparable>
 java.class.defaultSerializationChanged: The default serialization ID for the class has changed. This means that the new version of the class is not deserializable from the byte stream of a serialized old class.
-SEMANTIC: BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-java.annotation.removed: Element no longer annotated with 'com.google.common.annotations.Beta'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+BINARY: EQUIVALENT, SEMANTIC: BREAKING, SOURCE: EQUIVALENT
 java.annotation.added: Element newly annotated with 'com.google.common.annotations.GwtIncompatible'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-java.annotation.added: Element newly annotated with 'com.google.common.collect.ElementTypesAreNonnullByDefault'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: class com.google.common.collect.ImmutableSet.Builder<E>
-new: class com.google.common.collect.ImmutableSet.Builder<E>
-java.class.noLongerInheritsFromClass: Class no longer inherits from 'com.google.common.collect.ImmutableCollection.ArrayBasedBuilder<E>'.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: class com.google.common.collect.ImmutableSortedMap<K, V>
-new: class com.google.common.collect.ImmutableSortedMap<K, V>
-java.class.noLongerInheritsFromClass: Class no longer inherits from 'com.google.common.collect.ImmutableSortedMapFauxverideShim<K, V>'.
-SOURCE: BREAKING, BINARY: BREAKING
-java.annotation.added: Element newly annotated with 'com.google.common.collect.ElementTypesAreNonnullByDefault'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: method <K, V> java.util.Map<K, V> java.util.Map<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V, K, V) @ com.google.common.collect.ImmutableSortedMap<K, V>
-new: method <K extends java.lang.Comparable<? super K>, V> com.google.common.collect.ImmutableSortedMap<K, V> com.google.common.collect.ImmutableSortedMap<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V)
-java.method.numberOfParametersChanged: The number of parameters of the method have changed.
-SOURCE: BREAKING, BINARY: BREAKING
-java.method.returnTypeChangedCovariantly: The return type changed covariantly from 'java.util.Map<K, V>' to 'com.google.common.collect.ImmutableSortedMap<K extends java.lang.Comparable<? super K>, V>'.
-SOURCE: NON_BREAKING, BINARY: BREAKING
-java.generics.formalTypeParameterChanged: The formal type parameter changed from 'K' to 'K extends java.lang.Comparable<? super K>'.
-SOURCE: BREAKING, BINARY: NON_BREAKING
-
-old: method <K, V> java.util.Map<K, V> java.util.Map<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V) @ com.google.common.collect.ImmutableSortedMap<K, V>
-new: method <K extends java.lang.Comparable<? super K>, V> com.google.common.collect.ImmutableSortedMap<K, V> com.google.common.collect.ImmutableSortedMap<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V, K, V)
-java.method.numberOfParametersChanged: The number of parameters of the method have changed.
-SOURCE: BREAKING, BINARY: BREAKING
-java.method.returnTypeChangedCovariantly: The return type changed covariantly from 'java.util.Map<K, V>' to 'com.google.common.collect.ImmutableSortedMap<K extends java.lang.Comparable<? super K>, V>'.
-SOURCE: NON_BREAKING, BINARY: BREAKING
-java.generics.formalTypeParameterChanged: The formal type parameter changed from 'K' to 'K extends java.lang.Comparable<? super K>'.
-SOURCE: BREAKING, BINARY: NON_BREAKING
-
-old: method <K, V> java.util.Map<K, V> java.util.Map<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V) @ com.google.common.collect.ImmutableSortedMap<K, V>
-new: method <K, V> com.google.common.collect.ImmutableSortedMap<K, V> com.google.common.collect.ImmutableSortedMap<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V)
-java.method.returnTypeChangedCovariantly: The return type changed covariantly from 'java.util.Map<K, V>' to 'com.google.common.collect.ImmutableSortedMap<K, V>'.
-SOURCE: NON_BREAKING, BINARY: BREAKING
-java.method.inheritedMovedToClass: The method was previously declared in superclass 'java.util.Map<K, V>' but is now declared in class 'com.google.common.collect.ImmutableSortedMap<K, V>'.
-SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-java.annotation.added: Element newly annotated with 'com.google.errorprone.annotations.DoNotCall'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-java.element.nowDeprecated: The element is now deprecated.
-SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: method <K, V> java.util.Map<K, V> java.util.Map<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V) @ com.google.common.collect.ImmutableSortedMap<K, V>
-new: method <K, V> com.google.common.collect.ImmutableSortedMap<K, V> com.google.common.collect.ImmutableSortedMap<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V, K, V)
-java.method.numberOfParametersChanged: The number of parameters of the method have changed.
-SOURCE: BREAKING, BINARY: BREAKING
-java.method.returnTypeChangedCovariantly: The return type changed covariantly from 'java.util.Map<K, V>' to 'com.google.common.collect.ImmutableSortedMap<K, V>'.
-SOURCE: NON_BREAKING, BINARY: BREAKING
-java.annotation.added: Element newly annotated with 'com.google.errorprone.annotations.DoNotCall'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-java.element.nowDeprecated: The element is now deprecated.
-SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: method <K, V> java.util.Map<K, V> java.util.Map<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V) @ com.google.common.collect.ImmutableSortedMap<K, V>
-new: method <K, V> com.google.common.collect.ImmutableSortedMap<K, V> com.google.common.collect.ImmutableSortedMap<K, V>::of(K, V, K, V, K, V, K, V, K, V, K, V, K, V, K, V)
-java.method.numberOfParametersChanged: The number of parameters of the method have changed.
-SOURCE: BREAKING, BINARY: BREAKING
-java.method.returnTypeChangedCovariantly: The return type changed covariantly from 'java.util.Map<K, V>' to 'com.google.common.collect.ImmutableSortedMap<K, V>'.
-SOURCE: NON_BREAKING, BINARY: BREAKING
-java.annotation.added: Element newly annotated with 'com.google.errorprone.annotations.DoNotCall'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-java.element.nowDeprecated: The element is now deprecated.
-SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: method <K, V> java.util.Map<K, V> java.util.Map<K, V>::ofEntries(java.util.Map.Entry<? extends K, ? extends V>[]) @ com.google.common.collect.ImmutableSortedMap<K, V>
-new: <none>
-java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: class com.google.common.collect.ImmutableSortedMultiset<E>
-new: class com.google.common.collect.ImmutableSortedMultiset<E>
-java.class.noLongerInheritsFromClass: Class no longer inherits from 'com.google.common.collect.ImmutableSortedMultisetFauxverideShim<E>'.
-SOURCE: BREAKING, BINARY: BREAKING
-java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'com.google.common.collect.ImmutableMultisetGwtSerializationDependencies<E>'.
-SOURCE: POTENTIALLY_BREAKING, BINARY: POTENTIALLY_BREAKING
-java.annotation.removed: Element no longer annotated with 'com.google.common.annotations.Beta'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-java.annotation.attributeRemoved: Attribute 'com.google.common.annotations.GwtIncompatible' of annotation '@com.google.common.annotations.GwtIncompatible' is no longer explicitly set.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-java.annotation.added: Element newly annotated with 'com.google.common.collect.ElementTypesAreNonnullByDefault'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: class com.google.common.collect.ImmutableSortedSet<E>
-new: class com.google.common.collect.ImmutableSortedSet<E>
-java.class.noLongerInheritsFromClass: Class no longer inherits from 'com.google.common.collect.ImmutableSortedSetFauxverideShim<E>'.
-SOURCE: BREAKING, BINARY: BREAKING
-java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'com.google.common.collect.ImmutableSet.CachingAsList<E>'.
-SOURCE: POTENTIALLY_BREAKING, BINARY: POTENTIALLY_BREAKING
-java.annotation.added: Element newly annotated with 'com.google.common.collect.ElementTypesAreNonnullByDefault'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: class com.google.common.collect.ImmutableSortedSet.Builder<E>
-new: class com.google.common.collect.ImmutableSortedSet.Builder<E>
-java.class.noLongerInheritsFromClass: Class no longer inherits from 'com.google.common.collect.ImmutableCollection.ArrayBasedBuilder<E>'.
-SOURCE: BREAKING, BINARY: BREAKING
+BINARY: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT
 
 old: method <T> com.google.common.collect.UnmodifiableIterator<T> com.google.common.collect.Iterators::emptyIterator()
 new: method <T> com.google.common.collect.UnmodifiableIterator<T> com.google.common.collect.Iterators::emptyIterator()
 java.method.visibilityReduced: visibility reduced
-SOURCE: BREAKING, BINARY: BREAKING
+BINARY: BREAKING, SOURCE: BREAKING
 java.element.noLongerDeprecated: The element is no longer deprecated.
-SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT
 
-old: interface com.google.common.collect.MapConstraint<K, V>
+old: method <K, V> com.google.common.collect.BiMap<K, V> com.google.common.collect.MapConstraints::constrainedBiMap(com.google.common.collect.BiMap<K, V>, com.google.common.collect.MapConstraint<? super K, ? super V>)
 new: <none>
-java.class.removed: Class was removed.
-SOURCE: BREAKING, BINARY: BREAKING
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
 
-old: class com.google.common.collect.MapConstraints
+old: method <K, V> com.google.common.collect.Multimap<K, V> com.google.common.collect.MapConstraints::constrainedMultimap(com.google.common.collect.Multimap<K, V>, com.google.common.collect.MapConstraint<? super K, ? super V>)
 new: <none>
-java.class.removed: Class was removed.
-SOURCE: BREAKING, BINARY: BREAKING
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method <K, V> com.google.common.collect.SetMultimap<K, V> com.google.common.collect.MapConstraints::constrainedSetMultimap(com.google.common.collect.SetMultimap<K, V>, com.google.common.collect.MapConstraint<? super K, ? super V>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method <K, V> com.google.common.collect.SortedSetMultimap<K, V> com.google.common.collect.MapConstraints::constrainedSortedSetMultimap(com.google.common.collect.SortedSetMultimap<K, V>, com.google.common.collect.MapConstraint<? super K, ? super V>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.google.common.collect.MapConstraint<java.lang.Object, java.lang.Object> com.google.common.collect.MapConstraints::notNull()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
 
 old: class com.google.common.collect.MapMaker
 new: class com.google.common.collect.MapMaker
 java.class.noLongerInheritsFromClass: Class no longer inherits from 'com.google.common.collect.GenericMapMaker<java.lang.Object, java.lang.Object>'.
-SOURCE: BREAKING, BINARY: BREAKING
-java.annotation.added: Element newly annotated with 'com.google.common.annotations.J2ktIncompatible'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-java.annotation.added: Element newly annotated with 'com.google.common.collect.ElementTypesAreNonnullByDefault'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: class com.google.common.collect.MutableClassToInstanceMap<B>
-new: class com.google.common.collect.MutableClassToInstanceMap<B>
-java.class.noLongerInheritsFromClass: Class no longer inherits from 'com.google.common.collect.MapConstraints.ConstrainedMap<java.lang.Class<? extends B>, B>'.
-SOURCE: BREAKING, BINARY: BREAKING
-java.class.nowImplementsInterface: Class now implements interface 'java.io.Serializable'.
-SOURCE: NON_BREAKING, BINARY: NON_BREAKING
-java.annotation.added: Element newly annotated with 'com.google.common.annotations.GwtIncompatible'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-java.annotation.added: Element newly annotated with 'com.google.common.annotations.J2ktIncompatible'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-java.annotation.added: Element newly annotated with 'com.google.common.collect.ElementTypesAreNonnullByDefault'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: parameter V com.google.common.collect.MapConstraints.ConstrainedMap<K, V>::put(===K===, V) @ com.google.common.collect.MutableClassToInstanceMap<B>
-new: parameter B com.google.common.collect.MutableClassToInstanceMap<B>::put(===java.lang.Class<? extends B>===, B)
-java.method.parameterTypeErasureChanged: The erasure of the type of the parameter changed from 'java.lang.Object' to 'java.lang.Class'.
-SOURCE: NON_BREAKING, BINARY: BREAKING
-
-old: <none>
-new: method void com.google.common.collect.RangeMap<K extends java.lang.Comparable, V>::merge(com.google.common.collect.Range<K>, V, java.util.function.BiFunction<? super V, ? super V, ? extends V>)
-java.method.addedToInterface: Method was added to an interface.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
-
-old: <none>
-new: method void com.google.common.collect.RangeMap<K extends java.lang.Comparable, V>::putCoalescing(com.google.common.collect.Range<K>, V)
-java.method.addedToInterface: Method was added to an interface.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+BINARY: BREAKING, SOURCE: BREAKING
 
 old: <none>
 new: method boolean com.google.common.collect.RangeSet<C extends java.lang.Comparable>::intersects(com.google.common.collect.Range<C>)
 java.method.addedToInterface: Method was added to an interface.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
 
 old: method java.util.Iterator<E> java.util.AbstractCollection<E>::iterator() @ com.google.common.collect.Sets.SetView<E>
 new: method com.google.common.collect.UnmodifiableIterator<E> com.google.common.collect.Sets.SetView<E>::iterator()
 java.method.returnTypeChangedCovariantly: The return type changed covariantly from 'java.util.Iterator<E>' to 'com.google.common.collect.UnmodifiableIterator<E>'.
-SOURCE: NON_BREAKING, BINARY: BREAKING
+BINARY: BREAKING, SOURCE: NON_BREAKING
 java.method.inheritedMovedToClass: The method was previously declared in superclass 'java.util.AbstractCollection<E>' but is now declared in class 'com.google.common.collect.Sets.SetView<E>'.
-SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: <none>
-new: field com.google.common.hash.BloomFilter<T>.serialVersionUID
-java.field.serialVersionUIDChanged: serialVersionUID constant changed. Objects serialized using the old version of the class will no longer be deserializable.
-SEMANTIC: BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: <none>
-new: method com.google.common.hash.HashCode com.google.common.hash.HashFunction::hashBytes(java.nio.ByteBuffer)
-java.method.addedToInterface: Method was added to an interface.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
-
-old: <none>
-new: method com.google.common.hash.Hasher com.google.common.hash.Hasher::putBytes(java.nio.ByteBuffer)
-java.method.addedToInterface: Method was added to an interface.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
-
-old: <none>
-new: method com.google.common.hash.PrimitiveSink com.google.common.hash.PrimitiveSink::putBytes(java.nio.ByteBuffer)
-java.method.addedToInterface: Method was added to an interface.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT
 
 old: <none>
 new: method boolean com.google.common.io.BaseEncoding::canDecode(java.lang.CharSequence)
 java.method.abstractMethodAdded: Abstract method was added.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: <none>
-new: method com.google.common.io.BaseEncoding com.google.common.io.BaseEncoding::ignoreCase()
-java.method.abstractMethodAdded: Abstract method was added.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: method com.google.common.collect.TreeTraverser<java.io.File> com.google.common.io.Files::fileTreeTraverser()
-new: <none>
-java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: method java.nio.MappedByteBuffer com.google.common.io.Files::map(java.io.File, java.nio.channels.FileChannel.MapMode, long) throws java.io.FileNotFoundException, java.io.IOException
-new: method java.nio.MappedByteBuffer com.google.common.io.Files::map(java.io.File, java.nio.channels.FileChannel.MapMode, long) throws java.io.IOException
-java.method.exception.checkedRemoved: Method no longer throws checked exceptions: java.io.FileNotFoundException.
-SOURCE: BREAKING, BINARY: NON_BREAKING
+BINARY: BREAKING, SOURCE: BREAKING
 
 old: interface com.google.common.io.InputSupplier<T>
 new: <none>
 java.class.removed: Class was removed.
-SOURCE: BREAKING, BINARY: BREAKING
+BINARY: BREAKING, SOURCE: BREAKING
 
 old: class com.google.common.io.LittleEndianDataOutputStream
 new: class com.google.common.io.LittleEndianDataOutputStream
 java.class.nowFinal: Class is now final.
-SOURCE: BREAKING, BINARY: BREAKING
-java.annotation.removed: Element no longer annotated with 'com.google.common.annotations.Beta'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+BINARY: BREAKING, SOURCE: BREAKING
 java.annotation.added: Element newly annotated with 'com.google.common.annotations.GwtIncompatible'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-java.annotation.added: Element newly annotated with 'com.google.common.annotations.J2ktIncompatible'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-java.annotation.added: Element newly annotated with 'com.google.common.io.ElementTypesAreNonnullByDefault'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+BINARY: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT
 
 old: interface com.google.common.io.OutputSupplier<T>
 new: <none>
 java.class.removed: Class was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: method java.lang.String com.google.common.net.HostAndPort::getHostText()
-new: <none>
-java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
+BINARY: BREAKING, SOURCE: BREAKING
 
 old: parameter V com.google.common.collect.ForwardingMap<K, V>::put(===K===, V) @ com.google.common.reflect.ImmutableTypeToInstanceMap<B>
 new: parameter B com.google.common.reflect.ImmutableTypeToInstanceMap<B>::put(===com.google.common.reflect.TypeToken<? extends B>===, B)
 java.method.parameterTypeErasureChanged: The erasure of the type of the parameter changed from 'java.lang.Object' to 'com.google.common.reflect.TypeToken'.
-SOURCE: NON_BREAKING, BINARY: BREAKING
+BINARY: BREAKING, SOURCE: NON_BREAKING
 
-old: class com.google.common.reflect.Invokable<T, R>
-new: class com.google.common.reflect.Invokable<T, R>
-java.class.noLongerInheritsFromClass: Class no longer inherits from 'com.google.common.reflect.Element'.
-SOURCE: BREAKING, BINARY: BREAKING
-java.class.nowImplementsInterface: Class now implements interface 'java.lang.reflect.AnnotatedElement'.
-SOURCE: NON_BREAKING, BINARY: NON_BREAKING
-java.class.nowImplementsInterface: Class now implements interface 'java.lang.reflect.Member'.
-SOURCE: NON_BREAKING, BINARY: NON_BREAKING
-java.annotation.removed: Element no longer annotated with 'com.google.common.annotations.Beta'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-java.annotation.added: Element newly annotated with 'com.google.common.reflect.ElementTypesAreNonnullByDefault'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: method boolean java.lang.reflect.AccessibleObject::canAccess(java.lang.Object) @ com.google.common.reflect.Invokable<T, R>
-new: <none>
-java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: <none>
-new: method java.lang.reflect.AnnotatedType com.google.common.reflect.Invokable<T, R>::getAnnotatedReturnType()
-java.method.abstractMethodAdded: Abstract method was added.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: method void java.lang.reflect.AccessibleObject::setAccessible(java.lang.reflect.AccessibleObject[], boolean) @ com.google.common.reflect.Invokable<T, R>
-new: <none>
-java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: <none>
-new: field com.google.common.reflect.TypeToken<T>.serialVersionUID
-java.field.serialVersionUIDChanged: serialVersionUID constant changed. Objects serialized using the old version of the class will no longer be deserializable.
-SEMANTIC: BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+old: class com.google.common.reflect.TypeToken<T>
+new: class com.google.common.reflect.TypeToken<T>
+java.class.defaultSerializationChanged: The default serialization ID for the class has changed. This means that the new version of the class is not deserializable from the byte stream of a serialized old class.
+BINARY: EQUIVALENT, SEMANTIC: BREAKING, SOURCE: EQUIVALENT
 
 old: method boolean com.google.common.reflect.TypeToken<T>::isAssignableFrom(com.google.common.reflect.TypeToken<?>)
 new: <none>
 java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
+BINARY: BREAKING, SOURCE: BREAKING
 
 old: method boolean com.google.common.reflect.TypeToken<T>::isAssignableFrom(java.lang.reflect.Type)
 new: <none>
 java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: class com.google.common.util.concurrent.AbstractCheckedFuture<V, X extends java.lang.Exception>
-new: <none>
-java.class.removed: Class was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: interface com.google.common.util.concurrent.CheckedFuture<V, X extends java.lang.Exception>
-new: <none>
-java.class.removed: Class was removed.
-SOURCE: BREAKING, BINARY: BREAKING
+BINARY: BREAKING, SOURCE: BREAKING
 
 old: class com.google.common.util.concurrent.CycleDetectingLockFactory.ExampleStackTrace
 new: class com.google.common.util.concurrent.CycleDetectingLockFactory.ExampleStackTrace
 java.class.nonPublicPartOfAPI: Class 'com.google.common.util.concurrent.CycleDetectingLockFactory.ExampleStackTrace' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
-SEMANTIC: BREAKING, SOURCE: NON_BREAKING, BINARY: NON_BREAKING
-
-old: method <T> T com.google.common.util.concurrent.FakeTimeLimiter::callWithTimeout(java.util.concurrent.Callable<T>, long, java.util.concurrent.TimeUnit, boolean) throws java.lang.Exception
-new: method <T> T com.google.common.util.concurrent.TimeLimiter::callWithTimeout(java.util.concurrent.Callable<T>, java.time.Duration) throws java.util.concurrent.TimeoutException, java.lang.InterruptedException, java.util.concurrent.ExecutionException @ com.google.common.util.concurrent.FakeTimeLimiter
-java.method.numberOfParametersChanged: The number of parameters of the method have changed.
-SOURCE: BREAKING, BINARY: BREAKING
-java.method.exception.checkedAdded: Method newly throws checked exceptions: java.lang.InterruptedException.
-SOURCE: BREAKING, BINARY: NON_BREAKING
-java.method.exception.checkedAdded: Method newly throws checked exceptions: java.util.concurrent.ExecutionException.
-SOURCE: BREAKING, BINARY: NON_BREAKING
-java.method.exception.checkedAdded: Method newly throws checked exceptions: java.util.concurrent.TimeoutException.
-SOURCE: BREAKING, BINARY: NON_BREAKING
-java.method.exception.checkedRemoved: Method no longer throws checked exceptions: java.lang.Exception.
-SOURCE: BREAKING, BINARY: NON_BREAKING
-java.annotation.added: Element newly annotated with 'com.google.common.util.concurrent.ParametricNullness'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-java.annotation.added: Element newly annotated with 'com.google.errorprone.annotations.CanIgnoreReturnValue'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: class com.google.common.util.concurrent.ForwardingCheckedFuture<V, X extends java.lang.Exception>
-new: <none>
-java.class.removed: Class was removed.
-SOURCE: BREAKING, BINARY: BREAKING
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
 
 old: method java.util.concurrent.Future<V> com.google.common.util.concurrent.ForwardingFuture<V>::delegate()
 new: method java.util.concurrent.Future<? extends V> com.google.common.util.concurrent.ForwardingFuture<V>::delegate()
 java.method.returnTypeTypeParametersChanged: The return type changed from 'java.util.concurrent.Future<V>' to 'java.util.concurrent.Future<? extends V>'.
-SOURCE: BREAKING, BINARY: NON_BREAKING
+BINARY: NON_BREAKING, SOURCE: BREAKING
 
 old: method com.google.common.util.concurrent.ListenableFuture<V> com.google.common.util.concurrent.ForwardingListenableFuture<V>::delegate()
 new: method com.google.common.util.concurrent.ListenableFuture<? extends V> com.google.common.util.concurrent.ForwardingListenableFuture<V>::delegate()
 java.method.returnTypeTypeParametersChanged: The return type changed from 'com.google.common.util.concurrent.ListenableFuture<V>' to 'com.google.common.util.concurrent.ListenableFuture<? extends V>'.
-SOURCE: BREAKING, BINARY: NON_BREAKING
+BINARY: NON_BREAKING, SOURCE: BREAKING
 
 old: interface com.google.common.util.concurrent.FutureFallback<V>
 new: <none>
 java.class.removed: Class was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: method <V> void com.google.common.util.concurrent.Futures::addCallback(com.google.common.util.concurrent.ListenableFuture<V>, com.google.common.util.concurrent.FutureCallback<? super V>)
-new: <none>
-java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: method <V, X extends java.lang.Throwable> com.google.common.util.concurrent.ListenableFuture<V> com.google.common.util.concurrent.Futures::catching(com.google.common.util.concurrent.ListenableFuture<? extends V>, java.lang.Class<X>, com.google.common.base.Function<? super X, ? extends V>)
-new: <none>
-java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: method <V, X extends java.lang.Throwable> com.google.common.util.concurrent.ListenableFuture<V> com.google.common.util.concurrent.Futures::catchingAsync(com.google.common.util.concurrent.ListenableFuture<? extends V>, java.lang.Class<X>, com.google.common.util.concurrent.AsyncFunction<? super X, ? extends V>)
-new: <none>
-java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: method <V> com.google.common.util.concurrent.ListenableFuture<V> com.google.common.util.concurrent.Futures::dereference(com.google.common.util.concurrent.ListenableFuture<? extends com.google.common.util.concurrent.ListenableFuture<? extends V>>)
-new: <none>
-java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
+BINARY: BREAKING, SOURCE: BREAKING
 
 old: method <V, X extends java.lang.Exception> V com.google.common.util.concurrent.Futures::get(java.util.concurrent.Future<V>, java.lang.Class<X>) throws X
 new: <none>
 java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
+BINARY: BREAKING, SOURCE: BREAKING
 
 old: method <V, X extends java.lang.Exception> V com.google.common.util.concurrent.Futures::get(java.util.concurrent.Future<V>, long, java.util.concurrent.TimeUnit, java.lang.Class<X>) throws X
 new: <none>
 java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: method <V, X extends java.lang.Exception> com.google.common.util.concurrent.CheckedFuture<V, X> com.google.common.util.concurrent.Futures::immediateCheckedFuture(V)
-new: <none>
-java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: method <V, X extends java.lang.Exception> com.google.common.util.concurrent.CheckedFuture<V, X> com.google.common.util.concurrent.Futures::immediateFailedCheckedFuture(X)
-new: <none>
-java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: method <V, X extends java.lang.Exception> com.google.common.util.concurrent.CheckedFuture<V, X> com.google.common.util.concurrent.Futures::makeChecked(com.google.common.util.concurrent.ListenableFuture<V>, com.google.common.base.Function<? super java.lang.Exception, X>)
-new: <none>
-java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: method <I, O> com.google.common.util.concurrent.ListenableFuture<O> com.google.common.util.concurrent.Futures::transform(com.google.common.util.concurrent.ListenableFuture<I>, com.google.common.base.Function<? super I, ? extends O>)
-new: <none>
-java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
+BINARY: BREAKING, SOURCE: BREAKING
 
 old: method <I, O> com.google.common.util.concurrent.ListenableFuture<O> com.google.common.util.concurrent.Futures::transform(com.google.common.util.concurrent.ListenableFuture<I>, com.google.common.util.concurrent.AsyncFunction<? super I, ? extends O>)
 new: <none>
 java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
+BINARY: BREAKING, SOURCE: BREAKING
 
 old: method <I, O> com.google.common.util.concurrent.ListenableFuture<O> com.google.common.util.concurrent.Futures::transform(com.google.common.util.concurrent.ListenableFuture<I>, com.google.common.util.concurrent.AsyncFunction<? super I, ? extends O>, java.util.concurrent.Executor)
 new: <none>
 java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: method <I, O> com.google.common.util.concurrent.ListenableFuture<O> com.google.common.util.concurrent.Futures::transformAsync(com.google.common.util.concurrent.ListenableFuture<I>, com.google.common.util.concurrent.AsyncFunction<? super I, ? extends O>)
-new: <none>
-java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
+BINARY: BREAKING, SOURCE: BREAKING
 
 old: method <V> com.google.common.util.concurrent.ListenableFuture<V> com.google.common.util.concurrent.Futures::withFallback(com.google.common.util.concurrent.ListenableFuture<? extends V>, com.google.common.util.concurrent.FutureFallback<? extends V>)
 new: <none>
 java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
+BINARY: BREAKING, SOURCE: BREAKING
 
 old: method <V> com.google.common.util.concurrent.ListenableFuture<V> com.google.common.util.concurrent.Futures::withFallback(com.google.common.util.concurrent.ListenableFuture<? extends V>, com.google.common.util.concurrent.FutureFallback<? extends V>, java.util.concurrent.Executor)
 new: <none>
 java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
+BINARY: BREAKING, SOURCE: BREAKING
 
-old: method com.google.common.util.concurrent.ListeningExecutorService com.google.common.util.concurrent.MoreExecutors::sameThreadExecutor()
-new: <none>
-java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
+old: enum com.google.thirdparty.publicsuffix.PublicSuffixType
+new: enum com.google.thirdparty.publicsuffix.PublicSuffixType
+java.class.nonPublicPartOfAPI: Class 'com.google.thirdparty.publicsuffix.PublicSuffixType' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
 
-old: enum com.google.common.util.concurrent.Service.State
-new: enum com.google.common.util.concurrent.Service.State
-java.class.noLongerAbstract: Class is no longer abstract.
-SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-java.class.nowFinal: Class is now final.
-SOURCE: BREAKING, BINARY: BREAKING
-java.annotation.removed: Element no longer annotated with 'com.google.common.annotations.Beta'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: method void com.google.common.util.concurrent.ServiceManager::addListener(com.google.common.util.concurrent.ServiceManager.Listener)
-new: <none>
-java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: method com.google.common.collect.ImmutableMultimap<com.google.common.util.concurrent.Service.State, com.google.common.util.concurrent.Service> com.google.common.util.concurrent.ServiceManager::servicesByState()
-new: method com.google.common.collect.ImmutableSetMultimap<com.google.common.util.concurrent.Service.State, com.google.common.util.concurrent.Service> com.google.common.util.concurrent.ServiceManager::servicesByState()
-java.method.returnTypeChangedCovariantly: The return type changed covariantly from 'com.google.common.collect.ImmutableMultimap<com.google.common.util.concurrent.Service.State, com.google.common.util.concurrent.Service>' to 'com.google.common.collect.ImmutableSetMultimap<com.google.common.util.concurrent.Service.State, com.google.common.util.concurrent.Service>'.
-SOURCE: NON_BREAKING, BINARY: BREAKING
-
-old: method void com.google.common.util.concurrent.SimpleTimeLimiter::<init>()
-new: <none>
-java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: method void com.google.common.util.concurrent.SimpleTimeLimiter::<init>(java.util.concurrent.ExecutorService)
-new: method void com.google.common.util.concurrent.SimpleTimeLimiter::<init>(java.util.concurrent.ExecutorService)
-java.method.visibilityReduced: visibility reduced
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: method <T> T com.google.common.util.concurrent.SimpleTimeLimiter::callWithTimeout(java.util.concurrent.Callable<T>, long, java.util.concurrent.TimeUnit, boolean) throws java.lang.Exception
-new: method <T> T com.google.common.util.concurrent.SimpleTimeLimiter::callWithTimeout(java.util.concurrent.Callable<T>, long, java.util.concurrent.TimeUnit, boolean) throws java.lang.Exception
-java.method.visibilityReduced: visibility reduced
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: <none>
-new: method <T> T com.google.common.util.concurrent.TimeLimiter::callUninterruptiblyWithTimeout(java.util.concurrent.Callable<T>, long, java.util.concurrent.TimeUnit) throws java.util.concurrent.TimeoutException, java.util.concurrent.ExecutionException
-java.method.addedToInterface: Method was added to an interface.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
-
-old: method <T> T com.google.common.util.concurrent.TimeLimiter::callWithTimeout(java.util.concurrent.Callable<T>, long, java.util.concurrent.TimeUnit, boolean) throws java.lang.Exception
-new: method <T> T com.google.common.util.concurrent.TimeLimiter::callWithTimeout(java.util.concurrent.Callable<T>, java.time.Duration) throws java.util.concurrent.TimeoutException, java.lang.InterruptedException, java.util.concurrent.ExecutionException
-java.method.numberOfParametersChanged: The number of parameters of the method have changed.
-SOURCE: BREAKING, BINARY: BREAKING
-java.method.exception.checkedAdded: Method newly throws checked exceptions: java.lang.InterruptedException.
-SOURCE: BREAKING, BINARY: NON_BREAKING
-java.method.exception.checkedAdded: Method newly throws checked exceptions: java.util.concurrent.ExecutionException.
-SOURCE: BREAKING, BINARY: NON_BREAKING
-java.method.exception.checkedAdded: Method newly throws checked exceptions: java.util.concurrent.TimeoutException.
-SOURCE: BREAKING, BINARY: NON_BREAKING
-java.method.exception.checkedRemoved: Method no longer throws checked exceptions: java.lang.Exception.
-SOURCE: BREAKING, BINARY: NON_BREAKING
-java.method.nowDefault: Method has the default implementation in the interface now.
-SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-java.method.noLongerAbstract: Method no longer abstract
-SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-java.annotation.added: Element newly annotated with 'com.google.common.util.concurrent.ParametricNullness'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-java.annotation.added: Element newly annotated with 'com.google.errorprone.annotations.CanIgnoreReturnValue'.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
-
-old: <none>
-new: method <T> T com.google.common.util.concurrent.TimeLimiter::callWithTimeout(java.util.concurrent.Callable<T>, long, java.util.concurrent.TimeUnit) throws java.util.concurrent.TimeoutException, java.lang.InterruptedException, java.util.concurrent.ExecutionException
-java.method.addedToInterface: Method was added to an interface.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
-
-old: <none>
-new: method void com.google.common.util.concurrent.TimeLimiter::runUninterruptiblyWithTimeout(java.lang.Runnable, long, java.util.concurrent.TimeUnit) throws java.util.concurrent.TimeoutException
-java.method.addedToInterface: Method was added to an interface.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
-
-old: <none>
-new: method void com.google.common.util.concurrent.TimeLimiter::runWithTimeout(java.lang.Runnable, long, java.util.concurrent.TimeUnit) throws java.util.concurrent.TimeoutException, java.lang.InterruptedException
-java.method.addedToInterface: Method was added to an interface.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
-
-19:57:58.035 INFO  Analysis took 24743ms.
+11:22:34.945 INFO  Analysis took 46814ms.
 
 
 * * * * * * * *
 >>>>>>
-compilation log:
+subsequent compilation log of 20.0-rc1:
 [INFO] Scanning for projects...
 [INFO] 
 [INFO] -----------------< com.iluwatar:dependency-injection >------------------
 [INFO] Building dependency-injection 1.25.0
-[INFO]   from _temp_com.google.guava_guava_33.2.0-jre_.xml
+[INFO]   from _temp_com.google.guava_guava_20.0-rc1_.xml
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
 [INFO] --- clean:3.2.0:clean (default-clean) @ dependency-injection ---
@@ -3290,8 +2664,8 @@ compilation log:
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  5.677 s
-[INFO] Finished at: 2024-05-22T20:10:33+08:00
+[INFO] Total time:  5.854 s
+[INFO] Finished at: 2024-05-23T13:15:41+08:00
 [INFO] ------------------------------------------------------------------------
 
 

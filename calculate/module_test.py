@@ -4,6 +4,7 @@ import json
 import subprocess
 import shutil
 import copy
+import time
 from tqdm import tqdm
 from lxml import etree
 # set transitive dependency in pom
@@ -123,6 +124,7 @@ def set_one_dep(dep:dict, module_path:str, pom_path:str)->str:
 # module_error_folder: path to the folder containing the errors of the module
 # tqdm_log_module_folder: path to tqdm_log/{module_name}/ containing files denoting the progress of each process
 # flag: if this dep is true positive, flag is True, False otherwise
+# lock is deprecated
 def check_version_module(lock, res_dict:dict, dep_path:str, path_to_cloned_folder:str, module_error_folder: str, tqdm_log_module_folder:str)->bool:
     flag = True
     # path to inform.json in module data folder
@@ -253,73 +255,82 @@ def recompile(path_to_cloned_folder: str, new_pom_path: str):
 # result: return value of subprocessor.run
 # should store: relative module path/module name(in module_data_folder/inform.json)+dep ga + dep original verion\
 # + dep new version + dep depth + recompilation log
-# note: if there are multiply dep data, means all dep are set to the version that tool outputs
-# use lock to achieve process mutually exclusive
 def store_error(lock, module_data_folder:str, dep_list:list, result, subsuquent_result, folder:str):
-    with lock:
-        # get the name of the txt;all name is a number
-        if os.listdir(folder):
-            # not empty means already has same situation before
-            max_num = 0
-            for item in os.listdir(folder):
-                if max_num < int(item):
-                    max_num = int(item)
-                txt_name = str(max_num+1)
-        else :
-            # empty, so txt_name is '1'
-            txt_name = '1'
-        path_to_inform = os.path.join(module_data_folder, 'inform.json')
-        with open(path_to_inform, 'r') as f:
-            inform = json.load(f)
-            module_name = inform['Module']
-        with open(os.path.join(folder, txt_name), 'a') as log_txt:
-            # records module name
-            log_txt.write(f'module name: {module_name}\n')
+    # with lock:
+    # get the name of the txt;all name is a number
+    # if os.listdir(folder):
+    #     # not empty means already has same situation before
+    #     max_num = 0
+    #     for item in os.listdir(folder):
+    #         if max_num < int(item):
+    #             max_num = int(item)
+    #         txt_name = str(max_num+1)
+    # else :
+    #     # empty, so txt_name is '1'
+    #     txt_name = '1'
+    pid = os.getpid()
+    txt_name = f'{int(time.time())}_{pid}.txt'
+    
+    path_to_inform = os.path.join(module_data_folder, 'inform.json')
+    # folder to contain related jar
+    jar_folder = os.path.join(folder, '../jar/')
+    with open(path_to_inform, 'r') as f:
+        inform = json.load(f)
+        module_name = inform['Module']
+    with open(os.path.join(folder, txt_name), 'a') as log_txt:
+        # records module name
+        log_txt.write(f'module name: {module_name}\n')
+        log_txt.write(f'\n* * * * * * * *\n')
+        for dep in dep_list:
+            log_txt.write(f'groudId: {dep["GroupId"]}\n')
+            log_txt.write(f'artifactId: {dep["ArtifactId"]}\n')
+            log_txt.write(f'old version: {dep["Version"]}\n')
+            log_txt.write(f'new version: {dep["BestVersion"]}\n')
+            log_txt.write(f'classifier: {dep["Classifier"]}\n')
+            log_txt.write(f'breaking reason by Tool:\n  breaking version:{dep["Breaking_Reason"]["breaking_version"]}\n breaking reason:{dep["Breaking_Reason"]["breaking_reason"]}\n')
+            log_txt.write(f'depth: {dep["Depth"]}\n')
+            log_txt.write(f'reachable api of old version:\n')
+            for reachable_api in dep['ReachableAPIs']:
+                log_txt.write(f'    {reachable_api}\n')
+            # current version revapi log
+            if dep['Version'] != dep['BestVersion']:
+                log_txt.write(f'/ / / / / / / / /\nrevapi log of former version -- {dep["BestVersion"]}:\n')
+                if dep['Classifier'] == '':
+                    former_revapi_log_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{dep["BestVersion"]}.jar.ret.txt')
+                    former_jar_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{dep["BestVersion"]}.jar')
+                else:
+                    former_revapi_log_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{dep["BestVersion"]}-{dep["Classifier"]}.jar.ret.txt')
+                    former_jar_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{dep["BestVersion"]}-{dep["Classifier"]}.jar')
+                with open(former_revapi_log_path, 'r') as revapi_log:
+                    log_txt.write(f'{revapi_log.read()}\n')
+                shutil.copy(former_jar_path, jar_folder)
+            # subsequent version(breaking version) revapi log
+            idx = 0
+            for i in range(len(dep['AllVersion'])):
+                if dep['AllVersion'][i]['version'] == dep['BestVersion']:
+                    idx = i
+                    break
+            if idx != len(dep['AllVersion'])-1:
+                subsequent_idx = idx+1
+                subsequent_version = dep['AllVersion'][subsequent_idx]['version']
+                if dep['Classifier'] == '':
+                    sub_revapi_log_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{subsequent_version}.jar.ret.txt')
+                    sub_jar_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{subsequent_version}.jar')
+                else:
+                    sub_revapi_log_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{subsequent_version}-{dep["Classifier"]}.jar.ret.txt')
+                    sub_jar_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{subsequent_version}-{dep["Classifier"]}.jar')
+                log_txt.write(f'/ / / / / / / / /\nrevapi log of the subsequent version -- {subsequent_version}:\n')
+                with open(sub_revapi_log_path, 'r') as revapi_log:
+                    log_txt.write(f'{revapi_log.read()}\n')
+                shutil.copy(sub_jar_path, jar_folder)
             log_txt.write(f'\n* * * * * * * *\n')
-            for dep in dep_list:
-                log_txt.write(f'groudId: {dep["GroupId"]}\n')
-                log_txt.write(f'artifactId: {dep["ArtifactId"]}\n')
-                log_txt.write(f'old version: {dep["Version"]}\n')
-                log_txt.write(f'new version: {dep["BestVersion"]}\n')
-                log_txt.write(f'breaking reason by Tool:\n  breaking version:{dep["Breaking_Reason"]["breaking_version"]}\n breaking reason:{dep["Breaking_Reason"]["breaking_reason"]}\n')
-                log_txt.write(f'depth: {dep["Depth"]}\n')
-                log_txt.write(f'reachable api of old version:\n')
-                for reachable_api in dep['ReachableAPIs']:
-                    log_txt.write(f'    {reachable_api}\n')
-                # current version revapi log
-                if dep['Version'] != dep['BestVersion']:
-                    log_txt.write(f'/ / / / / / / / /\nrevapi log of former version:\n')
-                    if dep['Classifier'] == '':
-                        revapi_log_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{dep["BestVersion"]}.jar.ret.txt')
-                    else:
-                        revapi_log_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{dep["BestVersion"]}-{dep["Classifier"]}.jar.ret.txt')
-                    with open(revapi_log_path, 'r') as revapi_log:
-                        log_txt.write(f'{revapi_log.read()}\n')
-                # subsequent version(breaking version) revapi log
-                idx = 0
-                for i in range(len(dep['AllVersion'])):
-                    if dep['AllVersion'][i]['version'] == dep['BestVersion']:
-                        idx = i
-                        break
-                if idx != len(dep['AllVersion'])-1:
-                    subsequent_idx = idx+1
-                    subsequent_version = dep['AllVersion'][subsequent_idx]['version']
-                    if dep['Classifier'] == '':
-                        revapi_log_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{subsequent_version}.jar.ret.txt')
-                    else:
-                        revapi_log_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{subsequent_version}-{dep["Classifier"]}.jar.ret.txt')
-                    log_txt.write(f'/ / / / / / / / /\nrevapi log of the subsequent version:\n')
-                    with open(revapi_log_path, 'r') as revapi_log:
-                        log_txt.write(f'{revapi_log.read()}\n')
-                
-                log_txt.write(f'\n* * * * * * * *\n')
-            print(f">>>>>> compilation log for former version")
-            if result is not None:
-                log_txt.write(f">>>>>>\ncompilation log:\n{result.stdout}\n")
-            print(f">>>>>> compilation log for later version")
-            if subsuquent_result is not None:
-                log_txt.write(f">>>>>>\nsubsequent compilation log:\n{subsuquent_result.stdout}\n")
-            log_txt.write(f'\n* * * * * * * *\n') 
+        print(f">>>>>> compilation log for former version")
+        if result is not None:
+            log_txt.write(f">>>>>>\ncompilation log of {dep['BestVersion']}:\n{result.stdout}\n")
+        print(f">>>>>> compilation log for later version")
+        if subsuquent_result is not None:
+            log_txt.write(f">>>>>>\nsubsequent compilation log of {subsequent_version}:\n{subsuquent_result.stdout}\n")
+        log_txt.write(f'\n* * * * * * * *\n') 
 
 # back to original pom
 def reset(original_tree, pom_path):

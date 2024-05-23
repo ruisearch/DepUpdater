@@ -4,7 +4,8 @@ module name: dependency-injection/
 groudId: com.google.inject
 artifactId: guice
 old version: 4.0
-new version: 4.1.0
+new version: 6.0.0
+classifier: 
 breaking reason by Tool:
   breaking version:4.2.0
  breaking reason:com.google.inject.internal.Errors: java.lang.String format(java.lang.String,java.util.Collection)
@@ -1202,81 +1203,79 @@ reachable api of old version:
     com.google.inject.util.Types: java.lang.reflect.WildcardType supertypeOf(java.lang.reflect.Type)
     com.google.inject.util.Types: java.lang.reflect.ParameterizedType providerOf(java.lang.reflect.Type)
 / / / / / / / / /
-revapi log of former version:
-18:13:34.224 INFO  Downloading checked archives
-18:13:34.295 INFO  Downloading extensions
-18:13:40.731 INFO  Starting analysis
+revapi log of former version -- 6.0.0:
+11:29:40.598 INFO  Downloading checked archives
+11:29:40.719 INFO  Downloading extensions
+11:29:47.012 INFO  Starting analysis
 Analysis results
 ----------------
 
 Old API: com.google.inject-guice-4.0.jar
-New API: com.google.inject-guice-4.1.0.jar
-old: method java.lang.Class<? extends com.google.inject.Provider<?>> com.google.inject.ProvidedBy::value()
-new: method java.lang.Class<? extends javax.inject.Provider<?>> com.google.inject.ProvidedBy::value()
-java.method.returnTypeTypeParametersChanged: The return type changed from 'java.lang.Class<? extends com.google.inject.Provider<?>>' to 'java.lang.Class<? extends javax.inject.Provider<?>>'.
-SOURCE: BREAKING, BINARY: NON_BREAKING
+New API: com.google.inject-guice-6.0.0.jar
+old: <none>
+new: method java.util.Map<com.google.inject.TypeLiteral<?>, java.util.List<com.google.inject.spi.InjectionPoint>> com.google.inject.Injector::getAllMembersInjectorInjectionPoints()
+java.method.addedToInterface: Method was added to an interface.
+SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING, SOURCE: BREAKING
 
-old: method com.google.inject.internal.cglib.reflect.$FastClass com.google.inject.internal.BytecodeGen::newFastClass(java.lang.Class<?>, com.google.inject.internal.BytecodeGen.Visibility)
-new: <none>
-java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
+old: <none>
+new: method java.util.List<com.google.inject.spi.Element> com.google.inject.Injector::getElements()
+java.method.addedToInterface: Method was added to an interface.
+SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING, SOURCE: BREAKING
 
-old: class com.google.inject.internal.Errors
-new: class com.google.inject.internal.Errors
-java.class.defaultSerializationChanged: The default serialization ID for the class has changed. This means that the new version of the class is not deserializable from the byte stream of a serialized old class.
-SOURCE: EQUIVALENT, BINARY: EQUIVALENT, SEMANTIC: BREAKING
-
-old: method com.google.inject.internal.Errors com.google.inject.internal.Errors::cannotSatisfyCircularDependency(java.lang.Class<?>)
-new: <none>
-java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: method com.google.inject.internal.Errors com.google.inject.internal.Errors::circularProxiesDisabled(java.lang.Class<?>)
-new: <none>
-java.method.removed: Method was removed.
-SOURCE: BREAKING, BINARY: BREAKING
-
-old: parameter com.google.inject.internal.Errors com.google.inject.internal.Errors::errorInProvider(===java.lang.RuntimeException===)
-new: parameter com.google.inject.internal.Errors com.google.inject.internal.Errors::errorInProvider(===java.lang.Throwable===)
-java.method.parameterTypeChanged: The type of the parameter changed from 'java.lang.RuntimeException' to 'java.lang.Throwable'.
-SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
-
-old: class com.google.inject.internal.InjectorImpl
-new: class com.google.inject.internal.InjectorImpl
-java.class.nonPublicPartOfAPI: Class 'com.google.inject.internal.InjectorImpl' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
-SOURCE: NON_BREAKING, BINARY: NON_BREAKING, SEMANTIC: BREAKING
-
-old: interface com.google.inject.internal.InternalFactory<T>
-new: interface com.google.inject.internal.InternalFactory<T>
-java.class.nonPublicPartOfAPI: Class 'com.google.inject.internal.InternalFactory<T>' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
-SOURCE: NON_BREAKING, BINARY: NON_BREAKING, SEMANTIC: BREAKING
-
-18:14:07.975 INFO  Analysis took 27243ms.
-
-/ / / / / / / / /
-revapi log of the subsequent version:
-18:14:12.877 INFO  Downloading checked archives
-18:14:13.043 INFO  Downloading extensions
-18:14:18.342 INFO  Starting analysis
-Analysis results
-----------------
-
-Old API: com.google.inject-guice-4.0.jar
-New API: com.google.inject-guice-4.2.0.jar
 old: method java.lang.Class<? extends com.google.inject.Provider<?>> com.google.inject.ProvidedBy::value()
 new: method java.lang.Class<? extends javax.inject.Provider<?>> com.google.inject.ProvidedBy::value()
 java.method.returnTypeTypeParametersChanged: The return type changed from 'java.lang.Class<? extends com.google.inject.Provider<?>>' to 'java.lang.Class<? extends javax.inject.Provider<?>>'.
 BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: method void com.google.inject.internal.BindingImpl<T>::<init>(com.google.inject.internal.InjectorImpl, com.google.inject.Key<T>, java.lang.Object, com.google.inject.internal.InternalFactory<? extends T>, com.google.inject.internal.Scoping)
+new: method void com.google.inject.internal.BindingImpl<T>::<init>(com.google.inject.internal.InjectorImpl, com.google.inject.Key<T>, java.lang.Object, com.google.inject.internal.InternalFactory<? extends T>, com.google.inject.internal.Scoping)
+java.method.visibilityReduced: visibility reduced
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.google.inject.internal.BindingImpl<T>::<init>(java.lang.Object, com.google.inject.Key<T>, com.google.inject.internal.Scoping)
+new: method void com.google.inject.internal.BindingImpl<T>::<init>(java.lang.Object, com.google.inject.Key<T>, com.google.inject.internal.Scoping)
+java.method.visibilityReduced: visibility reduced
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: enum com.google.inject.internal.BytecodeGen.Visibility
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.ClassLoader com.google.inject.internal.BytecodeGen::getClassLoader(java.lang.Class<?>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.google.inject.internal.cglib.proxy.$Enhancer com.google.inject.internal.BytecodeGen::newEnhancer(java.lang.Class<?>, com.google.inject.internal.BytecodeGen.Visibility)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
 
 old: method com.google.inject.internal.cglib.reflect.$FastClass com.google.inject.internal.BytecodeGen::newFastClass(java.lang.Class<?>, com.google.inject.internal.BytecodeGen.Visibility)
 new: <none>
 java.method.removed: Method was removed.
 BINARY: BREAKING, SOURCE: BREAKING
 
+old: interface com.google.inject.internal.CircularDependencyProxy
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
 old: class com.google.inject.internal.Errors
 new: class com.google.inject.internal.Errors
 java.class.defaultSerializationChanged: The default serialization ID for the class has changed. This means that the new version of the class is not deserializable from the byte stream of a serialized old class.
-BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: BREAKING
+SEMANTIC: BREAKING, BINARY: EQUIVALENT, SOURCE: EQUIVALENT
+
+old: parameter com.google.inject.internal.Errors com.google.inject.internal.Errors::atInjectRequired(===java.lang.Class===)
+new: parameter com.google.inject.internal.Errors com.google.inject.internal.Errors::atInjectRequired(===com.google.inject.TypeLiteral<?>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'java.lang.Class' to 'com.google.inject.TypeLiteral<?>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.google.inject.internal.Errors com.google.inject.internal.Errors::cannotInjectNonVoidMethod(java.lang.reflect.Method)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
 
 old: method com.google.inject.internal.Errors com.google.inject.internal.Errors::cannotSatisfyCircularDependency(java.lang.Class<?>)
 new: <none>
@@ -1343,9 +1342,556 @@ new: method java.util.List<java.lang.Object> com.google.inject.internal.Errors::
 java.method.visibilityReduced: visibility reduced
 BINARY: BREAKING, SOURCE: BREAKING
 
+old: parameter com.google.inject.internal.Errors com.google.inject.internal.Errors::missingConstructor(===java.lang.Class<?>===)
+new: parameter com.google.inject.internal.Errors com.google.inject.internal.Errors::missingConstructor(===com.google.inject.TypeLiteral<?>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'java.lang.Class<?>' to 'com.google.inject.TypeLiteral<?>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.google.inject.internal.Errors com.google.inject.internal.Errors::recursiveBinding()
+new: method com.google.inject.internal.Errors com.google.inject.internal.Errors::recursiveBinding(com.google.inject.Key<?>, com.google.inject.Key<?>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
 old: method com.google.inject.internal.Errors com.google.inject.internal.Errors::subtypeNotProvided(java.lang.Class<? extends com.google.inject.Provider<?>>, java.lang.Class<?>)
 new: <none>
 java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.ExposedBindingImpl<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.InjectorImpl
+new: class com.google.inject.internal.InjectorImpl
+java.class.nonPublicPartOfAPI: Class 'com.google.inject.internal.InjectorImpl' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+SEMANTIC: BREAKING, BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+
+old: <none>
+new: class com.google.inject.internal.InternalContext
+java.class.nonPublicPartOfAPI: Class 'com.google.inject.internal.InternalContext' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+SEMANTIC: BREAKING, BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+
+old: interface com.google.inject.internal.InternalFactory<T>
+new: interface com.google.inject.internal.InternalFactory<T>
+java.class.nonPublicPartOfAPI: Class 'com.google.inject.internal.InternalFactory<T>' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+SEMANTIC: BREAKING, BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+
+old: class com.google.inject.internal.InternalFlags
+new: class com.google.inject.internal.InternalFlags
+java.class.nowFinal: Class is now final.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: field com.google.inject.internal.InternalFlags.IncludeStackTraceOption.COMPLETE
+new: <none>
+java.field.removed: Field removed from class.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.google.inject.internal.InternalFlags::<init>()
+new: method void com.google.inject.internal.InternalFlags::<init>()
+java.method.visibilityReduced: visibility reduced
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.LinkedBindingImpl<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method boolean com.google.inject.internal.Nullability::allowsNull(java.lang.annotation.Annotation[])
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.Object com.google.inject.internal.ProviderMethodsModule::getDelegateModule()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.asm.$Type
+new: class com.google.inject.internal.asm.$Type
+java.class.nowFinal: Class is now final.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.asm.$TypePath
+new: class com.google.inject.internal.asm.$TypePath
+java.class.nowFinal: Class is now final.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$AbstractClassGenerator
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$Block
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$ClassEmitter
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.core.$ClassGenerator
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$ClassInfo
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$ClassNameReader
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$CodeEmitter
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$CodeGenerationException
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$CollectionUtils
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.core.$Constants
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.core.$Customizer
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$DebuggingClassWriter
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$DefaultGeneratorStrategy
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$DefaultNamingPolicy
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$DuplicatesPredicate
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$EmitUtils
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.core.$GeneratorStrategy
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$KeyFactory
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$Local
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$LocalVariablesSorter
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$MethodInfo
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$MethodInfoTransformer
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$MethodWrapper
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.core.$NamingPolicy
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.core.$ObjectSwitchCallback
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.core.$Predicate
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.core.$ProcessArrayCallback
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.core.$ProcessSwitchCallback
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$ReflectUtils
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$RejectModifierPredicate
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$Signature
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.core.$Transformer
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$TypeUtils
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$VisibilityPredicate
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.proxy.$Callback
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.proxy.$CallbackFilter
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.proxy.$Dispatcher
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.proxy.$Enhancer
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.proxy.$Factory
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.proxy.$FixedValue
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.proxy.$InvocationHandler
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.proxy.$LazyLoader
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.proxy.$MethodInterceptor
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.proxy.$MethodProxy
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.proxy.$NoOp
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.proxy.$ProxyRefDispatcher
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.proxy.$UndeclaredThrowableException
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.reflect.$FastClass
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.reflect.$FastConstructor
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.reflect.$FastMember
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.reflect.$FastMethod
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.transform.$ClassTransformer
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.StackTraceElement com.google.inject.internal.util.SourceProvider::get(java.lang.StackTraceElement[])
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.util.StackTraceElements
+new: class com.google.inject.internal.util.StackTraceElements
+java.class.nowFinal: Class is now final.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.google.inject.internal.util.StackTraceElements::<init>()
+new: method void com.google.inject.internal.util.StackTraceElements::<init>()
+java.method.visibilityReduced: visibility reduced
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.util.Stopwatch
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.spi.DependencyAndSource
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.util.List<java.lang.Integer> com.google.inject.spi.ElementSource::getModuleConfigurePositionsInStackTrace()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.StackTraceElement[] com.google.inject.spi.ElementSource::getStackTrace()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.util.List<com.google.inject.spi.DependencyAndSource> com.google.inject.spi.ProvisionListener.ProvisionInvocation<T>::getDependencyChain()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: <none>
+new: method com.google.inject.Module com.google.inject.util.Modules.OverriddenModuleBuilder::with()
+java.method.addedToInterface: Method was added to an interface.
+SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING, SOURCE: BREAKING
+
+11:30:10.962 INFO  Analysis took 23950ms.
+
+/ / / / / / / / /
+revapi log of the subsequent version -- 7.0.0-rc1:
+11:30:24.007 INFO  Downloading checked archives
+11:30:24.053 INFO  Downloading extensions
+11:30:31.968 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: com.google.inject-guice-4.0.jar
+New API: com.google.inject-guice-7.0.0-rc1.jar
+old: <none>
+new: method java.util.Map<com.google.inject.TypeLiteral<?>, java.util.List<com.google.inject.spi.InjectionPoint>> com.google.inject.Injector::getAllMembersInjectorInjectionPoints()
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method java.util.List<com.google.inject.spi.Element> com.google.inject.Injector::getElements()
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method java.lang.Class<? extends com.google.inject.Provider<?>> com.google.inject.ProvidedBy::value()
+new: method java.lang.Class<? extends jakarta.inject.Provider<?>> com.google.inject.ProvidedBy::value()
+java.method.returnTypeTypeParametersChanged: The return type changed from 'java.lang.Class<? extends com.google.inject.Provider<?>>' to 'java.lang.Class<? extends jakarta.inject.Provider<?>>'.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: parameter com.google.inject.binder.ScopedBindingBuilder com.google.inject.binder.LinkedBindingBuilder<T>::toProvider(===javax.inject.Provider<? extends T>===)
+new: parameter com.google.inject.binder.ScopedBindingBuilder com.google.inject.binder.LinkedBindingBuilder<T>::toProvider(===jakarta.inject.Provider<? extends T>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'javax.inject.Provider<? extends T>' to 'jakarta.inject.Provider<? extends T>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter com.google.inject.internal.BindingBuilder<T> com.google.inject.internal.BindingBuilder<T>::toProvider(===javax.inject.Provider<? extends T>===)
+new: parameter com.google.inject.internal.BindingBuilder<T> com.google.inject.internal.BindingBuilder<T>::toProvider(===jakarta.inject.Provider<? extends T>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'javax.inject.Provider<? extends T>' to 'jakarta.inject.Provider<? extends T>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void com.google.inject.internal.BindingImpl<T>::<init>(com.google.inject.internal.InjectorImpl, com.google.inject.Key<T>, java.lang.Object, com.google.inject.internal.InternalFactory<? extends T>, com.google.inject.internal.Scoping)
+new: method void com.google.inject.internal.BindingImpl<T>::<init>(com.google.inject.internal.InjectorImpl, com.google.inject.Key<T>, java.lang.Object, com.google.inject.internal.InternalFactory<? extends T>, com.google.inject.internal.Scoping)
+java.method.visibilityReduced: visibility reduced
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.google.inject.internal.BindingImpl<T>::<init>(java.lang.Object, com.google.inject.Key<T>, com.google.inject.internal.Scoping)
+new: method void com.google.inject.internal.BindingImpl<T>::<init>(java.lang.Object, com.google.inject.Key<T>, com.google.inject.internal.Scoping)
+java.method.visibilityReduced: visibility reduced
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: enum com.google.inject.internal.BytecodeGen.Visibility
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.ClassLoader com.google.inject.internal.BytecodeGen::getClassLoader(java.lang.Class<?>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.google.inject.internal.cglib.proxy.$Enhancer com.google.inject.internal.BytecodeGen::newEnhancer(java.lang.Class<?>, com.google.inject.internal.BytecodeGen.Visibility)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.google.inject.internal.cglib.reflect.$FastClass com.google.inject.internal.BytecodeGen::newFastClass(java.lang.Class<?>, com.google.inject.internal.BytecodeGen.Visibility)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.CircularDependencyProxy
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.Errors
+new: class com.google.inject.internal.Errors
+java.class.defaultSerializationChanged: The default serialization ID for the class has changed. This means that the new version of the class is not deserializable from the byte stream of a serialized old class.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: BREAKING
+
+old: parameter com.google.inject.internal.Errors com.google.inject.internal.Errors::atInjectRequired(===java.lang.Class===)
+new: parameter com.google.inject.internal.Errors com.google.inject.internal.Errors::atInjectRequired(===com.google.inject.TypeLiteral<?>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'java.lang.Class' to 'com.google.inject.TypeLiteral<?>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.google.inject.internal.Errors com.google.inject.internal.Errors::cannotInjectNonVoidMethod(java.lang.reflect.Method)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.google.inject.internal.Errors com.google.inject.internal.Errors::cannotSatisfyCircularDependency(java.lang.Class<?>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method <T> T com.google.inject.internal.Errors::checkForNull(T, java.lang.Object, com.google.inject.spi.Dependency<?>) throws com.google.inject.internal.ErrorsException
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.google.inject.internal.Errors com.google.inject.internal.Errors::circularProxiesDisabled(java.lang.Class<?>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.google.inject.internal.Errors com.google.inject.internal.Errors::errorInProvider(java.lang.RuntimeException)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.google.inject.internal.Errors com.google.inject.internal.Errors::errorInUserInjector(com.google.inject.MembersInjector<?>, com.google.inject.TypeLiteral<?>, java.lang.RuntimeException)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.google.inject.internal.Errors com.google.inject.internal.Errors::errorInjectingConstructor(java.lang.Throwable)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.google.inject.internal.Errors com.google.inject.internal.Errors::errorInjectingMethod(java.lang.Throwable)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.google.inject.internal.Errors com.google.inject.internal.Errors::errorNotifyingInjectionListener(com.google.inject.spi.InjectionListener<?>, com.google.inject.TypeLiteral<?>, java.lang.RuntimeException)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.String com.google.inject.internal.Errors::format(java.lang.String, java.util.Collection<com.google.inject.spi.Message>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.google.inject.internal.Errors::formatInjectionPoint(java.util.Formatter, com.google.inject.spi.Dependency<?>, com.google.inject.spi.InjectionPoint, com.google.inject.spi.ElementSource)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.google.inject.internal.Errors::formatSource(java.util.Formatter, java.lang.Object, com.google.inject.spi.ElementSource)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.Throwable com.google.inject.internal.Errors::getOnlyCause(java.util.Collection<com.google.inject.spi.Message>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.util.List<java.lang.Object> com.google.inject.internal.Errors::getSources()
+new: method java.util.List<java.lang.Object> com.google.inject.internal.Errors::getSources()
+java.method.visibilityReduced: visibility reduced
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: parameter com.google.inject.internal.Errors com.google.inject.internal.Errors::missingConstructor(===java.lang.Class<?>===)
+new: parameter com.google.inject.internal.Errors com.google.inject.internal.Errors::missingConstructor(===com.google.inject.TypeLiteral<?>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'java.lang.Class<?>' to 'com.google.inject.TypeLiteral<?>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.google.inject.internal.Errors com.google.inject.internal.Errors::recursiveBinding()
+new: method com.google.inject.internal.Errors com.google.inject.internal.Errors::recursiveBinding(com.google.inject.Key<?>, com.google.inject.Key<?>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.google.inject.internal.Errors com.google.inject.internal.Errors::subtypeNotProvided(java.lang.Class<? extends com.google.inject.Provider<?>>, java.lang.Class<?>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.ExposedBindingImpl<T>
+new: <none>
+java.class.removed: Class was removed.
 BINARY: BREAKING, SOURCE: BREAKING
 
 old: class com.google.inject.internal.InjectorImpl
@@ -1363,29 +1909,377 @@ new: interface com.google.inject.internal.InternalFactory<T>
 java.class.nonPublicPartOfAPI: Class 'com.google.inject.internal.InternalFactory<T>' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
 BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
 
-old: class com.google.inject.internal.cglib.core.$AbstractClassGenerator
-new: class com.google.inject.internal.cglib.core.$AbstractClassGenerator<T>
-java.generics.elementNowParameterized: Element now defines formal type parameters.
-BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING
-java.generics.formalTypeParameterAdded: A new formal type parameter added to element: 'T'.
-BINARY: NON_BREAKING, SOURCE: BREAKING
+old: class com.google.inject.internal.InternalFlags
+new: class com.google.inject.internal.InternalFlags
+java.class.nowFinal: Class is now final.
+BINARY: BREAKING, SOURCE: BREAKING
 
-old: parameter java.lang.Object com.google.inject.internal.cglib.proxy.$Enhancer.EnhancerKey::newInstance(java.lang.String, java.lang.String[], ===com.google.inject.internal.cglib.proxy.$CallbackFilter===, com.google.inject.internal.asm.$Type[], boolean, boolean, java.lang.Long)
-new: parameter java.lang.Object com.google.inject.internal.cglib.proxy.$Enhancer.EnhancerKey::newInstance(java.lang.String, java.lang.String[], ===com.google.inject.internal.cglib.core.$WeakCacheKey<com.google.inject.internal.cglib.proxy.$CallbackFilter>===, com.google.inject.internal.asm.$Type[], boolean, boolean, java.lang.Long)
-java.method.parameterTypeChanged: The type of the parameter changed from 'com.google.inject.internal.cglib.proxy.$CallbackFilter' to 'com.google.inject.internal.cglib.core.$WeakCacheKey<com.google.inject.internal.cglib.proxy.$CallbackFilter>'.
+old: field com.google.inject.internal.InternalFlags.IncludeStackTraceOption.COMPLETE
+new: <none>
+java.field.removed: Field removed from class.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.google.inject.internal.InternalFlags::<init>()
+new: method void com.google.inject.internal.InternalFlags::<init>()
+java.method.visibilityReduced: visibility reduced
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.LinkedBindingImpl<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method boolean com.google.inject.internal.Nullability::allowsNull(java.lang.annotation.Annotation[])
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.Object com.google.inject.internal.ProviderMethodsModule::getDelegateModule()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.asm.$Type
+new: class com.google.inject.internal.asm.$Type
+java.class.nowFinal: Class is now final.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.asm.$TypePath
+new: class com.google.inject.internal.asm.$TypePath
+java.class.nowFinal: Class is now final.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$AbstractClassGenerator
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$Block
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$ClassEmitter
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.core.$ClassGenerator
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$ClassInfo
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$ClassNameReader
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$CodeEmitter
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$CodeGenerationException
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$CollectionUtils
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.core.$Constants
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.core.$Customizer
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$DebuggingClassWriter
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$DefaultGeneratorStrategy
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$DefaultNamingPolicy
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$DuplicatesPredicate
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$EmitUtils
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.core.$GeneratorStrategy
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$KeyFactory
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$Local
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$LocalVariablesSorter
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$MethodInfo
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$MethodInfoTransformer
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$MethodWrapper
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.core.$NamingPolicy
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.core.$ObjectSwitchCallback
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.core.$Predicate
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.core.$ProcessArrayCallback
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.core.$ProcessSwitchCallback
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$ReflectUtils
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$RejectModifierPredicate
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$Signature
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.core.$Transformer
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$TypeUtils
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.core.$VisibilityPredicate
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.proxy.$Callback
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.proxy.$CallbackFilter
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.proxy.$Dispatcher
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.proxy.$Enhancer
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.proxy.$Factory
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.proxy.$FixedValue
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.proxy.$InvocationHandler
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.proxy.$LazyLoader
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.proxy.$MethodInterceptor
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.proxy.$MethodProxy
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.proxy.$NoOp
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.google.inject.internal.cglib.proxy.$ProxyRefDispatcher
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.proxy.$UndeclaredThrowableException
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.reflect.$FastClass
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.reflect.$FastConstructor
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.reflect.$FastMember
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.reflect.$FastMethod
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.cglib.transform.$ClassTransformer
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.StackTraceElement com.google.inject.internal.util.SourceProvider::get(java.lang.StackTraceElement[])
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.util.StackTraceElements
+new: class com.google.inject.internal.util.StackTraceElements
+java.class.nowFinal: Class is now final.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.google.inject.internal.util.StackTraceElements::<init>()
+new: method void com.google.inject.internal.util.StackTraceElements::<init>()
+java.method.visibilityReduced: visibility reduced
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.internal.util.Stopwatch
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.google.inject.spi.DependencyAndSource
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.util.List<java.lang.Integer> com.google.inject.spi.ElementSource::getModuleConfigurePositionsInStackTrace()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.StackTraceElement[] com.google.inject.spi.ElementSource::getStackTrace()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method javax.inject.Provider<? extends T> com.google.inject.spi.ProviderInstanceBinding<T>::getUserSuppliedProvider()
+new: method jakarta.inject.Provider<? extends T> com.google.inject.spi.ProviderInstanceBinding<T>::getUserSuppliedProvider()
+java.method.returnTypeChanged: The return type changed from 'javax.inject.Provider<? extends T>' to  'jakarta.inject.Provider<? extends T>'.
 BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
 
-18:14:41.693 INFO  Analysis took 23349ms.
+old: method com.google.inject.Key<? extends javax.inject.Provider<? extends T>> com.google.inject.spi.ProviderKeyBinding<T>::getProviderKey()
+new: method com.google.inject.Key<? extends jakarta.inject.Provider<? extends T>> com.google.inject.spi.ProviderKeyBinding<T>::getProviderKey()
+java.method.returnTypeTypeParametersChanged: The return type changed from 'com.google.inject.Key<? extends javax.inject.Provider<? extends T>>' to 'com.google.inject.Key<? extends jakarta.inject.Provider<? extends T>>'.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: method java.util.List<com.google.inject.spi.DependencyAndSource> com.google.inject.spi.ProvisionListener.ProvisionInvocation<T>::getDependencyChain()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: <none>
+new: method com.google.inject.Module com.google.inject.util.Modules.OverriddenModuleBuilder::with()
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: parameter <T> com.google.inject.Provider<T> com.google.inject.util.Providers::guicify(===javax.inject.Provider<T>===)
+new: parameter <T> com.google.inject.Provider<T> com.google.inject.util.Providers::guicify(===com.google.inject.Provider<T>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'javax.inject.Provider<T>' to 'com.google.inject.Provider<T>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+11:30:56.366 INFO  Analysis took 24397ms.
 
 
 * * * * * * * *
 >>>>>>
-compilation log:
+compilation log of 6.0.0:
 [INFO] Scanning for projects...
 [INFO] 
 [INFO] -----------------< com.iluwatar:dependency-injection >------------------
 [INFO] Building dependency-injection 1.25.0
-[INFO]   from _temp_com.google.inject_guice_4.1.0_.xml
+[INFO]   from _temp_com.google.inject_guice_6.0.0_.xml
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
 [INFO] --- clean:3.2.0:clean (default-clean) @ dependency-injection ---
@@ -1408,17 +2302,17 @@ compilation log:
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  28.907 s
-[INFO] Finished at: 2024-05-22T18:24:35+08:00
+[INFO] Total time:  13.449 s
+[INFO] Finished at: 2024-05-23T11:37:18+08:00
 [INFO] ------------------------------------------------------------------------
 
 >>>>>>
-subsequent compilation log:
+subsequent compilation log of 7.0.0-rc1:
 [INFO] Scanning for projects...
 [INFO] 
 [INFO] -----------------< com.iluwatar:dependency-injection >------------------
 [INFO] Building dependency-injection 1.25.0
-[INFO]   from _temp_com.google.inject_guice_4.2.0_.xml
+[INFO]   from _temp_com.google.inject_guice_7.0.0-rc1_.xml
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
 [INFO] --- clean:3.2.0:clean (default-clean) @ dependency-injection ---
@@ -1438,12 +2332,33 @@ subsequent compilation log:
 [INFO] --- compiler:3.8.1:compile (default-compile) @ dependency-injection ---
 [INFO] Changes detected - recompiling the module!
 [INFO] Compiling 11 source files to /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/target/classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/src/main/java/com/iluwatar/dependency/injection/GuiceWizard.java:[26,20] package javax.inject does not exist
+[ERROR] /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/src/main/java/com/iluwatar/dependency/injection/GuiceWizard.java:[36,4] cannot find symbol
+  symbol:   class Inject
+  location: class com.iluwatar.dependency.injection.GuiceWizard
+[INFO] 2 errors 
+[INFO] -------------------------------------------------------------
 [INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
+[INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  13.335 s
-[INFO] Finished at: 2024-05-22T18:24:54+08:00
+[INFO] Total time:  11.459 s
+[INFO] Finished at: 2024-05-23T11:37:39+08:00
 [INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.1:compile (default-compile) on project dependency-injection: Compilation failure: Compilation failure: 
+[ERROR] /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/src/main/java/com/iluwatar/dependency/injection/GuiceWizard.java:[26,20] package javax.inject does not exist
+[ERROR] /home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns/dependency-injection/src/main/java/com/iluwatar/dependency/injection/GuiceWizard.java:[36,4] cannot find symbol
+[ERROR]   symbol:   class Inject
+[ERROR]   location: class com.iluwatar.dependency.injection.GuiceWizard
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
 
 
 * * * * * * * *

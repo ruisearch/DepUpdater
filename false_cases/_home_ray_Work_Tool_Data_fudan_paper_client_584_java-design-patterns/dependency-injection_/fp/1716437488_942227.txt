@@ -5,6 +5,7 @@ groudId: ch.qos.logback
 artifactId: logback-classic
 old version: 1.2.3
 new version: 1.2.13
+classifier: 
 breaking reason by Tool:
   breaking version:1.3.0-alpha0
  breaking reason:org.slf4j.impl.StaticLoggerBinder: void <init>()
@@ -15,10 +16,10 @@ reachable api of old version:
     org.slf4j.impl.StaticLoggerBinder: void init()
     org.slf4j.impl.StaticLoggerBinder: void <clinit>()
 / / / / / / / / /
-revapi log of former version:
-18:19:04.787 INFO  Downloading checked archives
-18:19:05.020 INFO  Downloading extensions
-18:19:13.924 INFO  Starting analysis
+revapi log of former version -- 1.2.13:
+11:27:10.715 INFO  Downloading checked archives
+11:27:10.846 INFO  Downloading extensions
+11:27:17.723 INFO  Starting analysis
 Analysis results
 ----------------
 
@@ -104,13 +105,13 @@ new: <none>
 java.class.removed: Class was removed.
 BINARY: BREAKING, SOURCE: BREAKING
 
-18:19:28.459 INFO  Analysis took 14534ms.
+11:27:39.234 INFO  Analysis took 21510ms.
 
 / / / / / / / / /
-revapi log of the subsequent version:
-18:19:35.514 INFO  Downloading checked archives
-18:19:35.562 INFO  Downloading extensions
-18:19:43.534 INFO  Starting analysis
+revapi log of the subsequent version -- 1.3.0-alpha0:
+11:27:42.009 INFO  Downloading checked archives
+11:27:42.096 INFO  Downloading extensions
+11:27:47.284 INFO  Starting analysis
 Analysis results
 ----------------
 
@@ -186,12 +187,12 @@ new: <none>
 java.class.removed: Class was removed.
 BINARY: BREAKING, SOURCE: BREAKING
 
-18:20:03.691 INFO  Analysis took 20152ms.
+11:28:02.197 INFO  Analysis took 14912ms.
 
 
 * * * * * * * *
 >>>>>>
-compilation log:
+compilation log of 1.2.13:
 [INFO] Scanning for projects...
 [INFO] 
 [INFO] -----------------< com.iluwatar:dependency-injection >------------------
@@ -219,12 +220,12 @@ compilation log:
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  10.390 s
-[INFO] Finished at: 2024-05-22T18:49:05+08:00
+[INFO] Total time:  12.907 s
+[INFO] Finished at: 2024-05-23T11:59:02+08:00
 [INFO] ------------------------------------------------------------------------
 
 >>>>>>
-subsequent compilation log:
+subsequent compilation log of 1.3.0-alpha0:
 [INFO] Scanning for projects...
 [INFO] 
 [INFO] -----------------< com.iluwatar:dependency-injection >------------------
@@ -252,8 +253,8 @@ subsequent compilation log:
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  8.977 s
-[INFO] Finished at: 2024-05-22T18:49:21+08:00
+[INFO] Total time:  7.982 s
+[INFO] Finished at: 2024-05-23T11:59:16+08:00
 [INFO] ------------------------------------------------------------------------
 
 

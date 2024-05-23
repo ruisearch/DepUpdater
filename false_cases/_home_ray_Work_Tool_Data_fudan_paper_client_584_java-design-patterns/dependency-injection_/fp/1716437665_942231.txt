@@ -5,6 +5,7 @@ groudId: ch.qos.logback
 artifactId: logback-core
 old version: 1.2.3
 new version: 1.3.0-alpha4
+classifier: 
 breaking reason by Tool:
   breaking version:1.3.0-alpha5
  breaking reason:ch.qos.logback.core.util.OptionHelper: boolean isEmpty(java.lang.String)
@@ -96,10 +97,10 @@ reachable api of old version:
     ch.qos.logback.core.util.StatusPrinter: void buildStr(java.lang.StringBuilder,java.lang.String,ch.qos.logback.core.status.Status)
     ch.qos.logback.core.util.StatusPrinter: void <clinit>()
 / / / / / / / / /
-revapi log of former version:
-18:27:07.854 INFO  Downloading checked archives
-18:27:07.910 INFO  Downloading extensions
-18:27:15.239 INFO  Starting analysis
+revapi log of former version -- 1.3.0-alpha4:
+11:35:51.812 INFO  Downloading checked archives
+11:35:51.941 INFO  Downloading extensions
+11:35:59.059 INFO  Starting analysis
 Analysis results
 ----------------
 
@@ -159,13 +160,13 @@ new: method void ch.qos.logback.core.util.EnvUtil::<init>()
 java.method.visibilityReduced: visibility reduced
 SOURCE: BREAKING, BINARY: BREAKING
 
-18:27:35.308 INFO  Analysis took 20068ms.
+11:36:19.838 INFO  Analysis took 20778ms.
 
 / / / / / / / / /
-revapi log of the subsequent version:
-18:27:40.694 INFO  Downloading checked archives
-18:27:40.774 INFO  Downloading extensions
-18:27:50.287 INFO  Starting analysis
+revapi log of the subsequent version -- 1.3.0-alpha5:
+11:36:27.405 INFO  Downloading checked archives
+11:36:27.567 INFO  Downloading extensions
+11:36:36.836 INFO  Starting analysis
 Analysis results
 ----------------
 
@@ -174,22 +175,22 @@ New API: ch.qos.logback-logback-core-1.3.0-alpha5.jar
 old: <none>
 new: method ch.qos.logback.core.spi.SequenceNumberGenerator ch.qos.logback.core.Context::getSequenceNumberGenerator()
 java.method.addedToInterface: Method was added to an interface.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+SOURCE: BREAKING, BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING
 
 old: <none>
 new: method void ch.qos.logback.core.Context::setSequenceNumberGenerator(ch.qos.logback.core.spi.SequenceNumberGenerator)
 java.method.addedToInterface: Method was added to an interface.
-SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+SOURCE: BREAKING, BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING
 
 old: field ch.qos.logback.core.CoreConstants.FA_FILENAME_COLLISION_MAP
 new: field ch.qos.logback.core.CoreConstants.FA_FILENAME_COLLISION_MAP
 java.field.constantValueChanged: Constant field changed value from 'FA_FILENAME_COLLISION_MAP' to 'FA_FILENAMES_MAP'.
-SEMANTIC: BREAKING, SOURCE: NON_BREAKING, BINARY: NON_BREAKING
+SOURCE: NON_BREAKING, BINARY: NON_BREAKING, SEMANTIC: BREAKING
 
 old: field ch.qos.logback.core.CoreConstants.SCHEDULED_EXECUTOR_POOL_SIZE
 new: field ch.qos.logback.core.CoreConstants.SCHEDULED_EXECUTOR_POOL_SIZE
 java.field.constantValueChanged: Constant field changed value from '8' to '1'.
-SEMANTIC: BREAKING, SOURCE: NON_BREAKING, BINARY: NON_BREAKING
+SOURCE: NON_BREAKING, BINARY: NON_BREAKING, SEMANTIC: BREAKING
 
 old: class ch.qos.logback.core.hook.DelayingShutdownHook
 new: <none>
@@ -432,12 +433,12 @@ SOURCE: BREAKING, BINARY: BREAKING
 old: interface ch.qos.logback.core.net.server.RemoteReceiverClient
 new: interface ch.qos.logback.core.net.server.RemoteReceiverClient
 java.class.nonPublicPartOfAPI: Class 'ch.qos.logback.core.net.server.RemoteReceiverClient' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
-SEMANTIC: BREAKING, SOURCE: NON_BREAKING, BINARY: NON_BREAKING
+SOURCE: NON_BREAKING, BINARY: NON_BREAKING, SEMANTIC: BREAKING
 
 old: enum ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP.Usage
 new: enum ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP.Usage
 java.class.nonPublicPartOfAPI: Class 'ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP.Usage' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
-SEMANTIC: BREAKING, SOURCE: NON_BREAKING, BINARY: NON_BREAKING
+SOURCE: NON_BREAKING, BINARY: NON_BREAKING, SEMANTIC: BREAKING
 
 old: class ch.qos.logback.core.sift.AbstractAppenderFactoryUsingJoran<E>
 new: <none>
@@ -457,7 +458,7 @@ SOURCE: BREAKING, BINARY: BREAKING
 old: enum ch.qos.logback.core.subst.Node.Type
 new: enum ch.qos.logback.core.subst.Node.Type
 java.class.nonPublicPartOfAPI: Class 'ch.qos.logback.core.subst.Node.Type' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
-SEMANTIC: BREAKING, SOURCE: NON_BREAKING, BINARY: NON_BREAKING
+SOURCE: NON_BREAKING, BINARY: NON_BREAKING, SEMANTIC: BREAKING
 
 old: method java.lang.String ch.qos.logback.core.util.ContextUtil::getLocalHostName() throws java.net.UnknownHostException, java.net.SocketException
 new: <none>
@@ -479,12 +480,12 @@ new: <none>
 java.method.removed: Method was removed.
 SOURCE: BREAKING, BINARY: BREAKING
 
-18:28:07.455 INFO  Analysis took 17130ms.
+11:36:57.849 INFO  Analysis took 21002ms.
 
 
 * * * * * * * *
 >>>>>>
-compilation log:
+compilation log of 1.3.0-alpha4:
 [INFO] Scanning for projects...
 [INFO] 
 [INFO] -----------------< com.iluwatar:dependency-injection >------------------
@@ -512,12 +513,12 @@ compilation log:
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  8.698 s
-[INFO] Finished at: 2024-05-22T18:56:22+08:00
+[INFO] Total time:  10.592 s
+[INFO] Finished at: 2024-05-23T12:05:47+08:00
 [INFO] ------------------------------------------------------------------------
 
 >>>>>>
-subsequent compilation log:
+subsequent compilation log of 1.3.0-alpha5:
 [INFO] Scanning for projects...
 [INFO] 
 [INFO] -----------------< com.iluwatar:dependency-injection >------------------
@@ -545,8 +546,8 @@ subsequent compilation log:
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  9.523 s
-[INFO] Finished at: 2024-05-22T18:56:38+08:00
+[INFO] Total time:  9.698 s
+[INFO] Finished at: 2024-05-23T12:06:03+08:00
 [INFO] ------------------------------------------------------------------------
 
 

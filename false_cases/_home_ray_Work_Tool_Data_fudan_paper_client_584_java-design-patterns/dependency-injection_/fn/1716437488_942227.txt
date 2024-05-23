@@ -5,6 +5,7 @@ groudId: ch.qos.logback
 artifactId: logback-classic
 old version: 1.2.3
 new version: 1.5.6
+classifier: 
 breaking reason by Tool:
   breaking version:1.3.0-alpha0
  breaking reason:org.slf4j.impl.StaticLoggerBinder: void <init>()
@@ -15,10 +16,10 @@ reachable api of old version:
     org.slf4j.impl.StaticLoggerBinder: void init()
     org.slf4j.impl.StaticLoggerBinder: void <clinit>()
 / / / / / / / / /
-revapi log of former version:
-18:46:08.385 INFO  Downloading checked archives
-18:46:08.424 INFO  Downloading extensions
-18:46:12.304 INFO  Starting analysis
+revapi log of former version -- 1.5.6:
+11:56:06.321 INFO  Downloading checked archives
+11:56:06.433 INFO  Downloading extensions
+11:56:13.677 INFO  Starting analysis
 Analysis results
 ----------------
 
@@ -481,12 +482,12 @@ new: <none>
 java.class.removed: Class was removed.
 SOURCE: BREAKING, BINARY: BREAKING
 
-18:46:25.785 INFO  Analysis took 13481ms.
+11:56:25.430 INFO  Analysis took 11752ms.
 
 
 * * * * * * * *
 >>>>>>
-compilation log:
+compilation log of 1.5.6:
 [INFO] Scanning for projects...
 [INFO] 
 [INFO] -----------------< com.iluwatar:dependency-injection >------------------
@@ -514,8 +515,8 @@ compilation log:
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  8.977 s
-[INFO] Finished at: 2024-05-22T19:01:55+08:00
+[INFO] Total time:  7.719 s
+[INFO] Finished at: 2024-05-23T12:11:28+08:00
 [INFO] ------------------------------------------------------------------------
 
 

@@ -23,7 +23,7 @@ def create_new_folder(folder:str):
 def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
     ## create a lock so that the store_error will be process mutual excluison
     manager = multiprocessing.Manager()
-    false_folder_lock = manager.Lock()
+    false_folder_lock = manager.Lock() # deprecated
     json_lock = manager.Lock()
     # create tqdm_log/ containing the progress of each process denoting a dep
     create_new_folder(TQDM_LOG_PATH)
@@ -41,6 +41,7 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
             create_new_folder(module_error_folder)
             create_new_folder(os.path.join(module_error_folder, 'fp'))
             create_new_folder(os.path.join(module_error_folder, 'fn'))
+            create_new_folder(os.path.join(module_error_folder, 'jar'))
             # travel the match.json and pass one dep for Dep
             json_path = os.path.join(item_path, f"dep/match.json")
             dep_path = os.path.join(item_path, f"dep/")
@@ -142,7 +143,7 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
             reset(original_tree, pom_path)
             
 # main method of a subprocess
-# false_folder_lock: lock to guarantee process mutual exclusion when writing fp or fn to false_cases/'
+# false_folder_lock: lock to guarantee process mutual exclusion when writing fp or fn to false_cases/'(deprecated)
 # json_lock: lock to write to match.json
 # one_dict: a dict containing the information of a dep after matching
 # dep_path: path to dep/ folder(a parameter of Dep constractor; get inform.json to get module relative path)

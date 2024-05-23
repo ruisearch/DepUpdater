@@ -5,6 +5,7 @@ groudId: ch.qos.logback
 artifactId: logback-core
 old version: 1.2.3
 new version: 1.5.6
+classifier: 
 breaking reason by Tool:
   breaking version:1.3.0-alpha5
  breaking reason:ch.qos.logback.core.util.OptionHelper: boolean isEmpty(java.lang.String)
@@ -96,10 +97,10 @@ reachable api of old version:
     ch.qos.logback.core.util.StatusPrinter: void buildStr(java.lang.StringBuilder,java.lang.String,ch.qos.logback.core.status.Status)
     ch.qos.logback.core.util.StatusPrinter: void <clinit>()
 / / / / / / / / /
-revapi log of former version:
-18:50:43.215 INFO  Downloading checked archives
-18:50:43.288 INFO  Downloading extensions
-18:50:49.324 INFO  Starting analysis
+revapi log of former version -- 1.5.6:
+12:00:08.989 INFO  Downloading checked archives
+12:00:09.036 INFO  Downloading extensions
+12:00:14.490 INFO  Starting analysis
 Analysis results
 ----------------
 
@@ -108,32 +109,32 @@ New API: ch.qos.logback-logback-core-1.5.6.jar
 old: <none>
 new: method void ch.qos.logback.core.Context::addConfigurationEventListener(ch.qos.logback.core.spi.ConfigurationEventListener)
 java.method.addedToInterface: Method was added to an interface.
-SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING, SOURCE: BREAKING
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
 
 old: <none>
 new: method void ch.qos.logback.core.Context::fireConfigurationEvent(ch.qos.logback.core.spi.ConfigurationEvent)
 java.method.addedToInterface: Method was added to an interface.
-SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING, SOURCE: BREAKING
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
 
 old: <none>
 new: method ch.qos.logback.core.spi.SequenceNumberGenerator ch.qos.logback.core.Context::getSequenceNumberGenerator()
 java.method.addedToInterface: Method was added to an interface.
-SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING, SOURCE: BREAKING
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
 
 old: <none>
 new: method void ch.qos.logback.core.Context::setSequenceNumberGenerator(ch.qos.logback.core.spi.SequenceNumberGenerator)
 java.method.addedToInterface: Method was added to an interface.
-SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING, SOURCE: BREAKING
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
 
 old: field ch.qos.logback.core.CoreConstants.FA_FILENAME_COLLISION_MAP
 new: field ch.qos.logback.core.CoreConstants.FA_FILENAME_COLLISION_MAP
 java.field.constantValueChanged: Constant field changed value from 'FA_FILENAME_COLLISION_MAP' to 'FA_FILENAMES_MAP'.
-SEMANTIC: BREAKING, BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
 
 old: field ch.qos.logback.core.CoreConstants.RECONFIGURE_ON_CHANGE_TASK
 new: <none>
 java.field.removedWithConstant: Field with constant value has been removed.
-SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING, SOURCE: BREAKING
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
 
 old: field ch.qos.logback.core.CoreConstants.REFERENCE_BIPS
 new: <none>
@@ -143,7 +144,7 @@ BINARY: BREAKING, SOURCE: BREAKING
 old: field ch.qos.logback.core.CoreConstants.SCHEDULED_EXECUTOR_POOL_SIZE
 new: field ch.qos.logback.core.CoreConstants.SCHEDULED_EXECUTOR_POOL_SIZE
 java.field.constantValueChanged: Constant field changed value from '8' to '4'.
-SEMANTIC: BREAKING, BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
 
 old: field ch.qos.logback.core.OutputStreamAppender<E>.lock
 new: <none>
@@ -602,12 +603,12 @@ BINARY: POTENTIALLY_BREAKING, SOURCE: POTENTIALLY_BREAKING
 old: field ch.qos.logback.core.joran.conditional.IfAction.MISSING_JANINO_MSG
 new: <none>
 java.field.removedWithConstant: Field with constant value has been removed.
-SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING, SOURCE: BREAKING
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
 
 old: field ch.qos.logback.core.joran.conditional.IfAction.MISSING_JANINO_SEE
 new: <none>
 java.field.removedWithConstant: Field with constant value has been removed.
-SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING, SOURCE: BREAKING
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
 
 old: parameter void ch.qos.logback.core.joran.conditional.IfAction::begin(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException
 new: parameter void ch.qos.logback.core.joran.action.BaseModelAction::begin(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.conditional.IfAction
@@ -684,7 +685,7 @@ BINARY: BREAKING, SOURCE: BREAKING
 old: <none>
 new: method void ch.qos.logback.core.joran.spi.RuleStore::addPathPathMapping(java.lang.String, java.lang.String)
 java.method.addedToInterface: Method was added to an interface.
-SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING, SOURCE: BREAKING
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
 
 old: parameter void ch.qos.logback.core.joran.spi.RuleStore::addRule(ch.qos.logback.core.joran.spi.ElementSelector, ===ch.qos.logback.core.joran.action.Action===)
 new: parameter void ch.qos.logback.core.joran.spi.RuleStore::addRule(ch.qos.logback.core.joran.spi.ElementSelector, ===java.util.function.Supplier<ch.qos.logback.core.joran.action.Action>===)
@@ -694,7 +695,7 @@ BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
 old: <none>
 new: method void ch.qos.logback.core.joran.spi.RuleStore::addTransparentPathPart(java.lang.String)
 java.method.addedToInterface: Method was added to an interface.
-SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING, SOURCE: BREAKING
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
 
 old: method java.util.List<ch.qos.logback.core.joran.action.Action> ch.qos.logback.core.joran.spi.RuleStore::matchActions(ch.qos.logback.core.joran.spi.ElementPath)
 new: method java.util.function.Supplier<ch.qos.logback.core.joran.action.Action> ch.qos.logback.core.joran.spi.RuleStore::matchActions(ch.qos.logback.core.joran.spi.ElementPath)
@@ -724,17 +725,17 @@ BINARY: BREAKING, SOURCE: BREAKING
 old: interface ch.qos.logback.core.net.server.RemoteReceiverClient
 new: interface ch.qos.logback.core.net.server.RemoteReceiverClient
 java.class.nonPublicPartOfAPI: Class 'ch.qos.logback.core.net.server.RemoteReceiverClient' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
-SEMANTIC: BREAKING, BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
 
 old: <none>
 new: method void ch.qos.logback.core.net.ssl.SSLConfigurable::setHostnameVerification(boolean)
 java.method.addedToInterface: Method was added to an interface.
-SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING, SOURCE: BREAKING
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
 
 old: enum ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP.Usage
 new: enum ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP.Usage
 java.class.nonPublicPartOfAPI: Class 'ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP.Usage' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
-SEMANTIC: BREAKING, BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
 
 old: field ch.qos.logback.core.rolling.TimeBasedFileNamingAndTriggeringPolicyBase<E>.dateInCurrentPeriod
 new: field ch.qos.logback.core.rolling.TimeBasedFileNamingAndTriggeringPolicyBase<E>.dateInCurrentPeriod
@@ -836,12 +837,12 @@ BINARY: BREAKING, SOURCE: BREAKING
 old: <none>
 new: method void ch.qos.logback.core.spi.PropertyContainer::addSubstitutionProperty(java.lang.String, java.lang.String)
 java.method.addedToInterface: Method was added to an interface.
-SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING, SOURCE: BREAKING
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
 
 old: <none>
 new: method long ch.qos.logback.core.status.Status::getTimestamp()
 java.method.addedToInterface: Method was added to an interface.
-SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING, SOURCE: BREAKING
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
 
 old: parameter java.lang.String ch.qos.logback.core.status.ViewStatusMessagesServletBase::getPageTitle(===javax.servlet.http.HttpServletRequest===, javax.servlet.http.HttpServletResponse)
 new: parameter java.lang.String ch.qos.logback.core.status.ViewStatusMessagesServletBase::getPageTitle(===jakarta.servlet.http.HttpServletRequest===, jakarta.servlet.http.HttpServletResponse)
@@ -883,7 +884,7 @@ BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
 old: enum ch.qos.logback.core.subst.Node.Type
 new: enum ch.qos.logback.core.subst.Node.Type
 java.class.nonPublicPartOfAPI: Class 'ch.qos.logback.core.subst.Node.Type' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
-SEMANTIC: BREAKING, BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
 
 old: method void ch.qos.logback.core.util.CachingDateFormatter::setTimeZone(java.util.TimeZone)
 new: <none>
@@ -915,12 +916,12 @@ new: method java.lang.String ch.qos.logback.core.util.OptionHelper::substVars(ja
 java.method.exception.checkedAdded: Method newly throws checked exceptions: ch.qos.logback.core.spi.ScanException.
 BINARY: NON_BREAKING, SOURCE: BREAKING
 
-18:51:05.974 INFO  Analysis took 16640ms.
+12:00:30.675 INFO  Analysis took 16185ms.
 
 
 * * * * * * * *
 >>>>>>
-compilation log:
+compilation log of 1.5.6:
 [INFO] Scanning for projects...
 [INFO] 
 [INFO] -----------------< com.iluwatar:dependency-injection >------------------
@@ -948,8 +949,8 @@ compilation log:
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  5.956 s
-[INFO] Finished at: 2024-05-22T19:05:11+08:00
+[INFO] Total time:  5.998 s
+[INFO] Finished at: 2024-05-23T12:14:25+08:00
 [INFO] ------------------------------------------------------------------------
 
 
