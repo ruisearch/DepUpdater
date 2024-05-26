@@ -147,7 +147,7 @@ class Revapi:
             #     return False
         
             # skip None, as None is the reture value of some corner cases, which is not handled by reachable API
-            # like java.method.addedToInterface(deprecated)
+            # like java.method.addedToInterface
             if record is None:
                 continue
             for API in self.api:
@@ -155,7 +155,7 @@ class Revapi:
                 # new_api : replace '$' with '.' in ReachAPIs
                 if new_api.startswith(record):
                     # new_api is breaking
-                    return False, API
+                    return False, f"breaking api: {API} <<<<< transformed old api of breaking record: {record}"
         return True, ''
         
     # parse the ret.txt
