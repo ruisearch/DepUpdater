@@ -1,6 +1,7 @@
 import os
 import requests
 import json
+import time
 from functools import cmp_to_key
 # from operator import itemgetter
 from calculate.Revapi import Revapi
@@ -28,18 +29,37 @@ class Dep:
             'core': 'gav',
             'wt': 'json'
         }
-        
-        response = requests.get(url, params=params)
-        data = response.json()
+        @staticmethod
+        def get_resource_with_retry(url, params, retries=5, backoff_factor=0.3, timeout=10):
+            for attempt in range(retries):
+                try:
+                    response = requests.get(url, params=params,timeout=timeout)
+                    response.raise_for_status()
+                    return response
+                except requests.RequestException as e:
+                    print(f"Attempt {attempt + 1} failed: {str(e)}")
+                    if attempt < retries - 1:
+                        sleep_time = backoff_factor * (2 ** attempt)
+                        print(f"Retrying in {sleep_time} seconds...")
+                        time.sleep(sleep_time)
+                    else:
+                        raise
+        try:
+            # response = requests.get(url, params=params)
+            response = get_resource_with_retry(url, params=params)
+            if response:
+                data = response.json()
 
-        versions = []
-        if 'docs' in data['response']:
-            for doc in data['response']['docs']:
-                if 'timestamp' in doc:
-                    versions.append({
-                        'version': doc['v'],
-                        'date': doc['timestamp']
-                    })
+                versions = []
+                if 'docs' in data['response']:
+                    for doc in data['response']['docs']:
+                        if 'timestamp' in doc:
+                            versions.append({
+                                'version': doc['v'],
+                                'date': doc['timestamp']
+                            })
+        except Exception as e:
+            print(f"Fail to handle {self.GroupId}:{self.ArtifactId}, reason:{e}")
         
         # Sort versions by date
         # versions.sort(key=itemgetter('date'))
