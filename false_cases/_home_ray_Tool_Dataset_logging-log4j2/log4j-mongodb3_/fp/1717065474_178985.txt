@@ -1,0 +1,2445 @@
+module name: log4j-mongodb3/
+
+* * * * * * * *
+groudId: org.mongodb
+artifactId: mongodb-driver-core
+old version: 3.12.11
+new version: 3.12.14
+classifier: 
+breaking reason by Tool:
+  breaking version:4.0.0-beta1
+ breaking reason:breaking api: com.mongodb.AuthenticationMechanism: com.mongodb.AuthenticationMechanism[] values() <<<<< transformed old api of breaking record: com.mongodb.AuthenticationMechanism:
+depth: 1
+reachable api of old version:
+    com.mongodb.TaggableReadPreference$PrimaryPreferredReadPreference: void <init>()
+    com.mongodb.TaggableReadPreference$PrimaryPreferredReadPreference: void <init>(java.util.List,java.lang.Long,java.util.concurrent.TimeUnit)
+    com.mongodb.TaggableReadPreference$PrimaryPreferredReadPreference: java.lang.String getName()
+    com.mongodb.ReadConcern: void <init>(com.mongodb.ReadConcernLevel)
+    com.mongodb.ReadConcern: void <init>()
+    com.mongodb.ReadConcern: void <clinit>()
+    com.mongodb.DBRefCodecProvider: void <init>()
+    com.mongodb.MongoConfigurationException: void <init>(java.lang.String)
+    com.mongodb.MongoConfigurationException: void <init>(java.lang.String,java.lang.Throwable)
+    com.mongodb.selector.CompositeServerSelector: void <init>(java.util.List)
+    com.mongodb.selector.LatencyMinimizingServerSelector: void <init>(long,java.util.concurrent.TimeUnit)
+    com.mongodb.MongoDriverInformation: com.mongodb.MongoDriverInformation$Builder builder()
+    com.mongodb.MongoDriverInformation: com.mongodb.MongoDriverInformation$Builder builder(com.mongodb.MongoDriverInformation)
+    com.mongodb.MongoDriverInformation: void <init>(java.util.List,java.util.List,java.util.List)
+    com.mongodb.MongoDriverInformation: void <init>(java.util.List,java.util.List,java.util.List,com.mongodb.MongoDriverInformation$1)
+    com.mongodb.ConnectionString: void <init>(java.lang.String)
+    com.mongodb.ConnectionString: java.util.Map combineOptionsMaps(java.util.Map,java.util.Map)
+    com.mongodb.ConnectionString: void warnOnUnsupportedOptions(java.util.Map)
+    com.mongodb.ConnectionString: void translateOptions(java.util.Map)
+    com.mongodb.ConnectionString: void initializeSslEnabled(java.lang.String,java.lang.String)
+    com.mongodb.ConnectionString: java.util.List createCompressors(java.util.Map)
+    com.mongodb.ConnectionString: java.util.List buildCompressors(java.lang.String,java.lang.Integer)
+    com.mongodb.ConnectionString: com.mongodb.WriteConcern createWriteConcern(java.util.Map)
+    com.mongodb.ConnectionString: com.mongodb.ReadPreference createReadPreference(java.util.Map)
+    com.mongodb.ConnectionString: org.bson.UuidRepresentation createUuidRepresentation(java.lang.String)
+    com.mongodb.ConnectionString: com.mongodb.MongoCredential createCredentials(java.util.Map,java.lang.String,char[])
+    com.mongodb.ConnectionString: com.mongodb.MongoCredential createMongoCredentialWithMechanism(com.mongodb.AuthenticationMechanism,java.lang.String,char[],java.lang.String,java.lang.String)
+    com.mongodb.ConnectionString: java.lang.String getAuthSourceOrDefault(java.lang.String,java.lang.String)
+    com.mongodb.ConnectionString: java.lang.String getLastValue(java.util.Map,java.lang.String)
+    com.mongodb.ConnectionString: java.util.Map parseOptions(java.lang.String)
+    com.mongodb.ConnectionString: com.mongodb.ReadPreference buildReadPreference(java.lang.String,java.util.List,long)
+    com.mongodb.ConnectionString: com.mongodb.WriteConcern buildWriteConcern(java.lang.Boolean,java.lang.String,java.lang.Integer,java.lang.Boolean,java.lang.Boolean)
+    com.mongodb.ConnectionString: com.mongodb.TagSet getTags(java.lang.String)
+    com.mongodb.ConnectionString: java.lang.Boolean parseBoolean(java.lang.String,java.lang.String)
+    com.mongodb.ConnectionString: int parseInteger(java.lang.String,java.lang.String)
+    com.mongodb.ConnectionString: java.util.List parseHosts(java.util.List)
+    com.mongodb.ConnectionString: void validatePort(java.lang.String,java.lang.String)
+    com.mongodb.ConnectionString: int countOccurrences(java.lang.String,java.lang.String)
+    com.mongodb.ConnectionString: java.lang.String urldecode(java.lang.String)
+    com.mongodb.ConnectionString: java.lang.String urldecode(java.lang.String,boolean)
+    com.mongodb.ConnectionString: boolean isSrvProtocol()
+    com.mongodb.ConnectionString: java.util.List getHosts()
+    com.mongodb.ConnectionString: com.mongodb.MongoCredential getCredential()
+    com.mongodb.ConnectionString: com.mongodb.ReadPreference getReadPreference()
+    com.mongodb.ConnectionString: com.mongodb.ReadConcern getReadConcern()
+    com.mongodb.ConnectionString: com.mongodb.WriteConcern getWriteConcern()
+    com.mongodb.ConnectionString: boolean getRetryWrites()
+    com.mongodb.ConnectionString: java.lang.Boolean getRetryWritesValue()
+    com.mongodb.ConnectionString: java.lang.Integer getMinConnectionPoolSize()
+    com.mongodb.ConnectionString: java.lang.Integer getMaxConnectionPoolSize()
+    com.mongodb.ConnectionString: java.lang.Integer getThreadsAllowedToBlockForConnectionMultiplier()
+    com.mongodb.ConnectionString: java.lang.Integer getMaxWaitTime()
+    com.mongodb.ConnectionString: java.lang.Integer getMaxConnectionIdleTime()
+    com.mongodb.ConnectionString: java.lang.Integer getMaxConnectionLifeTime()
+    com.mongodb.ConnectionString: java.lang.Integer getConnectTimeout()
+    com.mongodb.ConnectionString: java.lang.Integer getSocketTimeout()
+    com.mongodb.ConnectionString: java.lang.Boolean getSslEnabled()
+    com.mongodb.ConnectionString: java.lang.Boolean getSslInvalidHostnameAllowed()
+    com.mongodb.ConnectionString: java.lang.String getRequiredReplicaSetName()
+    com.mongodb.ConnectionString: java.lang.Integer getServerSelectionTimeout()
+    com.mongodb.ConnectionString: java.lang.Integer getLocalThreshold()
+    com.mongodb.ConnectionString: java.lang.Integer getHeartbeatFrequency()
+    com.mongodb.ConnectionString: java.lang.String getApplicationName()
+    com.mongodb.ConnectionString: java.util.List getCompressorList()
+    com.mongodb.ConnectionString: org.bson.UuidRepresentation getUuidRepresentation()
+    com.mongodb.ConnectionString: void <clinit>()
+    com.mongodb.DocumentToDBRefTransformer: void <init>()
+    com.mongodb.MongoException: void <init>(java.lang.String)
+    com.mongodb.MongoException: void <init>(java.lang.String,java.lang.Throwable)
+    com.mongodb.connection.SslSettings$Builder: void <init>()
+    com.mongodb.connection.SslSettings$Builder: com.mongodb.connection.SslSettings$Builder applyConnectionString(com.mongodb.ConnectionString)
+    com.mongodb.connection.SslSettings$Builder: com.mongodb.connection.SslSettings build()
+    com.mongodb.connection.SslSettings$Builder: void <init>(com.mongodb.connection.SslSettings$1)
+    com.mongodb.connection.SslSettings$Builder: boolean access$400(com.mongodb.connection.SslSettings$Builder)
+    com.mongodb.connection.SslSettings$Builder: boolean access$500(com.mongodb.connection.SslSettings$Builder)
+    com.mongodb.connection.SslSettings$Builder: javax.net.ssl.SSLContext access$600(com.mongodb.connection.SslSettings$Builder)
+    com.mongodb.connection.SslSettings: com.mongodb.connection.SslSettings$Builder builder()
+    com.mongodb.connection.SslSettings: void <init>(com.mongodb.connection.SslSettings$Builder)
+    com.mongodb.connection.ServerSettings$Builder: void <init>()
+    com.mongodb.connection.ServerSettings$Builder: com.mongodb.connection.ServerSettings$Builder applyConnectionString(com.mongodb.ConnectionString)
+    com.mongodb.connection.ServerSettings$Builder: com.mongodb.connection.ServerSettings build()
+    com.mongodb.connection.ServerSettings$Builder: void <init>(com.mongodb.connection.ServerSettings$1)
+    com.mongodb.connection.ServerSettings$Builder: long access$500(com.mongodb.connection.ServerSettings$Builder)
+    com.mongodb.connection.ServerSettings$Builder: long access$600(com.mongodb.connection.ServerSettings$Builder)
+    com.mongodb.connection.ServerSettings$Builder: java.util.List access$700(com.mongodb.connection.ServerSettings$Builder)
+    com.mongodb.connection.ServerSettings$Builder: java.util.List access$800(com.mongodb.connection.ServerSettings$Builder)
+    com.mongodb.connection.SocketSettings: com.mongodb.connection.SocketSettings$Builder builder()
+    com.mongodb.connection.SocketSettings: int getConnectTimeout(java.util.concurrent.TimeUnit)
+    com.mongodb.connection.SocketSettings: void <init>(com.mongodb.connection.SocketSettings$Builder)
+    com.mongodb.connection.SocketSettings$Builder: void <init>()
+    com.mongodb.connection.SocketSettings$Builder: com.mongodb.connection.SocketSettings$Builder connectTimeout(int,java.util.concurrent.TimeUnit)
+    com.mongodb.connection.SocketSettings$Builder: com.mongodb.connection.SocketSettings$Builder readTimeout(int,java.util.concurrent.TimeUnit)
+    com.mongodb.connection.SocketSettings$Builder: com.mongodb.connection.SocketSettings$Builder applyConnectionString(com.mongodb.ConnectionString)
+    com.mongodb.connection.SocketSettings$Builder: com.mongodb.connection.SocketSettings build()
+    com.mongodb.connection.SocketSettings$Builder: void <init>(com.mongodb.connection.SocketSettings$1)
+    com.mongodb.connection.SocketSettings$Builder: long access$600(com.mongodb.connection.SocketSettings$Builder)
+    com.mongodb.connection.SocketSettings$Builder: long access$700(com.mongodb.connection.SocketSettings$Builder)
+    com.mongodb.connection.SocketSettings$Builder: boolean access$800(com.mongodb.connection.SocketSettings$Builder)
+    com.mongodb.connection.SocketSettings$Builder: int access$900(com.mongodb.connection.SocketSettings$Builder)
+    com.mongodb.connection.SocketSettings$Builder: int access$1000(com.mongodb.connection.SocketSettings$Builder)
+    com.mongodb.connection.ServerSettings: com.mongodb.connection.ServerSettings$Builder builder()
+    com.mongodb.connection.ServerSettings: void <init>(com.mongodb.connection.ServerSettings$Builder)
+    com.mongodb.connection.ConnectionPoolSettings$Builder: void <init>()
+    com.mongodb.connection.ConnectionPoolSettings$Builder: com.mongodb.connection.ConnectionPoolSettings$Builder maxSize(int)
+    com.mongodb.connection.ConnectionPoolSettings$Builder: com.mongodb.connection.ConnectionPoolSettings$Builder minSize(int)
+    com.mongodb.connection.ConnectionPoolSettings$Builder: com.mongodb.connection.ConnectionPoolSettings$Builder maxWaitQueueSize(int)
+    com.mongodb.connection.ConnectionPoolSettings$Builder: com.mongodb.connection.ConnectionPoolSettings$Builder maxWaitTime(long,java.util.concurrent.TimeUnit)
+    com.mongodb.connection.ConnectionPoolSettings$Builder: com.mongodb.connection.ConnectionPoolSettings$Builder maxConnectionLifeTime(long,java.util.concurrent.TimeUnit)
+    com.mongodb.connection.ConnectionPoolSettings$Builder: com.mongodb.connection.ConnectionPoolSettings$Builder maxConnectionIdleTime(long,java.util.concurrent.TimeUnit)
+    com.mongodb.connection.ConnectionPoolSettings$Builder: com.mongodb.connection.ConnectionPoolSettings build()
+    com.mongodb.connection.ConnectionPoolSettings$Builder: com.mongodb.connection.ConnectionPoolSettings$Builder applyConnectionString(com.mongodb.ConnectionString)
+    com.mongodb.connection.ConnectionPoolSettings$Builder: int access$900(com.mongodb.connection.ConnectionPoolSettings$Builder)
+    com.mongodb.connection.ConnectionPoolSettings$Builder: int access$1000(com.mongodb.connection.ConnectionPoolSettings$Builder)
+    com.mongodb.connection.ConnectionPoolSettings$Builder: int access$1100(com.mongodb.connection.ConnectionPoolSettings$Builder)
+    com.mongodb.connection.ConnectionPoolSettings$Builder: long access$1200(com.mongodb.connection.ConnectionPoolSettings$Builder)
+    com.mongodb.connection.ConnectionPoolSettings$Builder: long access$1300(com.mongodb.connection.ConnectionPoolSettings$Builder)
+    com.mongodb.connection.ConnectionPoolSettings$Builder: long access$1400(com.mongodb.connection.ConnectionPoolSettings$Builder)
+    com.mongodb.connection.ConnectionPoolSettings$Builder: long access$1500(com.mongodb.connection.ConnectionPoolSettings$Builder)
+    com.mongodb.connection.ConnectionPoolSettings$Builder: long access$1600(com.mongodb.connection.ConnectionPoolSettings$Builder)
+    com.mongodb.connection.ConnectionPoolSettings$Builder: java.util.List access$1700(com.mongodb.connection.ConnectionPoolSettings$Builder)
+    com.mongodb.connection.ClusterConnectionMode: void <init>(java.lang.String,int)
+    com.mongodb.connection.ClusterConnectionMode: void <clinit>()
+    com.mongodb.connection.ConnectionPoolSettings: com.mongodb.connection.ConnectionPoolSettings$Builder builder()
+    com.mongodb.connection.ConnectionPoolSettings: void <init>(com.mongodb.connection.ConnectionPoolSettings$Builder)
+    com.mongodb.connection.ClusterSettings$Builder: void <init>()
+    com.mongodb.connection.ClusterSettings$Builder: com.mongodb.connection.ClusterSettings$Builder srvHost(java.lang.String)
+    com.mongodb.connection.ClusterSettings$Builder: com.mongodb.connection.ClusterSettings$Builder hosts(java.util.List)
+    com.mongodb.connection.ClusterSettings$Builder: com.mongodb.connection.ClusterSettings$Builder mode(com.mongodb.connection.ClusterConnectionMode)
+    com.mongodb.connection.ClusterSettings$Builder: com.mongodb.connection.ClusterSettings$Builder requiredReplicaSetName(java.lang.String)
+    com.mongodb.connection.ClusterSettings$Builder: com.mongodb.connection.ClusterSettings$Builder localThreshold(long,java.util.concurrent.TimeUnit)
+    com.mongodb.connection.ClusterSettings$Builder: com.mongodb.connection.ClusterSettings$Builder serverSelectionTimeout(long,java.util.concurrent.TimeUnit)
+    com.mongodb.connection.ClusterSettings$Builder: com.mongodb.connection.ClusterSettings$Builder maxWaitQueueSize(int)
+    com.mongodb.connection.ClusterSettings$Builder: com.mongodb.connection.ClusterSettings$Builder applyConnectionString(com.mongodb.ConnectionString)
+    com.mongodb.connection.ClusterSettings$Builder: com.mongodb.selector.ServerSelector packServerSelector()
+    com.mongodb.connection.ClusterSettings$Builder: com.mongodb.connection.ClusterSettings build()
+    com.mongodb.connection.ClusterSettings$Builder: void <init>(com.mongodb.connection.ClusterSettings$1)
+    com.mongodb.connection.ClusterSettings$Builder: java.lang.String access$1300(com.mongodb.connection.ClusterSettings$Builder)
+    com.mongodb.connection.ClusterSettings$Builder: java.util.List access$1400(com.mongodb.connection.ClusterSettings$Builder)
+    com.mongodb.connection.ClusterSettings$Builder: com.mongodb.connection.ClusterType access$1500(com.mongodb.connection.ClusterSettings$Builder)
+    com.mongodb.connection.ClusterSettings$Builder: java.lang.String access$1600(com.mongodb.connection.ClusterSettings$Builder)
+    com.mongodb.connection.ClusterSettings$Builder: com.mongodb.connection.ClusterType access$1502(com.mongodb.connection.ClusterSettings$Builder,com.mongodb.connection.ClusterType)
+    com.mongodb.connection.ClusterSettings$Builder: java.lang.String access$1700(com.mongodb.connection.ClusterSettings$Builder)
+    com.mongodb.connection.ClusterSettings$Builder: com.mongodb.connection.ClusterConnectionMode access$1800(com.mongodb.connection.ClusterSettings$Builder)
+    com.mongodb.connection.ClusterSettings$Builder: long access$1900(com.mongodb.connection.ClusterSettings$Builder)
+    com.mongodb.connection.ClusterSettings$Builder: com.mongodb.selector.ServerSelector access$2000(com.mongodb.connection.ClusterSettings$Builder)
+    com.mongodb.connection.ClusterSettings$Builder: long access$2100(com.mongodb.connection.ClusterSettings$Builder)
+    com.mongodb.connection.ClusterSettings$Builder: int access$2200(com.mongodb.connection.ClusterSettings$Builder)
+    com.mongodb.connection.ClusterSettings$Builder: java.util.List access$2300(com.mongodb.connection.ClusterSettings$Builder)
+    com.mongodb.connection.ClusterSettings$Builder: void <clinit>()
+    com.mongodb.connection.ClusterType: void <init>(java.lang.String,int)
+    com.mongodb.connection.ClusterType: void <clinit>()
+    com.mongodb.connection.DefaultClusterFactory: void <init>()
+    com.mongodb.connection.SocketStreamFactory: void <init>(com.mongodb.connection.SocketSettings,com.mongodb.connection.SslSettings)
+    com.mongodb.connection.SocketStreamFactory: void <init>(com.mongodb.connection.SocketSettings,com.mongodb.connection.SslSettings,javax.net.SocketFactory)
+    com.mongodb.connection.ClusterSettings: com.mongodb.connection.ClusterSettings$Builder builder()
+    com.mongodb.connection.ClusterSettings: void <init>(com.mongodb.connection.ClusterSettings$Builder)
+    com.mongodb.connection.ClusterSettings: void <init>(com.mongodb.connection.ClusterSettings$Builder,com.mongodb.connection.ClusterSettings$1)
+    com.mongodb.UnixServerAddress: void <init>(java.lang.String)
+    com.mongodb.MongoDriverInformation$Builder: void <init>()
+    com.mongodb.MongoDriverInformation$Builder: void <init>(com.mongodb.MongoDriverInformation)
+    com.mongodb.MongoDriverInformation$Builder: void <init>(com.mongodb.MongoDriverInformation$1)
+    com.mongodb.MongoDriverInformation$Builder: void <init>(com.mongodb.MongoDriverInformation,com.mongodb.MongoDriverInformation$1)
+    com.mongodb.MongoInternalException: void <init>(java.lang.String)
+    com.mongodb.TagSet: void <init>(java.util.List)
+    com.mongodb.TagSet$1: void <init>(com.mongodb.TagSet)
+    com.mongodb.WriteConcern: void <init>(int)
+    com.mongodb.WriteConcern: void <init>(java.lang.String)
+    com.mongodb.WriteConcern: void <init>(java.lang.Object,java.lang.Integer,java.lang.Boolean,java.lang.Boolean)
+    com.mongodb.WriteConcern: com.mongodb.WriteConcern valueOf(java.lang.String)
+    com.mongodb.WriteConcern: com.mongodb.WriteConcern withFsync(boolean)
+    com.mongodb.WriteConcern: com.mongodb.WriteConcern withJournal(java.lang.Boolean)
+    com.mongodb.WriteConcern: com.mongodb.WriteConcern withWTimeout(long,java.util.concurrent.TimeUnit)
+    com.mongodb.WriteConcern: void <clinit>()
+    com.mongodb.MongoCredential: com.mongodb.MongoCredential createCredential(java.lang.String,java.lang.String,char[])
+    com.mongodb.MongoCredential: com.mongodb.MongoCredential createScramSha1Credential(java.lang.String,java.lang.String,char[])
+    com.mongodb.MongoCredential: com.mongodb.MongoCredential createScramSha256Credential(java.lang.String,java.lang.String,char[])
+    com.mongodb.MongoCredential: com.mongodb.MongoCredential createMongoCRCredential(java.lang.String,java.lang.String,char[])
+    com.mongodb.MongoCredential: com.mongodb.MongoCredential createMongoX509Credential(java.lang.String)
+    com.mongodb.MongoCredential: com.mongodb.MongoCredential createPlainCredential(java.lang.String,java.lang.String,char[])
+    com.mongodb.MongoCredential: com.mongodb.MongoCredential createGSSAPICredential(java.lang.String)
+    com.mongodb.MongoCredential: com.mongodb.MongoCredential withMechanismProperty(java.lang.String,java.lang.Object)
+    com.mongodb.MongoCredential: void <init>(com.mongodb.AuthenticationMechanism,java.lang.String,java.lang.String,char[])
+    com.mongodb.MongoCredential: void <init>(com.mongodb.AuthenticationMechanism,java.lang.String,java.lang.String,char[],java.util.Map)
+    com.mongodb.MongoCredential: boolean mechanismRequiresPassword(com.mongodb.AuthenticationMechanism)
+    com.mongodb.MongoCredential: void <init>(com.mongodb.MongoCredential,java.lang.String,java.lang.Object)
+    com.mongodb.MongoCredential: void <clinit>()
+    com.mongodb.DBObjectCodecProvider: void <init>()
+    com.mongodb.DBObjectCodecProvider: void <init>(org.bson.codecs.BsonTypeClassMap)
+    com.mongodb.MongoClientSettings: org.bson.codecs.configuration.CodecRegistry getDefaultCodecRegistry()
+    com.mongodb.MongoClientSettings: com.mongodb.MongoClientSettings$Builder builder()
+    com.mongodb.MongoClientSettings: void <init>(com.mongodb.MongoClientSettings$Builder)
+    com.mongodb.MongoClientSettings: void <init>(com.mongodb.MongoClientSettings$Builder,com.mongodb.MongoClientSettings$1)
+    com.mongodb.MongoClientSettings: void <clinit>()
+    com.mongodb.internal.connection.PowerOfTwoBufferPool: void <init>()
+    com.mongodb.internal.connection.PowerOfTwoBufferPool: void <init>(int)
+    com.mongodb.internal.connection.PowerOfTwoBufferPool$1: void <init>(com.mongodb.internal.connection.PowerOfTwoBufferPool,int)
+    com.mongodb.internal.connection.ServerAddressHelper: com.mongodb.ServerAddress createServerAddress(java.lang.String)
+    com.mongodb.internal.connection.ServerAddressHelper: com.mongodb.ServerAddress createServerAddress(java.lang.String,int)
+    com.mongodb.internal.connection.ConcurrentLinkedDeque$Node: void <init>(java.lang.Object,com.mongodb.internal.connection.ConcurrentLinkedDeque$Node,com.mongodb.internal.connection.ConcurrentLinkedDeque$Node)
+    com.mongodb.internal.connection.ConcurrentLinkedDeque$Node: void setNext(com.mongodb.internal.connection.ConcurrentLinkedDeque$Node)
+    com.mongodb.internal.connection.ConcurrentPool: void <init>(int,com.mongodb.internal.connection.ConcurrentPool$ItemFactory)
+    com.mongodb.internal.connection.ConcurrentLinkedDeque: void <init>()
+    com.mongodb.internal.capi.MongoCryptHelper: com.mongodb.crypt.capi.MongoCryptOptions createMongoCryptOptions(java.util.Map,java.util.Map)
+    com.mongodb.internal.capi.MongoCryptHelper: java.util.List createMongocryptdSpawnArgs(java.util.Map)
+    com.mongodb.internal.capi.MongoCryptHelper: com.mongodb.MongoClientSettings createMongocryptdClientSettings(java.lang.String)
+    com.mongodb.internal.capi.MongoCryptHelper: java.lang.ProcessBuilder createProcessBuilder(java.util.Map)
+    com.mongodb.internal.capi.MongoCryptHelper: void startProcess(java.lang.ProcessBuilder)
+    com.mongodb.internal.capi.MongoCryptHelper$1: void <init>()
+    com.mongodb.internal.capi.MongoCryptHelper$1: void apply(com.mongodb.connection.SocketSettings$Builder)
+    com.mongodb.internal.capi.MongoCryptHelper$1: void apply(java.lang.Object)
+    com.mongodb.internal.capi.MongoCryptHelper$2: void <init>()
+    com.mongodb.internal.capi.MongoCryptHelper$2: void apply(com.mongodb.connection.ClusterSettings$Builder)
+    com.mongodb.internal.capi.MongoCryptHelper$2: void apply(java.lang.Object)
+    com.mongodb.internal.dns.DefaultDnsResolver: void <init>()
+    com.mongodb.internal.dns.DefaultDnsResolver: java.lang.String resolveAdditionalQueryParametersFromTxtRecords(java.lang.String)
+    com.mongodb.internal.dns.DefaultDnsResolver: javax.naming.directory.InitialDirContext createDnsDirContext()
+    com.mongodb.internal.thread.DaemonThreadFactory: void <init>(java.lang.String)
+    com.mongodb.internal.thread.DaemonThreadFactory: void <clinit>()
+    com.mongodb.internal.event.EventListenerHelper: com.mongodb.event.CommandListener getCommandListener(java.util.List)
+    com.mongodb.internal.event.CommandListenerMulticaster: void <init>(java.util.List)
+    com.mongodb.internal.event.CommandListenerMulticaster: void <clinit>()
+    com.mongodb.internal.session.ServerSessionPool$1: void <init>()
+    com.mongodb.internal.session.ServerSessionPool: void <init>(com.mongodb.connection.Cluster)
+    com.mongodb.ConnectionString$1: void <clinit>()
+    com.mongodb.ReadPreference$PrimaryReadPreference: void <init>()
+    com.mongodb.ReadPreference$PrimaryReadPreference: java.lang.String getName()
+    com.mongodb.ReadPreference$PrimaryReadPreference: void <init>(com.mongodb.ReadPreference$1)
+    com.mongodb.DBObjectCodec: org.bson.codecs.BsonTypeClassMap createDefaultBsonTypeClassMap()
+    com.mongodb.DBObjectCodec: org.bson.codecs.BsonTypeClassMap getDefaultBsonTypeClassMap()
+    com.mongodb.DBObjectCodec: void <clinit>()
+    com.mongodb.assertions.Assertions: java.lang.Object notNull(java.lang.String,java.lang.Object)
+    com.mongodb.assertions.Assertions: void isTrue(java.lang.String,boolean)
+    com.mongodb.assertions.Assertions: void isTrueArgument(java.lang.String,boolean)
+    com.mongodb.TaggableReadPreference$SecondaryReadPreference: void <init>()
+    com.mongodb.TaggableReadPreference$SecondaryReadPreference: void <init>(java.util.List,java.lang.Long,java.util.concurrent.TimeUnit)
+    com.mongodb.TaggableReadPreference$SecondaryReadPreference: java.lang.String getName()
+    com.mongodb.TaggableReadPreference$NearestReadPreference: void <init>()
+    com.mongodb.TaggableReadPreference$NearestReadPreference: void <init>(java.util.List,java.lang.Long,java.util.concurrent.TimeUnit)
+    com.mongodb.TaggableReadPreference$NearestReadPreference: java.lang.String getName()
+    com.mongodb.MongoCompressor: com.mongodb.MongoCompressor createSnappyCompressor()
+    com.mongodb.MongoCompressor: com.mongodb.MongoCompressor createZlibCompressor()
+    com.mongodb.MongoCompressor: com.mongodb.MongoCompressor createZstdCompressor()
+    com.mongodb.MongoCompressor: com.mongodb.MongoCompressor withProperty(java.lang.String,java.lang.Object)
+    com.mongodb.MongoCompressor: void <init>(java.lang.String)
+    com.mongodb.MongoCompressor: void <init>(com.mongodb.MongoCompressor,java.lang.String,java.lang.Object)
+    com.mongodb.diagnostics.logging.Loggers: com.mongodb.diagnostics.logging.Logger getLogger(java.lang.String)
+    com.mongodb.diagnostics.logging.Loggers: boolean shouldUseSLF4J()
+    com.mongodb.diagnostics.logging.Loggers: void <clinit>()
+    com.mongodb.diagnostics.logging.JULLogger: void <init>(java.lang.String)
+    com.mongodb.diagnostics.logging.JULLogger: boolean isWarnEnabled()
+    com.mongodb.diagnostics.logging.JULLogger: void warn(java.lang.String)
+    com.mongodb.diagnostics.logging.JULLogger: void log(java.util.logging.Level,java.lang.String)
+    com.mongodb.diagnostics.logging.SLF4JLogger: void <init>(java.lang.String)
+    com.mongodb.diagnostics.logging.SLF4JLogger: boolean isWarnEnabled()
+    com.mongodb.diagnostics.logging.SLF4JLogger: void warn(java.lang.String)
+    com.mongodb.MongoClientSettings$Builder: void <init>()
+    com.mongodb.MongoClientSettings$Builder: com.mongodb.MongoClientSettings$Builder applyConnectionString(com.mongodb.ConnectionString)
+    com.mongodb.MongoClientSettings$Builder: com.mongodb.MongoClientSettings$Builder applyToClusterSettings(com.mongodb.Block)
+    com.mongodb.MongoClientSettings$Builder: com.mongodb.MongoClientSettings$Builder applyToSocketSettings(com.mongodb.Block)
+    com.mongodb.MongoClientSettings$Builder: com.mongodb.MongoClientSettings build()
+    com.mongodb.MongoClientSettings$Builder: void <init>(com.mongodb.MongoClientSettings$1)
+    com.mongodb.MongoClientSettings$Builder: com.mongodb.ReadPreference access$300(com.mongodb.MongoClientSettings$Builder)
+    com.mongodb.MongoClientSettings$Builder: com.mongodb.WriteConcern access$400(com.mongodb.MongoClientSettings$Builder)
+    com.mongodb.MongoClientSettings$Builder: boolean access$500(com.mongodb.MongoClientSettings$Builder)
+    com.mongodb.MongoClientSettings$Builder: boolean access$600(com.mongodb.MongoClientSettings$Builder)
+    com.mongodb.MongoClientSettings$Builder: com.mongodb.ReadConcern access$700(com.mongodb.MongoClientSettings$Builder)
+    com.mongodb.MongoClientSettings$Builder: com.mongodb.MongoCredential access$800(com.mongodb.MongoClientSettings$Builder)
+    com.mongodb.MongoClientSettings$Builder: com.mongodb.connection.StreamFactoryFactory access$900(com.mongodb.MongoClientSettings$Builder)
+    com.mongodb.MongoClientSettings$Builder: org.bson.codecs.configuration.CodecRegistry access$1000(com.mongodb.MongoClientSettings$Builder)
+    com.mongodb.MongoClientSettings$Builder: java.util.List access$1100(com.mongodb.MongoClientSettings$Builder)
+    com.mongodb.MongoClientSettings$Builder: java.lang.String access$1200(com.mongodb.MongoClientSettings$Builder)
+    com.mongodb.MongoClientSettings$Builder: com.mongodb.connection.ClusterSettings$Builder access$1300(com.mongodb.MongoClientSettings$Builder)
+    com.mongodb.MongoClientSettings$Builder: com.mongodb.connection.ServerSettings$Builder access$1400(com.mongodb.MongoClientSettings$Builder)
+    com.mongodb.MongoClientSettings$Builder: com.mongodb.connection.SocketSettings$Builder access$1500(com.mongodb.MongoClientSettings$Builder)
+    com.mongodb.MongoClientSettings$Builder: com.mongodb.connection.ConnectionPoolSettings$Builder access$1600(com.mongodb.MongoClientSettings$Builder)
+    com.mongodb.MongoClientSettings$Builder: com.mongodb.connection.SslSettings$Builder access$1700(com.mongodb.MongoClientSettings$Builder)
+    com.mongodb.MongoClientSettings$Builder: java.util.List access$1800(com.mongodb.MongoClientSettings$Builder)
+    com.mongodb.MongoClientSettings$Builder: org.bson.UuidRepresentation access$1900(com.mongodb.MongoClientSettings$Builder)
+    com.mongodb.MongoClientSettings$Builder: com.mongodb.AutoEncryptionSettings access$2000(com.mongodb.MongoClientSettings$Builder)
+    com.mongodb.ReadPreference: void <init>()
+    com.mongodb.ReadPreference: com.mongodb.ReadPreference primary()
+    com.mongodb.ReadPreference: com.mongodb.ReadPreference valueOf(java.lang.String)
+    com.mongodb.ReadPreference: com.mongodb.TaggableReadPreference valueOf(java.lang.String,java.util.List)
+    com.mongodb.ReadPreference: com.mongodb.TaggableReadPreference valueOf(java.lang.String,java.util.List,long,java.util.concurrent.TimeUnit)
+    com.mongodb.ReadPreference: com.mongodb.TaggableReadPreference valueOf(java.lang.String,java.util.List,java.lang.Long,java.util.concurrent.TimeUnit)
+    com.mongodb.ReadPreference: void <clinit>()
+    com.mongodb.AuthenticationMechanism: com.mongodb.AuthenticationMechanism[] values()
+    com.mongodb.AuthenticationMechanism: void <init>(java.lang.String,int,java.lang.String)
+    com.mongodb.AuthenticationMechanism: java.lang.String getMechanismName()
+    com.mongodb.AuthenticationMechanism: com.mongodb.AuthenticationMechanism fromMechanismName(java.lang.String)
+    com.mongodb.AuthenticationMechanism: void <clinit>()
+    com.mongodb.MongoNamespace: void checkDatabaseNameValidity(java.lang.String)
+    com.mongodb.MongoNamespace: void checkCollectionNameValidity(java.lang.String)
+    com.mongodb.MongoNamespace: void <init>(java.lang.String)
+    com.mongodb.MongoNamespace: java.lang.String getCollectionNameFullName(java.lang.String)
+    com.mongodb.MongoNamespace: java.lang.String getDatatabaseNameFromFullName(java.lang.String)
+    com.mongodb.MongoNamespace: void <clinit>()
+    com.mongodb.TaggableReadPreference: void <init>()
+    com.mongodb.TaggableReadPreference: void <init>(java.util.List,java.lang.Long,java.util.concurrent.TimeUnit)
+    com.mongodb.Tag: void <init>(java.lang.String,java.lang.String)
+    com.mongodb.MongoClientException: void <init>(java.lang.String)
+    com.mongodb.MongoClientException: void <init>(java.lang.String,java.lang.Throwable)
+    com.mongodb.ReadConcernLevel: com.mongodb.ReadConcernLevel[] values()
+    com.mongodb.ReadConcernLevel: void <init>(java.lang.String,int,java.lang.String)
+    com.mongodb.ReadConcernLevel: com.mongodb.ReadConcernLevel fromString(java.lang.String)
+    com.mongodb.ReadConcernLevel: void <clinit>()
+    com.mongodb.ServerAddress: void <init>()
+    com.mongodb.ServerAddress: void <init>(java.lang.String)
+    com.mongodb.ServerAddress: void <init>(java.lang.String,int)
+    com.mongodb.ServerAddress: java.lang.String defaultHost()
+    com.mongodb.ServerAddress: int defaultPort()
+    com.mongodb.client.gridfs.codecs.GridFSFileCodecProvider: void <init>()
+    com.mongodb.client.model.geojson.codecs.GeoJsonCodecProvider: void <init>()
+    com.mongodb.client.model.CreateCollectionOptions: void <init>()
+    com.mongodb.client.model.ValidationOptions: void <init>()
+    com.mongodb.client.model.IndexOptionDefaults: void <init>()
+    com.mongodb.TaggableReadPreference$SecondaryPreferredReadPreference: void <init>()
+    com.mongodb.TaggableReadPreference$SecondaryPreferredReadPreference: void <init>(java.util.List,java.lang.Long,java.util.concurrent.TimeUnit)
+    com.mongodb.TaggableReadPreference$SecondaryPreferredReadPreference: java.lang.String getName()
+/ / / / / / / / /
+revapi log of former version -- 3.12.14:
+18:08:48.199 INFO  Downloading checked archives
+18:08:48.204 INFO  Downloading extensions
+18:08:48.786 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.mongodb-mongodb-driver-core-3.12.11.jar
+New API: org.mongodb-mongodb-driver-core-3.12.14.jar
+old: interface com.mongodb.DBObjectFactory
+new: interface com.mongodb.DBObjectFactory
+java.class.nonPublicPartOfAPI: Class 'com.mongodb.DBObjectFactory' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+
+old: field com.mongodb.internal.build.MongoDriverVersion.VERSION
+new: field com.mongodb.internal.build.MongoDriverVersion.VERSION
+java.field.constantValueChanged: Constant field changed value from '3.12.11' to '3.12.14'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+
+old: interface com.mongodb.internal.connection.ClusterableServer
+new: interface com.mongodb.internal.connection.ClusterableServer
+java.class.nonPublicPartOfAPI: Class 'com.mongodb.internal.connection.ClusterableServer' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+
+old: interface com.mongodb.internal.connection.DnsSrvRecordInitializer
+new: interface com.mongodb.internal.connection.DnsSrvRecordInitializer
+java.class.nonPublicPartOfAPI: Class 'com.mongodb.internal.connection.DnsSrvRecordInitializer' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+
+old: interface com.mongodb.internal.connection.InternalConnectionInitializer
+new: interface com.mongodb.internal.connection.InternalConnectionInitializer
+java.class.nonPublicPartOfAPI: Class 'com.mongodb.internal.connection.InternalConnectionInitializer' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+
+old: class com.mongodb.internal.connection.MongoCredentialWithCache.Cache
+new: class com.mongodb.internal.connection.MongoCredentialWithCache.Cache
+java.class.nonPublicPartOfAPI: Class 'com.mongodb.internal.connection.MongoCredentialWithCache.Cache' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+
+old: enum com.mongodb.internal.connection.OpCode
+new: enum com.mongodb.internal.connection.OpCode
+java.class.nonPublicPartOfAPI: Class 'com.mongodb.internal.connection.OpCode' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+
+old: class com.mongodb.internal.connection.RequestMessage.EncodingMetadata
+new: class com.mongodb.internal.connection.RequestMessage.EncodingMetadata
+java.class.nonPublicPartOfAPI: Class 'com.mongodb.internal.connection.RequestMessage.EncodingMetadata' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+
+old: interface com.mongodb.internal.session.ServerSessionPool.Clock
+new: interface com.mongodb.internal.session.ServerSessionPool.Clock
+java.class.nonPublicPartOfAPI: Class 'com.mongodb.internal.session.ServerSessionPool.Clock' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+
+old: interface com.mongodb.operation.CommandOperationHelper.CommandCreator
+new: interface com.mongodb.operation.CommandOperationHelper.CommandCreator
+java.class.nonPublicPartOfAPI: Class 'com.mongodb.operation.CommandOperationHelper.CommandCreator' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+
+18:08:53.879 INFO  Analysis took 5092ms.
+
+/ / / / / / / / /
+revapi log of the subsequent version -- 4.0.0-beta1:
+18:10:15.922 INFO  Downloading checked archives
+18:10:15.927 INFO  Downloading extensions
+18:10:16.777 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.mongodb-mongodb-driver-core-3.12.11.jar
+New API: org.mongodb-mongodb-driver-core-4.0.0-beta1.jar
+old: field com.mongodb.AuthenticationMechanism.MONGODB_CR
+new: <none>
+java.field.removed: Field removed from class.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.util.List<com.mongodb.MongoCredential> com.mongodb.ConnectionString::getCredentialList()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method boolean com.mongodb.ConnectionString::getRetryWrites()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.String com.mongodb.ConnectionString::getStreamType()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.Integer com.mongodb.ConnectionString::getThreadsAllowedToBlockForConnectionMultiplier()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.String com.mongodb.ConnectionString::getURI()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.DBObjectFactory
+new: interface com.mongodb.DBObjectFactory
+java.class.nonPublicPartOfAPI: Class 'com.mongodb.DBObjectFactory' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
+
+old: field com.mongodb.MongoCredential.MONGODB_CR_MECHANISM
+new: <none>
+java.field.removed: Field removed from class.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.MongoCredential com.mongodb.MongoCredential::createMongoCRCredential(java.lang.String, java.lang.String, char[])
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.MongoNodeIsRecoveringException::<init>(com.mongodb.ServerAddress)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.MongoNotPrimaryException::<init>(com.mongodb.ServerAddress)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.MongoWaitQueueFullException
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method boolean com.mongodb.ServerAddress::sameHost(java.lang.String)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.WriteConcern.Majority
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: field com.mongodb.WriteConcern.FSYNCED
+new: <none>
+java.field.removed: Field removed from class.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: field com.mongodb.WriteConcern.FSYNC_SAFE
+new: <none>
+java.field.removed: Field removed from class.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: field com.mongodb.WriteConcern.JOURNAL_SAFE
+new: <none>
+java.field.removed: Field removed from class.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: field com.mongodb.WriteConcern.NORMAL
+new: <none>
+java.field.removed: Field removed from class.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: field com.mongodb.WriteConcern.REPLICAS_SAFE
+new: <none>
+java.field.removed: Field removed from class.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: field com.mongodb.WriteConcern.REPLICA_ACKNOWLEDGED
+new: <none>
+java.field.removed: Field removed from class.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: field com.mongodb.WriteConcern.SAFE
+new: <none>
+java.field.removed: Field removed from class.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.WriteConcern::<init>()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.WriteConcern::<init>(boolean)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.WriteConcern::<init>(int, int, boolean)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.WriteConcern::<init>(int, int, boolean, boolean)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.WriteConcern::<init>(java.lang.String, int, boolean, boolean)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method boolean com.mongodb.WriteConcern::callGetLastError()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method boolean com.mongodb.WriteConcern::fsync()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method boolean com.mongodb.WriteConcern::getFsync()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method boolean com.mongodb.WriteConcern::getJ()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method int com.mongodb.WriteConcern::getWtimeout()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.WriteConcern.Majority com.mongodb.WriteConcern::majorityWriteConcern(int, boolean, boolean)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.WriteConcern com.mongodb.WriteConcern::withFsync(boolean)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.WriteConcern com.mongodb.WriteConcern::withJ(boolean)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.assertions.Assertions::doesNotContainNull(java.lang.String, java.util.Collection<?>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: parameter void com.mongodb.assertions.Assertions::isTrue(java.lang.String, boolean, ===com.mongodb.async.SingleResultCallback<?>===)
+new: parameter void com.mongodb.assertions.Assertions::isTrue(java.lang.String, boolean, ===com.mongodb.internal.async.SingleResultCallback<?>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.async.SingleResultCallback<?>' to 'com.mongodb.internal.async.SingleResultCallback<?>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter <T> T com.mongodb.assertions.Assertions::notNull(java.lang.String, T, ===com.mongodb.async.SingleResultCallback<?>===)
+new: parameter <T> T com.mongodb.assertions.Assertions::notNull(java.lang.String, T, ===com.mongodb.internal.async.SingleResultCallback<?>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.async.SingleResultCallback<?>' to 'com.mongodb.internal.async.SingleResultCallback<?>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: interface com.mongodb.async.AsyncAggregateResponseBatchCursor<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.async.AsyncBatchCursor<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.async.SingleResultCallback<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.binding.AsyncClusterBinding
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.binding.AsyncConnectionSource
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.binding.AsyncReadBinding
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.binding.AsyncReadWriteBinding
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.binding.AsyncSingleConnectionReadBinding
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.binding.AsyncSingleServerBinding
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.binding.AsyncWriteBinding
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.binding.ClusterBinding
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.binding.ConnectionSource
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.binding.ReadBinding
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.binding.ReadWriteBinding
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.binding.ReferenceCounted
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.binding.SingleConnectionReadBinding
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.binding.SingleServerBinding
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.binding.WriteBinding
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: parameter com.mongodb.bulk.BulkWriteResult com.mongodb.bulk.BulkWriteResult::acknowledged(===com.mongodb.bulk.WriteRequest.Type===, int, java.lang.Integer, java.util.List<com.mongodb.bulk.BulkWriteUpsert>)
+new: parameter com.mongodb.bulk.BulkWriteResult com.mongodb.bulk.BulkWriteResult::acknowledged(===com.mongodb.internal.bulk.WriteRequest.Type===, int, java.lang.Integer, java.util.List<com.mongodb.bulk.BulkWriteUpsert>)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.bulk.WriteRequest.Type' to 'com.mongodb.internal.bulk.WriteRequest.Type'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter com.mongodb.bulk.BulkWriteResult com.mongodb.bulk.BulkWriteResult::acknowledged(===com.mongodb.bulk.WriteRequest.Type===, int, java.util.List<com.mongodb.bulk.BulkWriteUpsert>)
+new: parameter com.mongodb.bulk.BulkWriteResult com.mongodb.bulk.BulkWriteResult::acknowledged(===com.mongodb.internal.bulk.WriteRequest.Type===, int, java.util.List<com.mongodb.bulk.BulkWriteUpsert>)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.bulk.WriteRequest.Type' to 'com.mongodb.internal.bulk.WriteRequest.Type'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: <none>
+new: method java.util.List<com.mongodb.bulk.BulkWriteInsert> com.mongodb.bulk.BulkWriteResult::getInserts()
+java.method.abstractMethodAdded: Abstract method was added.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method boolean com.mongodb.bulk.BulkWriteResult::isModifiedCountAvailable()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.bulk.DeleteRequest
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.bulk.IndexRequest
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.bulk.InsertRequest
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.bulk.UpdateRequest
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.bulk.WriteConcernError::<init>(int, java.lang.String, org.bson.BsonDocument)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.bulk.WriteRequest
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.client.gridfs.model.GridFSDownloadByNameOptions
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.client.gridfs.model.GridFSFile::<init>(org.bson.BsonValue, java.lang.String, long, int, java.util.Date, java.lang.String, org.bson.Document, org.bson.Document)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.client.gridfs.model.GridFSFile::<init>(org.bson.BsonValue, java.lang.String, long, int, java.util.Date, java.lang.String, org.bson.Document)
+new: method void com.mongodb.client.gridfs.model.GridFSFile::<init>(org.bson.BsonValue, java.lang.String, long, int, java.util.Date, org.bson.Document)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+java.element.noLongerDeprecated: The element is no longer deprecated.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT
+
+old: method java.util.List<java.lang.String> com.mongodb.client.gridfs.model.GridFSFile::getAliases()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.String com.mongodb.client.gridfs.model.GridFSFile::getContentType()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.bson.Document com.mongodb.client.gridfs.model.GridFSFile::getExtraElements()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.String com.mongodb.client.gridfs.model.GridFSFile::getMD5()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: enum com.mongodb.client.model.AggregationLevel
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.client.model.CreateCollectionOptions com.mongodb.client.model.CreateCollectionOptions::autoIndex(boolean)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method boolean com.mongodb.client.model.CreateCollectionOptions::isAutoIndex()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.Boolean com.mongodb.client.model.CreateCollectionOptions::isUsePowerOf2Sizes()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.client.model.CreateCollectionOptions com.mongodb.client.model.CreateCollectionOptions::usePowerOf2Sizes(java.lang.Boolean)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.bson.conversions.Bson com.mongodb.client.model.Filters::text(java.lang.String, java.lang.String)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.client.model.FindOptions
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.client.model.ParallelCollectionScanOptions
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.client.model.ReplaceOneModel<T>::<init>(org.bson.conversions.Bson, T, com.mongodb.client.model.UpdateOptions)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.client.model.UpdateOptions com.mongodb.client.model.ReplaceOneModel<T>::getOptions()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.client.model.ReplaceOptions com.mongodb.client.model.ReplaceOptions::createReplaceOptions(com.mongodb.client.model.UpdateOptions)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.client.model.changestream.ChangeStreamDocument<TDocument>::<init>(com.mongodb.client.model.changestream.OperationType, org.bson.BsonDocument, org.bson.BsonDocument, org.bson.BsonDocument, TDocument, org.bson.BsonDocument, org.bson.BsonTimestamp, com.mongodb.client.model.changestream.UpdateDescription)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.client.model.changestream.ChangeStreamDocument<TDocument>::<init>(org.bson.BsonDocument, com.mongodb.MongoNamespace, TDocument, org.bson.BsonDocument, com.mongodb.client.model.changestream.OperationType, com.mongodb.client.model.changestream.UpdateDescription)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.client.model.changestream.ChangeStreamDocument<TDocument>::<init>(org.bson.BsonDocument, com.mongodb.MongoNamespace, TDocument, org.bson.BsonDocument, org.bson.BsonTimestamp, com.mongodb.client.model.changestream.OperationType, com.mongodb.client.model.changestream.UpdateDescription)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.client.model.changestream.ChangeStreamDocument<TDocument>::<init>(org.bson.BsonDocument, org.bson.BsonDocument, TDocument, org.bson.BsonDocument, org.bson.BsonTimestamp, com.mongodb.client.model.changestream.OperationType, com.mongodb.client.model.changestream.UpdateDescription)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: enum com.mongodb.client.model.changestream.ChangeStreamLevel
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method boolean com.mongodb.client.result.UpdateResult::isModifiedCountAvailable()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.connection.AsyncConnection
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.connection.AsynchronousSocketChannelStreamFactoryFactory
+new: class com.mongodb.connection.AsynchronousSocketChannelStreamFactoryFactory
+java.class.nowFinal: Class is now final.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.connection.AsynchronousSocketChannelStreamFactoryFactory::<init>()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.connection.BulkWriteBatchCombiner
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.connection.ByteBufferBsonOutput
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.connection.Cluster
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.util.Set<com.mongodb.connection.ServerDescription> com.mongodb.connection.ClusterDescription::getAll()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.util.List<com.mongodb.connection.ServerDescription> com.mongodb.connection.ClusterDescription::getAny()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.util.List<com.mongodb.connection.ServerDescription> com.mongodb.connection.ClusterDescription::getAnyPrimaryOrSecondary()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.util.List<com.mongodb.connection.ServerDescription> com.mongodb.connection.ClusterDescription::getAnyPrimaryOrSecondary(com.mongodb.TagSet)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.connection.ServerDescription com.mongodb.connection.ClusterDescription::getByServerAddress(com.mongodb.ServerAddress)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.util.List<com.mongodb.connection.ServerDescription> com.mongodb.connection.ClusterDescription::getPrimaries()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.util.List<com.mongodb.connection.ServerDescription> com.mongodb.connection.ClusterDescription::getSecondaries()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.util.List<com.mongodb.connection.ServerDescription> com.mongodb.connection.ClusterDescription::getSecondaries(com.mongodb.TagSet)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.connection.ClusterFactory
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.connection.ClusterSettings.Builder com.mongodb.connection.ClusterSettings.Builder::description(java.lang.String)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.connection.ClusterSettings.Builder com.mongodb.connection.ClusterSettings.Builder::maxWaitQueueSize(int)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.String com.mongodb.connection.ClusterSettings::getDescription()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method int com.mongodb.connection.ClusterSettings::getMaxWaitQueueSize()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.connection.Connection
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.connection.ConnectionDescription::<init>(com.mongodb.connection.ConnectionId, com.mongodb.connection.ServerVersion, com.mongodb.connection.ServerType, int, int, int)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.connection.ConnectionDescription::<init>(com.mongodb.connection.ConnectionId, com.mongodb.connection.ServerVersion, com.mongodb.connection.ServerType, int, int, int, java.util.List<java.lang.String>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.connection.ConnectionDescription::<init>(com.mongodb.connection.ConnectionId, com.mongodb.connection.ServerVersion, int, com.mongodb.connection.ServerType, int, int, int, java.util.List<java.lang.String>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.connection.ServerVersion com.mongodb.connection.ConnectionDescription::getServerVersion()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.connection.ConnectionPoolSettings.Builder com.mongodb.connection.ConnectionPoolSettings.Builder::maxWaitQueueSize(int)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method int com.mongodb.connection.ConnectionPoolSettings::getMaxWaitQueueSize()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.connection.DefaultClusterFactory
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.connection.QueryResult<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.connection.Server
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.connection.ServerDescription.Builder com.mongodb.connection.ServerDescription.Builder::version(com.mongodb.connection.ServerVersion)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: field com.mongodb.connection.ServerDescription.MAX_DRIVER_WIRE_VERSION
+new: field com.mongodb.connection.ServerDescription.MAX_DRIVER_WIRE_VERSION
+java.field.constantValueChanged: Constant field changed value from '15' to '8'.
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
+
+old: method com.mongodb.connection.ServerVersion com.mongodb.connection.ServerDescription::getVersion()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.connection.SocketSettings
+new: class com.mongodb.connection.SocketSettings
+java.class.nowFinal: Class is now final.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.connection.SocketSettings.Builder com.mongodb.connection.SocketSettings.Builder::keepAlive(boolean)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method boolean com.mongodb.connection.SocketSettings::isKeepAlive()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.connection.SplittablePayload
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.connection.netty.NettyStreamFactoryFactory
+new: class com.mongodb.connection.netty.NettyStreamFactoryFactory
+java.class.nowFinal: Class is now final.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.connection.netty.NettyStreamFactoryFactory::<init>()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.connection.netty.NettyStreamFactoryFactory::<init>(io.netty.channel.EventLoopGroup, io.netty.buffer.ByteBufAllocator)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: field com.mongodb.diagnostics.logging.Loggers.PREFIX
+new: field com.mongodb.diagnostics.logging.Loggers.PREFIX
+java.field.visibilityReduced: Visibility was reduced from 'public' to 'private'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.event.ClusterEventMulticaster
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.event.CommandEventMulticaster
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.event.CommandListenerMulticaster
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.event.ConnectionClosedEvent::<init>(com.mongodb.connection.ConnectionId)
+new: method void com.mongodb.event.ConnectionClosedEvent::<init>(com.mongodb.connection.ConnectionId, com.mongodb.event.ConnectionClosedEvent.Reason)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.event.ConnectionListener
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.event.ConnectionMessageReceivedEvent
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.event.ConnectionMessagesSentEvent
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.event.ConnectionOpenedEvent
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.event.ConnectionPoolEventMulticaster
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.event.ConnectionPoolListener::waitQueueEntered(com.mongodb.event.ConnectionPoolWaitQueueEnteredEvent)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.event.ConnectionPoolListener::waitQueueExited(com.mongodb.event.ConnectionPoolWaitQueueExitedEvent)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.event.ConnectionPoolListenerAdapter::waitQueueEntered(com.mongodb.event.ConnectionPoolWaitQueueEnteredEvent)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.event.ConnectionPoolListenerAdapter::waitQueueExited(com.mongodb.event.ConnectionPoolWaitQueueExitedEvent)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.event.ConnectionPoolWaitQueueEnteredEvent
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.event.ConnectionPoolWaitQueueExitedEvent
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.event.ConnectionRemovedEvent::<init>(com.mongodb.connection.ConnectionId)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.event.ServerEventMulticaster
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.event.ServerMonitorEventMulticaster
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.internal.async.ErrorHandlingResultCallback<T>
+new: class com.mongodb.internal.async.ErrorHandlingResultCallback<T>
+java.class.noLongerImplementsInterface: Class no longer implements interface 'com.mongodb.async.SingleResultCallback<T>'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nowImplementsInterface: Class now implements interface 'com.mongodb.internal.async.SingleResultCallback<T>'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+
+old: method <T> com.mongodb.async.SingleResultCallback<T> com.mongodb.internal.async.ErrorHandlingResultCallback<T>::errorHandlingCallback(com.mongodb.async.SingleResultCallback<T>, com.mongodb.diagnostics.logging.Logger)
+new: method <T> com.mongodb.internal.async.SingleResultCallback<T> com.mongodb.internal.async.ErrorHandlingResultCallback<T>::errorHandlingCallback(com.mongodb.internal.async.SingleResultCallback<T>, com.mongodb.diagnostics.logging.Logger)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.async.SingleResultCallback<T>' to  'com.mongodb.internal.async.SingleResultCallback<T>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter <T> com.mongodb.async.SingleResultCallback<T> com.mongodb.internal.async.ErrorHandlingResultCallback<T>::errorHandlingCallback(===com.mongodb.async.SingleResultCallback<T>===, com.mongodb.diagnostics.logging.Logger)
+new: parameter <T> com.mongodb.internal.async.SingleResultCallback<T> com.mongodb.internal.async.ErrorHandlingResultCallback<T>::errorHandlingCallback(===com.mongodb.internal.async.SingleResultCallback<T>===, com.mongodb.diagnostics.logging.Logger)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.async.SingleResultCallback<T>' to 'com.mongodb.internal.async.SingleResultCallback<T>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class com.mongodb.internal.binding.AbstractReferenceCounted
+new: class com.mongodb.internal.binding.AbstractReferenceCounted
+java.class.noLongerImplementsInterface: Class no longer implements interface 'com.mongodb.binding.ReferenceCounted'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nowImplementsInterface: Class now implements interface 'com.mongodb.internal.binding.ReferenceCounted'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+
+old: method com.mongodb.binding.ReferenceCounted com.mongodb.internal.binding.AbstractReferenceCounted::retain()
+new: method com.mongodb.internal.binding.ReferenceCounted com.mongodb.internal.binding.AbstractReferenceCounted::retain()
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.binding.ReferenceCounted' to  'com.mongodb.internal.binding.ReferenceCounted'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: interface com.mongodb.internal.binding.AsyncClusterAwareReadWriteBinding
+new: interface com.mongodb.internal.binding.AsyncClusterAwareReadWriteBinding
+java.class.noLongerImplementsInterface: Class no longer implements interface 'com.mongodb.binding.AsyncReadWriteBinding'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'com.mongodb.binding.AsyncReadBinding'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'com.mongodb.binding.ReferenceCounted'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'com.mongodb.binding.AsyncWriteBinding'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'com.mongodb.binding.ReferenceCounted'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'com.mongodb.binding.ReferenceCounted'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nowImplementsInterface: Class now implements interface 'com.mongodb.internal.binding.AsyncReadWriteBinding'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+
+old: method com.mongodb.connection.Cluster com.mongodb.internal.binding.AsyncClusterAwareReadWriteBinding::getCluster()
+new: method com.mongodb.internal.connection.Cluster com.mongodb.internal.binding.AsyncClusterAwareReadWriteBinding::getCluster()
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.connection.Cluster' to  'com.mongodb.internal.connection.Cluster'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void com.mongodb.internal.binding.AsyncClusterAwareReadWriteBinding::getConnectionSource(com.mongodb.ServerAddress, com.mongodb.async.SingleResultCallback<com.mongodb.binding.AsyncConnectionSource>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.internal.binding.ClusterAwareReadWriteBinding
+new: interface com.mongodb.internal.binding.ClusterAwareReadWriteBinding
+java.class.noLongerImplementsInterface: Class no longer implements interface 'com.mongodb.binding.ReadWriteBinding'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'com.mongodb.binding.ReadBinding'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'com.mongodb.binding.ReferenceCounted'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'com.mongodb.binding.WriteBinding'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'com.mongodb.binding.ReferenceCounted'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'com.mongodb.binding.ReferenceCounted'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nowImplementsInterface: Class now implements interface 'com.mongodb.internal.binding.ReadWriteBinding'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+
+old: method com.mongodb.connection.Cluster com.mongodb.internal.binding.ClusterAwareReadWriteBinding::getCluster()
+new: method com.mongodb.internal.connection.Cluster com.mongodb.internal.binding.ClusterAwareReadWriteBinding::getCluster()
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.connection.Cluster' to  'com.mongodb.internal.connection.Cluster'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.binding.ConnectionSource com.mongodb.internal.binding.ClusterAwareReadWriteBinding::getConnectionSource(com.mongodb.ServerAddress)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: field com.mongodb.internal.build.MongoDriverVersion.VERSION
+new: field com.mongodb.internal.build.MongoDriverVersion.VERSION
+java.field.constantValueChanged: Constant field changed value from '3.12.11' to '4.0.0-beta1'.
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
+
+old: class com.mongodb.internal.capi.MongoCryptHelper
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.connection.Server com.mongodb.internal.connection.BaseCluster::selectServer(com.mongodb.selector.ServerSelector) @ com.mongodb.internal.connection.AbstractMultiServerCluster
+new: method com.mongodb.internal.connection.Server com.mongodb.internal.connection.BaseCluster::selectServer(com.mongodb.selector.ServerSelector) @ com.mongodb.internal.connection.AbstractMultiServerCluster
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.connection.Server' to  'com.mongodb.internal.connection.Server'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void com.mongodb.internal.connection.BaseCluster::selectServerAsync(com.mongodb.selector.ServerSelector, ===com.mongodb.async.SingleResultCallback<com.mongodb.connection.Server>===) @ com.mongodb.internal.connection.AbstractMultiServerCluster
+new: parameter void com.mongodb.internal.connection.BaseCluster::selectServerAsync(com.mongodb.selector.ServerSelector, ===com.mongodb.internal.async.SingleResultCallback<com.mongodb.internal.connection.Server>===) @ com.mongodb.internal.connection.AbstractMultiServerCluster
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.async.SingleResultCallback<com.mongodb.connection.Server>' to 'com.mongodb.internal.async.SingleResultCallback<com.mongodb.internal.connection.Server>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class com.mongodb.internal.connection.ClusterClockAdvancingSessionContext
+new: class com.mongodb.internal.connection.ClusterClockAdvancingSessionContext
+java.class.noLongerImplementsInterface: Class no longer implements interface 'com.mongodb.session.SessionContext'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nowImplementsInterface: Class now implements interface 'com.mongodb.internal.session.SessionContext'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+
+old: parameter void com.mongodb.internal.connection.ClusterClockAdvancingSessionContext::<init>(===com.mongodb.session.SessionContext===, com.mongodb.internal.connection.ClusterClock)
+new: parameter void com.mongodb.internal.connection.ClusterClockAdvancingSessionContext::<init>(===com.mongodb.internal.session.SessionContext===, com.mongodb.internal.connection.ClusterClock)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.session.SessionContext' to 'com.mongodb.internal.session.SessionContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: interface com.mongodb.internal.connection.ClusterableServer
+new: interface com.mongodb.internal.connection.ClusterableServer
+java.class.nonPublicPartOfAPI: Class 'com.mongodb.internal.connection.ClusterableServer' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
+
+old: parameter void com.mongodb.internal.connection.RequestMessage::encode(org.bson.io.BsonOutput, ===com.mongodb.session.SessionContext===) @ com.mongodb.internal.connection.CommandMessage
+new: parameter void com.mongodb.internal.connection.RequestMessage::encode(org.bson.io.BsonOutput, ===com.mongodb.internal.session.SessionContext===) @ com.mongodb.internal.connection.CommandMessage
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.session.SessionContext' to 'com.mongodb.internal.session.SessionContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter com.mongodb.internal.connection.RequestMessage.EncodingMetadata com.mongodb.internal.connection.CommandMessage::encodeMessageBodyWithMetadata(org.bson.io.BsonOutput, ===com.mongodb.session.SessionContext===)
+new: parameter com.mongodb.internal.connection.RequestMessage.EncodingMetadata com.mongodb.internal.connection.CommandMessage::encodeMessageBodyWithMetadata(org.bson.io.BsonOutput, ===com.mongodb.internal.session.SessionContext===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.session.SessionContext' to 'com.mongodb.internal.session.SessionContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void com.mongodb.internal.connection.CommandProtocol<T>::executeAsync(com.mongodb.internal.connection.InternalConnection, ===com.mongodb.async.SingleResultCallback<T>===)
+new: parameter void com.mongodb.internal.connection.CommandProtocol<T>::executeAsync(com.mongodb.internal.connection.InternalConnection, ===com.mongodb.internal.async.SingleResultCallback<T>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.async.SingleResultCallback<T>' to 'com.mongodb.internal.async.SingleResultCallback<T>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter com.mongodb.internal.connection.CommandProtocol<T> com.mongodb.internal.connection.CommandProtocol<T>::sessionContext(===com.mongodb.session.SessionContext===)
+new: parameter com.mongodb.internal.connection.CommandProtocol<T> com.mongodb.internal.connection.CommandProtocol<T>::sessionContext(===com.mongodb.internal.session.SessionContext===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.session.SessionContext' to 'com.mongodb.internal.session.SessionContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void com.mongodb.internal.connection.DefaultClusterableServerFactory::<init>(com.mongodb.connection.ClusterId, com.mongodb.connection.ClusterSettings, com.mongodb.connection.ServerSettings, com.mongodb.connection.ConnectionPoolSettings, com.mongodb.connection.StreamFactory, com.mongodb.connection.StreamFactory, ===java.util.List<com.mongodb.MongoCredential>===, com.mongodb.event.CommandListener, java.lang.String, com.mongodb.MongoDriverInformation, java.util.List<com.mongodb.MongoCompressor>)
+new: parameter void com.mongodb.internal.connection.DefaultClusterableServerFactory::<init>(com.mongodb.connection.ClusterId, com.mongodb.connection.ClusterSettings, com.mongodb.connection.ServerSettings, com.mongodb.connection.ConnectionPoolSettings, com.mongodb.connection.StreamFactory, com.mongodb.connection.StreamFactory, ===com.mongodb.MongoCredential===, com.mongodb.event.CommandListener, java.lang.String, com.mongodb.MongoDriverInformation, java.util.List<com.mongodb.MongoCompressor>)
+java.method.parameterTypeChanged: The type of the parameter changed from 'java.util.List<com.mongodb.MongoCredential>' to 'com.mongodb.MongoCredential'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class com.mongodb.internal.connection.DefaultServerConnection
+new: class com.mongodb.internal.connection.DefaultServerConnection
+java.class.noLongerImplementsInterface: Class no longer implements interface 'com.mongodb.binding.ReferenceCounted'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'com.mongodb.connection.Connection'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'com.mongodb.binding.ReferenceCounted'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'com.mongodb.connection.AsyncConnection'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'com.mongodb.binding.ReferenceCounted'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nowImplementsInterface: Class now implements interface 'com.mongodb.internal.connection.Connection'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+java.class.nowImplementsInterface: Class now implements interface 'com.mongodb.internal.connection.AsyncConnection'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+
+old: method <T> T com.mongodb.internal.connection.DefaultServerConnection::command(java.lang.String, org.bson.BsonDocument, boolean, org.bson.FieldNameValidator, org.bson.codecs.Decoder<T>)
+new: method <T> T com.mongodb.internal.connection.DefaultServerConnection::command(java.lang.String, org.bson.BsonDocument, org.bson.FieldNameValidator, com.mongodb.ReadPreference, org.bson.codecs.Decoder<T>, com.mongodb.internal.session.SessionContext)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method <T> T com.mongodb.internal.connection.DefaultServerConnection::command(java.lang.String, org.bson.BsonDocument, org.bson.FieldNameValidator, com.mongodb.ReadPreference, org.bson.codecs.Decoder<T>, com.mongodb.session.SessionContext)
+new: method <T> T com.mongodb.internal.connection.DefaultServerConnection::command(java.lang.String, org.bson.BsonDocument, org.bson.FieldNameValidator, com.mongodb.ReadPreference, org.bson.codecs.Decoder<T>, com.mongodb.internal.session.SessionContext, boolean, com.mongodb.internal.connection.SplittablePayload, org.bson.FieldNameValidator)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method <T> T com.mongodb.internal.connection.DefaultServerConnection::command(java.lang.String, org.bson.BsonDocument, org.bson.FieldNameValidator, com.mongodb.ReadPreference, org.bson.codecs.Decoder<T>, com.mongodb.session.SessionContext, boolean, com.mongodb.connection.SplittablePayload, org.bson.FieldNameValidator)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method <T> void com.mongodb.internal.connection.DefaultServerConnection::commandAsync(java.lang.String, org.bson.BsonDocument, org.bson.FieldNameValidator, com.mongodb.ReadPreference, org.bson.codecs.Decoder<T>, com.mongodb.session.SessionContext, com.mongodb.async.SingleResultCallback<T>)
+new: method <T> void com.mongodb.internal.connection.DefaultServerConnection::commandAsync(java.lang.String, org.bson.BsonDocument, org.bson.FieldNameValidator, com.mongodb.ReadPreference, org.bson.codecs.Decoder<T>, com.mongodb.internal.session.SessionContext, boolean, com.mongodb.internal.connection.SplittablePayload, org.bson.FieldNameValidator, com.mongodb.internal.async.SingleResultCallback<T>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method <T> void com.mongodb.internal.connection.DefaultServerConnection::commandAsync(java.lang.String, org.bson.BsonDocument, boolean, org.bson.FieldNameValidator, org.bson.codecs.Decoder<T>, com.mongodb.async.SingleResultCallback<T>)
+new: method <T> void com.mongodb.internal.connection.DefaultServerConnection::commandAsync(java.lang.String, org.bson.BsonDocument, org.bson.FieldNameValidator, com.mongodb.ReadPreference, org.bson.codecs.Decoder<T>, com.mongodb.internal.session.SessionContext, com.mongodb.internal.async.SingleResultCallback<T>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method <T> void com.mongodb.internal.connection.DefaultServerConnection::commandAsync(java.lang.String, org.bson.BsonDocument, org.bson.FieldNameValidator, com.mongodb.ReadPreference, org.bson.codecs.Decoder<T>, com.mongodb.session.SessionContext, boolean, com.mongodb.connection.SplittablePayload, org.bson.FieldNameValidator, com.mongodb.async.SingleResultCallback<T>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: parameter com.mongodb.WriteConcernResult com.mongodb.internal.connection.DefaultServerConnection::delete(com.mongodb.MongoNamespace, boolean, ===com.mongodb.bulk.DeleteRequest===)
+new: parameter com.mongodb.WriteConcernResult com.mongodb.internal.connection.DefaultServerConnection::delete(com.mongodb.MongoNamespace, boolean, ===com.mongodb.internal.bulk.DeleteRequest===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.bulk.DeleteRequest' to 'com.mongodb.internal.bulk.DeleteRequest'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void com.mongodb.internal.connection.DefaultServerConnection::deleteAsync(com.mongodb.MongoNamespace, boolean, ===com.mongodb.bulk.DeleteRequest===, com.mongodb.async.SingleResultCallback<com.mongodb.WriteConcernResult>)
+new: parameter void com.mongodb.internal.connection.DefaultServerConnection::deleteAsync(com.mongodb.MongoNamespace, boolean, ===com.mongodb.internal.bulk.DeleteRequest===, com.mongodb.internal.async.SingleResultCallback<com.mongodb.WriteConcernResult>)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.bulk.DeleteRequest' to 'com.mongodb.internal.bulk.DeleteRequest'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void com.mongodb.internal.connection.DefaultServerConnection::deleteAsync(com.mongodb.MongoNamespace, boolean, com.mongodb.bulk.DeleteRequest, ===com.mongodb.async.SingleResultCallback<com.mongodb.WriteConcernResult>===)
+new: parameter void com.mongodb.internal.connection.DefaultServerConnection::deleteAsync(com.mongodb.MongoNamespace, boolean, com.mongodb.internal.bulk.DeleteRequest, ===com.mongodb.internal.async.SingleResultCallback<com.mongodb.WriteConcernResult>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.async.SingleResultCallback<com.mongodb.WriteConcernResult>' to 'com.mongodb.internal.async.SingleResultCallback<com.mongodb.WriteConcernResult>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method <T> com.mongodb.connection.QueryResult<T> com.mongodb.internal.connection.DefaultServerConnection::getMore(com.mongodb.MongoNamespace, long, int, org.bson.codecs.Decoder<T>)
+new: method <T> com.mongodb.internal.connection.QueryResult<T> com.mongodb.internal.connection.DefaultServerConnection::getMore(com.mongodb.MongoNamespace, long, int, org.bson.codecs.Decoder<T>)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.connection.QueryResult<T>' to  'com.mongodb.internal.connection.QueryResult<T>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter <T> void com.mongodb.internal.connection.DefaultServerConnection::getMoreAsync(com.mongodb.MongoNamespace, long, int, org.bson.codecs.Decoder<T>, ===com.mongodb.async.SingleResultCallback<com.mongodb.connection.QueryResult<T>>===)
+new: parameter <T> void com.mongodb.internal.connection.DefaultServerConnection::getMoreAsync(com.mongodb.MongoNamespace, long, int, org.bson.codecs.Decoder<T>, ===com.mongodb.internal.async.SingleResultCallback<com.mongodb.internal.connection.QueryResult<T>>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.async.SingleResultCallback<com.mongodb.connection.QueryResult<T>>' to 'com.mongodb.internal.async.SingleResultCallback<com.mongodb.internal.connection.QueryResult<T>>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter com.mongodb.WriteConcernResult com.mongodb.internal.connection.DefaultServerConnection::insert(com.mongodb.MongoNamespace, boolean, ===com.mongodb.bulk.InsertRequest===)
+new: parameter com.mongodb.WriteConcernResult com.mongodb.internal.connection.DefaultServerConnection::insert(com.mongodb.MongoNamespace, boolean, ===com.mongodb.internal.bulk.InsertRequest===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.bulk.InsertRequest' to 'com.mongodb.internal.bulk.InsertRequest'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void com.mongodb.internal.connection.DefaultServerConnection::insertAsync(com.mongodb.MongoNamespace, boolean, ===com.mongodb.bulk.InsertRequest===, com.mongodb.async.SingleResultCallback<com.mongodb.WriteConcernResult>)
+new: parameter void com.mongodb.internal.connection.DefaultServerConnection::insertAsync(com.mongodb.MongoNamespace, boolean, ===com.mongodb.internal.bulk.InsertRequest===, com.mongodb.internal.async.SingleResultCallback<com.mongodb.WriteConcernResult>)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.bulk.InsertRequest' to 'com.mongodb.internal.bulk.InsertRequest'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void com.mongodb.internal.connection.DefaultServerConnection::insertAsync(com.mongodb.MongoNamespace, boolean, com.mongodb.bulk.InsertRequest, ===com.mongodb.async.SingleResultCallback<com.mongodb.WriteConcernResult>===)
+new: parameter void com.mongodb.internal.connection.DefaultServerConnection::insertAsync(com.mongodb.MongoNamespace, boolean, com.mongodb.internal.bulk.InsertRequest, ===com.mongodb.internal.async.SingleResultCallback<com.mongodb.WriteConcernResult>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.async.SingleResultCallback<com.mongodb.WriteConcernResult>' to 'com.mongodb.internal.async.SingleResultCallback<com.mongodb.WriteConcernResult>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void com.mongodb.internal.connection.DefaultServerConnection::killCursor(java.util.List<java.lang.Long>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.internal.connection.DefaultServerConnection::killCursorAsync(com.mongodb.MongoNamespace, java.util.List<java.lang.Long>, com.mongodb.async.SingleResultCallback<java.lang.Void>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.internal.connection.DefaultServerConnection::killCursorAsync(java.util.List<java.lang.Long>, com.mongodb.async.SingleResultCallback<java.lang.Void>)
+new: method void com.mongodb.internal.connection.DefaultServerConnection::killCursorAsync(com.mongodb.MongoNamespace, java.util.List<java.lang.Long>, com.mongodb.internal.async.SingleResultCallback<java.lang.Void>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method <T> com.mongodb.connection.QueryResult<T> com.mongodb.internal.connection.DefaultServerConnection::query(com.mongodb.MongoNamespace, org.bson.BsonDocument, org.bson.BsonDocument, int, int, boolean, boolean, boolean, boolean, boolean, boolean, org.bson.codecs.Decoder<T>)
+new: method <T> com.mongodb.internal.connection.QueryResult<T> com.mongodb.internal.connection.DefaultServerConnection::query(com.mongodb.MongoNamespace, org.bson.BsonDocument, org.bson.BsonDocument, int, int, int, boolean, boolean, boolean, boolean, boolean, boolean, org.bson.codecs.Decoder<T>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.connection.QueryResult<T>' to  'com.mongodb.internal.connection.QueryResult<T>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method <T> void com.mongodb.internal.connection.DefaultServerConnection::queryAsync(com.mongodb.MongoNamespace, org.bson.BsonDocument, org.bson.BsonDocument, int, int, int, boolean, boolean, boolean, boolean, boolean, boolean, org.bson.codecs.Decoder<T>, com.mongodb.async.SingleResultCallback<com.mongodb.connection.QueryResult<T>>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method <T> void com.mongodb.internal.connection.DefaultServerConnection::queryAsync(com.mongodb.MongoNamespace, org.bson.BsonDocument, org.bson.BsonDocument, int, int, boolean, boolean, boolean, boolean, boolean, boolean, org.bson.codecs.Decoder<T>, com.mongodb.async.SingleResultCallback<com.mongodb.connection.QueryResult<T>>)
+new: method <T> void com.mongodb.internal.connection.DefaultServerConnection::queryAsync(com.mongodb.MongoNamespace, org.bson.BsonDocument, org.bson.BsonDocument, int, int, int, boolean, boolean, boolean, boolean, boolean, boolean, org.bson.codecs.Decoder<T>, com.mongodb.internal.async.SingleResultCallback<com.mongodb.internal.connection.QueryResult<T>>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: parameter com.mongodb.WriteConcernResult com.mongodb.internal.connection.DefaultServerConnection::update(com.mongodb.MongoNamespace, boolean, ===com.mongodb.bulk.UpdateRequest===)
+new: parameter com.mongodb.WriteConcernResult com.mongodb.internal.connection.DefaultServerConnection::update(com.mongodb.MongoNamespace, boolean, ===com.mongodb.internal.bulk.UpdateRequest===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.bulk.UpdateRequest' to 'com.mongodb.internal.bulk.UpdateRequest'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void com.mongodb.internal.connection.DefaultServerConnection::updateAsync(com.mongodb.MongoNamespace, boolean, ===com.mongodb.bulk.UpdateRequest===, com.mongodb.async.SingleResultCallback<com.mongodb.WriteConcernResult>)
+new: parameter void com.mongodb.internal.connection.DefaultServerConnection::updateAsync(com.mongodb.MongoNamespace, boolean, ===com.mongodb.internal.bulk.UpdateRequest===, com.mongodb.internal.async.SingleResultCallback<com.mongodb.WriteConcernResult>)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.bulk.UpdateRequest' to 'com.mongodb.internal.bulk.UpdateRequest'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void com.mongodb.internal.connection.DefaultServerConnection::updateAsync(com.mongodb.MongoNamespace, boolean, com.mongodb.bulk.UpdateRequest, ===com.mongodb.async.SingleResultCallback<com.mongodb.WriteConcernResult>===)
+new: parameter void com.mongodb.internal.connection.DefaultServerConnection::updateAsync(com.mongodb.MongoNamespace, boolean, com.mongodb.internal.bulk.UpdateRequest, ===com.mongodb.internal.async.SingleResultCallback<com.mongodb.WriteConcernResult>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.async.SingleResultCallback<com.mongodb.WriteConcernResult>' to 'com.mongodb.internal.async.SingleResultCallback<com.mongodb.WriteConcernResult>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.connection.ServerDescription com.mongodb.internal.connection.DescriptionHelper::createServerDescription(com.mongodb.ServerAddress, org.bson.BsonDocument, com.mongodb.connection.ServerVersion, long)
+new: method com.mongodb.connection.ServerDescription com.mongodb.internal.connection.DescriptionHelper::createServerDescription(com.mongodb.ServerAddress, org.bson.BsonDocument, long)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.connection.Server com.mongodb.internal.connection.BaseCluster::selectServer(com.mongodb.selector.ServerSelector) @ com.mongodb.internal.connection.DnsMultiServerCluster
+new: method com.mongodb.internal.connection.Server com.mongodb.internal.connection.BaseCluster::selectServer(com.mongodb.selector.ServerSelector) @ com.mongodb.internal.connection.DnsMultiServerCluster
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.connection.Server' to  'com.mongodb.internal.connection.Server'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void com.mongodb.internal.connection.BaseCluster::selectServerAsync(com.mongodb.selector.ServerSelector, ===com.mongodb.async.SingleResultCallback<com.mongodb.connection.Server>===) @ com.mongodb.internal.connection.DnsMultiServerCluster
+new: parameter void com.mongodb.internal.connection.BaseCluster::selectServerAsync(com.mongodb.selector.ServerSelector, ===com.mongodb.internal.async.SingleResultCallback<com.mongodb.internal.connection.Server>===) @ com.mongodb.internal.connection.DnsMultiServerCluster
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.async.SingleResultCallback<com.mongodb.connection.Server>' to 'com.mongodb.internal.async.SingleResultCallback<com.mongodb.internal.connection.Server>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: interface com.mongodb.internal.connection.DnsSrvRecordInitializer
+new: interface com.mongodb.internal.connection.DnsSrvRecordInitializer
+java.class.nonPublicPartOfAPI: Class 'com.mongodb.internal.connection.DnsSrvRecordInitializer' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
+
+old: parameter void com.mongodb.internal.connection.InternalConnection::openAsync(===com.mongodb.async.SingleResultCallback<java.lang.Void>===)
+new: parameter void com.mongodb.internal.connection.InternalConnection::openAsync(===com.mongodb.internal.async.SingleResultCallback<java.lang.Void>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.async.SingleResultCallback<java.lang.Void>' to 'com.mongodb.internal.async.SingleResultCallback<java.lang.Void>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void com.mongodb.internal.connection.InternalConnection::receiveMessageAsync(int, ===com.mongodb.async.SingleResultCallback<com.mongodb.internal.connection.ResponseBuffers>===)
+new: parameter void com.mongodb.internal.connection.InternalConnection::receiveMessageAsync(int, ===com.mongodb.internal.async.SingleResultCallback<com.mongodb.internal.connection.ResponseBuffers>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.async.SingleResultCallback<com.mongodb.internal.connection.ResponseBuffers>' to 'com.mongodb.internal.async.SingleResultCallback<com.mongodb.internal.connection.ResponseBuffers>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter <T> T com.mongodb.internal.connection.InternalConnection::sendAndReceive(com.mongodb.internal.connection.CommandMessage, org.bson.codecs.Decoder<T>, ===com.mongodb.session.SessionContext===)
+new: parameter <T> T com.mongodb.internal.connection.InternalConnection::sendAndReceive(com.mongodb.internal.connection.CommandMessage, org.bson.codecs.Decoder<T>, ===com.mongodb.internal.session.SessionContext===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.session.SessionContext' to 'com.mongodb.internal.session.SessionContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter <T> void com.mongodb.internal.connection.InternalConnection::sendAndReceiveAsync(com.mongodb.internal.connection.CommandMessage, org.bson.codecs.Decoder<T>, ===com.mongodb.session.SessionContext===, com.mongodb.async.SingleResultCallback<T>)
+new: parameter <T> void com.mongodb.internal.connection.InternalConnection::sendAndReceiveAsync(com.mongodb.internal.connection.CommandMessage, org.bson.codecs.Decoder<T>, ===com.mongodb.internal.session.SessionContext===, com.mongodb.internal.async.SingleResultCallback<T>)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.session.SessionContext' to 'com.mongodb.internal.session.SessionContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter <T> void com.mongodb.internal.connection.InternalConnection::sendAndReceiveAsync(com.mongodb.internal.connection.CommandMessage, org.bson.codecs.Decoder<T>, com.mongodb.session.SessionContext, ===com.mongodb.async.SingleResultCallback<T>===)
+new: parameter <T> void com.mongodb.internal.connection.InternalConnection::sendAndReceiveAsync(com.mongodb.internal.connection.CommandMessage, org.bson.codecs.Decoder<T>, com.mongodb.internal.session.SessionContext, ===com.mongodb.internal.async.SingleResultCallback<T>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.async.SingleResultCallback<T>' to 'com.mongodb.internal.async.SingleResultCallback<T>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void com.mongodb.internal.connection.InternalConnection::sendMessageAsync(java.util.List<org.bson.ByteBuf>, int, ===com.mongodb.async.SingleResultCallback<java.lang.Void>===)
+new: parameter void com.mongodb.internal.connection.InternalConnection::sendMessageAsync(java.util.List<org.bson.ByteBuf>, int, ===com.mongodb.internal.async.SingleResultCallback<java.lang.Void>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.async.SingleResultCallback<java.lang.Void>' to 'com.mongodb.internal.async.SingleResultCallback<java.lang.Void>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: interface com.mongodb.internal.connection.InternalConnectionInitializer
+new: interface com.mongodb.internal.connection.InternalConnectionInitializer
+java.class.nonPublicPartOfAPI: Class 'com.mongodb.internal.connection.InternalConnectionInitializer' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
+
+old: parameter void com.mongodb.internal.connection.InternalStreamConnection::openAsync(===com.mongodb.async.SingleResultCallback<java.lang.Void>===)
+new: parameter void com.mongodb.internal.connection.InternalStreamConnection::openAsync(===com.mongodb.internal.async.SingleResultCallback<java.lang.Void>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.async.SingleResultCallback<java.lang.Void>' to 'com.mongodb.internal.async.SingleResultCallback<java.lang.Void>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void com.mongodb.internal.connection.InternalStreamConnection::receiveMessageAsync(int, ===com.mongodb.async.SingleResultCallback<com.mongodb.internal.connection.ResponseBuffers>===)
+new: parameter void com.mongodb.internal.connection.InternalStreamConnection::receiveMessageAsync(int, ===com.mongodb.internal.async.SingleResultCallback<com.mongodb.internal.connection.ResponseBuffers>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.async.SingleResultCallback<com.mongodb.internal.connection.ResponseBuffers>' to 'com.mongodb.internal.async.SingleResultCallback<com.mongodb.internal.connection.ResponseBuffers>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter <T> T com.mongodb.internal.connection.InternalStreamConnection::sendAndReceive(com.mongodb.internal.connection.CommandMessage, org.bson.codecs.Decoder<T>, ===com.mongodb.session.SessionContext===)
+new: parameter <T> T com.mongodb.internal.connection.InternalStreamConnection::sendAndReceive(com.mongodb.internal.connection.CommandMessage, org.bson.codecs.Decoder<T>, ===com.mongodb.internal.session.SessionContext===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.session.SessionContext' to 'com.mongodb.internal.session.SessionContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter <T> void com.mongodb.internal.connection.InternalStreamConnection::sendAndReceiveAsync(com.mongodb.internal.connection.CommandMessage, org.bson.codecs.Decoder<T>, ===com.mongodb.session.SessionContext===, com.mongodb.async.SingleResultCallback<T>)
+new: parameter <T> void com.mongodb.internal.connection.InternalStreamConnection::sendAndReceiveAsync(com.mongodb.internal.connection.CommandMessage, org.bson.codecs.Decoder<T>, ===com.mongodb.internal.session.SessionContext===, com.mongodb.internal.async.SingleResultCallback<T>)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.session.SessionContext' to 'com.mongodb.internal.session.SessionContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter <T> void com.mongodb.internal.connection.InternalStreamConnection::sendAndReceiveAsync(com.mongodb.internal.connection.CommandMessage, org.bson.codecs.Decoder<T>, com.mongodb.session.SessionContext, ===com.mongodb.async.SingleResultCallback<T>===)
+new: parameter <T> void com.mongodb.internal.connection.InternalStreamConnection::sendAndReceiveAsync(com.mongodb.internal.connection.CommandMessage, org.bson.codecs.Decoder<T>, com.mongodb.internal.session.SessionContext, ===com.mongodb.internal.async.SingleResultCallback<T>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.async.SingleResultCallback<T>' to 'com.mongodb.internal.async.SingleResultCallback<T>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void com.mongodb.internal.connection.InternalStreamConnection::sendMessageAsync(java.util.List<org.bson.ByteBuf>, int, ===com.mongodb.async.SingleResultCallback<java.lang.Void>===)
+new: parameter void com.mongodb.internal.connection.InternalStreamConnection::sendMessageAsync(java.util.List<org.bson.ByteBuf>, int, ===com.mongodb.internal.async.SingleResultCallback<java.lang.Void>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.async.SingleResultCallback<java.lang.Void>' to 'com.mongodb.internal.async.SingleResultCallback<java.lang.Void>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void com.mongodb.internal.connection.InternalStreamConnectionInitializer::<init>(===java.util.List<com.mongodb.internal.connection.Authenticator>===, org.bson.BsonDocument, java.util.List<com.mongodb.MongoCompressor>)
+new: parameter void com.mongodb.internal.connection.InternalStreamConnectionInitializer::<init>(===com.mongodb.internal.connection.Authenticator===, org.bson.BsonDocument, java.util.List<com.mongodb.MongoCompressor>)
+java.method.parameterTypeChanged: The type of the parameter changed from 'java.util.List<com.mongodb.internal.connection.Authenticator>' to 'com.mongodb.internal.connection.Authenticator'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void com.mongodb.internal.connection.InternalStreamConnectionInitializer::initializeAsync(com.mongodb.internal.connection.InternalConnection, ===com.mongodb.async.SingleResultCallback<com.mongodb.connection.ConnectionDescription>===)
+new: parameter void com.mongodb.internal.connection.InternalStreamConnectionInitializer::initializeAsync(com.mongodb.internal.connection.InternalConnection, ===com.mongodb.internal.async.SingleResultCallback<com.mongodb.connection.ConnectionDescription>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.async.SingleResultCallback<com.mongodb.connection.ConnectionDescription>' to 'com.mongodb.internal.async.SingleResultCallback<com.mongodb.connection.ConnectionDescription>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void com.mongodb.internal.connection.LegacyProtocol<T>::executeAsync(com.mongodb.internal.connection.InternalConnection, ===com.mongodb.async.SingleResultCallback<T>===)
+new: parameter void com.mongodb.internal.connection.LegacyProtocol<T>::executeAsync(com.mongodb.internal.connection.InternalConnection, ===com.mongodb.internal.async.SingleResultCallback<T>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.async.SingleResultCallback<T>' to 'com.mongodb.internal.async.SingleResultCallback<T>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class com.mongodb.internal.connection.MongoCredentialWithCache.Cache
+new: class com.mongodb.internal.connection.MongoCredentialWithCache.Cache
+java.class.nonPublicPartOfAPI: Class 'com.mongodb.internal.connection.MongoCredentialWithCache.Cache' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
+
+old: method java.util.List<com.mongodb.internal.connection.MongoCredentialWithCache> com.mongodb.internal.connection.MongoCredentialWithCache::wrapCredentialList(java.util.List<com.mongodb.MongoCredential>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.connection.Server com.mongodb.internal.connection.BaseCluster::selectServer(com.mongodb.selector.ServerSelector) @ com.mongodb.internal.connection.MultiServerCluster
+new: method com.mongodb.internal.connection.Server com.mongodb.internal.connection.BaseCluster::selectServer(com.mongodb.selector.ServerSelector) @ com.mongodb.internal.connection.MultiServerCluster
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.connection.Server' to  'com.mongodb.internal.connection.Server'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void com.mongodb.internal.connection.BaseCluster::selectServerAsync(com.mongodb.selector.ServerSelector, ===com.mongodb.async.SingleResultCallback<com.mongodb.connection.Server>===) @ com.mongodb.internal.connection.MultiServerCluster
+new: parameter void com.mongodb.internal.connection.BaseCluster::selectServerAsync(com.mongodb.selector.ServerSelector, ===com.mongodb.internal.async.SingleResultCallback<com.mongodb.internal.connection.Server>===) @ com.mongodb.internal.connection.MultiServerCluster
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.async.SingleResultCallback<com.mongodb.connection.Server>' to 'com.mongodb.internal.async.SingleResultCallback<com.mongodb.internal.connection.Server>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class com.mongodb.internal.connection.NoOpSessionContext
+new: class com.mongodb.internal.connection.NoOpSessionContext
+java.class.noLongerImplementsInterface: Class no longer implements interface 'com.mongodb.session.SessionContext'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nowImplementsInterface: Class now implements interface 'com.mongodb.internal.session.SessionContext'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+
+old: enum com.mongodb.internal.connection.OpCode
+new: enum com.mongodb.internal.connection.OpCode
+java.class.nonPublicPartOfAPI: Class 'com.mongodb.internal.connection.OpCode' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
+
+old: parameter <T> T com.mongodb.internal.connection.ProtocolExecutor::execute(com.mongodb.internal.connection.CommandProtocol<T>, com.mongodb.internal.connection.InternalConnection, ===com.mongodb.session.SessionContext===)
+new: parameter <T> T com.mongodb.internal.connection.ProtocolExecutor::execute(com.mongodb.internal.connection.CommandProtocol<T>, com.mongodb.internal.connection.InternalConnection, ===com.mongodb.internal.session.SessionContext===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.session.SessionContext' to 'com.mongodb.internal.session.SessionContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter <T> void com.mongodb.internal.connection.ProtocolExecutor::executeAsync(com.mongodb.internal.connection.CommandProtocol<T>, com.mongodb.internal.connection.InternalConnection, ===com.mongodb.session.SessionContext===, com.mongodb.async.SingleResultCallback<T>)
+new: parameter <T> void com.mongodb.internal.connection.ProtocolExecutor::executeAsync(com.mongodb.internal.connection.CommandProtocol<T>, com.mongodb.internal.connection.InternalConnection, ===com.mongodb.internal.session.SessionContext===, com.mongodb.internal.async.SingleResultCallback<T>)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.session.SessionContext' to 'com.mongodb.internal.session.SessionContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter <T> void com.mongodb.internal.connection.ProtocolExecutor::executeAsync(com.mongodb.internal.connection.CommandProtocol<T>, com.mongodb.internal.connection.InternalConnection, com.mongodb.session.SessionContext, ===com.mongodb.async.SingleResultCallback<T>===)
+new: parameter <T> void com.mongodb.internal.connection.ProtocolExecutor::executeAsync(com.mongodb.internal.connection.CommandProtocol<T>, com.mongodb.internal.connection.InternalConnection, com.mongodb.internal.session.SessionContext, ===com.mongodb.internal.async.SingleResultCallback<T>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.async.SingleResultCallback<T>' to 'com.mongodb.internal.async.SingleResultCallback<T>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter <T> void com.mongodb.internal.connection.ProtocolExecutor::executeAsync(com.mongodb.internal.connection.LegacyProtocol<T>, com.mongodb.internal.connection.InternalConnection, ===com.mongodb.async.SingleResultCallback<T>===)
+new: parameter <T> void com.mongodb.internal.connection.ProtocolExecutor::executeAsync(com.mongodb.internal.connection.LegacyProtocol<T>, com.mongodb.internal.connection.InternalConnection, ===com.mongodb.internal.async.SingleResultCallback<T>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.async.SingleResultCallback<T>' to 'com.mongodb.internal.async.SingleResultCallback<T>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class com.mongodb.internal.connection.ReadConcernAwareNoOpSessionContext
+new: class com.mongodb.internal.connection.ReadConcernAwareNoOpSessionContext
+java.class.noLongerImplementsInterface: Class no longer implements interface 'com.mongodb.session.SessionContext'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: parameter org.bson.BsonDocument com.mongodb.internal.connection.ReadConcernHelper::getReadConcernDocument(===com.mongodb.session.SessionContext===)
+new: parameter org.bson.BsonDocument com.mongodb.internal.connection.ReadConcernHelper::getReadConcernDocument(===com.mongodb.internal.session.SessionContext===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.session.SessionContext' to 'com.mongodb.internal.session.SessionContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class com.mongodb.internal.connection.RequestMessage.EncodingMetadata
+new: class com.mongodb.internal.connection.RequestMessage.EncodingMetadata
+java.class.nonPublicPartOfAPI: Class 'com.mongodb.internal.connection.RequestMessage.EncodingMetadata' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
+
+old: method com.mongodb.connection.Server com.mongodb.internal.connection.BaseCluster::selectServer(com.mongodb.selector.ServerSelector) @ com.mongodb.internal.connection.SingleServerCluster
+new: method com.mongodb.internal.connection.Server com.mongodb.internal.connection.BaseCluster::selectServer(com.mongodb.selector.ServerSelector) @ com.mongodb.internal.connection.SingleServerCluster
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.connection.Server' to  'com.mongodb.internal.connection.Server'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void com.mongodb.internal.connection.BaseCluster::selectServerAsync(com.mongodb.selector.ServerSelector, ===com.mongodb.async.SingleResultCallback<com.mongodb.connection.Server>===) @ com.mongodb.internal.connection.SingleServerCluster
+new: parameter void com.mongodb.internal.connection.BaseCluster::selectServerAsync(com.mongodb.selector.ServerSelector, ===com.mongodb.internal.async.SingleResultCallback<com.mongodb.internal.connection.Server>===) @ com.mongodb.internal.connection.SingleServerCluster
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.async.SingleResultCallback<com.mongodb.connection.Server>' to 'com.mongodb.internal.async.SingleResultCallback<com.mongodb.internal.connection.Server>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void com.mongodb.internal.connection.SplittablePayloadBsonWriter::<init>(org.bson.BsonBinaryWriter, org.bson.io.BsonOutput, com.mongodb.internal.connection.MessageSettings, com.mongodb.connection.SplittablePayload)
+new: method void com.mongodb.internal.connection.SplittablePayloadBsonWriter::<init>(org.bson.BsonBinaryWriter, org.bson.io.BsonOutput, com.mongodb.internal.connection.MessageSettings, com.mongodb.internal.connection.SplittablePayload, int)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.internal.connection.SplittablePayloadBsonWriter::<init>(org.bson.BsonBinaryWriter, org.bson.io.BsonOutput, int, com.mongodb.internal.connection.MessageSettings, com.mongodb.connection.SplittablePayload, int)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: parameter void com.mongodb.internal.connection.SplittablePayloadBsonWriter::<init>(org.bson.BsonBinaryWriter, org.bson.io.BsonOutput, int, com.mongodb.internal.connection.MessageSettings, ===com.mongodb.connection.SplittablePayload===)
+new: parameter void com.mongodb.internal.connection.SplittablePayloadBsonWriter::<init>(org.bson.BsonBinaryWriter, org.bson.io.BsonOutput, int, com.mongodb.internal.connection.MessageSettings, ===com.mongodb.internal.connection.SplittablePayload===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.connection.SplittablePayload' to 'com.mongodb.internal.connection.SplittablePayload'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void com.mongodb.internal.connection.SplittablePayloadBsonWriter::<init>(org.bson.BsonBinaryWriter, org.bson.io.BsonOutput, com.mongodb.internal.connection.MessageSettings, com.mongodb.connection.SplittablePayload, int)
+new: method void com.mongodb.internal.connection.SplittablePayloadBsonWriter::<init>(org.bson.BsonBinaryWriter, org.bson.io.BsonOutput, int, com.mongodb.internal.connection.MessageSettings, com.mongodb.internal.connection.SplittablePayload, int)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: field com.mongodb.internal.event.EventListenerHelper.NO_OP_CONNECTION_POOL_LISTENER
+new: field com.mongodb.internal.event.EventListenerHelper.NO_OP_CONNECTION_POOL_LISTENER
+java.field.visibilityReduced: Visibility was reduced from 'public' to 'private'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: field com.mongodb.internal.event.EventListenerHelper.NO_OP_SERVER_MONITOR_LISTENER
+new: field com.mongodb.internal.event.EventListenerHelper.NO_OP_SERVER_MONITOR_LISTENER
+java.field.visibilityReduced: Visibility was reduced from 'public' to 'private'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.internal.management.jmx.JMXMBeanServer
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method <TResult> com.mongodb.operation.AsyncReadOperation<com.mongodb.async.AsyncBatchCursor<TResult>> com.mongodb.internal.operation.AsyncOperations<TDocument>::aggregate(java.util.List<? extends org.bson.conversions.Bson>, java.lang.Class<TResult>, long, long, java.lang.Integer, com.mongodb.client.model.Collation, org.bson.conversions.Bson, java.lang.String, java.lang.Boolean, java.lang.Boolean, com.mongodb.client.model.AggregationLevel)
+new: method <TResult> com.mongodb.internal.operation.AsyncReadOperation<com.mongodb.internal.async.AsyncBatchCursor<TResult>> com.mongodb.internal.operation.AsyncOperations<TDocument>::aggregate(java.util.List<? extends org.bson.conversions.Bson>, java.lang.Class<TResult>, long, long, java.lang.Integer, com.mongodb.client.model.Collation, org.bson.conversions.Bson, java.lang.String, java.lang.Boolean, com.mongodb.internal.client.model.AggregationLevel)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncReadOperation<com.mongodb.async.AsyncBatchCursor<TResult>>' to  'com.mongodb.internal.operation.AsyncReadOperation<com.mongodb.internal.async.AsyncBatchCursor<TResult>>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.AsyncWriteOperation<java.lang.Void> com.mongodb.internal.operation.AsyncOperations<TDocument>::aggregateToCollection(java.util.List<? extends org.bson.conversions.Bson>, long, java.lang.Boolean, java.lang.Boolean, com.mongodb.client.model.Collation, org.bson.conversions.Bson, java.lang.String, com.mongodb.client.model.AggregationLevel)
+new: method com.mongodb.internal.operation.AsyncWriteOperation<java.lang.Void> com.mongodb.internal.operation.AsyncOperations<TDocument>::aggregateToCollection(java.util.List<? extends org.bson.conversions.Bson>, long, java.lang.Boolean, java.lang.Boolean, com.mongodb.client.model.Collation, org.bson.conversions.Bson, java.lang.String, com.mongodb.internal.client.model.AggregationLevel)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncWriteOperation<java.lang.Void>' to  'com.mongodb.internal.operation.AsyncWriteOperation<java.lang.Void>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter com.mongodb.operation.AsyncWriteOperation<java.lang.Void> com.mongodb.internal.operation.AsyncOperations<TDocument>::aggregateToCollection(java.util.List<? extends org.bson.conversions.Bson>, long, java.lang.Boolean, java.lang.Boolean, com.mongodb.client.model.Collation, org.bson.conversions.Bson, java.lang.String, ===com.mongodb.client.model.AggregationLevel===)
+new: parameter com.mongodb.internal.operation.AsyncWriteOperation<java.lang.Void> com.mongodb.internal.operation.AsyncOperations<TDocument>::aggregateToCollection(java.util.List<? extends org.bson.conversions.Bson>, long, java.lang.Boolean, java.lang.Boolean, com.mongodb.client.model.Collation, org.bson.conversions.Bson, java.lang.String, ===com.mongodb.internal.client.model.AggregationLevel===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.client.model.AggregationLevel' to 'com.mongodb.internal.client.model.AggregationLevel'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.AsyncOperations<TDocument>::bulkWrite(java.util.List<? extends com.mongodb.client.model.WriteModel<? extends TDocument>>, com.mongodb.client.model.BulkWriteOptions)
+new: method com.mongodb.internal.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.AsyncOperations<TDocument>::bulkWrite(java.util.List<? extends com.mongodb.client.model.WriteModel<? extends TDocument>>, com.mongodb.client.model.BulkWriteOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult>' to  'com.mongodb.internal.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.AsyncReadOperation<java.lang.Long> com.mongodb.internal.operation.AsyncOperations<TDocument>::count(org.bson.conversions.Bson, com.mongodb.client.model.CountOptions, com.mongodb.internal.client.model.CountStrategy)
+new: method com.mongodb.internal.operation.AsyncReadOperation<java.lang.Long> com.mongodb.internal.operation.AsyncOperations<TDocument>::count(org.bson.conversions.Bson, com.mongodb.client.model.CountOptions, com.mongodb.internal.client.model.CountStrategy)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncReadOperation<java.lang.Long>' to  'com.mongodb.internal.operation.AsyncReadOperation<java.lang.Long>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.AsyncWriteOperation<java.lang.Void> com.mongodb.internal.operation.AsyncOperations<TDocument>::createIndexes(java.util.List<com.mongodb.client.model.IndexModel>, com.mongodb.client.model.CreateIndexOptions)
+new: method com.mongodb.internal.operation.AsyncWriteOperation<java.lang.Void> com.mongodb.internal.operation.AsyncOperations<TDocument>::createIndexes(java.util.List<com.mongodb.client.model.IndexModel>, com.mongodb.client.model.CreateIndexOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncWriteOperation<java.lang.Void>' to  'com.mongodb.internal.operation.AsyncWriteOperation<java.lang.Void>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.AsyncOperations<TDocument>::deleteMany(org.bson.conversions.Bson, com.mongodb.client.model.DeleteOptions)
+new: method com.mongodb.internal.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.AsyncOperations<TDocument>::deleteMany(org.bson.conversions.Bson, com.mongodb.client.model.DeleteOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult>' to  'com.mongodb.internal.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.AsyncOperations<TDocument>::deleteOne(org.bson.conversions.Bson, com.mongodb.client.model.DeleteOptions)
+new: method com.mongodb.internal.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.AsyncOperations<TDocument>::deleteOne(org.bson.conversions.Bson, com.mongodb.client.model.DeleteOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult>' to  'com.mongodb.internal.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method <TResult> com.mongodb.operation.AsyncReadOperation<com.mongodb.async.AsyncBatchCursor<TResult>> com.mongodb.internal.operation.AsyncOperations<TDocument>::distinct(java.lang.String, org.bson.conversions.Bson, java.lang.Class<TResult>, long, com.mongodb.client.model.Collation)
+new: method <TResult> com.mongodb.internal.operation.AsyncReadOperation<com.mongodb.internal.async.AsyncBatchCursor<TResult>> com.mongodb.internal.operation.AsyncOperations<TDocument>::distinct(java.lang.String, org.bson.conversions.Bson, java.lang.Class<TResult>, long, com.mongodb.client.model.Collation)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncReadOperation<com.mongodb.async.AsyncBatchCursor<TResult>>' to  'com.mongodb.internal.operation.AsyncReadOperation<com.mongodb.internal.async.AsyncBatchCursor<TResult>>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.AsyncWriteOperation<java.lang.Void> com.mongodb.internal.operation.AsyncOperations<TDocument>::dropCollection()
+new: method com.mongodb.internal.operation.AsyncWriteOperation<java.lang.Void> com.mongodb.internal.operation.AsyncOperations<TDocument>::dropCollection()
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncWriteOperation<java.lang.Void>' to  'com.mongodb.internal.operation.AsyncWriteOperation<java.lang.Void>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.AsyncWriteOperation<java.lang.Void> com.mongodb.internal.operation.AsyncOperations<TDocument>::dropIndex(java.lang.String, com.mongodb.client.model.DropIndexOptions)
+new: method com.mongodb.internal.operation.AsyncWriteOperation<java.lang.Void> com.mongodb.internal.operation.AsyncOperations<TDocument>::dropIndex(java.lang.String, com.mongodb.client.model.DropIndexOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncWriteOperation<java.lang.Void>' to  'com.mongodb.internal.operation.AsyncWriteOperation<java.lang.Void>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.AsyncWriteOperation<java.lang.Void> com.mongodb.internal.operation.AsyncOperations<TDocument>::dropIndex(org.bson.conversions.Bson, com.mongodb.client.model.DropIndexOptions)
+new: method com.mongodb.internal.operation.AsyncWriteOperation<java.lang.Void> com.mongodb.internal.operation.AsyncOperations<TDocument>::dropIndex(org.bson.conversions.Bson, com.mongodb.client.model.DropIndexOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncWriteOperation<java.lang.Void>' to  'com.mongodb.internal.operation.AsyncWriteOperation<java.lang.Void>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method <TResult> com.mongodb.operation.AsyncReadOperation<com.mongodb.async.AsyncBatchCursor<TResult>> com.mongodb.internal.operation.AsyncOperations<TDocument>::find(com.mongodb.MongoNamespace, org.bson.conversions.Bson, java.lang.Class<TResult>, com.mongodb.client.model.FindOptions)
+new: method <TResult> com.mongodb.internal.operation.AsyncReadOperation<com.mongodb.internal.async.AsyncBatchCursor<TResult>> com.mongodb.internal.operation.AsyncOperations<TDocument>::find(com.mongodb.MongoNamespace, org.bson.conversions.Bson, java.lang.Class<TResult>, com.mongodb.internal.client.model.FindOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncReadOperation<com.mongodb.async.AsyncBatchCursor<TResult>>' to  'com.mongodb.internal.operation.AsyncReadOperation<com.mongodb.internal.async.AsyncBatchCursor<TResult>>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter <TResult> com.mongodb.operation.AsyncReadOperation<com.mongodb.async.AsyncBatchCursor<TResult>> com.mongodb.internal.operation.AsyncOperations<TDocument>::find(com.mongodb.MongoNamespace, org.bson.conversions.Bson, java.lang.Class<TResult>, ===com.mongodb.client.model.FindOptions===)
+new: parameter <TResult> com.mongodb.internal.operation.AsyncReadOperation<com.mongodb.internal.async.AsyncBatchCursor<TResult>> com.mongodb.internal.operation.AsyncOperations<TDocument>::find(com.mongodb.MongoNamespace, org.bson.conversions.Bson, java.lang.Class<TResult>, ===com.mongodb.internal.client.model.FindOptions===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.client.model.FindOptions' to 'com.mongodb.internal.client.model.FindOptions'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method <TResult> com.mongodb.operation.AsyncReadOperation<com.mongodb.async.AsyncBatchCursor<TResult>> com.mongodb.internal.operation.AsyncOperations<TDocument>::find(org.bson.conversions.Bson, java.lang.Class<TResult>, com.mongodb.client.model.FindOptions)
+new: method <TResult> com.mongodb.internal.operation.AsyncReadOperation<com.mongodb.internal.async.AsyncBatchCursor<TResult>> com.mongodb.internal.operation.AsyncOperations<TDocument>::find(org.bson.conversions.Bson, java.lang.Class<TResult>, com.mongodb.internal.client.model.FindOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncReadOperation<com.mongodb.async.AsyncBatchCursor<TResult>>' to  'com.mongodb.internal.operation.AsyncReadOperation<com.mongodb.internal.async.AsyncBatchCursor<TResult>>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter <TResult> com.mongodb.operation.AsyncReadOperation<com.mongodb.async.AsyncBatchCursor<TResult>> com.mongodb.internal.operation.AsyncOperations<TDocument>::find(org.bson.conversions.Bson, java.lang.Class<TResult>, ===com.mongodb.client.model.FindOptions===)
+new: parameter <TResult> com.mongodb.internal.operation.AsyncReadOperation<com.mongodb.internal.async.AsyncBatchCursor<TResult>> com.mongodb.internal.operation.AsyncOperations<TDocument>::find(org.bson.conversions.Bson, java.lang.Class<TResult>, ===com.mongodb.internal.client.model.FindOptions===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.client.model.FindOptions' to 'com.mongodb.internal.client.model.FindOptions'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method <TResult> com.mongodb.operation.AsyncReadOperation<com.mongodb.async.AsyncBatchCursor<TResult>> com.mongodb.internal.operation.AsyncOperations<TDocument>::findFirst(org.bson.conversions.Bson, java.lang.Class<TResult>, com.mongodb.client.model.FindOptions)
+new: method <TResult> com.mongodb.internal.operation.AsyncReadOperation<com.mongodb.internal.async.AsyncBatchCursor<TResult>> com.mongodb.internal.operation.AsyncOperations<TDocument>::findFirst(org.bson.conversions.Bson, java.lang.Class<TResult>, com.mongodb.internal.client.model.FindOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncReadOperation<com.mongodb.async.AsyncBatchCursor<TResult>>' to  'com.mongodb.internal.operation.AsyncReadOperation<com.mongodb.internal.async.AsyncBatchCursor<TResult>>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter <TResult> com.mongodb.operation.AsyncReadOperation<com.mongodb.async.AsyncBatchCursor<TResult>> com.mongodb.internal.operation.AsyncOperations<TDocument>::findFirst(org.bson.conversions.Bson, java.lang.Class<TResult>, ===com.mongodb.client.model.FindOptions===)
+new: parameter <TResult> com.mongodb.internal.operation.AsyncReadOperation<com.mongodb.internal.async.AsyncBatchCursor<TResult>> com.mongodb.internal.operation.AsyncOperations<TDocument>::findFirst(org.bson.conversions.Bson, java.lang.Class<TResult>, ===com.mongodb.internal.client.model.FindOptions===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.client.model.FindOptions' to 'com.mongodb.internal.client.model.FindOptions'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.AsyncWriteOperation<TDocument> com.mongodb.internal.operation.AsyncOperations<TDocument>::findOneAndDelete(org.bson.conversions.Bson, com.mongodb.client.model.FindOneAndDeleteOptions)
+new: method com.mongodb.internal.operation.AsyncWriteOperation<TDocument> com.mongodb.internal.operation.AsyncOperations<TDocument>::findOneAndDelete(org.bson.conversions.Bson, com.mongodb.client.model.FindOneAndDeleteOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncWriteOperation<TDocument>' to  'com.mongodb.internal.operation.AsyncWriteOperation<TDocument>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.AsyncWriteOperation<TDocument> com.mongodb.internal.operation.AsyncOperations<TDocument>::findOneAndReplace(org.bson.conversions.Bson, TDocument, com.mongodb.client.model.FindOneAndReplaceOptions)
+new: method com.mongodb.internal.operation.AsyncWriteOperation<TDocument> com.mongodb.internal.operation.AsyncOperations<TDocument>::findOneAndReplace(org.bson.conversions.Bson, TDocument, com.mongodb.client.model.FindOneAndReplaceOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncWriteOperation<TDocument>' to  'com.mongodb.internal.operation.AsyncWriteOperation<TDocument>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.AsyncWriteOperation<TDocument> com.mongodb.internal.operation.AsyncOperations<TDocument>::findOneAndUpdate(org.bson.conversions.Bson, java.util.List<? extends org.bson.conversions.Bson>, com.mongodb.client.model.FindOneAndUpdateOptions)
+new: method com.mongodb.internal.operation.AsyncWriteOperation<TDocument> com.mongodb.internal.operation.AsyncOperations<TDocument>::findOneAndUpdate(org.bson.conversions.Bson, java.util.List<? extends org.bson.conversions.Bson>, com.mongodb.client.model.FindOneAndUpdateOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncWriteOperation<TDocument>' to  'com.mongodb.internal.operation.AsyncWriteOperation<TDocument>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.AsyncWriteOperation<TDocument> com.mongodb.internal.operation.AsyncOperations<TDocument>::findOneAndUpdate(org.bson.conversions.Bson, org.bson.conversions.Bson, com.mongodb.client.model.FindOneAndUpdateOptions)
+new: method com.mongodb.internal.operation.AsyncWriteOperation<TDocument> com.mongodb.internal.operation.AsyncOperations<TDocument>::findOneAndUpdate(org.bson.conversions.Bson, org.bson.conversions.Bson, com.mongodb.client.model.FindOneAndUpdateOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncWriteOperation<TDocument>' to  'com.mongodb.internal.operation.AsyncWriteOperation<TDocument>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.AsyncOperations<TDocument>::insertMany(java.util.List<? extends TDocument>, com.mongodb.client.model.InsertManyOptions)
+new: method com.mongodb.internal.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.AsyncOperations<TDocument>::insertMany(java.util.List<? extends TDocument>, com.mongodb.client.model.InsertManyOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult>' to  'com.mongodb.internal.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.AsyncOperations<TDocument>::insertOne(TDocument, com.mongodb.client.model.InsertOneOptions)
+new: method com.mongodb.internal.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.AsyncOperations<TDocument>::insertOne(TDocument, com.mongodb.client.model.InsertOneOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult>' to  'com.mongodb.internal.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method <TResult> com.mongodb.operation.AsyncReadOperation<com.mongodb.async.AsyncBatchCursor<TResult>> com.mongodb.internal.operation.AsyncOperations<TDocument>::listCollections(java.lang.String, java.lang.Class<TResult>, org.bson.conversions.Bson, boolean, java.lang.Integer, long)
+new: method <TResult> com.mongodb.internal.operation.AsyncReadOperation<com.mongodb.internal.async.AsyncBatchCursor<TResult>> com.mongodb.internal.operation.AsyncOperations<TDocument>::listCollections(java.lang.String, java.lang.Class<TResult>, org.bson.conversions.Bson, boolean, java.lang.Integer, long)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncReadOperation<com.mongodb.async.AsyncBatchCursor<TResult>>' to  'com.mongodb.internal.operation.AsyncReadOperation<com.mongodb.internal.async.AsyncBatchCursor<TResult>>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method <TResult> com.mongodb.operation.AsyncReadOperation<com.mongodb.async.AsyncBatchCursor<TResult>> com.mongodb.internal.operation.AsyncOperations<TDocument>::listDatabases(java.lang.Class<TResult>, org.bson.conversions.Bson, java.lang.Boolean, long)
+new: method <TResult> com.mongodb.internal.operation.AsyncReadOperation<com.mongodb.internal.async.AsyncBatchCursor<TResult>> com.mongodb.internal.operation.AsyncOperations<TDocument>::listDatabases(java.lang.Class<TResult>, org.bson.conversions.Bson, java.lang.Boolean, long)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncReadOperation<com.mongodb.async.AsyncBatchCursor<TResult>>' to  'com.mongodb.internal.operation.AsyncReadOperation<com.mongodb.internal.async.AsyncBatchCursor<TResult>>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method <TResult> com.mongodb.operation.AsyncReadOperation<com.mongodb.async.AsyncBatchCursor<TResult>> com.mongodb.internal.operation.AsyncOperations<TDocument>::listIndexes(java.lang.Class<TResult>, java.lang.Integer, long)
+new: method <TResult> com.mongodb.internal.operation.AsyncReadOperation<com.mongodb.internal.async.AsyncBatchCursor<TResult>> com.mongodb.internal.operation.AsyncOperations<TDocument>::listIndexes(java.lang.Class<TResult>, java.lang.Integer, long)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncReadOperation<com.mongodb.async.AsyncBatchCursor<TResult>>' to  'com.mongodb.internal.operation.AsyncReadOperation<com.mongodb.internal.async.AsyncBatchCursor<TResult>>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method <TResult> com.mongodb.operation.AsyncReadOperation<com.mongodb.operation.MapReduceAsyncBatchCursor<TResult>> com.mongodb.internal.operation.AsyncOperations<TDocument>::mapReduce(java.lang.String, java.lang.String, java.lang.String, java.lang.Class<TResult>, org.bson.conversions.Bson, int, long, boolean, org.bson.conversions.Bson, org.bson.conversions.Bson, boolean, com.mongodb.client.model.Collation)
+new: method <TResult> com.mongodb.internal.operation.AsyncReadOperation<com.mongodb.internal.operation.MapReduceAsyncBatchCursor<TResult>> com.mongodb.internal.operation.AsyncOperations<TDocument>::mapReduce(java.lang.String, java.lang.String, java.lang.String, java.lang.Class<TResult>, org.bson.conversions.Bson, int, long, boolean, org.bson.conversions.Bson, org.bson.conversions.Bson, boolean, com.mongodb.client.model.Collation)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncReadOperation<com.mongodb.operation.MapReduceAsyncBatchCursor<TResult>>' to  'com.mongodb.internal.operation.AsyncReadOperation<com.mongodb.internal.operation.MapReduceAsyncBatchCursor<TResult>>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.AsyncWriteOperation<com.mongodb.operation.MapReduceStatistics> com.mongodb.internal.operation.AsyncOperations<TDocument>::mapReduceToCollection(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.bson.conversions.Bson, int, long, boolean, org.bson.conversions.Bson, org.bson.conversions.Bson, boolean, com.mongodb.client.model.MapReduceAction, boolean, boolean, java.lang.Boolean, com.mongodb.client.model.Collation)
+new: method com.mongodb.internal.operation.AsyncWriteOperation<com.mongodb.internal.operation.MapReduceStatistics> com.mongodb.internal.operation.AsyncOperations<TDocument>::mapReduceToCollection(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.bson.conversions.Bson, int, long, boolean, org.bson.conversions.Bson, org.bson.conversions.Bson, boolean, com.mongodb.client.model.MapReduceAction, boolean, boolean, java.lang.Boolean, com.mongodb.client.model.Collation)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncWriteOperation<com.mongodb.operation.MapReduceStatistics>' to  'com.mongodb.internal.operation.AsyncWriteOperation<com.mongodb.internal.operation.MapReduceStatistics>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.AsyncWriteOperation<java.lang.Void> com.mongodb.internal.operation.AsyncOperations<TDocument>::renameCollection(com.mongodb.MongoNamespace, com.mongodb.client.model.RenameCollectionOptions)
+new: method com.mongodb.internal.operation.AsyncWriteOperation<java.lang.Void> com.mongodb.internal.operation.AsyncOperations<TDocument>::renameCollection(com.mongodb.MongoNamespace, com.mongodb.client.model.RenameCollectionOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncWriteOperation<java.lang.Void>' to  'com.mongodb.internal.operation.AsyncWriteOperation<java.lang.Void>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.AsyncOperations<TDocument>::replaceOne(org.bson.conversions.Bson, TDocument, com.mongodb.client.model.ReplaceOptions)
+new: method com.mongodb.internal.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.AsyncOperations<TDocument>::replaceOne(org.bson.conversions.Bson, TDocument, com.mongodb.client.model.ReplaceOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult>' to  'com.mongodb.internal.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.AsyncOperations<TDocument>::updateMany(org.bson.conversions.Bson, java.util.List<? extends org.bson.conversions.Bson>, com.mongodb.client.model.UpdateOptions)
+new: method com.mongodb.internal.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.AsyncOperations<TDocument>::updateMany(org.bson.conversions.Bson, java.util.List<? extends org.bson.conversions.Bson>, com.mongodb.client.model.UpdateOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult>' to  'com.mongodb.internal.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.AsyncOperations<TDocument>::updateMany(org.bson.conversions.Bson, org.bson.conversions.Bson, com.mongodb.client.model.UpdateOptions)
+new: method com.mongodb.internal.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.AsyncOperations<TDocument>::updateMany(org.bson.conversions.Bson, org.bson.conversions.Bson, com.mongodb.client.model.UpdateOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult>' to  'com.mongodb.internal.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.AsyncOperations<TDocument>::updateOne(org.bson.conversions.Bson, java.util.List<? extends org.bson.conversions.Bson>, com.mongodb.client.model.UpdateOptions)
+new: method com.mongodb.internal.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.AsyncOperations<TDocument>::updateOne(org.bson.conversions.Bson, java.util.List<? extends org.bson.conversions.Bson>, com.mongodb.client.model.UpdateOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult>' to  'com.mongodb.internal.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.AsyncOperations<TDocument>::updateOne(org.bson.conversions.Bson, org.bson.conversions.Bson, com.mongodb.client.model.UpdateOptions)
+new: method com.mongodb.internal.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.AsyncOperations<TDocument>::updateOne(org.bson.conversions.Bson, org.bson.conversions.Bson, com.mongodb.client.model.UpdateOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult>' to  'com.mongodb.internal.operation.AsyncWriteOperation<com.mongodb.bulk.BulkWriteResult>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: <none>
+new: interface com.mongodb.internal.operation.CommandOperationHelper.CommandCreator
+java.class.nonPublicPartOfAPI: Class 'com.mongodb.internal.operation.CommandOperationHelper.CommandCreator' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
+
+old: method <TResult> com.mongodb.operation.ReadOperation<com.mongodb.operation.BatchCursor<TResult>> com.mongodb.internal.operation.SyncOperations<TDocument>::aggregate(java.util.List<? extends org.bson.conversions.Bson>, java.lang.Class<TResult>, long, long, java.lang.Integer, com.mongodb.client.model.Collation, org.bson.conversions.Bson, java.lang.String, java.lang.Boolean, java.lang.Boolean, com.mongodb.client.model.AggregationLevel)
+new: method <TResult> com.mongodb.internal.operation.ReadOperation<com.mongodb.internal.operation.BatchCursor<TResult>> com.mongodb.internal.operation.SyncOperations<TDocument>::aggregate(java.util.List<? extends org.bson.conversions.Bson>, java.lang.Class<TResult>, long, long, java.lang.Integer, com.mongodb.client.model.Collation, org.bson.conversions.Bson, java.lang.String, java.lang.Boolean, com.mongodb.internal.client.model.AggregationLevel)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.ReadOperation<com.mongodb.operation.BatchCursor<TResult>>' to  'com.mongodb.internal.operation.ReadOperation<com.mongodb.internal.operation.BatchCursor<TResult>>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.WriteOperation<java.lang.Void> com.mongodb.internal.operation.SyncOperations<TDocument>::aggregateToCollection(java.util.List<? extends org.bson.conversions.Bson>, long, java.lang.Boolean, java.lang.Boolean, com.mongodb.client.model.Collation, org.bson.conversions.Bson, java.lang.String, com.mongodb.client.model.AggregationLevel)
+new: method com.mongodb.internal.operation.WriteOperation<java.lang.Void> com.mongodb.internal.operation.SyncOperations<TDocument>::aggregateToCollection(java.util.List<? extends org.bson.conversions.Bson>, long, java.lang.Boolean, java.lang.Boolean, com.mongodb.client.model.Collation, org.bson.conversions.Bson, java.lang.String, com.mongodb.internal.client.model.AggregationLevel)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.WriteOperation<java.lang.Void>' to  'com.mongodb.internal.operation.WriteOperation<java.lang.Void>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter com.mongodb.operation.WriteOperation<java.lang.Void> com.mongodb.internal.operation.SyncOperations<TDocument>::aggregateToCollection(java.util.List<? extends org.bson.conversions.Bson>, long, java.lang.Boolean, java.lang.Boolean, com.mongodb.client.model.Collation, org.bson.conversions.Bson, java.lang.String, ===com.mongodb.client.model.AggregationLevel===)
+new: parameter com.mongodb.internal.operation.WriteOperation<java.lang.Void> com.mongodb.internal.operation.SyncOperations<TDocument>::aggregateToCollection(java.util.List<? extends org.bson.conversions.Bson>, long, java.lang.Boolean, java.lang.Boolean, com.mongodb.client.model.Collation, org.bson.conversions.Bson, java.lang.String, ===com.mongodb.internal.client.model.AggregationLevel===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.client.model.AggregationLevel' to 'com.mongodb.internal.client.model.AggregationLevel'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.SyncOperations<TDocument>::bulkWrite(java.util.List<? extends com.mongodb.client.model.WriteModel<? extends TDocument>>, com.mongodb.client.model.BulkWriteOptions)
+new: method com.mongodb.internal.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.SyncOperations<TDocument>::bulkWrite(java.util.List<? extends com.mongodb.client.model.WriteModel<? extends TDocument>>, com.mongodb.client.model.BulkWriteOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult>' to  'com.mongodb.internal.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.ReadOperation<java.lang.Long> com.mongodb.internal.operation.SyncOperations<TDocument>::count(org.bson.conversions.Bson, com.mongodb.client.model.CountOptions, com.mongodb.internal.client.model.CountStrategy)
+new: method com.mongodb.internal.operation.ReadOperation<java.lang.Long> com.mongodb.internal.operation.SyncOperations<TDocument>::count(org.bson.conversions.Bson, com.mongodb.client.model.CountOptions, com.mongodb.internal.client.model.CountStrategy)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.ReadOperation<java.lang.Long>' to  'com.mongodb.internal.operation.ReadOperation<java.lang.Long>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.WriteOperation<java.lang.Void> com.mongodb.internal.operation.SyncOperations<TDocument>::createIndexes(java.util.List<com.mongodb.client.model.IndexModel>, com.mongodb.client.model.CreateIndexOptions)
+new: method com.mongodb.internal.operation.WriteOperation<java.lang.Void> com.mongodb.internal.operation.SyncOperations<TDocument>::createIndexes(java.util.List<com.mongodb.client.model.IndexModel>, com.mongodb.client.model.CreateIndexOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.WriteOperation<java.lang.Void>' to  'com.mongodb.internal.operation.WriteOperation<java.lang.Void>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.SyncOperations<TDocument>::deleteMany(org.bson.conversions.Bson, com.mongodb.client.model.DeleteOptions)
+new: method com.mongodb.internal.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.SyncOperations<TDocument>::deleteMany(org.bson.conversions.Bson, com.mongodb.client.model.DeleteOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult>' to  'com.mongodb.internal.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.SyncOperations<TDocument>::deleteOne(org.bson.conversions.Bson, com.mongodb.client.model.DeleteOptions)
+new: method com.mongodb.internal.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.SyncOperations<TDocument>::deleteOne(org.bson.conversions.Bson, com.mongodb.client.model.DeleteOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult>' to  'com.mongodb.internal.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method <TResult> com.mongodb.operation.ReadOperation<com.mongodb.operation.BatchCursor<TResult>> com.mongodb.internal.operation.SyncOperations<TDocument>::distinct(java.lang.String, org.bson.conversions.Bson, java.lang.Class<TResult>, long, com.mongodb.client.model.Collation)
+new: method <TResult> com.mongodb.internal.operation.ReadOperation<com.mongodb.internal.operation.BatchCursor<TResult>> com.mongodb.internal.operation.SyncOperations<TDocument>::distinct(java.lang.String, org.bson.conversions.Bson, java.lang.Class<TResult>, long, com.mongodb.client.model.Collation)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.ReadOperation<com.mongodb.operation.BatchCursor<TResult>>' to  'com.mongodb.internal.operation.ReadOperation<com.mongodb.internal.operation.BatchCursor<TResult>>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.WriteOperation<java.lang.Void> com.mongodb.internal.operation.SyncOperations<TDocument>::dropCollection()
+new: method com.mongodb.internal.operation.WriteOperation<java.lang.Void> com.mongodb.internal.operation.SyncOperations<TDocument>::dropCollection()
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.WriteOperation<java.lang.Void>' to  'com.mongodb.internal.operation.WriteOperation<java.lang.Void>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.WriteOperation<java.lang.Void> com.mongodb.internal.operation.SyncOperations<TDocument>::dropIndex(java.lang.String, com.mongodb.client.model.DropIndexOptions)
+new: method com.mongodb.internal.operation.WriteOperation<java.lang.Void> com.mongodb.internal.operation.SyncOperations<TDocument>::dropIndex(java.lang.String, com.mongodb.client.model.DropIndexOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.WriteOperation<java.lang.Void>' to  'com.mongodb.internal.operation.WriteOperation<java.lang.Void>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.WriteOperation<java.lang.Void> com.mongodb.internal.operation.SyncOperations<TDocument>::dropIndex(org.bson.conversions.Bson, com.mongodb.client.model.DropIndexOptions)
+new: method com.mongodb.internal.operation.WriteOperation<java.lang.Void> com.mongodb.internal.operation.SyncOperations<TDocument>::dropIndex(org.bson.conversions.Bson, com.mongodb.client.model.DropIndexOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.WriteOperation<java.lang.Void>' to  'com.mongodb.internal.operation.WriteOperation<java.lang.Void>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method <TResult> com.mongodb.operation.ReadOperation<com.mongodb.operation.BatchCursor<TResult>> com.mongodb.internal.operation.SyncOperations<TDocument>::find(com.mongodb.MongoNamespace, org.bson.conversions.Bson, java.lang.Class<TResult>, com.mongodb.client.model.FindOptions)
+new: method <TResult> com.mongodb.internal.operation.ReadOperation<com.mongodb.internal.operation.BatchCursor<TResult>> com.mongodb.internal.operation.SyncOperations<TDocument>::find(com.mongodb.MongoNamespace, org.bson.conversions.Bson, java.lang.Class<TResult>, com.mongodb.internal.client.model.FindOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.ReadOperation<com.mongodb.operation.BatchCursor<TResult>>' to  'com.mongodb.internal.operation.ReadOperation<com.mongodb.internal.operation.BatchCursor<TResult>>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter <TResult> com.mongodb.operation.ReadOperation<com.mongodb.operation.BatchCursor<TResult>> com.mongodb.internal.operation.SyncOperations<TDocument>::find(com.mongodb.MongoNamespace, org.bson.conversions.Bson, java.lang.Class<TResult>, ===com.mongodb.client.model.FindOptions===)
+new: parameter <TResult> com.mongodb.internal.operation.ReadOperation<com.mongodb.internal.operation.BatchCursor<TResult>> com.mongodb.internal.operation.SyncOperations<TDocument>::find(com.mongodb.MongoNamespace, org.bson.conversions.Bson, java.lang.Class<TResult>, ===com.mongodb.internal.client.model.FindOptions===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.client.model.FindOptions' to 'com.mongodb.internal.client.model.FindOptions'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method <TResult> com.mongodb.operation.ReadOperation<com.mongodb.operation.BatchCursor<TResult>> com.mongodb.internal.operation.SyncOperations<TDocument>::find(org.bson.conversions.Bson, java.lang.Class<TResult>, com.mongodb.client.model.FindOptions)
+new: method <TResult> com.mongodb.internal.operation.ReadOperation<com.mongodb.internal.operation.BatchCursor<TResult>> com.mongodb.internal.operation.SyncOperations<TDocument>::find(org.bson.conversions.Bson, java.lang.Class<TResult>, com.mongodb.internal.client.model.FindOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.ReadOperation<com.mongodb.operation.BatchCursor<TResult>>' to  'com.mongodb.internal.operation.ReadOperation<com.mongodb.internal.operation.BatchCursor<TResult>>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter <TResult> com.mongodb.operation.ReadOperation<com.mongodb.operation.BatchCursor<TResult>> com.mongodb.internal.operation.SyncOperations<TDocument>::find(org.bson.conversions.Bson, java.lang.Class<TResult>, ===com.mongodb.client.model.FindOptions===)
+new: parameter <TResult> com.mongodb.internal.operation.ReadOperation<com.mongodb.internal.operation.BatchCursor<TResult>> com.mongodb.internal.operation.SyncOperations<TDocument>::find(org.bson.conversions.Bson, java.lang.Class<TResult>, ===com.mongodb.internal.client.model.FindOptions===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.client.model.FindOptions' to 'com.mongodb.internal.client.model.FindOptions'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method <TResult> com.mongodb.operation.ReadOperation<com.mongodb.operation.BatchCursor<TResult>> com.mongodb.internal.operation.SyncOperations<TDocument>::findFirst(org.bson.conversions.Bson, java.lang.Class<TResult>, com.mongodb.client.model.FindOptions)
+new: method <TResult> com.mongodb.internal.operation.ReadOperation<com.mongodb.internal.operation.BatchCursor<TResult>> com.mongodb.internal.operation.SyncOperations<TDocument>::findFirst(org.bson.conversions.Bson, java.lang.Class<TResult>, com.mongodb.internal.client.model.FindOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.ReadOperation<com.mongodb.operation.BatchCursor<TResult>>' to  'com.mongodb.internal.operation.ReadOperation<com.mongodb.internal.operation.BatchCursor<TResult>>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter <TResult> com.mongodb.operation.ReadOperation<com.mongodb.operation.BatchCursor<TResult>> com.mongodb.internal.operation.SyncOperations<TDocument>::findFirst(org.bson.conversions.Bson, java.lang.Class<TResult>, ===com.mongodb.client.model.FindOptions===)
+new: parameter <TResult> com.mongodb.internal.operation.ReadOperation<com.mongodb.internal.operation.BatchCursor<TResult>> com.mongodb.internal.operation.SyncOperations<TDocument>::findFirst(org.bson.conversions.Bson, java.lang.Class<TResult>, ===com.mongodb.internal.client.model.FindOptions===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.client.model.FindOptions' to 'com.mongodb.internal.client.model.FindOptions'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.WriteOperation<TDocument> com.mongodb.internal.operation.SyncOperations<TDocument>::findOneAndDelete(org.bson.conversions.Bson, com.mongodb.client.model.FindOneAndDeleteOptions)
+new: method com.mongodb.internal.operation.WriteOperation<TDocument> com.mongodb.internal.operation.SyncOperations<TDocument>::findOneAndDelete(org.bson.conversions.Bson, com.mongodb.client.model.FindOneAndDeleteOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.WriteOperation<TDocument>' to  'com.mongodb.internal.operation.WriteOperation<TDocument>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.WriteOperation<TDocument> com.mongodb.internal.operation.SyncOperations<TDocument>::findOneAndReplace(org.bson.conversions.Bson, TDocument, com.mongodb.client.model.FindOneAndReplaceOptions)
+new: method com.mongodb.internal.operation.WriteOperation<TDocument> com.mongodb.internal.operation.SyncOperations<TDocument>::findOneAndReplace(org.bson.conversions.Bson, TDocument, com.mongodb.client.model.FindOneAndReplaceOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.WriteOperation<TDocument>' to  'com.mongodb.internal.operation.WriteOperation<TDocument>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.WriteOperation<TDocument> com.mongodb.internal.operation.SyncOperations<TDocument>::findOneAndUpdate(org.bson.conversions.Bson, java.util.List<? extends org.bson.conversions.Bson>, com.mongodb.client.model.FindOneAndUpdateOptions)
+new: method com.mongodb.internal.operation.WriteOperation<TDocument> com.mongodb.internal.operation.SyncOperations<TDocument>::findOneAndUpdate(org.bson.conversions.Bson, java.util.List<? extends org.bson.conversions.Bson>, com.mongodb.client.model.FindOneAndUpdateOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.WriteOperation<TDocument>' to  'com.mongodb.internal.operation.WriteOperation<TDocument>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.WriteOperation<TDocument> com.mongodb.internal.operation.SyncOperations<TDocument>::findOneAndUpdate(org.bson.conversions.Bson, org.bson.conversions.Bson, com.mongodb.client.model.FindOneAndUpdateOptions)
+new: method com.mongodb.internal.operation.WriteOperation<TDocument> com.mongodb.internal.operation.SyncOperations<TDocument>::findOneAndUpdate(org.bson.conversions.Bson, org.bson.conversions.Bson, com.mongodb.client.model.FindOneAndUpdateOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.WriteOperation<TDocument>' to  'com.mongodb.internal.operation.WriteOperation<TDocument>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.SyncOperations<TDocument>::insertMany(java.util.List<? extends TDocument>, com.mongodb.client.model.InsertManyOptions)
+new: method com.mongodb.internal.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.SyncOperations<TDocument>::insertMany(java.util.List<? extends TDocument>, com.mongodb.client.model.InsertManyOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult>' to  'com.mongodb.internal.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.SyncOperations<TDocument>::insertOne(TDocument, com.mongodb.client.model.InsertOneOptions)
+new: method com.mongodb.internal.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.SyncOperations<TDocument>::insertOne(TDocument, com.mongodb.client.model.InsertOneOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult>' to  'com.mongodb.internal.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method <TResult> com.mongodb.operation.ReadOperation<com.mongodb.operation.BatchCursor<TResult>> com.mongodb.internal.operation.SyncOperations<TDocument>::listCollections(java.lang.String, java.lang.Class<TResult>, org.bson.conversions.Bson, boolean, java.lang.Integer, long)
+new: method <TResult> com.mongodb.internal.operation.ReadOperation<com.mongodb.internal.operation.BatchCursor<TResult>> com.mongodb.internal.operation.SyncOperations<TDocument>::listCollections(java.lang.String, java.lang.Class<TResult>, org.bson.conversions.Bson, boolean, java.lang.Integer, long)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.ReadOperation<com.mongodb.operation.BatchCursor<TResult>>' to  'com.mongodb.internal.operation.ReadOperation<com.mongodb.internal.operation.BatchCursor<TResult>>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method <TResult> com.mongodb.operation.ReadOperation<com.mongodb.operation.BatchCursor<TResult>> com.mongodb.internal.operation.SyncOperations<TDocument>::listDatabases(java.lang.Class<TResult>, org.bson.conversions.Bson, java.lang.Boolean, long)
+new: method <TResult> com.mongodb.internal.operation.ReadOperation<com.mongodb.internal.operation.BatchCursor<TResult>> com.mongodb.internal.operation.SyncOperations<TDocument>::listDatabases(java.lang.Class<TResult>, org.bson.conversions.Bson, java.lang.Boolean, long)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.ReadOperation<com.mongodb.operation.BatchCursor<TResult>>' to  'com.mongodb.internal.operation.ReadOperation<com.mongodb.internal.operation.BatchCursor<TResult>>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method <TResult> com.mongodb.operation.ReadOperation<com.mongodb.operation.BatchCursor<TResult>> com.mongodb.internal.operation.SyncOperations<TDocument>::listIndexes(java.lang.Class<TResult>, java.lang.Integer, long)
+new: method <TResult> com.mongodb.internal.operation.ReadOperation<com.mongodb.internal.operation.BatchCursor<TResult>> com.mongodb.internal.operation.SyncOperations<TDocument>::listIndexes(java.lang.Class<TResult>, java.lang.Integer, long)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.ReadOperation<com.mongodb.operation.BatchCursor<TResult>>' to  'com.mongodb.internal.operation.ReadOperation<com.mongodb.internal.operation.BatchCursor<TResult>>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method <TResult> com.mongodb.operation.ReadOperation<com.mongodb.operation.MapReduceBatchCursor<TResult>> com.mongodb.internal.operation.SyncOperations<TDocument>::mapReduce(java.lang.String, java.lang.String, java.lang.String, java.lang.Class<TResult>, org.bson.conversions.Bson, int, long, boolean, org.bson.conversions.Bson, org.bson.conversions.Bson, boolean, com.mongodb.client.model.Collation)
+new: method <TResult> com.mongodb.internal.operation.ReadOperation<com.mongodb.internal.operation.MapReduceBatchCursor<TResult>> com.mongodb.internal.operation.SyncOperations<TDocument>::mapReduce(java.lang.String, java.lang.String, java.lang.String, java.lang.Class<TResult>, org.bson.conversions.Bson, int, long, boolean, org.bson.conversions.Bson, org.bson.conversions.Bson, boolean, com.mongodb.client.model.Collation)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.ReadOperation<com.mongodb.operation.MapReduceBatchCursor<TResult>>' to  'com.mongodb.internal.operation.ReadOperation<com.mongodb.internal.operation.MapReduceBatchCursor<TResult>>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.WriteOperation<com.mongodb.operation.MapReduceStatistics> com.mongodb.internal.operation.SyncOperations<TDocument>::mapReduceToCollection(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.bson.conversions.Bson, int, long, boolean, org.bson.conversions.Bson, org.bson.conversions.Bson, boolean, com.mongodb.client.model.MapReduceAction, boolean, boolean, java.lang.Boolean, com.mongodb.client.model.Collation)
+new: method com.mongodb.internal.operation.WriteOperation<com.mongodb.internal.operation.MapReduceStatistics> com.mongodb.internal.operation.SyncOperations<TDocument>::mapReduceToCollection(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.bson.conversions.Bson, int, long, boolean, org.bson.conversions.Bson, org.bson.conversions.Bson, boolean, com.mongodb.client.model.MapReduceAction, boolean, boolean, java.lang.Boolean, com.mongodb.client.model.Collation)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.WriteOperation<com.mongodb.operation.MapReduceStatistics>' to  'com.mongodb.internal.operation.WriteOperation<com.mongodb.internal.operation.MapReduceStatistics>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.WriteOperation<java.lang.Void> com.mongodb.internal.operation.SyncOperations<TDocument>::renameCollection(com.mongodb.MongoNamespace, com.mongodb.client.model.RenameCollectionOptions)
+new: method com.mongodb.internal.operation.WriteOperation<java.lang.Void> com.mongodb.internal.operation.SyncOperations<TDocument>::renameCollection(com.mongodb.MongoNamespace, com.mongodb.client.model.RenameCollectionOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.WriteOperation<java.lang.Void>' to  'com.mongodb.internal.operation.WriteOperation<java.lang.Void>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.SyncOperations<TDocument>::replaceOne(org.bson.conversions.Bson, TDocument, com.mongodb.client.model.ReplaceOptions)
+new: method com.mongodb.internal.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.SyncOperations<TDocument>::replaceOne(org.bson.conversions.Bson, TDocument, com.mongodb.client.model.ReplaceOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult>' to  'com.mongodb.internal.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.SyncOperations<TDocument>::updateMany(org.bson.conversions.Bson, java.util.List<? extends org.bson.conversions.Bson>, com.mongodb.client.model.UpdateOptions)
+new: method com.mongodb.internal.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.SyncOperations<TDocument>::updateMany(org.bson.conversions.Bson, java.util.List<? extends org.bson.conversions.Bson>, com.mongodb.client.model.UpdateOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult>' to  'com.mongodb.internal.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.SyncOperations<TDocument>::updateMany(org.bson.conversions.Bson, org.bson.conversions.Bson, com.mongodb.client.model.UpdateOptions)
+new: method com.mongodb.internal.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.SyncOperations<TDocument>::updateMany(org.bson.conversions.Bson, org.bson.conversions.Bson, com.mongodb.client.model.UpdateOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult>' to  'com.mongodb.internal.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.SyncOperations<TDocument>::updateOne(org.bson.conversions.Bson, java.util.List<? extends org.bson.conversions.Bson>, com.mongodb.client.model.UpdateOptions)
+new: method com.mongodb.internal.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.SyncOperations<TDocument>::updateOne(org.bson.conversions.Bson, java.util.List<? extends org.bson.conversions.Bson>, com.mongodb.client.model.UpdateOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult>' to  'com.mongodb.internal.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.mongodb.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.SyncOperations<TDocument>::updateOne(org.bson.conversions.Bson, org.bson.conversions.Bson, com.mongodb.client.model.UpdateOptions)
+new: method com.mongodb.internal.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult> com.mongodb.internal.operation.SyncOperations<TDocument>::updateOne(org.bson.conversions.Bson, org.bson.conversions.Bson, com.mongodb.client.model.UpdateOptions)
+java.method.returnTypeChanged: The return type changed from 'com.mongodb.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult>' to  'com.mongodb.internal.operation.WriteOperation<com.mongodb.bulk.BulkWriteResult>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class com.mongodb.internal.session.ClientSessionContext
+new: class com.mongodb.internal.session.ClientSessionContext
+java.class.noLongerImplementsInterface: Class no longer implements interface 'com.mongodb.session.SessionContext'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nowImplementsInterface: Class now implements interface 'com.mongodb.internal.session.SessionContext'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+
+old: interface com.mongodb.internal.session.ServerSessionPool.Clock
+new: interface com.mongodb.internal.session.ServerSessionPool.Clock
+java.class.nonPublicPartOfAPI: Class 'com.mongodb.internal.session.ServerSessionPool.Clock' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
+
+old: parameter void com.mongodb.internal.session.ServerSessionPool::<init>(===com.mongodb.connection.Cluster===)
+new: parameter void com.mongodb.internal.session.ServerSessionPool::<init>(===com.mongodb.internal.connection.Cluster===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.connection.Cluster' to 'com.mongodb.internal.connection.Cluster'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void com.mongodb.internal.session.ServerSessionPool::<init>(===com.mongodb.connection.Cluster===, com.mongodb.internal.session.ServerSessionPool.Clock)
+new: parameter void com.mongodb.internal.session.ServerSessionPool::<init>(===com.mongodb.internal.connection.Cluster===, com.mongodb.internal.session.ServerSessionPool.Clock)
+java.method.parameterTypeChanged: The type of the parameter changed from 'com.mongodb.connection.Cluster' to 'com.mongodb.internal.connection.Cluster'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method int com.mongodb.management.ConnectionPoolStatisticsMBean::getWaitQueueSize()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.management.JMXConnectionPoolListener::waitQueueEntered(com.mongodb.event.ConnectionPoolWaitQueueEnteredEvent)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.management.JMXConnectionPoolListener::waitQueueExited(com.mongodb.event.ConnectionPoolWaitQueueExitedEvent)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.management.MBeanServer
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.management.MBeanServerFactory
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.management.NullMBeanServer
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.AbortTransactionOperation
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.AggregateOperation<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.operation.AggregateResponseBatchCursor<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.AggregateToCollectionOperation
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.operation.AsyncOperationExecutor
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.operation.AsyncReadOperation<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.operation.AsyncWriteOperation<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.BaseFindAndModifyOperation<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.BaseWriteOperation
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.operation.BatchCursor<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.ChangeStreamOperation<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.CommandReadOperation<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.CommandWriteOperation<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.CommitTransactionOperation
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.CountOperation
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.CreateCollectionOperation
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.CreateIndexesOperation
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.CreateUserOperation
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.CreateViewOperation
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.CurrentOpOperation
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.DeleteOperation
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.DistinctOperation<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.DropCollectionOperation
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.DropDatabaseOperation
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.DropIndexOperation
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.DropUserOperation
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.FindAndDeleteOperation<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.FindAndReplaceOperation<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.FindAndUpdateOperation<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.FindOperation<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.FsyncUnlockOperation
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.GroupOperation<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.InsertOperation
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.ListCollectionsOperation<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.ListDatabasesOperation<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.ListIndexesOperation<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.operation.MapReduceAsyncBatchCursor<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.operation.MapReduceBatchCursor<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.MapReduceStatistics
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.MapReduceToCollectionOperation
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.MapReduceWithInlineResultsOperation<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.MixedBulkWriteOperation
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.operation.OperationExecutor
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: enum com.mongodb.operation.OrderBy
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.ParallelCollectionScanOperation<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.operation.ReadOperation<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.RenameCollectionOperation
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.TransactionOperation
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.UpdateOperation
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.UpdateUserOperation
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.operation.UserExistsOperation
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.operation.WriteOperation<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.selector.LatencyMinimizingServerSelector
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.selector.PrimaryServerSelector
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.selector.ReadPreferenceServerSelector
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.selector.ServerAddressSelector
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.selector.WritableServerSelector
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.session.SessionContext
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+18:10:21.122 INFO  Analysis took 4345ms.
+
+
+* * * * * * * *
+>>>>>>
+compilation log of 3.12.14:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< org.apache.logging.log4j:log4j-mongodb3 >---------------
+[INFO] Building Apache Log4j MongoDB 3 2.23.1
+[INFO]   from _temp_org.mongodb_mongodb-driver-core_3.12.14_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ log4j-mongodb3 ---
+[INFO] 
+[INFO] --- flatten:1.5.0:clean (clean-flattened-pom) @ log4j-mongodb3 ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ log4j-mongodb3 ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ log4j-mongodb3 ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-upper-bound-deps) @ log4j-mongodb3 ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.544 s
+[INFO] Finished at: 2024-05-30T18:36:38+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:3.4.1:enforce (enforce-upper-bound-deps) on project log4j-mongodb3: 
+[ERROR] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps failed with message:
+[ERROR] Failed while enforcing RequireUpperBoundDeps. The error(s) are [
+[ERROR] Require upper bound dependencies error for org.mongodb:bson:3.12.11 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:bson:3.12.11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-core:3.12.14
+[ERROR]     +-org.mongodb:bson:3.12.11 (managed) <-- org.mongodb:bson:3.12.14
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-legacy:3.12.11
+[ERROR]     +-org.mongodb:bson:3.12.11 (managed) <-- org.mongodb:bson:3.12.11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-sync:3.12.11
+[ERROR]     +-org.mongodb:bson:3.12.11 (managed) <-- org.mongodb:bson:3.12.11
+[ERROR] ]
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+>>>>>>
+subsequent compilation log of 4.0.0-beta1:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< org.apache.logging.log4j:log4j-mongodb3 >---------------
+[INFO] Building Apache Log4j MongoDB 3 2.23.1
+[INFO]   from _temp_org.mongodb_mongodb-driver-core_4.0.0-beta1_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ log4j-mongodb3 ---
+[INFO] 
+[INFO] --- flatten:1.5.0:clean (clean-flattened-pom) @ log4j-mongodb3 ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ log4j-mongodb3 ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ log4j-mongodb3 ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-upper-bound-deps) @ log4j-mongodb3 ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.564 s
+[INFO] Finished at: 2024-05-30T18:36:40+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:3.4.1:enforce (enforce-upper-bound-deps) on project log4j-mongodb3: 
+[ERROR] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps failed with message:
+[ERROR] Failed while enforcing RequireUpperBoundDeps. The error(s) are [
+[ERROR] Require upper bound dependencies error for org.mongodb:bson:3.12.11 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:bson:3.12.11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-core:4.0.0-beta1
+[ERROR]     +-org.mongodb:bson:3.12.11 (managed) <-- org.mongodb:bson:4.0.0-beta1
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-legacy:3.12.11
+[ERROR]     +-org.mongodb:bson:3.12.11 (managed) <-- org.mongodb:bson:3.12.11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-sync:3.12.11
+[ERROR]     +-org.mongodb:bson:3.12.11 (managed) <-- org.mongodb:bson:3.12.11
+[ERROR] ]
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+
+* * * * * * * *

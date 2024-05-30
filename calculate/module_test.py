@@ -225,6 +225,8 @@ def check_version_module(lock, res_dict:dict, dep_path:str, path_to_cloned_folde
         dep_list.append(temp_dict)
         print(f" find a fn: {res_dict['GroupId']}:{res_dict['ArtifactId']}:{res_dict['Version']} ---> {temp_dict['BestVersion']}")
         store_error(lock, module_data_folder, dep_list, real_positive_result, subsequent_real_positive_result, os.path.join(module_error_folder, 'fn'))
+    else:
+        flag = True
     return flag
 
 # recompile to test

@@ -1,0 +1,122 @@
+module name: log4j-mongodb3/
+
+* * * * * * * *
+groudId: org.mongodb
+artifactId: mongodb-driver-sync
+old version: 3.12.11
+new version: 3.12.11
+classifier: 
+breaking reason by Tool:
+  breaking version:4.0.0-beta1
+ breaking reason:breaking api: com.mongodb.client.internal.MongoClientDelegate: void <init>(com.mongodb.connection.Cluster,org.bson.codecs.configuration.CodecRegistry,java.util.List,java.lang.Object,com.mongodb.client.internal.Crypt) <<<<< transformed old api of breaking record: com.mongodb.client.internal.MongoClientDelegate: void <init>(com.mongodb.connection.Cluster,org.bson.codecs.configuration.CodecRegistry,java.util.List,java.lang.Object,com.mongodb.client.internal.Crypt)
+depth: 1
+reachable api of old version:
+    com.mongodb.client.MongoClients: com.mongodb.client.MongoClient create(com.mongodb.MongoClientSettings)
+    com.mongodb.client.MongoClients: com.mongodb.client.MongoClient create(com.mongodb.MongoClientSettings,com.mongodb.MongoDriverInformation)
+    com.mongodb.client.internal.Crypts: com.mongodb.client.internal.Crypt createCrypt(com.mongodb.client.internal.SimpleMongoClient,com.mongodb.AutoEncryptionSettings)
+    com.mongodb.client.internal.Crypts: com.mongodb.client.internal.KeyRetriever createKeyRetriever(com.mongodb.client.internal.SimpleMongoClient,com.mongodb.MongoClientSettings,java.lang.String)
+    com.mongodb.client.internal.Crypts: com.mongodb.client.internal.KeyRetriever createKeyRetriever(com.mongodb.client.internal.SimpleMongoClient,boolean,java.lang.String)
+    com.mongodb.client.internal.Crypts: com.mongodb.client.internal.KeyManagementService createKeyManagementService()
+    com.mongodb.client.internal.Crypts: javax.net.ssl.SSLContext getSslContext()
+    com.mongodb.client.internal.CollectionInfoRetriever: void <init>(com.mongodb.client.internal.SimpleMongoClient)
+    com.mongodb.client.internal.KeyRetriever: void <init>(com.mongodb.client.internal.SimpleMongoClient,boolean,com.mongodb.MongoNamespace)
+    com.mongodb.client.internal.SimpleMongoClients: com.mongodb.client.internal.SimpleMongoClient create(com.mongodb.client.MongoClient)
+    com.mongodb.client.internal.MongoClientDelegate$DelegateOperationExecutor: void <init>(com.mongodb.client.internal.MongoClientDelegate)
+    com.mongodb.client.internal.MongoClientDelegate$DelegateOperationExecutor: void <init>(com.mongodb.client.internal.MongoClientDelegate,com.mongodb.client.internal.MongoClientDelegate$1)
+    com.mongodb.client.internal.CommandMarker: void <init>(boolean,java.util.Map)
+    com.mongodb.client.internal.MongoClientDelegate: void <init>(com.mongodb.connection.Cluster,org.bson.codecs.configuration.CodecRegistry,java.util.List,java.lang.Object,com.mongodb.client.internal.Crypt)
+    com.mongodb.client.internal.MongoClientDelegate: void <init>(com.mongodb.connection.Cluster,org.bson.codecs.configuration.CodecRegistry,java.util.List,java.lang.Object,com.mongodb.client.internal.OperationExecutor,com.mongodb.client.internal.Crypt)
+    com.mongodb.client.internal.SimpleMongoClients$1: void <init>(com.mongodb.client.MongoClient)
+    com.mongodb.client.internal.Crypt: void <init>(com.mongodb.crypt.capi.MongoCrypt,com.mongodb.client.internal.CollectionInfoRetriever,com.mongodb.client.internal.CommandMarker,com.mongodb.client.internal.KeyRetriever,com.mongodb.client.internal.KeyManagementService,boolean)
+    com.mongodb.client.internal.KeyManagementService: void <init>(javax.net.ssl.SSLContext,int,int)
+    com.mongodb.client.internal.MongoDatabaseImpl: void <init>(java.lang.String,org.bson.codecs.configuration.CodecRegistry,com.mongodb.ReadPreference,com.mongodb.WriteConcern,boolean,boolean,com.mongodb.ReadConcern,org.bson.UuidRepresentation,com.mongodb.client.internal.OperationExecutor)
+    com.mongodb.client.internal.MongoClientImpl: void <init>(com.mongodb.MongoClientSettings,com.mongodb.MongoDriverInformation)
+    com.mongodb.client.internal.MongoClientImpl: void <init>(com.mongodb.connection.Cluster,com.mongodb.MongoClientSettings,com.mongodb.client.internal.OperationExecutor)
+    com.mongodb.client.internal.MongoClientImpl: com.mongodb.connection.Cluster createCluster(com.mongodb.MongoClientSettings,com.mongodb.MongoDriverInformation)
+    com.mongodb.client.internal.MongoClientImpl: com.mongodb.connection.StreamFactory getStreamFactory(com.mongodb.MongoClientSettings,boolean)
+/ / / / / / / / /
+revapi log of the subsequent version -- 3.12.12:
+18:07:17.701 INFO  Downloading checked archives
+18:07:17.708 INFO  Downloading extensions
+18:07:18.619 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.mongodb-mongodb-driver-sync-3.12.11.jar
+New API: org.mongodb-mongodb-driver-sync-3.12.12.jar
+old: class com.mongodb.client.internal.Crypt
+new: class com.mongodb.client.internal.Crypt
+java.class.nonPublicPartOfAPI: Class 'com.mongodb.client.internal.Crypt' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
+
+18:07:21.357 INFO  Analysis took 2736ms.
+
+
+* * * * * * * *
+>>>>>>
+subsequent compilation log of 3.12.12:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< org.apache.logging.log4j:log4j-mongodb3 >---------------
+[INFO] Building Apache Log4j MongoDB 3 2.23.1
+[INFO]   from _temp_org.mongodb_mongodb-driver-sync_3.12.12_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ log4j-mongodb3 ---
+[INFO] 
+[INFO] --- flatten:1.5.0:clean (clean-flattened-pom) @ log4j-mongodb3 ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ log4j-mongodb3 ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ log4j-mongodb3 ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-upper-bound-deps) @ log4j-mongodb3 ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.950 s
+[INFO] Finished at: 2024-05-30T18:18:32+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:3.4.1:enforce (enforce-upper-bound-deps) on project log4j-mongodb3: 
+[ERROR] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps failed with message:
+[ERROR] Failed while enforcing RequireUpperBoundDeps. The error(s) are [
+[ERROR] Require upper bound dependencies error for org.mongodb:mongodb-driver-core:3.12.11 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-core:3.12.11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-legacy:3.12.11
+[ERROR]     +-org.mongodb:mongodb-driver-core:3.12.11 (managed) <-- org.mongodb:mongodb-driver-core:3.12.11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-sync:3.12.12
+[ERROR]     +-org.mongodb:mongodb-driver-core:3.12.11 (managed) <-- org.mongodb:mongodb-driver-core:3.12.12
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.mongodb:bson:3.12.11 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:bson:3.12.11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-core:3.12.11
+[ERROR]     +-org.mongodb:bson:3.12.11 (managed) <-- org.mongodb:bson:3.12.11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-legacy:3.12.11
+[ERROR]     +-org.mongodb:bson:3.12.11 (managed) <-- org.mongodb:bson:3.12.11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-sync:3.12.12
+[ERROR]     +-org.mongodb:bson:3.12.11 (managed) <-- org.mongodb:bson:3.12.12
+[ERROR] ]
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+
+* * * * * * * *

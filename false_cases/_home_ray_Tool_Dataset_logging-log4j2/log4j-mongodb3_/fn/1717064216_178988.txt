@@ -1,0 +1,157 @@
+module name: log4j-mongodb3/
+
+* * * * * * * *
+groudId: org.mongodb
+artifactId: mongodb-driver-legacy
+old version: 3.12.11
+new version: 3.12.11
+classifier: 
+breaking reason by Tool:
+  breaking version:4.0.0-beta1
+ breaking reason:breaking api: com.mongodb.Mongo: void <init>(com.mongodb.ServerAddress,com.mongodb.MongoClientOptions) <<<<< transformed old api of breaking record: com.mongodb.Mongo:
+depth: 1
+reachable api of old version:
+    com.mongodb.Mongo$3: void <init>(com.mongodb.Mongo)
+    com.mongodb.Mongo: void <init>(com.mongodb.ServerAddress,com.mongodb.MongoClientOptions)
+    com.mongodb.Mongo: void <init>(com.mongodb.ServerAddress,java.util.List,com.mongodb.MongoClientOptions)
+    com.mongodb.Mongo: void <init>(com.mongodb.ServerAddress,java.util.List,com.mongodb.MongoClientOptions,com.mongodb.MongoDriverInformation)
+    com.mongodb.Mongo: void <init>(com.mongodb.connection.Cluster,com.mongodb.MongoClientOptions,java.util.List)
+    com.mongodb.Mongo: com.mongodb.client.internal.SimpleMongoClient asSimpleMongoClient()
+    com.mongodb.Mongo: com.mongodb.connection.Cluster createCluster(com.mongodb.ServerAddress,java.util.List,com.mongodb.MongoClientOptions,com.mongodb.MongoDriverInformation)
+    com.mongodb.Mongo: com.mongodb.connection.Cluster createCluster(com.mongodb.connection.ClusterSettings,java.util.List,com.mongodb.MongoClientOptions,com.mongodb.MongoDriverInformation)
+    com.mongodb.Mongo: com.mongodb.connection.ClusterSettings getClusterSettings(com.mongodb.connection.ClusterSettings$Builder,com.mongodb.MongoClientOptions)
+    com.mongodb.Mongo: com.mongodb.connection.ClusterSettings getClusterSettings(java.util.List,com.mongodb.MongoClientOptions,com.mongodb.connection.ClusterConnectionMode)
+    com.mongodb.Mongo: java.util.concurrent.ExecutorService createCursorCleaningService()
+    com.mongodb.Mongo: com.mongodb.connection.ClusterConnectionMode getSingleServerClusterMode(com.mongodb.MongoClientOptions)
+    com.mongodb.DefaultDBEncoder$1: void <init>()
+    com.mongodb.util.JSONParseException: java.lang.String getMessage()
+    com.mongodb.Bytes$OptionHolder: void <init>(com.mongodb.Bytes$OptionHolder)
+    com.mongodb.MongoClientOptions: com.mongodb.MongoClientOptions$Builder builder()
+    com.mongodb.MongoClientOptions: java.lang.String getDescription()
+    com.mongodb.MongoClientOptions: java.lang.String getApplicationName()
+    com.mongodb.MongoClientOptions: java.util.List getCompressorList()
+    com.mongodb.MongoClientOptions: int getServerSelectionTimeout()
+    com.mongodb.MongoClientOptions: int getLocalThreshold()
+    com.mongodb.MongoClientOptions: java.lang.String getRequiredReplicaSetName()
+    com.mongodb.MongoClientOptions: com.mongodb.ReadPreference getReadPreference()
+    com.mongodb.MongoClientOptions: com.mongodb.WriteConcern getWriteConcern()
+    com.mongodb.MongoClientOptions: com.mongodb.ReadConcern getReadConcern()
+    com.mongodb.MongoClientOptions: org.bson.codecs.configuration.CodecRegistry getCodecRegistry()
+    com.mongodb.MongoClientOptions: org.bson.UuidRepresentation getUuidRepresentation()
+    com.mongodb.MongoClientOptions: com.mongodb.selector.ServerSelector getServerSelector()
+    com.mongodb.MongoClientOptions: java.util.List getClusterListeners()
+    com.mongodb.MongoClientOptions: java.util.List getCommandListeners()
+    com.mongodb.MongoClientOptions: javax.net.SocketFactory getSocketFactory()
+    com.mongodb.MongoClientOptions: boolean isCursorFinalizerEnabled()
+    com.mongodb.MongoClientOptions: com.mongodb.AutoEncryptionSettings getAutoEncryptionSettings()
+    com.mongodb.MongoClientOptions: com.mongodb.connection.ConnectionPoolSettings getConnectionPoolSettings()
+    com.mongodb.MongoClientOptions: com.mongodb.connection.SocketSettings getSocketSettings()
+    com.mongodb.MongoClientOptions: com.mongodb.connection.ServerSettings getServerSettings()
+    com.mongodb.MongoClientOptions: com.mongodb.connection.SocketSettings getHeartbeatSocketSettings()
+    com.mongodb.MongoClientOptions: com.mongodb.connection.SslSettings getSslSettings()
+    com.mongodb.MongoClientOptions: void <clinit>()
+    com.mongodb.DefaultDBDecoder: void <clinit>()
+    com.mongodb.DefaultDBDecoder$1: void <init>()
+    com.mongodb.MongoClientOptions$Builder: void <init>()
+    com.mongodb.MongoClientOptions$Builder: com.mongodb.MongoClientOptions$Builder heartbeatFrequency(int)
+    com.mongodb.MongoClientOptions$Builder: com.mongodb.MongoClientOptions$Builder minHeartbeatFrequency(int)
+    com.mongodb.MongoClientOptions$Builder: com.mongodb.MongoClientOptions$Builder heartbeatConnectTimeout(int)
+    com.mongodb.MongoClientOptions$Builder: com.mongodb.MongoClientOptions$Builder heartbeatSocketTimeout(int)
+    com.mongodb.MongoClientOptions$Builder: com.mongodb.MongoClientOptions$Builder localThreshold(int)
+    com.mongodb.MongoClient$2: void <init>(com.mongodb.MongoClient)
+    com.mongodb.DefaultDBEncoder: void <clinit>()
+    com.mongodb.MongoClient: org.bson.codecs.configuration.CodecRegistry getDefaultCodecRegistry()
+    com.mongodb.MongoClient: void <init>(com.mongodb.ServerAddress,com.mongodb.MongoClientOptions)
+    com.mongodb.MongoClient: void <init>(com.mongodb.ServerAddress,com.mongodb.MongoCredential,com.mongodb.MongoClientOptions)
+    com.mongodb.MongoClient: com.mongodb.client.MongoDatabase getDatabase(java.lang.String)
+    com.mongodb.MongoClient: com.mongodb.client.internal.SimpleMongoClient asSimpleMongoClient()
+/ / / / / / / / /
+revapi log of the subsequent version -- 3.12.12:
+18:07:17.101 INFO  Downloading checked archives
+18:07:17.106 INFO  Downloading extensions
+18:07:17.741 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.mongodb-mongodb-driver-legacy-3.12.11.jar
+New API: org.mongodb-mongodb-driver-legacy-3.12.12.jar
+
+18:07:20.094 INFO  Analysis took 2352ms.
+
+
+* * * * * * * *
+>>>>>>
+subsequent compilation log of 3.12.12:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< org.apache.logging.log4j:log4j-mongodb3 >---------------
+[INFO] Building Apache Log4j MongoDB 3 2.23.1
+[INFO]   from _temp_org.mongodb_mongodb-driver-legacy_3.12.12_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ log4j-mongodb3 ---
+[INFO] 
+[INFO] --- flatten:1.5.0:clean (clean-flattened-pom) @ log4j-mongodb3 ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ log4j-mongodb3 ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ log4j-mongodb3 ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-upper-bound-deps) @ log4j-mongodb3 ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.327 s
+[INFO] Finished at: 2024-05-30T18:15:08+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:3.4.1:enforce (enforce-upper-bound-deps) on project log4j-mongodb3: 
+[ERROR] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps failed with message:
+[ERROR] Failed while enforcing RequireUpperBoundDeps. The error(s) are [
+[ERROR] Require upper bound dependencies error for org.mongodb:mongodb-driver-sync:3.12.11 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-sync:3.12.11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-legacy:3.12.12
+[ERROR]     +-org.mongodb:mongodb-driver-sync:3.12.11 (managed) <-- org.mongodb:mongodb-driver-sync:3.12.12
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.mongodb:mongodb-driver-core:3.12.11 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-core:3.12.11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-legacy:3.12.12
+[ERROR]     +-org.mongodb:mongodb-driver-core:3.12.11 (managed) <-- org.mongodb:mongodb-driver-core:3.12.12
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-sync:3.12.11
+[ERROR]     +-org.mongodb:mongodb-driver-core:3.12.11 (managed) <-- org.mongodb:mongodb-driver-core:3.12.11
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.mongodb:bson:3.12.11 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:bson:3.12.11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-core:3.12.11
+[ERROR]     +-org.mongodb:bson:3.12.11 (managed) <-- org.mongodb:bson:3.12.11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-legacy:3.12.12
+[ERROR]     +-org.mongodb:bson:3.12.11 (managed) <-- org.mongodb:bson:3.12.12
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-sync:3.12.11
+[ERROR]     +-org.mongodb:bson:3.12.11 (managed) <-- org.mongodb:bson:3.12.11
+[ERROR] ]
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+
+* * * * * * * *

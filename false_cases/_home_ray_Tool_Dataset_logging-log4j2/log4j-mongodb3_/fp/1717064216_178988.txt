@@ -1,0 +1,771 @@
+module name: log4j-mongodb3/
+
+* * * * * * * *
+groudId: org.mongodb
+artifactId: mongodb-driver-legacy
+old version: 3.12.11
+new version: 3.12.14
+classifier: 
+breaking reason by Tool:
+  breaking version:4.0.0-beta1
+ breaking reason:breaking api: com.mongodb.Mongo: void <init>(com.mongodb.ServerAddress,com.mongodb.MongoClientOptions) <<<<< transformed old api of breaking record: com.mongodb.Mongo:
+depth: 1
+reachable api of old version:
+    com.mongodb.Mongo$3: void <init>(com.mongodb.Mongo)
+    com.mongodb.Mongo: void <init>(com.mongodb.ServerAddress,com.mongodb.MongoClientOptions)
+    com.mongodb.Mongo: void <init>(com.mongodb.ServerAddress,java.util.List,com.mongodb.MongoClientOptions)
+    com.mongodb.Mongo: void <init>(com.mongodb.ServerAddress,java.util.List,com.mongodb.MongoClientOptions,com.mongodb.MongoDriverInformation)
+    com.mongodb.Mongo: void <init>(com.mongodb.connection.Cluster,com.mongodb.MongoClientOptions,java.util.List)
+    com.mongodb.Mongo: com.mongodb.client.internal.SimpleMongoClient asSimpleMongoClient()
+    com.mongodb.Mongo: com.mongodb.connection.Cluster createCluster(com.mongodb.ServerAddress,java.util.List,com.mongodb.MongoClientOptions,com.mongodb.MongoDriverInformation)
+    com.mongodb.Mongo: com.mongodb.connection.Cluster createCluster(com.mongodb.connection.ClusterSettings,java.util.List,com.mongodb.MongoClientOptions,com.mongodb.MongoDriverInformation)
+    com.mongodb.Mongo: com.mongodb.connection.ClusterSettings getClusterSettings(com.mongodb.connection.ClusterSettings$Builder,com.mongodb.MongoClientOptions)
+    com.mongodb.Mongo: com.mongodb.connection.ClusterSettings getClusterSettings(java.util.List,com.mongodb.MongoClientOptions,com.mongodb.connection.ClusterConnectionMode)
+    com.mongodb.Mongo: java.util.concurrent.ExecutorService createCursorCleaningService()
+    com.mongodb.Mongo: com.mongodb.connection.ClusterConnectionMode getSingleServerClusterMode(com.mongodb.MongoClientOptions)
+    com.mongodb.DefaultDBEncoder$1: void <init>()
+    com.mongodb.util.JSONParseException: java.lang.String getMessage()
+    com.mongodb.Bytes$OptionHolder: void <init>(com.mongodb.Bytes$OptionHolder)
+    com.mongodb.MongoClientOptions: com.mongodb.MongoClientOptions$Builder builder()
+    com.mongodb.MongoClientOptions: java.lang.String getDescription()
+    com.mongodb.MongoClientOptions: java.lang.String getApplicationName()
+    com.mongodb.MongoClientOptions: java.util.List getCompressorList()
+    com.mongodb.MongoClientOptions: int getServerSelectionTimeout()
+    com.mongodb.MongoClientOptions: int getLocalThreshold()
+    com.mongodb.MongoClientOptions: java.lang.String getRequiredReplicaSetName()
+    com.mongodb.MongoClientOptions: com.mongodb.ReadPreference getReadPreference()
+    com.mongodb.MongoClientOptions: com.mongodb.WriteConcern getWriteConcern()
+    com.mongodb.MongoClientOptions: com.mongodb.ReadConcern getReadConcern()
+    com.mongodb.MongoClientOptions: org.bson.codecs.configuration.CodecRegistry getCodecRegistry()
+    com.mongodb.MongoClientOptions: org.bson.UuidRepresentation getUuidRepresentation()
+    com.mongodb.MongoClientOptions: com.mongodb.selector.ServerSelector getServerSelector()
+    com.mongodb.MongoClientOptions: java.util.List getClusterListeners()
+    com.mongodb.MongoClientOptions: java.util.List getCommandListeners()
+    com.mongodb.MongoClientOptions: javax.net.SocketFactory getSocketFactory()
+    com.mongodb.MongoClientOptions: boolean isCursorFinalizerEnabled()
+    com.mongodb.MongoClientOptions: com.mongodb.AutoEncryptionSettings getAutoEncryptionSettings()
+    com.mongodb.MongoClientOptions: com.mongodb.connection.ConnectionPoolSettings getConnectionPoolSettings()
+    com.mongodb.MongoClientOptions: com.mongodb.connection.SocketSettings getSocketSettings()
+    com.mongodb.MongoClientOptions: com.mongodb.connection.ServerSettings getServerSettings()
+    com.mongodb.MongoClientOptions: com.mongodb.connection.SocketSettings getHeartbeatSocketSettings()
+    com.mongodb.MongoClientOptions: com.mongodb.connection.SslSettings getSslSettings()
+    com.mongodb.MongoClientOptions: void <clinit>()
+    com.mongodb.DefaultDBDecoder: void <clinit>()
+    com.mongodb.DefaultDBDecoder$1: void <init>()
+    com.mongodb.MongoClientOptions$Builder: void <init>()
+    com.mongodb.MongoClientOptions$Builder: com.mongodb.MongoClientOptions$Builder heartbeatFrequency(int)
+    com.mongodb.MongoClientOptions$Builder: com.mongodb.MongoClientOptions$Builder minHeartbeatFrequency(int)
+    com.mongodb.MongoClientOptions$Builder: com.mongodb.MongoClientOptions$Builder heartbeatConnectTimeout(int)
+    com.mongodb.MongoClientOptions$Builder: com.mongodb.MongoClientOptions$Builder heartbeatSocketTimeout(int)
+    com.mongodb.MongoClientOptions$Builder: com.mongodb.MongoClientOptions$Builder localThreshold(int)
+    com.mongodb.MongoClient$2: void <init>(com.mongodb.MongoClient)
+    com.mongodb.DefaultDBEncoder: void <clinit>()
+    com.mongodb.MongoClient: org.bson.codecs.configuration.CodecRegistry getDefaultCodecRegistry()
+    com.mongodb.MongoClient: void <init>(com.mongodb.ServerAddress,com.mongodb.MongoClientOptions)
+    com.mongodb.MongoClient: void <init>(com.mongodb.ServerAddress,com.mongodb.MongoCredential,com.mongodb.MongoClientOptions)
+    com.mongodb.MongoClient: com.mongodb.client.MongoDatabase getDatabase(java.lang.String)
+    com.mongodb.MongoClient: com.mongodb.client.internal.SimpleMongoClient asSimpleMongoClient()
+/ / / / / / / / /
+revapi log of former version -- 3.12.14:
+18:07:33.203 INFO  Downloading checked archives
+18:07:33.208 INFO  Downloading extensions
+18:07:34.449 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.mongodb-mongodb-driver-legacy-3.12.11.jar
+New API: org.mongodb-mongodb-driver-legacy-3.12.14.jar
+
+18:07:39.125 INFO  Analysis took 4676ms.
+
+/ / / / / / / / /
+revapi log of the subsequent version -- 4.0.0-beta1:
+18:07:43.343 INFO  Downloading checked archives
+18:07:43.362 INFO  Downloading extensions
+18:07:45.993 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.mongodb-mongodb-driver-legacy-3.12.11.jar
+New API: org.mongodb-mongodb-driver-legacy-4.0.0-beta1.jar
+old: method com.mongodb.AggregationOptions.Builder com.mongodb.AggregationOptions.Builder::outputMode(com.mongodb.AggregationOptions.OutputMode)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: enum com.mongodb.AggregationOptions.OutputMode
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.AggregationOptions.OutputMode com.mongodb.AggregationOptions::getOutputMode()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.AggregationOutput
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method boolean com.mongodb.BulkWriteResult::isModifiedCountAvailable()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.Bytes
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.DB::<init>(com.mongodb.Mongo, java.lang.String)
+new: method void com.mongodb.DB::<init>(com.mongodb.MongoClient, java.lang.String, com.mongodb.client.internal.OperationExecutor)
+java.method.visibilityReduced: visibility reduced
+BINARY: BREAKING, SOURCE: BREAKING
+java.element.noLongerDeprecated: The element is no longer deprecated.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT
+
+old: method void com.mongodb.DB::addOption(int)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.WriteResult com.mongodb.DB::addUser(java.lang.String, char[])
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.WriteResult com.mongodb.DB::addUser(java.lang.String, char[], boolean)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.CommandResult com.mongodb.DB::doEval(java.lang.String, java.lang.Object[])
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.DBCollection com.mongodb.DB::doGetCollection(java.lang.String)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.Object com.mongodb.DB::eval(java.lang.String, java.lang.Object[])
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.DBCollection com.mongodb.DB::getCollectionFromString(java.lang.String)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.Mongo com.mongodb.DB::getMongo()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method int com.mongodb.DB::getOptions()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.CommandResult com.mongodb.DB::getStats()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.WriteResult com.mongodb.DB::removeUser(java.lang.String)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.DB::resetOptions()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.DB::setOptions(int)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.DB::slaveOk()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.DBAddress
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.DBCollection::addOption(int)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.AggregationOutput com.mongodb.DBCollection::aggregate(com.mongodb.DBObject, com.mongodb.DBObject[])
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.AggregationOutput com.mongodb.DBCollection::aggregate(java.util.List<? extends com.mongodb.DBObject>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.AggregationOutput com.mongodb.DBCollection::aggregate(java.util.List<? extends com.mongodb.DBObject>, com.mongodb.ReadPreference)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.DBCursor com.mongodb.DBCollection::find(com.mongodb.DBObject, com.mongodb.DBObject, int, int)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.DBCursor com.mongodb.DBCollection::find(com.mongodb.DBObject, com.mongodb.DBObject, int, int, int)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method long com.mongodb.DBCollection::getCount(com.mongodb.DBObject, com.mongodb.DBObject)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method long com.mongodb.DBCollection::getCount(com.mongodb.DBObject, com.mongodb.DBObject, com.mongodb.ReadPreference)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method long com.mongodb.DBCollection::getCount(com.mongodb.DBObject, com.mongodb.DBObject, long, long)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method long com.mongodb.DBCollection::getCount(com.mongodb.DBObject, com.mongodb.DBObject, long, long, com.mongodb.ReadPreference)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method long com.mongodb.DBCollection::getCount(com.mongodb.ReadPreference)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.util.List<com.mongodb.DBObject> com.mongodb.DBCollection::getHintFields()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.Class<? extends com.mongodb.DBObject> com.mongodb.DBCollection::getInternalClass(java.lang.String)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method int com.mongodb.DBCollection::getOptions()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.DBObject com.mongodb.DBCollection::group(com.mongodb.DBObject, com.mongodb.DBObject, com.mongodb.DBObject, java.lang.String)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.DBObject com.mongodb.DBCollection::group(com.mongodb.DBObject, com.mongodb.DBObject, com.mongodb.DBObject, java.lang.String, java.lang.String)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.DBObject com.mongodb.DBCollection::group(com.mongodb.DBObject, com.mongodb.DBObject, com.mongodb.DBObject, java.lang.String, java.lang.String, com.mongodb.ReadPreference)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.DBObject com.mongodb.DBCollection::group(com.mongodb.GroupCommand)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.DBObject com.mongodb.DBCollection::group(com.mongodb.GroupCommand, com.mongodb.ReadPreference)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.util.List<com.mongodb.Cursor> com.mongodb.DBCollection::parallelScan(com.mongodb.ParallelScanOptions)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.DBCollection::resetOptions()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.DBCollection::setHintFields(java.util.List<? extends com.mongodb.DBObject>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.DBCollection::setOptions(int)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.DBCollection::slaveOk()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.DBCursor com.mongodb.DBCursor::addOption(int)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.DBCursor com.mongodb.DBCursor::addSpecial(java.lang.String, java.lang.Object)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method int com.mongodb.DBCursor::getOptions()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.DBCursor com.mongodb.DBCursor::hint(java.lang.String)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.DBCursor com.mongodb.DBCursor::maxScan(int)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.DBCursor com.mongodb.DBCursor::resetOptions()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.DBCursor com.mongodb.DBCursor::setOptions(int)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.DBCursor com.mongodb.DBCursor::showDiskLoc()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.DBCursor com.mongodb.DBCursor::slaveOk()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.DBCursor com.mongodb.DBCursor::snapshot()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.GroupCommand
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.Mongo
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.MongoClient
+new: class com.mongodb.MongoClient
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'com.mongodb.Mongo'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.MongoClient::<init>(com.mongodb.ServerAddress, java.util.List<com.mongodb.MongoCredential>, com.mongodb.MongoClientOptions)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.MongoClient::<init>(com.mongodb.ServerAddress, java.util.List<com.mongodb.MongoCredential>, com.mongodb.MongoClientOptions, com.mongodb.MongoDriverInformation)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.MongoClient::<init>(com.mongodb.ServerAddress, java.util.List<com.mongodb.MongoCredential>)
+new: method void com.mongodb.MongoClient::<init>(com.mongodb.internal.connection.Cluster, com.mongodb.MongoClientOptions, com.mongodb.MongoCredential)
+java.method.visibilityReduced: visibility reduced
+BINARY: BREAKING, SOURCE: BREAKING
+java.element.noLongerDeprecated: The element is no longer deprecated.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT
+
+old: method void com.mongodb.MongoClient::<init>(java.util.List<com.mongodb.ServerAddress>, java.util.List<com.mongodb.MongoCredential>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.MongoClient::<init>(java.util.List<com.mongodb.ServerAddress>, java.util.List<com.mongodb.MongoCredential>, com.mongodb.MongoClientOptions)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.MongoClient::<init>(java.util.List<com.mongodb.ServerAddress>, java.util.List<com.mongodb.MongoCredential>, com.mongodb.MongoClientOptions, com.mongodb.MongoDriverInformation)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.util.List<com.mongodb.MongoCredential> com.mongodb.MongoClient::getCredentialsList()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.MongoClientOptions.Builder com.mongodb.MongoClientOptions.Builder::alwaysUseMBeans(boolean)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.MongoClientOptions.Builder com.mongodb.MongoClientOptions.Builder::description(java.lang.String)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.MongoClientOptions.Builder com.mongodb.MongoClientOptions.Builder::legacyDefaults()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.MongoClientOptions.Builder com.mongodb.MongoClientOptions.Builder::socketFactory(javax.net.SocketFactory)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.MongoClientOptions.Builder com.mongodb.MongoClientOptions.Builder::socketKeepAlive(boolean)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.MongoClientOptions.Builder com.mongodb.MongoClientOptions.Builder::threadsAllowedToBlockForConnectionMultiplier(int)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.String com.mongodb.MongoClientOptions::getDescription()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method javax.net.SocketFactory com.mongodb.MongoClientOptions::getSocketFactory()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method int com.mongodb.MongoClientOptions::getThreadsAllowedToBlockForConnectionMultiplier()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method boolean com.mongodb.MongoClientOptions::isAlwaysUseMBeans()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method boolean com.mongodb.MongoClientOptions::isSocketKeepAlive()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.MongoOptions
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.MongoURI
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.ParallelScanOptions
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: field com.mongodb.QueryOperators.COMMENT
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
+
+old: field com.mongodb.QueryOperators.EXPLAIN
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
+
+old: field com.mongodb.QueryOperators.HINT
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
+
+old: field com.mongodb.QueryOperators.MAX
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
+
+old: field com.mongodb.QueryOperators.MAX_SCAN
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
+
+old: field com.mongodb.QueryOperators.MIN
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
+
+old: field com.mongodb.QueryOperators.ORDER_BY
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
+
+old: field com.mongodb.QueryOperators.RETURN_KEY
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
+
+old: field com.mongodb.QueryOperators.SHOW_DISK_LOC
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
+
+old: field com.mongodb.QueryOperators.SNAPSHOT
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.ReflectionDBObject
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.ReplicaSetStatus
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.DBObject com.mongodb.client.model.DBCollectionFindOptions::getModifiers()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method com.mongodb.client.model.DBCollectionFindOptions com.mongodb.client.model.DBCollectionFindOptions::modifiers(com.mongodb.DBObject)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.gridfs.CLI
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: field com.mongodb.gridfs.GridFS.MAX_CHUNKSIZE
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
+
+old: method boolean com.mongodb.gridfs.GridFSFile::containsKey(java.lang.String)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.String com.mongodb.gridfs.GridFSFile::getMD5()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void com.mongodb.gridfs.GridFSFile::validate()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.util.JSON
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.util.JSONCallback
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.util.JSONParseException
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.util.JSONSerializers
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface com.mongodb.util.ObjectSerializer
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class com.mongodb.util.Util
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+18:07:49.149 INFO  Analysis took 3145ms.
+
+
+* * * * * * * *
+>>>>>>
+compilation log of 3.12.14:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< org.apache.logging.log4j:log4j-mongodb3 >---------------
+[INFO] Building Apache Log4j MongoDB 3 2.23.1
+[INFO]   from _temp_org.mongodb_mongodb-driver-legacy_3.12.14_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ log4j-mongodb3 ---
+[INFO] 
+[INFO] --- flatten:1.5.0:clean (clean-flattened-pom) @ log4j-mongodb3 ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ log4j-mongodb3 ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ log4j-mongodb3 ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-upper-bound-deps) @ log4j-mongodb3 ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.630 s
+[INFO] Finished at: 2024-05-30T18:15:11+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:3.4.1:enforce (enforce-upper-bound-deps) on project log4j-mongodb3: 
+[ERROR] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps failed with message:
+[ERROR] Failed while enforcing RequireUpperBoundDeps. The error(s) are [
+[ERROR] Require upper bound dependencies error for org.mongodb:mongodb-driver-sync:3.12.11 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-sync:3.12.11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-legacy:3.12.14
+[ERROR]     +-org.mongodb:mongodb-driver-sync:3.12.11 (managed) <-- org.mongodb:mongodb-driver-sync:3.12.14
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.mongodb:mongodb-driver-core:3.12.11 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-core:3.12.11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-legacy:3.12.14
+[ERROR]     +-org.mongodb:mongodb-driver-core:3.12.11 (managed) <-- org.mongodb:mongodb-driver-core:3.12.14
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-sync:3.12.11
+[ERROR]     +-org.mongodb:mongodb-driver-core:3.12.11 (managed) <-- org.mongodb:mongodb-driver-core:3.12.11
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.mongodb:bson:3.12.11 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:bson:3.12.11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-core:3.12.11
+[ERROR]     +-org.mongodb:bson:3.12.11 (managed) <-- org.mongodb:bson:3.12.11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-legacy:3.12.14
+[ERROR]     +-org.mongodb:bson:3.12.11 (managed) <-- org.mongodb:bson:3.12.14
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-sync:3.12.11
+[ERROR]     +-org.mongodb:bson:3.12.11 (managed) <-- org.mongodb:bson:3.12.11
+[ERROR] ]
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+>>>>>>
+subsequent compilation log of 4.0.0-beta1:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< org.apache.logging.log4j:log4j-mongodb3 >---------------
+[INFO] Building Apache Log4j MongoDB 3 2.23.1
+[INFO]   from _temp_org.mongodb_mongodb-driver-legacy_4.0.0-beta1_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ log4j-mongodb3 ---
+[INFO] 
+[INFO] --- flatten:1.5.0:clean (clean-flattened-pom) @ log4j-mongodb3 ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ log4j-mongodb3 ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ log4j-mongodb3 ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-upper-bound-deps) @ log4j-mongodb3 ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.599 s
+[INFO] Finished at: 2024-05-30T18:15:13+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:3.4.1:enforce (enforce-upper-bound-deps) on project log4j-mongodb3: 
+[ERROR] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps failed with message:
+[ERROR] Failed while enforcing RequireUpperBoundDeps. The error(s) are [
+[ERROR] Require upper bound dependencies error for org.mongodb:mongodb-driver-sync:3.12.11 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-sync:3.12.11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-legacy:4.0.0-beta1
+[ERROR]     +-org.mongodb:mongodb-driver-sync:3.12.11 (managed) <-- org.mongodb:mongodb-driver-sync:4.0.0-beta1
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.mongodb:mongodb-driver-core:3.12.11 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-core:3.12.11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-legacy:4.0.0-beta1
+[ERROR]     +-org.mongodb:mongodb-driver-core:3.12.11 (managed) <-- org.mongodb:mongodb-driver-core:4.0.0-beta1
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-sync:3.12.11
+[ERROR]     +-org.mongodb:mongodb-driver-core:3.12.11 (managed) <-- org.mongodb:mongodb-driver-core:3.12.11
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.mongodb:bson:3.12.11 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:bson:3.12.11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-core:3.12.11
+[ERROR]     +-org.mongodb:bson:3.12.11 (managed) <-- org.mongodb:bson:3.12.11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-legacy:4.0.0-beta1
+[ERROR]     +-org.mongodb:bson:3.12.11 (managed) <-- org.mongodb:bson:4.0.0-beta1
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb3:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-sync:3.12.11
+[ERROR]     +-org.mongodb:bson:3.12.11 (managed) <-- org.mongodb:bson:3.12.11
+[ERROR] ]
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+
+* * * * * * * *
