@@ -1,0 +1,795 @@
+module name: log4j-api-test/
+
+* * * * * * * *
+groudId: org.apache.maven
+artifactId: maven-resolver-provider
+old version: 3.9.6
+new version: 4.0.0-beta-3
+classifier: 
+depth: 2
+reachable api of old version:
+/ / / / / / / / /
+revapi log of former version -- 4.0.0-beta-3:
+17:43:57.860 INFO  Downloading checked archives
+17:43:57.907 INFO  Downloading extensions
+17:44:04.162 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.apache.maven-maven-resolver-provider-3.9.6.jar
+New API: org.apache.maven-maven-resolver-provider-4.0.0-beta-3.jar
+old: method void org.apache.maven.repository.internal.DefaultArtifactDescriptorReader::<init>(org.eclipse.aether.impl.RemoteRepositoryManager, org.eclipse.aether.impl.VersionResolver, org.eclipse.aether.impl.VersionRangeResolver, org.eclipse.aether.impl.ArtifactResolver, org.apache.maven.model.building.ModelBuilder, org.eclipse.aether.impl.RepositoryEventDispatcher, org.apache.maven.repository.internal.ModelCacheFactory)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.repository.internal.DefaultArtifactDescriptorReader::<init>()
+new: method void org.apache.maven.repository.internal.DefaultArtifactDescriptorReader::<init>(org.eclipse.aether.impl.RemoteRepositoryManager, org.eclipse.aether.impl.VersionResolver, org.eclipse.aether.impl.VersionRangeResolver, org.eclipse.aether.impl.ArtifactResolver, org.apache.maven.model.building.ModelBuilder, org.eclipse.aether.impl.RepositoryEventDispatcher, org.apache.maven.repository.internal.ModelCacheFactory, java.util.Map<java.lang.String, org.apache.maven.repository.internal.MavenArtifactRelocationSource>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+java.element.noLongerDeprecated: The element is no longer deprecated.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method void org.apache.maven.repository.internal.DefaultArtifactDescriptorReader::initService(org.eclipse.aether.spi.locator.ServiceLocator)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.apache.maven.repository.internal.DefaultArtifactDescriptorReader org.apache.maven.repository.internal.DefaultArtifactDescriptorReader::setArtifactResolver(org.eclipse.aether.impl.ArtifactResolver)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.apache.maven.repository.internal.DefaultArtifactDescriptorReader org.apache.maven.repository.internal.DefaultArtifactDescriptorReader::setModelBuilder(org.apache.maven.model.building.ModelBuilder)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.apache.maven.repository.internal.DefaultArtifactDescriptorReader org.apache.maven.repository.internal.DefaultArtifactDescriptorReader::setModelCacheFactory(org.apache.maven.repository.internal.ModelCacheFactory)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.apache.maven.repository.internal.DefaultArtifactDescriptorReader org.apache.maven.repository.internal.DefaultArtifactDescriptorReader::setRemoteRepositoryManager(org.eclipse.aether.impl.RemoteRepositoryManager)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.apache.maven.repository.internal.DefaultArtifactDescriptorReader org.apache.maven.repository.internal.DefaultArtifactDescriptorReader::setRepositoryEventDispatcher(org.eclipse.aether.impl.RepositoryEventDispatcher)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.apache.maven.repository.internal.DefaultArtifactDescriptorReader org.apache.maven.repository.internal.DefaultArtifactDescriptorReader::setVersionRangeResolver(org.eclipse.aether.impl.VersionRangeResolver)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.apache.maven.repository.internal.DefaultArtifactDescriptorReader org.apache.maven.repository.internal.DefaultArtifactDescriptorReader::setVersionResolver(org.eclipse.aether.impl.VersionResolver)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.repository.internal.DefaultVersionRangeResolver::<init>(org.eclipse.aether.impl.MetadataResolver, org.eclipse.aether.spi.synccontext.SyncContextFactory, org.eclipse.aether.impl.RepositoryEventDispatcher)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.repository.internal.DefaultVersionRangeResolver::<init>()
+new: method void org.apache.maven.repository.internal.DefaultVersionRangeResolver::<init>(org.eclipse.aether.impl.MetadataResolver, org.eclipse.aether.spi.synccontext.SyncContextFactory, org.eclipse.aether.impl.RepositoryEventDispatcher, org.eclipse.aether.version.VersionScheme)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+java.element.noLongerDeprecated: The element is no longer deprecated.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method void org.apache.maven.repository.internal.DefaultVersionRangeResolver::initService(org.eclipse.aether.spi.locator.ServiceLocator)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.apache.maven.repository.internal.DefaultVersionRangeResolver org.apache.maven.repository.internal.DefaultVersionRangeResolver::setMetadataResolver(org.eclipse.aether.impl.MetadataResolver)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.apache.maven.repository.internal.DefaultVersionRangeResolver org.apache.maven.repository.internal.DefaultVersionRangeResolver::setRepositoryEventDispatcher(org.eclipse.aether.impl.RepositoryEventDispatcher)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.apache.maven.repository.internal.DefaultVersionRangeResolver org.apache.maven.repository.internal.DefaultVersionRangeResolver::setSyncContextFactory(org.eclipse.aether.spi.synccontext.SyncContextFactory)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.repository.internal.DefaultVersionResolver::<init>()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.repository.internal.DefaultVersionResolver::initService(org.eclipse.aether.spi.locator.ServiceLocator)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.apache.maven.repository.internal.DefaultVersionResolver org.apache.maven.repository.internal.DefaultVersionResolver::setMetadataResolver(org.eclipse.aether.impl.MetadataResolver)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.apache.maven.repository.internal.DefaultVersionResolver org.apache.maven.repository.internal.DefaultVersionResolver::setRepositoryEventDispatcher(org.eclipse.aether.impl.RepositoryEventDispatcher)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.apache.maven.repository.internal.DefaultVersionResolver org.apache.maven.repository.internal.DefaultVersionResolver::setSyncContextFactory(org.eclipse.aether.spi.synccontext.SyncContextFactory)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.eclipse.aether.impl.DefaultServiceLocator org.apache.maven.repository.internal.MavenRepositorySystemUtils::newServiceLocator()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.maven.repository.internal.MavenResolverModule
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+17:44:15.253 INFO  Analysis took 11090ms.
+
+
+* * * * * * * *
+>>>>>>
+compilation log of 4.0.0-beta-3:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< org.apache.logging.log4j:log4j-api-test >---------------
+[INFO] Building Apache Log4j API Tests 2.23.1
+[INFO]   from _temp_org.apache.maven_maven-resolver-provider_4.0.0-beta-3_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/maven-resolver-provider/4.0.0-beta-3/maven-resolver-provider-4.0.0-beta-3.pom
+Progress (1): 3.6/52 kB
+Progress (1): 7.7/52 kB
+Progress (1): 12/52 kB 
+Progress (1): 16/52 kB
+Progress (1): 20/52 kB
+Progress (1): 24/52 kB
+Progress (1): 28/52 kB
+Progress (1): 32/52 kB
+Progress (1): 36/52 kB
+Progress (1): 40/52 kB
+Progress (1): 45/52 kB
+Progress (1): 49/52 kB
+Progress (1): 52 kB   
+                   
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/maven-resolver-provider/4.0.0-beta-3/maven-resolver-provider-4.0.0-beta-3.pom (52 kB at 27 kB/s)
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/maven-api-metadata/4.0.0-beta-3/maven-api-metadata-4.0.0-beta-3.pom
+Progress (1): 3.6/47 kB
+Progress (1): 7.7/47 kB
+Progress (1): 12/47 kB 
+Progress (1): 16/47 kB
+Progress (1): 20/47 kB
+Progress (1): 24/47 kB
+Progress (1): 28/47 kB
+Progress (1): 32/47 kB
+Progress (1): 36/47 kB
+Progress (1): 40/47 kB
+Progress (1): 45/47 kB
+Progress (1): 47 kB   
+                   
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/maven-api-metadata/4.0.0-beta-3/maven-api-metadata-4.0.0-beta-3.pom (47 kB at 120 kB/s)
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/maven-builder-support/4.0.0-beta-3/maven-builder-support-4.0.0-beta-3.pom
+Progress (1): 3.6/47 kB
+Progress (1): 7.7/47 kB
+Progress (1): 12/47 kB 
+Progress (1): 16/47 kB
+Progress (1): 20/47 kB
+Progress (1): 24/47 kB
+Progress (1): 28/47 kB
+Progress (1): 32/47 kB
+Progress (1): 36/47 kB
+Progress (1): 40/47 kB
+Progress (1): 45/47 kB
+Progress (1): 47 kB   
+                   
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/maven-builder-support/4.0.0-beta-3/maven-builder-support-4.0.0-beta-3.pom (47 kB at 105 kB/s)
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/maven-model-builder/4.0.0-beta-3/maven-model-builder-4.0.0-beta-3.pom
+Progress (1): 3.6/50 kB
+Progress (1): 7.7/50 kB
+Progress (1): 12/50 kB 
+Progress (1): 16/50 kB
+Progress (1): 20/50 kB
+Progress (1): 24/50 kB
+Progress (1): 28/50 kB
+Progress (1): 32/50 kB
+Progress (1): 36/50 kB
+Progress (1): 40/50 kB
+Progress (1): 45/50 kB
+Progress (1): 49/50 kB
+Progress (1): 50 kB   
+                   
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/maven-model-builder/4.0.0-beta-3/maven-model-builder-4.0.0-beta-3.pom (50 kB at 133 kB/s)
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/codehaus/plexus/plexus-xml/4.0.4/plexus-xml-4.0.4.pom
+Progress (1): 3.6/4.0 kB
+Progress (1): 4.0 kB    
+                    
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/codehaus/plexus/plexus-xml/4.0.4/plexus-xml-4.0.4.pom (4.0 kB at 11 kB/s)
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/codehaus/plexus/plexus/18/plexus-18.pom
+Progress (1): 3.6/29 kB
+Progress (1): 7.7/29 kB
+Progress (1): 12/29 kB 
+Progress (1): 16/29 kB
+Progress (1): 20/29 kB
+Progress (1): 24/29 kB
+Progress (1): 28/29 kB
+Progress (1): 29 kB   
+                   
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/codehaus/plexus/plexus/18/plexus-18.pom (29 kB at 69 kB/s)
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/maven-repository-metadata/4.0.0-beta-3/maven-repository-metadata-4.0.0-beta-3.pom
+Progress (1): 3.6/48 kB
+Progress (1): 7.7/48 kB
+Progress (1): 12/48 kB 
+Progress (1): 16/48 kB
+Progress (1): 20/48 kB
+Progress (1): 24/48 kB
+Progress (1): 28/48 kB
+Progress (1): 32/48 kB
+Progress (1): 36/48 kB
+Progress (1): 40/48 kB
+Progress (1): 45/48 kB
+Progress (1): 48 kB   
+                   
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/maven-repository-metadata/4.0.0-beta-3/maven-repository-metadata-4.0.0-beta-3.pom (48 kB at 127 kB/s)
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/resolver/maven-resolver-connector-basic/2.0.0-alpha-11/maven-resolver-connector-basic-2.0.0-alpha-11.pom
+Progress (1): 3.6 kB
+                    
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/resolver/maven-resolver-connector-basic/2.0.0-alpha-11/maven-resolver-connector-basic-2.0.0-alpha-11.pom (3.6 kB at 6.3 kB/s)
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/resolver/maven-resolver-transport-file/2.0.0-alpha-11/maven-resolver-transport-file-2.0.0-alpha-11.pom
+Progress (1): 3.6 kB
+                    
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/resolver/maven-resolver-transport-file/2.0.0-alpha-11/maven-resolver-transport-file-2.0.0-alpha-11.pom (3.6 kB at 8.0 kB/s)
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/resolver/maven-resolver-transport-apache/2.0.0-alpha-11/maven-resolver-transport-apache-2.0.0-alpha-11.pom
+Progress (1): 3.6/4.7 kB
+Progress (1): 4.7 kB    
+                    
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/resolver/maven-resolver-transport-apache/2.0.0-alpha-11/maven-resolver-transport-apache-2.0.0-alpha-11.pom (4.7 kB at 13 kB/s)
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/slf4j/jcl-over-slf4j/2.0.13/jcl-over-slf4j-2.0.13.pom
+Progress (1): 1.7 kB
+                    
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/slf4j/jcl-over-slf4j/2.0.13/jcl-over-slf4j-2.0.13.pom (1.7 kB at 7.2 kB/s)
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/slf4j/slf4j-parent/2.0.13/slf4j-parent-2.0.13.pom
+Progress (1): 3.6/13 kB
+Progress (1): 7.7/13 kB
+Progress (1): 12/13 kB 
+Progress (1): 13 kB   
+                   
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/slf4j/slf4j-parent/2.0.13/slf4j-parent-2.0.13.pom (13 kB at 55 kB/s)
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/slf4j/slf4j-bom/2.0.13/slf4j-bom-2.0.13.pom
+Progress (1): 3.6/7.3 kB
+Progress (1): 7.3 kB    
+                    
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/slf4j/slf4j-bom/2.0.13/slf4j-bom-2.0.13.pom (7.3 kB at 21 kB/s)
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/maven-resolver-provider/4.0.0-beta-3/maven-resolver-provider-4.0.0-beta-3.jar
+Progress (1): 3.6/122 kB
+Progress (1): 7.7/122 kB
+Progress (1): 12/122 kB 
+Progress (1): 16/122 kB
+Progress (1): 20/122 kB
+Progress (1): 24/122 kB
+Progress (1): 28/122 kB
+Progress (1): 32/122 kB
+Progress (1): 36/122 kB
+Progress (1): 40/122 kB
+Progress (1): 45/122 kB
+Progress (1): 49/122 kB
+Progress (1): 53/122 kB
+Progress (1): 57/122 kB
+Progress (1): 61/122 kB
+Progress (1): 65/122 kB
+Progress (1): 69/122 kB
+Progress (1): 73/122 kB
+Progress (1): 77/122 kB
+Progress (1): 81/122 kB
+Progress (1): 86/122 kB
+Progress (1): 90/122 kB
+Progress (1): 94/122 kB
+Progress (1): 98/122 kB
+Progress (1): 102/122 kB
+Progress (1): 106/122 kB
+Progress (1): 110/122 kB
+Progress (1): 114/122 kB
+Progress (1): 118/122 kB
+Progress (1): 122 kB    
+                    
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/maven-resolver-provider/4.0.0-beta-3/maven-resolver-provider-4.0.0-beta-3.jar (122 kB at 185 kB/s)
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/maven-api-settings/4.0.0-beta-3/maven-api-settings-4.0.0-beta-3.jar
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/resolver/maven-resolver-connector-basic/2.0.0-alpha-11/maven-resolver-connector-basic-2.0.0-alpha-11.jar
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/resolver/maven-resolver-transport-file/2.0.0-alpha-11/maven-resolver-transport-file-2.0.0-alpha-11.jar
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/resolver/maven-resolver-transport-apache/2.0.0-alpha-11/maven-resolver-transport-apache-2.0.0-alpha-11.jar
+Downloading from aliyun: https://maven.aliyun.com/repository/public/commons-codec/commons-codec/1.16.1/commons-codec-1.16.1.jar
+Progress (1): 3.6/84 kB
+Progress (1): 7.7/84 kB
+Progress (1): 12/84 kB 
+Progress (1): 16/84 kB
+Progress (1): 20/84 kB
+Progress (1): 24/84 kB
+Progress (1): 28/84 kB
+Progress (1): 32/84 kB
+Progress (1): 36/84 kB
+Progress (1): 40/84 kB
+Progress (1): 45/84 kB
+Progress (1): 49/84 kB
+Progress (1): 53/84 kB
+Progress (1): 57/84 kB
+Progress (1): 61/84 kB
+Progress (1): 65/84 kB
+Progress (1): 69/84 kB
+Progress (1): 73/84 kB
+Progress (1): 77/84 kB
+Progress (1): 81/84 kB
+Progress (1): 84 kB   
+Progress (2): 84 kB | 3.6/365 kB
+Progress (2): 84 kB | 7.7/365 kB
+Progress (2): 84 kB | 12/365 kB 
+Progress (2): 84 kB | 16/365 kB
+Progress (2): 84 kB | 20/365 kB
+                               
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/maven-api-settings/4.0.0-beta-3/maven-api-settings-4.0.0-beta-3.jar (84 kB at 186 kB/s)
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/slf4j/jcl-over-slf4j/2.0.13/jcl-over-slf4j-2.0.13.jar
+Progress (1): 24/365 kB
+Progress (1): 28/365 kB
+Progress (1): 32/365 kB
+Progress (1): 36/365 kB
+Progress (1): 40/365 kB
+Progress (1): 45/365 kB
+Progress (1): 49/365 kB
+Progress (1): 53/365 kB
+Progress (1): 57/365 kB
+Progress (1): 61/365 kB
+Progress (1): 65/365 kB
+Progress (2): 65/365 kB | 3.6/54 kB
+Progress (2): 65/365 kB | 7.7/54 kB
+Progress (2): 69/365 kB | 7.7/54 kB
+Progress (2): 73/365 kB | 7.7/54 kB
+Progress (2): 77/365 kB | 7.7/54 kB
+Progress (2): 81/365 kB | 7.7/54 kB
+Progress (2): 86/365 kB | 7.7/54 kB
+Progress (2): 90/365 kB | 7.7/54 kB
+Progress (2): 94/365 kB | 7.7/54 kB
+Progress (2): 98/365 kB | 7.7/54 kB
+Progress (2): 102/365 kB | 7.7/54 kB
+Progress (2): 106/365 kB | 7.7/54 kB
+Progress (2): 110/365 kB | 7.7/54 kB
+Progress (2): 114/365 kB | 7.7/54 kB
+Progress (2): 118/365 kB | 7.7/54 kB
+Progress (2): 122/365 kB | 7.7/54 kB
+Progress (2): 126/365 kB | 7.7/54 kB
+Progress (2): 131/365 kB | 7.7/54 kB
+Progress (2): 135/365 kB | 7.7/54 kB
+Progress (2): 139/365 kB | 7.7/54 kB
+Progress (2): 143/365 kB | 7.7/54 kB
+Progress (2): 143/365 kB | 12/54 kB 
+Progress (2): 143/365 kB | 16/54 kB
+Progress (2): 143/365 kB | 20/54 kB
+Progress (2): 143/365 kB | 24/54 kB
+Progress (2): 147/365 kB | 24/54 kB
+Progress (2): 147/365 kB | 28/54 kB
+Progress (2): 151/365 kB | 28/54 kB
+Progress (2): 151/365 kB | 32/54 kB
+Progress (2): 155/365 kB | 32/54 kB
+Progress (2): 155/365 kB | 36/54 kB
+Progress (2): 159/365 kB | 36/54 kB
+Progress (2): 163/365 kB | 36/54 kB
+Progress (2): 167/365 kB | 36/54 kB
+Progress (2): 172/365 kB | 36/54 kB
+Progress (2): 176/365 kB | 36/54 kB
+Progress (2): 180/365 kB | 36/54 kB
+Progress (2): 184/365 kB | 36/54 kB
+Progress (2): 188/365 kB | 36/54 kB
+Progress (2): 192/365 kB | 36/54 kB
+Progress (2): 196/365 kB | 36/54 kB
+Progress (2): 200/365 kB | 36/54 kB
+Progress (2): 204/365 kB | 36/54 kB
+Progress (2): 208/365 kB | 36/54 kB
+Progress (2): 213/365 kB | 36/54 kB
+Progress (2): 217/365 kB | 36/54 kB
+Progress (2): 221/365 kB | 36/54 kB
+Progress (2): 225/365 kB | 36/54 kB
+Progress (2): 229/365 kB | 36/54 kB
+Progress (2): 233/365 kB | 36/54 kB
+Progress (2): 237/365 kB | 36/54 kB
+Progress (2): 241/365 kB | 36/54 kB
+Progress (2): 245/365 kB | 36/54 kB
+Progress (2): 249/365 kB | 36/54 kB
+Progress (2): 253/365 kB | 36/54 kB
+Progress (2): 258/365 kB | 36/54 kB
+Progress (2): 262/365 kB | 36/54 kB
+Progress (2): 266/365 kB | 36/54 kB
+Progress (2): 270/365 kB | 36/54 kB
+Progress (2): 274/365 kB | 36/54 kB
+Progress (2): 278/365 kB | 36/54 kB
+Progress (2): 282/365 kB | 36/54 kB
+Progress (2): 286/365 kB | 36/54 kB
+Progress (2): 290/365 kB | 36/54 kB
+Progress (2): 294/365 kB | 36/54 kB
+Progress (2): 299/365 kB | 36/54 kB
+Progress (2): 303/365 kB | 36/54 kB
+Progress (2): 303/365 kB | 40/54 kB
+Progress (2): 303/365 kB | 45/54 kB
+Progress (3): 303/365 kB | 45/54 kB | 3.6/18 kB
+Progress (3): 303/365 kB | 49/54 kB | 3.6/18 kB
+Progress (3): 303/365 kB | 53/54 kB | 3.6/18 kB
+Progress (3): 303/365 kB | 54 kB | 3.6/18 kB   
+Progress (3): 303/365 kB | 54 kB | 7.7/18 kB
+Progress (3): 303/365 kB | 54 kB | 12/18 kB 
+Progress (3): 303/365 kB | 54 kB | 16/18 kB
+Progress (3): 307/365 kB | 54 kB | 16/18 kB
+Progress (3): 311/365 kB | 54 kB | 16/18 kB
+Progress (3): 315/365 kB | 54 kB | 16/18 kB
+Progress (3): 319/365 kB | 54 kB | 16/18 kB
+Progress (3): 323/365 kB | 54 kB | 16/18 kB
+Progress (3): 327/365 kB | 54 kB | 16/18 kB
+Progress (3): 331/365 kB | 54 kB | 16/18 kB
+Progress (3): 335/365 kB | 54 kB | 16/18 kB
+Progress (3): 339/365 kB | 54 kB | 16/18 kB
+Progress (3): 344/365 kB | 54 kB | 16/18 kB
+Progress (3): 348/365 kB | 54 kB | 16/18 kB
+Progress (3): 352/365 kB | 54 kB | 16/18 kB
+Progress (3): 356/365 kB | 54 kB | 16/18 kB
+Progress (3): 360/365 kB | 54 kB | 16/18 kB
+Progress (3): 360/365 kB | 54 kB | 18 kB   
+Progress (3): 364/365 kB | 54 kB | 18 kB
+Progress (3): 365 kB | 54 kB | 18 kB    
+                                    
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/commons-codec/commons-codec/1.16.1/commons-codec-1.16.1.jar (365 kB at 592 kB/s)
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/slf4j/jcl-over-slf4j/2.0.13/jcl-over-slf4j-2.0.13.jar (18 kB at 27 kB/s)
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/resolver/maven-resolver-transport-apache/2.0.0-alpha-11/maven-resolver-transport-apache-2.0.0-alpha-11.jar (54 kB at 71 kB/s)
+Progress (1): 3.6/40 kB
+Progress (1): 7.7/40 kB
+Progress (1): 12/40 kB 
+Progress (1): 16/40 kB
+Progress (1): 20/40 kB
+Progress (1): 24/40 kB
+Progress (1): 28/40 kB
+Progress (2): 28/40 kB | 3.6/15 kB
+Progress (2): 28/40 kB | 7.7/15 kB
+Progress (2): 32/40 kB | 7.7/15 kB
+Progress (2): 36/40 kB | 7.7/15 kB
+Progress (2): 36/40 kB | 12/15 kB 
+Progress (2): 36/40 kB | 15 kB   
+                              
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/resolver/maven-resolver-transport-file/2.0.0-alpha-11/maven-resolver-transport-file-2.0.0-alpha-11.jar (15 kB at 7.6 kB/s)
+Progress (1): 40 kB
+                   
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/resolver/maven-resolver-connector-basic/2.0.0-alpha-11/maven-resolver-connector-basic-2.0.0-alpha-11.jar (40 kB at 17 kB/s)
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ log4j-api-test ---
+[INFO] Deleting /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/target
+[INFO] 
+[INFO] --- flatten:1.5.0:clean (clean-flattened-pom) @ log4j-api-test ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-upper-bound-deps) @ log4j-api-test ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  16.965 s
+[INFO] Finished at: 2024-05-31T17:48:12+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:3.4.1:enforce (enforce-upper-bound-deps) on project log4j-api-test: 
+[ERROR] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps failed with message:
+[ERROR] Failed while enforcing RequireUpperBoundDeps. The error(s) are [
+[ERROR] Require upper bound dependencies error for org.slf4j:slf4j-api:2.0.9 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.slf4j:slf4j-api:2.0.9 (managed) <-- org.slf4j:slf4j-api:1.7.36
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.slf4j:slf4j-api:2.0.9 (managed) <-- org.slf4j:slf4j-api:2.0.13
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-impl:1.9.18
+[ERROR]       +-org.slf4j:slf4j-api:2.0.9 (managed) <-- org.slf4j:slf4j-api:1.7.36
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven:maven-api-impl:4.0.0-beta-3
+[ERROR]         +-org.slf4j:slf4j-api:2.0.9 (managed) <-- org.slf4j:slf4j-api:2.0.13
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-connector-basic:2.0.0-alpha-11
+[ERROR]         +-org.slf4j:slf4j-api:2.0.9 (managed) <-- org.slf4j:slf4j-api:2.0.13
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-transport-file:2.0.0-alpha-11
+[ERROR]         +-org.slf4j:slf4j-api:2.0.9 (managed) <-- org.slf4j:slf4j-api:2.0.13
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-transport-apache:2.0.0-alpha-11
+[ERROR]         +-org.slf4j:slf4j-api:2.0.9 (managed) <-- org.slf4j:slf4j-api:2.0.13
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-impl:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-named-locks:1.9.18
+[ERROR]         +-org.slf4j:slf4j-api:2.0.9 (managed) <-- org.slf4j:slf4j-api:1.7.36
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-transport-apache:2.0.0-alpha-11
+[ERROR]         +-org.slf4j:jcl-over-slf4j:2.0.13 [runtime]
+[ERROR]           +-org.slf4j:slf4j-api:2.0.9 [runtime] (managed) <-- org.slf4j:slf4j-api:2.0.13 [runtime]
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.apache.maven.resolver:maven-resolver-impl:1.9.18 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-impl:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-impl:2.0.0-alpha-11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven:maven-api-impl:4.0.0-beta-3
+[ERROR]         +-org.apache.maven.resolver:maven-resolver-impl:2.0.0-alpha-11
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.codehaus.woodstox:stax2-api:4.2.1 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven:maven-api-impl:4.0.0-beta-3
+[ERROR]         +-org.codehaus.woodstox:stax2-api:4.2.1
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven:maven-xml-impl:4.0.0-beta-3
+[ERROR]         +-org.codehaus.woodstox:stax2-api:4.2.1
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven:maven-api-impl:4.0.0-beta-3
+[ERROR]         +-com.fasterxml.woodstox:woodstox-core:6.6.2
+[ERROR]           +-org.codehaus.woodstox:stax2-api:4.2.2
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.apache.maven:maven-builder-support:3.9.6 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-builder-support:3.9.6
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-settings-builder:3.9.6
+[ERROR]       +-org.apache.maven:maven-builder-support:3.9.6
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-model-builder:3.9.6
+[ERROR]       +-org.apache.maven:maven-builder-support:3.9.6
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven:maven-builder-support:4.0.0-beta-3
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.apache.maven.resolver:maven-resolver-spi:1.9.18 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-spi:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-spi:2.0.0-alpha-11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-impl:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-spi:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven:maven-api-impl:4.0.0-beta-3
+[ERROR]         +-org.apache.maven.resolver:maven-resolver-spi:2.0.0-alpha-11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-connector-basic:2.0.0-alpha-11
+[ERROR]         +-org.apache.maven.resolver:maven-resolver-spi:2.0.0-alpha-11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-transport-file:2.0.0-alpha-11
+[ERROR]         +-org.apache.maven.resolver:maven-resolver-spi:2.0.0-alpha-11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-transport-apache:2.0.0-alpha-11
+[ERROR]         +-org.apache.maven.resolver:maven-resolver-spi:2.0.0-alpha-11
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.apache.maven.resolver:maven-resolver-util:1.9.18 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-util:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-util:2.0.0-alpha-11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-impl:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-util:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven:maven-api-impl:4.0.0-beta-3
+[ERROR]         +-org.apache.maven.resolver:maven-resolver-util:2.0.0-alpha-11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-connector-basic:2.0.0-alpha-11
+[ERROR]         +-org.apache.maven.resolver:maven-resolver-util:2.0.0-alpha-11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-transport-apache:2.0.0-alpha-11
+[ERROR]         +-org.apache.maven.resolver:maven-resolver-util:2.0.0-alpha-11
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.apache.maven:maven-model-builder:3.9.6 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-model-builder:3.9.6
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven:maven-model-builder:4.0.0-beta-3
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.apache.maven:maven-repository-metadata:3.9.6 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-repository-metadata:3.9.6
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven:maven-repository-metadata:4.0.0-beta-3
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.apache.maven.resolver:maven-resolver-api:1.9.18 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-api:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-api:2.0.0-alpha-11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-impl:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-api:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-spi:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-api:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-util:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-api:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven:maven-api-impl:4.0.0-beta-3
+[ERROR]         +-org.apache.maven.resolver:maven-resolver-api:2.0.0-alpha-11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-connector-basic:2.0.0-alpha-11
+[ERROR]         +-org.apache.maven.resolver:maven-resolver-api:2.0.0-alpha-11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-transport-file:2.0.0-alpha-11
+[ERROR]         +-org.apache.maven.resolver:maven-resolver-api:2.0.0-alpha-11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-transport-apache:2.0.0-alpha-11
+[ERROR]         +-org.apache.maven.resolver:maven-resolver-api:2.0.0-alpha-11
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.apache.maven:maven-model:3.9.6 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-model:3.9.6
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-model:3.9.6 (managed) <-- org.apache.maven:maven-model:3.9.6
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-plugin-api:3.9.6
+[ERROR]       +-org.apache.maven:maven-model:3.9.6 (managed) <-- org.apache.maven:maven-model:3.9.6
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-model-builder:3.9.6
+[ERROR]       +-org.apache.maven:maven-model:3.9.6 (managed) <-- org.apache.maven:maven-model:3.9.6
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven:maven-model:3.9.6 (managed) <-- org.apache.maven:maven-model:4.0.0-beta-3
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.codehaus.plexus:plexus-interpolation:1.26 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.codehaus.plexus:plexus-interpolation:1.26
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-settings-builder:3.9.6
+[ERROR]       +-org.codehaus.plexus:plexus-interpolation:1.26
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-model-builder:3.9.6
+[ERROR]       +-org.codehaus.plexus:plexus-interpolation:1.26
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven:maven-api-impl:4.0.0-beta-3
+[ERROR]         +-org.codehaus.plexus:plexus-interpolation:1.27
+[ERROR] ]
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+
+* * * * * * * *

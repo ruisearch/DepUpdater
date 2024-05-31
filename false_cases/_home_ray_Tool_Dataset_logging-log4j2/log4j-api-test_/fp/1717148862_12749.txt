@@ -1,0 +1,150 @@
+module name: log4j-api-test/
+
+* * * * * * * *
+groudId: org.apache.maven.resolver
+artifactId: maven-resolver-spi
+old version: 1.9.18
+new version: 2.0.0-alpha-8
+classifier: 
+depth: 2
+reachable api of old version:
+/ / / / / / / / /
+revapi log of former version -- 2.0.0-alpha-8:
+17:44:44.392 INFO  Downloading checked archives
+17:44:44.416 INFO  Downloading extensions
+17:44:48.911 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.apache.maven.resolver-maven-resolver-spi-1.9.18.jar
+New API: org.apache.maven.resolver-maven-resolver-spi-2.0.0-alpha-8.jar
+old: method void org.eclipse.aether.spi.connector.ArtifactUpload::<init>(org.eclipse.aether.artifact.Artifact, java.io.File, org.eclipse.aether.transform.FileTransformer)
+new: method void org.eclipse.aether.spi.connector.ArtifactUpload::<init>(org.eclipse.aether.artifact.Artifact, java.nio.file.Path)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.transform.FileTransformer org.eclipse.aether.spi.connector.ArtifactUpload::getFileTransformer()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.spi.connector.ArtifactUpload org.eclipse.aether.spi.connector.ArtifactUpload::setFileTransformer(org.eclipse.aether.transform.FileTransformer)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface org.eclipse.aether.spi.connector.checksum.ProvidedChecksumsSource
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface org.eclipse.aether.spi.locator.Service
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface org.eclipse.aether.spi.locator.ServiceLocator
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface org.eclipse.aether.spi.log.Logger
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface org.eclipse.aether.spi.log.LoggerFactory
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.eclipse.aether.spi.log.NullLoggerFactory
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+17:44:58.898 INFO  Analysis took 9986ms.
+
+
+* * * * * * * *
+>>>>>>
+compilation log of 2.0.0-alpha-8:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< org.apache.logging.log4j:log4j-api-test >---------------
+[INFO] Building Apache Log4j API Tests 2.23.1
+[INFO]   from _temp_org.apache.maven.resolver_maven-resolver-spi_2.0.0-alpha-8_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/resolver/maven-resolver-spi/2.0.0-alpha-8/maven-resolver-spi-2.0.0-alpha-8.jar
+Progress (1): 3.6/54 kB
+Progress (1): 7.7/54 kB
+Progress (1): 12/54 kB 
+Progress (1): 16/54 kB
+Progress (1): 20/54 kB
+Progress (1): 24/54 kB
+Progress (1): 28/54 kB
+Progress (1): 32/54 kB
+Progress (1): 36/54 kB
+Progress (1): 40/54 kB
+Progress (1): 45/54 kB
+Progress (1): 49/54 kB
+Progress (1): 53/54 kB
+Progress (1): 54 kB   
+                   
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/resolver/maven-resolver-spi/2.0.0-alpha-8/maven-resolver-spi-2.0.0-alpha-8.jar (54 kB at 32 kB/s)
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ log4j-api-test ---
+[INFO] 
+[INFO] --- flatten:1.5.0:clean (clean-flattened-pom) @ log4j-api-test ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-upper-bound-deps) @ log4j-api-test ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  6.080 s
+[INFO] Finished at: 2024-05-31T17:47:42+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:3.4.1:enforce (enforce-upper-bound-deps) on project log4j-api-test: 
+[ERROR] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps failed with message:
+[ERROR] Failed while enforcing RequireUpperBoundDeps. The error(s) are [
+[ERROR] Require upper bound dependencies error for org.apache.maven.resolver:maven-resolver-api:1.9.18 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-api:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-api:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-impl:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-api:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-spi:2.0.0-alpha-8 (managed) <-- org.apache.maven.resolver:maven-resolver-spi:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-api:2.0.0-alpha-8
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-util:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-api:1.9.18
+[ERROR] ]
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+
+* * * * * * * *

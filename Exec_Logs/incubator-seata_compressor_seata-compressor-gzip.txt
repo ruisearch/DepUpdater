@@ -1,0 +1,49 @@
+Script started on 2024-05-30 12:13:00+08:00 [TERM="xterm-256color" TTY="/dev/pts/14" COLUMNS="136" LINES="39"]
+
+****** preprocessing ... ******
+
+****** set the git repository to the lastest tag status ******
+HEAD 现在位于 6d05b48af optimize: add release notes and change version to 2.1.0 (#6581)
+HEAD 目前位于 6d05b48af optimize: add release notes and change version to 2.1.0 (#6581)
+
+****** preprocess.package ... ******
+
+mvn clean and mvn package...
+[[1;34mINFO[m] Scanning for projects...
+[[1;31mERROR[m] [ERROR] Some problems were encountered while processing the POMs:
+[ERROR] Non-resolvable import POM: The following artifacts could not be resolved: org.apache.seata:seata-dependencies:pom:2.1.0 (absent): org.apache.seata:seata-dependencies:pom:2.1.0 was not found in https://maven.aliyun.com/repository/public during a previous attempt. This failure was cached in the local repository and resolution is not reattempted until the update interval of aliyun has elapsed or updates are forced @ org.apache.seata:seata-parent:${revision}, /home/ray/Tool/Dataset/incubator-seata/pom.xml, line 130, column 25
+[ERROR] 'dependencies.dependency.version' for org.junit.jupiter:junit-jupiter:jar is missing. @ org.apache.seata:seata-parent:${revision}, /home/ray/Tool/Dataset/incubator-seata/pom.xml, line 81, column 21
+[ERROR] 'dependencies.dependency.version' for org.junit.platform:junit-platform-launcher:jar is missing. @ org.apache.seata:seata-parent:${revision}, /home/ray/Tool/Dataset/incubator-seata/pom.xml, line 86, column 21
+[ERROR] 'dependencies.dependency.version' for org.junit.platform:junit-platform-suite-api:jar is missing. @ org.apache.seata:seata-parent:${revision}, /home/ray/Tool/Dataset/incubator-seata/pom.xml, line 91, column 21
+[ERROR] 'dependencies.dependency.version' for org.junit.platform:junit-platform-suite-engine:jar is missing. @ org.apache.seata:seata-parent:${revision}, /home/ray/Tool/Dataset/incubator-seata/pom.xml, line 96, column 21
+[ERROR] 'dependencies.dependency.version' for org.mockito:mockito-core:jar is missing. @ org.apache.seata:seata-parent:${revision}, /home/ray/Tool/Dataset/incubator-seata/pom.xml, line 101, column 21
+[ERROR] 'dependencies.dependency.version' for org.mockito:mockito-junit-jupiter:jar is missing. @ org.apache.seata:seata-parent:${revision}, /home/ray/Tool/Dataset/incubator-seata/pom.xml, line 106, column 21
+[ERROR] 'dependencies.dependency.version' for org.mockito:mockito-inline:jar is missing. @ org.apache.seata:seata-parent:${revision}, /home/ray/Tool/Dataset/incubator-seata/pom.xml, line 111, column 21
+[ERROR] 'dependencies.dependency.version' for org.assertj:assertj-core:jar is missing. @ org.apache.seata:seata-parent:${revision}, /home/ray/Tool/Dataset/incubator-seata/pom.xml, line 116, column 21
+[ERROR] 'dependencies.dependency.version' for org.slf4j:slf4j-simple:jar is missing. @ org.apache.seata:seata-parent:${revision}, /home/ray/Tool/Dataset/incubator-seata/pom.xml, line 121, column 21
+ @ 
+[[1;31mERROR[m] The build could not read 1 project -> [1m[Help 1][m
+[[1;31mERROR[m]   
+[[1;31mERROR[m]   The project org.apache.seata:seata-compressor-gzip:2.1.0 (/home/ray/Tool/Dataset/incubator-seata/compressor/seata-compressor-gzip/pom.xml) has 10 errors
+[[1;31mERROR[m]     Non-resolvable import POM: The following artifacts could not be resolved: org.apache.seata:seata-dependencies:pom:2.1.0 (absent): org.apache.seata:seata-dependencies:pom:2.1.0 was not found in https://maven.aliyun.com/repository/public during a previous attempt. This failure was cached in the local repository and resolution is not reattempted until the update interval of aliyun has elapsed or updates are forced @ org.apache.seata:seata-parent:${revision}, /home/ray/Tool/Dataset/incubator-seata/pom.xml, line 130, column 25 -> [1m[Help 2][m
+[[1;31mERROR[m]     'dependencies.dependency.version' for org.junit.jupiter:junit-jupiter:jar is missing. @ org.apache.seata:seata-parent:${revision}, /home/ray/Tool/Dataset/incubator-seata/pom.xml, line 81, column 21
+[[1;31mERROR[m]     'dependencies.dependency.version' for org.junit.platform:junit-platform-launcher:jar is missing. @ org.apache.seata:seata-parent:${revision}, /home/ray/Tool/Dataset/incubator-seata/pom.xml, line 86, column 21
+[[1;31mERROR[m]     'dependencies.dependency.version' for org.junit.platform:junit-platform-suite-api:jar is missing. @ org.apache.seata:seata-parent:${revision}, /home/ray/Tool/Dataset/incubator-seata/pom.xml, line 91, column 21
+[[1;31mERROR[m]     'dependencies.dependency.version' for org.junit.platform:junit-platform-suite-engine:jar is missing. @ org.apache.seata:seata-parent:${revision}, /home/ray/Tool/Dataset/incubator-seata/pom.xml, line 96, column 21
+[[1;31mERROR[m]     'dependencies.dependency.version' for org.mockito:mockito-core:jar is missing. @ org.apache.seata:seata-parent:${revision}, /home/ray/Tool/Dataset/incubator-seata/pom.xml, line 101, column 21
+[[1;31mERROR[m]     'dependencies.dependency.version' for org.mockito:mockito-junit-jupiter:jar is missing. @ org.apache.seata:seata-parent:${revision}, /home/ray/Tool/Dataset/incubator-seata/pom.xml, line 106, column 21
+[[1;31mERROR[m]     'dependencies.dependency.version' for org.mockito:mockito-inline:jar is missing. @ org.apache.seata:seata-parent:${revision}, /home/ray/Tool/Dataset/incubator-seata/pom.xml, line 111, column 21
+[[1;31mERROR[m]     'dependencies.dependency.version' for org.assertj:assertj-core:jar is missing. @ org.apache.seata:seata-parent:${revision}, /home/ray/Tool/Dataset/incubator-seata/pom.xml, line 116, column 21
+[[1;31mERROR[m]     'dependencies.dependency.version' for org.slf4j:slf4j-simple:jar is missing. @ org.apache.seata:seata-parent:${revision}, /home/ray/Tool/Dataset/incubator-seata/pom.xml, line 121, column 21
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/ProjectBuildingException
+[[1;31mERROR[m] [1m[Help 2][m http://cwiki.apache.org/confluence/display/MAVEN/UnresolvableModelException
+[0m[0m
+****** module package fails. Please check the project ******
+
+
+Script done on 2024-05-30 12:13:02+08:00 [COMMAND_EXIT_CODE="0"]

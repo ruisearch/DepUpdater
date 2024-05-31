@@ -135,7 +135,7 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
             flag, result = recompile(path_to_cloned_folder, os.path.join(absolute_module_path, 'pom.xml'))
             if flag == False:
                 # recompilation error, store the log, it's a fp, should be added into module_error_folder/fn
-                print(" find a fn")
+                print(" find a fp")
                 store_error(false_folder_lock, item_path, result_deps, result, None, os.path.join(module_error_folder, 'fp'))
                 with open(error_dep_count_txt_path, 'a') as f:
                     f.write('note: setting all dep to best version causes compilation error!\n')

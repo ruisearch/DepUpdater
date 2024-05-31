@@ -1,0 +1,158 @@
+module name: log4j-api-test/
+
+* * * * * * * *
+groudId: org.apache.maven.resolver
+artifactId: maven-resolver-util
+old version: 1.9.18
+new version: 1.9.18
+classifier: 
+depth: 2
+reachable api of old version:
+/ / / / / / / / /
+revapi log of the subsequent version -- 1.9.19:
+17:42:12.263 INFO  Downloading checked archives
+17:42:12.333 INFO  Downloading extensions
+17:42:18.123 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.apache.maven.resolver-maven-resolver-util-1.9.18.jar
+New API: org.apache.maven.resolver-maven-resolver-util-1.9.19.jar
+old: class org.eclipse.aether.util.version.GenericVersion
+new: class org.eclipse.aether.util.version.GenericVersion
+java.class.nonPublicPartOfAPI: Class 'org.eclipse.aether.util.version.GenericVersion' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+
+old: class org.eclipse.aether.util.version.GenericVersionConstraint
+new: class org.eclipse.aether.util.version.GenericVersionConstraint
+java.class.nonPublicPartOfAPI: Class 'org.eclipse.aether.util.version.GenericVersionConstraint' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+
+old: class org.eclipse.aether.util.version.GenericVersionRange
+new: class org.eclipse.aether.util.version.GenericVersionRange
+java.class.nonPublicPartOfAPI: Class 'org.eclipse.aether.util.version.GenericVersionRange' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+
+17:42:31.383 INFO  Analysis took 13259ms.
+
+
+* * * * * * * *
+>>>>>>
+subsequent compilation log of 1.9.19:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< org.apache.logging.log4j:log4j-api-test >---------------
+[INFO] Building Apache Log4j API Tests 2.23.1
+[INFO]   from _temp_org.apache.maven.resolver_maven-resolver-util_1.9.19_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/resolver/maven-resolver-util/1.9.19/maven-resolver-util-1.9.19.pom
+Progress (1): 2.9 kB
+                    
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/resolver/maven-resolver-util/1.9.19/maven-resolver-util-1.9.19.pom (2.9 kB at 633 B/s)
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/resolver/maven-resolver-util/1.9.19/maven-resolver-util-1.9.19.jar
+Progress (1): 3.6/196 kB
+Progress (1): 7.7/196 kB
+Progress (1): 12/196 kB 
+Progress (1): 16/196 kB
+Progress (1): 20/196 kB
+Progress (1): 24/196 kB
+Progress (1): 28/196 kB
+Progress (1): 32/196 kB
+Progress (1): 36/196 kB
+Progress (1): 40/196 kB
+Progress (1): 45/196 kB
+Progress (1): 49/196 kB
+Progress (1): 53/196 kB
+Progress (1): 57/196 kB
+Progress (1): 61/196 kB
+Progress (1): 65/196 kB
+Progress (1): 69/196 kB
+Progress (1): 73/196 kB
+Progress (1): 77/196 kB
+Progress (1): 81/196 kB
+Progress (1): 86/196 kB
+Progress (1): 90/196 kB
+Progress (1): 94/196 kB
+Progress (1): 98/196 kB
+Progress (1): 102/196 kB
+Progress (1): 106/196 kB
+Progress (1): 110/196 kB
+Progress (1): 114/196 kB
+Progress (1): 118/196 kB
+Progress (1): 122/196 kB
+Progress (1): 126/196 kB
+Progress (1): 131/196 kB
+Progress (1): 135/196 kB
+Progress (1): 139/196 kB
+Progress (1): 143/196 kB
+Progress (1): 147/196 kB
+Progress (1): 151/196 kB
+Progress (1): 155/196 kB
+Progress (1): 159/196 kB
+Progress (1): 163/196 kB
+Progress (1): 167/196 kB
+Progress (1): 172/196 kB
+Progress (1): 176/196 kB
+Progress (1): 180/196 kB
+Progress (1): 184/196 kB
+Progress (1): 188/196 kB
+Progress (1): 192/196 kB
+Progress (1): 196 kB    
+                    
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/resolver/maven-resolver-util/1.9.19/maven-resolver-util-1.9.19.jar (196 kB at 238 kB/s)
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ log4j-api-test ---
+[INFO] 
+[INFO] --- flatten:1.5.0:clean (clean-flattened-pom) @ log4j-api-test ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-upper-bound-deps) @ log4j-api-test ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  9.727 s
+[INFO] Finished at: 2024-05-31T17:46:20+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:3.4.1:enforce (enforce-upper-bound-deps) on project log4j-api-test: 
+[ERROR] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps failed with message:
+[ERROR] Failed while enforcing RequireUpperBoundDeps. The error(s) are [
+[ERROR] Require upper bound dependencies error for org.apache.maven.resolver:maven-resolver-api:1.9.18 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-api:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-api:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-impl:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-api:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-spi:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-api:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-util:1.9.19 (managed) <-- org.apache.maven.resolver:maven-resolver-util:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-api:1.9.19
+[ERROR] ]
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+
+* * * * * * * *

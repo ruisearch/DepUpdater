@@ -1,0 +1,125 @@
+module name: log4j-api-test/
+
+* * * * * * * *
+groudId: org.junit.platform
+artifactId: junit-platform-launcher
+old version: 1.10.2
+new version: 1.10.2
+classifier: 
+depth: 2
+reachable api of old version:
+/ / / / / / / / /
+revapi log of the subsequent version -- 1.11.0-M1:
+17:40:10.090 INFO  Downloading checked archives
+17:40:10.129 INFO  Downloading extensions
+17:40:15.675 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.junit.platform-junit-platform-launcher-1.10.2.jar
+New API: org.junit.platform-junit-platform-launcher-1.11.0-M1.jar
+
+17:40:30.272 INFO  Analysis took 14581ms.
+
+
+* * * * * * * *
+>>>>>>
+subsequent compilation log of 1.11.0-M1:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< org.apache.logging.log4j:log4j-api-test >---------------
+[INFO] Building Apache Log4j API Tests 2.23.1
+[INFO]   from _temp_org.junit.platform_junit-platform-launcher_1.11.0-M1_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/junit/platform/junit-platform-launcher/1.11.0-M1/junit-platform-launcher-1.11.0-M1.pom
+Progress (1): 3.0 kB
+                    
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/junit/platform/junit-platform-launcher/1.11.0-M1/junit-platform-launcher-1.11.0-M1.pom (3.0 kB at 1.9 kB/s)
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/junit/platform/junit-platform-launcher/1.11.0-M1/junit-platform-launcher-1.11.0-M1.jar
+Progress (1): 3.6/185 kB
+Progress (1): 7.7/185 kB
+Progress (1): 12/185 kB 
+Progress (1): 16/185 kB
+Progress (1): 20/185 kB
+Progress (1): 24/185 kB
+Progress (1): 28/185 kB
+Progress (1): 32/185 kB
+Progress (1): 36/185 kB
+Progress (1): 40/185 kB
+Progress (1): 45/185 kB
+Progress (1): 49/185 kB
+Progress (1): 53/185 kB
+Progress (1): 57/185 kB
+Progress (1): 61/185 kB
+Progress (1): 65/185 kB
+Progress (1): 69/185 kB
+Progress (1): 73/185 kB
+Progress (1): 77/185 kB
+Progress (1): 81/185 kB
+Progress (1): 86/185 kB
+Progress (1): 90/185 kB
+Progress (1): 94/185 kB
+Progress (1): 98/185 kB
+Progress (1): 102/185 kB
+Progress (1): 106/185 kB
+Progress (1): 110/185 kB
+Progress (1): 114/185 kB
+Progress (1): 118/185 kB
+Progress (1): 122/185 kB
+Progress (1): 126/185 kB
+Progress (1): 131/185 kB
+Progress (1): 135/185 kB
+Progress (1): 139/185 kB
+Progress (1): 143/185 kB
+Progress (1): 147/185 kB
+Progress (1): 151/185 kB
+Progress (1): 155/185 kB
+Progress (1): 159/185 kB
+Progress (1): 163/185 kB
+Progress (1): 167/185 kB
+Progress (1): 172/185 kB
+Progress (1): 176/185 kB
+Progress (1): 180/185 kB
+Progress (1): 184/185 kB
+Progress (1): 185 kB    
+                    
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/junit/platform/junit-platform-launcher/1.11.0-M1/junit-platform-launcher-1.11.0-M1.jar (185 kB at 294 kB/s)
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ log4j-api-test ---
+[INFO] Deleting /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/target
+[INFO] 
+[INFO] --- flatten:1.5.0:clean (clean-flattened-pom) @ log4j-api-test ---
+[INFO] Deleting /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/.flattened-pom.xml
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-upper-bound-deps) @ log4j-api-test ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  7.909 s
+[INFO] Finished at: 2024-05-31T17:41:08+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:3.4.1:enforce (enforce-upper-bound-deps) on project log4j-api-test: 
+[ERROR] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps failed with message:
+[ERROR] Failed while enforcing RequireUpperBoundDeps. The error(s) are [
+[ERROR] Require upper bound dependencies error for org.junit.platform:junit-platform-engine:1.10.2 [runtime] paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.junit-pioneer:junit-pioneer:1.9.1
+[ERROR]     +-org.junit.platform:junit-platform-launcher:1.11.0-M1 [runtime] (managed) <-- org.junit.platform:junit-platform-launcher:1.9.0 [runtime]
+[ERROR]       +-org.junit.platform:junit-platform-engine:1.10.2 [runtime] (managed) <-- org.junit.platform:junit-platform-engine:1.11.0-M1 [runtime]
+[ERROR] ]
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+
+* * * * * * * *

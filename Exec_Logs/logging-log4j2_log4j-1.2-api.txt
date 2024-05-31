@@ -1,0 +1,480 @@
+Script started on 2024-05-30 13:12:14+08:00 [TERM="xterm-256color" TTY="/dev/pts/14" COLUMNS="93" LINES="39"]
+
+****** preprocessing ... ******
+
+****** set the git repository to the lastest tag status ******
+HEAD 现在位于 fea2a71161 Update the `project.build.outputTimestamp` property
+HEAD 目前位于 fea2a71161 Update the `project.build.outputTimestamp` property
+
+****** preprocess.package ... ******
+
+mvn clean and mvn package...
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m---------------< [0;36morg.apache.logging.log4j:log4j-1.2-api[0;1m >---------------[m
+[[1;34mINFO[m] [1mBuilding Apache Log4j 1.x Compatibility API 2.23.1[m
+[[1;34mINFO[m]   from pom.xml
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mclean:3.3.2:clean[m [1m(default-clean)[m @ [36mlog4j-1.2-api[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/target
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mflatten:1.5.0:clean[m [1m(clean-flattened-pom)[m @ [36mlog4j-1.2-api[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/.flattened-pom.xml
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32menforcer:3.4.1:enforce[m [1m(enforce-maven-version)[m @ [36mlog4j-1.2-api[0;1m ---[m
+[[1;34mINFO[m] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32menforcer:3.4.1:enforce[m [1m(enforce-java-version)[m @ [36mlog4j-1.2-api[0;1m ---[m
+[[1;34mINFO[m] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32menforcer:3.4.1:enforce[m [1m(enforce-upper-bound-deps)[m @ [36mlog4j-1.2-api[0;1m ---[m
+[[1;34mINFO[m] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32menforcer:3.4.1:enforce[m [1m(ban-wildcard-imports)[m @ [36mlog4j-1.2-api[0;1m ---[m
+[[1;34mINFO[m] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32menforcer:3.4.1:enforce[m [1m(ban-logging-dependencies)[m @ [36mlog4j-1.2-api[0;1m ---[m
+[[1;34mINFO[m] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mbuild-helper:3.5.0:parse-version[m [1m(parse-version)[m @ [36mlog4j-1.2-api[0;1m ---[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mclean:3.3.2:clean[m [1m(delete-module-descriptors)[m @ [36mlog4j-1.2-api[0;1m ---[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mremote-resources:3.1.0:process[m [1m(process-resource-bundles)[m @ [36mlog4j-1.2-api[0;1m ---[m
+[[1;34mINFO[m] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[[1;34mINFO[m] Copying 3 resources from 1 bundle.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mresources:3.3.1:resources[m [1m(default-resources)[m @ [36mlog4j-1.2-api[0;1m ---[m
+[[1;34mINFO[m] Copying 1 resource from src/main/resources to target/classes
+[[1;34mINFO[m] Copying 3 resources from target/maven-shared-archive-resources to target/classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mflatten:1.5.0:flatten[m [1m(flatten-revision)[m @ [36mlog4j-1.2-api[0;1m ---[m
+[[1;34mINFO[m] Generating flattened POM of project org.apache.logging.log4j:log4j-1.2-api:jar:2.23.1...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mclean:3.3.2:clean[m [1m(delete-module-descriptor)[m @ [36mlog4j-1.2-api[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/target/classes (includes = [module-info.class], excludes = [])
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mcompiler:3.11.0:compile[m [1m(default-compile)[m @ [36mlog4j-1.2-api[0;1m ---[m
+[[1;34mINFO[m] Changes detected - recompiling the module! :source
+[[1;34mINFO[m] Compiling 173 source files with javac [debug release 8] to target/classes
+[[1;34mINFO[m] Processing Log4j annotations
+[[1;34mINFO[m] Annotations processed
+[[1;33mWARNING[m] 没有处理程序要使用以下任何注释: org.osgi.annotation.bundle.Export,org.apache.logging.log4j.core.tools.picocli.CommandLine.Command,org.osgi.annotation.versioning.Version,org.apache.logging.log4j.core.config.Order,org.apache.logging.log4j.core.tools.picocli.CommandLine.Option,aQute.bnd.annotation.jpms.Open,edu.umd.cs.findbugs.annotations.SuppressFBWarnings,org.apache.logging.log4j.core.pattern.ConverterKeys
+[[1;34mINFO[m] Processing Log4j annotations
+[[1;34mINFO[m] No elements to process
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/spi/NOPLoggerRepository.java:[70,12] 找到原始类型: java.util.Enumeration
+  缺少泛型类java.util.Enumeration<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/spi/NOPLoggerRepository.java:[78,12] 找到原始类型: java.util.Enumeration
+  缺少泛型类java.util.Enumeration<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/Category.java:[356,24] org.apache.log4j.Category中的getAllAppenders()实现了org.apache.log4j.spi.AppenderAttachable中的getAllAppenders()
+  返回类型需要从java.util.Enumeration到java.util.Enumeration<org.apache.log4j.Appender>的未经检查的转换
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/Category.java:[267,15] 找到原始类型: java.util.Enumeration
+  缺少泛型类java.util.Enumeration<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/Category.java:[326,54] 未经检查的转换
+  需要: java.util.Map<java.lang.String,?>
+  找到:    java.lang.Object
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/Category.java:[356,12] 找到原始类型: java.util.Enumeration
+  缺少泛型类java.util.Enumeration<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/Category.java:[576,19] 找到原始类型: java.util.Vector
+  缺少泛型类java.util.Vector<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/Category.java:[576,42] 找到原始类型: java.util.Vector
+  缺少泛型类java.util.Vector<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/Category.java:[577,24] 找到原始类型: java.util.Enumeration
+  缺少泛型类java.util.Enumeration<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/Category.java:[578,30] 对作为原始类型java.util.Vector的成员的add(E)的调用未经过检查
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/Logger.java:[26,8] org.apache.log4j.Category中的getAllAppenders()实现了org.apache.log4j.spi.AppenderAttachable中的getAllAppenders()
+  返回类型需要从java.util.Enumeration到java.util.Enumeration<org.apache.log4j.Appender>的未经检查的转换
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/spi/LoggingEvent.java:[78,19] 找到原始类型: java.util.Map
+  缺少泛型类java.util.Map<K,V>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/spi/LoggingEvent.java:[194,12] 找到原始类型: java.util.Map
+  缺少泛型类java.util.Map<K,V>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/spi/LoggingEvent.java:[202,12] 找到原始类型: java.util.Set
+  缺少泛型类java.util.Set<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/helpers/AppenderAttachableImpl.java:[37,15] 找到原始类型: java.util.Vector
+  缺少泛型类java.util.Vector<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/RenderedMessage.java:[25,8] 可序列化类org.apache.log4j.RenderedMessage没有 serialVersionUID 的定义
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/builders/BuilderManager.java:[61,62] 找到原始类型: java.lang.Class
+  缺少泛型类java.lang.Class<T>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/xml/XmlConfiguration.java:[93,60] 找到原始类型: java.lang.Class
+  缺少泛型类java.lang.Class<T>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/xml/XmlConfiguration.java:[827,20] 可序列化类org.apache.log4j.xml.XmlConfiguration.ConsumerException没有 serialVersionUID 的定义
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/builders/appender/FileAppenderBuilder.java:[49,42] 找到原始类型: org.apache.log4j.builders.AbstractBuilder
+  缺少泛型类org.apache.log4j.builders.AbstractBuilder<T>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/builders/appender/FileAppenderBuilder.java:[49,69] 找到原始类型: org.apache.log4j.builders.appender.AppenderBuilder
+  缺少泛型类org.apache.log4j.builders.appender.AppenderBuilder<T>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/builders/appender/FileAppenderBuilder.java:[81,32] 对作为原始类型org.apache.log4j.builders.AbstractBuilder的成员的set(java.lang.String,org.w3c.dom.Element,java.util.concurrent.atomic.AtomicReference<java.lang.String>)的调用未经过检查
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/builders/appender/FileAppenderBuilder.java:[93,32] 对作为原始类型org.apache.log4j.builders.AbstractBuilder的成员的set(java.lang.String,org.w3c.dom.Element,java.util.concurrent.atomic.AtomicReference<java.lang.String>)的调用未经过检查
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/rewrite/MapRewritePolicy.java:[57,54] 方法调用未经过检查: 将类 java.util.HashMap中的构造器 <init>应用到给定的类型
+  需要: java.util.Map<? extends K,? extends V>
+  找到:    java.util.Map
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/rewrite/MapRewritePolicy.java:[57,88] 未经检查的转换
+  需要: java.util.Map<? extends K,? extends V>
+  找到:    java.util.Map
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/rewrite/MapRewritePolicy.java:[57,54] 未经检查的转换
+  需要: java.util.Map<java.lang.String,java.lang.String>
+  找到:    java.util.HashMap
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/PropertyConfigurator.java:[91,43] 找到原始类型: java.util.Enumeration
+  缺少泛型类java.util.Enumeration<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/PropertyConfigurator.java:[93,23] 找到原始类型: java.util.Enumeration
+  缺少泛型类java.util.Enumeration<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/PropertyConfigurator.java:[95,43] 找到原始类型: java.util.Hashtable
+  缺少泛型类java.util.Hashtable<K,V>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/PropertyConfigurator.java:[96,19] 找到原始类型: java.util.Enumeration
+  缺少泛型类java.util.Enumeration<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/PropertyConfigurator.java:[97,19] 找到原始类型: java.util.Vector
+  缺少泛型类java.util.Vector<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/PropertyConfigurator.java:[97,37] 找到原始类型: java.util.Vector
+  缺少泛型类java.util.Vector<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/PropertyConfigurator.java:[106,25] 对作为原始类型java.util.Vector的成员的add(int,E)的调用未经过检查
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/PropertyConfigurator.java:[229,15] 找到原始类型: java.util.Hashtable
+  缺少泛型类java.util.Hashtable<K,V>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/PropertyConfigurator.java:[229,40] 找到原始类型: java.util.Hashtable
+  缺少泛型类java.util.Hashtable<K,V>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/PropertyConfigurator.java:[482,34] 找到原始类型: java.util.Map.Entry
+  缺少泛型类java.util.Map.Entry<K,V>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/PropertyConfigurator.java:[512,15] 找到原始类型: java.util.Hashtable
+  缺少泛型类java.util.Hashtable<K,V>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/PropertyConfigurator.java:[512,39] 找到原始类型: java.util.Hashtable
+  缺少泛型类java.util.Hashtable<K,V>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/PropertyConfigurator.java:[513,15] 找到原始类型: java.util.Enumeration
+  缺少泛型类java.util.Enumeration<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/PropertyConfigurator.java:[524,17] 找到原始类型: java.util.Vector
+  缺少泛型类java.util.Vector<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/PropertyConfigurator.java:[526,38] 找到原始类型: java.util.Vector
+  缺少泛型类java.util.Vector<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/PropertyConfigurator.java:[527,32] 对作为原始类型java.util.Hashtable的成员的put(K,V)的调用未经过检查
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/PropertyConfigurator.java:[531,35] 对作为原始类型java.util.Vector的成员的add(E)的调用未经过检查
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/PropertyConfigurator.java:[538,15] 找到原始类型: java.util.Enumeration
+  缺少泛型类java.util.Enumeration<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/PropertyConfigurator.java:[549,27] 找到原始类型: java.util.Vector
+  缺少泛型类java.util.Vector<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/PropertyConfigurator.java:[550,27] 找到原始类型: java.util.Enumeration
+  缺少泛型类java.util.Enumeration<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/PropertyConfigurator.java:[631,15] 找到原始类型: java.util.Enumeration
+  缺少泛型类java.util.Enumeration<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/PropertyConfigurator.java:[702,21] 对作为原始类型java.util.Hashtable的成员的put(K,V)的调用未经过检查
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/spi/RootLogger.java:[30,14] org.apache.log4j.Category中的getAllAppenders()实现了org.apache.log4j.spi.AppenderAttachable中的getAllAppenders()
+  返回类型需要从java.util.Enumeration到java.util.Enumeration<org.apache.log4j.Appender>的未经检查的转换
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/helpers/UtilLoggingLevel.java:[169,19] 找到原始类型: java.util.List
+  缺少泛型类java.util.List<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/builders/appender/RewriteAppenderBuilder.java:[55,45] 找到原始类型: org.apache.log4j.builders.AbstractBuilder
+  缺少泛型类org.apache.log4j.builders.AbstractBuilder<T>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/builders/appender/RewriteAppenderBuilder.java:[55,72] 找到原始类型: org.apache.log4j.builders.appender.AppenderBuilder
+  缺少泛型类org.apache.log4j.builders.appender.AppenderBuilder<T>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/builders/appender/RewriteAppenderBuilder.java:[92,28] 对作为原始类型org.apache.log4j.builders.AbstractBuilder的成员的set(java.lang.String,org.w3c.dom.Element,java.util.concurrent.atomic.AtomicReference<java.lang.String>)的调用未经过检查
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/builders/appender/SocketAppenderBuilder.java:[49,44] 找到原始类型: org.apache.log4j.builders.AbstractBuilder
+  缺少泛型类org.apache.log4j.builders.AbstractBuilder<T>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/builders/appender/SocketAppenderBuilder.java:[49,71] 找到原始类型: org.apache.log4j.builders.appender.AppenderBuilder
+  缺少泛型类org.apache.log4j.builders.appender.AppenderBuilder<T>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/builders/appender/SocketAppenderBuilder.java:[116,32] 对作为原始类型org.apache.log4j.builders.AbstractBuilder的成员的set(java.lang.String,org.w3c.dom.Element,java.util.concurrent.atomic.AtomicReference<java.lang.String>)的调用未经过检查
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/builders/appender/SocketAppenderBuilder.java:[125,32] 对作为原始类型org.apache.log4j.builders.AbstractBuilder的成员的set(java.lang.String,org.w3c.dom.Element,java.util.concurrent.atomic.AtomicReference<java.lang.String>)的调用未经过检查
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/builders/appender/RollingFileAppenderBuilder.java:[53,49] 找到原始类型: org.apache.log4j.builders.AbstractBuilder
+  缺少泛型类org.apache.log4j.builders.AbstractBuilder<T>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/builders/appender/RollingFileAppenderBuilder.java:[53,76] 找到原始类型: org.apache.log4j.builders.appender.AppenderBuilder
+  缺少泛型类org.apache.log4j.builders.appender.AppenderBuilder<T>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/builders/appender/RollingFileAppenderBuilder.java:[90,32] 对作为原始类型org.apache.log4j.builders.AbstractBuilder的成员的set(java.lang.String,org.w3c.dom.Element,java.util.concurrent.atomic.AtomicReference<java.lang.String>)的调用未经过检查
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/builders/appender/RollingFileAppenderBuilder.java:[102,32] 对作为原始类型org.apache.log4j.builders.AbstractBuilder的成员的set(java.lang.String,org.w3c.dom.Element,java.util.concurrent.atomic.AtomicReference<java.lang.String>)的调用未经过检查
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/builders/appender/RollingFileAppenderBuilder.java:[105,32] 对作为原始类型org.apache.log4j.builders.AbstractBuilder的成员的set(java.lang.String,org.w3c.dom.Element,java.util.concurrent.atomic.AtomicReference<java.lang.String>)的调用未经过检查
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/builders/appender/RollingFileAppenderBuilder.java:[108,32] 对作为原始类型org.apache.log4j.builders.AbstractBuilder的成员的set(java.lang.String,org.w3c.dom.Element,java.util.concurrent.atomic.AtomicReference<java.lang.String>)的调用未经过检查
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/spi/RendererSupport.java:[26,29] 找到原始类型: java.lang.Class
+  缺少泛型类java.lang.Class<T>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/or/RendererMap.java:[33,5] 找到原始类型: java.util.Hashtable
+  缺少泛型类java.util.Hashtable<K,V>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/or/RendererMap.java:[38,19] 找到原始类型: java.util.Hashtable
+  缺少泛型类java.util.Hashtable<K,V>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/or/RendererMap.java:[55,19] 找到原始类型: java.lang.Class
+  缺少泛型类java.lang.Class<T>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/or/RendererMap.java:[130,37] 找到原始类型: java.lang.Class
+  缺少泛型类java.lang.Class<T>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/or/RendererMap.java:[133,14] 找到原始类型: java.lang.Class
+  缺少泛型类java.lang.Class<T>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/or/RendererMap.java:[145,37] 找到原始类型: java.lang.Class
+  缺少泛型类java.lang.Class<T>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/or/RendererMap.java:[152,15] 找到原始类型: java.lang.Class
+  缺少泛型类java.lang.Class<T>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/or/RendererMap.java:[171,27] 找到原始类型: java.lang.Class
+  缺少泛型类java.lang.Class<T>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/or/RendererMap.java:[172,16] 对作为原始类型java.util.Hashtable的成员的put(K,V)的调用未经过检查
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/helpers/PatternParser.java:[417,23] 找到原始类型: java.util.Map
+  缺少泛型类java.util.Map<K,V>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/pattern/NameAbbreviator.java:[139,41] 找到原始类型: java.util.List
+  缺少泛型类java.util.List<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/pattern/NameAbbreviator.java:[145,30] 对作为原始类型java.util.List的成员的<T>toArray(T[])的调用未经过检查
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/pattern/NameAbbreviator.java:[276,19] 找到原始类型: java.util.ArrayList
+  缺少泛型类java.util.ArrayList<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/pattern/NameAbbreviator.java:[276,45] 找到原始类型: java.util.ArrayList
+  缺少泛型类java.util.ArrayList<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/pattern/NameAbbreviator.java:[306,30] 对作为原始类型java.util.ArrayList的成员的add(E)的调用未经过检查
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/helpers/OptionConverter.java:[288,61] 找到原始类型: java.lang.Class
+  缺少泛型类java.lang.Class<T>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/helpers/OptionConverter.java:[669,47] 找到原始类型: java.lang.Class
+  缺少泛型类java.lang.Class<T>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/jmx/Agent.java:[70,54] 找到原始类型: java.lang.Class
+  缺少泛型类java.lang.Class<T>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/builders/appender/ConsoleAppenderBuilder.java:[48,45] 找到原始类型: org.apache.log4j.builders.AbstractBuilder
+  缺少泛型类org.apache.log4j.builders.AbstractBuilder<T>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/builders/appender/ConsoleAppenderBuilder.java:[48,72] 找到原始类型: org.apache.log4j.builders.appender.AppenderBuilder
+  缺少泛型类org.apache.log4j.builders.appender.AppenderBuilder<T>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/builders/appender/ConsoleAppenderBuilder.java:[103,32] 对作为原始类型org.apache.log4j.builders.AbstractBuilder的成员的set(java.lang.String,org.w3c.dom.Element,java.util.concurrent.atomic.AtomicReference<java.lang.String>)的调用未经过检查
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/jmx/AbstractDynamicMBean.java:[59,19] 找到原始类型: java.util.Vector
+  缺少泛型类java.util.Vector<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/jmx/AbstractDynamicMBean.java:[59,42] 找到原始类型: java.util.Vector
+  缺少泛型类java.util.Vector<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/jmx/AbstractDynamicMBean.java:[84,51] 出现冗余的到java.lang.String的转换
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/jmx/AbstractDynamicMBean.java:[113,15] 找到原始类型: java.util.Enumeration
+  缺少泛型类java.util.Enumeration<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/jmx/AbstractDynamicMBean.java:[139,22] 对作为原始类型java.util.Vector的成员的add(E)的调用未经过检查
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/jmx/HierarchyDynamicMBean.java:[61,19] 找到原始类型: java.util.Vector
+  缺少泛型类java.util.Vector<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/jmx/HierarchyDynamicMBean.java:[61,44] 找到原始类型: java.util.Vector
+  缺少泛型类java.util.Vector<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/jmx/HierarchyDynamicMBean.java:[97,32] 对作为原始类型java.util.Vector的成员的add(E)的调用未经过检查
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/jmx/HierarchyDynamicMBean.java:[133,15] 找到原始类型: java.lang.reflect.Constructor
+  缺少泛型类java.lang.reflect.Constructor<T>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/jmx/HierarchyDynamicMBean.java:[137,24] 对作为原始类型java.util.Vector的成员的add(E)的调用未经过检查
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/jmx/HierarchyDynamicMBean.java:[195,28] 对作为原始类型java.util.Vector的成员的<T>toArray(T[])的调用未经过检查
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/jmx/LayoutDynamicMBean.java:[52,19] 找到原始类型: java.util.Vector
+  缺少泛型类java.util.Vector<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/jmx/LayoutDynamicMBean.java:[52,44] 找到原始类型: java.util.Vector
+  缺少泛型类java.util.Vector<E>的类型参数
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/jmx/LayoutDynamicMBean.java:[55,19] 找到原始类型: java.util.Hashtable
+  缺少泛型类java.util.Hashtable<K,V>的类型参数
+[[1;34mINFO[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/bridge/LogEventWrapper.java: /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/bridge/LogEventWrapper.java使用或覆盖了已过时的 API。
+[[1;34mINFO[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/src/main/java/org/apache/log4j/jmx/LayoutDynamicMBean.java: 某些输入文件还使用了未经检查或不安全的操作。
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mbnd:7.0.0:bnd-process[m [1m(generate-module-descriptors)[m @ [36mlog4j-1.2-api[0;1m ---[m
+[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/bnd.bnd [0:0]: Unused Import-Package instructions: [org.apache.logging.log4j.core.*] 
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mresources:3.3.1:testResources[m [1m(default-testResources)[m @ [36mlog4j-1.2-api[0;1m ---[m
+[[1;34mINFO[m] Not copying test resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mcompiler:3.11.0:testCompile[m [1m(default-testCompile)[m @ [36mlog4j-1.2-api[0;1m ---[m
+[[1;34mINFO[m] Not compiling test sources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32msurefire:3.2.5:test[m [1m(default-test)[m @ [36mlog4j-1.2-api[0;1m ---[m
+[[1;34mINFO[m] Tests are skipped.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjar:3.3.0:jar[m [1m(default-jar)[m @ [36mlog4j-1.2-api[0;1m ---[m
+[[1;34mINFO[m] Building jar: /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/target/log4j-1.2-api-2.23.1.jar
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mcyclonedx:2.7.10:makeAggregateBom[m [1m(generate-sbom)[m @ [36mlog4j-1.2-api[0;1m ---[m
+[[1;34mINFO[m] CycloneDX: Resolving Dependencies
+[[1;34mINFO[m] CycloneDX: Creating BOM version 1.4 with 12 component(s)
+[[1;34mINFO[m] CycloneDX: Writing and validating BOM (XML): /home/ray/Tool/Dataset/logging-log4j2/log4j-1.2-api/target/bom.xml
+[[1;34mINFO[m]            attaching as log4j-1.2-api-2.23.1-cyclonedx.xml
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mbsh:1.4:run[m [1m(process-sbom)[m @ [36mlog4j-1.2-api[0;1m ---[m
+[[1;34mINFO[m] Executing Script
+[[1;34mINFO[m] file class java.lang.Object
+[[1;34mINFO[m] script class java.lang.String
+[[1;34mINFO[m] evaluating script import java.io.*;
+import java.nio.file.*;
+import java.util.*;
+import javax.xml.transform.*;
+import javax.xml.transform.stream.*;
+import org.apache.commons.codec.digest.*;
+
+    // Compute parameters
+    final String xslt = project.getProperties().getProperty("sbom.xslt");
+    final File pomFile = project.getModel().getPomFile();
+    final byte[] digest = new DigestUtils(MessageDigestAlgorithms.SHA_256).digest(pomFile);
+    final UUID bomSerialNumber = UUID.nameUUIDFromBytes(digest);
+    final String vdrUrl = Objects.requireNonNull(project.getProperties().getProperty("vdr.url"), "vdr.url");
+
+    // Move original SBOM file
+    final Path basedir = project.getBasedir().toPath();
+    final Path destPath = basedir.resolve("target/bom.xml");
+    final Path sourcePath = basedir.resolve("target/bom.orig.xml");
+    if (!Files.isReadable(destPath)) {
+      System.out.println("No CycloneDX SBOM file found, skipping transformation.");
+      return;
+    }
+    Files.move(destPath, sourcePath, new CopyOption[] {StandardCopyOption.REPLACE_EXISTING});
+
+    // Apply XSLT transformation
+    final StreamSource xsltSource = new StreamSource(new StringReader(xslt));
+    final TransformerFactory factory = TransformerFactory.newInstance();
+    final Transformer transformer = factory.newTransformer(xsltSource);
+    transformer.setParameter("sbom.serialNumber", bomSerialNumber.toString());
+    transformer.setParameter("vdr.url", vdrUrl);
+    final StreamSource source = new StreamSource(sourcePath.toUri().toASCIIString());
+    final StreamResult result = new StreamResult(destPath.toUri().toASCIIString());
+    transformer.transform(source, result);
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  7.545 s
+[[1;34mINFO[m] Finished at: 2024-05-30T13:12:23+08:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[0m[0m
+****** preprocess.package done! ******
+
+
+****** preprocess.analysis_tree ... ******
+
+generating dependency tree...
+dependency tree is generated in ./data/dependency_tree.txt successfully
+
+****** preprocess.analysis_tree done! ******
+
+
+****** preprocess.getjar ... ******
+
+
+****** get client jar / dep jar... ******
+
+**** process org.apache.logging.log4j:log4j-1.2-api:2.23.1 ****
+org.apache.logging.log4j-log4j-api-2.23.1.jar downloaded successfully.
+org.apache.logging.log4j-log4j-core-2.23.1.jar downloaded successfully.
+
+****** preprocess.getjar done! ******
+
+
+****** preprocess done! ******
+
+
+****** match ... ******
+
+**** start generating call graph of client: /home/ray/Tool/com_tool/data/Jar/log4j-1.2-api_/client/log4j-1.2-api-2.23.1.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-1.2-api_/client/log4j-1.2-api-2.23.1.jar generated ****
+Generating call graphs of deps:   0%|                                  | 0/2 [00:00<?, ?it/s]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-1.2-api_/dep/org.apache.logging.log4j-log4j-core-2.23.1.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-1.2-api_/dep/org.apache.logging.log4j-log4j-core-2.23.1.jar generated ****
+Generating call graphs of deps:  50%|█████████████             | 1/2 [00:06<00:06,  6.67s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-1.2-api_/dep/org.apache.logging.log4j-log4j-api-2.23.1.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+Exception in thread "main" java.lang.RuntimeException: An error occurred while processing <META-INF.versions.9.org.apache.logging.log4j.util.Base64Util: java.lang.String encode(java.lang.String)> in callgraph
+	at soot.jimple.spark.solver.OnFlyCallGraph.processReachables(OnFlyCallGraph.java:122)
+	at soot.jimple.spark.solver.OnFlyCallGraph.build(OnFlyCallGraph.java:106)
+	at soot.jimple.spark.builder.ContextInsensitiveBuilder.build(ContextInsensitiveBuilder.java:94)
+	at soot.jimple.spark.SparkTransformer.internalTransform(SparkTransformer.java:101)
+	at soot.SceneTransformer.transform(SceneTransformer.java:36)
+	at soot.Transform.apply(Transform.java:105)
+	at soot.RadioScenePack.internalApply(RadioScenePack.java:64)
+	at soot.jimple.toolkits.callgraph.CallGraphPack.internalApply(CallGraphPack.java:61)
+	at soot.Pack.apply(Pack.java:118)
+	at soot.PackManager.runWholeProgramPacks(PackManager.java:619)
+	at soot.PackManager.runPacksNormally(PackManager.java:500)
+	at soot.PackManager.runPacks(PackManager.java:425)
+	at ecnu.se.getcg.TestSootCallGraph.main(TestSootCallGraph.java:43)
+Caused by: java.lang.NullPointerException: Cannot invoke "soot.SootField.getType()" because the return value of "soot.jimple.StaticFieldRef.getField()" is null
+	at soot.jimple.spark.builder.MethodNodeFactory.caseStaticFieldRef(MethodNodeFactory.java:401)
+	at soot.jimple.StaticFieldRef.apply(StaticFieldRef.java:83)
+	at soot.jimple.spark.builder.MethodNodeFactory$1.caseAssignStmt(MethodNodeFactory.java:162)
+	at soot.jimple.internal.JAssignStmt.apply(JAssignStmt.java:217)
+	at soot.jimple.spark.builder.MethodNodeFactory.handleStmt(MethodNodeFactory.java:150)
+	at soot.jimple.spark.pag.MethodPAG.buildNormal(MethodPAG.java:224)
+	at soot.jimple.spark.pag.MethodPAG.build(MethodPAG.java:186)
+	at soot.jimple.spark.solver.OnFlyCallGraph.processReachables(OnFlyCallGraph.java:116)
+	... 12 more
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-1.2-api_/dep/org.apache.logging.log4j-log4j-api-2.23.1.jar generated ****
+Generating call graphs of deps: 100%|██████████████████████████| 2/2 [00:09<00:00,  4.21s/it]Generating call graphs of deps: 100%|██████████████████████████| 2/2 [00:09<00:00,  4.58s/it]
+**** generating total call graph ... ****
+**** total call graph got ****
+extract api of client jar: /home/ray/Tool/com_tool/data/Jar/log4j-1.2-api_/client/log4j-1.2-api-2.23.1.jar ...
+get api of client jar: /home/ray/Tool/com_tool/data/Jar/log4j-1.2-api_/client/log4j-1.2-api-2.23.1.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-1.2-api_/dep/org.apache.logging.log4j-log4j-core-2.23.1.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-1.2-api_/dep/org.apache.logging.log4j-log4j-core-2.23.1.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-1.2-api_/dep/org.apache.logging.log4j-log4j-api-2.23.1.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-1.2-api_/dep/org.apache.logging.log4j-log4j-api-2.23.1.jar
+
+**** get reachable api... ****
+**** reachable api got ****
+
+****map dep jar to reachable api...****
+****map done****
+
+
+****** match done ! ******
+
+
+****** calculate: ******
+
+Dep in log4j-1.2-api_:   0%|                                                  | 0/2 [00:00<?, ?it/s]-- start sorting versions of org.apache.logging.log4j:log4j-api -- 
+-- start sorting versions of org.apache.logging.log4j:log4j-core -- 
+-- get all versions of org.apache.logging.log4j:log4j-api -- 
+-- start calculating  best version of org.apache.logging.log4j:log4j-api in log4j-1.2-api/ -- 
+-- get all versions of org.apache.logging.log4j:log4j-core -- 
+-- start calculating  best version of org.apache.logging.log4j:log4j-core in log4j-1.2-api/ -- 
+start analysising dependency org.apache.logging.log4j-log4j-api-3.0.0-alpha1.jar 
+start analysising dependency org.apache.logging.log4j-log4j-core-3.0.0-alpha1.jar 
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-alpha1.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-alpha1.jar: org.apache.logging.log4j.core.LifeCycle
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-alpha1.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-alpha1.jar: org.apache.logging.log4j.core.config.Configuration
+start analysising dependency org.apache.logging.log4j-log4j-api-3.0.0-beta1.jar 
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-alpha1.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-alpha1.jar: org.apache.logging.log4j.core.config.composite.MergeStrategy
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-alpha1.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-alpha1.jar: org.apache.logging.log4j.core.script.ScriptManager
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-alpha1.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-alpha1.jar: org.apache.logging.log4j.core.script.ScriptManager
+start analysising dependency org.apache.logging.log4j-log4j-core-3.0.0-beta1.jar 
+start analysising dependency org.apache.logging.log4j-log4j-api-3.0.0-beta2.jar 
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta1.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta1.jar: org.apache.logging.log4j.core.LifeCycle
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta1.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta1.jar: org.apache.logging.log4j.core.config.Configuration
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta1.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta1.jar: org.apache.logging.log4j.core.config.Configuration
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta1.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta1.jar: org.apache.logging.log4j.core.config.composite.MergeStrategy
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta1.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta1.jar: org.apache.logging.log4j.core.script.ScriptManager
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta1.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta1.jar: org.apache.logging.log4j.core.script.ScriptManager
+-- best version of org.apache.logging.log4j:log4j-api is 2.23.1 -- 
+-- start validating the best version of org.apache.logging.log4j:log4j-api in log4j-1.2-api/ --
+org.apache.logging.log4j:log4j-api:2.23.1 ---> 3.0.0-alpha1
+start analysising dependency org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar 
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar: org.apache.logging.log4j.core.LifeCycle
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar: org.apache.logging.log4j.core.config.Configuration
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar: org.apache.logging.log4j.core.config.Configuration
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar: org.apache.logging.log4j.core.config.Configuration
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar: org.apache.logging.log4j.core.config.Configuration
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar: org.apache.logging.log4j.core.config.composite.MergeStrategy
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar: org.apache.logging.log4j.core.script.ScriptManager
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar: org.apache.logging.log4j.core.script.ScriptManager
+org.apache.logging.log4j:log4j-api:2.23.1 ---> 3.0.0-beta1
+-- best version of org.apache.logging.log4j:log4j-core is 2.23.1 -- 
+-- start validating the best version of org.apache.logging.log4j:log4j-core in log4j-1.2-api/ --
+org.apache.logging.log4j:log4j-core:2.23.1 ---> 3.0.0-alpha1
+org.apache.logging.log4j:log4j-api:2.23.1 ---> 3.0.0-beta2
+Actually best version of org.apache.logging.log4j:log4j-api is 3.0.0-beta2
+ find a fp: org.apache.logging.log4j:log4j-api:2.23.1 ---> 2.23.1
+>>>>>> compilation log for former version
+>>>>>> compilation log for later version
+ find a fn: org.apache.logging.log4j:log4j-api:2.23.1 ---> 3.0.0-beta2
+>>>>>> compilation log for former version
+>>>>>> compilation log for later version
+-- validation to the best version of org.apache.logging.log4j:log4j-api in log4j-1.2-api/  done --
+Dep in log4j-1.2-api_:  50%|█████████████████████                     | 1/2 [00:52<00:52, 52.90s/it]org.apache.logging.log4j:log4j-core:2.23.1 ---> 3.0.0-beta1
+org.apache.logging.log4j:log4j-core:2.23.1 ---> 3.0.0-beta2
+Actually best version of org.apache.logging.log4j:log4j-core is 2.23.1
+-- validation to the best version of org.apache.logging.log4j:log4j-core in log4j-1.2-api/  done --
+Dep in log4j-1.2-api_: 100%|██████████████████████████████████████████| 2/2 [01:11<00:00, 32.54s/it]Dep in log4j-1.2-api_: 100%|██████████████████████████████████████████| 2/2 [01:11<00:00, 35.60s/it]
+set all dep to best version 
+
+cal
+
+****** calculate done ! ******
+
+
+Script done on 2024-05-30 13:13:59+08:00 [COMMAND_EXIT_CODE="0"]

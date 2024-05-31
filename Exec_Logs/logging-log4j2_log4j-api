@@ -1,147 +1,0 @@
-Script started on 2024-05-30 16:23:36+08:00 [TERM="xterm-256color" TTY="/dev/pts/14" COLUMNS="100" LINES="39"]
-
-****** preprocessing ... ******
-
-****** set the git repository to the lastest tag status ******
-HEAD 现在位于 fea2a71161 Update the `project.build.outputTimestamp` property
-remote: Enumerating objects: 9, done.[K
-remote: Counting objects:  11% (1/9)[Kremote: Counting objects:  22% (2/9)[Kremote: Counting objects:  33% (3/9)[Kremote: Counting objects:  44% (4/9)[Kremote: Counting objects:  55% (5/9)[Kremote: Counting objects:  66% (6/9)[Kremote: Counting objects:  77% (7/9)[Kremote: Counting objects:  88% (8/9)[Kremote: Counting objects: 100% (9/9)[Kremote: Counting objects: 100% (9/9), done.[K
-remote: Compressing objects:  33% (1/3)[Kremote: Compressing objects:  66% (2/3)[Kremote: Compressing objects: 100% (3/3)[Kremote: Compressing objects: 100% (3/3), done.[K
-remote: Total 9 (delta 5), reused 9 (delta 5), pack-reused 0[K
-展开对象中:  11% (1/9)展开对象中:  22% (2/9)展开对象中:  33% (3/9)展开对象中:  44% (4/9)展开对象中:  55% (5/9)展开对象中:  66% (6/9)展开对象中:  77% (7/9)展开对象中:  88% (8/9)展开对象中: 100% (9/9)展开对象中: 100% (9/9), 1.52 KiB | 222.00 KiB/s, 完成.
-来自 https://github.com/apache/logging-log4j2
-   80dc155342..00139dcdb3  doc/2.x/migrate-from-logback+slf4j -> origin/doc/2.x/migrate-from-logback+slf4j
-HEAD 目前位于 fea2a71161 Update the `project.build.outputTimestamp` property
-
-****** preprocess.package ... ******
-
-mvn clean and mvn package...
-[[1;34mINFO[m] Scanning for projects...
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m-----------------< [0;36morg.apache.logging.log4j:log4j-api[0;1m >-----------------[m
-[[1;34mINFO[m] [1mBuilding Apache Log4j API 2.23.1[m
-[[1;34mINFO[m]   from pom.xml
-[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
-[90mDownloading from [0maliyun[90m: https://maven.aliyun.com/repository/public/[0morg/osgi/org.osgi.core/6.0.0/org.osgi.core-6.0.0.jar
-Progress (1): 3.6/475 kBProgress (1): 7.7/475 kBProgress (1): 12/475 kB Progress (1): 16/475 kBProgress (1): 20/475 kBProgress (1): 24/475 kBProgress (1): 28/475 kBProgress (1): 32/475 kBProgress (1): 36/475 kBProgress (1): 40/475 kBProgress (1): 45/475 kBProgress (1): 49/475 kBProgress (1): 53/475 kBProgress (1): 57/475 kBProgress (1): 61/475 kBProgress (1): 65/475 kBProgress (1): 69/475 kBProgress (1): 73/475 kBProgress (1): 77/475 kBProgress (1): 81/475 kBProgress (1): 86/475 kBProgress (1): 90/475 kBProgress (1): 94/475 kBProgress (1): 98/475 kBProgress (1): 102/475 kBProgress (1): 106/475 kBProgress (1): 110/475 kBProgress (1): 114/475 kBProgress (1): 118/475 kBProgress (1): 122/475 kBProgress (1): 126/475 kBProgress (1): 131/475 kBProgress (1): 135/475 kBProgress (1): 139/475 kBProgress (1): 143/475 kBProgress (1): 147/475 kBProgress (1): 151/475 kBProgress (1): 155/475 kBProgress (1): 159/475 kBProgress (1): 163/475 kBProgress (1): 167/475 kBProgress (1): 172/475 kBProgress (1): 176/475 kBProgress (1): 180/475 kBProgress (1): 184/475 kBProgress (1): 188/475 kBProgress (1): 192/475 kBProgress (1): 196/475 kBProgress (1): 200/475 kBProgress (1): 204/475 kBProgress (1): 208/475 kBProgress (1): 213/475 kBProgress (1): 217/475 kBProgress (1): 221/475 kBProgress (1): 225/475 kBProgress (1): 229/475 kBProgress (1): 233/475 kBProgress (1): 237/475 kBProgress (1): 241/475 kBProgress (1): 245/475 kBProgress (1): 249/475 kBProgress (1): 253/475 kBProgress (1): 258/475 kBProgress (1): 262/475 kBProgress (1): 266/475 kBProgress (1): 270/475 kBProgress (1): 274/475 kBProgress (1): 278/475 kBProgress (1): 282/475 kBProgress (1): 286/475 kBProgress (1): 290/475 kBProgress (1): 294/475 kBProgress (1): 299/475 kBProgress (1): 303/475 kBProgress (1): 307/475 kBProgress (1): 311/475 kBProgress (1): 315/475 kBProgress (1): 319/475 kBProgress (1): 323/475 kBProgress (1): 327/475 kBProgress (1): 331/475 kBProgress (1): 335/475 kBProgress (1): 339/475 kBProgress (1): 344/475 kBProgress (1): 348/475 kBProgress (1): 352/475 kBProgress (1): 356/475 kBProgress (1): 360/475 kBProgress (1): 364/475 kBProgress (1): 368/475 kBProgress (1): 372/475 kBProgress (1): 376/475 kBProgress (1): 380/475 kBProgress (1): 385/475 kBProgress (1): 389/475 kBProgress (1): 393/475 kBProgress (1): 397/475 kBProgress (1): 401/475 kBProgress (1): 405/475 kBProgress (1): 409/475 kBProgress (1): 413/475 kBProgress (1): 417/475 kBProgress (1): 421/475 kBProgress (1): 426/475 kBProgress (1): 430/475 kBProgress (1): 434/475 kBProgress (1): 438/475 kBProgress (1): 442/475 kBProgress (1): 446/475 kBProgress (1): 450/475 kBProgress (1): 454/475 kBProgress (1): 458/475 kBProgress (1): 462/475 kBProgress (1): 466/475 kBProgress (1): 471/475 kBProgress (1): 475/475 kBProgress (1): 475 kB                        Downloaded[90m from [0maliyun[90m: https://maven.aliyun.com/repository/public/[0morg/osgi/org.osgi.core/6.0.0/org.osgi.core-6.0.0.jar[90m (475 kB at 44 kB/s)[0m
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mclean:3.3.2:clean[m [1m(default-clean)[m @ [36mlog4j-api[0;1m ---[m
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mflatten:1.5.0:clean[m [1m(clean-flattened-pom)[m @ [36mlog4j-api[0;1m ---[m
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32menforcer:3.4.1:enforce[m [1m(enforce-maven-version)[m @ [36mlog4j-api[0;1m ---[m
-[[1;34mINFO[m] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32menforcer:3.4.1:enforce[m [1m(enforce-java-version)[m @ [36mlog4j-api[0;1m ---[m
-[[1;34mINFO[m] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32menforcer:3.4.1:enforce[m [1m(enforce-upper-bound-deps)[m @ [36mlog4j-api[0;1m ---[m
-[[1;34mINFO[m] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32menforcer:3.4.1:enforce[m [1m(ban-wildcard-imports)[m @ [36mlog4j-api[0;1m ---[m
-[[1;34mINFO[m] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32menforcer:3.4.1:enforce[m [1m(ban-logging-dependencies)[m @ [36mlog4j-api[0;1m ---[m
-[[1;34mINFO[m] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mbuild-helper:3.5.0:parse-version[m [1m(parse-version)[m @ [36mlog4j-api[0;1m ---[m
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mbuild-helper:3.5.0:add-source[m [1m(add-source)[m @ [36mlog4j-api[0;1m ---[m
-[[1;34mINFO[m] Source directory: /home/ray/Tool/Dataset/logging-log4j2/log4j-api/target/log4j-api-java9 added.
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mclean:3.3.2:clean[m [1m(delete-module-descriptors)[m @ [36mlog4j-api[0;1m ---[m
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mremote-resources:3.1.0:process[m [1m(process-resource-bundles)[m @ [36mlog4j-api[0;1m ---[m
-[[1;34mINFO[m] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
-[[1;34mINFO[m] Copying 3 resources from 1 bundle.
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mresources:3.3.1:resources[m [1m(default-resources)[m @ [36mlog4j-api[0;1m ---[m
-[[1;34mINFO[m] Copying 1 resource from src/main/resources to target/classes
-[[1;34mINFO[m] Copying 3 resources from target/maven-shared-archive-resources to target/classes
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mflatten:1.5.0:flatten[m [1m(flatten-revision)[m @ [36mlog4j-api[0;1m ---[m
-[[1;34mINFO[m] Generating flattened POM of project org.apache.logging.log4j:log4j-api:jar:2.23.1...
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mclean:3.3.2:clean[m [1m(delete-module-descriptor)[m @ [36mlog4j-api[0;1m ---[m
-[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/logging-log4j2/log4j-api/target/classes (includes = [module-info.class], excludes = [])
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mcompiler:3.11.0:compile[m [1m(default-compile)[m @ [36mlog4j-api[0;1m ---[m
-[[1;34mINFO[m] Changes detected - recompiling the module! :source
-[[1;34mINFO[m] Compiling 149 source files with javac [debug release 8] to target/classes
-[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-api/src/main/java/org/apache/logging/log4j/LogBuilder.java:[20,37] org.apache.logging.log4j.util中的org.apache.logging.log4j.util.Supplier已过时
-[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-api/src/main/java/org/apache/logging/log4j/spi/ExtendedLogger.java:[24,37] org.apache.logging.log4j.util中的org.apache.logging.log4j.util.Supplier已过时
-[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-api/src/main/java/org/apache/logging/log4j/spi/AbstractLogger.java:[42,37] org.apache.logging.log4j.util中的org.apache.logging.log4j.util.Supplier已过时
-[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-api/src/main/java/org/apache/logging/log4j/internal/DefaultLogBuilder.java:[31,37] org.apache.logging.log4j.util中的org.apache.logging.log4j.util.Supplier已过时
-[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-api/src/main/java/org/apache/logging/log4j/message/package-info.java:[22,1] [NotJavadoc] Avoid using `/**` for comments which aren't actually Javadoc.
-    (see https://errorprone.info/bugpattern/NotJavadoc)
-  Did you mean '/*'?
-[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-api/src/main/java/org/apache/logging/log4j/Logger.java:[1913,36] [TypeParameterUnusedInFormals] Declaring a type parameter that is only used in the return type is a misuse of generics: operations on the type parameter are unchecked, it hides unsafe casts at invocations of the method, and it interacts badly with method overload resolution.
-    (see https://errorprone.info/bugpattern/TypeParameterUnusedInFormals)
-[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-api/src/main/java/org/apache/logging/log4j/util/ReadOnlyStringMap.java:[93,11] [TypeParameterUnusedInFormals] Declaring a type parameter that is only used in the return type is a misuse of generics: operations on the type parameter are unchecked, it hides unsafe casts at invocations of the method, and it interacts badly with method overload resolution.
-    (see https://errorprone.info/bugpattern/TypeParameterUnusedInFormals)
-[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-api/src/main/java/org/apache/logging/log4j/util/Cast.java:[30,25] [TypeParameterUnusedInFormals] Declaring a type parameter that is only used in the return type is a misuse of generics: operations on the type parameter are unchecked, it hides unsafe casts at invocations of the method, and it interacts badly with method overload resolution.
-    (see https://errorprone.info/bugpattern/TypeParameterUnusedInFormals)
-[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-api/src/main/java/org/apache/logging/log4j/spi/CopyOnWriteSortedArrayThreadContextMap.java:[173,18] [TypeParameterUnusedInFormals] Declaring a type parameter that is only used in the return type is a misuse of generics: operations on the type parameter are unchecked, it hides unsafe casts at invocations of the method, and it interacts badly with method overload resolution.
-    (see https://errorprone.info/bugpattern/TypeParameterUnusedInFormals)
-[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-api/src/main/java/org/apache/logging/log4j/spi/ObjectThreadContextMap.java:[37,11] [TypeParameterUnusedInFormals] Declaring a type parameter that is only used in the return type is a misuse of generics: operations on the type parameter are unchecked, it hides unsafe casts at invocations of the method, and it interacts badly with method overload resolution.
-    (see https://errorprone.info/bugpattern/TypeParameterUnusedInFormals)
-[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-api/src/main/java/org/apache/logging/log4j/util/IndexedReadOnlyStringMap.java:[49,11] [TypeParameterUnusedInFormals] Declaring a type parameter that is only used in the return type is a misuse of generics: operations on the type parameter are unchecked, it hides unsafe casts at invocations of the method, and it interacts badly with method overload resolution.
-    (see https://errorprone.info/bugpattern/TypeParameterUnusedInFormals)
-[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-api/src/main/java/org/apache/logging/log4j/simple/SimpleLogger.java:[280,30] [JavaUtilDate] Date has a bad API that leads to bugs; prefer java.time.Instant or LocalDate.
-    (see https://errorprone.info/bugpattern/JavaUtilDate)
-[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-api/src/main/java/org/apache/logging/log4j/spi/AbstractLogger.java:[1479,43] [TypeParameterUnusedInFormals] Declaring a type parameter that is only used in the return type is a misuse of generics: operations on the type parameter are unchecked, it hides unsafe casts at invocations of the method, and it interacts badly with method overload resolution.
-    (see https://errorprone.info/bugpattern/TypeParameterUnusedInFormals)
-[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-api/src/main/java/org/apache/logging/log4j/util/LoaderUtil.java:[304,25] [TypeParameterUnusedInFormals] Declaring a type parameter that is only used in the return type is a misuse of generics: operations on the type parameter are unchecked, it hides unsafe casts at invocations of the method, and it interacts badly with method overload resolution.
-    (see https://errorprone.info/bugpattern/TypeParameterUnusedInFormals)
-[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-api/src/main/java/org/apache/logging/log4j/util/LoaderUtil.java:[383,25] [TypeParameterUnusedInFormals] Declaring a type parameter that is only used in the return type is a misuse of generics: operations on the type parameter are unchecked, it hides unsafe casts at invocations of the method, and it interacts badly with method overload resolution.
-    (see https://errorprone.info/bugpattern/TypeParameterUnusedInFormals)
-[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-api/src/main/java/org/apache/logging/log4j/util/LoaderUtil.java:[458,43] [URLEqualsHashCode] Avoid hash-based containers of java.net.URL--the containers rely on equals() and hashCode(), which cause java.net.URL to make blocking internet connections.
-    (see https://errorprone.info/bugpattern/URLEqualsHashCode)
-[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-api/src/main/java/org/apache/logging/log4j/util/LazyUtil.java:[36,18] [TypeParameterUnusedInFormals] Declaring a type parameter that is only used in the return type is a misuse of generics: operations on the type parameter are unchecked, it hides unsafe casts at invocations of the method, and it interacts badly with method overload resolution.
-    (see https://errorprone.info/bugpattern/TypeParameterUnusedInFormals)
-[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-api/src/main/java/org/apache/logging/log4j/spi/DefaultThreadContextMap.java:[178,18] [TypeParameterUnusedInFormals] Declaring a type parameter that is only used in the return type is a misuse of generics: operations on the type parameter are unchecked, it hides unsafe casts at invocations of the method, and it interacts badly with method overload resolution.
-    (see https://errorprone.info/bugpattern/TypeParameterUnusedInFormals)
-[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-api/src/main/java/org/apache/logging/log4j/util/SortedArrayStringMap.java:[172,18] [TypeParameterUnusedInFormals] Declaring a type parameter that is only used in the return type is a misuse of generics: operations on the type parameter are unchecked, it hides unsafe casts at invocations of the method, and it interacts badly with method overload resolution.
-    (see https://errorprone.info/bugpattern/TypeParameterUnusedInFormals)
-[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-api/src/main/java/org/apache/logging/log4j/util/SortedArrayStringMap.java:[365,18] [TypeParameterUnusedInFormals] Declaring a type parameter that is only used in the return type is a misuse of generics: operations on the type parameter are unchecked, it hides unsafe casts at invocations of the method, and it interacts badly with method overload resolution.
-    (see https://errorprone.info/bugpattern/TypeParameterUnusedInFormals)
-[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-api/src/main/java/org/apache/logging/log4j/spi/ThreadContextMapFactory.java:[89,27] [UnusedVariable] The local variable 'cl' is never read.
-    (see https://errorprone.info/bugpattern/UnusedVariable)
-  Did you mean to remove this line or 'ProviderUtil.findClassLoader();'?
-[[1;33mWARNING[m] /home/ray/Tool/Dataset/logging-log4j2/log4j-api/src/main/java/org/apache/logging/log4j/spi/GarbageFreeSortedArrayThreadContextMap.java:[164,18] [TypeParameterUnusedInFormals] Declaring a type parameter that is only used in the return type is a misuse of generics: operations on the type parameter are unchecked, it hides unsafe casts at invocations of the method, and it interacts badly with method overload resolution.
-    (see https://errorprone.info/bugpattern/TypeParameterUnusedInFormals)
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mbnd:7.0.0:bnd-process[m [1m(generate-module-descriptors)[m @ [36mlog4j-api[0;1m ---[m
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mresources:3.3.1:testResources[m [1m(default-testResources)[m @ [36mlog4j-api[0;1m ---[m
-[[1;34mINFO[m] Not copying test resources
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mcompiler:3.11.0:testCompile[m [1m(default-testCompile)[m @ [36mlog4j-api[0;1m ---[m
-[[1;34mINFO[m] Not compiling test sources
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32msurefire:3.2.5:test[m [1m(default-test)[m @ [36mlog4j-api[0;1m ---[m
-[[1;34mINFO[m] Tests are skipped.
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mdependency:3.6.1:unpack[m [1m(unpack-classes)[m @ [36mlog4j-api[0;1m ---[m
-[[1;34mINFO[m] Configured Artifact: org.apache.logging.log4j:log4j-api-java9:2.23.1:zip
-[90mDownloading from [0maliyun[90m: https://maven.aliyun.com/repository/public/[0morg/apache/logging/log4j/log4j-api-java9/2.23.1/log4j-api-java9-2.23.1.pom
-[[1;33mWARNING[m] The POM for org.apache.logging.log4j:log4j-api-java9:zip:2.23.1 is missing, no dependency information available
-[90mDownloading from [0maliyun[90m: https://maven.aliyun.com/repository/public/[0morg/apache/logging/log4j/log4j-api-java9/2.23.1/log4j-api-java9-2.23.1.zip
-[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
-[[1;34mINFO[m] [1;31mBUILD FAILURE[m
-[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
-[[1;34mINFO[m] Total time:  17.996 s
-[[1;34mINFO[m] Finished at: 2024-05-30T16:23:57+08:00
-[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
-[[1;31mERROR[m] Failed to execute goal [32morg.apache.maven.plugins:maven-dependency-plugin:3.6.1:unpack[m [1m(unpack-classes)[m on project [36mlog4j-api[m: [1;31mUnable to find/resolve artifact.[m: The following artifacts could not be resolved: org.apache.logging.log4j:log4j-api-java9:zip:2.23.1 (absent): Could not find artifact org.apache.logging.log4j:log4j-api-java9:zip:2.23.1 in aliyun (https://maven.aliyun.com/repository/public) -> [1m[Help 1][m
-[[1;31mERROR[m] 
-[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
-[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
-[[1;31mERROR[m] 
-[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
-[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
-[0m[0m
-****** module package fails. Please check the project ******
-
-
-Script done on 2024-05-30 16:23:57+08:00 [COMMAND_EXIT_CODE="0"]

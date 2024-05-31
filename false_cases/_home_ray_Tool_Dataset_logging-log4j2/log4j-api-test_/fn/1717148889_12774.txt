@@ -1,0 +1,122 @@
+module name: log4j-api-test/
+
+* * * * * * * *
+groudId: org.apache.maven
+artifactId: maven-settings-builder
+old version: 3.9.6
+new version: 3.9.6
+classifier: 
+depth: 2
+reachable api of old version:
+/ / / / / / / / /
+revapi log of the subsequent version -- 3.9.7:
+17:40:09.702 INFO  Downloading checked archives
+17:40:09.720 INFO  Downloading extensions
+17:40:14.520 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.apache.maven-maven-settings-builder-3.9.6.jar
+New API: org.apache.maven-maven-settings-builder-3.9.7.jar
+
+17:40:26.313 INFO  Analysis took 11786ms.
+
+
+* * * * * * * *
+>>>>>>
+subsequent compilation log of 3.9.7:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< org.apache.logging.log4j:log4j-api-test >---------------
+[INFO] Building Apache Log4j API Tests 2.23.1
+[INFO]   from _temp_org.apache.maven_maven-settings-builder_3.9.7_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/maven-settings-builder/3.9.7/maven-settings-builder-3.9.7.pom
+Progress (1): 2.5 kB
+                    
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/maven-settings-builder/3.9.7/maven-settings-builder-3.9.7.pom (2.5 kB at 1.6 kB/s)
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/maven-settings-builder/3.9.7/maven-settings-builder-3.9.7.jar
+Progress (1): 3.6/42 kB
+Progress (1): 7.7/42 kB
+Progress (1): 12/42 kB 
+Progress (1): 16/42 kB
+Progress (1): 20/42 kB
+Progress (1): 24/42 kB
+Progress (1): 28/42 kB
+Progress (1): 32/42 kB
+Progress (1): 36/42 kB
+Progress (1): 40/42 kB
+Progress (1): 42 kB   
+                   
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/apache/maven/maven-settings-builder/3.9.7/maven-settings-builder-3.9.7.jar (42 kB at 97 kB/s)
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ log4j-api-test ---
+[INFO] 
+[INFO] --- flatten:1.5.0:clean (clean-flattened-pom) @ log4j-api-test ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-upper-bound-deps) @ log4j-api-test ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  8.334 s
+[INFO] Finished at: 2024-05-31T17:45:26+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:3.4.1:enforce (enforce-upper-bound-deps) on project log4j-api-test: 
+[ERROR] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps failed with message:
+[ERROR] Failed while enforcing RequireUpperBoundDeps. The error(s) are [
+[ERROR] Require upper bound dependencies error for org.apache.maven:maven-settings:3.9.6 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-settings:3.9.6
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-settings-builder:3.9.7 (managed) <-- org.apache.maven:maven-settings-builder:3.9.6
+[ERROR]       +-org.apache.maven:maven-settings:3.9.7
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.apache.maven:maven-builder-support:3.9.6 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-builder-support:3.9.6
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-settings-builder:3.9.7 (managed) <-- org.apache.maven:maven-settings-builder:3.9.6
+[ERROR]       +-org.apache.maven:maven-builder-support:3.9.7
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-model-builder:3.9.6
+[ERROR]       +-org.apache.maven:maven-builder-support:3.9.6
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.codehaus.plexus:plexus-interpolation:1.26 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.codehaus.plexus:plexus-interpolation:1.26
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-settings-builder:3.9.7 (managed) <-- org.apache.maven:maven-settings-builder:3.9.6
+[ERROR]       +-org.codehaus.plexus:plexus-interpolation:1.27
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-model-builder:3.9.6
+[ERROR]       +-org.codehaus.plexus:plexus-interpolation:1.26
+[ERROR] ]
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+
+* * * * * * * *

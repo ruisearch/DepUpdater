@@ -1,0 +1,94 @@
+module name: log4j-api-test/
+
+* * * * * * * *
+groudId: org.codehaus.plexus
+artifactId: plexus-classworlds
+old version: 2.7.0
+new version: 2.8.0
+classifier: 
+depth: 2
+reachable api of old version:
+/ / / / / / / / /
+revapi log of former version -- 2.8.0:
+17:47:47.757 INFO  Downloading checked archives
+17:47:47.808 INFO  Downloading extensions
+17:47:53.139 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.codehaus.plexus-plexus-classworlds-2.7.0.jar
+New API: org.codehaus.plexus-plexus-classworlds-2.8.0.jar
+
+17:48:03.574 INFO  Analysis took 10411ms.
+
+
+* * * * * * * *
+>>>>>>
+compilation log of 2.8.0:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< org.apache.logging.log4j:log4j-api-test >---------------
+[INFO] Building Apache Log4j API Tests 2.23.1
+[INFO]   from _temp_org.codehaus.plexus_plexus-classworlds_2.8.0_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+Downloading from aliyun: https://maven.aliyun.com/repository/public/org/codehaus/plexus/plexus-classworlds/2.8.0/plexus-classworlds-2.8.0.jar
+Progress (1): 3.6/54 kB
+Progress (1): 7.7/54 kB
+Progress (1): 12/54 kB 
+Progress (1): 16/54 kB
+Progress (1): 20/54 kB
+Progress (1): 24/54 kB
+Progress (1): 28/54 kB
+Progress (1): 32/54 kB
+Progress (1): 36/54 kB
+Progress (1): 40/54 kB
+Progress (1): 45/54 kB
+Progress (1): 49/54 kB
+Progress (1): 53/54 kB
+Progress (1): 54 kB   
+                   
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/org/codehaus/plexus/plexus-classworlds/2.8.0/plexus-classworlds-2.8.0.jar (54 kB at 48 kB/s)
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ log4j-api-test ---
+[INFO] Deleting /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/target
+[INFO] 
+[INFO] --- flatten:1.5.0:clean (clean-flattened-pom) @ log4j-api-test ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-upper-bound-deps) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (ban-wildcard-imports) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (ban-logging-dependencies) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] 
+[INFO] --- build-helper:3.5.0:parse-version (parse-version) @ log4j-api-test ---
+[INFO] 
+[INFO] --- clean:3.3.2:clean (delete-module-descriptors) @ log4j-api-test ---
+[INFO] 
+[INFO] --- remote-resources:3.1.0:process (process-resource-bundles) @ log4j-api-test ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  7.126 s
+[INFO] Finished at: 2024-05-31T17:48:16+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-remote-resources-plugin:3.1.0:process (process-resource-bundles) on project log4j-api-test: Error reading remote resource: /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/target/maven-shared-archive-resources/META-INF/DEPENDENCIES -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+
+* * * * * * * *

@@ -1,0 +1,388 @@
+module name: log4j-api-test/
+
+* * * * * * * *
+groudId: com.google.inject
+artifactId: guice
+old version: 5.1.0
+new version: 7.0.0
+classifier: 
+depth: 2
+reachable api of old version:
+    com.google.inject.ConfigurationException: java.lang.String getMessage()
+    com.google.inject.CreationException: java.lang.String getMessage()
+    com.google.inject.ProvisionException: java.lang.String getMessage()
+    com.google.inject.TypeLiteral: int hashCode()
+    com.google.inject.internal.InternalFlags$1: void <init>(java.lang.String)
+    com.google.inject.internal.InternalFlags$1: java.lang.String run()
+    com.google.inject.internal.InternalFlags$BytecodeGenOption: void <init>(java.lang.String,int)
+    com.google.inject.internal.InternalFlags$BytecodeGenOption: void <clinit>()
+    com.google.inject.internal.InternalFlags$ColorizeOption$1: void <init>(java.lang.String,int)
+    com.google.inject.internal.InternalFlags$ColorizeOption$2: void <init>(java.lang.String,int)
+    com.google.inject.internal.InternalFlags$ColorizeOption$3: void <init>(java.lang.String,int)
+    com.google.inject.internal.InternalFlags$ColorizeOption$3: boolean enabled()
+    com.google.inject.internal.InternalFlags$ColorizeOption: void <init>(java.lang.String,int)
+    com.google.inject.internal.InternalFlags$ColorizeOption: void <init>(java.lang.String,int,com.google.inject.internal.InternalFlags$1)
+    com.google.inject.internal.InternalFlags$ColorizeOption: void <clinit>()
+    com.google.inject.internal.InternalFlags$CustomClassLoadingOption: void <init>(java.lang.String,int)
+    com.google.inject.internal.InternalFlags$CustomClassLoadingOption: void <clinit>()
+    com.google.inject.internal.InternalFlags$IncludeStackTraceOption: void <init>(java.lang.String,int)
+    com.google.inject.internal.InternalFlags$IncludeStackTraceOption: void <clinit>()
+    com.google.inject.internal.InternalFlags$NullableProvidesOption: void <init>(java.lang.String,int)
+    com.google.inject.internal.InternalFlags$NullableProvidesOption: void <clinit>()
+    com.google.inject.internal.InternalFlags: boolean enableColorizeErrorMessages()
+    com.google.inject.internal.InternalFlags: java.lang.Enum getSystemOption(java.lang.String,java.lang.Enum)
+    com.google.inject.internal.InternalFlags: java.lang.Enum getSystemOption(java.lang.String,java.lang.Enum,java.lang.Enum)
+    com.google.inject.internal.InternalFlags: void <clinit>()
+    com.google.inject.internal.Messages$1: void <init>(java.lang.Class)
+    com.google.inject.internal.Messages$2: void <init>(java.lang.Class)
+    com.google.inject.internal.Messages$3: void <init>(java.lang.Class)
+    com.google.inject.internal.Messages$Converter: void <init>(java.lang.Class)
+    com.google.inject.internal.Messages$FormatOptions: void <init>(java.lang.String,int,java.lang.String)
+    com.google.inject.internal.Messages$FormatOptions: java.lang.String access$000(com.google.inject.internal.Messages$FormatOptions)
+    com.google.inject.internal.Messages$FormatOptions: void <clinit>()
+    com.google.inject.internal.Messages$ThrowableEquivalence: void <init>()
+    com.google.inject.internal.Messages$ThrowableEquivalence: void <clinit>()
+    com.google.inject.internal.Messages: java.lang.String formatMessages(java.lang.String,java.util.Collection)
+    com.google.inject.internal.Messages: java.lang.Throwable getOnlyCause(java.util.Collection)
+    com.google.inject.internal.Messages: java.lang.String formatText(java.lang.String,com.google.inject.internal.Messages$FormatOptions[])
+    com.google.inject.internal.Messages: java.lang.String bold(java.lang.String)
+    com.google.inject.internal.Messages: java.lang.String faint(java.lang.String)
+    com.google.inject.internal.Messages: void <clinit>()
+    com.google.inject.internal.PackageNameCompressor: java.lang.String compressPackagesInMessage(java.lang.String)
+    com.google.inject.internal.PackageNameCompressor: com.google.common.collect.ImmutableSet replaceFullNames(java.lang.String,java.util.Map,java.lang.StringBuilder)
+    com.google.inject.internal.PackageNameCompressor: java.lang.String buildClassNameLegend(java.util.Map)
+    com.google.inject.internal.PackageNameCompressor: java.util.Map shortenNames(java.util.Collection)
+    com.google.inject.internal.PackageNameCompressor: void <clinit>()
+/ / / / / / / / /
+revapi log of former version -- 7.0.0:
+17:46:50.782 INFO  Downloading checked archives
+17:46:50.814 INFO  Downloading extensions
+17:46:54.490 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: com.google.inject-guice-5.1.0.jar
+New API: com.google.inject-guice-7.0.0.jar
+old: method java.lang.Class<? extends javax.inject.Provider<?>> com.google.inject.ProvidedBy::value()
+new: method java.lang.Class<? extends jakarta.inject.Provider<?>> com.google.inject.ProvidedBy::value()
+java.method.returnTypeTypeParametersChanged: The return type changed from 'java.lang.Class<? extends javax.inject.Provider<?>>' to 'java.lang.Class<? extends jakarta.inject.Provider<?>>'.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: parameter com.google.inject.binder.ScopedBindingBuilder com.google.inject.binder.LinkedBindingBuilder<T>::toProvider(===javax.inject.Provider<? extends T>===)
+new: parameter com.google.inject.binder.ScopedBindingBuilder com.google.inject.binder.LinkedBindingBuilder<T>::toProvider(===jakarta.inject.Provider<? extends T>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'javax.inject.Provider<? extends T>' to 'jakarta.inject.Provider<? extends T>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter com.google.inject.internal.BindingBuilder<T> com.google.inject.internal.BindingBuilder<T>::toProvider(===javax.inject.Provider<? extends T>===)
+new: parameter com.google.inject.internal.BindingBuilder<T> com.google.inject.internal.BindingBuilder<T>::toProvider(===jakarta.inject.Provider<? extends T>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'javax.inject.Provider<? extends T>' to 'jakarta.inject.Provider<? extends T>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class com.google.inject.internal.Errors
+new: class com.google.inject.internal.Errors
+java.class.defaultSerializationChanged: The default serialization ID for the class has changed. This means that the new version of the class is not deserializable from the byte stream of a serialized old class.
+SOURCE: EQUIVALENT, SEMANTIC: BREAKING, BINARY: EQUIVALENT
+
+old: class com.google.inject.internal.InjectorImpl
+new: class com.google.inject.internal.InjectorImpl
+java.class.nonPublicPartOfAPI: Class 'com.google.inject.internal.InjectorImpl' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+SOURCE: NON_BREAKING, SEMANTIC: BREAKING, BINARY: NON_BREAKING
+
+old: class com.google.inject.internal.InternalContext
+new: class com.google.inject.internal.InternalContext
+java.class.nonPublicPartOfAPI: Class 'com.google.inject.internal.InternalContext' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+SOURCE: NON_BREAKING, SEMANTIC: BREAKING, BINARY: NON_BREAKING
+
+old: interface com.google.inject.internal.InternalFactory<T>
+new: interface com.google.inject.internal.InternalFactory<T>
+java.class.nonPublicPartOfAPI: Class 'com.google.inject.internal.InternalFactory<T>' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+SOURCE: NON_BREAKING, SEMANTIC: BREAKING, BINARY: NON_BREAKING
+
+old: method java.lang.StackTraceElement com.google.inject.internal.util.SourceProvider::get(java.lang.StackTraceElement[])
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method javax.inject.Provider<? extends T> com.google.inject.spi.ProviderInstanceBinding<T>::getUserSuppliedProvider()
+new: method jakarta.inject.Provider<? extends T> com.google.inject.spi.ProviderInstanceBinding<T>::getUserSuppliedProvider()
+java.method.returnTypeChanged: The return type changed from 'javax.inject.Provider<? extends T>' to  'jakarta.inject.Provider<? extends T>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method com.google.inject.Key<? extends javax.inject.Provider<? extends T>> com.google.inject.spi.ProviderKeyBinding<T>::getProviderKey()
+new: method com.google.inject.Key<? extends jakarta.inject.Provider<? extends T>> com.google.inject.spi.ProviderKeyBinding<T>::getProviderKey()
+java.method.returnTypeTypeParametersChanged: The return type changed from 'com.google.inject.Key<? extends javax.inject.Provider<? extends T>>' to 'com.google.inject.Key<? extends jakarta.inject.Provider<? extends T>>'.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: parameter <T> com.google.inject.Provider<T> com.google.inject.util.Providers::guicify(===javax.inject.Provider<T>===)
+new: parameter <T> com.google.inject.Provider<T> com.google.inject.util.Providers::guicify(===com.google.inject.Provider<T>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'javax.inject.Provider<T>' to 'com.google.inject.Provider<T>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method java.lang.reflect.Type com.google.inject.util.Types::javaxProviderOf(java.lang.reflect.Type)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+17:47:09.360 INFO  Analysis took 14864ms.
+
+
+* * * * * * * *
+>>>>>>
+compilation log of 7.0.0:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< org.apache.logging.log4j:log4j-api-test >---------------
+[INFO] Building Apache Log4j API Tests 2.23.1
+[INFO]   from _temp_com.google.inject_guice_7.0.0_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+Downloading from aliyun: https://maven.aliyun.com/repository/public/com/google/inject/guice/7.0.0/guice-7.0.0.pom
+Progress (1): 3.6/9.8 kB
+Progress (1): 7.7/9.8 kB
+Progress (1): 9.8 kB    
+                    
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/com/google/inject/guice/7.0.0/guice-7.0.0.pom (9.8 kB at 6.2 kB/s)
+Downloading from aliyun: https://maven.aliyun.com/repository/public/com/google/inject/guice-parent/7.0.0/guice-parent-7.0.0.pom
+Progress (1): 3.6/19 kB
+Progress (1): 7.7/19 kB
+Progress (1): 12/19 kB 
+Progress (1): 16/19 kB
+Progress (1): 19 kB   
+                   
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/com/google/inject/guice-parent/7.0.0/guice-parent-7.0.0.pom (19 kB at 51 kB/s)
+Downloading from aliyun: https://maven.aliyun.com/repository/public/com/google/inject/guice/7.0.0/guice-7.0.0.jar
+Progress (1): 3.6/802 kB
+Progress (1): 7.7/802 kB
+Progress (1): 12/802 kB 
+Progress (1): 16/802 kB
+Progress (1): 20/802 kB
+Progress (1): 24/802 kB
+Progress (1): 28/802 kB
+Progress (1): 32/802 kB
+Progress (1): 36/802 kB
+Progress (1): 40/802 kB
+Progress (1): 45/802 kB
+Progress (1): 49/802 kB
+Progress (1): 53/802 kB
+Progress (1): 57/802 kB
+Progress (1): 61/802 kB
+Progress (1): 65/802 kB
+Progress (1): 69/802 kB
+Progress (1): 73/802 kB
+Progress (1): 77/802 kB
+Progress (1): 81/802 kB
+Progress (1): 86/802 kB
+Progress (1): 90/802 kB
+Progress (1): 94/802 kB
+Progress (1): 98/802 kB
+Progress (1): 102/802 kB
+Progress (1): 106/802 kB
+Progress (1): 110/802 kB
+Progress (1): 114/802 kB
+Progress (1): 118/802 kB
+Progress (1): 122/802 kB
+Progress (1): 126/802 kB
+Progress (1): 131/802 kB
+Progress (1): 135/802 kB
+Progress (1): 139/802 kB
+Progress (1): 143/802 kB
+Progress (1): 147/802 kB
+Progress (1): 151/802 kB
+Progress (1): 155/802 kB
+Progress (1): 159/802 kB
+Progress (1): 163/802 kB
+Progress (1): 167/802 kB
+Progress (1): 172/802 kB
+Progress (1): 176/802 kB
+Progress (1): 180/802 kB
+Progress (1): 184/802 kB
+Progress (1): 188/802 kB
+Progress (1): 192/802 kB
+Progress (1): 196/802 kB
+Progress (1): 200/802 kB
+Progress (1): 204/802 kB
+Progress (1): 208/802 kB
+Progress (1): 213/802 kB
+Progress (1): 217/802 kB
+Progress (1): 221/802 kB
+Progress (1): 225/802 kB
+Progress (1): 229/802 kB
+Progress (1): 233/802 kB
+Progress (1): 237/802 kB
+Progress (1): 241/802 kB
+Progress (1): 245/802 kB
+Progress (1): 249/802 kB
+Progress (1): 253/802 kB
+Progress (1): 258/802 kB
+Progress (1): 262/802 kB
+Progress (1): 266/802 kB
+Progress (1): 270/802 kB
+Progress (1): 274/802 kB
+Progress (1): 278/802 kB
+Progress (1): 282/802 kB
+Progress (1): 286/802 kB
+Progress (1): 290/802 kB
+Progress (1): 294/802 kB
+Progress (1): 299/802 kB
+Progress (1): 303/802 kB
+Progress (1): 307/802 kB
+Progress (1): 311/802 kB
+Progress (1): 315/802 kB
+Progress (1): 319/802 kB
+Progress (1): 323/802 kB
+Progress (1): 327/802 kB
+Progress (1): 331/802 kB
+Progress (1): 335/802 kB
+Progress (1): 339/802 kB
+Progress (1): 344/802 kB
+Progress (1): 348/802 kB
+Progress (1): 352/802 kB
+Progress (1): 356/802 kB
+Progress (1): 360/802 kB
+Progress (1): 364/802 kB
+Progress (1): 368/802 kB
+Progress (1): 372/802 kB
+Progress (1): 376/802 kB
+Progress (1): 380/802 kB
+Progress (1): 385/802 kB
+Progress (1): 389/802 kB
+Progress (1): 393/802 kB
+Progress (1): 397/802 kB
+Progress (1): 401/802 kB
+Progress (1): 405/802 kB
+Progress (1): 409/802 kB
+Progress (1): 413/802 kB
+Progress (1): 417/802 kB
+Progress (1): 421/802 kB
+Progress (1): 426/802 kB
+Progress (1): 430/802 kB
+Progress (1): 434/802 kB
+Progress (1): 438/802 kB
+Progress (1): 442/802 kB
+Progress (1): 446/802 kB
+Progress (1): 450/802 kB
+Progress (1): 454/802 kB
+Progress (1): 458/802 kB
+Progress (1): 462/802 kB
+Progress (1): 466/802 kB
+Progress (1): 471/802 kB
+Progress (1): 475/802 kB
+Progress (1): 479/802 kB
+Progress (1): 483/802 kB
+Progress (1): 487/802 kB
+Progress (1): 491/802 kB
+Progress (1): 495/802 kB
+Progress (1): 499/802 kB
+Progress (1): 503/802 kB
+Progress (1): 507/802 kB
+Progress (1): 512/802 kB
+Progress (1): 516/802 kB
+Progress (1): 520/802 kB
+Progress (1): 524/802 kB
+Progress (1): 528/802 kB
+Progress (1): 532/802 kB
+Progress (1): 536/802 kB
+Progress (1): 540/802 kB
+Progress (1): 544/802 kB
+Progress (1): 548/802 kB
+Progress (1): 552/802 kB
+Progress (1): 557/802 kB
+Progress (1): 561/802 kB
+Progress (1): 565/802 kB
+Progress (1): 569/802 kB
+Progress (1): 573/802 kB
+Progress (1): 577/802 kB
+Progress (1): 581/802 kB
+Progress (1): 585/802 kB
+Progress (1): 589/802 kB
+Progress (1): 593/802 kB
+Progress (1): 598/802 kB
+Progress (1): 602/802 kB
+Progress (1): 606/802 kB
+Progress (1): 610/802 kB
+Progress (1): 614/802 kB
+Progress (1): 618/802 kB
+Progress (1): 622/802 kB
+Progress (1): 626/802 kB
+Progress (1): 630/802 kB
+Progress (1): 634/802 kB
+Progress (1): 638/802 kB
+Progress (1): 643/802 kB
+Progress (1): 647/802 kB
+Progress (1): 651/802 kB
+Progress (1): 655/802 kB
+Progress (1): 659/802 kB
+Progress (1): 663/802 kB
+Progress (1): 667/802 kB
+Progress (1): 671/802 kB
+Progress (1): 675/802 kB
+Progress (1): 679/802 kB
+Progress (1): 684/802 kB
+Progress (1): 688/802 kB
+Progress (1): 692/802 kB
+Progress (1): 696/802 kB
+Progress (1): 700/802 kB
+Progress (1): 704/802 kB
+Progress (1): 708/802 kB
+Progress (1): 712/802 kB
+Progress (1): 716/802 kB
+Progress (1): 720/802 kB
+Progress (1): 725/802 kB
+Progress (1): 729/802 kB
+Progress (1): 733/802 kB
+Progress (1): 737/802 kB
+Progress (1): 741/802 kB
+Progress (1): 745/802 kB
+Progress (1): 749/802 kB
+Progress (1): 753/802 kB
+Progress (1): 757/802 kB
+Progress (1): 761/802 kB
+Progress (1): 765/802 kB
+Progress (1): 770/802 kB
+Progress (1): 774/802 kB
+Progress (1): 778/802 kB
+Progress (1): 782/802 kB
+Progress (1): 786/802 kB
+Progress (1): 790/802 kB
+Progress (1): 794/802 kB
+Progress (1): 798/802 kB
+Progress (1): 802 kB    
+                    
+Downloaded from aliyun: https://maven.aliyun.com/repository/public/com/google/inject/guice/7.0.0/guice-7.0.0.jar (802 kB at 1.2 MB/s)
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ log4j-api-test ---
+[INFO] Deleting /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/target
+[INFO] 
+[INFO] --- flatten:1.5.0:clean (clean-flattened-pom) @ log4j-api-test ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-upper-bound-deps) @ log4j-api-test ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  8.406 s
+[INFO] Finished at: 2024-05-31T17:48:39+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:3.4.1:enforce (enforce-upper-bound-deps) on project log4j-api-test: 
+[ERROR] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps failed with message:
+[ERROR] Failed while enforcing RequireUpperBoundDeps. The error(s) are [
+[ERROR] Require upper bound dependencies error for jakarta.inject:jakarta.inject-api:2.0.0 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-com.google.inject:guice:7.0.0 (managed) <-- com.google.inject:guice:5.1.0
+[ERROR]       +-jakarta.inject:jakarta.inject-api:2.0.0 (managed) <-- jakarta.inject:jakarta.inject-api:2.0.1
+[ERROR] ]
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+
+* * * * * * * *

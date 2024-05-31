@@ -30,10 +30,14 @@ def all(relative_path_to_module:str):
     else :
         ## test : just deal with one module folder in data/Jar
         items = os.listdir(JAR_FOLDER)
+        item_path = None
         for item in items:
             if os.path.isdir(os.path.join(JAR_FOLDER, item)):
                 item_path = os.path.join(JAR_FOLDER, item)
                 break
+        if item_path is None:
+            print("jar doesn't exist, exit")
+            exit()
         cg = CallGraph(item_path)
         ## generate call_graph.txt as well as call_graph.json
         cg.gen_json()
