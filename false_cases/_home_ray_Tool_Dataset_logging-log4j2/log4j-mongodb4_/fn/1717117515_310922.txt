@@ -1,0 +1,84 @@
+module name: log4j-mongodb4/
+
+* * * * * * * *
+groudId: org.mongodb
+artifactId: bson-record-codec
+old version: 4.11.1
+new version: 4.11.1
+classifier: 
+depth: 2
+reachable api of old version:
+    org.bson.codecs.record.RecordCodecProvider: void <init>()
+/ / / / / / / / /
+revapi log of the subsequent version -- 4.11.2:
+09:04:17.615 INFO  Downloading checked archives
+09:04:17.620 INFO  Downloading extensions
+09:04:18.324 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.mongodb-bson-record-codec-4.11.1.jar
+New API: org.mongodb-bson-record-codec-4.11.2.jar
+
+09:04:20.067 INFO  Analysis took 1742ms.
+
+
+* * * * * * * *
+>>>>>>
+subsequent compilation log of 4.11.2:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< org.apache.logging.log4j:log4j-mongodb4 >---------------
+[INFO] Building Apache Log4j MongoDB 4 2.23.1
+[INFO]   from _temp_org.mongodb_bson-record-codec_4.11.2_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ log4j-mongodb4 ---
+[INFO] Deleting /home/ray/Tool/Dataset/logging-log4j2/log4j-mongodb4/target
+[INFO] 
+[INFO] --- flatten:1.5.0:clean (clean-flattened-pom) @ log4j-mongodb4 ---
+[INFO] Deleting /home/ray/Tool/Dataset/logging-log4j2/log4j-mongodb4/.flattened-pom.xml
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ log4j-mongodb4 ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ log4j-mongodb4 ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-upper-bound-deps) @ log4j-mongodb4 ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.169 s
+[INFO] Finished at: 2024-05-31T09:04:55+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:3.4.1:enforce (enforce-upper-bound-deps) on project log4j-mongodb4: 
+[ERROR] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps failed with message:
+[ERROR] Failed while enforcing RequireUpperBoundDeps. The error(s) are [
+[ERROR] Require upper bound dependencies error for org.mongodb:bson:4.11.1 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb4:2.23.1
+[ERROR]   +-org.mongodb:bson:4.11.1
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb4:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-core:4.11.1
+[ERROR]     +-org.mongodb:bson:4.11.1 (managed) <-- org.mongodb:bson:4.11.1
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb4:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-sync:4.11.1
+[ERROR]     +-org.mongodb:bson:4.11.1 (managed) <-- org.mongodb:bson:4.11.1
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-mongodb4:2.23.1
+[ERROR]   +-org.mongodb:mongodb-driver-core:4.11.1
+[ERROR]     +-org.mongodb:bson-record-codec:4.11.2 [runtime] (managed) <-- org.mongodb:bson-record-codec:4.11.1 [runtime]
+[ERROR]       +-org.mongodb:bson:4.11.1 [runtime] (managed) <-- org.mongodb:bson:4.11.2 [runtime]
+[ERROR] ]
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+
+* * * * * * * *

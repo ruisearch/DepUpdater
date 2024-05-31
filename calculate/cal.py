@@ -138,7 +138,7 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
                 print(" find a fn")
                 store_error(false_folder_lock, item_path, result_deps, result, None, os.path.join(module_error_folder, 'fp'))
                 with open(error_dep_count_txt_path, 'a') as f:
-                    f.write('note: set all dep to best version cause compilation error!\n')
+                    f.write('note: setting all dep to best version causes compilation error!\n')
             # back to original pom
             reset(original_tree, pom_path)
             

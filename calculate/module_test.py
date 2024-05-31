@@ -289,7 +289,10 @@ def store_error(lock, module_data_folder:str, dep_list:list, result, subsuquent_
             log_txt.write(f'old version: {dep["Version"]}\n')
             log_txt.write(f'new version: {dep["BestVersion"]}\n')
             log_txt.write(f'classifier: {dep["Classifier"]}\n')
-            log_txt.write(f'breaking reason by Tool:\n  breaking version:{dep["Breaking_Reason"]["breaking_version"]}\n breaking reason:{dep["Breaking_Reason"]["breaking_reason"]}\n')
+            # record breaking reason if dep['Breaking_Reason'] is not empty
+            # empty means the best version Tool detected is the newest version
+            if not dep:
+                log_txt.write(f'breaking reason by Tool:\n  breaking version:{dep["Breaking_Reason"]["breaking_version"]}\n breaking reason:{dep["Breaking_Reason"]["breaking_reason"]}\n')
             log_txt.write(f'depth: {dep["Depth"]}\n')
             log_txt.write(f'reachable api of old version:\n')
             for reachable_api in dep['ReachableAPIs']:
