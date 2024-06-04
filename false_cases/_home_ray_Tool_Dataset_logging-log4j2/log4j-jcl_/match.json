@@ -1,0 +1,353 @@
+[
+    {
+        "JarFileName": "org.apache.logging.log4j-log4j-api-2.23.1.jar",
+        "GroupId": "org.apache.logging.log4j",
+        "ArtifactId": "log4j-api",
+        "Classifier": "",
+        "Version": "2.23.1",
+        "Type": "compile",
+        "Depth": 1,
+        "Index": 0,
+        "DependedBy": [],
+        "ReachableAPIs": [
+            "org.apache.logging.log4j.LogManager: org.apache.logging.log4j.spi.LoggerContextFactory getFactory()",
+            "org.apache.logging.log4j.spi.AbstractLoggerAdapter: void <init>()",
+            "org.apache.logging.log4j.util.StackLocatorUtil: java.lang.Class getCallerClass(java.lang.Class)"
+        ],
+        "AllVersion": [
+            {
+                "version": "2.0-alpha1",
+                "date": 1343589112000
+            },
+            {
+                "version": "2.0-alpha2",
+                "date": 1345840814000
+            },
+            {
+                "version": "2.0-beta1",
+                "date": 1347976691000
+            },
+            {
+                "version": "2.0-beta2",
+                "date": 1349636957000
+            },
+            {
+                "version": "2.0-beta3",
+                "date": 1352650939000
+            },
+            {
+                "version": "2.0-beta4",
+                "date": 1359359129000
+            },
+            {
+                "version": "2.0-beta5",
+                "date": 1366492866000
+            },
+            {
+                "version": "2.0-beta6",
+                "date": 1367891915000
+            },
+            {
+                "version": "2.0-beta7",
+                "date": 1370362356000
+            },
+            {
+                "version": "2.0-beta8",
+                "date": 1373490891000
+            },
+            {
+                "version": "2.0-beta9",
+                "date": 1379168218000
+            },
+            {
+                "version": "2.0-rc1",
+                "date": 1391972651000
+            },
+            {
+                "version": "2.0-rc2",
+                "date": 1403393456000
+            },
+            {
+                "version": "2.0",
+                "date": 1405207583000
+            },
+            {
+                "version": "2.0.1",
+                "date": 1406681606000
+            },
+            {
+                "version": "2.0.2",
+                "date": 1408253043000
+            },
+            {
+                "version": "2.1",
+                "date": 1413769135000
+            },
+            {
+                "version": "2.2",
+                "date": 1424643431000
+            },
+            {
+                "version": "2.3",
+                "date": 1431292375000
+            },
+            {
+                "version": "2.4",
+                "date": 1442768329000
+            },
+            {
+                "version": "2.4.1",
+                "date": 1444351814000
+            },
+            {
+                "version": "2.5",
+                "date": 1449447543000
+            },
+            {
+                "version": "2.6",
+                "date": 1464188055000
+            },
+            {
+                "version": "2.3.1",
+                "date": 1640061570000
+            },
+            {
+                "version": "2.3.2",
+                "date": 1640741116000
+            },
+            {
+                "version": "2.6.1",
+                "date": 1465173172000
+            },
+            {
+                "version": "2.6.2",
+                "date": 1467772605000
+            },
+            {
+                "version": "2.7",
+                "date": 1475432073000
+            },
+            {
+                "version": "2.8",
+                "date": 1485061718000
+            },
+            {
+                "version": "2.8.1",
+                "date": 1488153248000
+            },
+            {
+                "version": "2.8.2",
+                "date": 1491164650000
+            },
+            {
+                "version": "2.9.0",
+                "date": 1503779829000
+            },
+            {
+                "version": "2.9.1",
+                "date": 1505713889000
+            },
+            {
+                "version": "2.10.0",
+                "date": 1511077750000
+            },
+            {
+                "version": "2.11.0",
+                "date": 1520808220000
+            },
+            {
+                "version": "2.11.1",
+                "date": 1532317494000
+            },
+            {
+                "version": "2.11.2",
+                "date": 1549415504000
+            },
+            {
+                "version": "2.12.0",
+                "date": 1561520190000
+            },
+            {
+                "version": "2.12.1",
+                "date": 1565149463000
+            },
+            {
+                "version": "2.12.2",
+                "date": 1639460108000
+            },
+            {
+                "version": "2.12.3",
+                "date": 1640042038000
+            },
+            {
+                "version": "2.12.4",
+                "date": 1640726245000
+            },
+            {
+                "version": "2.13.0",
+                "date": 1576118472000
+            },
+            {
+                "version": "2.13.1",
+                "date": 1582685594000
+            },
+            {
+                "version": "2.13.2",
+                "date": 1587443849000
+            },
+            {
+                "version": "2.13.3",
+                "date": 1589137704000
+            },
+            {
+                "version": "2.14.0",
+                "date": 1604696572000
+            },
+            {
+                "version": "2.14.1",
+                "date": 1615093909000
+            },
+            {
+                "version": "2.15.0",
+                "date": 1639074328000
+            },
+            {
+                "version": "2.16.0",
+                "date": 1639374061000
+            },
+            {
+                "version": "2.17.0",
+                "date": 1639792640000
+            },
+            {
+                "version": "2.17.1",
+                "date": 1640647822000
+            },
+            {
+                "version": "2.17.2",
+                "date": 1645648113000
+            },
+            {
+                "version": "2.18.0",
+                "date": 1656453831000
+            },
+            {
+                "version": "2.19.0",
+                "date": 1663089425000
+            },
+            {
+                "version": "2.20.0",
+                "date": 1676697624000
+            },
+            {
+                "version": "2.21.0",
+                "date": 1697125062000
+            },
+            {
+                "version": "2.21.1",
+                "date": 1697831380000
+            },
+            {
+                "version": "2.22.0",
+                "date": 1700213965000
+            },
+            {
+                "version": "2.22.1",
+                "date": 1703258814000
+            },
+            {
+                "version": "2.23.0",
+                "date": 1708162955000
+            },
+            {
+                "version": "2.23.1",
+                "date": 1709728365000
+            },
+            {
+                "version": "3.0.0-alpha1",
+                "date": 1687047838000
+            },
+            {
+                "version": "3.0.0-beta1",
+                "date": 1703016690000
+            },
+            {
+                "version": "3.0.0-beta2",
+                "date": 1708195796000
+            }
+        ],
+        "BestVersion": "3.0.0-beta2",
+        "Breaking_Reason": {
+            "breaking_version": "3.0.0-alpha1",
+            "breaking_reason": "breaking api: org.apache.logging.log4j.LogManager: org.apache.logging.log4j.spi.LoggerContextFactory getFactory() <<<<< transformed old api of breaking record: org.apache.logging.log4j.LogManager:"
+        }
+    },
+    {
+        "JarFileName": "commons-logging-commons-logging-1.3.0.jar",
+        "GroupId": "commons-logging",
+        "ArtifactId": "commons-logging",
+        "Classifier": "",
+        "Version": "1.3.0",
+        "Type": "compile",
+        "Depth": 1,
+        "Index": 1,
+        "DependedBy": [],
+        "ReachableAPIs": [],
+        "AllVersion": [
+            {
+                "version": "1.0.1",
+                "date": 1132233743000
+            },
+            {
+                "version": "1.0.2",
+                "date": 1132233743000
+            },
+            {
+                "version": "1.0.3",
+                "date": 1132233742000
+            },
+            {
+                "version": "1.0.4",
+                "date": 1131488201000
+            },
+            {
+                "version": "1.0",
+                "date": 1131488201000
+            },
+            {
+                "version": "1.1",
+                "date": 1147523509000
+            },
+            {
+                "version": "1.1.1",
+                "date": 1196108650000
+            },
+            {
+                "version": "1.1.2",
+                "date": 1363438456000
+            },
+            {
+                "version": "1.1.3",
+                "date": 1368734723000
+            },
+            {
+                "version": "1.2",
+                "date": 1404583948000
+            },
+            {
+                "version": "1.3.0",
+                "date": 1701034727000
+            },
+            {
+                "version": "1.3.1",
+                "date": 1710689980000
+            },
+            {
+                "version": "1.3.2",
+                "date": 1715516930000
+            }
+        ],
+        "BestVersion": "1.3.2",
+        "Breaking_Reason": {}
+    }
+]

@@ -1,0 +1,33 @@
+Script started on 2024-06-03 12:12:22+08:00 [TERM="xterm-256color" TTY="/dev/pts/3" COLUMNS="111" LINES="39"]
+
+****** preprocessing ... ******
+
+****** set the git repository to the lastest tag status ******
+HEAD is now at d66a15fe migrate sql parser from druid to polardbx-parser  (#5097)
+HEAD is now at d66a15fe migrate sql parser from druid to polardbx-parser  (#5097)
+
+****** preprocess.package ... ******
+
+mvn clean and mvn package...
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] --- tiles-maven-plugin: Injecting 1 tiles as intermediary parent artifacts for com.alibaba.otter:canal.admin-web...
+[[1;34mINFO[m] Mixed 'null:canal.admin-web:null' with tile 'io.ebean.tile:enhancement:11.41.1' as its new parent.
+[[1;34mINFO[m] Explicitly set groupId to 'com.alibaba.otter' from original parent 'com.alibaba.otter:canal.admin:1.1.8-SNAPSHOT'.
+[[1;34mINFO[m] Explicitly set version to '1.1.8-SNAPSHOT' from original parent 'com.alibaba.otter:canal.admin:1.1.8-SNAPSHOT'.
+[[1;34mINFO[m] Mixed 'io.ebean.tile:enhancement:11.41.1' with original parent 'com.alibaba.otter:canal.admin:1.1.8-SNAPSHOT' as its new top level parent.
+[[1;34mINFO[m] 
+[[1;31mERROR[m] Error executing Maven.
+[[1;31mERROR[m] The following artifacts could not be resolved: com.alibaba.otter:canal.admin:pom:1.1.8-SNAPSHOT (absent): Could not find artifact com.alibaba.otter:canal.admin:pom:1.1.8-SNAPSHOT
+
+  com.alibaba.otter:canal.admin:pom:1.1.8-SNAPSHOT
+
+from the specified remote repositories:
+  central (https://repo.maven.apache.org/maven2, releases=true, snapshots=false)
+
+[[1;31mERROR[m] Caused by: The following artifacts could not be resolved: com.alibaba.otter:canal.admin:pom:1.1.8-SNAPSHOT (absent): Could not find artifact com.alibaba.otter:canal.admin:pom:1.1.8-SNAPSHOT
+[[1;31mERROR[m] Caused by: Could not find artifact com.alibaba.otter:canal.admin:pom:1.1.8-SNAPSHOT
+[0m[0m
+****** module package fails. Please check the project ******
+
+
+Script done on 2024-06-03 12:12:25+08:00 [COMMAND_EXIT_CODE="0"]

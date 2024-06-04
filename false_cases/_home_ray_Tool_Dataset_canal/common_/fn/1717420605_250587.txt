@@ -1,0 +1,899 @@
+module name: common/
+
+* * * * * * * *
+groudId: org.springframework
+artifactId: spring-core
+old version: 5.3.9
+new version: 6.1.8
+classifier: 
+depth: 1
+reachable api of old version:
+    org.springframework.core.GenericTypeResolver$TypeVariableMapVariableResolver: org.springframework.core.ResolvableType resolveVariable(java.lang.reflect.TypeVariable)
+    org.springframework.core.GenericTypeResolver$TypeVariableMapVariableResolver: java.lang.Object getSource()
+    org.springframework.core.KotlinDetector: boolean isKotlinReflectPresent()
+    org.springframework.core.KotlinDetector: boolean isKotlinType(java.lang.Class)
+    org.springframework.core.KotlinDetector: void <clinit>()
+    org.springframework.core.MethodParameter$KotlinDelegate: java.lang.reflect.Type getGenericReturnType(java.lang.reflect.Method)
+    org.springframework.core.MethodParameter$KotlinDelegate: java.lang.Class getReturnType(java.lang.reflect.Method)
+    org.springframework.core.MethodParameter$KotlinDelegate: java.lang.reflect.Type access$000(java.lang.reflect.Method)
+    org.springframework.core.MethodParameter$KotlinDelegate: java.lang.Class access$100(java.lang.reflect.Method)
+    org.springframework.core.MethodParameter: java.lang.reflect.Method getMethod()
+    org.springframework.core.MethodParameter: java.lang.Class getDeclaringClass()
+    org.springframework.core.MethodParameter: java.lang.Class getContainingClass()
+    org.springframework.core.MethodParameter: java.lang.reflect.Type getGenericParameterType()
+    org.springframework.core.MethodParameter: java.lang.Class computeParameterType()
+    org.springframework.core.NativeDetector: boolean inNativeImage()
+    org.springframework.core.NativeDetector: void <clinit>()
+    org.springframework.core.NestedExceptionUtils: java.lang.String buildMessage(java.lang.String,java.lang.Throwable)
+    org.springframework.core.NestedIOException: java.lang.String getMessage()
+    org.springframework.core.NestedRuntimeException: java.lang.String getMessage()
+    org.springframework.core.ResolvableType$DefaultVariableResolver: org.springframework.core.ResolvableType resolveVariable(java.lang.reflect.TypeVariable)
+    org.springframework.core.ResolvableType$DefaultVariableResolver: java.lang.Object getSource()
+    org.springframework.core.ResolvableType$EmptyType: void <init>()
+    org.springframework.core.ResolvableType$EmptyType: void <clinit>()
+    org.springframework.core.ResolvableType$SyntheticParameterizedType: java.lang.reflect.Type getOwnerType()
+    org.springframework.core.ResolvableType$SyntheticParameterizedType: java.lang.reflect.Type getRawType()
+    org.springframework.core.ResolvableType$SyntheticParameterizedType: java.lang.reflect.Type[] getActualTypeArguments()
+    org.springframework.core.ResolvableType$SyntheticParameterizedType: int hashCode()
+    org.springframework.core.ResolvableType$TypeVariablesVariableResolver: org.springframework.core.ResolvableType resolveVariable(java.lang.reflect.TypeVariable)
+    org.springframework.core.ResolvableType$TypeVariablesVariableResolver: java.lang.Object getSource()
+    org.springframework.core.ResolvableType: void <init>(java.lang.reflect.Type,org.springframework.core.SerializableTypeWrapper$TypeProvider,org.springframework.core.ResolvableType$VariableResolver)
+    org.springframework.core.ResolvableType: void <init>(java.lang.reflect.Type,org.springframework.core.SerializableTypeWrapper$TypeProvider,org.springframework.core.ResolvableType$VariableResolver,java.lang.Integer)
+    org.springframework.core.ResolvableType: void <init>(java.lang.reflect.Type,org.springframework.core.SerializableTypeWrapper$TypeProvider,org.springframework.core.ResolvableType$VariableResolver,org.springframework.core.ResolvableType)
+    org.springframework.core.ResolvableType: org.springframework.core.ResolvableType getComponentType()
+    org.springframework.core.ResolvableType: java.lang.Class resolve()
+    org.springframework.core.ResolvableType: java.lang.Class resolve(java.lang.Class)
+    org.springframework.core.ResolvableType: java.lang.Class resolveClass()
+    org.springframework.core.ResolvableType: org.springframework.core.ResolvableType resolveType()
+    org.springframework.core.ResolvableType: java.lang.reflect.Type resolveBounds(java.lang.reflect.Type[])
+    org.springframework.core.ResolvableType: org.springframework.core.ResolvableType resolveVariable(java.lang.reflect.TypeVariable)
+    org.springframework.core.ResolvableType: int hashCode()
+    org.springframework.core.ResolvableType: int calculateHashCode()
+    org.springframework.core.ResolvableType: org.springframework.core.ResolvableType forType(java.lang.reflect.Type)
+    org.springframework.core.ResolvableType: org.springframework.core.ResolvableType forType(java.lang.reflect.Type,org.springframework.core.ResolvableType$VariableResolver)
+    org.springframework.core.ResolvableType: org.springframework.core.ResolvableType forType(java.lang.reflect.Type,org.springframework.core.SerializableTypeWrapper$TypeProvider,org.springframework.core.ResolvableType$VariableResolver)
+    org.springframework.core.ResolvableType: org.springframework.core.ResolvableType access$200(org.springframework.core.ResolvableType,java.lang.reflect.TypeVariable)
+    org.springframework.core.ResolvableType: void <clinit>()
+    org.springframework.core.SerializableTypeWrapper$FieldTypeProvider: java.lang.reflect.Type getType()
+    org.springframework.core.SerializableTypeWrapper$MethodInvokeTypeProvider: java.lang.reflect.Type getType()
+    org.springframework.core.SerializableTypeWrapper$MethodParameterTypeProvider: java.lang.reflect.Type getType()
+    org.springframework.core.SerializableTypeWrapper$TypeProxyInvocationHandler: void <init>(org.springframework.core.SerializableTypeWrapper$TypeProvider)
+    org.springframework.core.SerializableTypeWrapper: java.lang.reflect.Type unwrap(java.lang.reflect.Type)
+    org.springframework.core.SerializableTypeWrapper: java.lang.reflect.Type forTypeProvider(org.springframework.core.SerializableTypeWrapper$TypeProvider)
+    org.springframework.core.SerializableTypeWrapper: void <clinit>()
+    org.springframework.core.convert.TypeDescriptor: java.lang.Class getType()
+    org.springframework.core.convert.TypeDescriptor: int hashCode()
+    org.springframework.core.convert.support.GenericConversionService$ConverterCacheKey: int hashCode()
+    org.springframework.core.env.MissingRequiredPropertiesException: java.lang.String getMessage()
+    org.springframework.core.env.MissingRequiredPropertiesException: java.util.Set getMissingRequiredProperties()
+    org.springframework.util.Assert: void isTrue(boolean,java.lang.String)
+    org.springframework.util.Assert: void notNull(java.lang.Object,java.lang.String)
+    org.springframework.util.ClassUtils: void registerCommonClasses(java.lang.Class[])
+    org.springframework.util.ClassUtils: java.lang.ClassLoader getDefaultClassLoader()
+    org.springframework.util.ClassUtils: java.lang.Class forName(java.lang.String,java.lang.ClassLoader)
+    org.springframework.util.ClassUtils: boolean isPresent(java.lang.String,java.lang.ClassLoader)
+    org.springframework.util.ClassUtils: java.lang.Class resolvePrimitiveClassName(java.lang.String)
+    org.springframework.util.ClassUtils: boolean isInnerClass(java.lang.Class)
+    org.springframework.util.ClassUtils: void <clinit>()
+    org.springframework.util.ConcurrentReferenceHashMap$1: void <init>(org.springframework.util.ConcurrentReferenceHashMap,org.springframework.util.ConcurrentReferenceHashMap$TaskOption[],boolean,java.lang.Object)
+    org.springframework.util.ConcurrentReferenceHashMap$ReferenceManager: void <init>(org.springframework.util.ConcurrentReferenceHashMap)
+    org.springframework.util.ConcurrentReferenceHashMap$ReferenceType: void <init>(java.lang.String,int)
+    org.springframework.util.ConcurrentReferenceHashMap$ReferenceType: void <clinit>()
+    org.springframework.util.ConcurrentReferenceHashMap$Restructure: void <init>(java.lang.String,int)
+    org.springframework.util.ConcurrentReferenceHashMap$Restructure: void <clinit>()
+    org.springframework.util.ConcurrentReferenceHashMap$Segment: void <init>(org.springframework.util.ConcurrentReferenceHashMap,int,int)
+    org.springframework.util.ConcurrentReferenceHashMap$Segment: org.springframework.util.ConcurrentReferenceHashMap$Reference[] createReferenceArray(int)
+    org.springframework.util.ConcurrentReferenceHashMap$Task: void <init>(org.springframework.util.ConcurrentReferenceHashMap,org.springframework.util.ConcurrentReferenceHashMap$TaskOption[])
+    org.springframework.util.ConcurrentReferenceHashMap$TaskOption: void <init>(java.lang.String,int)
+    org.springframework.util.ConcurrentReferenceHashMap$TaskOption: void <clinit>()
+    org.springframework.util.ConcurrentReferenceHashMap: void <init>(int)
+    org.springframework.util.ConcurrentReferenceHashMap: void <init>(int,float,int,org.springframework.util.ConcurrentReferenceHashMap$ReferenceType)
+    org.springframework.util.ConcurrentReferenceHashMap: float getLoadFactor()
+    org.springframework.util.ConcurrentReferenceHashMap: org.springframework.util.ConcurrentReferenceHashMap$ReferenceManager createReferenceManager()
+    org.springframework.util.ConcurrentReferenceHashMap: int getHash(java.lang.Object)
+    org.springframework.util.ConcurrentReferenceHashMap: java.lang.Object get(java.lang.Object)
+    org.springframework.util.ConcurrentReferenceHashMap: org.springframework.util.ConcurrentReferenceHashMap$Reference getReference(java.lang.Object,org.springframework.util.ConcurrentReferenceHashMap$Restructure)
+    org.springframework.util.ConcurrentReferenceHashMap: java.lang.Object put(java.lang.Object,java.lang.Object)
+    org.springframework.util.ConcurrentReferenceHashMap: java.lang.Object put(java.lang.Object,java.lang.Object,boolean)
+    org.springframework.util.ConcurrentReferenceHashMap: void purgeUnreferencedEntries()
+    org.springframework.util.ConcurrentReferenceHashMap: java.lang.Object doTask(java.lang.Object,org.springframework.util.ConcurrentReferenceHashMap$Task)
+    org.springframework.util.ConcurrentReferenceHashMap: org.springframework.util.ConcurrentReferenceHashMap$Segment getSegmentForHash(int)
+    org.springframework.util.ConcurrentReferenceHashMap: int calculateShift(int,int)
+    org.springframework.util.ConcurrentReferenceHashMap: void <clinit>()
+    org.springframework.util.ObjectUtils: boolean nullSafeEquals(java.lang.Object,java.lang.Object)
+    org.springframework.util.ObjectUtils: boolean arrayEquals(java.lang.Object,java.lang.Object)
+    org.springframework.util.ObjectUtils: int nullSafeHashCode(java.lang.Object)
+    org.springframework.util.ObjectUtils: int nullSafeHashCode(java.lang.Object[])
+    org.springframework.util.ObjectUtils: int nullSafeHashCode(boolean[])
+    org.springframework.util.ObjectUtils: int nullSafeHashCode(byte[])
+    org.springframework.util.ObjectUtils: int nullSafeHashCode(char[])
+    org.springframework.util.ObjectUtils: int nullSafeHashCode(double[])
+    org.springframework.util.ObjectUtils: int nullSafeHashCode(float[])
+    org.springframework.util.ObjectUtils: int nullSafeHashCode(int[])
+    org.springframework.util.ObjectUtils: int nullSafeHashCode(long[])
+    org.springframework.util.ObjectUtils: int nullSafeHashCode(short[])
+    org.springframework.util.ObjectUtils: void <clinit>()
+    org.springframework.util.ReflectionUtils: void handleReflectionException(java.lang.Exception)
+    org.springframework.util.ReflectionUtils: void handleInvocationTargetException(java.lang.reflect.InvocationTargetException)
+    org.springframework.util.ReflectionUtils: void rethrowRuntimeException(java.lang.Throwable)
+    org.springframework.util.ReflectionUtils: java.lang.Object invokeMethod(java.lang.reflect.Method,java.lang.Object)
+    org.springframework.util.ReflectionUtils: java.lang.Object invokeMethod(java.lang.reflect.Method,java.lang.Object,java.lang.Object[])
+    org.springframework.util.ReflectionUtils: java.lang.reflect.Field findField(java.lang.Class,java.lang.String)
+    org.springframework.util.ReflectionUtils: java.lang.reflect.Field findField(java.lang.Class,java.lang.String,java.lang.Class)
+    org.springframework.util.ReflectionUtils: void setField(java.lang.reflect.Field,java.lang.Object,java.lang.Object)
+    org.springframework.util.ReflectionUtils: java.lang.Object getField(java.lang.reflect.Field,java.lang.Object)
+    org.springframework.util.ReflectionUtils: java.lang.reflect.Field[] getDeclaredFields(java.lang.Class)
+    org.springframework.util.ReflectionUtils: void makeAccessible(java.lang.reflect.Field)
+    org.springframework.util.ReflectionUtils: void <clinit>()
+/ / / / / / / / /
+revapi log of former version -- 6.1.8:
+21:00:43.036 INFO  Downloading checked archives
+21:00:43.084 INFO  Downloading extensions
+21:00:47.704 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.springframework-spring-core-5.3.9.jar
+New API: org.springframework-spring-core-6.1.8.jar
+old: <none>
+new: class org.springframework.aot.nativex.BasicJsonWriter
+java.class.nonPublicPartOfAPI: Class 'org.springframework.aot.nativex.BasicJsonWriter' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+
+old: class org.springframework.cglib.core.ClassEmitter
+new: class org.springframework.cglib.core.ClassEmitter
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'org.springframework.cglib.transform.ClassTransformer'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'org.springframework.cglib.core.ClassTransformer'.
+BINARY: POTENTIALLY_BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: interface org.springframework.cglib.core.MethodWrapper.MethodWrapperKey
+new: class org.springframework.cglib.core.MethodWrapper.MethodWrapperKey
+java.class.visibilityReduced: Visibility was reduced from 'public' to 'private'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.Object org.springframework.cglib.core.MethodWrapper.MethodWrapperKey::newInstance(java.lang.String, java.lang.String[], java.lang.String)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.springframework.cglib.core.SpringNamingPolicy
+new: class org.springframework.cglib.core.SpringNamingPolicy
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'org.springframework.cglib.core.DefaultNamingPolicy'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nowFinal: Class is now final.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nowImplementsInterface: Class now implements interface 'org.springframework.cglib.core.NamingPolicy'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+
+old: method void org.springframework.cglib.core.SpringNamingPolicy::<init>()
+new: method void org.springframework.cglib.core.SpringNamingPolicy::<init>()
+java.method.visibilityReduced: visibility reduced
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.String org.springframework.cglib.core.SpringNamingPolicy::getTag()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface org.springframework.cglib.proxy.Enhancer.EnhancerKey
+new: class org.springframework.cglib.proxy.Enhancer.EnhancerKey
+java.class.visibilityReduced: Visibility was reduced from 'public' to 'private'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.Object org.springframework.cglib.proxy.Enhancer.EnhancerKey::newInstance(java.lang.String, java.lang.String[], org.springframework.cglib.core.WeakCacheKey<org.springframework.cglib.proxy.CallbackFilter>, org.springframework.asm.Type[], boolean, boolean, java.lang.Long)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.springframework.cglib.transform.AbstractClassFilterTransformer
+new: class org.springframework.cglib.transform.AbstractClassFilterTransformer
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'org.springframework.cglib.transform.ClassTransformer'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'org.springframework.cglib.core.ClassTransformer'.
+BINARY: POTENTIALLY_BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void org.springframework.cglib.transform.AbstractClassFilterTransformer::<init>(===org.springframework.cglib.transform.ClassTransformer===)
+new: parameter void org.springframework.cglib.transform.AbstractClassFilterTransformer::<init>(===org.springframework.cglib.core.ClassTransformer===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.springframework.cglib.transform.ClassTransformer' to 'org.springframework.cglib.core.ClassTransformer'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class org.springframework.cglib.transform.AbstractClassTransformer
+new: class org.springframework.cglib.transform.AbstractClassTransformer
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'org.springframework.cglib.transform.ClassTransformer'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'org.springframework.cglib.core.ClassTransformer'.
+BINARY: POTENTIALLY_BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class org.springframework.cglib.transform.AbstractProcessTask
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.springframework.cglib.transform.AbstractTransformTask
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.springframework.cglib.transform.ClassEmitterTransformer
+new: class org.springframework.cglib.transform.ClassEmitterTransformer
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'org.springframework.cglib.transform.ClassTransformer'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'org.springframework.cglib.core.ClassTransformer'.
+BINARY: POTENTIALLY_BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class org.springframework.cglib.transform.ClassFilterTransformer
+new: class org.springframework.cglib.transform.ClassFilterTransformer
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'org.springframework.cglib.transform.ClassTransformer'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'org.springframework.cglib.core.ClassTransformer'.
+BINARY: POTENTIALLY_BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void org.springframework.cglib.transform.ClassFilterTransformer::<init>(org.springframework.cglib.transform.ClassFilter, ===org.springframework.cglib.transform.ClassTransformer===)
+new: parameter void org.springframework.cglib.transform.ClassFilterTransformer::<init>(org.springframework.cglib.transform.ClassFilter, ===org.springframework.cglib.core.ClassTransformer===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.springframework.cglib.transform.ClassTransformer' to 'org.springframework.cglib.core.ClassTransformer'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class org.springframework.cglib.transform.ClassTransformer
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.springframework.cglib.transform.ClassTransformerChain
+new: class org.springframework.cglib.transform.ClassTransformerChain
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'org.springframework.cglib.transform.ClassTransformer'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'org.springframework.cglib.core.ClassTransformer'.
+BINARY: POTENTIALLY_BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void org.springframework.cglib.transform.ClassTransformerChain::<init>(===org.springframework.cglib.transform.ClassTransformer[]===)
+new: parameter void org.springframework.cglib.transform.ClassTransformerChain::<init>(===org.springframework.cglib.core.ClassTransformer[]===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.springframework.cglib.transform.ClassTransformer[]' to 'org.springframework.cglib.core.ClassTransformer[]'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method org.springframework.cglib.transform.ClassTransformer org.springframework.cglib.transform.ClassTransformerFactory::newInstance()
+new: method org.springframework.cglib.core.ClassTransformer org.springframework.cglib.transform.ClassTransformerFactory::newInstance()
+java.method.returnTypeChanged: The return type changed from 'org.springframework.cglib.transform.ClassTransformer' to  'org.springframework.cglib.core.ClassTransformer'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class org.springframework.cglib.transform.ClassTransformerTee
+new: class org.springframework.cglib.transform.ClassTransformerTee
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'org.springframework.cglib.transform.ClassTransformer'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'org.springframework.cglib.core.ClassTransformer'.
+BINARY: POTENTIALLY_BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class org.springframework.cglib.transform.MethodFilterTransformer
+new: class org.springframework.cglib.transform.MethodFilterTransformer
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'org.springframework.cglib.transform.ClassTransformer'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'org.springframework.cglib.core.ClassTransformer'.
+BINARY: POTENTIALLY_BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void org.springframework.cglib.transform.MethodFilterTransformer::<init>(org.springframework.cglib.transform.MethodFilter, ===org.springframework.cglib.transform.ClassTransformer===)
+new: parameter void org.springframework.cglib.transform.MethodFilterTransformer::<init>(org.springframework.cglib.transform.MethodFilter, ===org.springframework.cglib.core.ClassTransformer===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.springframework.cglib.transform.ClassTransformer' to 'org.springframework.cglib.core.ClassTransformer'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void org.springframework.cglib.transform.TransformingClassGenerator::<init>(org.springframework.cglib.core.ClassGenerator, ===org.springframework.cglib.transform.ClassTransformer===)
+new: parameter void org.springframework.cglib.transform.TransformingClassGenerator::<init>(org.springframework.cglib.core.ClassGenerator, ===org.springframework.cglib.core.ClassTransformer===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.springframework.cglib.transform.ClassTransformer' to 'org.springframework.cglib.core.ClassTransformer'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class org.springframework.cglib.transform.impl.AccessFieldTransformer
+new: class org.springframework.cglib.transform.impl.AccessFieldTransformer
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'org.springframework.cglib.transform.ClassTransformer'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'org.springframework.cglib.core.ClassTransformer'.
+BINARY: POTENTIALLY_BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class org.springframework.cglib.transform.impl.AddDelegateTransformer
+new: class org.springframework.cglib.transform.impl.AddDelegateTransformer
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'org.springframework.cglib.transform.ClassTransformer'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'org.springframework.cglib.core.ClassTransformer'.
+BINARY: POTENTIALLY_BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class org.springframework.cglib.transform.impl.AddInitTransformer
+new: class org.springframework.cglib.transform.impl.AddInitTransformer
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'org.springframework.cglib.transform.ClassTransformer'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'org.springframework.cglib.core.ClassTransformer'.
+BINARY: POTENTIALLY_BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class org.springframework.cglib.transform.impl.AddPropertyTransformer
+new: class org.springframework.cglib.transform.impl.AddPropertyTransformer
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'org.springframework.cglib.transform.ClassTransformer'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'org.springframework.cglib.core.ClassTransformer'.
+BINARY: POTENTIALLY_BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class org.springframework.cglib.transform.impl.AddStaticInitTransformer
+new: class org.springframework.cglib.transform.impl.AddStaticInitTransformer
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'org.springframework.cglib.transform.ClassTransformer'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'org.springframework.cglib.core.ClassTransformer'.
+BINARY: POTENTIALLY_BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class org.springframework.cglib.transform.impl.FieldProviderTransformer
+new: class org.springframework.cglib.transform.impl.FieldProviderTransformer
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'org.springframework.cglib.transform.ClassTransformer'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'org.springframework.cglib.core.ClassTransformer'.
+BINARY: POTENTIALLY_BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class org.springframework.cglib.transform.impl.InterceptFieldTransformer
+new: class org.springframework.cglib.transform.impl.InterceptFieldTransformer
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'org.springframework.cglib.transform.ClassTransformer'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'org.springframework.cglib.core.ClassTransformer'.
+BINARY: POTENTIALLY_BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class org.springframework.cglib.transform.impl.UndeclaredThrowableTransformer
+new: class org.springframework.cglib.transform.impl.UndeclaredThrowableTransformer
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'org.springframework.cglib.transform.ClassTransformer'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'org.springframework.cglib.core.ClassTransformer'.
+BINARY: POTENTIALLY_BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class org.springframework.core.CoroutinesUtils
+new: class org.springframework.core.CoroutinesUtils
+java.class.noLongerFinal: Class is no longer final.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT
+java.class.nowAbstract: Class is now abstract.
+BINARY: BREAKING, SOURCE: BREAKING
+java.annotation.removed: Element no longer annotated with 'kotlin.Metadata'.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+java.annotation.removed: Element no longer annotated with 'kotlin.jvm.JvmName'.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: class org.springframework.core.LocalVariableTableParameterNameDiscoverer
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.springframework.core.NestedIOException
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.springframework.core.ResolvableType
+new: class org.springframework.core.ResolvableType
+java.class.defaultSerializationChanged: The default serialization ID for the class has changed. This means that the new version of the class is not deserializable from the byte stream of a serialized old class.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: BREAKING
+
+old: field org.springframework.core.annotation.MergedAnnotations.SearchStrategy.TYPE_HIERARCHY_AND_ENCLOSING_CLASSES
+new: <none>
+java.field.removed: Field removed from class.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface org.springframework.core.annotation.SynthesizedAnnotation
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: field org.springframework.core.codec.ResourceEncoder.DEFAULT_BUFFER_SIZE
+new: field org.springframework.core.codec.ResourceEncoder.DEFAULT_BUFFER_SIZE
+java.field.constantValueChanged: Constant field changed value from '4096' to '8192'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+
+old: field org.springframework.core.codec.ResourceRegionEncoder.DEFAULT_BUFFER_SIZE
+new: field org.springframework.core.codec.ResourceRegionEncoder.DEFAULT_BUFFER_SIZE
+java.field.constantValueChanged: Constant field changed value from '4096' to '8192'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+
+old: method org.springframework.core.codec.StringDecoder org.springframework.core.codec.StringDecoder::allMimeTypes(boolean)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.String org.springframework.core.codec.StringDecoder::decode(org.springframework.core.io.buffer.DataBuffer, org.springframework.core.ResolvableType, org.springframework.util.MimeType, java.util.Map<java.lang.String, java.lang.Object>)
+new: method T org.springframework.core.codec.AbstractCharSequenceDecoder<T extends java.lang.CharSequence>::decode(org.springframework.core.io.buffer.DataBuffer, org.springframework.core.ResolvableType, org.springframework.util.MimeType, java.util.Map<java.lang.String, java.lang.Object>) @ org.springframework.core.codec.StringDecoder
+java.method.nowFinalInFinalClass: Method is now final in a final class.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT
+java.method.returnTypeErasureChanged: The erasure of the return type changed from 'java.lang.String' to 'java.lang.CharSequence'.
+BINARY: BREAKING, SOURCE: NON_BREAKING
+java.method.movedToSuperClass: The method used to be declared in class 'org.springframework.core.codec.StringDecoder' but is now declared in superclass 'org.springframework.core.codec.AbstractCharSequenceDecoder<T extends java.lang.CharSequence>'.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT
+
+old: method org.springframework.core.codec.StringDecoder org.springframework.core.codec.StringDecoder::textPlainOnly(boolean)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.springframework.core.convert.TypeDescriptor
+new: class org.springframework.core.convert.TypeDescriptor
+java.class.defaultSerializationChanged: The default serialization ID for the class has changed. This means that the new version of the class is not deserializable from the byte stream of a serialized old class.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: BREAKING
+
+old: class org.springframework.core.env.CommandLineArgs
+new: class org.springframework.core.env.CommandLineArgs
+java.class.nonPublicPartOfAPI: Class 'org.springframework.core.env.CommandLineArgs' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+
+old: method boolean org.springframework.core.env.SystemEnvironmentPropertySource::isSecurityManagerPresent()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.springframework.core.io.ClassPathResource::<init>(java.lang.String, java.lang.ClassLoader, java.lang.Class<?>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: <none>
+new: method org.springframework.core.io.buffer.DataBuffer org.springframework.core.io.buffer.DataBuffer::ensureWritable(int)
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method org.springframework.core.io.buffer.DataBuffer.ByteBufferIterator org.springframework.core.io.buffer.DataBuffer::readableByteBuffers()
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method org.springframework.core.io.buffer.DataBuffer org.springframework.core.io.buffer.DataBuffer::split(int)
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method java.nio.ByteBuffer org.springframework.core.io.buffer.DataBuffer::toByteBuffer(int, int)
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method void org.springframework.core.io.buffer.DataBuffer::toByteBuffer(int, java.nio.ByteBuffer, int, int)
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method org.springframework.core.io.buffer.DataBuffer.ByteBufferIterator org.springframework.core.io.buffer.DataBuffer::writableByteBuffers()
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method boolean org.springframework.core.io.buffer.DataBufferFactory::isDirect()
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method reactor.core.publisher.Flux<org.springframework.core.io.buffer.DataBuffer> org.springframework.core.io.buffer.DataBufferUtils::skipUntilByteCount(org.reactivestreams.Publisher<? extends org.springframework.core.io.buffer.DataBuffer>, long)
+new: method <T extends org.springframework.core.io.buffer.DataBuffer> reactor.core.publisher.Flux<T> org.springframework.core.io.buffer.DataBufferUtils::skipUntilByteCount(org.reactivestreams.Publisher<T>, long)
+java.method.returnTypeTypeParametersChanged: The return type changed from 'reactor.core.publisher.Flux<org.springframework.core.io.buffer.DataBuffer>' to 'reactor.core.publisher.Flux<T extends org.springframework.core.io.buffer.DataBuffer>'.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+java.generics.elementNowParameterized: Element now defines formal type parameters.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+java.generics.formalTypeParameterAdded: A new formal type parameter added to element: 'T extends org.springframework.core.io.buffer.DataBuffer'.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: method reactor.core.publisher.Flux<org.springframework.core.io.buffer.DataBuffer> org.springframework.core.io.buffer.DataBufferUtils::takeUntilByteCount(org.reactivestreams.Publisher<? extends org.springframework.core.io.buffer.DataBuffer>, long)
+new: method <T extends org.springframework.core.io.buffer.DataBuffer> reactor.core.publisher.Flux<T> org.springframework.core.io.buffer.DataBufferUtils::takeUntilByteCount(org.reactivestreams.Publisher<T>, long)
+java.method.returnTypeTypeParametersChanged: The return type changed from 'reactor.core.publisher.Flux<org.springframework.core.io.buffer.DataBuffer>' to 'reactor.core.publisher.Flux<T extends org.springframework.core.io.buffer.DataBuffer>'.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+java.generics.elementNowParameterized: Element now defines formal type parameters.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+java.generics.formalTypeParameterAdded: A new formal type parameter added to element: 'T extends org.springframework.core.io.buffer.DataBuffer'.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: method org.springframework.core.io.buffer.DefaultDataBuffer org.springframework.core.io.buffer.DefaultDataBuffer::capacity(int)
+new: method org.springframework.core.io.buffer.DataBuffer org.springframework.core.io.buffer.DefaultDataBuffer::capacity(int)
+java.method.returnTypeChanged: The return type changed from 'org.springframework.core.io.buffer.DefaultDataBuffer' to  'org.springframework.core.io.buffer.DataBuffer'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+java.element.nowDeprecated: The element is now deprecated.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT
+
+old: method java.util.Set<org.springframework.core.io.Resource> org.springframework.core.io.support.PathMatchingResourcePatternResolver::doFindMatchingFileSystemResources(java.io.File, java.lang.String) throws java.io.IOException
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.springframework.core.io.support.PathMatchingResourcePatternResolver::doRetrieveMatchingFiles(java.lang.String, java.io.File, java.util.Set<java.io.File>) throws java.io.IOException
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.io.File[] org.springframework.core.io.support.PathMatchingResourcePatternResolver::listDirectory(java.io.File)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.util.Set<java.io.File> org.springframework.core.io.support.PathMatchingResourcePatternResolver::retrieveMatchingFiles(java.io.File, java.lang.String) throws java.io.IOException
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.springframework.core.io.support.ResourcePropertiesPersister
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.springframework.core.task.SimpleAsyncTaskExecutor
+new: class org.springframework.core.task.SimpleAsyncTaskExecutor
+java.class.nowImplementsInterface: Class now implements interface 'java.lang.AutoCloseable'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+java.class.defaultSerializationChanged: The default serialization ID for the class has changed. This means that the new version of the class is not deserializable from the byte stream of a serialized old class.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: BREAKING
+
+old: class org.springframework.core.task.support.ConcurrentExecutorAdapter
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: <none>
+new: method java.util.Set<org.springframework.core.type.MethodMetadata> org.springframework.core.type.AnnotationMetadata::getDeclaredMethods()
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method void org.springframework.core.type.StandardMethodMetadata::<init>(java.lang.reflect.Method, boolean)
+new: method void org.springframework.core.type.StandardMethodMetadata::<init>(java.lang.reflect.Method, boolean)
+java.method.visibilityReduced: visibility reduced
+BINARY: BREAKING, SOURCE: BREAKING
+java.element.noLongerDeprecated: The element is no longer deprecated.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT
+
+old: class org.springframework.core.type.classreading.AnnotationMetadataReadingVisitor
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.springframework.core.type.classreading.MethodMetadataReadingVisitor
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: @interface org.springframework.lang.UsesJava7
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: @interface org.springframework.lang.UsesJava8
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: @interface org.springframework.lang.UsesSunHttpServer
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: @interface org.springframework.lang.UsesSunMisc
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.springframework.util.Assert::doesNotContain(java.lang.String, java.lang.String)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.springframework.util.Assert::hasLength(java.lang.String)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.springframework.util.Assert::hasText(java.lang.String)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.springframework.util.Assert::isNull(java.lang.Object)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.springframework.util.Assert::isTrue(boolean)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.springframework.util.Assert::noNullElements(java.lang.Object[])
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.springframework.util.Assert::notEmpty(java.lang.Object[])
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.springframework.util.Assert::notEmpty(java.util.Collection<?>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.springframework.util.Assert::notEmpty(java.util.Map<?, ?>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.springframework.util.Assert::notNull(java.lang.Object)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.springframework.util.Assert::state(boolean)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.springframework.util.ConcurrencyThrottleSupport
+new: class org.springframework.util.ConcurrencyThrottleSupport
+java.class.defaultSerializationChanged: The default serialization ID for the class has changed. This means that the new version of the class is not deserializable from the byte stream of a serialized old class.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: BREAKING
+
+old: class org.springframework.util.ConcurrentLruCache<K, V>
+new: class org.springframework.util.ConcurrentLruCache<K, V>
+java.class.nowFinal: Class is now final.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.springframework.util.ConcurrentReferenceHashMap<K, V>.Segment::restructureIfNecessary(boolean)
+new: method void org.springframework.util.ConcurrentReferenceHashMap<K, V>.Segment::restructureIfNecessary(boolean)
+java.method.visibilityReduced: visibility reduced
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.springframework.util.ConcurrentReferenceHashMap<K, V>.Task<T>
+new: class org.springframework.util.ConcurrentReferenceHashMap<K, V>.Task<T>
+java.class.nonPublicPartOfAPI: Class 'org.springframework.util.ConcurrentReferenceHashMap<K, V>.Task<T>' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+
+old: field org.springframework.util.FileCopyUtils.BUFFER_SIZE
+new: field org.springframework.util.FileCopyUtils.BUFFER_SIZE
+java.field.constantValueChanged: Constant field changed value from '4096' to '8192'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+
+old: class org.springframework.util.LinkedCaseInsensitiveMap<V>
+new: class org.springframework.util.LinkedCaseInsensitiveMap<V>
+java.class.defaultSerializationChanged: The default serialization ID for the class has changed. This means that the new version of the class is not deserializable from the byte stream of a serialized old class.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: BREAKING
+
+old: method V java.util.Map<K, V>::putIfAbsent(K, V) @ org.springframework.util.LinkedMultiValueMap<K, V>
+new: method java.util.List<V> org.springframework.util.MultiValueMapAdapter<K, V>::putIfAbsent(K, java.util.List<V>) @ org.springframework.util.LinkedMultiValueMap<K, V>
+java.method.returnTypeChangedCovariantly: The return type changed covariantly from 'java.util.List<V>' to 'java.util.List<V>'.
+BINARY: BREAKING, SOURCE: NON_BREAKING
+java.annotation.added: Element newly annotated with 'org.springframework.lang.Nullable'.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: parameter V java.util.Map<K, V>::putIfAbsent(K, ===V===) @ org.springframework.util.LinkedMultiValueMap<K, V>
+new: parameter java.util.List<V> org.springframework.util.MultiValueMapAdapter<K, V>::putIfAbsent(K, ===java.util.List<V>===) @ org.springframework.util.LinkedMultiValueMap<K, V>
+java.method.parameterTypeErasureChanged: The erasure of the type of the parameter changed from 'java.lang.Object' to 'java.util.List'.
+BINARY: BREAKING, SOURCE: NON_BREAKING
+
+old: method void org.springframework.util.MimeTypeUtils::sortBySpecificity(java.util.List<org.springframework.util.MimeType>)
+new: method <T extends org.springframework.util.MimeType> void org.springframework.util.MimeTypeUtils::sortBySpecificity(java.util.List<T>)
+java.generics.elementNowParameterized: Element now defines formal type parameters.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+java.generics.formalTypeParameterAdded: A new formal type parameter added to element: 'T extends org.springframework.util.MimeType'.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: class org.springframework.util.MultiValueMapAdapter<K, V>
+new: class org.springframework.util.MultiValueMapAdapter<K, V>
+java.class.defaultSerializationChanged: The default serialization ID for the class has changed. This means that the new version of the class is not deserializable from the byte stream of a serialized old class.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: BREAKING
+
+old: method V java.util.Map<K, V>::putIfAbsent(K, V) @ org.springframework.util.MultiValueMapAdapter<K, V>
+new: method java.util.List<V> org.springframework.util.MultiValueMapAdapter<K, V>::putIfAbsent(K, java.util.List<V>)
+java.method.returnTypeChangedCovariantly: The return type changed covariantly from 'java.util.List<V>' to 'java.util.List<V>'.
+BINARY: BREAKING, SOURCE: NON_BREAKING
+java.method.inheritedMovedToClass: The method was previously declared in superclass 'java.util.Map<K, V>' but is now declared in class 'org.springframework.util.MultiValueMapAdapter<K, V>'.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT
+java.annotation.added: Element newly annotated with 'org.springframework.lang.Nullable'.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: parameter V java.util.Map<K, V>::putIfAbsent(K, ===V===) @ org.springframework.util.MultiValueMapAdapter<K, V>
+new: parameter java.util.List<V> org.springframework.util.MultiValueMapAdapter<K, V>::putIfAbsent(K, ===java.util.List<V>===)
+java.method.parameterTypeErasureChanged: The erasure of the type of the parameter changed from 'java.lang.Object' to 'java.util.List'.
+BINARY: BREAKING, SOURCE: NON_BREAKING
+
+old: method int org.springframework.util.ObjectUtils::hashCode(boolean)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method int org.springframework.util.ObjectUtils::hashCode(double)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method int org.springframework.util.ObjectUtils::hashCode(float)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method int org.springframework.util.ObjectUtils::hashCode(long)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.springframework.util.SocketUtils
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: field org.springframework.util.StreamUtils.BUFFER_SIZE
+new: field org.springframework.util.StreamUtils.BUFFER_SIZE
+java.field.constantValueChanged: Constant field changed value from '4096' to '8192'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+
+old: method java.lang.String[] org.springframework.util.StringUtils::mergeStringArrays(java.lang.String[], java.lang.String[])
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.String org.springframework.util.StringUtils::toLanguageTag(java.util.Locale)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.springframework.util.comparator.CompoundComparator<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.springframework.util.comparator.InvertibleComparator<T>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.springframework.util.unit.DataSize
+new: class org.springframework.util.unit.DataSize
+java.class.defaultSerializationChanged: The default serialization ID for the class has changed. This means that the new version of the class is not deserializable from the byte stream of a serialized old class.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: BREAKING
+
+21:01:06.531 INFO  Analysis took 18827ms.
+
+
+* * * * * * * *
+>>>>>>
+compilation log of 6.1.8:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------< com.alibaba.otter:canal.common >-------------------
+[INFO] Building canal common module for otter 1.1.8-SNAPSHOT 1.1.8-SNAPSHOT
+[INFO]   from _temp_org.springframework_spring-core_6.1.8_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+Downloading from central: https://repo1.maven.org/maven2/org/springframework/spring-core/6.1.8/spring-core-6.1.8.pom
+Progress (1): 1.4/2.0 kB
+Progress (1): 2.0 kB    
+                    
+Downloaded from central: https://repo1.maven.org/maven2/org/springframework/spring-core/6.1.8/spring-core-6.1.8.pom (2.0 kB at 1.6 kB/s)
+Downloading from central: https://repo1.maven.org/maven2/org/springframework/spring-core/6.1.8/spring-core-6.1.8.jar
+Progress (1): 0/1.9 MB
+Progress (1): 0/1.9 MB
+Progress (1): 0/1.9 MB
+Progress (1): 0.1/1.9 MB
+Progress (1): 0.1/1.9 MB
+Progress (1): 0.1/1.9 MB
+Progress (1): 0.1/1.9 MB
+Progress (1): 0.1/1.9 MB
+Progress (1): 0.1/1.9 MB
+Progress (1): 0.2/1.9 MB
+Progress (1): 0.2/1.9 MB
+Progress (1): 0.2/1.9 MB
+Progress (1): 0.2/1.9 MB
+Progress (1): 0.2/1.9 MB
+Progress (1): 0.2/1.9 MB
+Progress (1): 0.3/1.9 MB
+Progress (1): 0.3/1.9 MB
+Progress (1): 0.3/1.9 MB
+Progress (1): 0.3/1.9 MB
+Progress (1): 0.3/1.9 MB
+Progress (1): 0.3/1.9 MB
+Progress (1): 0.4/1.9 MB
+Progress (1): 0.4/1.9 MB
+Progress (1): 0.4/1.9 MB
+Progress (1): 0.4/1.9 MB
+Progress (1): 0.4/1.9 MB
+Progress (1): 0.4/1.9 MB
+Progress (1): 0.5/1.9 MB
+Progress (1): 0.5/1.9 MB
+Progress (1): 0.5/1.9 MB
+Progress (1): 0.5/1.9 MB
+Progress (1): 0.5/1.9 MB
+Progress (1): 0.5/1.9 MB
+Progress (1): 0.6/1.9 MB
+Progress (1): 0.6/1.9 MB
+Progress (1): 0.6/1.9 MB
+Progress (1): 0.6/1.9 MB
+Progress (1): 0.6/1.9 MB
+Progress (1): 0.6/1.9 MB
+Progress (1): 0.7/1.9 MB
+Progress (1): 0.7/1.9 MB
+Progress (1): 0.7/1.9 MB
+Progress (1): 0.7/1.9 MB
+Progress (1): 0.7/1.9 MB
+Progress (1): 0.7/1.9 MB
+Progress (1): 0.7/1.9 MB
+Progress (1): 0.8/1.9 MB
+Progress (1): 0.8/1.9 MB
+Progress (1): 0.8/1.9 MB
+Progress (1): 0.8/1.9 MB
+Progress (1): 0.8/1.9 MB
+Progress (1): 0.8/1.9 MB
+Progress (1): 0.9/1.9 MB
+Progress (1): 0.9/1.9 MB
+Progress (1): 0.9/1.9 MB
+Progress (1): 0.9/1.9 MB
+Progress (1): 0.9/1.9 MB
+Progress (1): 0.9/1.9 MB
+Progress (1): 1.0/1.9 MB
+Progress (1): 1.0/1.9 MB
+Progress (1): 1.0/1.9 MB
+Progress (1): 1.0/1.9 MB
+Progress (1): 1.0/1.9 MB
+Progress (1): 1.0/1.9 MB
+Progress (1): 1.1/1.9 MB
+Progress (1): 1.1/1.9 MB
+Progress (1): 1.1/1.9 MB
+Progress (1): 1.1/1.9 MB
+Progress (1): 1.1/1.9 MB
+Progress (1): 1.1/1.9 MB
+Progress (1): 1.2/1.9 MB
+Progress (1): 1.2/1.9 MB
+Progress (1): 1.2/1.9 MB
+Progress (1): 1.2/1.9 MB
+Progress (1): 1.2/1.9 MB
+Progress (1): 1.2/1.9 MB
+Progress (1): 1.3/1.9 MB
+Progress (1): 1.3/1.9 MB
+Progress (1): 1.3/1.9 MB
+Progress (1): 1.3/1.9 MB
+Progress (1): 1.3/1.9 MB
+Progress (1): 1.3/1.9 MB
+Progress (1): 1.3/1.9 MB
+Progress (1): 1.4/1.9 MB
+Progress (1): 1.4/1.9 MB
+Progress (1): 1.4/1.9 MB
+Progress (1): 1.4/1.9 MB
+Progress (1): 1.4/1.9 MB
+Progress (1): 1.4/1.9 MB
+Progress (1): 1.5/1.9 MB
+Progress (1): 1.5/1.9 MB
+Progress (1): 1.5/1.9 MB
+Progress (1): 1.5/1.9 MB
+Progress (1): 1.5/1.9 MB
+Progress (1): 1.5/1.9 MB
+Progress (1): 1.6/1.9 MB
+Progress (1): 1.6/1.9 MB
+Progress (1): 1.6/1.9 MB
+Progress (1): 1.6/1.9 MB
+Progress (1): 1.6/1.9 MB
+Progress (1): 1.6/1.9 MB
+Progress (1): 1.7/1.9 MB
+Progress (1): 1.7/1.9 MB
+Progress (1): 1.7/1.9 MB
+Progress (1): 1.7/1.9 MB
+Progress (1): 1.7/1.9 MB
+Progress (1): 1.7/1.9 MB
+Progress (1): 1.8/1.9 MB
+Progress (1): 1.8/1.9 MB
+Progress (1): 1.8/1.9 MB
+Progress (1): 1.8/1.9 MB
+Progress (1): 1.8/1.9 MB
+Progress (1): 1.8/1.9 MB
+Progress (1): 1.9/1.9 MB
+Progress (1): 1.9/1.9 MB
+Progress (1): 1.9 MB    
+                    
+Downloaded from central: https://repo1.maven.org/maven2/org/springframework/spring-core/6.1.8/spring-core-6.1.8.jar (1.9 MB at 1.2 MB/s)
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ canal.common ---
+[INFO] Deleting /home/ray/Tool/Dataset/canal/common/target
+[INFO] 
+[INFO] --- enforcer:1.0:enforce (enforce-maven) @ canal.common ---
+[INFO] 
+[INFO] --- jacoco:0.8.3:prepare-agent (jacoco-initialize) @ canal.common ---
+[INFO] jacocoArgLine set to -javaagent:/home/ray/.m2/repository/org/jacoco/org.jacoco.agent/0.8.3/org.jacoco.agent-0.8.3-runtime.jar=destfile=/home/ray/Tool/Dataset/canal/common/target/jacoco.exec
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ canal.common ---
+[INFO] skip non existing resourceDirectory /home/ray/Tool/Dataset/canal/common/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.7.0:compile (default-compile) @ canal.common ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.474 s
+[INFO] Finished at: 2024-06-03T21:16:44+08:00
+[INFO] ------------------------------------------------------------------------
+
+
+* * * * * * * *

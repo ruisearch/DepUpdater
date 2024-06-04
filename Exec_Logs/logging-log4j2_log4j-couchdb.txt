@@ -1,0 +1,430 @@
+Script started on 2024-06-04 08:54:45+08:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="113" LINES="39"]
+
+****** preprocessing ... ******
+
+****** set the git repository to the lastest tag status ******
+HEAD is now at fea2a71161 Update the `project.build.outputTimestamp` property
+HEAD is now at fea2a71161 Update the `project.build.outputTimestamp` property
+
+****** preprocess.package ... ******
+
+mvn clean and mvn package...
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m---------------< [0;36morg.apache.logging.log4j:log4j-couchdb[0;1m >---------------[m
+[[1;34mINFO[m] [1mBuilding Apache Log4j CouchDB 2.23.1[m
+[[1;34mINFO[m]   from pom.xml
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[90mDownloading from [0mcentral[90m: https://repo.maven.apache.org/maven2/[0morg/apache/logging/log4j/log4j-slf4j-impl/2.23.1/log4j-slf4j-impl-2.23.1.pom
+Progress (1): 1.4/5.2 kBProgress (1): 2.8/5.2 kBProgress (1): 4.1/5.2 kBProgress (1): 5.2 kB                        Downloaded[90m from [0mcentral[90m: https://repo.maven.apache.org/maven2/[0morg/apache/logging/log4j/log4j-slf4j-impl/2.23.1/log4j-slf4j-impl-2.23.1.pom[90m (5.2 kB at 4.4 kB/s)[0m
+[[1;34mINFO[m] Artifact org.apache.logging.log4j:log4j-slf4j-impl:jar:2.23.1 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [apache.snapshots (https://repository.apache.org/snapshots, default, snapshots), central (https://repo.maven.apache.org/maven2, default, releases)]
+[[1;34mINFO[m] Artifact org.apache.logging.log4j:log4j-slf4j-impl:jar:2.23.1 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [apache.snapshots (https://repository.apache.org/snapshots, default, snapshots), central (https://repo.maven.apache.org/maven2, default, releases)]
+[90mDownloading from [0mcentral[90m: https://repo.maven.apache.org/maven2/[0morg/apache/logging/log4j/log4j-slf4j-impl/2.23.1/log4j-slf4j-impl-2.23.1.jar
+Downloaded[90m from [0mcentral[90m: https://repo.maven.apache.org/maven2/[0morg/apache/logging/log4j/log4j-slf4j-impl/2.23.1/log4j-slf4j-impl-2.23.1.jar[90m (0 B at 0 B/s)[0m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mclean:3.3.2:clean[m [1m(default-clean)[m @ [36mlog4j-couchdb[0;1m ---[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mflatten:1.5.0:clean[m [1m(clean-flattened-pom)[m @ [36mlog4j-couchdb[0;1m ---[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32menforcer:3.4.1:enforce[m [1m(enforce-maven-version)[m @ [36mlog4j-couchdb[0;1m ---[m
+[[1;34mINFO[m] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32menforcer:3.4.1:enforce[m [1m(enforce-java-version)[m @ [36mlog4j-couchdb[0;1m ---[m
+[[1;34mINFO[m] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32menforcer:3.4.1:enforce[m [1m(enforce-upper-bound-deps)[m @ [36mlog4j-couchdb[0;1m ---[m
+[[1;34mINFO[m] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32menforcer:3.4.1:enforce[m [1m(ban-wildcard-imports)[m @ [36mlog4j-couchdb[0;1m ---[m
+[[1;34mINFO[m] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32menforcer:3.4.1:enforce[m [1m(ban-logging-dependencies)[m @ [36mlog4j-couchdb[0;1m ---[m
+[[1;34mINFO[m] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mbuild-helper:3.5.0:parse-version[m [1m(parse-version)[m @ [36mlog4j-couchdb[0;1m ---[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mclean:3.3.2:clean[m [1m(delete-module-descriptors)[m @ [36mlog4j-couchdb[0;1m ---[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mremote-resources:3.1.0:process[m [1m(process-resource-bundles)[m @ [36mlog4j-couchdb[0;1m ---[m
+[[1;34mINFO[m] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[[1;34mINFO[m] Copying 3 resources from 1 bundle.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mresources:3.3.1:resources[m [1m(default-resources)[m @ [36mlog4j-couchdb[0;1m ---[m
+[[1;34mINFO[m] skip non existing resourceDirectory /home/ray/Tool/Dataset/logging-log4j2/log4j-couchdb/src/main/resources
+[[1;34mINFO[m] Copying 3 resources from target/maven-shared-archive-resources to target/classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mflatten:1.5.0:flatten[m [1m(flatten-revision)[m @ [36mlog4j-couchdb[0;1m ---[m
+[[1;34mINFO[m] Generating flattened POM of project org.apache.logging.log4j:log4j-couchdb:jar:2.23.1...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mclean:3.3.2:clean[m [1m(delete-module-descriptor)[m @ [36mlog4j-couchdb[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/logging-log4j2/log4j-couchdb/target/classes (includes = [module-info.class], excludes = [])
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mcompiler:3.11.0:compile[m [1m(default-compile)[m @ [36mlog4j-couchdb[0;1m ---[m
+[[1;34mINFO[m] Changes detected - recompiling the module! :source
+[[1;34mINFO[m] Compiling 3 source files with javac [debug release 8] to target/classes
+[[1;34mINFO[m] Processing Log4j annotations
+[[1;34mINFO[m] Annotations processed
+[[1;33mWARNING[m] No processor claimed any of these annotations: org.osgi.annotation.versioning.Version,org.osgi.annotation.bundle.Export,aQute.bnd.annotation.jpms.Open
+[[1;34mINFO[m] Processing Log4j annotations
+[[1;34mINFO[m] No elements to process
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mbnd:7.0.0:bnd-process[m [1m(generate-module-descriptors)[m @ [36mlog4j-couchdb[0;1m ---[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mresources:3.3.1:testResources[m [1m(default-testResources)[m @ [36mlog4j-couchdb[0;1m ---[m
+[[1;34mINFO[m] Not copying test resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mcompiler:3.11.0:testCompile[m [1m(default-testCompile)[m @ [36mlog4j-couchdb[0;1m ---[m
+[[1;34mINFO[m] Not compiling test sources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32msurefire:3.2.5:test[m [1m(default-test)[m @ [36mlog4j-couchdb[0;1m ---[m
+[[1;34mINFO[m] Tests are skipped.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjar:3.3.0:jar[m [1m(default-jar)[m @ [36mlog4j-couchdb[0;1m ---[m
+[[1;34mINFO[m] Building jar: /home/ray/Tool/Dataset/logging-log4j2/log4j-couchdb/target/log4j-couchdb-2.23.1.jar
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mcyclonedx:2.7.10:makeAggregateBom[m [1m(generate-sbom)[m @ [36mlog4j-couchdb[0;1m ---[m
+[[1;34mINFO[m] CycloneDX: Resolving Dependencies
+[[1;34mINFO[m] CycloneDX: Creating BOM version 1.4 with 17 component(s)
+[[1;34mINFO[m] CycloneDX: Writing and validating BOM (XML): /home/ray/Tool/Dataset/logging-log4j2/log4j-couchdb/target/bom.xml
+[[1;34mINFO[m]            attaching as log4j-couchdb-2.23.1-cyclonedx.xml
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mbsh:1.4:run[m [1m(process-sbom)[m @ [36mlog4j-couchdb[0;1m ---[m
+[[1;34mINFO[m] Executing Script
+[[1;34mINFO[m] file class java.lang.Object
+[[1;34mINFO[m] script class java.lang.String
+[[1;34mINFO[m] evaluating script import java.io.*;
+import java.nio.file.*;
+import java.util.*;
+import javax.xml.transform.*;
+import javax.xml.transform.stream.*;
+import org.apache.commons.codec.digest.*;
+
+    // Compute parameters
+    final String xslt = project.getProperties().getProperty("sbom.xslt");
+    final File pomFile = project.getModel().getPomFile();
+    final byte[] digest = new DigestUtils(MessageDigestAlgorithms.SHA_256).digest(pomFile);
+    final UUID bomSerialNumber = UUID.nameUUIDFromBytes(digest);
+    final String vdrUrl = Objects.requireNonNull(project.getProperties().getProperty("vdr.url"), "vdr.url");
+
+    // Move original SBOM file
+    final Path basedir = project.getBasedir().toPath();
+    final Path destPath = basedir.resolve("target/bom.xml");
+    final Path sourcePath = basedir.resolve("target/bom.orig.xml");
+    if (!Files.isReadable(destPath)) {
+      System.out.println("No CycloneDX SBOM file found, skipping transformation.");
+      return;
+    }
+    Files.move(destPath, sourcePath, new CopyOption[] {StandardCopyOption.REPLACE_EXISTING});
+
+    // Apply XSLT transformation
+    final StreamSource xsltSource = new StreamSource(new StringReader(xslt));
+    final TransformerFactory factory = TransformerFactory.newInstance();
+    final Transformer transformer = factory.newTransformer(xsltSource);
+    transformer.setParameter("sbom.serialNumber", bomSerialNumber.toString());
+    transformer.setParameter("vdr.url", vdrUrl);
+    final StreamSource source = new StreamSource(sourcePath.toUri().toASCIIString());
+    final StreamResult result = new StreamResult(destPath.toUri().toASCIIString());
+    transformer.transform(source, result);
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  5.250 s
+[[1;34mINFO[m] Finished at: 2024-06-04T08:54:52+08:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[0m[0m
+****** preprocess.package done! ******
+
+
+****** preprocess.analysis_tree ... ******
+
+generating dependency tree...
+dependency tree is generated in ./data/dependency_tree.txt successfully
+
+****** preprocess.analysis_tree done! ******
+
+
+****** preprocess.getjar ... ******
+
+
+****** get client jar / dep jar... ******
+
+**** process org.apache.logging.log4j:log4j-couchdb:2.23.1 ****
+commons-logging-commons-logging-1.3.0.jar downloaded successfully.
+org.lightcouch-lightcouch-0.2.0.jar downloaded successfully.
+com.google.code.gson-gson-2.8.2.jar downloaded successfully.
+org.apache.logging.log4j-log4j-api-2.23.1.jar downloaded successfully.
+commons-codec-commons-codec-1.16.1.jar downloaded successfully.
+org.apache.httpcomponents-httpcore-4.4.16.jar downloaded successfully.
+org.apache.httpcomponents-httpclient-4.5.14.jar downloaded successfully.
+org.apache.logging.log4j-log4j-core-2.23.1.jar downloaded successfully.
+
+****** preprocess.getjar done! ******
+
+
+****** preprocess done! ******
+
+
+****** match ... ******
+
+**** start generating call graph of client: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/client/log4j-couchdb-2.23.1.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/client/log4j-couchdb-2.23.1.jar generated ****
+Generating call graphs of deps:   0%|                                                      | 0/8 [00:00<?, ?it/s]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/org.apache.logging.log4j-log4j-core-2.23.1.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/org.apache.logging.log4j-log4j-core-2.23.1.jar generated ****
+Generating call graphs of deps:  12%|█████▊                                        | 1/8 [00:06<00:45,  6.50s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/org.apache.httpcomponents-httpcore-4.4.16.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/org.apache.httpcomponents-httpcore-4.4.16.jar generated ****
+Generating call graphs of deps:  25%|███████████▌                                  | 2/8 [00:08<00:24,  4.07s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/org.lightcouch-lightcouch-0.2.0.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/org.lightcouch-lightcouch-0.2.0.jar generated ****
+Generating call graphs of deps:  38%|█████████████████▎                            | 3/8 [00:10<00:14,  2.95s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/commons-codec-commons-codec-1.16.1.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/commons-codec-commons-codec-1.16.1.jar generated ****
+Generating call graphs of deps:  50%|███████████████████████                       | 4/8 [00:12<00:10,  2.71s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/org.apache.logging.log4j-log4j-api-2.23.1.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+Exception in thread "main" java.lang.RuntimeException: An error occurred while processing <META-INF.versions.9.org.apache.logging.log4j.util.Base64Util: java.lang.String encode(java.lang.String)> in callgraph
+	at soot.jimple.spark.solver.OnFlyCallGraph.processReachables(OnFlyCallGraph.java:122)
+	at soot.jimple.spark.solver.OnFlyCallGraph.build(OnFlyCallGraph.java:106)
+	at soot.jimple.spark.builder.ContextInsensitiveBuilder.build(ContextInsensitiveBuilder.java:94)
+	at soot.jimple.spark.SparkTransformer.internalTransform(SparkTransformer.java:101)
+	at soot.SceneTransformer.transform(SceneTransformer.java:36)
+	at soot.Transform.apply(Transform.java:105)
+	at soot.RadioScenePack.internalApply(RadioScenePack.java:64)
+	at soot.jimple.toolkits.callgraph.CallGraphPack.internalApply(CallGraphPack.java:61)
+	at soot.Pack.apply(Pack.java:118)
+	at soot.PackManager.runWholeProgramPacks(PackManager.java:619)
+	at soot.PackManager.runPacksNormally(PackManager.java:500)
+	at soot.PackManager.runPacks(PackManager.java:425)
+	at ecnu.se.getcg.TestSootCallGraph.main(TestSootCallGraph.java:43)
+Caused by: java.lang.NullPointerException: Cannot invoke "soot.SootField.getType()" because the return value of "soot.jimple.StaticFieldRef.getField()" is null
+	at soot.jimple.spark.builder.MethodNodeFactory.caseStaticFieldRef(MethodNodeFactory.java:401)
+	at soot.jimple.StaticFieldRef.apply(StaticFieldRef.java:83)
+	at soot.jimple.spark.builder.MethodNodeFactory$1.caseAssignStmt(MethodNodeFactory.java:162)
+	at soot.jimple.internal.JAssignStmt.apply(JAssignStmt.java:217)
+	at soot.jimple.spark.builder.MethodNodeFactory.handleStmt(MethodNodeFactory.java:150)
+	at soot.jimple.spark.pag.MethodPAG.buildNormal(MethodPAG.java:224)
+	at soot.jimple.spark.pag.MethodPAG.build(MethodPAG.java:186)
+	at soot.jimple.spark.solver.OnFlyCallGraph.processReachables(OnFlyCallGraph.java:116)
+	... 12 more
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/org.apache.logging.log4j-log4j-api-2.23.1.jar generated ****
+Generating call graphs of deps:  62%|████████████████████████████▊                 | 5/8 [00:15<00:07,  2.66s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/org.apache.httpcomponents-httpclient-4.5.14.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/org.apache.httpcomponents-httpclient-4.5.14.jar generated ****
+Generating call graphs of deps:  75%|██████████████████████████████████▌           | 6/8 [00:19<00:06,  3.04s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/commons-logging-commons-logging-1.3.0.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/commons-logging-commons-logging-1.3.0.jar generated ****
+Generating call graphs of deps:  88%|████████████████████████████████████████▎     | 7/8 [00:20<00:02,  2.60s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/com.google.code.gson-gson-2.8.2.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/com.google.code.gson-gson-2.8.2.jar generated ****
+Generating call graphs of deps: 100%|██████████████████████████████████████████████| 8/8 [00:22<00:00,  2.43s/it]Generating call graphs of deps: 100%|██████████████████████████████████████████████| 8/8 [00:22<00:00,  2.87s/it]
+**** generating total call graph ... ****
+**** total call graph got ****
+extract api of client jar: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/client/log4j-couchdb-2.23.1.jar ...
+get api of client jar: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/client/log4j-couchdb-2.23.1.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/org.apache.logging.log4j-log4j-core-2.23.1.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/org.apache.logging.log4j-log4j-core-2.23.1.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/org.apache.httpcomponents-httpcore-4.4.16.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/org.apache.httpcomponents-httpcore-4.4.16.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/org.lightcouch-lightcouch-0.2.0.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/org.lightcouch-lightcouch-0.2.0.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/commons-codec-commons-codec-1.16.1.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/commons-codec-commons-codec-1.16.1.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/org.apache.logging.log4j-log4j-api-2.23.1.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/org.apache.logging.log4j-log4j-api-2.23.1.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/org.apache.httpcomponents-httpclient-4.5.14.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/org.apache.httpcomponents-httpclient-4.5.14.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/commons-logging-commons-logging-1.3.0.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/commons-logging-commons-logging-1.3.0.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/com.google.code.gson-gson-2.8.2.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-couchdb_/dep/com.google.code.gson-gson-2.8.2.jar
+
+**** get reachable api... ****
+**** reachable api got ****
+
+****map dep jar to reachable api...****
+****map done****
+
+
+****** match done ! ******
+
+
+****** calculate: ******
+
+Dep in log4j-couchdb_:   0%|                                                               | 0/8 [00:00<?, ?it/s]-- start sorting versions of org.apache.logging.log4j:log4j-api -- 
+-- start sorting versions of org.apache.logging.log4j:log4j-core -- 
+-- start sorting versions of org.apache.httpcomponents:httpclient -- 
+-- start sorting versions of org.lightcouch:lightcouch -- 
+-- start sorting versions of commons-logging:commons-logging -- 
+-- start sorting versions of org.apache.httpcomponents:httpcore -- 
+-- start sorting versions of commons-codec:commons-codec -- 
+-- start sorting versions of com.google.code.gson:gson -- 
+-- get all versions of commons-codec:commons-codec -- 
+-- start calculating  best version of commons-codec:commons-codec in log4j-couchdb/ -- 
+-- get all versions of commons-logging:commons-logging -- 
+-- get all versions of com.google.code.gson:gson -- 
+-- start calculating  best version of commons-logging:commons-logging in log4j-couchdb/ -- 
+-- start calculating  best version of com.google.code.gson:gson in log4j-couchdb/ -- 
+-- get all versions of org.apache.logging.log4j:log4j-core -- 
+-- start calculating  best version of org.apache.logging.log4j:log4j-core in log4j-couchdb/ -- 
+-- get all versions of org.apache.logging.log4j:log4j-api -- 
+-- start calculating  best version of org.apache.logging.log4j:log4j-api in log4j-couchdb/ -- 
+-- get all versions of org.apache.httpcomponents:httpcore -- 
+-- start calculating  best version of org.apache.httpcomponents:httpcore in log4j-couchdb/ -- 
+-- get all versions of org.apache.httpcomponents:httpclient -- 
+-- best version of org.apache.httpcomponents:httpcore is 4.4.16 -- 
+-- start validating the best version of org.apache.httpcomponents:httpcore in log4j-couchdb/ --
+org.apache.httpcomponents:httpcore:4.4.16 is the newest version, skip
+-- validation to the best version of org.apache.httpcomponents:httpcore in log4j-couchdb/  done --
+Dep in log4j-couchdb_:  12%|██████▉                                                | 1/8 [00:00<00:06,  1.11it/s]-- start calculating  best version of org.apache.httpcomponents:httpclient in log4j-couchdb/ -- 
+-- best version of org.apache.httpcomponents:httpclient is 4.5.14 -- 
+-- start validating the best version of org.apache.httpcomponents:httpclient in log4j-couchdb/ --
+org.apache.httpcomponents:httpclient:4.5.14 is the newest version, skip
+-- validation to the best version of org.apache.httpcomponents:httpclient in log4j-couchdb/  done --
+-- get all versions of org.lightcouch:lightcouch -- 
+-- start calculating  best version of org.lightcouch:lightcouch in log4j-couchdb/ -- 
+-- best version of org.lightcouch:lightcouch is 0.2.0 -- 
+-- start validating the best version of org.lightcouch:lightcouch in log4j-couchdb/ --
+org.lightcouch:lightcouch:0.2.0 is the newest version, skip
+-- validation to the best version of org.lightcouch:lightcouch in log4j-couchdb/  done --
+start analysising dependency commons-logging-commons-logging-1.3.1.jar 
+start analysising dependency com.google.code.gson-gson-2.8.3.jar 
+start analysising dependency org.apache.logging.log4j-log4j-api-3.0.0-alpha1.jar 
+start analysising dependency commons-codec-commons-codec-1.17.0.jar 
+start analysising dependency org.apache.logging.log4j-log4j-core-3.0.0-alpha1.jar 
+start analysising dependency commons-logging-commons-logging-1.3.2.jar 
+-- best version of commons-codec:commons-codec is 1.17.0 -- 
+-- start validating the best version of commons-codec:commons-codec in log4j-couchdb/ --
+commons-codec:commons-codec:1.16.1 ---> 1.17.0
+start analysising dependency com.google.code.gson-gson-2.8.4.jar 
+-- best version of commons-logging:commons-logging is 1.3.2 -- 
+-- start validating the best version of commons-logging:commons-logging in log4j-couchdb/ --
+commons-logging:commons-logging:1.3.0 ---> 1.3.1
+start analysising dependency org.apache.logging.log4j-log4j-api-3.0.0-beta1.jar 
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-alpha1.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-alpha1.jar: org.apache.logging.log4j.core.LifeCycle
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-alpha1.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-alpha1.jar: org.apache.logging.log4j.core.config.Configuration
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-alpha1.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-alpha1.jar: org.apache.logging.log4j.core.config.composite.MergeStrategy
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-alpha1.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-alpha1.jar: org.apache.logging.log4j.core.script.ScriptManager
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-alpha1.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-alpha1.jar: org.apache.logging.log4j.core.script.ScriptManager
+Actually best version of commons-codec:commons-codec is 1.17.0
+-- validation to the best version of commons-codec:commons-codec in log4j-couchdb/  done --
+Dep in log4j-couchdb_:  50%|███████████████████████████▌                           | 4/8 [00:18<00:20,  5.01s/it]start analysising dependency com.google.code.gson-gson-2.8.5.jar 
+commons-logging:commons-logging:1.3.0 ---> 1.3.2
+start analysising dependency org.apache.logging.log4j-log4j-core-3.0.0-beta1.jar 
+start analysising dependency org.apache.logging.log4j-log4j-api-3.0.0-beta2.jar 
+Actually best version of commons-logging:commons-logging is 1.3.2
+-- validation to the best version of commons-logging:commons-logging in log4j-couchdb/  done --
+Dep in log4j-couchdb_:  62%|██████████████████████████████████▍                    | 5/8 [00:25<00:16,  5.52s/it]start analysising dependency com.google.code.gson-gson-2.8.6.jar 
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta1.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta1.jar: org.apache.logging.log4j.core.LifeCycle
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta1.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta1.jar: org.apache.logging.log4j.core.config.Configuration
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta1.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta1.jar: org.apache.logging.log4j.core.config.Configuration
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta1.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta1.jar: org.apache.logging.log4j.core.config.composite.MergeStrategy
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta1.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta1.jar: org.apache.logging.log4j.core.script.ScriptManager
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta1.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta1.jar: org.apache.logging.log4j.core.script.ScriptManager
+-- best version of org.apache.logging.log4j:log4j-api is 2.23.1 -- 
+-- start validating the best version of org.apache.logging.log4j:log4j-api in log4j-couchdb/ --
+org.apache.logging.log4j:log4j-api:2.23.1 ---> 3.0.0-alpha1
+start analysising dependency com.google.code.gson-gson-2.8.7.jar 
+start analysising dependency org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar 
+org.apache.logging.log4j:log4j-api:2.23.1 ---> 3.0.0-beta1
+start analysising dependency com.google.code.gson-gson-2.8.8.jar 
+org.apache.logging.log4j:log4j-api:2.23.1 ---> 3.0.0-beta2
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar: org.apache.logging.log4j.core.LifeCycle
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar: org.apache.logging.log4j.core.config.Configuration
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar: org.apache.logging.log4j.core.config.Configuration
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar: org.apache.logging.log4j.core.config.Configuration
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar: org.apache.logging.log4j.core.config.Configuration
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar: org.apache.logging.log4j.core.config.composite.MergeStrategy
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar: org.apache.logging.log4j.core.script.ScriptManager
+start analysising dependency com.google.code.gson-gson-2.8.9.jar 
+== java.method.addedToInterface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar ==
+  changed interface in org.apache.logging.log4j-log4j-core-3.0.0-beta2.jar: org.apache.logging.log4j.core.script.ScriptManager
+-- best version of org.apache.logging.log4j:log4j-core is 2.23.1 -- 
+-- start validating the best version of org.apache.logging.log4j:log4j-core in log4j-couchdb/ --
+org.apache.logging.log4j:log4j-core:2.23.1 ---> 3.0.0-alpha1
+Actually best version of org.apache.logging.log4j:log4j-api is 3.0.0-beta2
+ find a fp: org.apache.logging.log4j:log4j-api:2.23.1 ---> 2.23.1
+>>>>>> compilation log for former version
+>>>>>> compilation log for later version
+ find a fn: org.apache.logging.log4j:log4j-api:2.23.1 ---> 3.0.0-beta2
+>>>>>> compilation log for former version
+>>>>>> compilation log for later version
+-- validation to the best version of org.apache.logging.log4j:log4j-api in log4j-couchdb/  done --
+Dep in log4j-couchdb_:  75%|█████████████████████████████████████████▎             | 6/8 [00:44<00:18,  9.28s/it]start analysising dependency com.google.code.gson-gson-2.9.0.jar 
+org.apache.logging.log4j:log4j-core:2.23.1 ---> 3.0.0-beta1
+start analysising dependency com.google.code.gson-gson-2.9.1.jar 
+org.apache.logging.log4j:log4j-core:2.23.1 ---> 3.0.0-beta2
+Actually best version of org.apache.logging.log4j:log4j-core is 2.23.1
+-- validation to the best version of org.apache.logging.log4j:log4j-core in log4j-couchdb/  done --
+Dep in log4j-couchdb_:  88%|████████████████████████████████████████████████▏      | 7/8 [00:54<00:09,  9.62s/it]start analysising dependency com.google.code.gson-gson-2.10.jar 
+start analysising dependency com.google.code.gson-gson-2.10.1.jar 
+start analysising dependency com.google.code.gson-gson-2.11.0.jar 
+-- best version of com.google.code.gson:gson is 2.11.0 -- 
+-- start validating the best version of com.google.code.gson:gson in log4j-couchdb/ --
+com.google.code.gson:gson:2.8.2 ---> 2.8.3
+com.google.code.gson:gson:2.8.2 ---> 2.8.4
+com.google.code.gson:gson:2.8.2 ---> 2.8.5
+com.google.code.gson:gson:2.8.2 ---> 2.8.6
+com.google.code.gson:gson:2.8.2 ---> 2.8.7
+com.google.code.gson:gson:2.8.2 ---> 2.8.8
+com.google.code.gson:gson:2.8.2 ---> 2.8.9
+com.google.code.gson:gson:2.8.2 ---> 2.9.0
+com.google.code.gson:gson:2.8.2 ---> 2.9.1
+com.google.code.gson:gson:2.8.2 ---> 2.10
+com.google.code.gson:gson:2.8.2 ---> 2.10.1
+com.google.code.gson:gson:2.8.2 ---> 2.11.0
+Actually best version of com.google.code.gson:gson is 2.11.0
+-- validation to the best version of com.google.code.gson:gson in log4j-couchdb/  done --
+Dep in log4j-couchdb_: 100%|███████████████████████████████████████████████████████| 8/8 [02:01<00:00, 26.41s/it]Dep in log4j-couchdb_: 100%|███████████████████████████████████████████████████████| 8/8 [02:01<00:00, 15.24s/it]
+set all dep to best version 
+
+cal
+
+****** calculate done ! ******
+
+
+Script done on 2024-06-04 08:57:26+08:00 [COMMAND_EXIT_CODE="0"]

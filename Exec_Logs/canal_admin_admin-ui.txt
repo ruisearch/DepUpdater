@@ -1,0 +1,124 @@
+Script started on 2024-06-03 17:40:25+08:00 [TERM="xterm-256color" TTY="/dev/pts/5" COLUMNS="116" LINES="39"]
+
+****** preprocessing ... ******
+
+****** set the git repository to the lastest tag status ******
+HEAD is now at d66a15fe migrate sql parser from druid to polardbx-parser  (#5097)
+HEAD is now at d66a15fe migrate sql parser from druid to polardbx-parser  (#5097)
+
+****** preprocess.package ... ******
+
+mvn clean and mvn package...
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------< [0;36mcom.alibaba.otter:canal.admin-ui[0;1m >------------------[m
+[[1;34mINFO[m] [1mBuilding canal admin-ui module for otter 1.1.8-SNAPSHOT 1.1.8-SNAPSHOT[m
+[[1;34mINFO[m]   from pom.xml
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mclean:3.2.0:clean[m [1m(default-clean)[m @ [36mcanal.admin-ui[0;1m ---[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32menforcer:1.0:enforce[m [1m(enforce-maven)[m @ [36mcanal.admin-ui[0;1m ---[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjacoco:0.8.3:prepare-agent[m [1m(jacoco-initialize)[m @ [36mcanal.admin-ui[0;1m ---[m
+[[1;34mINFO[m] jacocoArgLine set to -javaagent:/home/ray/.m2/repository/org/jacoco/org.jacoco.agent/0.8.3/org.jacoco.agent-0.8.3-runtime.jar=destfile=/home/ray/Tool/Dataset/canal/admin/admin-ui/target/jacoco.exec
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mresources:3.3.1:resources[m [1m(default-resources)[m @ [36mcanal.admin-ui[0;1m ---[m
+[[1;34mINFO[m] skip non existing resourceDirectory /home/ray/Tool/Dataset/canal/admin/admin-ui/src/main/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mcompiler:3.7.0:compile[m [1m(default-compile)[m @ [36mcanal.admin-ui[0;1m ---[m
+[[1;34mINFO[m] No sources to compile
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mresources:3.3.1:testResources[m [1m(default-testResources)[m @ [36mcanal.admin-ui[0;1m ---[m
+[[1;34mINFO[m] Not copying test resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mcompiler:3.7.0:testCompile[m [1m(default-testCompile)[m @ [36mcanal.admin-ui[0;1m ---[m
+[[1;34mINFO[m] Not compiling test sources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32msurefire:2.22.1:test[m [1m(default-test)[m @ [36mcanal.admin-ui[0;1m ---[m
+[[1;34mINFO[m] Tests are skipped.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjar:3.0.2:jar[m [1m(default-jar)[m @ [36mcanal.admin-ui[0;1m ---[m
+[[1;33mWARNING[m] JAR will be empty - no content was marked for inclusion!
+[[1;34mINFO[m] Building jar: /home/ray/Tool/Dataset/canal/admin/admin-ui/target/canal.admin-ui-1.1.8-SNAPSHOT.jar
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m>>> [0;32msource:2.4:jar[m [1m(attach-sources)[0;1m > [0;1mgenerate-sources[m @ [36mcanal.admin-ui[0;1m >>>[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32menforcer:1.0:enforce[m [1m(enforce-maven)[m @ [36mcanal.admin-ui[0;1m ---[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjacoco:0.8.3:prepare-agent[m [1m(jacoco-initialize)[m @ [36mcanal.admin-ui[0;1m ---[m
+[[1;34mINFO[m] jacocoArgLine set to -javaagent:/home/ray/.m2/repository/org/jacoco/org.jacoco.agent/0.8.3/org.jacoco.agent-0.8.3-runtime.jar=destfile=/home/ray/Tool/Dataset/canal/admin/admin-ui/target/jacoco.exec
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m<<< [0;32msource:2.4:jar[m [1m(attach-sources)[0;1m < [0;1mgenerate-sources[m @ [36mcanal.admin-ui[0;1m <<<[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32msource:2.4:jar[m [1m(attach-sources)[m @ [36mcanal.admin-ui[0;1m ---[m
+[[1;34mINFO[m] No sources in project. Archive not created.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjavadoc:2.9.1:jar[m [1m(attach-javadocs)[m @ [36mcanal.admin-ui[0;1m ---[m
+[[1;34mINFO[m] Skipping javadoc generation
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  1.135 s
+[[1;34mINFO[m] Finished at: 2024-06-03T17:40:28+08:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[0m[0m
+****** preprocess.package done! ******
+
+
+****** preprocess.analysis_tree ... ******
+
+generating dependency tree...
+dependency tree is generated in ./data/dependency_tree.txt successfully
+
+****** preprocess.analysis_tree done! ******
+
+
+****** preprocess.getjar ... ******
+
+
+****** get client jar / dep jar... ******
+
+**** process com.alibaba.otter:canal.admin-ui:1.1.8-SNAPSHOT ****
+
+****** preprocess.getjar done! ******
+
+
+****** preprocess done! ******
+
+
+****** match ... ******
+
+**** start generating call graph of client: /home/ray/Tool/com_tool/data/Jar/admin-ui_/client/canal.admin-ui-1.1.8-SNAPSHOT.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/admin-ui_/client/canal.admin-ui-1.1.8-SNAPSHOT.jar generated ****
+Generating call graphs of deps: 0it [00:00, ?it/s]Generating call graphs of deps: 0it [00:00, ?it/s]
+**** generating total call graph ... ****
+**** total call graph got ****
+extract api of client jar: /home/ray/Tool/com_tool/data/Jar/admin-ui_/client/canal.admin-ui-1.1.8-SNAPSHOT.jar ...
+get api of client jar: /home/ray/Tool/com_tool/data/Jar/admin-ui_/client/canal.admin-ui-1.1.8-SNAPSHOT.jar
+
+**** get reachable api... ****
+**** reachable api got ****
+
+****map dep jar to reachable api...****
+****map done****
+
+
+****** match done ! ******
+
+
+****** calculate: ******
+
+Dep in admin-ui_: 0it [00:00, ?it/s]Dep in admin-ui_: 0it [00:00, ?it/s]
+set all dep to best version 
+
+cal
+
+****** calculate done ! ******
+
+
+Script done on 2024-06-03 17:40:32+08:00 [COMMAND_EXIT_CODE="0"]

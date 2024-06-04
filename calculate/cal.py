@@ -112,7 +112,10 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
             with open(error_dep_count_txt_path, 'w') as f:
                 f.write(f'total dep: {dep_count}\n')
                 f.write(f'error dep: {error_dep_count}\n')
-                f.write(f'weight: {error_dep_count / dep_count}\n')
+                if dep_count != 0:
+                    f.write(f'weight: {error_dep_count / dep_count}\n')
+                else:
+                    f.write("this module has no dep")
             
             ## set all dep to best version then validate whether it is compatible
             inform_json_path = os.path.join(item_path, 'inform.json')

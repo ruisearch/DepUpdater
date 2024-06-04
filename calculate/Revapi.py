@@ -58,6 +58,14 @@ class Revapi:
                 former_flag = True
                 for i in range(idx+1, length):
                     new_dep_jar, ret_txt = self.download_new_dep(self.gavc['g'],self.gavc['a'],self.allVersion[i]['version'], self.gavc['c'])
+                    # if new_dep_jar is None, it means that the download of a particular version of the jar failed
+                    if new_dep_jar is None:
+                        if self.gavc['c'] == '':
+                            print(f"=={self.gavc['g']}:{self.gavc['a']}:{self.allVersion[i]['version']} download fails, so skip")
+                        else:
+                            print(f"=={self.gavc['g']}:{self.gavc['a']}:{self.allVersion[i]['version']}:{self.gavc['c']} download fails, so skip")
+                        pbar.update(1)
+                        continue
                     flag, breaking_reason = self.compare(self.jar, new_dep_jar, ret_txt)
                     # compare current jar with new jar
                     # if self.compare(self.jar, new_dep_jar, ret_txt):
@@ -120,7 +128,8 @@ class Revapi:
                 print(f"Failed to download {group_id}-{artifact_id}-{version}.jar from central repository; Reason: {str(e)}")
             else:
                 print(f"Failed to download {group_id}-{artifact_id}-{version}-{classifier}.jar from central repository; Reason: {str(e)}")
-
+            # return None, None , means that jar cannot not be downloaded
+            return None, None
     # compare old jar and new jar
     # return value: True : no BC ; False : has BC
     # return value: breaking reason(which api breaks)

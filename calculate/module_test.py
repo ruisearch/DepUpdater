@@ -47,7 +47,7 @@ def add_or_update_transitive_dependency(file_path, group_id, artifact_id, versio
     cla = dependency.find('m:classifier', namespaces=ns)
     if classifier != '':
         if cla is None:
-            cla = etree.SubElememt(dependency, '{http://maven.apache.org/POM/4.0.0}classifier')
+            cla = etree.SubElement(dependency, '{http://maven.apache.org/POM/4.0.0}classifier')
         cla.text = classifier
     
     tree.write(file_path, pretty_print=True, xml_declaration=True, encoding='UTF-8')
@@ -88,7 +88,7 @@ def add_or_update_direct_dependency(file_path, group_id, artifact_id, version, c
     cla = dependency.find('m:classifier', namespaces=ns)
     if classifier != '':
         if cla is None:
-            cla = etree.SubElememt(dependency, '{http://maven.apache.org/POM/4.0.0}classifier')
+            cla = etree.SubElement(dependency, '{http://maven.apache.org/POM/4.0.0}classifier')
         cla.text = classifier
 
     tree.write(file_path, pretty_print=True, xml_declaration=True, encoding='UTF-8')

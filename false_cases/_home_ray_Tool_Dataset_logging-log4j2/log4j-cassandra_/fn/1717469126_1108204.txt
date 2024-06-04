@@ -1,0 +1,136 @@
+module name: log4j-cassandra/
+
+* * * * * * * *
+groudId: io.netty
+artifactId: netty-transport
+old version: 4.1.107.Final
+new version: 4.1.107.Final
+classifier: 
+depth: 3
+reachable api of old version:
+/ / / / / / / / /
+revapi log of the subsequent version -- 4.1.108.Final:
+10:43:14.215 INFO  Downloading checked archives
+10:43:14.230 INFO  Downloading extensions
+10:43:19.688 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: io.netty-netty-transport-4.1.107.Final.jar
+New API: io.netty-netty-transport-4.1.108.Final.jar
+
+10:43:42.000 INFO  Analysis took 22300ms.
+
+
+* * * * * * * *
+>>>>>>
+subsequent compilation log of 4.1.108.Final:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< org.apache.logging.log4j:log4j-cassandra >--------------
+[INFO] Building Apache Log4j Cassandra 2.23.1
+[INFO]   from _temp_io.netty_netty-transport_4.1.108.Final_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ log4j-cassandra ---
+[INFO] 
+[INFO] --- flatten:1.5.0:clean (clean-flattened-pom) @ log4j-cassandra ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ log4j-cassandra ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ log4j-cassandra ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-upper-bound-deps) @ log4j-cassandra ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  6.696 s
+[INFO] Finished at: 2024-06-04T10:44:59+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:3.4.1:enforce (enforce-upper-bound-deps) on project log4j-cassandra: 
+[ERROR] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps failed with message:
+[ERROR] Failed while enforcing RequireUpperBoundDeps. The error(s) are [
+[ERROR] Require upper bound dependencies error for io.netty:netty-common:4.1.107.Final paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-cassandra:2.23.1
+[ERROR]   +-com.datastax.cassandra:cassandra-driver-core:3.11.5
+[ERROR]     +-io.netty:netty-handler:4.1.107.Final (managed) <-- io.netty:netty-handler:4.1.94.Final
+[ERROR]       +-io.netty:netty-common:4.1.107.Final (managed) <-- io.netty:netty-common:4.1.107.Final
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-cassandra:2.23.1
+[ERROR]   +-com.datastax.cassandra:cassandra-driver-core:3.11.5
+[ERROR]     +-io.netty:netty-handler:4.1.107.Final (managed) <-- io.netty:netty-handler:4.1.94.Final
+[ERROR]       +-io.netty:netty-resolver:4.1.107.Final (managed) <-- io.netty:netty-resolver:4.1.107.Final
+[ERROR]         +-io.netty:netty-common:4.1.107.Final (managed) <-- io.netty:netty-common:4.1.107.Final
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-cassandra:2.23.1
+[ERROR]   +-com.datastax.cassandra:cassandra-driver-core:3.11.5
+[ERROR]     +-io.netty:netty-handler:4.1.107.Final (managed) <-- io.netty:netty-handler:4.1.94.Final
+[ERROR]       +-io.netty:netty-buffer:4.1.107.Final (managed) <-- io.netty:netty-buffer:4.1.107.Final
+[ERROR]         +-io.netty:netty-common:4.1.107.Final (managed) <-- io.netty:netty-common:4.1.107.Final
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-cassandra:2.23.1
+[ERROR]   +-com.datastax.cassandra:cassandra-driver-core:3.11.5
+[ERROR]     +-io.netty:netty-handler:4.1.107.Final (managed) <-- io.netty:netty-handler:4.1.94.Final
+[ERROR]       +-io.netty:netty-transport:4.1.108.Final (managed) <-- io.netty:netty-transport:4.1.107.Final
+[ERROR]         +-io.netty:netty-common:4.1.107.Final (managed) <-- io.netty:netty-common:4.1.108.Final
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-cassandra:2.23.1
+[ERROR]   +-com.datastax.cassandra:cassandra-driver-core:3.11.5
+[ERROR]     +-io.netty:netty-handler:4.1.107.Final (managed) <-- io.netty:netty-handler:4.1.94.Final
+[ERROR]       +-io.netty:netty-transport-native-unix-common:4.1.107.Final (managed) <-- io.netty:netty-transport-native-unix-common:4.1.107.Final
+[ERROR]         +-io.netty:netty-common:4.1.107.Final (managed) <-- io.netty:netty-common:4.1.107.Final
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-cassandra:2.23.1
+[ERROR]   +-com.datastax.cassandra:cassandra-driver-core:3.11.5
+[ERROR]     +-io.netty:netty-handler:4.1.107.Final (managed) <-- io.netty:netty-handler:4.1.94.Final
+[ERROR]       +-io.netty:netty-codec:4.1.107.Final (managed) <-- io.netty:netty-codec:4.1.107.Final
+[ERROR]         +-io.netty:netty-common:4.1.107.Final (managed) <-- io.netty:netty-common:4.1.107.Final
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for io.netty:netty-resolver:4.1.107.Final paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-cassandra:2.23.1
+[ERROR]   +-com.datastax.cassandra:cassandra-driver-core:3.11.5
+[ERROR]     +-io.netty:netty-handler:4.1.107.Final (managed) <-- io.netty:netty-handler:4.1.94.Final
+[ERROR]       +-io.netty:netty-resolver:4.1.107.Final (managed) <-- io.netty:netty-resolver:4.1.107.Final
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-cassandra:2.23.1
+[ERROR]   +-com.datastax.cassandra:cassandra-driver-core:3.11.5
+[ERROR]     +-io.netty:netty-handler:4.1.107.Final (managed) <-- io.netty:netty-handler:4.1.94.Final
+[ERROR]       +-io.netty:netty-transport:4.1.108.Final (managed) <-- io.netty:netty-transport:4.1.107.Final
+[ERROR]         +-io.netty:netty-resolver:4.1.107.Final (managed) <-- io.netty:netty-resolver:4.1.108.Final
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for io.netty:netty-buffer:4.1.107.Final paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-cassandra:2.23.1
+[ERROR]   +-com.datastax.cassandra:cassandra-driver-core:3.11.5
+[ERROR]     +-io.netty:netty-handler:4.1.107.Final (managed) <-- io.netty:netty-handler:4.1.94.Final
+[ERROR]       +-io.netty:netty-buffer:4.1.107.Final (managed) <-- io.netty:netty-buffer:4.1.107.Final
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-cassandra:2.23.1
+[ERROR]   +-com.datastax.cassandra:cassandra-driver-core:3.11.5
+[ERROR]     +-io.netty:netty-handler:4.1.107.Final (managed) <-- io.netty:netty-handler:4.1.94.Final
+[ERROR]       +-io.netty:netty-transport:4.1.108.Final (managed) <-- io.netty:netty-transport:4.1.107.Final
+[ERROR]         +-io.netty:netty-buffer:4.1.107.Final (managed) <-- io.netty:netty-buffer:4.1.108.Final
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-cassandra:2.23.1
+[ERROR]   +-com.datastax.cassandra:cassandra-driver-core:3.11.5
+[ERROR]     +-io.netty:netty-handler:4.1.107.Final (managed) <-- io.netty:netty-handler:4.1.94.Final
+[ERROR]       +-io.netty:netty-transport-native-unix-common:4.1.107.Final (managed) <-- io.netty:netty-transport-native-unix-common:4.1.107.Final
+[ERROR]         +-io.netty:netty-buffer:4.1.107.Final (managed) <-- io.netty:netty-buffer:4.1.107.Final
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-cassandra:2.23.1
+[ERROR]   +-com.datastax.cassandra:cassandra-driver-core:3.11.5
+[ERROR]     +-io.netty:netty-handler:4.1.107.Final (managed) <-- io.netty:netty-handler:4.1.94.Final
+[ERROR]       +-io.netty:netty-codec:4.1.107.Final (managed) <-- io.netty:netty-codec:4.1.107.Final
+[ERROR]         +-io.netty:netty-buffer:4.1.107.Final (managed) <-- io.netty:netty-buffer:4.1.107.Final
+[ERROR] ]
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+
+* * * * * * * *

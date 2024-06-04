@@ -1,0 +1,903 @@
+module name: common/
+
+* * * * * * * *
+groudId: ch.qos.logback
+artifactId: logback-core
+old version: 1.2.9
+new version: 1.5.6
+classifier: 
+depth: 1
+reachable api of old version:
+    ch.qos.logback.core.BasicStatusManager: void <init>()
+    ch.qos.logback.core.ConsoleAppender: void <init>()
+    ch.qos.logback.core.ContextBase: void <init>()
+    ch.qos.logback.core.ContextBase: java.lang.String getName()
+    ch.qos.logback.core.ContextBase: void setName(java.lang.String)
+    ch.qos.logback.core.CoreConstants: void <clinit>()
+    ch.qos.logback.core.encoder.EncoderBase: void <init>()
+    ch.qos.logback.core.encoder.LayoutWrappingEncoder: void <init>()
+    ch.qos.logback.core.helpers.CyclicBuffer: void <init>(int)
+    ch.qos.logback.core.helpers.CyclicBuffer: void init(int)
+    ch.qos.logback.core.helpers.ThrowableToStringArray: java.lang.String[] convert(java.lang.Throwable)
+    ch.qos.logback.core.helpers.ThrowableToStringArray: void extract(java.util.List,java.lang.Throwable,java.lang.StackTraceElement[])
+    ch.qos.logback.core.helpers.ThrowableToStringArray: java.lang.String formatFirstLine(java.lang.Throwable,java.lang.StackTraceElement[])
+    ch.qos.logback.core.helpers.ThrowableToStringArray: int findNumberOfCommonFrames(java.lang.StackTraceElement[],java.lang.StackTraceElement[])
+    ch.qos.logback.core.joran.JoranConfiguratorBase: void <init>()
+    ch.qos.logback.core.joran.spi.ConsoleTarget$1: void <init>()
+    ch.qos.logback.core.joran.spi.ConsoleTarget$2: void <init>()
+    ch.qos.logback.core.joran.spi.ConsoleTarget: void <init>(java.lang.String,int,java.lang.String,java.io.OutputStream)
+    ch.qos.logback.core.joran.spi.ConsoleTarget: void <clinit>()
+    ch.qos.logback.core.LayoutBase: void <init>()
+    ch.qos.logback.core.LayoutBase: void start()
+    ch.qos.logback.core.LogbackException: void <init>(java.lang.String)
+    ch.qos.logback.core.LogbackException: void <init>(java.lang.String,java.lang.Throwable)
+    ch.qos.logback.core.pattern.DynamicConverter: void <init>()
+    ch.qos.logback.core.pattern.DynamicConverter: void start()
+    ch.qos.logback.core.pattern.DynamicConverter: void addError(java.lang.String)
+    ch.qos.logback.core.spi.AppenderAttachableImpl: void <init>()
+    ch.qos.logback.core.spi.ContextAwareBase: void <init>()
+    ch.qos.logback.core.spi.ContextAwareBase: void <init>(ch.qos.logback.core.spi.ContextAware)
+    ch.qos.logback.core.spi.ContextAwareBase: void setContext(ch.qos.logback.core.Context)
+    ch.qos.logback.core.spi.ContextAwareBase: java.lang.Object getDeclaredOrigin()
+    ch.qos.logback.core.spi.ContextAwareBase: void addStatus(ch.qos.logback.core.status.Status)
+    ch.qos.logback.core.spi.ContextAwareBase: void addInfo(java.lang.String)
+    ch.qos.logback.core.spi.LogbackLock: void <init>()
+    ch.qos.logback.core.spi.ScanException: java.lang.Throwable getCause()
+    ch.qos.logback.core.status.ErrorStatus: void <init>(java.lang.String,java.lang.Object,java.lang.Throwable)
+    ch.qos.logback.core.status.InfoStatus: void <init>(java.lang.String,java.lang.Object)
+    ch.qos.logback.core.status.OnConsoleStatusListener: void <init>()
+    ch.qos.logback.core.status.OnConsoleStatusListener: java.io.PrintStream getPrintStream()
+    ch.qos.logback.core.status.OnPrintStreamStatusListenerBase: void <init>()
+    ch.qos.logback.core.status.OnPrintStreamStatusListenerBase: void print(ch.qos.logback.core.status.Status)
+    ch.qos.logback.core.status.OnPrintStreamStatusListenerBase: void retrospectivePrint()
+    ch.qos.logback.core.status.OnPrintStreamStatusListenerBase: boolean isElapsedTimeLongerThanThreshold(long,long)
+    ch.qos.logback.core.status.OnPrintStreamStatusListenerBase: void start()
+    ch.qos.logback.core.status.StatusBase: void <init>(int,java.lang.String,java.lang.Object)
+    ch.qos.logback.core.status.StatusBase: void <init>(int,java.lang.String,java.lang.Object,java.lang.Throwable)
+    ch.qos.logback.core.status.StatusBase: void <clinit>()
+    ch.qos.logback.core.status.StatusUtil: void <init>(ch.qos.logback.core.Context)
+    ch.qos.logback.core.status.StatusUtil: boolean contextHasStatusListener(ch.qos.logback.core.Context)
+    ch.qos.logback.core.status.StatusUtil: java.util.List filterStatusListByTimeThreshold(java.util.List,long)
+    ch.qos.logback.core.status.StatusUtil: int getHighestLevel(long)
+    ch.qos.logback.core.status.WarnStatus: void <init>(java.lang.String,java.lang.Object)
+    ch.qos.logback.core.util.CachingDateFormatter: void <init>(java.lang.String)
+    ch.qos.logback.core.util.CachingDateFormatter: java.lang.String format(long)
+    ch.qos.logback.core.util.COWArrayList: void <init>(java.lang.Object[])
+    ch.qos.logback.core.util.DynamicClassLoadingException: void <init>(java.lang.String,java.lang.Throwable)
+    ch.qos.logback.core.util.IncompatibleClassException: void <init>(java.lang.Class,java.lang.Class)
+    ch.qos.logback.core.util.Loader$1: void <init>()
+    ch.qos.logback.core.util.Loader$1: java.lang.Boolean run()
+    ch.qos.logback.core.util.Loader: java.util.Set getResources(java.lang.String,java.lang.ClassLoader)
+    ch.qos.logback.core.util.Loader: java.net.URL getResource(java.lang.String,java.lang.ClassLoader)
+    ch.qos.logback.core.util.Loader: java.lang.ClassLoader getTCL()
+    ch.qos.logback.core.util.Loader: java.lang.ClassLoader getClassLoaderOfObject(java.lang.Object)
+    ch.qos.logback.core.util.Loader: java.lang.ClassLoader getClassLoaderOfClass(java.lang.Class)
+    ch.qos.logback.core.util.Loader: java.lang.Class loadClass(java.lang.String)
+    ch.qos.logback.core.util.Loader: void <clinit>()
+    ch.qos.logback.core.util.OptionHelper: java.lang.Object instantiateByClassName(java.lang.String,java.lang.Class,ch.qos.logback.core.Context)
+    ch.qos.logback.core.util.OptionHelper: java.lang.Object instantiateByClassName(java.lang.String,java.lang.Class,java.lang.ClassLoader)
+    ch.qos.logback.core.util.OptionHelper: java.lang.Object instantiateByClassNameAndParameter(java.lang.String,java.lang.Class,java.lang.ClassLoader,java.lang.Class,java.lang.Object)
+    ch.qos.logback.core.util.OptionHelper: java.lang.String getSystemProperty(java.lang.String,java.lang.String)
+    ch.qos.logback.core.util.OptionHelper: java.lang.String getSystemProperty(java.lang.String)
+    ch.qos.logback.core.util.OptionHelper: boolean toBoolean(java.lang.String,boolean)
+    ch.qos.logback.core.util.OptionHelper: boolean isEmpty(java.lang.String)
+    ch.qos.logback.core.util.StatusListenerConfigHelper: void installIfAsked(ch.qos.logback.core.Context)
+    ch.qos.logback.core.util.StatusListenerConfigHelper: void addStatusListener(ch.qos.logback.core.Context,java.lang.String)
+    ch.qos.logback.core.util.StatusListenerConfigHelper: void initAndAddListener(ch.qos.logback.core.Context,ch.qos.logback.core.status.StatusListener)
+    ch.qos.logback.core.util.StatusListenerConfigHelper: ch.qos.logback.core.status.StatusListener createListenerPerClassName(ch.qos.logback.core.Context,java.lang.String)
+    ch.qos.logback.core.util.StatusPrinter: void printInCaseOfErrorsOrWarnings(ch.qos.logback.core.Context)
+    ch.qos.logback.core.util.StatusPrinter: void printInCaseOfErrorsOrWarnings(ch.qos.logback.core.Context,long)
+    ch.qos.logback.core.util.StatusPrinter: void print(ch.qos.logback.core.status.StatusManager,long)
+    ch.qos.logback.core.util.StatusPrinter: void buildStrFromStatusList(java.lang.StringBuilder,java.util.List)
+    ch.qos.logback.core.util.StatusPrinter: void appendThrowable(java.lang.StringBuilder,java.lang.Throwable)
+    ch.qos.logback.core.util.StatusPrinter: void buildStr(java.lang.StringBuilder,java.lang.String,ch.qos.logback.core.status.Status)
+    ch.qos.logback.core.util.StatusPrinter: void <clinit>()
+/ / / / / / / / /
+revapi log of former version -- 1.5.6:
+20:43:33.264 INFO  Downloading checked archives
+20:43:33.339 INFO  Downloading extensions
+20:43:40.247 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: ch.qos.logback-logback-core-1.2.9.jar
+New API: ch.qos.logback-logback-core-1.5.6.jar
+old: <none>
+new: method void ch.qos.logback.core.Context::addConfigurationEventListener(ch.qos.logback.core.spi.ConfigurationEventListener)
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
+
+old: <none>
+new: method void ch.qos.logback.core.Context::fireConfigurationEvent(ch.qos.logback.core.spi.ConfigurationEvent)
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
+
+old: <none>
+new: method ch.qos.logback.core.spi.SequenceNumberGenerator ch.qos.logback.core.Context::getSequenceNumberGenerator()
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
+
+old: <none>
+new: method void ch.qos.logback.core.Context::setSequenceNumberGenerator(ch.qos.logback.core.spi.SequenceNumberGenerator)
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
+
+old: field ch.qos.logback.core.CoreConstants.FA_FILENAME_COLLISION_MAP
+new: field ch.qos.logback.core.CoreConstants.FA_FILENAME_COLLISION_MAP
+java.field.constantValueChanged: Constant field changed value from 'FA_FILENAME_COLLISION_MAP' to 'FA_FILENAMES_MAP'.
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
+
+old: field ch.qos.logback.core.CoreConstants.RECONFIGURE_ON_CHANGE_TASK
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
+
+old: field ch.qos.logback.core.CoreConstants.REFERENCE_BIPS
+new: <none>
+java.field.removed: Field removed from class.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: field ch.qos.logback.core.CoreConstants.SCHEDULED_EXECUTOR_POOL_SIZE
+new: field ch.qos.logback.core.CoreConstants.SCHEDULED_EXECUTOR_POOL_SIZE
+java.field.constantValueChanged: Constant field changed value from '8' to '4'.
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
+
+old: field ch.qos.logback.core.OutputStreamAppender<E>.lock
+new: <none>
+java.field.removed: Field removed from class.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class ch.qos.logback.core.hook.DelayingShutdownHook
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class ch.qos.logback.core.html.NOPThrowableRenderer
+new: class ch.qos.logback.core.html.NOPThrowableRenderer
+java.class.noLongerImplementsInterface: Class no longer implements interface 'ch.qos.logback.core.html.IThrowableRenderer'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nowImplementsInterface: Class now implements interface 'ch.qos.logback.core.html.IThrowableRenderer<java.lang.Object>'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+java.class.superTypeTypeParametersChanged: Super type's type parameters changed from 'ch.qos.logback.core.html.IThrowableRenderer' to 'ch.qos.logback.core.html.IThrowableRenderer<java.lang.Object>'.
+BINARY: POTENTIALLY_BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class ch.qos.logback.core.joran.GenericConfigurator
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class ch.qos.logback.core.joran.JoranConfiguratorBase<E>
+new: class ch.qos.logback.core.joran.JoranConfiguratorBase<E>
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'ch.qos.logback.core.joran.GenericConfigurator'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'ch.qos.logback.core.joran.GenericXMLConfigurator'.
+BINARY: POTENTIALLY_BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void ch.qos.logback.core.joran.JoranConfiguratorBase<E>::addImplicitRules(ch.qos.logback.core.joran.spi.Interpreter)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void ch.qos.logback.core.joran.JoranConfiguratorBase<E>::addInstanceRules(ch.qos.logback.core.joran.spi.RuleStore)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void ch.qos.logback.core.joran.JoranConfiguratorBase<E>::buildInterpreter()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method ch.qos.logback.core.joran.spi.InterpretationContext ch.qos.logback.core.joran.JoranConfiguratorBase<E>::getInterpretationContext()
+new: method ch.qos.logback.core.joran.spi.SaxEventInterpretationContext ch.qos.logback.core.joran.JoranConfiguratorBase<E>::getInterpretationContext()
+java.method.returnTypeChanged: The return type changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to  'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class ch.qos.logback.core.joran.action.AbstractEventEvaluatorAction
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.Action::begin(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException
+new: parameter void ch.qos.logback.core.joran.action.Action::begin(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.Action::body(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException
+new: parameter void ch.qos.logback.core.joran.action.Action::body(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.Action::end(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException
+new: parameter void ch.qos.logback.core.joran.action.Action::end(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter int ch.qos.logback.core.joran.action.Action::getColumnNumber(===ch.qos.logback.core.joran.spi.InterpretationContext===)
+new: parameter int ch.qos.logback.core.joran.action.Action::getColumnNumber(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter java.lang.String ch.qos.logback.core.joran.action.Action::getLineColStr(===ch.qos.logback.core.joran.spi.InterpretationContext===)
+new: parameter java.lang.String ch.qos.logback.core.joran.action.Action::getLineColStr(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method int ch.qos.logback.core.joran.action.Action::getLineNumber(ch.qos.logback.core.joran.spi.InterpretationContext)
+new: method int ch.qos.logback.core.joran.action.Action::getLineNumber(ch.qos.logback.core.joran.spi.SaxEventInterpretationContext)
+java.method.visibilityIncreased: visibility increased
+BINARY: EQUIVALENT, SOURCE: POTENTIALLY_BREAKING
+java.method.nowStatic: method now static
+BINARY: BREAKING, SOURCE: NON_BREAKING
+
+old: parameter int ch.qos.logback.core.joran.action.Action::getLineNumber(===ch.qos.logback.core.joran.spi.InterpretationContext===)
+new: parameter int ch.qos.logback.core.joran.action.Action::getLineNumber(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class ch.qos.logback.core.joran.action.ActionConst
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void ch.qos.logback.core.joran.action.ActionUtil::setProperties(ch.qos.logback.core.joran.spi.InterpretationContext, java.util.Properties, ch.qos.logback.core.joran.action.ActionUtil.Scope)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.ActionUtil::setProperty(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String, java.lang.String, ch.qos.logback.core.joran.action.ActionUtil.Scope)
+new: parameter void ch.qos.logback.core.joran.action.ActionUtil::setProperty(===ch.qos.logback.core.spi.ContextAwarePropertyContainer===, java.lang.String, java.lang.String, ch.qos.logback.core.joran.action.ActionUtil.Scope)
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.spi.ContextAwarePropertyContainer'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class ch.qos.logback.core.joran.action.AppenderAction<E>
+new: class ch.qos.logback.core.joran.action.AppenderAction
+java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'ch.qos.logback.core.joran.action.BaseModelAction'.
+BINARY: POTENTIALLY_BREAKING, SOURCE: POTENTIALLY_BREAKING
+java.generics.formalTypeParameterRemoved: The formal type parameter 'E' was removed from the element.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.AppenderAction<E>::begin(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException
+new: parameter void ch.qos.logback.core.joran.action.BaseModelAction::begin(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.AppenderAction
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void ch.qos.logback.core.joran.action.AppenderAction<E>::end(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String)
+new: method void ch.qos.logback.core.joran.action.BaseModelAction::end(ch.qos.logback.core.joran.spi.SaxEventInterpretationContext, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.AppenderAction
+java.method.exception.checkedAdded: Method newly throws checked exceptions: ch.qos.logback.core.joran.spi.ActionException.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.AppenderAction<E>::end(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String)
+new: parameter void ch.qos.logback.core.joran.action.BaseModelAction::end(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.AppenderAction
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class ch.qos.logback.core.joran.action.AppenderRefAction<E>
+new: class ch.qos.logback.core.joran.action.AppenderRefAction
+java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'ch.qos.logback.core.joran.action.BaseModelAction'.
+BINARY: POTENTIALLY_BREAKING, SOURCE: POTENTIALLY_BREAKING
+java.generics.formalTypeParameterRemoved: The formal type parameter 'E' was removed from the element.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: method void ch.qos.logback.core.joran.action.AppenderRefAction<E>::begin(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String, org.xml.sax.Attributes)
+new: method void ch.qos.logback.core.joran.action.BaseModelAction::begin(ch.qos.logback.core.joran.spi.SaxEventInterpretationContext, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.AppenderRefAction
+java.method.exception.checkedAdded: Method newly throws checked exceptions: ch.qos.logback.core.joran.spi.ActionException.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.AppenderRefAction<E>::begin(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String, org.xml.sax.Attributes)
+new: parameter void ch.qos.logback.core.joran.action.BaseModelAction::begin(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.AppenderRefAction
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void ch.qos.logback.core.joran.action.AppenderRefAction<E>::end(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String)
+new: method void ch.qos.logback.core.joran.action.BaseModelAction::end(ch.qos.logback.core.joran.spi.SaxEventInterpretationContext, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.AppenderRefAction
+java.method.exception.checkedAdded: Method newly throws checked exceptions: ch.qos.logback.core.joran.spi.ActionException.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.AppenderRefAction<E>::end(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String)
+new: parameter void ch.qos.logback.core.joran.action.BaseModelAction::end(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.AppenderRefAction
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.ContextPropertyAction::begin(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException
+new: parameter void ch.qos.logback.core.joran.action.ContextPropertyAction::begin(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.ContextPropertyAction::end(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException
+new: parameter void ch.qos.logback.core.joran.action.ContextPropertyAction::end(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.ConversionRuleAction::begin(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String, org.xml.sax.Attributes)
+new: parameter void ch.qos.logback.core.joran.action.ConversionRuleAction::begin(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String, org.xml.sax.Attributes)
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.ConversionRuleAction::end(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String)
+new: parameter void ch.qos.logback.core.joran.action.ConversionRuleAction::end(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String)
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.ConversionRuleAction::finish(===ch.qos.logback.core.joran.spi.InterpretationContext===)
+new: parameter void ch.qos.logback.core.joran.action.ConversionRuleAction::finish(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.DefinePropertyAction::begin(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException
+new: parameter void ch.qos.logback.core.joran.action.BaseModelAction::begin(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.DefinePropertyAction
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void ch.qos.logback.core.joran.action.DefinePropertyAction::end(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String)
+new: method void ch.qos.logback.core.joran.action.BaseModelAction::end(ch.qos.logback.core.joran.spi.SaxEventInterpretationContext, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.DefinePropertyAction
+java.method.exception.checkedAdded: Method newly throws checked exceptions: ch.qos.logback.core.joran.spi.ActionException.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.DefinePropertyAction::end(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String)
+new: parameter void ch.qos.logback.core.joran.action.BaseModelAction::end(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.DefinePropertyAction
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class ch.qos.logback.core.joran.action.IADataForComplexProperty
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class ch.qos.logback.core.joran.action.ImplicitAction
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.IncludeAction::begin(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException
+new: parameter void ch.qos.logback.core.joran.action.IncludeAction::begin(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.IncludeAction::end(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException
+new: parameter void ch.qos.logback.core.joran.action.IncludeAction::end(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.NOPAction::begin(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String, org.xml.sax.Attributes)
+new: parameter void ch.qos.logback.core.joran.action.NOPAction::begin(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String, org.xml.sax.Attributes)
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.NOPAction::end(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String)
+new: parameter void ch.qos.logback.core.joran.action.NOPAction::end(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String)
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class ch.qos.logback.core.joran.action.NestedBasicPropertyIA
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class ch.qos.logback.core.joran.action.NestedComplexPropertyIA
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.NewRuleAction::begin(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String, org.xml.sax.Attributes)
+new: parameter void ch.qos.logback.core.joran.action.NewRuleAction::begin(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String, org.xml.sax.Attributes)
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.NewRuleAction::end(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String)
+new: parameter void ch.qos.logback.core.joran.action.NewRuleAction::end(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String)
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.NewRuleAction::finish(===ch.qos.logback.core.joran.spi.InterpretationContext===)
+new: parameter void ch.qos.logback.core.joran.action.NewRuleAction::finish(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void ch.qos.logback.core.joran.action.ParamAction::<init>(ch.qos.logback.core.joran.util.beans.BeanDescriptionCache)
+new: method void ch.qos.logback.core.joran.action.ParamAction::<init>()
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void ch.qos.logback.core.joran.action.ParamAction::begin(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String, org.xml.sax.Attributes)
+new: method void ch.qos.logback.core.joran.action.BaseModelAction::begin(ch.qos.logback.core.joran.spi.SaxEventInterpretationContext, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.ParamAction
+java.method.exception.checkedAdded: Method newly throws checked exceptions: ch.qos.logback.core.joran.spi.ActionException.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.ParamAction::begin(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String, org.xml.sax.Attributes)
+new: parameter void ch.qos.logback.core.joran.action.BaseModelAction::begin(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.ParamAction
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void ch.qos.logback.core.joran.action.ParamAction::end(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String)
+new: method void ch.qos.logback.core.joran.action.BaseModelAction::end(ch.qos.logback.core.joran.spi.SaxEventInterpretationContext, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.ParamAction
+java.method.exception.checkedAdded: Method newly throws checked exceptions: ch.qos.logback.core.joran.spi.ActionException.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.ParamAction::end(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String)
+new: parameter void ch.qos.logback.core.joran.action.BaseModelAction::end(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.ParamAction
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void ch.qos.logback.core.joran.action.ParamAction::finish(ch.qos.logback.core.joran.spi.InterpretationContext)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void ch.qos.logback.core.joran.action.PropertyAction::begin(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String, org.xml.sax.Attributes)
+new: method void ch.qos.logback.core.joran.action.BaseModelAction::begin(ch.qos.logback.core.joran.spi.SaxEventInterpretationContext, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.PropertyAction
+java.method.exception.checkedAdded: Method newly throws checked exceptions: ch.qos.logback.core.joran.spi.ActionException.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.PropertyAction::begin(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String, org.xml.sax.Attributes)
+new: parameter void ch.qos.logback.core.joran.action.BaseModelAction::begin(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.PropertyAction
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void ch.qos.logback.core.joran.action.PropertyAction::end(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String)
+new: method void ch.qos.logback.core.joran.action.BaseModelAction::end(ch.qos.logback.core.joran.spi.SaxEventInterpretationContext, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.PropertyAction
+java.method.exception.checkedAdded: Method newly throws checked exceptions: ch.qos.logback.core.joran.spi.ActionException.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.PropertyAction::end(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String)
+new: parameter void ch.qos.logback.core.joran.action.BaseModelAction::end(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.PropertyAction
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void ch.qos.logback.core.joran.action.PropertyAction::finish(ch.qos.logback.core.joran.spi.InterpretationContext)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.ShutdownHookAction::begin(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException
+new: parameter void ch.qos.logback.core.joran.action.BaseModelAction::begin(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.ShutdownHookAction
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.ShutdownHookAction::end(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException
+new: parameter void ch.qos.logback.core.joran.action.BaseModelAction::end(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.ShutdownHookAction
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.StatusListenerAction::begin(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException
+new: parameter void ch.qos.logback.core.joran.action.BaseModelAction::begin(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.StatusListenerAction
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void ch.qos.logback.core.joran.action.StatusListenerAction::end(ch.qos.logback.core.joran.spi.InterpretationContext, java.lang.String)
+new: method void ch.qos.logback.core.joran.action.BaseModelAction::end(ch.qos.logback.core.joran.spi.SaxEventInterpretationContext, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.StatusListenerAction
+java.method.exception.checkedAdded: Method newly throws checked exceptions: ch.qos.logback.core.joran.spi.ActionException.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.StatusListenerAction::end(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String)
+new: parameter void ch.qos.logback.core.joran.action.BaseModelAction::end(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.StatusListenerAction
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void ch.qos.logback.core.joran.action.StatusListenerAction::finish(ch.qos.logback.core.joran.spi.InterpretationContext)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.TimestampAction::begin(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException
+new: parameter void ch.qos.logback.core.joran.action.BaseModelAction::begin(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.TimestampAction
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void ch.qos.logback.core.joran.action.TimestampAction::end(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException
+new: parameter void ch.qos.logback.core.joran.action.BaseModelAction::end(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.action.TimestampAction
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class ch.qos.logback.core.joran.conditional.ElseAction
+new: class ch.qos.logback.core.joran.conditional.ElseAction
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'ch.qos.logback.core.joran.conditional.ThenOrElseActionBase'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'ch.qos.logback.core.joran.action.BaseModelAction'.
+BINARY: POTENTIALLY_BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: field ch.qos.logback.core.joran.conditional.IfAction.MISSING_JANINO_MSG
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
+
+old: field ch.qos.logback.core.joran.conditional.IfAction.MISSING_JANINO_SEE
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
+
+old: parameter void ch.qos.logback.core.joran.conditional.IfAction::begin(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException
+new: parameter void ch.qos.logback.core.joran.action.BaseModelAction::begin(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String, org.xml.sax.Attributes) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.conditional.IfAction
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void ch.qos.logback.core.joran.conditional.IfAction::end(===ch.qos.logback.core.joran.spi.InterpretationContext===, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException
+new: parameter void ch.qos.logback.core.joran.action.BaseModelAction::end(===ch.qos.logback.core.joran.spi.SaxEventInterpretationContext===, java.lang.String) throws ch.qos.logback.core.joran.spi.ActionException @ ch.qos.logback.core.joran.conditional.IfAction
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.spi.InterpretationContext' to 'ch.qos.logback.core.joran.spi.SaxEventInterpretationContext'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method boolean ch.qos.logback.core.joran.conditional.IfAction::isActive()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void ch.qos.logback.core.joran.conditional.IfAction::setElseSaxEventList(java.util.List<ch.qos.logback.core.joran.event.SaxEvent>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void ch.qos.logback.core.joran.conditional.IfAction::setThenSaxEventList(java.util.List<ch.qos.logback.core.joran.event.SaxEvent>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class ch.qos.logback.core.joran.conditional.ThenAction
+new: class ch.qos.logback.core.joran.conditional.ThenAction
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'ch.qos.logback.core.joran.conditional.ThenOrElseActionBase'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nonFinalClassInheritsFromNewClass: Non-final class now inherits from 'ch.qos.logback.core.joran.action.BaseModelAction'.
+BINARY: POTENTIALLY_BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class ch.qos.logback.core.joran.conditional.ThenOrElseActionBase
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface ch.qos.logback.core.joran.event.InPlayListener
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: field ch.qos.logback.core.joran.event.SaxEventRecorder.saxEventList
+new: field ch.qos.logback.core.joran.event.SaxEventRecorder.saxEventList
+java.field.visibilityReduced: Visibility was reduced from 'public' to 'package'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.util.List<ch.qos.logback.core.joran.event.SaxEvent> ch.qos.logback.core.joran.event.SaxEventRecorder::recordEvents(org.xml.sax.InputSource) throws ch.qos.logback.core.joran.spi.JoranException
+new: method void ch.qos.logback.core.joran.event.SaxEventRecorder::recordEvents(org.xml.sax.InputSource) throws ch.qos.logback.core.joran.spi.JoranException
+java.method.returnTypeChanged: The return type changed from 'java.util.List<ch.qos.logback.core.joran.event.SaxEvent>' to  'void'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void ch.qos.logback.core.joran.spi.EventPlayer::<init>(ch.qos.logback.core.joran.spi.Interpreter)
+new: method void ch.qos.logback.core.joran.spi.EventPlayer::<init>(ch.qos.logback.core.joran.spi.SaxEventInterpreter, java.util.List<ch.qos.logback.core.joran.event.SaxEvent>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void ch.qos.logback.core.joran.spi.EventPlayer::play(java.util.List<ch.qos.logback.core.joran.event.SaxEvent>)
+new: method void ch.qos.logback.core.joran.spi.EventPlayer::play()
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class ch.qos.logback.core.joran.spi.InterpretationContext
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class ch.qos.logback.core.joran.spi.Interpreter
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: <none>
+new: method void ch.qos.logback.core.joran.spi.RuleStore::addPathPathMapping(java.lang.String, java.lang.String)
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
+
+old: parameter void ch.qos.logback.core.joran.spi.RuleStore::addRule(ch.qos.logback.core.joran.spi.ElementSelector, ===ch.qos.logback.core.joran.action.Action===)
+new: parameter void ch.qos.logback.core.joran.spi.RuleStore::addRule(ch.qos.logback.core.joran.spi.ElementSelector, ===java.util.function.Supplier<ch.qos.logback.core.joran.action.Action>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.action.Action' to 'java.util.function.Supplier<ch.qos.logback.core.joran.action.Action>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: <none>
+new: method void ch.qos.logback.core.joran.spi.RuleStore::addTransparentPathPart(java.lang.String)
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
+
+old: method java.util.List<ch.qos.logback.core.joran.action.Action> ch.qos.logback.core.joran.spi.RuleStore::matchActions(ch.qos.logback.core.joran.spi.ElementPath)
+new: method java.util.function.Supplier<ch.qos.logback.core.joran.action.Action> ch.qos.logback.core.joran.spi.RuleStore::matchActions(ch.qos.logback.core.joran.spi.ElementPath)
+java.method.returnTypeChanged: The return type changed from 'java.util.List<ch.qos.logback.core.joran.action.Action>' to  'java.util.function.Supplier<ch.qos.logback.core.joran.action.Action>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void ch.qos.logback.core.joran.spi.SimpleRuleStore::addRule(ch.qos.logback.core.joran.spi.ElementSelector, ===ch.qos.logback.core.joran.action.Action===)
+new: parameter void ch.qos.logback.core.joran.spi.SimpleRuleStore::addRule(ch.qos.logback.core.joran.spi.ElementSelector, ===java.util.function.Supplier<ch.qos.logback.core.joran.action.Action>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.joran.action.Action' to 'java.util.function.Supplier<ch.qos.logback.core.joran.action.Action>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method java.util.List<ch.qos.logback.core.joran.action.Action> ch.qos.logback.core.joran.spi.SimpleRuleStore::matchActions(ch.qos.logback.core.joran.spi.ElementPath)
+new: method java.util.function.Supplier<ch.qos.logback.core.joran.action.Action> ch.qos.logback.core.joran.spi.SimpleRuleStore::matchActions(ch.qos.logback.core.joran.spi.ElementPath)
+java.method.returnTypeChanged: The return type changed from 'java.util.List<ch.qos.logback.core.joran.action.Action>' to  'java.util.function.Supplier<ch.qos.logback.core.joran.action.Action>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method javax.mail.PasswordAuthentication ch.qos.logback.core.net.LoginAuthenticator::getPasswordAuthentication()
+new: method jakarta.mail.PasswordAuthentication ch.qos.logback.core.net.LoginAuthenticator::getPasswordAuthentication()
+java.method.returnTypeChanged: The return type changed from 'javax.mail.PasswordAuthentication' to  'jakarta.mail.PasswordAuthentication'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: field ch.qos.logback.core.net.SMTPAppenderBase<E>.session
+new: field ch.qos.logback.core.net.SMTPAppenderBase<E>.session
+java.field.typeChanged: The type of the field changed from 'javax.mail.Session' to 'jakarta.mail.Session'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface ch.qos.logback.core.net.server.RemoteReceiverClient
+new: interface ch.qos.logback.core.net.server.RemoteReceiverClient
+java.class.nonPublicPartOfAPI: Class 'ch.qos.logback.core.net.server.RemoteReceiverClient' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
+
+old: enum ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP.Usage
+new: enum ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP.Usage
+java.class.nonPublicPartOfAPI: Class 'ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP.Usage' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
+
+old: field ch.qos.logback.core.rolling.TimeBasedFileNamingAndTriggeringPolicyBase<E>.dateInCurrentPeriod
+new: field ch.qos.logback.core.rolling.TimeBasedFileNamingAndTriggeringPolicyBase<E>.dateInCurrentPeriod
+java.field.typeChanged: The type of the field changed from 'java.util.Date' to 'java.time.Instant'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: field ch.qos.logback.core.rolling.TimeBasedFileNamingAndTriggeringPolicyBase<E>.nextCheck
+new: <none>
+java.field.removed: Field removed from class.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void ch.qos.logback.core.rolling.TimeBasedFileNamingAndTriggeringPolicyBase<E>::computeNextCheck()
+new: method long ch.qos.logback.core.rolling.TimeBasedFileNamingAndTriggeringPolicyBase<E>::computeNextCheck(long)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+java.method.returnTypeChanged: The return type changed from 'void' to  'long'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void ch.qos.logback.core.rolling.TimeBasedFileNamingAndTriggeringPolicyBase<E>::setDateInCurrentPeriod(java.util.Date)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: parameter void ch.qos.logback.core.rolling.helper.ArchiveRemover::clean(===java.util.Date===)
+new: parameter void ch.qos.logback.core.rolling.helper.ArchiveRemover::clean(===java.time.Instant===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'java.util.Date' to 'java.time.Instant'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter java.util.concurrent.Future<?> ch.qos.logback.core.rolling.helper.ArchiveRemover::cleanAsynchronously(===java.util.Date===)
+new: parameter java.util.concurrent.Future<?> ch.qos.logback.core.rolling.helper.ArchiveRemover::cleanAsynchronously(===java.time.Instant===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'java.util.Date' to 'java.time.Instant'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method java.util.TimeZone ch.qos.logback.core.rolling.helper.DateTokenConverter<E>::getTimeZone()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.util.Date ch.qos.logback.core.rolling.helper.RollingCalendar::getEndOfNextNthPeriod(java.util.Date, int)
+new: method java.time.Instant ch.qos.logback.core.rolling.helper.RollingCalendar::getEndOfNextNthPeriod(java.time.Instant, int)
+java.method.returnTypeChanged: The return type changed from 'java.util.Date' to  'java.time.Instant'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter java.util.Date ch.qos.logback.core.rolling.helper.RollingCalendar::getEndOfNextNthPeriod(===java.util.Date===, int)
+new: parameter java.time.Instant ch.qos.logback.core.rolling.helper.RollingCalendar::getEndOfNextNthPeriod(===java.time.Instant===, int)
+java.method.parameterTypeChanged: The type of the parameter changed from 'java.util.Date' to 'java.time.Instant'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method java.util.Date ch.qos.logback.core.rolling.helper.RollingCalendar::getNextTriggeringDate(java.util.Date)
+new: method java.time.Instant ch.qos.logback.core.rolling.helper.RollingCalendar::getNextTriggeringDate(java.time.Instant)
+java.method.returnTypeChanged: The return type changed from 'java.util.Date' to  'java.time.Instant'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter java.util.Date ch.qos.logback.core.rolling.helper.RollingCalendar::getNextTriggeringDate(===java.util.Date===)
+new: parameter java.time.Instant ch.qos.logback.core.rolling.helper.RollingCalendar::getNextTriggeringDate(===java.time.Instant===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'java.util.Date' to 'java.time.Instant'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter java.io.File[] ch.qos.logback.core.rolling.helper.SizeAndTimeBasedArchiveRemover::getFilesInPeriod(===java.util.Date===)
+new: parameter java.io.File[] ch.qos.logback.core.rolling.helper.SizeAndTimeBasedArchiveRemover::getFilesInPeriod(===java.time.Instant===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'java.util.Date' to 'java.time.Instant'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class ch.qos.logback.core.rolling.helper.TimeBasedArchiveRemover.ArhiveRemoverRunnable
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: parameter void ch.qos.logback.core.rolling.helper.TimeBasedArchiveRemover::clean(===java.util.Date===)
+new: parameter void ch.qos.logback.core.rolling.helper.TimeBasedArchiveRemover::clean(===java.time.Instant===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'java.util.Date' to 'java.time.Instant'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter java.util.concurrent.Future<?> ch.qos.logback.core.rolling.helper.TimeBasedArchiveRemover::cleanAsynchronously(===java.util.Date===)
+new: parameter java.util.concurrent.Future<?> ch.qos.logback.core.rolling.helper.TimeBasedArchiveRemover::cleanAsynchronously(===java.time.Instant===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'java.util.Date' to 'java.time.Instant'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void ch.qos.logback.core.rolling.helper.TimeBasedArchiveRemover::cleanPeriod(===java.util.Date===)
+new: parameter void ch.qos.logback.core.rolling.helper.TimeBasedArchiveRemover::cleanPeriod(===java.time.Instant===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'java.util.Date' to 'java.time.Instant'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter java.io.File[] ch.qos.logback.core.rolling.helper.TimeBasedArchiveRemover::getFilesInPeriod(===java.util.Date===)
+new: parameter java.io.File[] ch.qos.logback.core.rolling.helper.TimeBasedArchiveRemover::getFilesInPeriod(===java.time.Instant===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'java.util.Date' to 'java.time.Instant'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: class ch.qos.logback.core.sift.AbstractAppenderFactoryUsingJoran<E>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class ch.qos.logback.core.sift.SiftingJoranConfiguratorBase<E>
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: <none>
+new: method void ch.qos.logback.core.spi.PropertyContainer::addSubstitutionProperty(java.lang.String, java.lang.String)
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
+
+old: <none>
+new: method long ch.qos.logback.core.status.Status::getTimestamp()
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING
+
+old: parameter java.lang.String ch.qos.logback.core.status.ViewStatusMessagesServletBase::getPageTitle(===javax.servlet.http.HttpServletRequest===, javax.servlet.http.HttpServletResponse)
+new: parameter java.lang.String ch.qos.logback.core.status.ViewStatusMessagesServletBase::getPageTitle(===jakarta.servlet.http.HttpServletRequest===, jakarta.servlet.http.HttpServletResponse)
+java.method.parameterTypeChanged: The type of the parameter changed from 'javax.servlet.http.HttpServletRequest' to 'jakarta.servlet.http.HttpServletRequest'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter java.lang.String ch.qos.logback.core.status.ViewStatusMessagesServletBase::getPageTitle(javax.servlet.http.HttpServletRequest, ===javax.servlet.http.HttpServletResponse===)
+new: parameter java.lang.String ch.qos.logback.core.status.ViewStatusMessagesServletBase::getPageTitle(jakarta.servlet.http.HttpServletRequest, ===jakarta.servlet.http.HttpServletResponse===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'javax.servlet.http.HttpServletResponse' to 'jakarta.servlet.http.HttpServletResponse'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter ch.qos.logback.core.status.StatusManager ch.qos.logback.core.status.ViewStatusMessagesServletBase::getStatusManager(===javax.servlet.http.HttpServletRequest===, javax.servlet.http.HttpServletResponse)
+new: parameter ch.qos.logback.core.status.StatusManager ch.qos.logback.core.status.ViewStatusMessagesServletBase::getStatusManager(===jakarta.servlet.http.HttpServletRequest===, jakarta.servlet.http.HttpServletResponse)
+java.method.parameterTypeChanged: The type of the parameter changed from 'javax.servlet.http.HttpServletRequest' to 'jakarta.servlet.http.HttpServletRequest'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter ch.qos.logback.core.status.StatusManager ch.qos.logback.core.status.ViewStatusMessagesServletBase::getStatusManager(javax.servlet.http.HttpServletRequest, ===javax.servlet.http.HttpServletResponse===)
+new: parameter ch.qos.logback.core.status.StatusManager ch.qos.logback.core.status.ViewStatusMessagesServletBase::getStatusManager(jakarta.servlet.http.HttpServletRequest, ===jakarta.servlet.http.HttpServletResponse===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'javax.servlet.http.HttpServletResponse' to 'jakarta.servlet.http.HttpServletResponse'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void ch.qos.logback.core.status.ViewStatusMessagesServletBase::service(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws javax.servlet.ServletException, java.io.IOException
+new: method void ch.qos.logback.core.status.ViewStatusMessagesServletBase::service(jakarta.servlet.http.HttpServletRequest, jakarta.servlet.http.HttpServletResponse) throws jakarta.servlet.ServletException, java.io.IOException
+java.method.exception.checkedAdded: Method newly throws checked exceptions: jakarta.servlet.ServletException.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+java.method.exception.checkedRemoved: Method no longer throws checked exceptions: javax.servlet.ServletException.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: parameter void ch.qos.logback.core.status.ViewStatusMessagesServletBase::service(===javax.servlet.http.HttpServletRequest===, javax.servlet.http.HttpServletResponse) throws javax.servlet.ServletException, java.io.IOException
+new: parameter void ch.qos.logback.core.status.ViewStatusMessagesServletBase::service(===jakarta.servlet.http.HttpServletRequest===, jakarta.servlet.http.HttpServletResponse) throws jakarta.servlet.ServletException, java.io.IOException
+java.method.parameterTypeChanged: The type of the parameter changed from 'javax.servlet.http.HttpServletRequest' to 'jakarta.servlet.http.HttpServletRequest'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void ch.qos.logback.core.status.ViewStatusMessagesServletBase::service(javax.servlet.http.HttpServletRequest, ===javax.servlet.http.HttpServletResponse===) throws javax.servlet.ServletException, java.io.IOException
+new: parameter void ch.qos.logback.core.status.ViewStatusMessagesServletBase::service(jakarta.servlet.http.HttpServletRequest, ===jakarta.servlet.http.HttpServletResponse===) throws jakarta.servlet.ServletException, java.io.IOException
+java.method.parameterTypeChanged: The type of the parameter changed from 'javax.servlet.http.HttpServletResponse' to 'jakarta.servlet.http.HttpServletResponse'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: enum ch.qos.logback.core.subst.Node.Type
+new: enum ch.qos.logback.core.subst.Node.Type
+java.class.nonPublicPartOfAPI: Class 'ch.qos.logback.core.subst.Node.Type' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
+
+old: method void ch.qos.logback.core.util.CachingDateFormatter::setTimeZone(java.util.TimeZone)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.String ch.qos.logback.core.util.ContextUtil::getLocalHostName() throws java.net.UnknownHostException, java.net.SocketException
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.String ch.qos.logback.core.util.ContextUtil::safelyGetLocalHostName()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void ch.qos.logback.core.util.EnvUtil::<init>()
+new: method void ch.qos.logback.core.util.EnvUtil::<init>()
+java.method.visibilityReduced: visibility reduced
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.String ch.qos.logback.core.util.JNDIUtil::lookup(javax.naming.Context, java.lang.String) throws javax.naming.NamingException
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.String ch.qos.logback.core.util.OptionHelper::substVars(java.lang.String, ch.qos.logback.core.spi.PropertyContainer)
+new: method java.lang.String ch.qos.logback.core.util.OptionHelper::substVars(java.lang.String, ch.qos.logback.core.spi.PropertyContainer) throws ch.qos.logback.core.spi.ScanException
+java.method.exception.checkedAdded: Method newly throws checked exceptions: ch.qos.logback.core.spi.ScanException.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: method java.lang.String ch.qos.logback.core.util.OptionHelper::substVars(java.lang.String, ch.qos.logback.core.spi.PropertyContainer, ch.qos.logback.core.spi.PropertyContainer)
+new: method java.lang.String ch.qos.logback.core.util.OptionHelper::substVars(java.lang.String, ch.qos.logback.core.spi.PropertyContainer, ch.qos.logback.core.spi.PropertyContainer) throws ch.qos.logback.core.spi.ScanException
+java.method.exception.checkedAdded: Method newly throws checked exceptions: ch.qos.logback.core.spi.ScanException.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+
+20:43:56.254 INFO  Analysis took 15994ms.
+
+
+* * * * * * * *
+>>>>>>
+compilation log of 1.5.6:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------< com.alibaba.otter:canal.common >-------------------
+[INFO] Building canal common module for otter 1.1.8-SNAPSHOT 1.1.8-SNAPSHOT
+[INFO]   from _temp_ch.qos.logback_logback-core_1.5.6_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+Downloading from central: https://repo1.maven.org/maven2/ch/qos/logback/logback-core/1.5.6/logback-core-1.5.6.pom
+Progress (1): 1.4/7.5 kB
+Progress (1): 2.8/7.5 kB
+Progress (1): 4.1/7.5 kB
+Progress (1): 5.5/7.5 kB
+Progress (1): 6.9/7.5 kB
+Progress (1): 7.5 kB    
+                    
+Downloaded from central: https://repo1.maven.org/maven2/ch/qos/logback/logback-core/1.5.6/logback-core-1.5.6.pom (7.5 kB at 5.0 kB/s)
+Downloading from central: https://repo1.maven.org/maven2/ch/qos/logback/logback-core/1.5.6/logback-core-1.5.6.jar
+Progress (1): 16/610 kB
+Progress (1): 33/610 kB
+Progress (1): 49/610 kB
+Progress (1): 66/610 kB
+Progress (1): 82/610 kB
+Progress (1): 98/610 kB
+Progress (1): 115/610 kB
+Progress (1): 131/610 kB
+Progress (1): 147/610 kB
+Progress (1): 164/610 kB
+Progress (1): 180/610 kB
+Progress (1): 197/610 kB
+Progress (1): 213/610 kB
+Progress (1): 229/610 kB
+Progress (1): 246/610 kB
+Progress (1): 256/610 kB
+Progress (1): 272/610 kB
+Progress (1): 289/610 kB
+Progress (1): 305/610 kB
+Progress (1): 321/610 kB
+Progress (1): 338/610 kB
+Progress (1): 354/610 kB
+Progress (1): 370/610 kB
+Progress (1): 387/610 kB
+Progress (1): 403/610 kB
+Progress (1): 420/610 kB
+Progress (1): 436/610 kB
+Progress (1): 452/610 kB
+Progress (1): 469/610 kB
+Progress (1): 485/610 kB
+Progress (1): 502/610 kB
+Progress (1): 518/610 kB
+Progress (1): 534/610 kB
+Progress (1): 551/610 kB
+Progress (1): 567/610 kB
+Progress (1): 583/610 kB
+Progress (1): 600/610 kB
+Progress (1): 610 kB    
+                    
+Downloaded from central: https://repo1.maven.org/maven2/ch/qos/logback/logback-core/1.5.6/logback-core-1.5.6.jar (610 kB at 543 kB/s)
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ canal.common ---
+[INFO] 
+[INFO] --- enforcer:1.0:enforce (enforce-maven) @ canal.common ---
+[INFO] 
+[INFO] --- jacoco:0.8.3:prepare-agent (jacoco-initialize) @ canal.common ---
+[INFO] jacocoArgLine set to -javaagent:/home/ray/.m2/repository/org/jacoco/org.jacoco.agent/0.8.3/org.jacoco.agent-0.8.3-runtime.jar=destfile=/home/ray/Tool/Dataset/canal/common/target/jacoco.exec
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ canal.common ---
+[INFO] skip non existing resourceDirectory /home/ray/Tool/Dataset/canal/common/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.7.0:compile (default-compile) @ canal.common ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 26 source files to /home/ray/Tool/Dataset/canal/common/target/classes
+[INFO] /home/ray/Tool/Dataset/canal/common/src/main/java/com/alibaba/otter/canal/common/utils/NamedThreadFactory.java: /home/ray/Tool/Dataset/canal/common/src/main/java/com/alibaba/otter/canal/common/utils/NamedThreadFactory.java uses or overrides a deprecated API that is marked for removal.
+[INFO] /home/ray/Tool/Dataset/canal/common/src/main/java/com/alibaba/otter/canal/common/utils/NamedThreadFactory.java: Recompile with -Xlint:removal for details.
+[INFO] /home/ray/Tool/Dataset/canal/common/src/main/java/com/google/common/collect/MigrateMap.java: Some input files use unchecked or unsafe operations.
+[INFO] /home/ray/Tool/Dataset/canal/common/src/main/java/com/google/common/collect/MigrateMap.java: Recompile with -Xlint:unchecked for details.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  11.168 s
+[INFO] Finished at: 2024-06-03T21:03:49+08:00
+[INFO] ------------------------------------------------------------------------
+
+
+* * * * * * * *

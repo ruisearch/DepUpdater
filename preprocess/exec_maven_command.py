@@ -32,7 +32,7 @@ def mvn_dependency_tree(path_to_folder:str):
     # log_path = os.path.join(MainProcess_pwd, "data/dependency_tree.txt")
     # create ./DATA
     create_folder(DATA)
-    command = f"cd {path_to_folder} && mvn dependency:tree"
+    command = f"cd {path_to_folder} && mvn dependency:tree -fae"
     print("generating dependency tree...")
     result = subprocess.run(command, shell=True, text=True, capture_output=True)
     with open(DEPENDENCY_TREE_FILE, 'w') as f:

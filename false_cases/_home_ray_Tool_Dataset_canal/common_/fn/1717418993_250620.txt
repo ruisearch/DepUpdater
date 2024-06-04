@@ -1,0 +1,159 @@
+module name: common/
+
+* * * * * * * *
+groudId: org.slf4j
+artifactId: jcl-over-slf4j
+old version: 1.7.12
+new version: 2.1.0-alpha0
+classifier: 
+depth: 1
+reachable api of old version:
+/ / / / / / / / /
+revapi log of former version -- 2.1.0-alpha0:
+20:28:32.670 INFO  Downloading checked archives
+20:28:32.759 INFO  Downloading extensions
+20:28:38.804 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.slf4j-jcl-over-slf4j-1.7.12.jar
+New API: org.slf4j-jcl-over-slf4j-2.1.0-alpha0.jar
+
+20:28:48.256 INFO  Analysis took 9437ms.
+
+/ / / / / / / / /
+revapi log of the subsequent version -- 2.1.0-alpha1:
+20:28:51.655 INFO  Downloading checked archives
+20:28:51.727 INFO  Downloading extensions
+20:28:56.975 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.slf4j-jcl-over-slf4j-1.7.12.jar
+New API: org.slf4j-jcl-over-slf4j-2.1.0-alpha1.jar
+
+20:29:05.562 INFO  Analysis took 8562ms.
+
+
+* * * * * * * *
+>>>>>>
+compilation log of 2.1.0-alpha0:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------< com.alibaba.otter:canal.common >-------------------
+[INFO] Building canal common module for otter 1.1.8-SNAPSHOT 1.1.8-SNAPSHOT
+[INFO]   from _temp_org.slf4j_jcl-over-slf4j_2.1.0-alpha0_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+Downloading from central: https://repo1.maven.org/maven2/org/slf4j/jcl-over-slf4j/2.1.0-alpha0/jcl-over-slf4j-2.1.0-alpha0.pom
+Progress (1): 1.4/1.8 kB
+Progress (1): 1.8 kB    
+                    
+Downloaded from central: https://repo1.maven.org/maven2/org/slf4j/jcl-over-slf4j/2.1.0-alpha0/jcl-over-slf4j-2.1.0-alpha0.pom (1.8 kB at 1.0 kB/s)
+[INFO] Artifact org.slf4j:slf4j-parent:pom:2.1.0-alpha0 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo1.maven.org/maven2, default, releases), java.net (https://download.java.net/maven/2/, default, releases), sonatype (https://oss.sonatype.org/content/repositories/snapshots, default, snapshots), sonatype-release (https://oss.sonatype.org/service/local/repositories/releases/content, default, snapshots), sonatype-nexus-snapshots (https://oss.sonatype.org/content/repositories/snapshots, default, snapshots)]
+[INFO] Artifact org.slf4j:slf4j-parent:pom:2.1.0-alpha0 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo1.maven.org/maven2, default, releases), java.net (https://download.java.net/maven/2/, default, releases), sonatype (https://oss.sonatype.org/content/repositories/snapshots, default, snapshots), sonatype-release (https://oss.sonatype.org/service/local/repositories/releases/content, default, snapshots), sonatype-nexus-snapshots (https://oss.sonatype.org/content/repositories/snapshots, default, snapshots)]
+Downloading from central: https://repo1.maven.org/maven2/org/slf4j/slf4j-parent/2.1.0-alpha0/slf4j-parent-2.1.0-alpha0.pom
+Downloaded from central: https://repo1.maven.org/maven2/org/slf4j/slf4j-parent/2.1.0-alpha0/slf4j-parent-2.1.0-alpha0.pom (0 B at 0 B/s)
+[INFO] Artifact org.slf4j:slf4j-bom:pom:2.1.0-alpha0 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo1.maven.org/maven2, default, releases), java.net (https://download.java.net/maven/2/, default, releases), sonatype (https://oss.sonatype.org/content/repositories/snapshots, default, snapshots), sonatype-release (https://oss.sonatype.org/service/local/repositories/releases/content, default, snapshots), sonatype-nexus-snapshots (https://oss.sonatype.org/content/repositories/snapshots, default, snapshots)]
+[INFO] Artifact org.slf4j:slf4j-bom:pom:2.1.0-alpha0 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo1.maven.org/maven2, default, releases), java.net (https://download.java.net/maven/2/, default, releases), sonatype (https://oss.sonatype.org/content/repositories/snapshots, default, snapshots), sonatype-release (https://oss.sonatype.org/service/local/repositories/releases/content, default, snapshots), sonatype-nexus-snapshots (https://oss.sonatype.org/content/repositories/snapshots, default, snapshots)]
+Downloading from central: https://repo1.maven.org/maven2/org/slf4j/slf4j-bom/2.1.0-alpha0/slf4j-bom-2.1.0-alpha0.pom
+Downloaded from central: https://repo1.maven.org/maven2/org/slf4j/slf4j-bom/2.1.0-alpha0/slf4j-bom-2.1.0-alpha0.pom (0 B at 0 B/s)
+Downloading from central: https://repo1.maven.org/maven2/org/slf4j/jcl-over-slf4j/2.1.0-alpha0/jcl-over-slf4j-2.1.0-alpha0.jar
+Progress (1): 1.4/19 kB
+Progress (1): 2.8/19 kB
+Progress (1): 4.1/19 kB
+Progress (1): 5.5/19 kB
+Progress (1): 6.9/19 kB
+Progress (1): 8.3/19 kB
+Progress (1): 9.7/19 kB
+Progress (1): 11/19 kB 
+Progress (1): 12/19 kB
+Progress (1): 14/19 kB
+Progress (1): 15/19 kB
+Progress (1): 17/19 kB
+Progress (1): 18/19 kB
+Progress (1): 19 kB   
+                   
+Downloaded from central: https://repo1.maven.org/maven2/org/slf4j/jcl-over-slf4j/2.1.0-alpha0/jcl-over-slf4j-2.1.0-alpha0.jar (19 kB at 62 kB/s)
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ canal.common ---
+[INFO] Deleting /home/ray/Tool/Dataset/canal/common/target
+[INFO] 
+[INFO] --- enforcer:1.0:enforce (enforce-maven) @ canal.common ---
+[INFO] 
+[INFO] --- jacoco:0.8.3:prepare-agent (jacoco-initialize) @ canal.common ---
+[INFO] jacocoArgLine set to -javaagent:/home/ray/.m2/repository/org/jacoco/org.jacoco.agent/0.8.3/org.jacoco.agent-0.8.3-runtime.jar=destfile=/home/ray/Tool/Dataset/canal/common/target/jacoco.exec
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ canal.common ---
+[INFO] skip non existing resourceDirectory /home/ray/Tool/Dataset/canal/common/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.7.0:compile (default-compile) @ canal.common ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 26 source files to /home/ray/Tool/Dataset/canal/common/target/classes
+[INFO] /home/ray/Tool/Dataset/canal/common/src/main/java/com/alibaba/otter/canal/common/utils/NamedThreadFactory.java: /home/ray/Tool/Dataset/canal/common/src/main/java/com/alibaba/otter/canal/common/utils/NamedThreadFactory.java uses or overrides a deprecated API that is marked for removal.
+[INFO] /home/ray/Tool/Dataset/canal/common/src/main/java/com/alibaba/otter/canal/common/utils/NamedThreadFactory.java: Recompile with -Xlint:removal for details.
+[INFO] /home/ray/Tool/Dataset/canal/common/src/main/java/com/google/common/collect/MigrateMap.java: Some input files use unchecked or unsafe operations.
+[INFO] /home/ray/Tool/Dataset/canal/common/src/main/java/com/google/common/collect/MigrateMap.java: Recompile with -Xlint:unchecked for details.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  15.951 s
+[INFO] Finished at: 2024-06-03T20:49:38+08:00
+[INFO] ------------------------------------------------------------------------
+
+>>>>>>
+subsequent compilation log of 2.1.0-alpha1:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------< com.alibaba.otter:canal.common >-------------------
+[INFO] Building canal common module for otter 1.1.8-SNAPSHOT 1.1.8-SNAPSHOT
+[INFO]   from _temp_org.slf4j_jcl-over-slf4j_2.1.0-alpha1_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+Downloading from central: https://repo1.maven.org/maven2/org/slf4j/jcl-over-slf4j/2.1.0-alpha1/jcl-over-slf4j-2.1.0-alpha1.pom
+Progress (1): 1.4/1.8 kB
+Progress (1): 1.8 kB    
+                    
+Downloaded from central: https://repo1.maven.org/maven2/org/slf4j/jcl-over-slf4j/2.1.0-alpha1/jcl-over-slf4j-2.1.0-alpha1.pom (1.8 kB at 1.0 kB/s)
+[INFO] Artifact org.slf4j:slf4j-parent:pom:2.1.0-alpha1 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo1.maven.org/maven2, default, releases), java.net (https://download.java.net/maven/2/, default, releases), sonatype (https://oss.sonatype.org/content/repositories/snapshots, default, snapshots), sonatype-release (https://oss.sonatype.org/service/local/repositories/releases/content, default, snapshots), sonatype-nexus-snapshots (https://oss.sonatype.org/content/repositories/snapshots, default, snapshots)]
+[INFO] Artifact org.slf4j:slf4j-parent:pom:2.1.0-alpha1 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo1.maven.org/maven2, default, releases), java.net (https://download.java.net/maven/2/, default, releases), sonatype (https://oss.sonatype.org/content/repositories/snapshots, default, snapshots), sonatype-release (https://oss.sonatype.org/service/local/repositories/releases/content, default, snapshots), sonatype-nexus-snapshots (https://oss.sonatype.org/content/repositories/snapshots, default, snapshots)]
+Downloading from central: https://repo1.maven.org/maven2/org/slf4j/slf4j-parent/2.1.0-alpha1/slf4j-parent-2.1.0-alpha1.pom
+Downloaded from central: https://repo1.maven.org/maven2/org/slf4j/slf4j-parent/2.1.0-alpha1/slf4j-parent-2.1.0-alpha1.pom (0 B at 0 B/s)
+[INFO] Artifact org.slf4j:slf4j-bom:pom:2.1.0-alpha1 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo1.maven.org/maven2, default, releases), java.net (https://download.java.net/maven/2/, default, releases), sonatype (https://oss.sonatype.org/content/repositories/snapshots, default, snapshots), sonatype-release (https://oss.sonatype.org/service/local/repositories/releases/content, default, snapshots), sonatype-nexus-snapshots (https://oss.sonatype.org/content/repositories/snapshots, default, snapshots)]
+[INFO] Artifact org.slf4j:slf4j-bom:pom:2.1.0-alpha1 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo1.maven.org/maven2, default, releases), java.net (https://download.java.net/maven/2/, default, releases), sonatype (https://oss.sonatype.org/content/repositories/snapshots, default, snapshots), sonatype-release (https://oss.sonatype.org/service/local/repositories/releases/content, default, snapshots), sonatype-nexus-snapshots (https://oss.sonatype.org/content/repositories/snapshots, default, snapshots)]
+Downloading from central: https://repo1.maven.org/maven2/org/slf4j/slf4j-bom/2.1.0-alpha1/slf4j-bom-2.1.0-alpha1.pom
+Downloaded from central: https://repo1.maven.org/maven2/org/slf4j/slf4j-bom/2.1.0-alpha1/slf4j-bom-2.1.0-alpha1.pom (0 B at 0 B/s)
+Downloading from central: https://repo1.maven.org/maven2/org/slf4j/jcl-over-slf4j/2.1.0-alpha1/jcl-over-slf4j-2.1.0-alpha1.jar
+Progress (1): 1.4/19 kB
+Progress (1): 2.8/19 kB
+Progress (1): 4.1/19 kB
+Progress (1): 5.5/19 kB
+Progress (1): 6.9/19 kB
+Progress (1): 8.3/19 kB
+Progress (1): 9.7/19 kB
+Progress (1): 11/19 kB 
+Progress (1): 12/19 kB
+Progress (1): 14/19 kB
+Progress (1): 15/19 kB
+Progress (1): 17/19 kB
+Progress (1): 18/19 kB
+Progress (1): 19 kB   
+                   
+Downloaded from central: https://repo1.maven.org/maven2/org/slf4j/jcl-over-slf4j/2.1.0-alpha1/jcl-over-slf4j-2.1.0-alpha1.jar (19 kB at 61 kB/s)
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ canal.common ---
+[INFO] Deleting /home/ray/Tool/Dataset/canal/common/target
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  8.013 s
+[INFO] Finished at: 2024-06-03T20:49:53+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean (default-clean) on project canal.common: Failed to clean project: Failed to delete /home/ray/Tool/Dataset/canal/common/target -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+
+* * * * * * * *

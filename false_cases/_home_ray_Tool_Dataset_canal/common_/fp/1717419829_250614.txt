@@ -1,0 +1,380 @@
+module name: common/
+
+* * * * * * * *
+groudId: ch.qos.logback
+artifactId: logback-core
+old version: 1.2.9
+new version: 1.2.13
+classifier: 
+depth: 1
+reachable api of old version:
+    ch.qos.logback.core.BasicStatusManager: void <init>()
+    ch.qos.logback.core.ConsoleAppender: void <init>()
+    ch.qos.logback.core.ContextBase: void <init>()
+    ch.qos.logback.core.ContextBase: java.lang.String getName()
+    ch.qos.logback.core.ContextBase: void setName(java.lang.String)
+    ch.qos.logback.core.CoreConstants: void <clinit>()
+    ch.qos.logback.core.encoder.EncoderBase: void <init>()
+    ch.qos.logback.core.encoder.LayoutWrappingEncoder: void <init>()
+    ch.qos.logback.core.helpers.CyclicBuffer: void <init>(int)
+    ch.qos.logback.core.helpers.CyclicBuffer: void init(int)
+    ch.qos.logback.core.helpers.ThrowableToStringArray: java.lang.String[] convert(java.lang.Throwable)
+    ch.qos.logback.core.helpers.ThrowableToStringArray: void extract(java.util.List,java.lang.Throwable,java.lang.StackTraceElement[])
+    ch.qos.logback.core.helpers.ThrowableToStringArray: java.lang.String formatFirstLine(java.lang.Throwable,java.lang.StackTraceElement[])
+    ch.qos.logback.core.helpers.ThrowableToStringArray: int findNumberOfCommonFrames(java.lang.StackTraceElement[],java.lang.StackTraceElement[])
+    ch.qos.logback.core.joran.JoranConfiguratorBase: void <init>()
+    ch.qos.logback.core.joran.spi.ConsoleTarget$1: void <init>()
+    ch.qos.logback.core.joran.spi.ConsoleTarget$2: void <init>()
+    ch.qos.logback.core.joran.spi.ConsoleTarget: void <init>(java.lang.String,int,java.lang.String,java.io.OutputStream)
+    ch.qos.logback.core.joran.spi.ConsoleTarget: void <clinit>()
+    ch.qos.logback.core.LayoutBase: void <init>()
+    ch.qos.logback.core.LayoutBase: void start()
+    ch.qos.logback.core.LogbackException: void <init>(java.lang.String)
+    ch.qos.logback.core.LogbackException: void <init>(java.lang.String,java.lang.Throwable)
+    ch.qos.logback.core.pattern.DynamicConverter: void <init>()
+    ch.qos.logback.core.pattern.DynamicConverter: void start()
+    ch.qos.logback.core.pattern.DynamicConverter: void addError(java.lang.String)
+    ch.qos.logback.core.spi.AppenderAttachableImpl: void <init>()
+    ch.qos.logback.core.spi.ContextAwareBase: void <init>()
+    ch.qos.logback.core.spi.ContextAwareBase: void <init>(ch.qos.logback.core.spi.ContextAware)
+    ch.qos.logback.core.spi.ContextAwareBase: void setContext(ch.qos.logback.core.Context)
+    ch.qos.logback.core.spi.ContextAwareBase: java.lang.Object getDeclaredOrigin()
+    ch.qos.logback.core.spi.ContextAwareBase: void addStatus(ch.qos.logback.core.status.Status)
+    ch.qos.logback.core.spi.ContextAwareBase: void addInfo(java.lang.String)
+    ch.qos.logback.core.spi.LogbackLock: void <init>()
+    ch.qos.logback.core.spi.ScanException: java.lang.Throwable getCause()
+    ch.qos.logback.core.status.ErrorStatus: void <init>(java.lang.String,java.lang.Object,java.lang.Throwable)
+    ch.qos.logback.core.status.InfoStatus: void <init>(java.lang.String,java.lang.Object)
+    ch.qos.logback.core.status.OnConsoleStatusListener: void <init>()
+    ch.qos.logback.core.status.OnConsoleStatusListener: java.io.PrintStream getPrintStream()
+    ch.qos.logback.core.status.OnPrintStreamStatusListenerBase: void <init>()
+    ch.qos.logback.core.status.OnPrintStreamStatusListenerBase: void print(ch.qos.logback.core.status.Status)
+    ch.qos.logback.core.status.OnPrintStreamStatusListenerBase: void retrospectivePrint()
+    ch.qos.logback.core.status.OnPrintStreamStatusListenerBase: boolean isElapsedTimeLongerThanThreshold(long,long)
+    ch.qos.logback.core.status.OnPrintStreamStatusListenerBase: void start()
+    ch.qos.logback.core.status.StatusBase: void <init>(int,java.lang.String,java.lang.Object)
+    ch.qos.logback.core.status.StatusBase: void <init>(int,java.lang.String,java.lang.Object,java.lang.Throwable)
+    ch.qos.logback.core.status.StatusBase: void <clinit>()
+    ch.qos.logback.core.status.StatusUtil: void <init>(ch.qos.logback.core.Context)
+    ch.qos.logback.core.status.StatusUtil: boolean contextHasStatusListener(ch.qos.logback.core.Context)
+    ch.qos.logback.core.status.StatusUtil: java.util.List filterStatusListByTimeThreshold(java.util.List,long)
+    ch.qos.logback.core.status.StatusUtil: int getHighestLevel(long)
+    ch.qos.logback.core.status.WarnStatus: void <init>(java.lang.String,java.lang.Object)
+    ch.qos.logback.core.util.CachingDateFormatter: void <init>(java.lang.String)
+    ch.qos.logback.core.util.CachingDateFormatter: java.lang.String format(long)
+    ch.qos.logback.core.util.COWArrayList: void <init>(java.lang.Object[])
+    ch.qos.logback.core.util.DynamicClassLoadingException: void <init>(java.lang.String,java.lang.Throwable)
+    ch.qos.logback.core.util.IncompatibleClassException: void <init>(java.lang.Class,java.lang.Class)
+    ch.qos.logback.core.util.Loader$1: void <init>()
+    ch.qos.logback.core.util.Loader$1: java.lang.Boolean run()
+    ch.qos.logback.core.util.Loader: java.util.Set getResources(java.lang.String,java.lang.ClassLoader)
+    ch.qos.logback.core.util.Loader: java.net.URL getResource(java.lang.String,java.lang.ClassLoader)
+    ch.qos.logback.core.util.Loader: java.lang.ClassLoader getTCL()
+    ch.qos.logback.core.util.Loader: java.lang.ClassLoader getClassLoaderOfObject(java.lang.Object)
+    ch.qos.logback.core.util.Loader: java.lang.ClassLoader getClassLoaderOfClass(java.lang.Class)
+    ch.qos.logback.core.util.Loader: java.lang.Class loadClass(java.lang.String)
+    ch.qos.logback.core.util.Loader: void <clinit>()
+    ch.qos.logback.core.util.OptionHelper: java.lang.Object instantiateByClassName(java.lang.String,java.lang.Class,ch.qos.logback.core.Context)
+    ch.qos.logback.core.util.OptionHelper: java.lang.Object instantiateByClassName(java.lang.String,java.lang.Class,java.lang.ClassLoader)
+    ch.qos.logback.core.util.OptionHelper: java.lang.Object instantiateByClassNameAndParameter(java.lang.String,java.lang.Class,java.lang.ClassLoader,java.lang.Class,java.lang.Object)
+    ch.qos.logback.core.util.OptionHelper: java.lang.String getSystemProperty(java.lang.String,java.lang.String)
+    ch.qos.logback.core.util.OptionHelper: java.lang.String getSystemProperty(java.lang.String)
+    ch.qos.logback.core.util.OptionHelper: boolean toBoolean(java.lang.String,boolean)
+    ch.qos.logback.core.util.OptionHelper: boolean isEmpty(java.lang.String)
+    ch.qos.logback.core.util.StatusListenerConfigHelper: void installIfAsked(ch.qos.logback.core.Context)
+    ch.qos.logback.core.util.StatusListenerConfigHelper: void addStatusListener(ch.qos.logback.core.Context,java.lang.String)
+    ch.qos.logback.core.util.StatusListenerConfigHelper: void initAndAddListener(ch.qos.logback.core.Context,ch.qos.logback.core.status.StatusListener)
+    ch.qos.logback.core.util.StatusListenerConfigHelper: ch.qos.logback.core.status.StatusListener createListenerPerClassName(ch.qos.logback.core.Context,java.lang.String)
+    ch.qos.logback.core.util.StatusPrinter: void printInCaseOfErrorsOrWarnings(ch.qos.logback.core.Context)
+    ch.qos.logback.core.util.StatusPrinter: void printInCaseOfErrorsOrWarnings(ch.qos.logback.core.Context,long)
+    ch.qos.logback.core.util.StatusPrinter: void print(ch.qos.logback.core.status.StatusManager,long)
+    ch.qos.logback.core.util.StatusPrinter: void buildStrFromStatusList(java.lang.StringBuilder,java.util.List)
+    ch.qos.logback.core.util.StatusPrinter: void appendThrowable(java.lang.StringBuilder,java.lang.Throwable)
+    ch.qos.logback.core.util.StatusPrinter: void buildStr(java.lang.StringBuilder,java.lang.String,ch.qos.logback.core.status.Status)
+    ch.qos.logback.core.util.StatusPrinter: void <clinit>()
+/ / / / / / / / /
+revapi log of former version -- 1.2.13:
+20:13:22.113 INFO  Downloading checked archives
+20:13:22.150 INFO  Downloading extensions
+20:13:28.297 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: ch.qos.logback-logback-core-1.2.9.jar
+New API: ch.qos.logback-logback-core-1.2.13.jar
+old: interface ch.qos.logback.core.net.server.RemoteReceiverClient
+new: interface ch.qos.logback.core.net.server.RemoteReceiverClient
+java.class.nonPublicPartOfAPI: Class 'ch.qos.logback.core.net.server.RemoteReceiverClient' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+SOURCE: NON_BREAKING, BINARY: NON_BREAKING, SEMANTIC: BREAKING
+
+old: enum ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP.Usage
+new: enum ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP.Usage
+java.class.nonPublicPartOfAPI: Class 'ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP.Usage' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+SOURCE: NON_BREAKING, BINARY: NON_BREAKING, SEMANTIC: BREAKING
+
+old: enum ch.qos.logback.core.subst.Node.Type
+new: enum ch.qos.logback.core.subst.Node.Type
+java.class.nonPublicPartOfAPI: Class 'ch.qos.logback.core.subst.Node.Type' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+SOURCE: NON_BREAKING, BINARY: NON_BREAKING, SEMANTIC: BREAKING
+
+old: method java.lang.String ch.qos.logback.core.util.JNDIUtil::lookup(javax.naming.Context, java.lang.String) throws javax.naming.NamingException
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+20:13:48.054 INFO  Analysis took 19749ms.
+
+/ / / / / / / / /
+revapi log of the subsequent version -- 1.3.0-alpha0:
+20:13:52.006 INFO  Downloading checked archives
+20:13:52.082 INFO  Downloading extensions
+20:13:57.817 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: ch.qos.logback-logback-core-1.2.9.jar
+New API: ch.qos.logback-logback-core-1.3.0-alpha0.jar
+old: field ch.qos.logback.core.CoreConstants.JNDI_JAVA_NAMESPACE
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING
+
+old: parameter void ch.qos.logback.core.encoder.LayoutWrappingEncoder<E>::setParent(===ch.qos.logback.core.spi.ContextAware===)
+new: parameter void ch.qos.logback.core.encoder.LayoutWrappingEncoder<E>::setParent(===ch.qos.logback.core.Appender<?>===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'ch.qos.logback.core.spi.ContextAware' to 'ch.qos.logback.core.Appender<?>'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: interface ch.qos.logback.core.net.server.RemoteReceiverClient
+new: interface ch.qos.logback.core.net.server.RemoteReceiverClient
+java.class.nonPublicPartOfAPI: Class 'ch.qos.logback.core.net.server.RemoteReceiverClient' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+SOURCE: NON_BREAKING, SEMANTIC: BREAKING, BINARY: NON_BREAKING
+
+old: method void ch.qos.logback.core.net.ssl.SSLConfigurable::setHostnameVerification(boolean)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void ch.qos.logback.core.net.ssl.SSLConfigurableServerSocket::setHostnameVerification(boolean)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void ch.qos.logback.core.net.ssl.SSLConfigurableSocket::setHostnameVerification(boolean)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method boolean ch.qos.logback.core.net.ssl.SSLParametersConfiguration::getHostnameVerification()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void ch.qos.logback.core.net.ssl.SSLParametersConfiguration::setHostnameVerification(boolean)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: enum ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP.Usage
+new: enum ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP.Usage
+java.class.nonPublicPartOfAPI: Class 'ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP.Usage' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+SOURCE: NON_BREAKING, SEMANTIC: BREAKING, BINARY: NON_BREAKING
+
+old: enum ch.qos.logback.core.subst.Node.Type
+new: enum ch.qos.logback.core.subst.Node.Type
+java.class.nonPublicPartOfAPI: Class 'ch.qos.logback.core.subst.Node.Type' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+SOURCE: NON_BREAKING, SEMANTIC: BREAKING, BINARY: NON_BREAKING
+
+old: method void ch.qos.logback.core.util.EnvUtil::<init>()
+new: method void ch.qos.logback.core.util.EnvUtil::<init>()
+java.method.visibilityReduced: visibility reduced
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class ch.qos.logback.core.util.JNDIUtil
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+20:14:16.274 INFO  Analysis took 18384ms.
+
+
+* * * * * * * *
+>>>>>>
+compilation log of 1.2.13:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------< com.alibaba.otter:canal.common >-------------------
+[INFO] Building canal common module for otter 1.1.8-SNAPSHOT 1.1.8-SNAPSHOT
+[INFO]   from _temp_ch.qos.logback_logback-core_1.2.13_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+Downloading from central: https://repo1.maven.org/maven2/ch/qos/logback/logback-core/1.2.13/logback-core-1.2.13.pom
+Progress (1): 1.4/4.2 kB
+Progress (1): 2.8/4.2 kB
+Progress (1): 4.1/4.2 kB
+Progress (1): 4.2 kB    
+                    
+Downloaded from central: https://repo1.maven.org/maven2/ch/qos/logback/logback-core/1.2.13/logback-core-1.2.13.pom (4.2 kB at 2.4 kB/s)
+Downloading from central: https://repo1.maven.org/maven2/ch/qos/logback/logback-core/1.2.13/logback-core-1.2.13.jar
+Progress (1): 16/450 kB
+Progress (1): 33/450 kB
+Progress (1): 49/450 kB
+Progress (1): 66/450 kB
+Progress (1): 82/450 kB
+Progress (1): 98/450 kB
+Progress (1): 115/450 kB
+Progress (1): 131/450 kB
+Progress (1): 147/450 kB
+Progress (1): 164/450 kB
+Progress (1): 180/450 kB
+Progress (1): 197/450 kB
+Progress (1): 213/450 kB
+Progress (1): 229/450 kB
+Progress (1): 246/450 kB
+Progress (1): 256/450 kB
+Progress (1): 272/450 kB
+Progress (1): 289/450 kB
+Progress (1): 305/450 kB
+Progress (1): 321/450 kB
+Progress (1): 338/450 kB
+Progress (1): 354/450 kB
+Progress (1): 370/450 kB
+Progress (1): 387/450 kB
+Progress (1): 403/450 kB
+Progress (1): 420/450 kB
+Progress (1): 436/450 kB
+Progress (1): 450 kB    
+                    
+Downloaded from central: https://repo1.maven.org/maven2/ch/qos/logback/logback-core/1.2.13/logback-core-1.2.13.jar (450 kB at 451 kB/s)
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ canal.common ---
+[INFO] Deleting /home/ray/Tool/Dataset/canal/common/target
+[INFO] 
+[INFO] --- enforcer:1.0:enforce (enforce-maven) @ canal.common ---
+[INFO] 
+[INFO] --- jacoco:0.8.3:prepare-agent (jacoco-initialize) @ canal.common ---
+[INFO] jacocoArgLine set to -javaagent:/home/ray/.m2/repository/org/jacoco/org.jacoco.agent/0.8.3/org.jacoco.agent-0.8.3-runtime.jar=destfile=/home/ray/Tool/Dataset/canal/common/target/jacoco.exec
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ canal.common ---
+[INFO] skip non existing resourceDirectory /home/ray/Tool/Dataset/canal/common/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.7.0:compile (default-compile) @ canal.common ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 26 source files to /home/ray/Tool/Dataset/canal/common/target/classes
+[INFO] /home/ray/Tool/Dataset/canal/common/src/main/java/com/alibaba/otter/canal/common/utils/NamedThreadFactory.java: /home/ray/Tool/Dataset/canal/common/src/main/java/com/alibaba/otter/canal/common/utils/NamedThreadFactory.java uses or overrides a deprecated API that is marked for removal.
+[INFO] /home/ray/Tool/Dataset/canal/common/src/main/java/com/alibaba/otter/canal/common/utils/NamedThreadFactory.java: Recompile with -Xlint:removal for details.
+[INFO] /home/ray/Tool/Dataset/canal/common/src/main/java/com/google/common/collect/MigrateMap.java: Some input files use unchecked or unsafe operations.
+[INFO] /home/ray/Tool/Dataset/canal/common/src/main/java/com/google/common/collect/MigrateMap.java: Recompile with -Xlint:unchecked for details.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  14.989 s
+[INFO] Finished at: 2024-06-03T20:45:33+08:00
+[INFO] ------------------------------------------------------------------------
+
+>>>>>>
+subsequent compilation log of 1.3.0-alpha0:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------< com.alibaba.otter:canal.common >-------------------
+[INFO] Building canal common module for otter 1.1.8-SNAPSHOT 1.1.8-SNAPSHOT
+[INFO]   from _temp_ch.qos.logback_logback-core_1.3.0-alpha0_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+Downloading from central: https://repo1.maven.org/maven2/ch/qos/logback/logback-core/1.3.0-alpha0/logback-core-1.3.0-alpha0.pom
+Progress (1): 1.4/4.4 kB
+Progress (1): 2.8/4.4 kB
+Progress (1): 4.1/4.4 kB
+Progress (1): 4.4 kB    
+                    
+Downloaded from central: https://repo1.maven.org/maven2/ch/qos/logback/logback-core/1.3.0-alpha0/logback-core-1.3.0-alpha0.pom (4.4 kB at 2.6 kB/s)
+Downloading from central: https://repo1.maven.org/maven2/ch/qos/logback/logback-core/1.3.0-alpha0/logback-core-1.3.0-alpha0.jar
+Progress (1): 1.4/467 kB
+Progress (1): 2.8/467 kB
+Progress (1): 4.1/467 kB
+Progress (1): 5.5/467 kB
+Progress (1): 6.9/467 kB
+Progress (1): 8.3/467 kB
+Progress (1): 9.7/467 kB
+Progress (1): 11/467 kB 
+Progress (1): 12/467 kB
+Progress (1): 14/467 kB
+Progress (1): 15/467 kB
+Progress (1): 16/467 kB
+Progress (1): 18/467 kB
+Progress (1): 19/467 kB
+Progress (1): 21/467 kB
+Progress (1): 22/467 kB
+Progress (1): 23/467 kB
+Progress (1): 25/467 kB
+Progress (1): 26/467 kB
+Progress (1): 27/467 kB
+Progress (1): 29/467 kB
+Progress (1): 30/467 kB
+Progress (1): 32/467 kB
+Progress (1): 33/467 kB
+Progress (1): 34/467 kB
+Progress (1): 36/467 kB
+Progress (1): 37/467 kB
+Progress (1): 38/467 kB
+Progress (1): 40/467 kB
+Progress (1): 41/467 kB
+Progress (1): 43/467 kB
+Progress (1): 44/467 kB
+Progress (1): 45/467 kB
+Progress (1): 47/467 kB
+Progress (1): 48/467 kB
+Progress (1): 49/467 kB
+Progress (1): 63/467 kB
+Progress (1): 79/467 kB
+Progress (1): 95/467 kB
+Progress (1): 112/467 kB
+Progress (1): 128/467 kB
+Progress (1): 144/467 kB
+Progress (1): 161/467 kB
+Progress (1): 177/467 kB
+Progress (1): 194/467 kB
+Progress (1): 210/467 kB
+Progress (1): 226/467 kB
+Progress (1): 243/467 kB
+Progress (1): 259/467 kB
+Progress (1): 276/467 kB
+Progress (1): 292/467 kB
+Progress (1): 308/467 kB
+Progress (1): 325/467 kB
+Progress (1): 341/467 kB
+Progress (1): 357/467 kB
+Progress (1): 374/467 kB
+Progress (1): 390/467 kB
+Progress (1): 407/467 kB
+Progress (1): 423/467 kB
+Progress (1): 439/467 kB
+Progress (1): 456/467 kB
+Progress (1): 467 kB    
+                    
+Downloaded from central: https://repo1.maven.org/maven2/ch/qos/logback/logback-core/1.3.0-alpha0/logback-core-1.3.0-alpha0.jar (467 kB at 465 kB/s)
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ canal.common ---
+[INFO] Deleting /home/ray/Tool/Dataset/canal/common/target
+[INFO] 
+[INFO] --- enforcer:1.0:enforce (enforce-maven) @ canal.common ---
+[INFO] 
+[INFO] --- jacoco:0.8.3:prepare-agent (jacoco-initialize) @ canal.common ---
+[INFO] jacocoArgLine set to -javaagent:/home/ray/.m2/repository/org/jacoco/org.jacoco.agent/0.8.3/org.jacoco.agent-0.8.3-runtime.jar=destfile=/home/ray/Tool/Dataset/canal/common/target/jacoco.exec
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ canal.common ---
+[INFO] skip non existing resourceDirectory /home/ray/Tool/Dataset/canal/common/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.7.0:compile (default-compile) @ canal.common ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 26 source files to /home/ray/Tool/Dataset/canal/common/target/classes
+[INFO] /home/ray/Tool/Dataset/canal/common/src/main/java/com/alibaba/otter/canal/common/utils/NamedThreadFactory.java: /home/ray/Tool/Dataset/canal/common/src/main/java/com/alibaba/otter/canal/common/utils/NamedThreadFactory.java uses or overrides a deprecated API that is marked for removal.
+[INFO] /home/ray/Tool/Dataset/canal/common/src/main/java/com/alibaba/otter/canal/common/utils/NamedThreadFactory.java: Recompile with -Xlint:removal for details.
+[INFO] /home/ray/Tool/Dataset/canal/common/src/main/java/com/google/common/collect/MigrateMap.java: Some input files use unchecked or unsafe operations.
+[INFO] /home/ray/Tool/Dataset/canal/common/src/main/java/com/google/common/collect/MigrateMap.java: Recompile with -Xlint:unchecked for details.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  16.202 s
+[INFO] Finished at: 2024-06-03T20:45:56+08:00
+[INFO] ------------------------------------------------------------------------
+
+
+* * * * * * * *
