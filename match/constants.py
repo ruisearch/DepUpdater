@@ -14,3 +14,7 @@ SOOTCG_PATH = os.path.join(UTILS, "sootCG-1.0-SNAPSHOT-jar-with-dependencies.jar
 
 # absolute path to utils/BCELgetAPI
 BCEL_PATH = os.path.join(UTILS, f"BCELgetAPI-1.0-SNAPSHOT-jar-with-dependencies.jar")
+
+# absolute path to utils/BCEL_reference
+BCEL_REFERENCE = os.path.join(UTILS, f"BCEL_reference-1.0-SNAPSHOT-jar-with-dependencies.jar")
+

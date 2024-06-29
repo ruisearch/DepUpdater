@@ -3,6 +3,7 @@ import os
 from match.CallGraph import CallGraph
 from match.constants import JAR_FOLDER
 from match.Api import Api
+from match.Reference import Reference
     
 ## relative_path_to_module is the path to the module
 ## . means all modules
@@ -26,6 +27,10 @@ def all(relative_path_to_module:str):
                 Jar.get_reachable_api()
                 # dep jar->reachable api mapping
                 Jar.jar_to_reachable_api()
+                # dep jar->reference mapping
+                ref = Reference(item_path)
+                ref.gen_ref()
+            
     # handle a specific module
     else :
         ## test : just deal with one module folder in data/Jar
@@ -49,5 +54,8 @@ def all(relative_path_to_module:str):
         Jar.get_reachable_api()
         # dep jar->reachable api mapping
         Jar.jar_to_reachable_api()
+        # dep jar->reference mapping
+        ref = Reference(item_path)
+        ref.gen_ref()
     
     

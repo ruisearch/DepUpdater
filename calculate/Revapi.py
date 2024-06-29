@@ -196,6 +196,11 @@ class Revapi:
                 # set filter_records[i] as None, compare will skip None
                 filtered_records[i] = None
                 continue
+            
+            # # handle reference BC, which means class BC
+            # if "old: class" in filtered_records[i]:
+                
+            
             # using reachable API
             pattern = r'old: (.+?)\n'
             match = re.search(pattern, filtered_records[i])
