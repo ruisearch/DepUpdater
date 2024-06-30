@@ -1,0 +1,139 @@
+module name: log4j-api-test/
+
+* * * * * * * *
+groudId: com.google.inject
+artifactId: guice
+old version: 5.1.0
+new version: 5.1.0
+classifier: 
+depth: 2
+reachable api of old version:
+    com.google.inject.ConfigurationException: java.lang.String getMessage()
+    com.google.inject.CreationException: java.lang.String getMessage()
+    com.google.inject.ProvisionException: java.lang.String getMessage()
+    com.google.inject.TypeLiteral: int hashCode()
+    com.google.inject.internal.InternalFlags$1: void <init>(java.lang.String)
+    com.google.inject.internal.InternalFlags$1: java.lang.String run()
+    com.google.inject.internal.InternalFlags$BytecodeGenOption: void <init>(java.lang.String,int)
+    com.google.inject.internal.InternalFlags$BytecodeGenOption: void <clinit>()
+    com.google.inject.internal.InternalFlags$ColorizeOption$1: void <init>(java.lang.String,int)
+    com.google.inject.internal.InternalFlags$ColorizeOption$2: void <init>(java.lang.String,int)
+    com.google.inject.internal.InternalFlags$ColorizeOption$3: void <init>(java.lang.String,int)
+    com.google.inject.internal.InternalFlags$ColorizeOption$3: boolean enabled()
+    com.google.inject.internal.InternalFlags$ColorizeOption: void <init>(java.lang.String,int)
+    com.google.inject.internal.InternalFlags$ColorizeOption: void <init>(java.lang.String,int,com.google.inject.internal.InternalFlags$1)
+    com.google.inject.internal.InternalFlags$ColorizeOption: void <clinit>()
+    com.google.inject.internal.InternalFlags$CustomClassLoadingOption: void <init>(java.lang.String,int)
+    com.google.inject.internal.InternalFlags$CustomClassLoadingOption: void <clinit>()
+    com.google.inject.internal.InternalFlags$IncludeStackTraceOption: void <init>(java.lang.String,int)
+    com.google.inject.internal.InternalFlags$IncludeStackTraceOption: void <clinit>()
+    com.google.inject.internal.InternalFlags$NullableProvidesOption: void <init>(java.lang.String,int)
+    com.google.inject.internal.InternalFlags$NullableProvidesOption: void <clinit>()
+    com.google.inject.internal.InternalFlags: boolean enableColorizeErrorMessages()
+    com.google.inject.internal.InternalFlags: java.lang.Enum getSystemOption(java.lang.String,java.lang.Enum)
+    com.google.inject.internal.InternalFlags: java.lang.Enum getSystemOption(java.lang.String,java.lang.Enum,java.lang.Enum)
+    com.google.inject.internal.InternalFlags: void <clinit>()
+    com.google.inject.internal.Messages$1: void <init>(java.lang.Class)
+    com.google.inject.internal.Messages$2: void <init>(java.lang.Class)
+    com.google.inject.internal.Messages$3: void <init>(java.lang.Class)
+    com.google.inject.internal.Messages$Converter: void <init>(java.lang.Class)
+    com.google.inject.internal.Messages$FormatOptions: void <init>(java.lang.String,int,java.lang.String)
+    com.google.inject.internal.Messages$FormatOptions: java.lang.String access$000(com.google.inject.internal.Messages$FormatOptions)
+    com.google.inject.internal.Messages$FormatOptions: void <clinit>()
+    com.google.inject.internal.Messages$ThrowableEquivalence: void <init>()
+    com.google.inject.internal.Messages$ThrowableEquivalence: void <clinit>()
+    com.google.inject.internal.Messages: java.lang.String formatMessages(java.lang.String,java.util.Collection)
+    com.google.inject.internal.Messages: java.lang.Throwable getOnlyCause(java.util.Collection)
+    com.google.inject.internal.Messages: java.lang.String formatText(java.lang.String,com.google.inject.internal.Messages$FormatOptions[])
+    com.google.inject.internal.Messages: java.lang.String bold(java.lang.String)
+    com.google.inject.internal.Messages: java.lang.String faint(java.lang.String)
+    com.google.inject.internal.Messages: void <clinit>()
+    com.google.inject.internal.PackageNameCompressor: java.lang.String compressPackagesInMessage(java.lang.String)
+    com.google.inject.internal.PackageNameCompressor: com.google.common.collect.ImmutableSet replaceFullNames(java.lang.String,java.util.Map,java.lang.StringBuilder)
+    com.google.inject.internal.PackageNameCompressor: java.lang.String buildClassNameLegend(java.util.Map)
+    com.google.inject.internal.PackageNameCompressor: java.util.Map shortenNames(java.util.Collection)
+    com.google.inject.internal.PackageNameCompressor: void <clinit>()
+/ / / / / / / / /
+revapi log of the subsequent version -- 6.0.0-rc1:
+18:10:18.192 INFO  Downloading checked archives
+18:10:18.243 INFO  Downloading extensions
+18:10:23.886 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: com.google.inject-guice-5.1.0.jar
+New API: com.google.inject-guice-6.0.0-rc1.jar
+old: class com.google.inject.internal.Errors
+new: class com.google.inject.internal.Errors
+java.class.defaultSerializationChanged: The default serialization ID for the class has changed. This means that the new version of the class is not deserializable from the byte stream of a serialized old class.
+BINARY: EQUIVALENT, SEMANTIC: BREAKING, SOURCE: EQUIVALENT
+
+old: class com.google.inject.internal.InjectorImpl
+new: class com.google.inject.internal.InjectorImpl
+java.class.nonPublicPartOfAPI: Class 'com.google.inject.internal.InjectorImpl' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
+
+old: class com.google.inject.internal.InternalContext
+new: class com.google.inject.internal.InternalContext
+java.class.nonPublicPartOfAPI: Class 'com.google.inject.internal.InternalContext' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
+
+old: interface com.google.inject.internal.InternalFactory<T>
+new: interface com.google.inject.internal.InternalFactory<T>
+java.class.nonPublicPartOfAPI: Class 'com.google.inject.internal.InternalFactory<T>' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SEMANTIC: BREAKING, SOURCE: NON_BREAKING
+
+old: method java.lang.StackTraceElement com.google.inject.internal.util.SourceProvider::get(java.lang.StackTraceElement[])
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+18:10:42.581 INFO  Analysis took 18694ms.
+
+
+* * * * * * * *
+>>>>>>
+subsequent compilation log of 6.0.0-rc1:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< org.apache.logging.log4j:log4j-api-test >---------------
+[INFO] Building Apache Log4j API Tests 2.23.1
+[INFO]   from _temp_com.google.inject_guice_6.0.0-rc1_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ log4j-api-test ---
+[INFO] 
+[INFO] --- flatten:1.5.0:clean (clean-flattened-pom) @ log4j-api-test ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-upper-bound-deps) @ log4j-api-test ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.519 s
+[INFO] Finished at: 2024-06-29T18:12:39+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:3.4.1:enforce (enforce-upper-bound-deps) on project log4j-api-test: 
+[ERROR] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps failed with message:
+[ERROR] Failed while enforcing RequireUpperBoundDeps. The error(s) are [
+[ERROR] Require upper bound dependencies error for jakarta.inject:jakarta.inject-api:2.0.0 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-com.google.inject:guice:6.0.0-rc1 (managed) <-- com.google.inject:guice:5.1.0
+[ERROR]       +-jakarta.inject:jakarta.inject-api:2.0.0 (managed) <-- jakarta.inject:jakarta.inject-api:2.0.1
+[ERROR] ]
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+
+* * * * * * * *

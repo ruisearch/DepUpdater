@@ -1,0 +1,284 @@
+module name: log4j-api-test/
+
+* * * * * * * *
+groudId: org.apache.maven
+artifactId: maven-settings-builder
+old version: 3.9.6
+new version: 4.0.0-beta-3
+classifier: 
+depth: 2
+reachable api of old version:
+/ / / / / / / / /
+revapi log of former version -- 4.0.0-beta-3:
+18:09:00.763 INFO  Downloading checked archives
+18:09:00.806 INFO  Downloading extensions
+18:09:05.087 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.apache.maven-maven-settings-builder-3.9.6.jar
+New API: org.apache.maven-maven-settings-builder-4.0.0-beta-3.jar
+old: method void org.apache.maven.settings.building.DefaultSettingsBuilder::<init>(org.apache.maven.settings.io.SettingsReader, org.apache.maven.settings.io.SettingsWriter, org.apache.maven.settings.validation.SettingsValidator)
+new: method void org.apache.maven.settings.building.DefaultSettingsBuilder::<init>(org.apache.maven.internal.impl.DefaultSettingsBuilder, org.apache.maven.internal.impl.DefaultSettingsXmlFactory)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.apache.maven.settings.building.DefaultSettingsBuilder org.apache.maven.settings.building.DefaultSettingsBuilder::setSettingsReader(org.apache.maven.settings.io.SettingsReader)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.apache.maven.settings.building.DefaultSettingsBuilder org.apache.maven.settings.building.DefaultSettingsBuilder::setSettingsValidator(org.apache.maven.settings.validation.SettingsValidator)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.apache.maven.settings.building.DefaultSettingsBuilder org.apache.maven.settings.building.DefaultSettingsBuilder::setSettingsWriter(org.apache.maven.settings.io.SettingsWriter)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: <none>
+new: method java.io.File org.apache.maven.settings.building.SettingsBuildingRequest::getProjectSettingsFile()
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method org.apache.maven.settings.building.SettingsSource org.apache.maven.settings.building.SettingsBuildingRequest::getProjectSettingsSource()
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method org.apache.maven.settings.building.DefaultSettingsBuildingRequest org.apache.maven.settings.building.SettingsBuildingRequest::setProjectSettingsFile(java.io.File)
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method org.apache.maven.settings.building.SettingsBuildingRequest org.apache.maven.settings.building.SettingsBuildingRequest::setProjectSettingsSource(org.apache.maven.settings.building.SettingsSource)
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method void org.apache.maven.settings.validation.DefaultSettingsValidator::<init>()
+new: method void org.apache.maven.settings.validation.DefaultSettingsValidator::<init>(org.apache.maven.api.services.SettingsBuilder)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+18:09:14.703 INFO  Analysis took 9615ms.
+
+
+* * * * * * * *
+>>>>>>
+compilation log of 4.0.0-beta-3:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< org.apache.logging.log4j:log4j-api-test >---------------
+[INFO] Building Apache Log4j API Tests 2.23.1
+[INFO]   from _temp_org.apache.maven_maven-settings-builder_4.0.0-beta-3_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ log4j-api-test ---
+[INFO] Deleting /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/target
+[INFO] 
+[INFO] --- flatten:1.5.0:clean (clean-flattened-pom) @ log4j-api-test ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-upper-bound-deps) @ log4j-api-test ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.164 s
+[INFO] Finished at: 2024-06-29T18:11:57+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:3.4.1:enforce (enforce-upper-bound-deps) on project log4j-api-test: 
+[ERROR] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps failed with message:
+[ERROR] Failed while enforcing RequireUpperBoundDeps. The error(s) are [
+[ERROR] Require upper bound dependencies error for org.slf4j:slf4j-api:2.0.9 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.slf4j:slf4j-api:2.0.9 (managed) <-- org.slf4j:slf4j-api:1.7.36
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-impl:1.9.18
+[ERROR]       +-org.slf4j:slf4j-api:2.0.9 (managed) <-- org.slf4j:slf4j-api:1.7.36
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-settings-builder:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-settings-builder:3.9.6
+[ERROR]       +-org.apache.maven:maven-api-impl:4.0.0-beta-3
+[ERROR]         +-org.slf4j:slf4j-api:2.0.9 (managed) <-- org.slf4j:slf4j-api:2.0.13
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-impl:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-named-locks:1.9.18
+[ERROR]         +-org.slf4j:slf4j-api:2.0.9 (managed) <-- org.slf4j:slf4j-api:1.7.36
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.apache.maven.resolver:maven-resolver-impl:1.9.18 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-impl:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-impl:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-settings-builder:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-settings-builder:3.9.6
+[ERROR]       +-org.apache.maven:maven-api-impl:4.0.0-beta-3
+[ERROR]         +-org.apache.maven.resolver:maven-resolver-impl:2.0.0-alpha-11
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.apache.maven:maven-settings:3.9.6 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-settings:3.9.6
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-settings-builder:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-settings-builder:3.9.6
+[ERROR]       +-org.apache.maven:maven-settings:4.0.0-beta-3
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.codehaus.woodstox:stax2-api:4.2.1 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-settings-builder:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-settings-builder:3.9.6
+[ERROR]       +-org.apache.maven:maven-api-impl:4.0.0-beta-3
+[ERROR]         +-org.codehaus.woodstox:stax2-api:4.2.1
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-settings-builder:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-settings-builder:3.9.6
+[ERROR]       +-org.apache.maven:maven-api-impl:4.0.0-beta-3
+[ERROR]         +-org.apache.maven:maven-xml-impl:4.0.0-beta-3
+[ERROR]           +-org.codehaus.woodstox:stax2-api:4.2.1
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-settings-builder:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-settings-builder:3.9.6
+[ERROR]       +-org.apache.maven:maven-api-impl:4.0.0-beta-3
+[ERROR]         +-com.fasterxml.woodstox:woodstox-core:6.6.2
+[ERROR]           +-org.codehaus.woodstox:stax2-api:4.2.2
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.apache.maven:maven-builder-support:3.9.6 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-builder-support:3.9.6
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-settings-builder:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-settings-builder:3.9.6
+[ERROR]       +-org.apache.maven:maven-builder-support:4.0.0-beta-3
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-model-builder:3.9.6
+[ERROR]       +-org.apache.maven:maven-builder-support:3.9.6
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.apache.maven.resolver:maven-resolver-spi:1.9.18 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-spi:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-spi:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-impl:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-spi:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-settings-builder:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-settings-builder:3.9.6
+[ERROR]       +-org.apache.maven:maven-api-impl:4.0.0-beta-3
+[ERROR]         +-org.apache.maven.resolver:maven-resolver-spi:2.0.0-alpha-11
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.apache.maven.resolver:maven-resolver-util:1.9.18 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-util:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-util:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-impl:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-util:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-settings-builder:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-settings-builder:3.9.6
+[ERROR]       +-org.apache.maven:maven-api-impl:4.0.0-beta-3
+[ERROR]         +-org.apache.maven.resolver:maven-resolver-util:2.0.0-alpha-11
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.apache.maven.resolver:maven-resolver-api:1.9.18 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-api:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-api:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-impl:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-api:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-spi:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-api:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-util:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-api:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-settings-builder:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-settings-builder:3.9.6
+[ERROR]       +-org.apache.maven:maven-api-impl:4.0.0-beta-3
+[ERROR]         +-org.apache.maven.resolver:maven-resolver-api:2.0.0-alpha-11
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.codehaus.plexus:plexus-interpolation:1.26 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.codehaus.plexus:plexus-interpolation:1.26
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-model-builder:3.9.6
+[ERROR]       +-org.codehaus.plexus:plexus-interpolation:1.26
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-settings-builder:4.0.0-beta-3 (managed) <-- org.apache.maven:maven-settings-builder:3.9.6
+[ERROR]       +-org.apache.maven:maven-api-impl:4.0.0-beta-3
+[ERROR]         +-org.codehaus.plexus:plexus-interpolation:1.27
+[ERROR] ]
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+
+* * * * * * * *

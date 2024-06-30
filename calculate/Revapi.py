@@ -189,7 +189,6 @@ class Revapi:
                 print(f"== java.method.addedToInterface in {new_jar} ==")
                 flag, breaking_reason = self.java_method_addedToInterface(filtered_records[i], new_jar)
                 if flag == False:
-                    # return False, []
                     # breaking_reason: which api implements a breaking interface
                     return False, breaking_reason
                 # java.method.addedToInterface doesn't break
@@ -198,8 +197,14 @@ class Revapi:
                 continue
             
             # # handle reference BC, which means class BC
-            # if "old: class" in filtered_records[i]:
-                
+            if "old: class" in filtered_records[i]:
+                print(f"== class BC in {new_jar} ==")
+                flag, breaking_reason = self.reference_bc(filtered_records[i], new_jar)
+                if flag == False:
+                    # breaking_reason: which type breaks the reference used by a jar
+                    return False, breaking_reason
+                filtered_records[i] = None
+                continue
             
             # using reachable API
             pattern = r'old: (.+?)\n'
@@ -212,6 +217,7 @@ class Revapi:
         # return filtered_records
         return True, filtered_records
 
+    
     # get the records whose SORUCE is BREAKING
     def filter_record(self, content):
         pattern = r"old: .+?^$"
@@ -357,7 +363,7 @@ class Revapi:
                         # client jar has the class
                         print(f"java.method.addedToInterface: {interface} breaks {item}")
                         return False, f"java.method.addedToInterface: {interface} breaks {item}"
-        # travel all dep jar(excluding self.jar_name)-->to be optimized: travel the dep jars which dependend on self.jar_name
+        # travel the dep jars which dependend on self.jar_name
         contents = os.listdir(self.Pwd)
         for item in self.DependedBy:
             # if item != self.jar_name and item.endswith(".jar"):
@@ -379,6 +385,48 @@ class Revapi:
         # remove the log_ret, as it is empty
         os.remove(log_ret)
         return True, ''
+    
+    # handle reference BC
+    # record containing class BC
+    # record: a BC detected by revapi containing class BC("old: class")
+    # compare the class of record with the references in the jar related to new_jar
+    def reference_bc(self, record:str, new_jar:str):
+        # extract class/reference_type
+        pattern = r"old: class (.*)\n"
+        match = re.search(pattern, record)
+        reference_type = match.group(1)
+        
+        # compare reference_type with reference used by client jar
+        client_folder = os.path.join(self.Pwd, '../client/')
+        contents = os.listdir(client_folder)
+        for item in contents:
+            if item.endswith('.jar'):
+                jar_path = os.path.join(client_folder, item)
+                reference_file_path = jar_path+'_ref.txt'
+                with open(reference_file_path, 'r') as f:
+                    # references = f.read()
+                    for line in f:
+                        method, class_type = line.split(' ==> ')
+                        if reference_type+'/' in class_type:
+                            # the type of reference used by client breaks in new version
+                            return False, f"reference broken: {reference_type} breaks {item}/{method}"
+        
+        # compare reference_type with reference used by dep jars which dependend on self.jar_name
+        contents = os.listdir(self.Pwd)
+        for item in self.DependedBy:    
+            jar_path = os.path.join(self.Pwd, item)
+            reference_file_path = jar_path+'_ref.txt'
+            with open(reference_file_path, 'r') as f:
+                    # references = f.read()
+                    for line in f:
+                        method, class_type = line.split(' ==> ')
+                        if reference_type+'/' in class_type:
+                            # the type of reference used by a dep breaks in new version
+                            return False, f"reference broken: {reference_type} breaks {item}/{method}"
+        
+        return True, ''
+    
+        
     
 if __name__ == "__main__":
     REVAPI_FOLDER = "/home/ray/Work/Tool/Tool/utils/revapi-0.12.0"

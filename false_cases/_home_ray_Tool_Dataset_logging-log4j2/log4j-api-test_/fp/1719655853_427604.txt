@@ -1,0 +1,287 @@
+module name: log4j-api-test/
+
+* * * * * * * *
+groudId: org.apache.maven
+artifactId: maven-plugin-api
+old version: 3.9.6
+new version: 3.9.8
+classifier: 
+depth: 2
+reachable api of old version:
+/ / / / / / / / /
+revapi log of former version -- 3.9.8:
+18:04:26.689 INFO  Downloading checked archives
+18:04:26.745 INFO  Downloading extensions
+18:04:32.251 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.apache.maven-maven-plugin-api-3.9.6.jar
+New API: org.apache.maven-maven-plugin-api-3.9.8.jar
+
+18:04:42.934 INFO  Analysis took 10674ms.
+
+/ / / / / / / / /
+revapi log of the subsequent version -- 4.0.0-alpha-10:
+18:04:46.756 INFO  Downloading checked archives
+18:04:46.862 INFO  Downloading extensions
+18:04:54.074 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.apache.maven-maven-plugin-api-3.9.6.jar
+New API: org.apache.maven-maven-plugin-api-4.0.0-alpha-10.jar
+old: class org.apache.maven.monitor.logging.DefaultLog
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.apache.maven.plugin.lifecycle.Lifecycle org.apache.maven.plugin.descriptor.PluginDescriptor::getLifecycleMapping(java.lang.String) throws java.io.IOException, org.codehaus.plexus.util.xml.pull.XmlPullParserException
+new: method org.apache.maven.api.plugin.descriptor.lifecycle.Lifecycle org.apache.maven.plugin.descriptor.PluginDescriptor::getLifecycleMapping(java.lang.String) throws java.io.IOException, javax.xml.stream.XMLStreamException
+java.method.returnTypeChanged: The return type changed from 'org.apache.maven.plugin.lifecycle.Lifecycle' to  'org.apache.maven.api.plugin.descriptor.lifecycle.Lifecycle'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+java.method.exception.checkedAdded: Method newly throws checked exceptions: javax.xml.stream.XMLStreamException.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: class org.apache.maven.plugin.lifecycle.Execution
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.plugin.lifecycle.Lifecycle
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.plugin.lifecycle.LifecycleConfiguration
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.plugin.lifecycle.Phase
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.plugin.lifecycle.io.xpp3.LifecycleMappingsXpp3Reader
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.plugin.lifecycle.io.xpp3.LifecycleMappingsXpp3Writer
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+18:05:04.859 INFO  Analysis took 10784ms.
+
+
+* * * * * * * *
+>>>>>>
+compilation log of 3.9.8:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< org.apache.logging.log4j:log4j-api-test >---------------
+[INFO] Building Apache Log4j API Tests 2.23.1
+[INFO]   from _temp_org.apache.maven_maven-plugin-api_3.9.8_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ log4j-api-test ---
+[INFO] Deleting /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/target
+[INFO] 
+[INFO] --- flatten:1.5.0:clean (clean-flattened-pom) @ log4j-api-test ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-upper-bound-deps) @ log4j-api-test ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.897 s
+[INFO] Finished at: 2024-06-29T18:08:49+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:3.4.1:enforce (enforce-upper-bound-deps) on project log4j-api-test: 
+[ERROR] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps failed with message:
+[ERROR] Failed while enforcing RequireUpperBoundDeps. The error(s) are [
+[ERROR] Require upper bound dependencies error for org.codehaus.plexus:plexus-classworlds:2.7.0 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.codehaus.plexus:plexus-classworlds:2.7.0
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-plugin-api:3.9.8 (managed) <-- org.apache.maven:maven-plugin-api:3.9.6
+[ERROR]       +-org.codehaus.plexus:plexus-classworlds:2.8.0
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.eclipse.sisu:org.eclipse.sisu.plexus:0.9.0.M2
+[ERROR]       +-org.codehaus.plexus:plexus-classworlds:2.6.0
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.apache.maven:maven-model:3.9.6 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-model:3.9.6
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-model:3.9.6 (managed) <-- org.apache.maven:maven-model:3.9.6
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-plugin-api:3.9.8 (managed) <-- org.apache.maven:maven-plugin-api:3.9.6
+[ERROR]       +-org.apache.maven:maven-model:3.9.6 (managed) <-- org.apache.maven:maven-model:3.9.8
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-model-builder:3.9.6
+[ERROR]       +-org.apache.maven:maven-model:3.9.6 (managed) <-- org.apache.maven:maven-model:3.9.6
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven:maven-model:3.9.6 (managed) <-- org.apache.maven:maven-model:3.9.6
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.eclipse.sisu:org.eclipse.sisu.plexus:0.9.0.M2 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.eclipse.sisu:org.eclipse.sisu.plexus:0.9.0.M2
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-plugin-api:3.9.8 (managed) <-- org.apache.maven:maven-plugin-api:3.9.6
+[ERROR]       +-org.eclipse.sisu:org.eclipse.sisu.plexus:0.9.0.M3
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.apache.maven:maven-artifact:3.9.6 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-artifact:3.9.6
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-plugin-api:3.9.8 (managed) <-- org.apache.maven:maven-plugin-api:3.9.6
+[ERROR]       +-org.apache.maven:maven-artifact:3.9.8
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-model-builder:3.9.6
+[ERROR]       +-org.apache.maven:maven-artifact:3.9.6
+[ERROR] ]
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+>>>>>>
+subsequent compilation log of 4.0.0-alpha-10:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< org.apache.logging.log4j:log4j-api-test >---------------
+[INFO] Building Apache Log4j API Tests 2.23.1
+[INFO]   from _temp_org.apache.maven_maven-plugin-api_4.0.0-alpha-10_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ log4j-api-test ---
+[INFO] 
+[INFO] --- flatten:1.5.0:clean (clean-flattened-pom) @ log4j-api-test ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-upper-bound-deps) @ log4j-api-test ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.979 s
+[INFO] Finished at: 2024-06-29T18:08:58+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:3.4.1:enforce (enforce-upper-bound-deps) on project log4j-api-test: 
+[ERROR] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps failed with message:
+[ERROR] Failed while enforcing RequireUpperBoundDeps. The error(s) are [
+[ERROR] Require upper bound dependencies error for org.apache.maven.resolver:maven-resolver-api:1.9.18 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-api:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-plugin-api:4.0.0-alpha-10 (managed) <-- org.apache.maven:maven-plugin-api:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-api:2.0.0-alpha-5
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-api:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-impl:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-api:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-spi:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-api:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-util:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-api:1.9.18
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.apache.maven:maven-model:3.9.6 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-model:3.9.6
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-model:3.9.6 (managed) <-- org.apache.maven:maven-model:3.9.6
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-plugin-api:4.0.0-alpha-10 (managed) <-- org.apache.maven:maven-plugin-api:3.9.6
+[ERROR]       +-org.apache.maven:maven-model:3.9.6 (managed) <-- org.apache.maven:maven-model:4.0.0-alpha-10
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-model-builder:3.9.6
+[ERROR]       +-org.apache.maven:maven-model:3.9.6 (managed) <-- org.apache.maven:maven-model:3.9.6
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven:maven-model:3.9.6 (managed) <-- org.apache.maven:maven-model:3.9.6
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.apache.maven:maven-artifact:3.9.6 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-artifact:3.9.6
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-plugin-api:4.0.0-alpha-10 (managed) <-- org.apache.maven:maven-plugin-api:3.9.6
+[ERROR]       +-org.apache.maven:maven-artifact:4.0.0-alpha-10
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-model-builder:3.9.6
+[ERROR]       +-org.apache.maven:maven-artifact:3.9.6
+[ERROR] ]
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+
+* * * * * * * *

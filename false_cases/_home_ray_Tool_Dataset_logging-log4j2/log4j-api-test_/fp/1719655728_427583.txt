@@ -1,0 +1,114 @@
+module name: log4j-api-test/
+
+* * * * * * * *
+groudId: org.apache.maven.shared
+artifactId: maven-shared-utils
+old version: 3.3.4
+new version: 3.4.2
+classifier: 
+depth: 2
+reachable api of old version:
+/ / / / / / / / /
+revapi log of former version -- 3.4.2:
+18:07:36.868 INFO  Downloading checked archives
+18:07:36.942 INFO  Downloading extensions
+18:07:42.245 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.apache.maven.shared-maven-shared-utils-3.3.4.jar
+New API: org.apache.maven.shared-maven-shared-utils-3.4.2.jar
+old: class org.apache.maven.shared.utils.introspection.IntrospectionException
+new: class org.apache.maven.shared.utils.introspection.IntrospectionException
+java.class.nonPublicPartOfAPI: Class 'org.apache.maven.shared.utils.introspection.IntrospectionException' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+SEMANTIC: BREAKING, SOURCE: NON_BREAKING, BINARY: NON_BREAKING
+
+old: class org.apache.maven.shared.utils.introspection.MethodMap.AmbiguousException
+new: class org.apache.maven.shared.utils.introspection.MethodMap.AmbiguousException
+java.class.nonPublicPartOfAPI: Class 'org.apache.maven.shared.utils.introspection.MethodMap.AmbiguousException' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+SEMANTIC: BREAKING, SOURCE: NON_BREAKING, BINARY: NON_BREAKING
+
+old: <none>
+new: method java.lang.String org.apache.maven.shared.utils.logging.MessageBuilder::build()
+java.method.addedToInterface: Method was added to an interface.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: method java.lang.String java.lang.Object::toString() @ org.apache.maven.shared.utils.logging.MessageBuilder
+new: method java.lang.String org.apache.maven.shared.utils.logging.MessageBuilder::toString()
+java.method.nowAbstract: Method now abstract
+SOURCE: BREAKING, BINARY: BREAKING
+java.method.inheritedMovedToClass: The method was previously declared in superclass 'java.lang.Object' but is now declared in class 'org.apache.maven.shared.utils.logging.MessageBuilder'.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+java.element.nowDeprecated: The element is now deprecated.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+
+old: method void org.apache.maven.shared.utils.xml.XmlStreamReader::<init>(java.io.InputStream, boolean) throws java.io.IOException, org.apache.maven.shared.utils.xml.XmlStreamReaderException
+new: method void org.apache.maven.shared.utils.xml.XmlStreamReader::<init>(java.io.InputStream, boolean) throws java.io.IOException
+java.method.exception.checkedRemoved: Method no longer throws checked exceptions: org.apache.maven.shared.utils.xml.XmlStreamReaderException.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: method void org.apache.maven.shared.utils.xml.XmlStreamReader::<init>(java.io.InputStream, java.lang.String, boolean) throws java.io.IOException, org.apache.maven.shared.utils.xml.XmlStreamReaderException
+new: method void org.apache.maven.shared.utils.xml.XmlStreamReader::<init>(java.io.InputStream, java.lang.String, boolean) throws java.io.IOException
+java.method.exception.checkedRemoved: Method no longer throws checked exceptions: org.apache.maven.shared.utils.xml.XmlStreamReaderException.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: method void org.apache.maven.shared.utils.xml.XmlStreamReader::<init>(java.io.InputStream, java.lang.String, boolean, java.lang.String) throws java.io.IOException, org.apache.maven.shared.utils.xml.XmlStreamReaderException
+new: method void org.apache.maven.shared.utils.xml.XmlStreamReader::<init>(java.io.InputStream, java.lang.String, boolean, java.lang.String) throws java.io.IOException
+java.method.exception.checkedRemoved: Method no longer throws checked exceptions: org.apache.maven.shared.utils.xml.XmlStreamReaderException.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+
+18:07:53.529 INFO  Analysis took 11278ms.
+
+
+* * * * * * * *
+>>>>>>
+compilation log of 3.4.2:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< org.apache.logging.log4j:log4j-api-test >---------------
+[INFO] Building Apache Log4j API Tests 2.23.1
+[INFO]   from _temp_org.apache.maven.shared_maven-shared-utils_3.4.2_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ log4j-api-test ---
+[INFO] 
+[INFO] --- flatten:1.5.0:clean (clean-flattened-pom) @ log4j-api-test ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-upper-bound-deps) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (ban-wildcard-imports) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (ban-logging-dependencies) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] 
+[INFO] --- build-helper:3.5.0:parse-version (parse-version) @ log4j-api-test ---
+[INFO] 
+[INFO] --- clean:3.3.2:clean (delete-module-descriptors) @ log4j-api-test ---
+[INFO] 
+[INFO] --- remote-resources:3.1.0:process (process-resource-bundles) @ log4j-api-test ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  9.349 s
+[INFO] Finished at: 2024-06-29T18:08:48+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-remote-resources-plugin:3.1.0:process (process-resource-bundles) on project log4j-api-test: Error reading remote resource: /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/target/maven-shared-archive-resources/META-INF/DEPENDENCIES -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+
+* * * * * * * *

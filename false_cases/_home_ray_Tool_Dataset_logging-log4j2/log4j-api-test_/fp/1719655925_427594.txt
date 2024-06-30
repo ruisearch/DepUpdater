@@ -1,0 +1,1025 @@
+module name: log4j-api-test/
+
+* * * * * * * *
+groudId: org.apache.maven.resolver
+artifactId: maven-resolver-impl
+old version: 1.9.18
+new version: 2.0.0-alpha-8
+classifier: 
+depth: 2
+reachable api of old version:
+/ / / / / / / / /
+revapi log of former version -- 2.0.0-alpha-8:
+18:09:29.228 INFO  Downloading checked archives
+18:09:29.272 INFO  Downloading extensions
+18:09:34.493 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar
+New API: org.apache.maven.resolver-maven-resolver-impl-2.0.0-alpha-8.jar
+old: class org.eclipse.aether.impl.DefaultServiceLocator
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: <none>
+new: method void org.eclipse.aether.impl.RepositorySystemLifecycle::addOnSessionEndedHandle(org.eclipse.aether.RepositorySystemSession.CloseableSession, java.lang.Runnable)
+java.method.addedToInterface: Method was added to an interface.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: <none>
+new: method void org.eclipse.aether.impl.RepositorySystemLifecycle::sessionEnded(org.eclipse.aether.RepositorySystemSession.CloseableSession)
+java.method.addedToInterface: Method was added to an interface.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: <none>
+new: method void org.eclipse.aether.impl.RepositorySystemLifecycle::sessionStarted(org.eclipse.aether.RepositorySystemSession.CloseableSession)
+java.method.addedToInterface: Method was added to an interface.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: interface org.eclipse.aether.impl.SyncContextFactory
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method java.lang.String org.eclipse.aether.impl.UpdateCheck<T, E extends org.eclipse.aether.RepositoryException>::getPolicy()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.impl.UpdateCheck<T, E> org.eclipse.aether.impl.UpdateCheck<T, E extends org.eclipse.aether.RepositoryException>::setPolicy(java.lang.String)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.eclipse.aether.impl.guice.AetherModule
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.DefaultArtifactResolver::<init>(org.eclipse.aether.spi.io.FileProcessor, org.eclipse.aether.impl.RepositoryEventDispatcher, org.eclipse.aether.impl.VersionResolver, org.eclipse.aether.impl.UpdateCheckManager, org.eclipse.aether.impl.RepositoryConnectorProvider, org.eclipse.aether.impl.RemoteRepositoryManager, org.eclipse.aether.spi.synccontext.SyncContextFactory, org.eclipse.aether.impl.OfflineController, java.util.Map<java.lang.String, org.eclipse.aether.spi.resolution.ArtifactResolverPostProcessor>, org.eclipse.aether.impl.RemoteRepositoryFilterManager)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.DefaultArtifactResolver::<init>()
+new: method void org.eclipse.aether.internal.impl.DefaultArtifactResolver::<init>(org.eclipse.aether.spi.io.PathProcessor, org.eclipse.aether.impl.RepositoryEventDispatcher, org.eclipse.aether.impl.VersionResolver, org.eclipse.aether.impl.UpdateCheckManager, org.eclipse.aether.impl.RepositoryConnectorProvider, org.eclipse.aether.impl.RemoteRepositoryManager, org.eclipse.aether.spi.synccontext.SyncContextFactory, org.eclipse.aether.impl.OfflineController, java.util.Map<java.lang.String, org.eclipse.aether.spi.resolution.ArtifactResolverPostProcessor>, org.eclipse.aether.impl.RemoteRepositoryFilterManager)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.element.noLongerDeprecated: The element is no longer deprecated.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+
+old: method void org.eclipse.aether.internal.impl.DefaultArtifactResolver::initService(org.eclipse.aether.spi.locator.ServiceLocator)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultArtifactResolver org.eclipse.aether.internal.impl.DefaultArtifactResolver::setArtifactResolverPostProcessors(java.util.Map<java.lang.String, org.eclipse.aether.spi.resolution.ArtifactResolverPostProcessor>)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultArtifactResolver org.eclipse.aether.internal.impl.DefaultArtifactResolver::setFileProcessor(org.eclipse.aether.spi.io.FileProcessor)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultArtifactResolver org.eclipse.aether.internal.impl.DefaultArtifactResolver::setLoggerFactory(org.eclipse.aether.spi.log.LoggerFactory)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultArtifactResolver org.eclipse.aether.internal.impl.DefaultArtifactResolver::setOfflineController(org.eclipse.aether.impl.OfflineController)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultArtifactResolver org.eclipse.aether.internal.impl.DefaultArtifactResolver::setRemoteRepositoryFilterManager(org.eclipse.aether.impl.RemoteRepositoryFilterManager)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultArtifactResolver org.eclipse.aether.internal.impl.DefaultArtifactResolver::setRemoteRepositoryManager(org.eclipse.aether.impl.RemoteRepositoryManager)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultArtifactResolver org.eclipse.aether.internal.impl.DefaultArtifactResolver::setRepositoryConnectorProvider(org.eclipse.aether.impl.RepositoryConnectorProvider)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultArtifactResolver org.eclipse.aether.internal.impl.DefaultArtifactResolver::setRepositoryEventDispatcher(org.eclipse.aether.impl.RepositoryEventDispatcher)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultArtifactResolver org.eclipse.aether.internal.impl.DefaultArtifactResolver::setSyncContextFactory(org.eclipse.aether.spi.synccontext.SyncContextFactory)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultArtifactResolver org.eclipse.aether.internal.impl.DefaultArtifactResolver::setUpdateCheckManager(org.eclipse.aether.impl.UpdateCheckManager)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultArtifactResolver org.eclipse.aether.internal.impl.DefaultArtifactResolver::setVersionResolver(org.eclipse.aether.impl.VersionResolver)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.DefaultDeployer::<init>(org.eclipse.aether.spi.io.FileProcessor, org.eclipse.aether.impl.RepositoryEventDispatcher, org.eclipse.aether.impl.RepositoryConnectorProvider, org.eclipse.aether.impl.RemoteRepositoryManager, org.eclipse.aether.impl.UpdateCheckManager, java.util.Set<org.eclipse.aether.impl.MetadataGeneratorFactory>, org.eclipse.aether.spi.synccontext.SyncContextFactory, org.eclipse.aether.impl.OfflineController)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.DefaultDeployer::<init>()
+new: method void org.eclipse.aether.internal.impl.DefaultDeployer::<init>(org.eclipse.aether.spi.io.PathProcessor, org.eclipse.aether.impl.RepositoryEventDispatcher, org.eclipse.aether.impl.RepositoryConnectorProvider, org.eclipse.aether.impl.RemoteRepositoryManager, org.eclipse.aether.impl.UpdateCheckManager, java.util.Map<java.lang.String, org.eclipse.aether.impl.MetadataGeneratorFactory>, org.eclipse.aether.spi.synccontext.SyncContextFactory, org.eclipse.aether.impl.OfflineController)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.element.noLongerDeprecated: The element is no longer deprecated.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+
+old: method org.eclipse.aether.internal.impl.DefaultDeployer org.eclipse.aether.internal.impl.DefaultDeployer::addMetadataGeneratorFactory(org.eclipse.aether.impl.MetadataGeneratorFactory)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.DefaultDeployer::initService(org.eclipse.aether.spi.locator.ServiceLocator)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultDeployer org.eclipse.aether.internal.impl.DefaultDeployer::setFileProcessor(org.eclipse.aether.spi.io.FileProcessor)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultDeployer org.eclipse.aether.internal.impl.DefaultDeployer::setMetadataGeneratorFactories(java.util.Collection<org.eclipse.aether.impl.MetadataGeneratorFactory>)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultDeployer org.eclipse.aether.internal.impl.DefaultDeployer::setOfflineController(org.eclipse.aether.impl.OfflineController)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultDeployer org.eclipse.aether.internal.impl.DefaultDeployer::setRemoteRepositoryManager(org.eclipse.aether.impl.RemoteRepositoryManager)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultDeployer org.eclipse.aether.internal.impl.DefaultDeployer::setRepositoryConnectorProvider(org.eclipse.aether.impl.RepositoryConnectorProvider)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultDeployer org.eclipse.aether.internal.impl.DefaultDeployer::setRepositoryEventDispatcher(org.eclipse.aether.impl.RepositoryEventDispatcher)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultDeployer org.eclipse.aether.internal.impl.DefaultDeployer::setSyncContextFactory(org.eclipse.aether.spi.synccontext.SyncContextFactory)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultDeployer org.eclipse.aether.internal.impl.DefaultDeployer::setUpdateCheckManager(org.eclipse.aether.impl.UpdateCheckManager)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.DefaultInstaller::<init>(org.eclipse.aether.spi.io.FileProcessor, org.eclipse.aether.impl.RepositoryEventDispatcher, java.util.Set<org.eclipse.aether.impl.MetadataGeneratorFactory>, org.eclipse.aether.spi.synccontext.SyncContextFactory)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.DefaultInstaller::<init>()
+new: method void org.eclipse.aether.internal.impl.DefaultInstaller::<init>(org.eclipse.aether.spi.io.PathProcessor, org.eclipse.aether.impl.RepositoryEventDispatcher, java.util.Map<java.lang.String, org.eclipse.aether.impl.MetadataGeneratorFactory>, org.eclipse.aether.spi.synccontext.SyncContextFactory)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.element.noLongerDeprecated: The element is no longer deprecated.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+
+old: method org.eclipse.aether.internal.impl.DefaultInstaller org.eclipse.aether.internal.impl.DefaultInstaller::addMetadataGeneratorFactory(org.eclipse.aether.impl.MetadataGeneratorFactory)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.DefaultInstaller::initService(org.eclipse.aether.spi.locator.ServiceLocator)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultInstaller org.eclipse.aether.internal.impl.DefaultInstaller::setFileProcessor(org.eclipse.aether.spi.io.FileProcessor)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultInstaller org.eclipse.aether.internal.impl.DefaultInstaller::setMetadataGeneratorFactories(java.util.Collection<org.eclipse.aether.impl.MetadataGeneratorFactory>)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultInstaller org.eclipse.aether.internal.impl.DefaultInstaller::setRepositoryEventDispatcher(org.eclipse.aether.impl.RepositoryEventDispatcher)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultInstaller org.eclipse.aether.internal.impl.DefaultInstaller::setSyncContextFactory(org.eclipse.aether.spi.synccontext.SyncContextFactory)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.DefaultLocalRepositoryProvider::<init>()
+new: method void org.eclipse.aether.internal.impl.DefaultLocalRepositoryProvider::<init>(java.util.Map<java.lang.String, org.eclipse.aether.spi.localrepo.LocalRepositoryManagerFactory>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.element.noLongerDeprecated: The element is no longer deprecated.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+
+old: method void org.eclipse.aether.internal.impl.DefaultLocalRepositoryProvider::<init>(java.util.Set<org.eclipse.aether.spi.localrepo.LocalRepositoryManagerFactory>)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultLocalRepositoryProvider org.eclipse.aether.internal.impl.DefaultLocalRepositoryProvider::addLocalRepositoryManagerFactory(org.eclipse.aether.spi.localrepo.LocalRepositoryManagerFactory)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.DefaultLocalRepositoryProvider::initService(org.eclipse.aether.spi.locator.ServiceLocator)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultLocalRepositoryProvider org.eclipse.aether.internal.impl.DefaultLocalRepositoryProvider::setLocalRepositoryManagerFactories(java.util.Collection<org.eclipse.aether.spi.localrepo.LocalRepositoryManagerFactory>)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.DefaultMetadataResolver::<init>(org.eclipse.aether.impl.RepositoryEventDispatcher, org.eclipse.aether.impl.UpdateCheckManager, org.eclipse.aether.impl.RepositoryConnectorProvider, org.eclipse.aether.impl.RemoteRepositoryManager, org.eclipse.aether.spi.synccontext.SyncContextFactory, org.eclipse.aether.impl.OfflineController, org.eclipse.aether.impl.RemoteRepositoryFilterManager)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.DefaultMetadataResolver::<init>()
+new: method void org.eclipse.aether.internal.impl.DefaultMetadataResolver::<init>(org.eclipse.aether.impl.RepositoryEventDispatcher, org.eclipse.aether.impl.UpdateCheckManager, org.eclipse.aether.impl.RepositoryConnectorProvider, org.eclipse.aether.impl.RemoteRepositoryManager, org.eclipse.aether.spi.synccontext.SyncContextFactory, org.eclipse.aether.impl.OfflineController, org.eclipse.aether.impl.RemoteRepositoryFilterManager, org.eclipse.aether.spi.io.PathProcessor)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.element.noLongerDeprecated: The element is no longer deprecated.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+
+old: method void org.eclipse.aether.internal.impl.DefaultMetadataResolver::initService(org.eclipse.aether.spi.locator.ServiceLocator)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultMetadataResolver org.eclipse.aether.internal.impl.DefaultMetadataResolver::setOfflineController(org.eclipse.aether.impl.OfflineController)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultMetadataResolver org.eclipse.aether.internal.impl.DefaultMetadataResolver::setRemoteRepositoryFilterManager(org.eclipse.aether.impl.RemoteRepositoryFilterManager)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultMetadataResolver org.eclipse.aether.internal.impl.DefaultMetadataResolver::setRemoteRepositoryManager(org.eclipse.aether.impl.RemoteRepositoryManager)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultMetadataResolver org.eclipse.aether.internal.impl.DefaultMetadataResolver::setRepositoryConnectorProvider(org.eclipse.aether.impl.RepositoryConnectorProvider)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultMetadataResolver org.eclipse.aether.internal.impl.DefaultMetadataResolver::setRepositoryEventDispatcher(org.eclipse.aether.impl.RepositoryEventDispatcher)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultMetadataResolver org.eclipse.aether.internal.impl.DefaultMetadataResolver::setSyncContextFactory(org.eclipse.aether.spi.synccontext.SyncContextFactory)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultMetadataResolver org.eclipse.aether.internal.impl.DefaultMetadataResolver::setUpdateCheckManager(org.eclipse.aether.impl.UpdateCheckManager)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.DefaultRemoteRepositoryManager::<init>()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.DefaultRemoteRepositoryManager::initService(org.eclipse.aether.spi.locator.ServiceLocator)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultRemoteRepositoryManager org.eclipse.aether.internal.impl.DefaultRemoteRepositoryManager::setChecksumPolicyProvider(org.eclipse.aether.spi.connector.checksum.ChecksumPolicyProvider)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultRemoteRepositoryManager org.eclipse.aether.internal.impl.DefaultRemoteRepositoryManager::setUpdatePolicyAnalyzer(org.eclipse.aether.impl.UpdatePolicyAnalyzer)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.DefaultRepositoryConnectorProvider::<init>()
+new: method void org.eclipse.aether.internal.impl.DefaultRepositoryConnectorProvider::<init>(java.util.Map<java.lang.String, org.eclipse.aether.spi.connector.RepositoryConnectorFactory>, org.eclipse.aether.impl.RemoteRepositoryFilterManager)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.element.noLongerDeprecated: The element is no longer deprecated.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+
+old: method void org.eclipse.aether.internal.impl.DefaultRepositoryConnectorProvider::<init>(java.util.Set<org.eclipse.aether.spi.connector.RepositoryConnectorFactory>, org.eclipse.aether.impl.RemoteRepositoryFilterManager)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultRepositoryConnectorProvider org.eclipse.aether.internal.impl.DefaultRepositoryConnectorProvider::addRepositoryConnectorFactory(org.eclipse.aether.spi.connector.RepositoryConnectorFactory)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.DefaultRepositoryConnectorProvider::initService(org.eclipse.aether.spi.locator.ServiceLocator)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultRepositoryConnectorProvider org.eclipse.aether.internal.impl.DefaultRepositoryConnectorProvider::setRemoteRepositoryFilterManager(org.eclipse.aether.impl.RemoteRepositoryFilterManager)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultRepositoryConnectorProvider org.eclipse.aether.internal.impl.DefaultRepositoryConnectorProvider::setRepositoryConnectorFactories(java.util.Collection<org.eclipse.aether.spi.connector.RepositoryConnectorFactory>)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.DefaultRepositoryEventDispatcher::<init>()
+new: method void org.eclipse.aether.internal.impl.DefaultRepositoryEventDispatcher::<init>(java.util.Map<java.lang.String, org.eclipse.aether.RepositoryListener>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.element.noLongerDeprecated: The element is no longer deprecated.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+
+old: method void org.eclipse.aether.internal.impl.DefaultRepositoryEventDispatcher::<init>(java.util.Set<org.eclipse.aether.RepositoryListener>)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultRepositoryEventDispatcher org.eclipse.aether.internal.impl.DefaultRepositoryEventDispatcher::addRepositoryListener(org.eclipse.aether.RepositoryListener)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.DefaultRepositoryEventDispatcher::initService(org.eclipse.aether.spi.locator.ServiceLocator)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultRepositoryEventDispatcher org.eclipse.aether.internal.impl.DefaultRepositoryEventDispatcher::setRepositoryListeners(java.util.Collection<org.eclipse.aether.RepositoryListener>)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.DefaultRepositoryLayoutProvider::<init>()
+new: method void org.eclipse.aether.internal.impl.DefaultRepositoryLayoutProvider::<init>(java.util.Map<java.lang.String, org.eclipse.aether.spi.connector.layout.RepositoryLayoutFactory>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.element.noLongerDeprecated: The element is no longer deprecated.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+
+old: method void org.eclipse.aether.internal.impl.DefaultRepositoryLayoutProvider::<init>(java.util.Set<org.eclipse.aether.spi.connector.layout.RepositoryLayoutFactory>)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultRepositoryLayoutProvider org.eclipse.aether.internal.impl.DefaultRepositoryLayoutProvider::addRepositoryLayoutFactory(org.eclipse.aether.spi.connector.layout.RepositoryLayoutFactory)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.DefaultRepositoryLayoutProvider::initService(org.eclipse.aether.spi.locator.ServiceLocator)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultRepositoryLayoutProvider org.eclipse.aether.internal.impl.DefaultRepositoryLayoutProvider::setRepositoryLayoutFactories(java.util.Collection<org.eclipse.aether.spi.connector.layout.RepositoryLayoutFactory>)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.DefaultRepositorySystem::<init>()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.DefaultRepositorySystem::initService(org.eclipse.aether.spi.locator.ServiceLocator)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultRepositorySystem org.eclipse.aether.internal.impl.DefaultRepositorySystem::setArtifactDescriptorReader(org.eclipse.aether.impl.ArtifactDescriptorReader)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultRepositorySystem org.eclipse.aether.internal.impl.DefaultRepositorySystem::setArtifactResolver(org.eclipse.aether.impl.ArtifactResolver)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultRepositorySystem org.eclipse.aether.internal.impl.DefaultRepositorySystem::setDependencyCollector(org.eclipse.aether.impl.DependencyCollector)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultRepositorySystem org.eclipse.aether.internal.impl.DefaultRepositorySystem::setDeployer(org.eclipse.aether.impl.Deployer)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultRepositorySystem org.eclipse.aether.internal.impl.DefaultRepositorySystem::setInstaller(org.eclipse.aether.impl.Installer)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultRepositorySystem org.eclipse.aether.internal.impl.DefaultRepositorySystem::setLocalRepositoryProvider(org.eclipse.aether.impl.LocalRepositoryProvider)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultRepositorySystem org.eclipse.aether.internal.impl.DefaultRepositorySystem::setLoggerFactory(org.eclipse.aether.spi.log.LoggerFactory)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultRepositorySystem org.eclipse.aether.internal.impl.DefaultRepositorySystem::setMetadataResolver(org.eclipse.aether.impl.MetadataResolver)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultRepositorySystem org.eclipse.aether.internal.impl.DefaultRepositorySystem::setRemoteRepositoryManager(org.eclipse.aether.impl.RemoteRepositoryManager)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultRepositorySystem org.eclipse.aether.internal.impl.DefaultRepositorySystem::setRepositorySystemLifecycle(org.eclipse.aether.impl.RepositorySystemLifecycle)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultRepositorySystem org.eclipse.aether.internal.impl.DefaultRepositorySystem::setSyncContextFactory(org.eclipse.aether.spi.synccontext.SyncContextFactory)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultRepositorySystem org.eclipse.aether.internal.impl.DefaultRepositorySystem::setVersionRangeResolver(org.eclipse.aether.impl.VersionRangeResolver)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultRepositorySystem org.eclipse.aether.internal.impl.DefaultRepositorySystem::setVersionResolver(org.eclipse.aether.impl.VersionResolver)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.DefaultTransporterProvider::<init>()
+new: method void org.eclipse.aether.internal.impl.DefaultTransporterProvider::<init>(java.util.Map<java.lang.String, org.eclipse.aether.spi.connector.transport.TransporterFactory>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.element.noLongerDeprecated: The element is no longer deprecated.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+
+old: method void org.eclipse.aether.internal.impl.DefaultTransporterProvider::<init>(java.util.Set<org.eclipse.aether.spi.connector.transport.TransporterFactory>)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultTransporterProvider org.eclipse.aether.internal.impl.DefaultTransporterProvider::addTransporterFactory(org.eclipse.aether.spi.connector.transport.TransporterFactory)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.DefaultTransporterProvider::initService(org.eclipse.aether.spi.locator.ServiceLocator)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultTransporterProvider org.eclipse.aether.internal.impl.DefaultTransporterProvider::setTransporterFactories(java.util.Collection<org.eclipse.aether.spi.connector.transport.TransporterFactory>)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.DefaultUpdateCheckManager::<init>(org.eclipse.aether.internal.impl.TrackingFileManager, org.eclipse.aether.impl.UpdatePolicyAnalyzer)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.DefaultUpdateCheckManager::<init>()
+new: method void org.eclipse.aether.internal.impl.DefaultUpdateCheckManager::<init>(org.eclipse.aether.internal.impl.TrackingFileManager, org.eclipse.aether.impl.UpdatePolicyAnalyzer, org.eclipse.aether.spi.io.PathProcessor)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.element.noLongerDeprecated: The element is no longer deprecated.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+
+old: method void org.eclipse.aether.internal.impl.DefaultUpdateCheckManager::initService(org.eclipse.aether.spi.locator.ServiceLocator)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultUpdateCheckManager org.eclipse.aether.internal.impl.DefaultUpdateCheckManager::setTrackingFileManager(org.eclipse.aether.internal.impl.TrackingFileManager)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.DefaultUpdateCheckManager org.eclipse.aether.internal.impl.DefaultUpdateCheckManager::setUpdatePolicyAnalyzer(org.eclipse.aether.impl.UpdatePolicyAnalyzer)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.EnhancedLocalRepositoryManagerFactory::<init>()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.EnhancedLocalRepositoryManagerFactory::initService(org.eclipse.aether.spi.locator.ServiceLocator)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: field org.eclipse.aether.internal.impl.LocalPathPrefixComposerFactorySupport.CONF_PROP_LOCAL_PREFIX
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: field org.eclipse.aether.internal.impl.LocalPathPrefixComposerFactorySupport.CONF_PROP_RELEASES_PREFIX
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: field org.eclipse.aether.internal.impl.LocalPathPrefixComposerFactorySupport.CONF_PROP_REMOTE_PREFIX
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: field org.eclipse.aether.internal.impl.LocalPathPrefixComposerFactorySupport.CONF_PROP_SNAPSHOTS_PREFIX
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: field org.eclipse.aether.internal.impl.LocalPathPrefixComposerFactorySupport.CONF_PROP_SPLIT
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: field org.eclipse.aether.internal.impl.LocalPathPrefixComposerFactorySupport.CONF_PROP_SPLIT_LOCAL
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: field org.eclipse.aether.internal.impl.LocalPathPrefixComposerFactorySupport.CONF_PROP_SPLIT_REMOTE
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: field org.eclipse.aether.internal.impl.LocalPathPrefixComposerFactorySupport.CONF_PROP_SPLIT_REMOTE_REPOSITORY
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: field org.eclipse.aether.internal.impl.LocalPathPrefixComposerFactorySupport.CONF_PROP_SPLIT_REMOTE_REPOSITORY_LAST
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: class org.eclipse.aether.internal.impl.LoggerFactoryProvider
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: field org.eclipse.aether.internal.impl.Maven2RepositoryLayoutFactory.CONFIG_PROP_CHECKSUMS_ALGORITHMS
+new: field org.eclipse.aether.internal.impl.Maven2RepositoryLayoutFactory.CONFIG_PROP_CHECKSUMS_ALGORITHMS
+java.field.constantValueChanged: Constant field changed value from 'aether.checksums.algorithms' to 'aether.layout.maven2.checksumAlgorithms'.
+SEMANTIC: BREAKING, SOURCE: NON_BREAKING, BINARY: NON_BREAKING
+
+old: field org.eclipse.aether.internal.impl.Maven2RepositoryLayoutFactory.CONFIG_PROP_OMIT_CHECKSUMS_FOR_EXTENSIONS
+new: field org.eclipse.aether.internal.impl.Maven2RepositoryLayoutFactory.CONFIG_PROP_OMIT_CHECKSUMS_FOR_EXTENSIONS
+java.field.constantValueChanged: Constant field changed value from 'aether.checksums.omitChecksumsForExtensions' to 'aether.layout.maven2.omitChecksumsForExtensions'.
+SEMANTIC: BREAKING, SOURCE: NON_BREAKING, BINARY: NON_BREAKING
+
+old: method void org.eclipse.aether.internal.impl.Maven2RepositoryLayoutFactory::<init>()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.SimpleLocalRepositoryManagerFactory::initService(org.eclipse.aether.spi.locator.ServiceLocator)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: <none>
+new: method java.util.Properties org.eclipse.aether.internal.impl.TrackingFileManager::read(java.nio.file.Path)
+java.method.addedToInterface: Method was added to an interface.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: <none>
+new: method java.util.Properties org.eclipse.aether.internal.impl.TrackingFileManager::update(java.nio.file.Path, java.util.Map<java.lang.String, java.lang.String>)
+java.method.addedToInterface: Method was added to an interface.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: method void org.eclipse.aether.internal.impl.checksum.DefaultChecksumAlgorithmFactorySelector::<init>()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: parameter void org.eclipse.aether.internal.impl.checksum.SparseDirectoryTrustedChecksumsSource::<init>(===org.eclipse.aether.spi.io.FileProcessor===, org.eclipse.aether.internal.impl.LocalPathComposer)
+new: parameter void org.eclipse.aether.internal.impl.checksum.SparseDirectoryTrustedChecksumsSource::<init>(===org.eclipse.aether.spi.io.ChecksumProcessor===, org.eclipse.aether.internal.impl.LocalPathComposer)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.eclipse.aether.spi.io.FileProcessor' to 'org.eclipse.aether.spi.io.ChecksumProcessor'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method java.lang.String org.eclipse.aether.internal.impl.checksum.FileTrustedChecksumsSourceSupport::configPropKey(java.lang.String) @ org.eclipse.aether.internal.impl.checksum.SparseDirectoryTrustedChecksumsSource
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.checksum.SparseDirectoryTrustedChecksumsSource.SparseDirectoryWriter org.eclipse.aether.internal.impl.checksum.SparseDirectoryTrustedChecksumsSource::doGetTrustedArtifactChecksumsWriter(org.eclipse.aether.RepositorySystemSession)
+new: method org.eclipse.aether.spi.checksums.TrustedChecksumsSource.Writer org.eclipse.aether.internal.impl.checksum.SparseDirectoryTrustedChecksumsSource::doGetTrustedArtifactChecksumsWriter(org.eclipse.aether.RepositorySystemSession)
+java.method.returnTypeChanged: The return type changed from 'org.eclipse.aether.internal.impl.checksum.SparseDirectoryTrustedChecksumsSource.SparseDirectoryWriter' to  'org.eclipse.aether.spi.checksums.TrustedChecksumsSource.Writer'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method java.nio.file.Path org.eclipse.aether.internal.impl.checksum.FileTrustedChecksumsSourceSupport::getBasedir(org.eclipse.aether.RepositorySystemSession, boolean) @ org.eclipse.aether.internal.impl.checksum.SparseDirectoryTrustedChecksumsSource
+new: method java.nio.file.Path org.eclipse.aether.internal.impl.checksum.FileTrustedChecksumsSourceSupport::getBasedir(org.eclipse.aether.RepositorySystemSession, java.lang.String, java.lang.String, boolean) @ org.eclipse.aether.internal.impl.checksum.SparseDirectoryTrustedChecksumsSource
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method boolean org.eclipse.aether.internal.impl.checksum.FileTrustedChecksumsSourceSupport::isOriginAware(org.eclipse.aether.RepositorySystemSession) @ org.eclipse.aether.internal.impl.checksum.SparseDirectoryTrustedChecksumsSource
+new: method boolean org.eclipse.aether.internal.impl.checksum.SparseDirectoryTrustedChecksumsSource::isOriginAware(org.eclipse.aether.RepositorySystemSession)
+java.method.visibilityReduced: visibility reduced
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method java.lang.String org.eclipse.aether.internal.impl.checksum.FileTrustedChecksumsSourceSupport::configPropKey(java.lang.String) @ org.eclipse.aether.internal.impl.checksum.SummaryFileTrustedChecksumsSource
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.internal.impl.checksum.SummaryFileTrustedChecksumsSource.SummaryFileWriter org.eclipse.aether.internal.impl.checksum.SummaryFileTrustedChecksumsSource::doGetTrustedArtifactChecksumsWriter(org.eclipse.aether.RepositorySystemSession)
+new: method org.eclipse.aether.spi.checksums.TrustedChecksumsSource.Writer org.eclipse.aether.internal.impl.checksum.SummaryFileTrustedChecksumsSource::doGetTrustedArtifactChecksumsWriter(org.eclipse.aether.RepositorySystemSession)
+java.method.returnTypeChanged: The return type changed from 'org.eclipse.aether.internal.impl.checksum.SummaryFileTrustedChecksumsSource.SummaryFileWriter' to  'org.eclipse.aether.spi.checksums.TrustedChecksumsSource.Writer'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method java.nio.file.Path org.eclipse.aether.internal.impl.checksum.FileTrustedChecksumsSourceSupport::getBasedir(org.eclipse.aether.RepositorySystemSession, boolean) @ org.eclipse.aether.internal.impl.checksum.SummaryFileTrustedChecksumsSource
+new: method java.nio.file.Path org.eclipse.aether.internal.impl.checksum.FileTrustedChecksumsSourceSupport::getBasedir(org.eclipse.aether.RepositorySystemSession, java.lang.String, java.lang.String, boolean) @ org.eclipse.aether.internal.impl.checksum.SummaryFileTrustedChecksumsSource
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method boolean org.eclipse.aether.internal.impl.checksum.FileTrustedChecksumsSourceSupport::isOriginAware(org.eclipse.aether.RepositorySystemSession) @ org.eclipse.aether.internal.impl.checksum.SummaryFileTrustedChecksumsSource
+new: method boolean org.eclipse.aether.internal.impl.checksum.SummaryFileTrustedChecksumsSource::isOriginAware(org.eclipse.aether.RepositorySystemSession)
+java.method.visibilityReduced: visibility reduced
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.collect.DefaultDependencyCollector::<init>()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.collect.DefaultDependencyCollector::initService(org.eclipse.aether.spi.locator.ServiceLocator)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: field org.eclipse.aether.internal.impl.collect.DependencyCollectorDelegate.CONFIG_PROP_MAX_CYCLES_DEFAULT
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: field org.eclipse.aether.internal.impl.collect.DependencyCollectorDelegate.CONFIG_PROP_MAX_EXCEPTIONS_DEFAULT
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: method void org.eclipse.aether.internal.impl.collect.DependencyCollectorDelegate::<init>()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.collect.DependencyCollectorDelegate::initService(org.eclipse.aether.spi.locator.ServiceLocator)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method boolean org.eclipse.aether.internal.impl.collect.DependencyCollectorDelegate::isLackingDescriptor(org.eclipse.aether.artifact.Artifact)
+new: method boolean org.eclipse.aether.internal.impl.collect.DependencyCollectorDelegate::isLackingDescriptor(org.eclipse.aether.RepositorySystemSession, org.eclipse.aether.artifact.Artifact)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.impl.DependencyCollector org.eclipse.aether.internal.impl.collect.DependencyCollectorDelegate::setArtifactDescriptorReader(org.eclipse.aether.impl.ArtifactDescriptorReader)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.impl.DependencyCollector org.eclipse.aether.internal.impl.collect.DependencyCollectorDelegate::setRemoteRepositoryManager(org.eclipse.aether.impl.RemoteRepositoryManager)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.impl.DependencyCollector org.eclipse.aether.internal.impl.collect.DependencyCollectorDelegate::setVersionRangeResolver(org.eclipse.aether.impl.VersionRangeResolver)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.collect.bf.BfDependencyCollector::<init>()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.collect.df.DfDependencyCollector::<init>()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.filter.DefaultRemoteRepositoryFilterManager::<init>()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.filter.RemoteRepositoryFilterSourceSupport::<init>(java.lang.String)
+new: method void org.eclipse.aether.internal.impl.filter.RemoteRepositoryFilterSourceSupport::<init>()
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.method.visibilityIncreased: visibility increased
+SOURCE: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method java.lang.String org.eclipse.aether.internal.impl.filter.RemoteRepositoryFilterSourceSupport::configPropKey(java.lang.String)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method java.nio.file.Path org.eclipse.aether.internal.impl.filter.RemoteRepositoryFilterSourceSupport::getBasedir(org.eclipse.aether.RepositorySystemSession, boolean)
+new: method java.nio.file.Path org.eclipse.aether.internal.impl.filter.RemoteRepositoryFilterSourceSupport::getBasedir(org.eclipse.aether.RepositorySystemSession, java.lang.String, java.lang.String, boolean)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method boolean org.eclipse.aether.internal.impl.filter.RemoteRepositoryFilterSourceSupport::isEnabled(org.eclipse.aether.RepositorySystemSession)
+new: method boolean org.eclipse.aether.internal.impl.filter.RemoteRepositoryFilterSourceSupport::isEnabled(org.eclipse.aether.RepositorySystemSession)
+java.method.nowAbstract: Method now abstract
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.resolution.ArtifactResolverPostProcessorSupport::<init>(java.lang.String)
+new: method void org.eclipse.aether.internal.impl.resolution.ArtifactResolverPostProcessorSupport::<init>()
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.method.visibilityIncreased: visibility increased
+SOURCE: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method java.lang.String org.eclipse.aether.internal.impl.resolution.ArtifactResolverPostProcessorSupport::configPropKey(java.lang.String)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method boolean org.eclipse.aether.internal.impl.resolution.ArtifactResolverPostProcessorSupport::isEnabled(org.eclipse.aether.RepositorySystemSession)
+new: method boolean org.eclipse.aether.internal.impl.resolution.ArtifactResolverPostProcessorSupport::isEnabled(org.eclipse.aether.RepositorySystemSession)
+java.method.nowAbstract: Method now abstract
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.eclipse.aether.internal.impl.slf4j.Slf4jLoggerFactory
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.synccontext.DefaultSyncContextFactory::<init>()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.synccontext.DefaultSyncContextFactory::initService(org.eclipse.aether.spi.locator.ServiceLocator)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.eclipse.aether.internal.impl.synccontext.legacy.DefaultSyncContextFactory
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method java.util.Collection<java.lang.String> org.eclipse.aether.internal.impl.synccontext.named.BasedirNameMapper::nameLocks(org.eclipse.aether.RepositorySystemSession, java.util.Collection<? extends org.eclipse.aether.artifact.Artifact>, java.util.Collection<? extends org.eclipse.aether.metadata.Metadata>)
+new: method java.util.Collection<org.eclipse.aether.named.NamedLockKey> org.eclipse.aether.internal.impl.synccontext.named.BasedirNameMapper::nameLocks(org.eclipse.aether.RepositorySystemSession, java.util.Collection<? extends org.eclipse.aether.artifact.Artifact>, java.util.Collection<? extends org.eclipse.aether.metadata.Metadata>)
+java.method.returnTypeTypeParametersChanged: The return type changed from 'java.util.Collection<java.lang.String>' to 'java.util.Collection<org.eclipse.aether.named.NamedLockKey>'.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: method java.util.Collection<java.lang.String> org.eclipse.aether.internal.impl.synccontext.named.DiscriminatingNameMapper::nameLocks(org.eclipse.aether.RepositorySystemSession, java.util.Collection<? extends org.eclipse.aether.artifact.Artifact>, java.util.Collection<? extends org.eclipse.aether.metadata.Metadata>)
+new: method java.util.Collection<org.eclipse.aether.named.NamedLockKey> org.eclipse.aether.internal.impl.synccontext.named.DiscriminatingNameMapper::nameLocks(org.eclipse.aether.RepositorySystemSession, java.util.Collection<? extends org.eclipse.aether.artifact.Artifact>, java.util.Collection<? extends org.eclipse.aether.metadata.Metadata>)
+java.method.returnTypeTypeParametersChanged: The return type changed from 'java.util.Collection<java.lang.String>' to 'java.util.Collection<org.eclipse.aether.named.NamedLockKey>'.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: method java.util.Collection<java.lang.String> org.eclipse.aether.internal.impl.synccontext.named.GAVNameMapper::nameLocks(org.eclipse.aether.RepositorySystemSession, java.util.Collection<? extends org.eclipse.aether.artifact.Artifact>, java.util.Collection<? extends org.eclipse.aether.metadata.Metadata>)
+new: method java.util.Collection<org.eclipse.aether.named.NamedLockKey> org.eclipse.aether.internal.impl.synccontext.named.GAVNameMapper::nameLocks(org.eclipse.aether.RepositorySystemSession, java.util.Collection<? extends org.eclipse.aether.artifact.Artifact>, java.util.Collection<? extends org.eclipse.aether.metadata.Metadata>)
+java.method.returnTypeTypeParametersChanged: The return type changed from 'java.util.Collection<java.lang.String>' to 'java.util.Collection<org.eclipse.aether.named.NamedLockKey>'.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: method java.util.Collection<java.lang.String> org.eclipse.aether.internal.impl.synccontext.named.HashingNameMapper::nameLocks(org.eclipse.aether.RepositorySystemSession, java.util.Collection<? extends org.eclipse.aether.artifact.Artifact>, java.util.Collection<? extends org.eclipse.aether.metadata.Metadata>)
+new: method java.util.Collection<org.eclipse.aether.named.NamedLockKey> org.eclipse.aether.internal.impl.synccontext.named.HashingNameMapper::nameLocks(org.eclipse.aether.RepositorySystemSession, java.util.Collection<? extends org.eclipse.aether.artifact.Artifact>, java.util.Collection<? extends org.eclipse.aether.metadata.Metadata>)
+java.method.returnTypeTypeParametersChanged: The return type changed from 'java.util.Collection<java.lang.String>' to 'java.util.Collection<org.eclipse.aether.named.NamedLockKey>'.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: method java.util.Collection<java.lang.String> org.eclipse.aether.internal.impl.synccontext.named.NameMapper::nameLocks(org.eclipse.aether.RepositorySystemSession, java.util.Collection<? extends org.eclipse.aether.artifact.Artifact>, java.util.Collection<? extends org.eclipse.aether.metadata.Metadata>)
+new: method java.util.Collection<org.eclipse.aether.named.NamedLockKey> org.eclipse.aether.internal.impl.synccontext.named.NameMapper::nameLocks(org.eclipse.aether.RepositorySystemSession, java.util.Collection<? extends org.eclipse.aether.artifact.Artifact>, java.util.Collection<? extends org.eclipse.aether.metadata.Metadata>)
+java.method.returnTypeTypeParametersChanged: The return type changed from 'java.util.Collection<java.lang.String>' to 'java.util.Collection<org.eclipse.aether.named.NamedLockKey>'.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: field org.eclipse.aether.internal.impl.synccontext.named.NamedLockFactoryAdapter.DEFAULT_TIME_UNIT
+new: field org.eclipse.aether.internal.impl.synccontext.named.NamedLockFactoryAdapter.DEFAULT_TIME_UNIT
+java.field.nowConstant: Field now declares a compile time constant value 'SECONDS'.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+java.field.typeChanged: The type of the field changed from 'java.util.concurrent.TimeUnit' to 'java.lang.String'.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: field org.eclipse.aether.internal.impl.synccontext.named.NamedLockFactoryAdapter.RETRY_KEY
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: field org.eclipse.aether.internal.impl.synccontext.named.NamedLockFactoryAdapter.RETRY_WAIT_KEY
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: field org.eclipse.aether.internal.impl.synccontext.named.NamedLockFactoryAdapter.TIME_KEY
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: field org.eclipse.aether.internal.impl.synccontext.named.NamedLockFactoryAdapter.TIME_UNIT_KEY
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: field org.eclipse.aether.internal.impl.synccontext.named.NamedLockFactoryAdapterFactoryImpl.FACTORY_KEY
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: field org.eclipse.aether.internal.impl.synccontext.named.NamedLockFactoryAdapterFactoryImpl.NAME_MAPPER_KEY
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: method void org.eclipse.aether.internal.impl.synccontext.named.NamedLockFactoryAdapterFactoryImpl::<init>()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.eclipse.aether.internal.impl.synccontext.named.NamedLockFactoryAdapterFactoryImpl::initService(org.eclipse.aether.spi.locator.ServiceLocator)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method java.util.Collection<java.lang.String> org.eclipse.aether.internal.impl.synccontext.named.StaticNameMapper::nameLocks(org.eclipse.aether.RepositorySystemSession, java.util.Collection<? extends org.eclipse.aether.artifact.Artifact>, java.util.Collection<? extends org.eclipse.aether.metadata.Metadata>)
+new: method java.util.Collection<org.eclipse.aether.named.NamedLockKey> org.eclipse.aether.internal.impl.synccontext.named.StaticNameMapper::nameLocks(org.eclipse.aether.RepositorySystemSession, java.util.Collection<? extends org.eclipse.aether.artifact.Artifact>, java.util.Collection<? extends org.eclipse.aether.metadata.Metadata>)
+java.method.returnTypeTypeParametersChanged: The return type changed from 'java.util.Collection<java.lang.String>' to 'java.util.Collection<org.eclipse.aether.named.NamedLockKey>'.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+
+18:09:46.785 INFO  Analysis took 12292ms.
+
+
+* * * * * * * *
+>>>>>>
+compilation log of 2.0.0-alpha-8:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< org.apache.logging.log4j:log4j-api-test >---------------
+[INFO] Building Apache Log4j API Tests 2.23.1
+[INFO]   from _temp_org.apache.maven.resolver_maven-resolver-impl_2.0.0-alpha-8_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ log4j-api-test ---
+[INFO] 
+[INFO] --- flatten:1.5.0:clean (clean-flattened-pom) @ log4j-api-test ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-upper-bound-deps) @ log4j-api-test ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.623 s
+[INFO] Finished at: 2024-06-29T18:12:05+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:3.4.1:enforce (enforce-upper-bound-deps) on project log4j-api-test: 
+[ERROR] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps failed with message:
+[ERROR] Failed while enforcing RequireUpperBoundDeps. The error(s) are [
+[ERROR] Require upper bound dependencies error for org.slf4j:slf4j-api:2.0.9 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.slf4j:slf4j-api:2.0.9 (managed) <-- org.slf4j:slf4j-api:1.7.36
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-impl:2.0.0-alpha-8 (managed) <-- org.apache.maven.resolver:maven-resolver-impl:1.9.18
+[ERROR]       +-org.slf4j:slf4j-api:2.0.9 (managed) <-- org.slf4j:slf4j-api:2.0.11
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-impl:2.0.0-alpha-8 (managed) <-- org.apache.maven.resolver:maven-resolver-impl:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-named-locks:2.0.0-alpha-8
+[ERROR]         +-org.slf4j:slf4j-api:2.0.9 (managed) <-- org.slf4j:slf4j-api:2.0.11
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.apache.maven.resolver:maven-resolver-spi:1.9.18 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-spi:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-spi:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-impl:2.0.0-alpha-8 (managed) <-- org.apache.maven.resolver:maven-resolver-impl:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-spi:2.0.0-alpha-8
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.apache.maven.resolver:maven-resolver-util:1.9.18 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-util:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-util:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-impl:2.0.0-alpha-8 (managed) <-- org.apache.maven.resolver:maven-resolver-impl:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-util:2.0.0-alpha-8
+[ERROR] , 
+[ERROR] Require upper bound dependencies error for org.apache.maven.resolver:maven-resolver-api:1.9.18 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-api:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-resolver-provider:3.9.6
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-api:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-impl:2.0.0-alpha-8 (managed) <-- org.apache.maven.resolver:maven-resolver-impl:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-api:2.0.0-alpha-8
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-spi:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-api:1.9.18
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven.resolver:maven-resolver-util:1.9.18
+[ERROR]       +-org.apache.maven.resolver:maven-resolver-api:1.9.18
+[ERROR] ]
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+
+* * * * * * * *

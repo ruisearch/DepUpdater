@@ -1,0 +1,88 @@
+module name: log4j-api-test/
+
+* * * * * * * *
+groudId: org.eclipse.sisu
+artifactId: org.eclipse.sisu.plexus
+old version: 0.9.0.M2
+new version: 0.9.0.M2
+classifier: 
+depth: 2
+reachable api of old version:
+/ / / / / / / / /
+revapi log of the subsequent version -- 0.9.0.M3:
+18:08:30.574 INFO  Downloading checked archives
+18:08:30.661 INFO  Downloading extensions
+18:08:34.858 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.eclipse.sisu-org.eclipse.sisu.plexus-0.9.0.M2.jar
+New API: org.eclipse.sisu-org.eclipse.sisu.plexus-0.9.0.M3.jar
+old: <none>
+new: method boolean org.codehaus.plexus.ContainerConfiguration::getStrictClassPathScanning()
+java.method.addedToInterface: Method was added to an interface.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: <none>
+new: method org.codehaus.plexus.ContainerConfiguration org.codehaus.plexus.ContainerConfiguration::setStrictClassPathScanning(boolean)
+java.method.addedToInterface: Method was added to an interface.
+SEMANTIC: POTENTIALLY_BREAKING, SOURCE: BREAKING, BINARY: NON_BREAKING
+
+18:08:47.002 INFO  Analysis took 12137ms.
+
+
+* * * * * * * *
+>>>>>>
+subsequent compilation log of 0.9.0.M3:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< org.apache.logging.log4j:log4j-api-test >---------------
+[INFO] Building Apache Log4j API Tests 2.23.1
+[INFO]   from _temp_org.eclipse.sisu_org.eclipse.sisu.plexus_0.9.0.M3_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ log4j-api-test ---
+[INFO] 
+[INFO] --- flatten:1.5.0:clean (clean-flattened-pom) @ log4j-api-test ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ log4j-api-test ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-upper-bound-deps) @ log4j-api-test ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.319 s
+[INFO] Finished at: 2024-06-29T18:09:00+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:3.4.1:enforce (enforce-upper-bound-deps) on project log4j-api-test: 
+[ERROR] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps failed with message:
+[ERROR] Failed while enforcing RequireUpperBoundDeps. The error(s) are [
+[ERROR] Require upper bound dependencies error for org.eclipse.sisu:org.eclipse.sisu.inject:0.9.0.M2 paths to dependency are:
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.eclipse.sisu:org.eclipse.sisu.inject:0.9.0.M2
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.apache.maven:maven-model-builder:3.9.6
+[ERROR]       +-org.eclipse.sisu:org.eclipse.sisu.inject:0.9.0.M2
+[ERROR] and
+[ERROR] +-org.apache.logging.log4j:log4j-api-test:2.23.1
+[ERROR]   +-org.apache.maven:maven-core:3.9.6
+[ERROR]     +-org.eclipse.sisu:org.eclipse.sisu.plexus:0.9.0.M3 (managed) <-- org.eclipse.sisu:org.eclipse.sisu.plexus:0.9.0.M2
+[ERROR]       +-org.eclipse.sisu:org.eclipse.sisu.inject:0.9.0.M3
+[ERROR] ]
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+
+* * * * * * * *

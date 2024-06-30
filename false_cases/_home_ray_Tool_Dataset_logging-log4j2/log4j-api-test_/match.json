@@ -302,7 +302,7 @@
         "BestVersion": "2.23.1",
         "Breaking_Reason": {
             "breaking_version": "3.0.0-alpha1",
-            "breaking_reason": "breaking api: org.apache.logging.log4j.Level: org.apache.logging.log4j.Level valueOf(java.lang.String) <<<<< transformed old api of breaking record: org.apache.logging.log4j.Level:"
+            "breaking_reason": "reference broken: org.apache.logging.log4j.Level breaks log4j-api-test-2.23.1.jar/org.apache.logging.log4j.test.ListStatusListener: java.util.stream.Stream findStatusData(org.apache.logging.log4j.Level)"
         }
     },
     {
@@ -1061,6 +1061,10 @@
                 "date": 1707035722229
             },
             {
+                "version": "5.10.3",
+                "date": 1719497280178
+            },
+            {
                 "version": "5.11.0-M1",
                 "date": 1713876520137
             },
@@ -1655,6 +1659,10 @@
                 "date": 1707035725040
             },
             {
+                "version": "1.10.3",
+                "date": 1719497278972
+            },
+            {
                 "version": "1.11.0-M1",
                 "date": 1713876520137
             },
@@ -2042,6 +2050,10 @@
                 "date": 1707035720040
             },
             {
+                "version": "1.10.3",
+                "date": 1719497260759
+            },
+            {
                 "version": "1.11.0-M1",
                 "date": 1713876520140
             },
@@ -2362,6 +2374,10 @@
             {
                 "version": "3.9.7",
                 "date": 1716371402000
+            },
+            {
+                "version": "3.9.8",
+                "date": 1718267050000
             },
             {
                 "version": "4.0.0-alpha-10",
@@ -2714,6 +2730,10 @@
                 "date": 1716371376000
             },
             {
+                "version": "3.9.8",
+                "date": 1718267023000
+            },
+            {
                 "version": "4.0.0-alpha-10",
                 "date": 1702917001000
             },
@@ -2758,8 +2778,11 @@
                 "date": 1716386954000
             }
         ],
-        "BestVersion": "4.0.0-beta-3",
-        "Breaking_Reason": {}
+        "BestVersion": "3.9.8",
+        "Breaking_Reason": {
+            "breaking_version": "4.0.0-alpha-10",
+            "breaking_reason": "reference broken: org.apache.maven.settings.RuntimeInfo breaks org.apache.maven-maven-core-3.9.6.jar/org.apache.maven.execution.SettingsAdapter: void <init>(org.apache.maven.execution.MavenExecutionRequest)"
+        }
     },
     {
         "JarFileName": "org.apache.maven-maven-settings-builder-3.9.6.jar",
@@ -2950,6 +2973,10 @@
             {
                 "version": "3.9.7",
                 "date": 1716371380000
+            },
+            {
+                "version": "3.9.8",
+                "date": 1718267027000
             },
             {
                 "version": "4.0.0-alpha-10",
@@ -3183,6 +3210,10 @@
             {
                 "version": "3.9.7",
                 "date": 1716371367000
+            },
+            {
+                "version": "3.9.8",
+                "date": 1718267014000
             },
             {
                 "version": "4.0.0-alpha-10",
@@ -3497,6 +3528,10 @@
             {
                 "version": "3.9.7",
                 "date": 1716371383000
+            },
+            {
+                "version": "3.9.8",
+                "date": 1718267030000
             },
             {
                 "version": "4.0.0-alpha-10",
@@ -3857,6 +3892,10 @@
                 "date": 1716371360000
             },
             {
+                "version": "3.9.8",
+                "date": 1718267007000
+            },
+            {
                 "version": "4.0.0-alpha-10",
                 "date": 1702916966000
             },
@@ -4211,6 +4250,10 @@
                 "date": 1716371363000
             },
             {
+                "version": "3.9.8",
+                "date": 1718267011000
+            },
+            {
                 "version": "4.0.0-alpha-10",
                 "date": 1702916970000
             },
@@ -4255,8 +4298,11 @@
                 "date": 1716386934000
             }
         ],
-        "BestVersion": "4.0.0-beta-3",
-        "Breaking_Reason": {}
+        "BestVersion": "3.9.8",
+        "Breaking_Reason": {
+            "breaking_version": "4.0.0-alpha-10",
+            "breaking_reason": "reference broken: org.apache.maven.monitor.logging.DefaultLog breaks org.apache.maven-maven-core-3.9.6.jar/org.apache.maven.plugin.internal.DefaultMavenPluginManager: java.lang.Object getConfiguredMojo(java.lang.Class,org.apache.maven.execution.MavenSession,org.apache.maven.plugin.MojoExecution)"
+        }
     },
     {
         "JarFileName": "org.apache.maven-maven-model-builder-3.9.6.jar",
@@ -4473,6 +4519,10 @@
                 "date": 1716371373000
             },
             {
+                "version": "3.9.8",
+                "date": 1718267020000
+            },
+            {
                 "version": "4.0.0-alpha-10",
                 "date": 1702916997000
             },
@@ -4640,6 +4690,10 @@
             {
                 "version": "3.9.7",
                 "date": 1716371388000
+            },
+            {
+                "version": "3.9.8",
+                "date": 1718267035000
             },
             {
                 "version": "4.0.0-alpha-10",
@@ -5879,10 +5933,14 @@
             {
                 "version": "0.9.0.M2",
                 "date": 1683328409000
+            },
+            {
+                "version": "0.9.0.M3",
+                "date": 1717427572878
             }
         ],
-        "BestVersion": "0.9.0.M2",
-        "Breaking_Reason": ""
+        "BestVersion": "0.9.0.M3",
+        "Breaking_Reason": {}
     },
     {
         "JarFileName": "javax.annotation-javax.annotation-api-1.2.jar",
@@ -6036,10 +6094,14 @@
             {
                 "version": "0.9.0.M2",
                 "date": 1683327943000
+            },
+            {
+                "version": "0.9.0.M3",
+                "date": 1717427556509
             }
         ],
-        "BestVersion": "0.9.0.M2",
-        "Breaking_Reason": ""
+        "BestVersion": "0.9.0.M3",
+        "Breaking_Reason": {}
     },
     {
         "JarFileName": "com.google.inject-guice-5.1.0.jar",
@@ -8897,14 +8959,6 @@
         ],
         "AllVersion": [
             {
-                "version": "14.0",
-                "date": 1361818554000
-            },
-            {
-                "version": "14.0.1",
-                "date": 1363305439000
-            },
-            {
                 "version": "15.0-rc1",
                 "date": 1377542588000
             },
@@ -9295,12 +9349,20 @@
             {
                 "version": "33.2.0-jre",
                 "date": 1714593921389
+            },
+            {
+                "version": "33.2.1-android",
+                "date": 1717177944808
+            },
+            {
+                "version": "33.2.1-jre",
+                "date": 1717178803080
             }
         ],
-        "BestVersion": "33.2.0-jre",
+        "BestVersion": "33.2.1-jre",
         "Breaking_Reason": {
-            "breaking_version": "33.2.0-android",
-            "breaking_reason": "breaking api: com.google.common.base.CharMatcher: com.google.common.base.CharMatcher any() <<<<< transformed old api of breaking record: com.google.common.base.CharMatcher:"
+            "breaking_version": "33.2.1-android",
+            "breaking_reason": "breaking api: com.google.common.collect.AbstractMapBasedMultiset: void forEachEntry(java.util.function.ObjIntConsumer) <<<<< transformed old api of breaking record: com.google.common.collect.AbstractMapBasedMultiset: void forEachEntry(java.util.function.ObjIntConsumer)"
         }
     },
     {
@@ -10595,6 +10657,10 @@
                 "date": 1716371355000
             },
             {
+                "version": "3.9.8",
+                "date": 1718267002000
+            },
+            {
                 "version": "4.0.0-alpha-10",
                 "date": 1702916960000
             },
@@ -10639,7 +10705,7 @@
                 "date": 1716386924000
             }
         ],
-        "BestVersion": "3.9.7",
+        "BestVersion": "3.9.8",
         "Breaking_Reason": {
             "breaking_version": "4.0.0-alpha-10",
             "breaking_reason": "breaking api: org.apache.maven.model.io.xpp3.MavenXpp3Reader: void <init>() <<<<< transformed old api of breaking record: org.apache.maven.model.io.xpp3.MavenXpp3Reader:"
@@ -10977,8 +11043,11 @@
                 "date": 1712999262990
             }
         ],
-        "BestVersion": "4.0.1",
-        "Breaking_Reason": {}
+        "BestVersion": "3.5.1",
+        "Breaking_Reason": {
+            "breaking_version": "4.0.0",
+            "breaking_reason": "reference broken: org.codehaus.plexus.util.xml.pull.XmlPullParserException breaks log4j-api-test-2.23.1.jar/org.apache.logging.log4j.test.junit.BundleTestInfo: void <init>()"
+        }
     },
     {
         "JarFileName": "net.bytebuddy-byte-buddy-1.14.11.jar",
@@ -11675,6 +11744,10 @@
             {
                 "version": "1.10.2",
                 "date": 1707035720159
+            },
+            {
+                "version": "1.10.3",
+                "date": 1719497279670
             },
             {
                 "version": "1.11.0-M1",
