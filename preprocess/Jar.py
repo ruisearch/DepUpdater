@@ -6,7 +6,7 @@ import concurrent.futures
 import requests
 import time
 import json
-from preprocess.constants import JAR_FOLDER, DEPENDENCY_TREE_FILE
+from preprocess.constants import JAR_FOLDER, DEPENDENCY_TREE_FILE, DEPENDENCY_VERBOSE_TREE_FILE
 # from constants import JAR_FOLDER, DEPENDENCY_TREE_FILE
 
 ## create a folder
@@ -203,7 +203,23 @@ def parse_for_jar(dependency_tree:str, path_to_cloned_folder:str, relative_path_
             for future in futures:
                 mappings.append(future.result())
             
-            # for each dep in mappings, get the deps which are depended by this dep
+            
+            # get the complete dependency tree
+            with open(DEPENDENCY_VERBOSE_TREE_FILE, 'r') as f:
+                complete_dependency_tree = f.read()
+            blocks = re.finditer(block_pattern, complete_dependency_tree, flags=re.DOTALL)
+            # get the module tree
+            for block in blocks:
+                if relative_path_to_module == '.':
+                    flag = True
+                else:
+                    # so, argv[2] should end with '/'
+                    flag = (block.group(1) == relative_path_to_module)
+                if block.group(2) == 'jar' and flag:
+                    module_tree = block.group(6)
+                    break
+            
+            # for each dep in mappings, get the deps which are depended by this dep            
             for mapping in mappings:
                 depended_by = []
                 depth = mapping['Depth']-1
@@ -215,6 +231,21 @@ def parse_for_jar(dependency_tree:str, path_to_cloned_folder:str, relative_path_
                         depended_by.append(mappings[i]['JarFileName'])
                         depth = depth-1
                 mappings[idx].update({'DependedBy': depended_by})
+                
+            # get the shadowed dep in the complete dependency tree (by dependency:tree -Dverbose) to solve dependency-conflict
+            shadowed_deps = parse_shadowed_dep(module_tree)
+            
+            for i in len(mappings):
+                 # get the shadowed deps
+                conflict = []
+                print(f'***** get the shadowed jar of {mappings[i]["JarFileName"]} *****')
+                for shadowed_dep in shadowed_deps:
+                    if shadowed_dep['group_id'] == mappings[i]['GroupId'] and shadowed_dep['artifact_id'] == mappings[i]['ArtifactId']:
+                        get_dep_jar(path_to_dep, shadowed_dep['group_id'], shadowed_dep['artifact_id'], shadowed_dep['version'], '')
+                        conflict.append(shadowed_dep)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+                mappings[i].update({'Conflict':conflict})
+                        
+                
             # create json
             json_path = os.path.join(path_to_dep, 'match.json')
             with open(json_path, 'w') as json_file:
@@ -225,6 +256,56 @@ def parse_for_jar(dependency_tree:str, path_to_cloned_folder:str, relative_path_
             with open(ignore_client, 'a') as f:
                 f.write(f'{block.group(3)}:{block.group(4)}:{block.group(5)}\n')
        
+# return a list containing the shadowed deps of a specific dep
+# module_tree : the tree of a module(-Dverbose)
+# mapping : the dict of a dep
+def parse_shadowed_dep(module_tree:str):
+    all_dep_gav = parse_dep(module_tree)
+    shadowed_dep = []
+    for i in len(all_dep_gav):
+        if '(' in all_dep_gav[i]['group_id']:
+            all_dep_gav[i].replace('(','')
+            
+            # shadowed dep
+            if 'version managed from' in all_dep_gav[i]['type']:
+                duplicate_pattern = r'version managed from (.*?);'
+                match = re.search(duplicate_pattern, all_dep_gav[i]['type'])
+                for version in match:
+                    all_dep_gav[i]['version'] = version.group(1)
+                depth =  all_dep_gav[i]['depth']-1
+                depended_by = []
+                idx = i
+                for idx in (i, -1, -1):
+                    if depth == 0:
+                        break
+                    if '('  in all_dep_gav[idx]['group_id'] is False:
+                        JarFileName = f'{all_dep_gav[idx]["group_id"]}-{all_dep_gav[idx]["artifact_id"]}-{all_dep_gav[idx]["version"]}.jar'
+                        depended_by.append(JarFileName)
+                        depth = depth - 1
+                all_dep_gav[i].update({'depended_by':depended_by})
+                shadowed_dep.append(all_dep_gav[i])
+            if 'omitted for conflict with' in all_dep_gav[i]['type']:
+                conflict_pattern = r'omitted for conflict with (.*?)'
+                match = re.search(conflict_pattern, all_dep_gav[i]['type'])
+                for version in match:
+                    all_dep_gav[i]['version'] = version.group(1)
+                depth =  all_dep_gav[i]['depth']-1
+                depended_by = []
+                idx = i
+                for idx in (i, -1, -1):
+                    if depth == 0:
+                        break
+                    if '('  in all_dep_gav[idx]['group_id'] is False:
+                        JarFileName = f'{all_dep_gav[idx]["group_id"]}-{all_dep_gav[idx]["artifact_id"]}-{all_dep_gav[idx]["version"]}.jar'
+                        depended_by.append(JarFileName)
+                        depth = depth - 1
+                all_dep_gav[i].update({'depended_by':depended_by})
+                shadowed_dep.append(all_dep_gav[i])
+    return shadowed_dep
+        
+   
+
+    
 # download dep jar concurrently
 # path_to_dep: path to dep/
 # dep: a dict in deps_gav, dep['group_id'] is groupId, dep['artifact_id'] is artifactId, dep['version'] is version
@@ -246,6 +327,7 @@ def download_a_dep_jar(path_to_dep:str, dep:dict, idx:int):
         "Depth": dep['depth'],
         "Index": idx
     }
+    
     return mapping
 
 ## main method in this file

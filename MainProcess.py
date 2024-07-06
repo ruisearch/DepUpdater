@@ -34,6 +34,7 @@ print("\n****** preprocess.package done! ******\n")
 # result is in ./data/preprocess/dependency_tree.txt
 print("\n****** preprocess.analysis_tree ... ******\n")
 exec_maven_command.mvn_dependency_tree(path_to_folder, relative_path_to_module)
+exec_maven_command.mvn_verbose_dependency_tree(path_to_folder, relative_path_to_module)
 print("\n****** preprocess.analysis_tree done! ******\n")
 # parse dependency_tree.txt to get GAV of client jar and dependencies jar,
 # then download dependencies jar and copy client jar

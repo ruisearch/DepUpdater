@@ -3,7 +3,7 @@
 import os
 import shutil
 import subprocess
-from preprocess.constants import DEPENDENCY_TREE_FILE, DATA
+from preprocess.constants import DEPENDENCY_TREE_FILE, DATA, DEPENDENCY_VERBOSE_TREE_FILE
 
 # create a folder
 def create_folder(folder_path:str):
@@ -47,5 +47,15 @@ def mvn_dependency_tree(path_to_folder:str, relative_path_to_module:str):
         f.write(f'{result.stdout}')
     # os.system(command)
     print("dependency tree is generated in ./data/dependency_tree.txt successfully")
+    
+# execute "mvn dependency:tree -Dverbose"
+def mvn_verbose_dependency_tree(path_to_folder:str, relative_path_to_module:str):
+    command = f"cd {path_to_folder} && mvn dependency:tree -pl {relative_path_to_module} -am -Dverbose -fae"
+    print("generating dependency tree...")
+    result = subprocess.run(command, shell=True, text=True, capture_output=True)
+    with open(DEPENDENCY_VERBOSE_TREE_FILE, 'w') as f:
+        f.write(f'{result.stdout}')
+    # os.system(command)
+    print("dependency tree is generated in ./data/dependency_verbose_tree.txt successfully")
     
     
