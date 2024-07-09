@@ -1,0 +1,1082 @@
+module name: log4j-api-test/
+
+* * * * * * * *
+groudId: org.apache.maven
+artifactId: maven-core
+old version: 3.9.6
+new version: 4.0.0-beta-3
+classifier: 
+depth: 1
+reachable api of old version:
+    org.apache.maven.project.MavenProject: void <init>(org.apache.maven.model.Model)
+/ / / / / / / / /
+revapi log of former version -- 4.0.0-beta-3:
+20:37:30.764 INFO  Downloading checked archives
+20:37:30.821 INFO  Downloading extensions
+20:37:36.725 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.apache.maven-maven-core-3.9.6.jar
+New API: org.apache.maven-maven-core-4.0.0-beta-3.jar
+old: interface org.apache.maven.ArtifactFilterManager
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface org.apache.maven.ArtifactFilterManagerDelegate
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.DefaultArtifactFilterManager
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: field org.apache.maven.DefaultMaven.container
+new: <none>
+java.field.removed: Field removed from class.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: field org.apache.maven.DefaultMaven.projectBuilder
+new: <none>
+java.field.removed: Field removed from class.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.DefaultMaven::<init>()
+new: method void org.apache.maven.DefaultMaven::<init>(org.apache.maven.api.services.Lookup, org.apache.maven.lifecycle.internal.ExecutionEventCatapult, org.apache.maven.plugin.LegacySupport, org.apache.maven.session.scope.internal.SessionScope, org.apache.maven.resolver.RepositorySystemSessionFactory, org.apache.maven.graph.GraphBuilder, org.apache.maven.execution.BuildResumptionAnalyzer, org.apache.maven.execution.BuildResumptionDataRepository, org.apache.maven.model.superpom.SuperPomProvider, org.apache.maven.internal.impl.DefaultSessionFactory, org.eclipse.aether.repository.WorkspaceReader)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method org.codehaus.plexus.logging.Logger org.apache.maven.DefaultMaven::getLogger()
+new: method org.slf4j.Logger org.apache.maven.DefaultMaven::getLogger()
+java.method.returnTypeChanged: The return type changed from 'org.codehaus.plexus.logging.Logger' to  'org.slf4j.Logger'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.DefaultProjectDependenciesResolver
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: parameter void org.apache.maven.ProjectCycleException::<init>(java.lang.String, ===org.codehaus.plexus.util.dag.CycleDetectedException===)
+new: parameter void org.apache.maven.ProjectCycleException::<init>(java.lang.String, ===org.apache.maven.project.CycleDetectedException===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.codehaus.plexus.util.dag.CycleDetectedException' to 'org.apache.maven.project.CycleDetectedException'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: interface org.apache.maven.ProjectDependenciesResolver
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.artifact.factory.DefaultArtifactFactory::<init>()
+new: method void org.apache.maven.artifact.factory.DefaultArtifactFactory::<init>(org.apache.maven.artifact.handler.manager.ArtifactHandlerManager)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method void org.apache.maven.artifact.handler.manager.DefaultArtifactHandlerManager::<init>()
+new: method void org.apache.maven.artifact.handler.manager.DefaultArtifactHandlerManager::<init>(org.apache.maven.api.services.TypeRegistry)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: class org.apache.maven.artifact.metadata.AbstractArtifactMetadata
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.artifact.metadata.ArtifactMetadataRetrievalException
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface org.apache.maven.artifact.metadata.ArtifactMetadataSource
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.artifact.metadata.ResolutionGroup
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.artifact.repository.LegacyLocalRepositoryManager
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.artifact.repository.metadata.AbstractRepositoryMetadata
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.artifact.repository.metadata.ArtifactRepositoryMetadata
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface org.apache.maven.artifact.repository.metadata.RepositoryMetadata
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.artifact.repository.metadata.RepositoryMetadataDeploymentException
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.artifact.repository.metadata.RepositoryMetadataInstallationException
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface org.apache.maven.artifact.repository.metadata.RepositoryMetadataManager
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.artifact.repository.metadata.RepositoryMetadataResolutionException
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.artifact.resolver.ArtifactResolutionRequest
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.artifact.resolver.ArtifactResolutionResult
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.artifact.resolver.DefaultResolutionErrorHandler
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface org.apache.maven.artifact.resolver.ResolutionErrorHandler
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface org.apache.maven.artifact.resolver.ResolutionListener
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.artifact.resolver.ResolutionNode
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.bridge.MavenRepositorySystem::<init>()
+new: method void org.apache.maven.bridge.MavenRepositorySystem::<init>(org.apache.maven.artifact.handler.manager.ArtifactHandlerManager, java.util.Map<java.lang.String, org.apache.maven.artifact.repository.layout.ArtifactRepositoryLayout>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method org.apache.maven.artifact.repository.ArtifactRepository org.apache.maven.bridge.MavenRepositorySystem::createArtifactRepository(java.lang.String, java.lang.String, java.lang.String, org.apache.maven.artifact.repository.ArtifactRepositoryPolicy, org.apache.maven.artifact.repository.ArtifactRepositoryPolicy) throws java.lang.Exception
+new: method org.apache.maven.artifact.repository.ArtifactRepository org.apache.maven.bridge.MavenRepositorySystem::createArtifactRepository(java.lang.String, java.lang.String, java.lang.String, org.apache.maven.artifact.repository.ArtifactRepositoryPolicy, org.apache.maven.artifact.repository.ArtifactRepositoryPolicy) throws org.apache.maven.artifact.InvalidRepositoryException
+java.method.exception.checkedAdded: Method newly throws checked exceptions: org.apache.maven.artifact.InvalidRepositoryException.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+java.method.exception.checkedRemoved: Method no longer throws checked exceptions: java.lang.Exception.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: method org.apache.maven.artifact.repository.ArtifactRepository org.apache.maven.bridge.MavenRepositorySystem::createLocalRepository(org.apache.maven.execution.MavenExecutionRequest, java.io.File) throws java.lang.Exception
+new: method org.apache.maven.artifact.repository.ArtifactRepository org.apache.maven.bridge.MavenRepositorySystem::createLocalRepository(org.apache.maven.execution.MavenExecutionRequest, java.io.File) throws org.apache.maven.artifact.InvalidRepositoryException
+java.method.exception.checkedAdded: Method newly throws checked exceptions: org.apache.maven.artifact.InvalidRepositoryException.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+java.method.exception.checkedRemoved: Method no longer throws checked exceptions: java.lang.Exception.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: method org.apache.maven.artifact.repository.ArtifactRepository org.apache.maven.bridge.MavenRepositorySystem::createRepository(java.lang.String, java.lang.String, boolean, java.lang.String, boolean, java.lang.String, java.lang.String) throws java.lang.Exception
+new: method org.apache.maven.artifact.repository.ArtifactRepository org.apache.maven.bridge.MavenRepositorySystem::createRepository(java.lang.String, java.lang.String, boolean, java.lang.String, boolean, java.lang.String, java.lang.String) throws org.apache.maven.artifact.InvalidRepositoryException
+java.method.exception.checkedAdded: Method newly throws checked exceptions: org.apache.maven.artifact.InvalidRepositoryException.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+java.method.exception.checkedRemoved: Method no longer throws checked exceptions: java.lang.Exception.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: method void org.apache.maven.classrealm.DefaultClassRealmManager::<init>(org.codehaus.plexus.logging.Logger, org.codehaus.plexus.PlexusContainer, java.util.List<org.apache.maven.classrealm.ClassRealmManagerDelegate>, org.apache.maven.extension.internal.CoreExports)
+new: method void org.apache.maven.classrealm.DefaultClassRealmManager::<init>(org.apache.maven.internal.CoreRealm, java.util.List<org.apache.maven.classrealm.ClassRealmManagerDelegate>, org.apache.maven.extension.internal.CoreExports)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.eventspy.internal.EventSpyDispatcher::<init>()
+new: method void org.apache.maven.eventspy.internal.EventSpyDispatcher::<init>(java.util.List<org.apache.maven.eventspy.EventSpy>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method java.util.List<org.apache.maven.eventspy.EventSpy> org.apache.maven.eventspy.internal.EventSpyDispatcher::getEventSpies()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.eventspy.internal.EventSpyDispatcher::setEventSpies(java.util.List<org.apache.maven.eventspy.EventSpy>)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: <none>
+new: method org.apache.maven.execution.ProfileActivation org.apache.maven.execution.MavenExecutionRequest::getProfileActivation()
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING
+
+old: <none>
+new: method org.apache.maven.execution.ProjectActivation org.apache.maven.execution.MavenExecutionRequest::getProjectActivation()
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING
+
+old: <none>
+new: method java.io.File org.apache.maven.execution.MavenExecutionRequest::getProjectSettingsFile()
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING
+
+old: <none>
+new: method java.nio.file.Path org.apache.maven.execution.MavenExecutionRequest::getRootDirectory()
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING
+
+old: <none>
+new: method java.nio.file.Path org.apache.maven.execution.MavenExecutionRequest::getTopDirectory()
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING
+
+old: <none>
+new: method boolean org.apache.maven.execution.MavenExecutionRequest::isIgnoreInvalidArtifactDescriptor()
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING
+
+old: <none>
+new: method boolean org.apache.maven.execution.MavenExecutionRequest::isIgnoreMissingArtifactDescriptor()
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING
+
+old: <none>
+new: method boolean org.apache.maven.execution.MavenExecutionRequest::isIgnoreTransitiveRepositories()
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING
+
+old: <none>
+new: method boolean org.apache.maven.execution.MavenExecutionRequest::isResume()
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING
+
+old: <none>
+new: method org.apache.maven.execution.MavenExecutionRequest org.apache.maven.execution.MavenExecutionRequest::setIgnoreInvalidArtifactDescriptor(boolean)
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING
+
+old: <none>
+new: method org.apache.maven.execution.MavenExecutionRequest org.apache.maven.execution.MavenExecutionRequest::setIgnoreMissingArtifactDescriptor(boolean)
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING
+
+old: <none>
+new: method org.apache.maven.execution.MavenExecutionRequest org.apache.maven.execution.MavenExecutionRequest::setIgnoreTransitiveRepositories(boolean)
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING
+
+old: <none>
+new: method org.apache.maven.execution.MavenExecutionRequest org.apache.maven.execution.MavenExecutionRequest::setProjectSettingsFile(java.io.File)
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING
+
+old: <none>
+new: method org.apache.maven.execution.MavenExecutionRequest org.apache.maven.execution.MavenExecutionRequest::setResume(boolean)
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING
+
+old: <none>
+new: method org.apache.maven.execution.MavenExecutionRequest org.apache.maven.execution.MavenExecutionRequest::setRootDirectory(java.nio.file.Path)
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING
+
+old: <none>
+new: method org.apache.maven.execution.MavenExecutionRequest org.apache.maven.execution.MavenExecutionRequest::setTopDirectory(java.nio.file.Path)
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING
+
+old: <none>
+new: method boolean org.apache.maven.execution.MavenExecutionResult::canResume()
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING
+
+old: <none>
+new: method void org.apache.maven.execution.MavenExecutionResult::setCanResume(boolean)
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING
+
+old: method void org.apache.maven.execution.ReactorManager::<init>(java.util.List<org.apache.maven.project.MavenProject>) throws org.codehaus.plexus.util.dag.CycleDetectedException, org.apache.maven.project.DuplicateProjectException
+new: method void org.apache.maven.execution.ReactorManager::<init>(java.util.List<org.apache.maven.project.MavenProject>) throws org.apache.maven.project.CycleDetectedException, org.apache.maven.project.DuplicateProjectException
+java.method.exception.checkedAdded: Method newly throws checked exceptions: org.apache.maven.project.CycleDetectedException.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: method void org.apache.maven.execution.scope.internal.MojoExecutionScopeModule::<init>(org.codehaus.plexus.PlexusContainer) throws org.codehaus.plexus.component.repository.exception.ComponentLookupException
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: parameter void org.apache.maven.extension.internal.CoreExportsProvider::<init>(===org.codehaus.plexus.PlexusContainer===)
+new: parameter void org.apache.maven.extension.internal.CoreExportsProvider::<init>(===org.apache.maven.internal.CoreRealm===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.codehaus.plexus.PlexusContainer' to 'org.apache.maven.internal.CoreRealm'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.extension.internal.CoreExtensionEntry::<init>(org.codehaus.plexus.classworlds.realm.ClassRealm, java.util.Collection<java.lang.String>, java.util.Collection<java.lang.String>)
+new: method void org.apache.maven.extension.internal.CoreExtensionEntry::<init>(org.codehaus.plexus.classworlds.realm.ClassRealm, java.util.Collection<java.lang.String>, java.util.Collection<java.lang.String>, java.lang.String, org.apache.maven.api.xml.XmlNode)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.apache.maven.extension.internal.CoreExtensionEntry org.apache.maven.extension.internal.CoreExtensionEntry::discoverFrom(org.codehaus.plexus.classworlds.realm.ClassRealm, java.util.Collection<java.io.File>)
+new: method org.apache.maven.extension.internal.CoreExtensionEntry org.apache.maven.extension.internal.CoreExtensionEntry::discoverFrom(org.codehaus.plexus.classworlds.realm.ClassRealm, java.util.Collection<java.io.File>, java.lang.String, org.apache.maven.api.xml.XmlNode)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: field org.apache.maven.graph.DefaultGraphBuilder.projectBuilder
+new: <none>
+java.field.removed: Field removed from class.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.graph.DefaultProjectDependencyGraph::<init>(java.util.Collection<org.apache.maven.project.MavenProject>) throws org.codehaus.plexus.util.dag.CycleDetectedException, org.apache.maven.project.DuplicateProjectException
+new: method void org.apache.maven.graph.DefaultProjectDependencyGraph::<init>(java.util.Collection<org.apache.maven.project.MavenProject>) throws org.apache.maven.project.CycleDetectedException, org.apache.maven.project.DuplicateProjectException
+java.method.exception.checkedAdded: Method newly throws checked exceptions: org.apache.maven.project.CycleDetectedException.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: method void org.apache.maven.graph.DefaultProjectDependencyGraph::<init>(java.util.List<org.apache.maven.project.MavenProject>, java.util.Collection<org.apache.maven.project.MavenProject>) throws org.codehaus.plexus.util.dag.CycleDetectedException, org.apache.maven.project.DuplicateProjectException
+new: method void org.apache.maven.graph.DefaultProjectDependencyGraph::<init>(java.util.List<org.apache.maven.project.MavenProject>, java.util.Collection<org.apache.maven.project.MavenProject>) throws org.apache.maven.project.CycleDetectedException, org.apache.maven.project.DuplicateProjectException
+java.method.exception.checkedAdded: Method newly throws checked exceptions: org.apache.maven.project.CycleDetectedException.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+java.element.nowDeprecated: The element is now deprecated.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+
+old: method void org.apache.maven.internal.aether.DefaultRepositorySystemSessionFactory::<init>()
+new: method void org.apache.maven.internal.aether.DefaultRepositorySystemSessionFactory::<init>(org.eclipse.aether.RepositorySystem, org.apache.maven.settings.crypto.SettingsDecrypter, org.apache.maven.eventspy.internal.EventSpyDispatcher, org.apache.maven.rtinfo.RuntimeInformation, org.apache.maven.api.services.TypeRegistry, org.eclipse.aether.version.VersionScheme, java.util.Map<java.lang.String, org.apache.maven.internal.aether.MavenExecutionRequestExtender>, java.util.Map<java.lang.String, org.apache.maven.internal.aether.RepositorySystemSessionExtender>)
+java.method.visibilityReduced: visibility reduced
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.eclipse.aether.DefaultRepositorySystemSession org.apache.maven.internal.aether.DefaultRepositorySystemSessionFactory::newRepositorySession(org.apache.maven.execution.MavenExecutionRequest)
+new: method org.eclipse.aether.RepositorySystemSession org.apache.maven.internal.aether.DefaultRepositorySystemSessionFactory::newRepositorySession(org.apache.maven.execution.MavenExecutionRequest)
+java.method.returnTypeChanged: The return type changed from 'org.eclipse.aether.DefaultRepositorySystemSession' to  'org.eclipse.aether.RepositorySystemSession'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+java.element.nowDeprecated: The element is now deprecated.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+
+old: class org.apache.maven.internal.aether.MavenChainedWorkspaceReader
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.internal.aether.ResolverLifecycle
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.lifecycle.DefaultLifecycleExecutor::<init>()
+new: method void org.apache.maven.lifecycle.DefaultLifecycleExecutor::<init>(org.apache.maven.lifecycle.LifeCyclePluginAnalyzer, org.apache.maven.lifecycle.DefaultLifecycles, org.apache.maven.lifecycle.internal.LifecycleTaskSegmentCalculator, org.apache.maven.lifecycle.internal.LifecycleExecutionPlanCalculator, org.apache.maven.lifecycle.internal.MojoExecutor, org.apache.maven.lifecycle.internal.LifecycleStarter)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method void org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator::<init>()
+new: method void org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator::<init>(org.apache.maven.plugin.BuildPluginManager, org.apache.maven.lifecycle.DefaultLifecycles, org.apache.maven.lifecycle.internal.MojoDescriptorCreator, org.apache.maven.lifecycle.internal.LifecyclePluginResolver, org.apache.maven.lifecycle.LifecycleMappingDelegate, java.util.Map<java.lang.String, org.apache.maven.lifecycle.LifecycleMappingDelegate>, java.util.Map<java.lang.String, org.apache.maven.lifecycle.MojoExecutionConfigurator>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method void org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator::setupMojoExecution(org.apache.maven.execution.MavenSession, org.apache.maven.project.MavenProject, org.apache.maven.plugin.MojoExecution) throws org.apache.maven.plugin.PluginNotFoundException, org.apache.maven.plugin.PluginResolutionException, org.apache.maven.plugin.PluginDescriptorParsingException, org.apache.maven.plugin.MojoNotFoundException, org.apache.maven.plugin.InvalidPluginDescriptorException, org.apache.maven.plugin.prefix.NoPluginFoundForPrefixException, org.apache.maven.lifecycle.LifecyclePhaseNotFoundException, org.apache.maven.lifecycle.LifecycleNotFoundException, org.apache.maven.plugin.version.PluginVersionResolutionException
+new: method void org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator::setupMojoExecution(org.apache.maven.execution.MavenSession, org.apache.maven.project.MavenProject, org.apache.maven.plugin.MojoExecution, java.util.Set<org.apache.maven.plugin.descriptor.MojoDescriptor>) throws org.apache.maven.plugin.PluginNotFoundException, org.apache.maven.plugin.PluginResolutionException, org.apache.maven.plugin.PluginDescriptorParsingException, org.apache.maven.plugin.MojoNotFoundException, org.apache.maven.plugin.InvalidPluginDescriptorException, org.apache.maven.plugin.prefix.NoPluginFoundForPrefixException, org.apache.maven.lifecycle.LifecyclePhaseNotFoundException, org.apache.maven.lifecycle.LifecycleNotFoundException, org.apache.maven.plugin.version.PluginVersionResolutionException
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.lifecycle.internal.DefaultLifecycleMappingDelegate::<init>()
+new: method void org.apache.maven.lifecycle.internal.DefaultLifecycleMappingDelegate::<init>(org.apache.maven.plugin.BuildPluginManager)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method void org.apache.maven.lifecycle.internal.DefaultLifecyclePluginAnalyzer::<init>()
+new: method void org.apache.maven.lifecycle.internal.DefaultLifecyclePluginAnalyzer::<init>(org.apache.maven.api.services.Lookup, org.apache.maven.lifecycle.DefaultLifecycles)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method void org.apache.maven.lifecycle.internal.DefaultLifecycleTaskSegmentCalculator::<init>()
+new: method void org.apache.maven.lifecycle.internal.DefaultLifecycleTaskSegmentCalculator::<init>(org.apache.maven.lifecycle.internal.MojoDescriptorCreator, org.apache.maven.lifecycle.internal.LifecyclePluginResolver)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method void org.apache.maven.lifecycle.internal.LifecycleDebugLogger::<init>(org.codehaus.plexus.logging.Logger)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.lifecycle.internal.LifecycleDependencyResolver::<init>()
+new: method void org.apache.maven.lifecycle.internal.LifecycleDependencyResolver::<init>(org.apache.maven.project.ProjectDependenciesResolver, org.apache.maven.lifecycle.internal.ProjectArtifactFactory, org.apache.maven.eventspy.internal.EventSpyDispatcher, org.apache.maven.project.artifact.ProjectArtifactsCache, org.apache.maven.api.services.MessageBuilderFactory)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method void org.apache.maven.lifecycle.internal.LifecycleDependencyResolver::<init>(org.apache.maven.project.ProjectDependenciesResolver, org.codehaus.plexus.logging.Logger)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.lifecycle.internal.LifecycleExecutionPlanCalculator::setupMojoExecution(org.apache.maven.execution.MavenSession, org.apache.maven.project.MavenProject, org.apache.maven.plugin.MojoExecution) throws org.apache.maven.plugin.PluginNotFoundException, org.apache.maven.plugin.PluginResolutionException, org.apache.maven.plugin.PluginDescriptorParsingException, org.apache.maven.plugin.MojoNotFoundException, org.apache.maven.plugin.InvalidPluginDescriptorException, org.apache.maven.plugin.prefix.NoPluginFoundForPrefixException, org.apache.maven.lifecycle.LifecyclePhaseNotFoundException, org.apache.maven.lifecycle.LifecycleNotFoundException, org.apache.maven.plugin.version.PluginVersionResolutionException
+new: method void org.apache.maven.lifecycle.internal.LifecycleExecutionPlanCalculator::setupMojoExecution(org.apache.maven.execution.MavenSession, org.apache.maven.project.MavenProject, org.apache.maven.plugin.MojoExecution, java.util.Set<org.apache.maven.plugin.descriptor.MojoDescriptor>) throws org.apache.maven.plugin.PluginNotFoundException, org.apache.maven.plugin.PluginResolutionException, org.apache.maven.plugin.PluginDescriptorParsingException, org.apache.maven.plugin.MojoNotFoundException, org.apache.maven.plugin.InvalidPluginDescriptorException, org.apache.maven.plugin.prefix.NoPluginFoundForPrefixException, org.apache.maven.lifecycle.LifecyclePhaseNotFoundException, org.apache.maven.lifecycle.LifecycleNotFoundException, org.apache.maven.plugin.version.PluginVersionResolutionException
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.lifecycle.internal.LifecycleModuleBuilder::<init>()
+new: method void org.apache.maven.lifecycle.internal.LifecycleModuleBuilder::<init>(org.apache.maven.lifecycle.internal.MojoExecutor, org.apache.maven.lifecycle.internal.builder.BuilderCommon, org.apache.maven.lifecycle.internal.ExecutionEventCatapult, java.util.List<org.apache.maven.execution.ProjectExecutionListener>, org.apache.maven.internal.transformation.ConsumerPomArtifactTransformer)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method void org.apache.maven.lifecycle.internal.LifecycleModuleBuilder::setProjectExecutionListeners(java.util.List<org.apache.maven.execution.ProjectExecutionListener>)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.lifecycle.internal.LifecyclePluginResolver::<init>()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.lifecycle.internal.LifecycleStarter
+new: interface org.apache.maven.lifecycle.internal.LifecycleStarter
+java.class.kindChanged: Class kind changed from 'class' to 'interface'.
+SOURCE: BREAKING, BINARY: BREAKING
+java.class.nowAbstract: Class is now abstract.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.removed: Element no longer annotated with 'org.codehaus.plexus.component.annotations.Component'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method void org.apache.maven.lifecycle.internal.LifecycleStarter::<init>()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.lifecycle.internal.LifecycleStarter::execute(org.apache.maven.execution.MavenSession)
+new: method void org.apache.maven.lifecycle.internal.LifecycleStarter::execute(org.apache.maven.execution.MavenSession)
+java.method.nowAbstract: Method now abstract
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method java.lang.String org.apache.maven.lifecycle.internal.LifecycleTask::getLifecyclePhase()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.lifecycle.internal.MojoDescriptorCreator::<init>()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.lifecycle.internal.MojoExecutor::<init>()
+new: method void org.apache.maven.lifecycle.internal.MojoExecutor::<init>(org.apache.maven.plugin.BuildPluginManager, org.apache.maven.plugin.MavenPluginManager, org.apache.maven.lifecycle.internal.LifecycleDependencyResolver, org.apache.maven.lifecycle.internal.ExecutionEventCatapult, javax.inject.Provider<org.apache.maven.plugin.MojosExecutionStrategy>, org.apache.maven.api.services.MessageBuilderFactory)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method void org.apache.maven.lifecycle.internal.MojoExecutor::execute(org.apache.maven.execution.MavenSession, java.util.List<org.apache.maven.plugin.MojoExecution>, org.apache.maven.lifecycle.internal.ProjectIndex) throws org.apache.maven.lifecycle.LifecycleExecutionException
+new: method void org.apache.maven.lifecycle.internal.MojoExecutor::execute(org.apache.maven.execution.MavenSession, java.util.List<org.apache.maven.plugin.MojoExecution>) throws org.apache.maven.lifecycle.LifecycleExecutionException
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method java.util.List<org.apache.maven.project.MavenProject> org.apache.maven.lifecycle.internal.MojoExecutor::executeForkedExecutions(org.apache.maven.plugin.MojoExecution, org.apache.maven.execution.MavenSession, org.apache.maven.lifecycle.internal.ProjectIndex) throws org.apache.maven.lifecycle.LifecycleExecutionException
+new: method java.util.List<org.apache.maven.project.MavenProject> org.apache.maven.lifecycle.internal.MojoExecutor::executeForkedExecutions(org.apache.maven.plugin.MojoExecution, org.apache.maven.execution.MavenSession) throws org.apache.maven.lifecycle.LifecycleExecutionException
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.lifecycle.internal.ReactorContext::<init>(org.apache.maven.execution.MavenExecutionResult, org.apache.maven.lifecycle.internal.ProjectIndex, java.lang.ClassLoader, org.apache.maven.lifecycle.internal.ReactorBuildStatus)
+new: method void org.apache.maven.lifecycle.internal.ReactorContext::<init>(org.apache.maven.execution.MavenExecutionResult, java.lang.ClassLoader, org.apache.maven.lifecycle.internal.ReactorBuildStatus)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.apache.maven.lifecycle.internal.ProjectIndex org.apache.maven.lifecycle.internal.ReactorContext::getProjectIndex()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: parameter void org.apache.maven.lifecycle.internal.TaskSegment::<init>(boolean, ===java.lang.Object[]===)
+new: parameter void org.apache.maven.lifecycle.internal.TaskSegment::<init>(boolean, ===org.apache.maven.lifecycle.internal.Task[]===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'java.lang.Object[]' to 'org.apache.maven.lifecycle.internal.Task[]'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method java.util.List<java.lang.Object> org.apache.maven.lifecycle.internal.TaskSegment::getTasks()
+new: method java.util.List<org.apache.maven.lifecycle.internal.Task> org.apache.maven.lifecycle.internal.TaskSegment::getTasks()
+java.method.returnTypeTypeParametersChanged: The return type changed from 'java.util.List<java.lang.Object>' to 'java.util.List<org.apache.maven.lifecycle.internal.Task>'.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: method void org.apache.maven.lifecycle.internal.builder.BuilderCommon::<init>()
+new: method void org.apache.maven.lifecycle.internal.builder.BuilderCommon::<init>(org.apache.maven.lifecycle.internal.LifecycleDebugLogger, org.apache.maven.lifecycle.internal.LifecycleExecutionPlanCalculator, org.apache.maven.lifecycle.internal.ExecutionEventCatapult)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method void org.apache.maven.lifecycle.internal.builder.BuilderCommon::<init>(org.apache.maven.lifecycle.internal.LifecycleDebugLogger, org.apache.maven.lifecycle.internal.LifecycleExecutionPlanCalculator, org.codehaus.plexus.logging.Logger)
+new: method void org.apache.maven.lifecycle.internal.builder.BuilderCommon::<init>(org.apache.maven.lifecycle.internal.LifecycleDebugLogger, org.apache.maven.lifecycle.internal.LifecycleExecutionPlanCalculator, org.apache.maven.lifecycle.internal.ExecutionEventCatapult, org.slf4j.Logger)
+java.method.visibilityReduced: visibility reduced
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.lifecycle.internal.builder.multithreaded.MultiThreadedBuilder::<init>()
+new: method void org.apache.maven.lifecycle.internal.builder.multithreaded.MultiThreadedBuilder::<init>(org.apache.maven.lifecycle.internal.LifecycleModuleBuilder)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method void org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder::<init>()
+new: method void org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder::<init>(org.apache.maven.lifecycle.internal.LifecycleModuleBuilder)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method org.codehaus.plexus.util.xml.Xpp3Dom org.apache.maven.lifecycle.mapping.LifecycleMojo::getConfiguration()
+new: method org.apache.maven.api.xml.XmlNode org.apache.maven.lifecycle.mapping.LifecycleMojo::getConfiguration()
+java.method.returnTypeChanged: The return type changed from 'org.codehaus.plexus.util.xml.Xpp3Dom' to  'org.apache.maven.api.xml.XmlNode'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: parameter void org.apache.maven.lifecycle.mapping.LifecycleMojo::setConfiguration(===org.codehaus.plexus.util.xml.Xpp3Dom===)
+new: parameter void org.apache.maven.lifecycle.mapping.LifecycleMojo::setConfiguration(===org.apache.maven.api.xml.XmlNode===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.codehaus.plexus.util.xml.Xpp3Dom' to 'org.apache.maven.api.xml.XmlNode'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.plugin.DefaultLifecycleBindingsInjector.LifecycleBindingsMerger::merge(org.apache.maven.model.Model, org.apache.maven.model.Model)
+new: method org.apache.maven.api.model.Model org.apache.maven.model.plugin.DefaultLifecycleBindingsInjector.LifecycleBindingsMerger::merge(org.apache.maven.api.model.Model, org.apache.maven.api.model.Model)
+java.method.returnTypeChanged: The return type changed from 'void' to  'org.apache.maven.api.model.Model'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: parameter void org.apache.maven.model.plugin.DefaultLifecycleBindingsInjector.LifecycleBindingsMerger::merge(===org.apache.maven.model.Model===, org.apache.maven.model.Model)
+new: parameter org.apache.maven.api.model.Model org.apache.maven.model.plugin.DefaultLifecycleBindingsInjector.LifecycleBindingsMerger::merge(===org.apache.maven.api.model.Model===, org.apache.maven.api.model.Model)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Model' to 'org.apache.maven.api.model.Model'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: parameter void org.apache.maven.model.plugin.DefaultLifecycleBindingsInjector.LifecycleBindingsMerger::merge(org.apache.maven.model.Model, ===org.apache.maven.model.Model===)
+new: parameter org.apache.maven.api.model.Model org.apache.maven.model.plugin.DefaultLifecycleBindingsInjector.LifecycleBindingsMerger::merge(org.apache.maven.api.model.Model, ===org.apache.maven.api.model.Model===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Model' to 'org.apache.maven.api.model.Model'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.plugin.DefaultLifecycleBindingsInjector.LifecycleBindingsMerger::mergePluginContainer_Plugins(org.apache.maven.model.PluginContainer, org.apache.maven.model.PluginContainer, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.plugin.DefaultLifecycleBindingsInjector.LifecycleBindingsMerger::mergePluginContainer_Plugins(org.apache.maven.api.model.PluginContainer.Builder, org.apache.maven.api.model.PluginContainer, org.apache.maven.api.model.PluginContainer, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.plugin.DefaultLifecycleBindingsInjector.LifecycleBindingsMerger::mergePluginExecution(org.apache.maven.model.PluginExecution, org.apache.maven.model.PluginExecution, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.plugin.DefaultLifecycleBindingsInjector::<init>()
+new: method void org.apache.maven.model.plugin.DefaultLifecycleBindingsInjector::<init>(org.apache.maven.lifecycle.LifeCyclePluginAnalyzer)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method void org.apache.maven.plugin.DefaultBuildPluginManager::<init>()
+new: method void org.apache.maven.plugin.DefaultBuildPluginManager::<init>(org.apache.maven.plugin.MavenPluginManager, org.apache.maven.plugin.LegacySupport, org.apache.maven.execution.scope.internal.MojoExecutionScope, java.util.List<org.apache.maven.execution.MojoExecutionListener>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method void org.apache.maven.plugin.DefaultBuildPluginManager::setMojoExecutionListeners(java.util.List<org.apache.maven.execution.MojoExecutionListener>)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: <none>
+new: method void org.apache.maven.plugin.MavenPluginManager::checkPrerequisites(org.apache.maven.plugin.descriptor.PluginDescriptor) throws org.apache.maven.plugin.PluginIncompatibleException
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING
+
+old: class org.apache.maven.plugin.MavenPluginValidator
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.apache.maven.plugin.descriptor.PluginDescriptor org.apache.maven.plugin.PluginDescriptorCache::get(org.apache.maven.plugin.PluginDescriptorCache.Key, org.apache.maven.plugin.PluginDescriptorCache.PluginDescriptorSupplier) throws org.apache.maven.plugin.PluginResolutionException, org.apache.maven.plugin.PluginDescriptorParsingException, org.apache.maven.plugin.InvalidPluginDescriptorException
+new: method org.apache.maven.plugin.descriptor.PluginDescriptor org.apache.maven.plugin.PluginDescriptorCache::get(org.apache.maven.plugin.PluginDescriptorCache.Key, org.apache.maven.plugin.PluginDescriptorCache.PluginDescriptorSupplier) throws org.apache.maven.plugin.PluginResolutionException, org.apache.maven.plugin.PluginDescriptorParsingException, org.apache.maven.plugin.InvalidPluginDescriptorException
+java.method.noLongerDefault: The interface no longer has the default implementation of the method.
+SOURCE: BREAKING, BINARY: BREAKING
+java.method.nowAbstract: Method now abstract
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface org.apache.maven.plugin.PluginManager
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.plugin.PluginParameterExpressionEvaluator::<init>(org.apache.maven.execution.MavenSession, org.apache.maven.plugin.MojoExecution, org.apache.maven.project.path.PathTranslator, org.codehaus.plexus.logging.Logger, org.apache.maven.project.MavenProject, java.util.Properties)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.apache.maven.plugin.PluginRealmCache.CacheRecord org.apache.maven.plugin.PluginRealmCache::get(org.apache.maven.plugin.PluginRealmCache.Key, org.apache.maven.plugin.PluginRealmCache.PluginRealmSupplier) throws org.apache.maven.plugin.PluginResolutionException, org.apache.maven.plugin.PluginContainerException
+new: method org.apache.maven.plugin.PluginRealmCache.CacheRecord org.apache.maven.plugin.PluginRealmCache::get(org.apache.maven.plugin.PluginRealmCache.Key, org.apache.maven.plugin.PluginRealmCache.PluginRealmSupplier) throws org.apache.maven.plugin.PluginResolutionException, org.apache.maven.plugin.PluginContainerException
+java.method.noLongerDefault: The interface no longer has the default implementation of the method.
+SOURCE: BREAKING, BINARY: BREAKING
+java.method.nowAbstract: Method now abstract
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.plugin.internal.DefaultMavenPluginManager::<init>()
+new: method void org.apache.maven.plugin.internal.DefaultMavenPluginManager::<init>(org.codehaus.plexus.PlexusContainer, org.apache.maven.classrealm.ClassRealmManager, org.apache.maven.plugin.PluginDescriptorCache, org.apache.maven.plugin.PluginRealmCache, org.apache.maven.plugin.internal.PluginDependenciesResolver, org.apache.maven.plugin.ExtensionRealmCache, org.apache.maven.plugin.version.PluginVersionResolver, org.apache.maven.plugin.PluginArtifactsCache, org.apache.maven.plugin.internal.MavenPluginValidator, java.util.List<org.apache.maven.plugin.internal.MavenPluginConfigurationValidator>, org.apache.maven.plugin.PluginValidationManager, java.util.List<org.apache.maven.plugin.MavenPluginPrerequisitesChecker>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method void org.apache.maven.plugin.internal.DefaultPluginDependenciesResolver::<init>()
+new: method void org.apache.maven.plugin.internal.DefaultPluginDependenciesResolver::<init>(org.eclipse.aether.RepositorySystem, java.util.List<org.apache.maven.plugin.internal.MavenPluginDependenciesValidator>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method org.eclipse.aether.graph.DependencyNode org.apache.maven.plugin.internal.DefaultPluginDependenciesResolver::resolveCoreExtension(org.apache.maven.model.Plugin, org.eclipse.aether.graph.DependencyFilter, java.util.List<org.eclipse.aether.repository.RemoteRepository>, org.eclipse.aether.RepositorySystemSession) throws org.apache.maven.plugin.PluginResolutionException
+new: method org.eclipse.aether.resolution.DependencyResult org.apache.maven.plugin.internal.DefaultPluginDependenciesResolver::resolveCoreExtension(org.apache.maven.model.Plugin, org.eclipse.aether.graph.DependencyFilter, java.util.List<org.eclipse.aether.repository.RemoteRepository>, org.eclipse.aether.RepositorySystemSession) throws org.apache.maven.plugin.PluginResolutionException
+java.method.returnTypeChanged: The return type changed from 'org.eclipse.aether.graph.DependencyNode' to  'org.eclipse.aether.resolution.DependencyResult'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.plugin.internal.DefaultPluginManager
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: <none>
+new: interface org.apache.maven.plugin.internal.MavenPluginDependenciesValidator
+java.class.nonPublicPartOfAPI: Class 'org.apache.maven.plugin.internal.MavenPluginDependenciesValidator' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+SOURCE: NON_BREAKING, SEMANTIC: BREAKING, BINARY: NON_BREAKING
+
+old: <none>
+new: method org.eclipse.aether.resolution.DependencyResult org.apache.maven.plugin.internal.PluginDependenciesResolver::resolvePlugin(org.apache.maven.model.Plugin, org.eclipse.aether.artifact.Artifact, org.eclipse.aether.graph.DependencyFilter, java.util.List<org.eclipse.aether.repository.RemoteRepository>, org.eclipse.aether.RepositorySystemSession) throws org.apache.maven.plugin.PluginResolutionException
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING
+
+old: method void org.apache.maven.plugin.prefix.internal.DefaultPluginPrefixResolver::<init>()
+new: method void org.apache.maven.plugin.prefix.internal.DefaultPluginPrefixResolver::<init>(org.apache.maven.plugin.BuildPluginManager, org.eclipse.aether.RepositorySystem, org.apache.maven.artifact.repository.metadata.io.MetadataReader)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method void org.apache.maven.plugin.version.internal.DefaultPluginVersionResolver::<init>()
+new: method void org.apache.maven.plugin.version.internal.DefaultPluginVersionResolver::<init>(org.eclipse.aether.RepositorySystem, org.apache.maven.artifact.repository.metadata.io.MetadataReader, org.apache.maven.plugin.MavenPluginManager, org.eclipse.aether.version.VersionScheme)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method void org.apache.maven.project.DefaultMavenProjectHelper::<init>()
+new: method void org.apache.maven.project.DefaultMavenProjectHelper::<init>(org.apache.maven.artifact.handler.manager.ArtifactHandlerManager)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: parameter void org.apache.maven.project.DefaultModelBuildingListener::buildExtensionsAssembled(===org.apache.maven.model.building.ModelBuildingEvent===)
+new: parameter void org.apache.maven.project.DefaultModelBuildingListener::buildExtensionsAssembled(===org.apache.maven.api.services.model.ModelBuildingEvent===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.building.ModelBuildingEvent' to 'org.apache.maven.api.services.model.ModelBuildingEvent'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: field org.apache.maven.project.DefaultProjectBuilder.DISABLE_GLOBAL_MODEL_CACHE_SYSTEM_PROPERTY
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING
+
+old: method void org.apache.maven.project.DefaultProjectBuilder::<init>()
+new: method void org.apache.maven.project.DefaultProjectBuilder::<init>(org.apache.maven.api.services.ModelBuilder, org.apache.maven.api.services.model.ModelProcessor, org.apache.maven.project.ProjectBuildingHelper, org.apache.maven.bridge.MavenRepositorySystem, org.eclipse.aether.RepositorySystem, org.eclipse.aether.impl.RemoteRepositoryManager, org.apache.maven.project.ProjectDependenciesResolver, org.apache.maven.model.root.RootLocator)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method void org.apache.maven.project.DefaultProjectBuildingHelper::<init>()
+new: method void org.apache.maven.project.DefaultProjectBuildingHelper::<init>(org.apache.maven.classrealm.ClassRealmManager, org.apache.maven.project.ProjectRealmCache, org.apache.maven.bridge.MavenRepositorySystem, org.apache.maven.plugin.MavenPluginManager)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method void org.apache.maven.project.DefaultProjectDependenciesResolver::<init>()
+new: method void org.apache.maven.project.DefaultProjectDependenciesResolver::<init>(org.eclipse.aether.RepositorySystem, java.util.List<org.apache.maven.project.RepositorySessionDecorator>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: <none>
+new: method org.apache.maven.project.ProjectBuildingResult org.apache.maven.project.ProjectBuilder::build(org.apache.maven.api.services.ModelSource, org.apache.maven.project.ProjectBuildingRequest) throws org.apache.maven.project.ProjectBuildingException
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING, BINARY: NON_BREAKING
+
+old: method void org.apache.maven.project.ProjectModelResolver::<init>(org.eclipse.aether.RepositorySystemSession, org.eclipse.aether.RequestTrace, org.eclipse.aether.RepositorySystem, org.eclipse.aether.impl.RemoteRepositoryManager, java.util.List<org.eclipse.aether.repository.RemoteRepository>, org.apache.maven.project.ProjectBuildingRequest.RepositoryMerging, org.apache.maven.project.ReactorModelPool)
+new: method void org.apache.maven.project.ProjectModelResolver::<init>(org.eclipse.aether.RepositorySystemSession, org.eclipse.aether.RequestTrace, org.eclipse.aether.RepositorySystem, org.eclipse.aether.impl.RemoteRepositoryManager, java.util.List<org.eclipse.aether.repository.RemoteRepository>, org.apache.maven.project.ProjectBuildingRequest.RepositoryMerging, org.apache.maven.project.ReactorModelPool, java.util.Map<java.lang.String, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.project.ProjectSorter::<init>(java.util.Collection<org.apache.maven.project.MavenProject>) throws org.codehaus.plexus.util.dag.CycleDetectedException, org.apache.maven.project.DuplicateProjectException
+new: method void org.apache.maven.project.ProjectSorter::<init>(java.util.Collection<org.apache.maven.project.MavenProject>) throws org.apache.maven.project.CycleDetectedException, org.apache.maven.project.DuplicateProjectException
+java.method.exception.checkedAdded: Method newly throws checked exceptions: org.apache.maven.project.CycleDetectedException.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+java.method.exception.checkedRemoved: Method no longer throws checked exceptions: org.codehaus.plexus.util.dag.CycleDetectedException.
+SOURCE: BREAKING, BINARY: NON_BREAKING
+
+old: method org.codehaus.plexus.util.dag.DAG org.apache.maven.project.ProjectSorter::getDAG()
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.project.ReactorModelPool
+new: class org.apache.maven.project.ReactorModelPool
+java.class.nonPublicPartOfAPI: Class 'org.apache.maven.project.ReactorModelPool' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+SOURCE: NON_BREAKING, SEMANTIC: BREAKING, BINARY: NON_BREAKING
+
+old: class org.apache.maven.project.artifact.ActiveProjectArtifact
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.project.artifact.DefaultMavenMetadataCache
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.project.artifact.DefaultMetadataSource
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface org.apache.maven.project.artifact.MavenMetadataCache
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.project.artifact.MavenMetadataSource
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.project.artifact.ProjectArtifactMetadata
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface org.apache.maven.project.path.PathTranslator
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.repository.ArtifactDoesNotExistException
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.repository.ArtifactTransferEvent
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.repository.ArtifactTransferFailedException
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface org.apache.maven.repository.ArtifactTransferListener
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface org.apache.maven.repository.ArtifactTransferResource
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.repository.DelegatingLocalArtifactRepository
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.repository.LocalArtifactRepository
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.repository.LocalRepositoryNotAccessibleException
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface org.apache.maven.repository.RepositorySystem
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.repository.legacy.metadata.AbstractArtifactMetadata
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.repository.legacy.metadata.ArtifactMetadataRetrievalException
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface org.apache.maven.repository.legacy.metadata.ArtifactMetadataSource
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.repository.legacy.metadata.DefaultMetadataResolutionRequest
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface org.apache.maven.repository.legacy.metadata.MetadataResolutionRequest
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.repository.legacy.metadata.ResolutionGroup
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.rtinfo.internal.DefaultRuntimeInformation::<init>()
+new: method void org.apache.maven.rtinfo.internal.DefaultRuntimeInformation::<init>(org.eclipse.aether.version.VersionScheme)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method void org.apache.maven.session.scope.internal.SessionScopeModule::<init>(org.codehaus.plexus.PlexusContainer) throws org.codehaus.plexus.component.repository.exception.ComponentLookupException
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.settings.DefaultMavenSettingsBuilder
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface org.apache.maven.settings.MavenSettingsBuilder
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: parameter void org.apache.maven.toolchain.DefaultToolchain::<init>(org.apache.maven.toolchain.model.ToolchainModel, java.lang.String, ===org.codehaus.plexus.logging.Logger===)
+new: parameter void org.apache.maven.toolchain.DefaultToolchain::<init>(org.apache.maven.toolchain.model.ToolchainModel, java.lang.String, ===org.slf4j.Logger===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.codehaus.plexus.logging.Logger' to 'org.slf4j.Logger'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: parameter void org.apache.maven.toolchain.DefaultToolchain::<init>(org.apache.maven.toolchain.model.ToolchainModel, ===org.codehaus.plexus.logging.Logger===)
+new: parameter void org.apache.maven.toolchain.DefaultToolchain::<init>(org.apache.maven.toolchain.model.ToolchainModel, ===org.slf4j.Logger===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.codehaus.plexus.logging.Logger' to 'org.slf4j.Logger'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method org.codehaus.plexus.logging.Logger org.apache.maven.toolchain.DefaultToolchain::getLog()
+new: method org.slf4j.Logger org.apache.maven.toolchain.DefaultToolchain::getLog()
+java.method.returnTypeChanged: The return type changed from 'org.codehaus.plexus.logging.Logger' to  'org.slf4j.Logger'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.toolchain.DefaultToolchainManager::<init>()
+new: method void org.apache.maven.toolchain.DefaultToolchainManager::<init>(java.util.Map<java.lang.String, org.apache.maven.toolchain.ToolchainFactory>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: method void org.apache.maven.toolchain.DefaultToolchainManagerPrivate::<init>()
+new: method void org.apache.maven.toolchain.DefaultToolchainManagerPrivate::<init>(java.util.Map<java.lang.String, org.apache.maven.toolchain.ToolchainFactory>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING, BINARY: EQUIVALENT
+
+old: class org.apache.maven.toolchain.DefaultToolchainsBuilder
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface org.apache.maven.toolchain.ToolchainsBuilder
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.toolchain.building.DefaultToolchainsBuilder
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.toolchain.building.DefaultToolchainsBuildingRequest
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.toolchain.building.DefaultToolchainsBuildingResult
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface org.apache.maven.toolchain.building.ToolchainsBuilder
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.toolchain.building.ToolchainsBuildingException
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface org.apache.maven.toolchain.building.ToolchainsBuildingRequest
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface org.apache.maven.toolchain.building.ToolchainsBuildingResult
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.toolchain.io.DefaultToolchainsReader
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.toolchain.io.DefaultToolchainsWriter
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.toolchain.io.ToolchainsParseException
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface org.apache.maven.toolchain.io.ToolchainsReader
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: interface org.apache.maven.toolchain.io.ToolchainsWriter
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: parameter void org.apache.maven.toolchain.java.DefaultJavaToolChain::<init>(org.apache.maven.toolchain.model.ToolchainModel, ===org.codehaus.plexus.logging.Logger===)
+new: parameter void org.apache.maven.toolchain.java.DefaultJavaToolChain::<init>(org.apache.maven.toolchain.model.ToolchainModel, ===org.slf4j.Logger===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.codehaus.plexus.logging.Logger' to 'org.slf4j.Logger'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method org.codehaus.plexus.logging.Logger org.apache.maven.toolchain.java.JavaToolchainFactory::getLogger()
+new: method org.slf4j.Logger org.apache.maven.toolchain.java.JavaToolchainFactory::getLogger()
+java.method.returnTypeChanged: The return type changed from 'org.codehaus.plexus.logging.Logger' to  'org.slf4j.Logger'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.toolchain.merge.MavenToolchainMerger
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.toolchain.model.PersistedToolchains
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.toolchain.model.ToolchainModel
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.toolchain.model.TrackableBase
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.toolchain.model.io.xpp3.MavenToolchainsXpp3Reader
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: class org.apache.maven.toolchain.model.io.xpp3.MavenToolchainsXpp3Writer
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+20:37:55.146 INFO  Analysis took 18393ms.
+
+
+* * * * * * * *
+>>>>>>
+compilation log of 4.0.0-beta-3:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< org.apache.logging.log4j:log4j-api-test >---------------
+[INFO] Building Apache Log4j API Tests 2.23.1
+[INFO]   from _temp_org.apache.maven_maven-core_4.0.0-beta-3_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ log4j-api-test ---
+[INFO] Deleting /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/target
+[INFO] 
+[INFO] --- flatten:1.5.0:clean (clean-flattened-pom) @ log4j-api-test ---
+[INFO] Deleting /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/.flattened-pom.xml
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ log4j-api-test ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ log4j-api-test ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-upper-bound-deps) @ log4j-api-test ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (ban-wildcard-imports) @ log4j-api-test ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (ban-logging-dependencies) @ log4j-api-test ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- build-helper:3.5.0:parse-version (parse-version) @ log4j-api-test ---
+[INFO] 
+[INFO] --- clean:3.3.2:clean (delete-module-descriptors) @ log4j-api-test ---
+[INFO] Deleting /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/target/classes (includes = [module-info.class, META-INF/versions/**], excludes = [])
+[INFO] 
+[INFO] --- remote-resources:3.1.0:process (process-resource-bundles) @ log4j-api-test ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.198 s
+[INFO] Finished at: 2024-07-08T20:42:21+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-remote-resources-plugin:3.1.0:process (process-resource-bundles) on project log4j-api-test: Error reading remote resource: /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/target/maven-shared-archive-resources/META-INF/DEPENDENCIES -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+
+* * * * * * * *

@@ -4914,6 +4914,10 @@
                 "date": 1714128310000
             },
             {
+                "version": "1.9.21",
+                "date": 1719913128000
+            },
+            {
                 "version": "2.0.0-alpha-1",
                 "date": 1698922981000
             },
@@ -4948,9 +4952,13 @@
             {
                 "version": "2.0.0-alpha-8",
                 "date": 1708618443000
+            },
+            {
+                "version": "2.0.0",
+                "date": 1719910477000
             }
         ],
-        "BestVersion": "2.0.0-alpha-8",
+        "BestVersion": "2.0.0",
         "Breaking_Reason": {}
     },
     {
@@ -5073,6 +5081,10 @@
                 "date": 1714128282000
             },
             {
+                "version": "1.9.21",
+                "date": 1719913095000
+            },
+            {
                 "version": "2.0.0-alpha-1",
                 "date": 1698922950000
             },
@@ -5107,9 +5119,13 @@
             {
                 "version": "2.0.0-alpha-8",
                 "date": 1708618421000
+            },
+            {
+                "version": "2.0.0",
+                "date": 1719910449000
             }
         ],
-        "BestVersion": "2.0.0-alpha-8",
+        "BestVersion": "2.0.0",
         "Breaking_Reason": {}
     },
     {
@@ -5283,6 +5299,10 @@
                 "date": 1714128250000
             },
             {
+                "version": "1.9.21",
+                "date": 1719913054000
+            },
+            {
                 "version": "2.0.0-alpha-1",
                 "date": 1698922914000
             },
@@ -5317,9 +5337,13 @@
             {
                 "version": "2.0.0-alpha-8",
                 "date": 1708618390000
+            },
+            {
+                "version": "2.0.0",
+                "date": 1719910404000
             }
         ],
-        "BestVersion": "2.0.0-alpha-8",
+        "BestVersion": "2.0.0",
         "Breaking_Reason": {}
     },
     {
@@ -5493,6 +5517,10 @@
                 "date": 1714128255000
             },
             {
+                "version": "1.9.21",
+                "date": 1719913061000
+            },
+            {
                 "version": "2.0.0-alpha-1",
                 "date": 1698922919000
             },
@@ -5527,9 +5555,13 @@
             {
                 "version": "2.0.0-alpha-8",
                 "date": 1708618394000
+            },
+            {
+                "version": "2.0.0",
+                "date": 1719910412000
             }
         ],
-        "BestVersion": "2.0.0-alpha-8",
+        "BestVersion": "2.0.0",
         "Breaking_Reason": {}
     },
     {
@@ -5703,6 +5735,10 @@
                 "date": 1714128265000
             },
             {
+                "version": "1.9.21",
+                "date": 1719913077000
+            },
+            {
                 "version": "2.0.0-alpha-1",
                 "date": 1698922933000
             },
@@ -5737,9 +5773,13 @@
             {
                 "version": "2.0.0-alpha-8",
                 "date": 1708618404000
+            },
+            {
+                "version": "2.0.0",
+                "date": 1719910429000
             }
         ],
-        "BestVersion": "2.0.0-alpha-8",
+        "BestVersion": "2.0.0",
         "Breaking_Reason": {}
     },
     {
