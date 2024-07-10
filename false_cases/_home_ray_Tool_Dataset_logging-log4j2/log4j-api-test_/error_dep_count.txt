@@ -1,4 +1,3 @@
 total dep: 47
-error dep: 23
-weight: 0.48936170212765956
-note: setting all dep to best version causes compilation error!
+error dep: 13
+weight: 0.2765957446808511

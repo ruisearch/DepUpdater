@@ -1,0 +1,763 @@
+module name: log4j-api-test/
+
+* * * * * * * *
+groudId: org.apache.logging.log4j
+artifactId: log4j-api
+old version: 2.23.1
+new version: 2.23.1
+classifier: 
+depth: 1
+reachable api of old version:
+    org.apache.logging.log4j.Level: org.apache.logging.log4j.Level valueOf(java.lang.String)
+    org.apache.logging.log4j.LogManager: org.apache.logging.log4j.spi.LoggerContextFactory getFactory()
+    org.apache.logging.log4j.LogManager: void setFactory(org.apache.logging.log4j.spi.LoggerContextFactory)
+    org.apache.logging.log4j.ThreadContext: void init()
+    org.apache.logging.log4j.ThreadContext: void put(java.lang.String,java.lang.String)
+    org.apache.logging.log4j.ThreadContext: void putAll(java.util.Map)
+    org.apache.logging.log4j.ThreadContext: java.lang.String get(java.lang.String)
+    org.apache.logging.log4j.ThreadContext: void clearMap()
+    org.apache.logging.log4j.ThreadContext: void clearAll()
+    org.apache.logging.log4j.ThreadContext: java.util.Map getContext()
+    org.apache.logging.log4j.ThreadContext: java.util.Map getImmutableContext()
+    org.apache.logging.log4j.ThreadContext: void clearStack()
+    org.apache.logging.log4j.ThreadContext: org.apache.logging.log4j.ThreadContext$ContextStack getImmutableStack()
+    org.apache.logging.log4j.ThreadContext: void setStack(java.util.Collection)
+    org.apache.logging.log4j.message.ParameterizedMessage: void <init>(java.lang.String,java.lang.Object)
+    org.apache.logging.log4j.spi.AbstractLogger: void <init>(java.lang.String)
+    org.apache.logging.log4j.spi.AbstractLogger: void <init>(java.lang.String,org.apache.logging.log4j.message.MessageFactory)
+    org.apache.logging.log4j.status.StatusConsoleListener: void <init>(org.apache.logging.log4j.Level,java.io.PrintStream)
+    org.apache.logging.log4j.status.StatusData: void <init>(java.lang.StackTraceElement,org.apache.logging.log4j.Level,org.apache.logging.log4j.message.Message,java.lang.Throwable,java.lang.String)
+    org.apache.logging.log4j.status.StatusLogger: org.apache.logging.log4j.status.StatusLogger getLogger()
+    org.apache.logging.log4j.status.StatusLogger: void setLogger(org.apache.logging.log4j.status.StatusLogger)
+    org.apache.logging.log4j.util.FilteredObjectInputStream: void <init>(java.io.InputStream)
+    org.apache.logging.log4j.util.OsgiServiceLocator: java.util.stream.Stream loadServices(java.lang.Class,java.lang.invoke.MethodHandles$Lookup)
+    org.apache.logging.log4j.util.PropertySource$Util: java.lang.CharSequence joinAsCamelCase(java.lang.Iterable)
+    org.apache.logging.log4j.util.Timer: void <init>(java.lang.String)
+    org.apache.logging.log4j.util.Timer: void <init>(java.lang.String,int)
+/ / / / / / / / /
+revapi log of the subsequent version -- 3.0.0-alpha1:
+20:28:55.005 INFO  Downloading checked archives
+20:28:55.015 INFO  Downloading extensions
+20:28:57.163 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.apache.logging.log4j-log4j-api-2.23.1.jar
+New API: org.apache.logging.log4j-log4j-api-3.0.0-alpha1.jar
+old: class org.apache.logging.log4j.CloseableThreadContext
+new: class org.apache.logging.log4j.CloseableThreadContext
+java.class.nowFinal: Class is now final.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.CloseableThreadContext.Instance
+new: class org.apache.logging.log4j.CloseableThreadContext.Instance
+java.class.nowFinal: Class is now final.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.Level
+new: class org.apache.logging.log4j.Level
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.annotation.removed: Element no longer annotated with 'aQute.bnd.annotation.baseline.BaselineIgnore'.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: field org.apache.logging.log4j.LogManager.FACTORY_PROPERTY_NAME
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method void org.apache.logging.log4j.Logger::entry()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.logging.log4j.Logger::entry(java.lang.Object[])
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.logging.log4j.Logger::exit()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method <R> R org.apache.logging.log4j.Logger::exit(R)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface org.apache.logging.log4j.Marker
+new: interface org.apache.logging.log4j.Marker
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.MarkerManager.Log4jMarker
+new: class org.apache.logging.log4j.MarkerManager.Log4jMarker
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.apache.logging.log4j.Marker org.apache.logging.log4j.MarkerManager::getMarker(java.lang.String, java.lang.String)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.apache.logging.log4j.Marker org.apache.logging.log4j.MarkerManager::getMarker(java.lang.String, org.apache.logging.log4j.Marker)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface org.apache.logging.log4j.ThreadContext.ContextStack
+new: interface org.apache.logging.log4j.ThreadContext.ContextStack
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.message.AbstractMessageFactory
+new: class org.apache.logging.log4j.message.AbstractMessageFactory
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nowImplementsInterface: Class now implements interface 'org.apache.logging.log4j.message.MessageFactory'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+java.element.nowDeprecated: The element is now deprecated.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT
+
+old: class org.apache.logging.log4j.message.DefaultFlowMessageFactory
+new: class org.apache.logging.log4j.message.DefaultFlowMessageFactory
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface org.apache.logging.log4j.message.EntryMessage
+new: interface org.apache.logging.log4j.message.EntryMessage
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface org.apache.logging.log4j.message.ExitMessage
+new: interface org.apache.logging.log4j.message.ExitMessage
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface org.apache.logging.log4j.message.FlowMessage
+new: interface org.apache.logging.log4j.message.FlowMessage
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.message.FormattedMessage
+new: class org.apache.logging.log4j.message.FormattedMessage
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.message.FormattedMessageFactory
+new: class org.apache.logging.log4j.message.FormattedMessageFactory
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'org.apache.logging.log4j.message.AbstractMessageFactory'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nowImplementsInterface: Class now implements interface 'org.apache.logging.log4j.message.MessageFactory'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+
+old: class org.apache.logging.log4j.message.LocalizedMessage
+new: class org.apache.logging.log4j.message.LocalizedMessage
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.message.LocalizedMessageFactory
+new: class org.apache.logging.log4j.message.LocalizedMessageFactory
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'org.apache.logging.log4j.message.AbstractMessageFactory'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nowImplementsInterface: Class now implements interface 'org.apache.logging.log4j.message.MessageFactory'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+
+old: class org.apache.logging.log4j.message.MapMessage<M extends org.apache.logging.log4j.message.MapMessage<M, V>, V>
+new: class org.apache.logging.log4j.message.MapMessage<M extends org.apache.logging.log4j.message.MapMessage<M, V>, V>
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface org.apache.logging.log4j.message.Message
+new: interface org.apache.logging.log4j.message.Message
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface org.apache.logging.log4j.message.MessageCollectionMessage<T>
+new: interface org.apache.logging.log4j.message.MessageCollectionMessage<T>
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.message.MessageFormatMessage
+new: class org.apache.logging.log4j.message.MessageFormatMessage
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.message.MessageFormatMessageFactory
+new: class org.apache.logging.log4j.message.MessageFormatMessageFactory
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'org.apache.logging.log4j.message.AbstractMessageFactory'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nowImplementsInterface: Class now implements interface 'org.apache.logging.log4j.message.MessageFactory'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+
+old: interface org.apache.logging.log4j.message.MultiformatMessage
+new: interface org.apache.logging.log4j.message.MultiformatMessage
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.message.ObjectArrayMessage
+new: class org.apache.logging.log4j.message.ObjectArrayMessage
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.message.ObjectMessage
+new: class org.apache.logging.log4j.message.ObjectMessage
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.message.ParameterizedMessage
+new: class org.apache.logging.log4j.message.ParameterizedMessage
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.logging.log4j.message.ParameterizedMessage::<init>(java.lang.String, java.lang.String[], java.lang.Throwable)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.message.ParameterizedMessageFactory
+new: class org.apache.logging.log4j.message.ParameterizedMessageFactory
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'org.apache.logging.log4j.message.AbstractMessageFactory'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nowImplementsInterface: Class now implements interface 'org.apache.logging.log4j.message.MessageFactory'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+
+old: class org.apache.logging.log4j.message.ParameterizedNoReferenceMessageFactory
+new: class org.apache.logging.log4j.message.ParameterizedNoReferenceMessageFactory
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'org.apache.logging.log4j.message.AbstractMessageFactory'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nowImplementsInterface: Class now implements interface 'org.apache.logging.log4j.message.MessageFactory'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+
+old: interface org.apache.logging.log4j.message.ReusableMessage
+new: interface org.apache.logging.log4j.message.ReusableMessage
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.message.ReusableMessageFactory
+new: class org.apache.logging.log4j.message.ReusableMessageFactory
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nowImplementsInterface: Class now implements interface 'org.apache.logging.log4j.message.MessageFactory'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+
+old: class org.apache.logging.log4j.message.ReusableObjectMessage
+new: class org.apache.logging.log4j.message.ReusableObjectMessage
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'org.apache.logging.log4j.message.Clearable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.message.ReusableParameterizedMessage
+new: class org.apache.logging.log4j.message.ReusableParameterizedMessage
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'org.apache.logging.log4j.message.Clearable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.message.ReusableSimpleMessage
+new: class org.apache.logging.log4j.message.ReusableSimpleMessage
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'org.apache.logging.log4j.message.Clearable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.message.SimpleMessage
+new: class org.apache.logging.log4j.message.SimpleMessage
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.message.SimpleMessageFactory
+new: class org.apache.logging.log4j.message.SimpleMessageFactory
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'org.apache.logging.log4j.message.AbstractMessageFactory'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nowImplementsInterface: Class now implements interface 'org.apache.logging.log4j.message.MessageFactory'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+
+old: class org.apache.logging.log4j.message.StringFormattedMessage
+new: class org.apache.logging.log4j.message.StringFormattedMessage
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.message.StringFormatterMessageFactory
+new: class org.apache.logging.log4j.message.StringFormatterMessageFactory
+java.class.noLongerInheritsFromClass: Class no longer inherits from 'org.apache.logging.log4j.message.AbstractMessageFactory'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nowImplementsInterface: Class now implements interface 'org.apache.logging.log4j.message.MessageFactory'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING
+
+old: class org.apache.logging.log4j.message.StringMapMessage
+new: class org.apache.logging.log4j.message.StringMapMessage
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.message.StructuredDataCollectionMessage
+new: class org.apache.logging.log4j.message.StructuredDataCollectionMessage
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.message.StructuredDataId
+new: class org.apache.logging.log4j.message.StructuredDataId
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.message.StructuredDataMessage
+new: class org.apache.logging.log4j.message.StructuredDataMessage
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.message.ThreadDumpMessage
+new: class org.apache.logging.log4j.message.ThreadDumpMessage
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.annotation.removed: Element no longer annotated with 'aQute.bnd.annotation.spi.ServiceConsumer'.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method java.lang.Object org.apache.logging.log4j.message.ThreadDumpMessage::writeReplace()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.simple.SimpleLogger
+new: class org.apache.logging.log4j.simple.SimpleLogger
+java.class.noLongerImplementsInterface: Class no longer implements interface 'org.apache.logging.log4j.spi.LocationAwareLogger'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.logging.log4j.simple.SimpleLogger::<init>(java.lang.String, org.apache.logging.log4j.Level, boolean, boolean, boolean, boolean, java.lang.String, org.apache.logging.log4j.message.MessageFactory, org.apache.logging.log4j.util.PropertiesUtil, java.io.PrintStream)
+new: method void org.apache.logging.log4j.simple.SimpleLogger::<init>(java.lang.String, org.apache.logging.log4j.message.MessageFactory, java.io.PrintStream, org.apache.logging.log4j.simple.SimpleLoggerConfiguration)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.spi.AbstractLogger
+new: class org.apache.logging.log4j.spi.AbstractLogger
+java.class.noLongerImplementsInterface: Class no longer implements interface 'org.apache.logging.log4j.spi.LocationAwareLogger'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: field org.apache.logging.log4j.spi.AbstractLogger.DEFAULT_FLOW_MESSAGE_FACTORY_CLASS
+new: <none>
+java.field.removed: Field removed from class.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: field org.apache.logging.log4j.spi.AbstractLogger.DEFAULT_MESSAGE_FACTORY_CLASS
+new: <none>
+java.field.removed: Field removed from class.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.apache.logging.log4j.message.EntryMessage org.apache.logging.log4j.spi.AbstractLogger::enter(java.lang.String, java.lang.String, org.apache.logging.log4j.util.MessageSupplier[])
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.apache.logging.log4j.message.EntryMessage org.apache.logging.log4j.spi.AbstractLogger::enter(java.lang.String, org.apache.logging.log4j.util.MessageSupplier)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.logging.log4j.spi.AbstractLogger::entry()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.logging.log4j.spi.AbstractLogger::entry(java.lang.Object[])
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.logging.log4j.spi.AbstractLogger::exit()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method <R> R org.apache.logging.log4j.spi.AbstractLogger::exit(R)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.spi.DefaultThreadContextMap
+new: class org.apache.logging.log4j.spi.DefaultThreadContextMap
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: field org.apache.logging.log4j.spi.DefaultThreadContextMap.INHERITABLE_MAP
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: class org.apache.logging.log4j.spi.DefaultThreadContextStack
+new: class org.apache.logging.log4j.spi.DefaultThreadContextStack
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.spi.ExtendedLoggerWrapper
+new: class org.apache.logging.log4j.spi.ExtendedLoggerWrapper
+java.class.noLongerImplementsInterface: Class no longer implements interface 'org.apache.logging.log4j.spi.LocationAwareLogger'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface org.apache.logging.log4j.spi.LocationAwareLogger
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.spi.LoggerContextKey
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.spi.MessageFactory2Adapter
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.spi.MutableThreadContextStack
+new: class org.apache.logging.log4j.spi.MutableThreadContextStack
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.spi.ThreadContextMapFactory
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface org.apache.logging.log4j.spi.ThreadContextStack
+new: interface org.apache.logging.log4j.spi.ThreadContextStack
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.logging.log4j.status.StatusConsoleListener::close()
+new: method void org.apache.logging.log4j.status.StatusConsoleListener::close() throws java.io.IOException
+java.method.exception.checkedAdded: Method newly throws checked exceptions: java.io.IOException.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.logging.log4j.status.StatusConsoleListener::setStream(java.io.PrintStream)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.status.StatusData
+new: class org.apache.logging.log4j.status.StatusData
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.time.Instant org.apache.logging.log4j.status.StatusData::getInstant()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.status.StatusLogger
+new: class org.apache.logging.log4j.status.StatusLogger
+java.class.noLongerImplementsInterface: Class no longer implements interface 'org.apache.logging.log4j.spi.LocationAwareLogger'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.nowFinal: Class is now final.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.status.StatusLogger.Config
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: field org.apache.logging.log4j.status.StatusLogger.DEFAULT_STATUS_LISTENER_LEVEL
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: field org.apache.logging.log4j.status.StatusLogger.MAX_STATUS_ENTRIES
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: field org.apache.logging.log4j.status.StatusLogger.PROPERTIES_FILE_NAME
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: field org.apache.logging.log4j.status.StatusLogger.STATUS_DATE_FORMAT
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method void org.apache.logging.log4j.status.StatusLogger::<init>(java.lang.String, org.apache.logging.log4j.message.MessageFactory, org.apache.logging.log4j.status.StatusLogger.Config, org.apache.logging.log4j.status.StatusConsoleListener)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.apache.logging.log4j.status.StatusConsoleListener org.apache.logging.log4j.status.StatusLogger::getFallbackListener()
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.logging.log4j.status.StatusLogger::setLogger(org.apache.logging.log4j.status.StatusLogger)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.util.Base64Util
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: field org.apache.logging.log4j.util.Constants.LOG4J2_DEBUG
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: interface org.apache.logging.log4j.util.IndexedReadOnlyStringMap
+new: interface org.apache.logging.log4j.util.IndexedReadOnlyStringMap
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface org.apache.logging.log4j.util.IndexedStringMap
+new: interface org.apache.logging.log4j.util.IndexedStringMap
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method <T> org.apache.logging.log4j.util.Lazy<T> org.apache.logging.log4j.util.Lazy<T>::weak(T)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: field org.apache.logging.log4j.util.LoaderUtil.IGNORE_TCCL_PROPERTY
+new: <none>
+java.field.removedWithConstant: Field with constant value has been removed.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method java.lang.Class<?> org.apache.logging.log4j.util.LoaderUtil::loadClassUnchecked(java.lang.String)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method <T> T org.apache.logging.log4j.util.LoaderUtil::newCheckedInstanceOf(java.lang.String, java.lang.Class<T>) throws java.lang.ClassNotFoundException, java.lang.reflect.InvocationTargetException, java.lang.InstantiationException, java.lang.IllegalAccessException, java.lang.NoSuchMethodException
+new: method <T> T org.apache.logging.log4j.util.LoaderUtil::newCheckedInstanceOf(java.lang.String, java.lang.Class<T>) throws java.lang.ClassNotFoundException, java.lang.reflect.InvocationTargetException, java.lang.InstantiationException, java.lang.IllegalAccessException
+java.method.exception.checkedRemoved: Method no longer throws checked exceptions: java.lang.NoSuchMethodException.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: method <T> T org.apache.logging.log4j.util.LoaderUtil::newCheckedInstanceOfProperty(java.lang.String, java.lang.Class<T>) throws java.lang.ClassNotFoundException, java.lang.reflect.InvocationTargetException, java.lang.InstantiationException, java.lang.IllegalAccessException, java.lang.NoSuchMethodException
+new: method <T> T org.apache.logging.log4j.util.LoaderUtil::newCheckedInstanceOfProperty(java.lang.String, java.lang.Class<T>) throws java.lang.ClassNotFoundException, java.lang.reflect.InvocationTargetException, java.lang.InstantiationException, java.lang.IllegalAccessException
+java.method.exception.checkedRemoved: Method no longer throws checked exceptions: java.lang.NoSuchMethodException.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: method <T> T org.apache.logging.log4j.util.LoaderUtil::newCheckedInstanceOfProperty(java.lang.String, java.lang.Class<T>, java.util.function.Supplier<T>) throws java.lang.ClassNotFoundException, java.lang.reflect.InvocationTargetException, java.lang.InstantiationException, java.lang.IllegalAccessException, java.lang.NoSuchMethodException
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method <T> T org.apache.logging.log4j.util.LoaderUtil::newInstanceOf(java.lang.Class<T>) throws java.lang.InstantiationException, java.lang.IllegalAccessException, java.lang.reflect.InvocationTargetException, java.lang.NoSuchMethodException
+new: method <T> T org.apache.logging.log4j.util.LoaderUtil::newInstanceOf(java.lang.Class<T>) throws java.lang.InstantiationException, java.lang.IllegalAccessException, java.lang.reflect.InvocationTargetException
+java.method.exception.checkedRemoved: Method no longer throws checked exceptions: java.lang.NoSuchMethodException.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: method <T> T org.apache.logging.log4j.util.LoaderUtil::newInstanceOf(java.lang.String) throws java.lang.ClassNotFoundException, java.lang.IllegalAccessException, java.lang.InstantiationException, java.lang.reflect.InvocationTargetException, java.lang.NoSuchMethodException
+new: method <T> T org.apache.logging.log4j.util.LoaderUtil::newInstanceOf(java.lang.String) throws java.lang.ClassNotFoundException, java.lang.IllegalAccessException, java.lang.InstantiationException, java.lang.reflect.InvocationTargetException
+java.method.exception.checkedRemoved: Method no longer throws checked exceptions: java.lang.NoSuchMethodException.
+BINARY: NON_BREAKING, SOURCE: BREAKING
+
+old: method <T> T org.apache.logging.log4j.util.LoaderUtil::newInstanceOfUnchecked(java.lang.Class<T>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method <T> T org.apache.logging.log4j.util.LoaderUtil::newInstanceOfUnchecked(java.lang.String)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method <T> T org.apache.logging.log4j.util.LoaderUtil::newInstanceOfUnchecked(java.lang.String, java.lang.Class<T>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.apache.logging.log4j.message.Message org.apache.logging.log4j.util.MessageSupplier::get()
+new: method T java.util.function.Supplier<T>::get() @ org.apache.logging.log4j.util.MessageSupplier
+java.method.returnTypeErasureChanged: The erasure of the return type changed from 'org.apache.logging.log4j.message.Message' to 'java.lang.Object'.
+BINARY: BREAKING, SOURCE: NON_BREAKING
+java.method.movedToSuperClass: The method used to be declared in class 'org.apache.logging.log4j.util.MessageSupplier' but is now declared in superclass 'java.util.function.Supplier<T>'.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT
+
+old: interface org.apache.logging.log4j.util.MultiFormatStringBuilderFormattable
+new: interface org.apache.logging.log4j.util.MultiFormatStringBuilderFormattable
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.util.PropertySource.Comparator
+new: class org.apache.logging.log4j.util.PropertySource.Comparator
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.util.ProviderActivator
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.util.ProviderUtil
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface org.apache.logging.log4j.util.ReadOnlyStringMap
+new: interface org.apache.logging.log4j.util.ReadOnlyStringMap
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.util.SortedArrayStringMap
+new: class org.apache.logging.log4j.util.SortedArrayStringMap
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: interface org.apache.logging.log4j.util.StringMap
+new: interface org.apache.logging.log4j.util.StringMap
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.String org.apache.logging.log4j.util.Strings::toRootLowerCase(java.lang.String)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.util.Timer
+new: class org.apache.logging.log4j.util.Timer
+java.class.noLongerImplementsInterface: Class no longer implements interface 'java.io.Serializable'.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.util.Unbox
+new: class org.apache.logging.log4j.util.Unbox
+java.class.nowFinal: Class is now final.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: class org.apache.logging.log4j.util.internal.SerializationUtil
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+20:29:23.390 INFO  Analysis took 26227ms.
+
+
+* * * * * * * *
+>>>>>>
+subsequent compilation log of 3.0.0-alpha1:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< org.apache.logging.log4j:log4j-api-test >---------------
+[INFO] Building Apache Log4j API Tests 2.23.1
+[INFO]   from _temp_org.apache.logging.log4j_log4j-api_3.0.0-alpha1_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ log4j-api-test ---
+[INFO] Deleting /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/target
+[INFO] 
+[INFO] --- flatten:1.5.0:clean (clean-flattened-pom) @ log4j-api-test ---
+[INFO] Deleting /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/.flattened-pom.xml
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ log4j-api-test ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ log4j-api-test ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-upper-bound-deps) @ log4j-api-test ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (ban-wildcard-imports) @ log4j-api-test ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (ban-logging-dependencies) @ log4j-api-test ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- build-helper:3.5.0:parse-version (parse-version) @ log4j-api-test ---
+[INFO] 
+[INFO] --- clean:3.3.2:clean (delete-module-descriptors) @ log4j-api-test ---
+[INFO] Deleting /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/target/classes (includes = [module-info.class, META-INF/versions/**], excludes = [])
+[INFO] 
+[INFO] --- remote-resources:3.1.0:process (process-resource-bundles) @ log4j-api-test ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ log4j-api-test ---
+[INFO] Copying 2 resources from src/main/resources to target/classes
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/classes
+[INFO] 
+[INFO] --- flatten:1.5.0:flatten (flatten-revision) @ log4j-api-test ---
+[INFO] Generating flattened POM of project org.apache.logging.log4j:log4j-api-test:jar:2.23.1...
+[INFO] 
+[INFO] --- clean:3.3.2:clean (delete-module-descriptor) @ log4j-api-test ---
+[INFO] Deleting /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/target/classes (includes = [module-info.class], excludes = [])
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ log4j-api-test ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 50 source files with javac [debug release 8] to target/classes
+[INFO] -------------------------------------------------------------
+[WARNING] COMPILATION WARNING : 
+[INFO] -------------------------------------------------------------
+[WARNING] Cannot find annotation method 'since()' in type 'java.lang.Deprecated'
+[WARNING] Cannot find annotation method 'forRemoval()' in type 'java.lang.Deprecated'
+[WARNING] Cannot find annotation method 'since()' in type 'java.lang.Deprecated'
+[WARNING] Cannot find annotation method 'forRemoval()' in type 'java.lang.Deprecated'
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/AbstractSerializationTest.java:[41,9] <T>assertThat(T,org.hamcrest.Matcher<? super T>) in org.junit.Assert has been deprecated
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/AbstractSerializationTest.java:[46,9] <T>assertThat(T,org.hamcrest.Matcher<? super T>) in org.junit.Assert has been deprecated
+[INFO] 6 warnings 
+[INFO] -------------------------------------------------------------
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/junit/StatusLoggerMockExtension.java:[55,21] cannot find symbol
+  symbol:   method setLogger(org.apache.logging.log4j.status.StatusLogger)
+  location: class org.apache.logging.log4j.status.StatusLogger
+[ERROR] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/junit/StatusLoggerMockExtension.java:[67,26] cannot find symbol
+  symbol:   method getFallbackListener()
+  location: variable statusLogger of type org.apache.logging.log4j.status.StatusLogger
+[ERROR] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/junit/StatusLoggerMockExtension.java:[73,21] cannot find symbol
+  symbol:   method setLogger(org.apache.logging.log4j.status.StatusLogger)
+  location: class org.apache.logging.log4j.status.StatusLogger
+[INFO] 3 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  17.682 s
+[INFO] Finished at: 2024-07-08T20:31:06+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project log4j-api-test: Compilation failure: Compilation failure: 
+[ERROR] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/junit/StatusLoggerMockExtension.java:[55,21] cannot find symbol
+[ERROR]   symbol:   method setLogger(org.apache.logging.log4j.status.StatusLogger)
+[ERROR]   location: class org.apache.logging.log4j.status.StatusLogger
+[ERROR] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/junit/StatusLoggerMockExtension.java:[67,26] cannot find symbol
+[ERROR]   symbol:   method getFallbackListener()
+[ERROR]   location: variable statusLogger of type org.apache.logging.log4j.status.StatusLogger
+[ERROR] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/junit/StatusLoggerMockExtension.java:[73,21] cannot find symbol
+[ERROR]   symbol:   method setLogger(org.apache.logging.log4j.status.StatusLogger)
+[ERROR]   location: class org.apache.logging.log4j.status.StatusLogger
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+
+
+* * * * * * * *

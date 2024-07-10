@@ -1,0 +1,1512 @@
+module name: log4j-api-test/
+
+* * * * * * * *
+groudId: org.apache.maven
+artifactId: maven-model-builder
+old version: 3.9.6
+new version: 4.0.0-alpha-8
+classifier: 
+depth: 2
+reachable api of old version:
+/ / / / / / / / /
+revapi log of former version -- 4.0.0-alpha-8:
+20:37:13.432 INFO  Downloading checked archives
+20:37:13.510 INFO  Downloading extensions
+20:37:19.891 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.apache.maven-maven-model-builder-3.9.6.jar
+New API: org.apache.maven-maven-model-builder-4.0.0-alpha-8.jar
+old: <none>
+new: class org.apache.maven.model.building.DefaultModelBuilder.DefaultTransformerContextBuilder
+java.class.nonPublicPartOfAPI: Class 'org.apache.maven.model.building.DefaultModelBuilder.DefaultTransformerContextBuilder' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+
+old: method void org.apache.maven.model.building.DefaultModelBuilder::<init>()
+new: method void org.apache.maven.model.building.DefaultModelBuilder::<init>(org.apache.maven.model.building.ModelProcessor, org.apache.maven.model.validation.ModelValidator, org.apache.maven.model.normalization.ModelNormalizer, org.apache.maven.model.interpolation.ModelInterpolator, org.apache.maven.model.path.ModelPathTranslator, org.apache.maven.model.path.ModelUrlNormalizer, org.apache.maven.model.superpom.SuperPomProvider, org.apache.maven.model.inheritance.InheritanceAssembler, org.apache.maven.model.profile.ProfileSelector, org.apache.maven.model.profile.ProfileInjector, org.apache.maven.model.management.PluginManagementInjector, org.apache.maven.model.management.DependencyManagementInjector, org.apache.maven.model.composition.DependencyManagementImporter, org.apache.maven.model.plugin.LifecycleBindingsInjector, org.apache.maven.model.plugin.PluginConfigurationExpander, org.apache.maven.model.plugin.ReportConfigurationExpander, org.apache.maven.model.path.ProfileActivationFilePathInterpolator, org.apache.maven.model.interpolation.ModelVersionProcessor, org.apache.maven.model.building.ModelSourceTransformer)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method void org.apache.maven.model.building.DefaultModelProcessor::<init>()
+new: method void org.apache.maven.model.building.DefaultModelProcessor::<init>(java.util.Collection<org.apache.maven.api.spi.ModelParser>, org.apache.maven.model.locator.ModelLocator, org.apache.maven.model.io.ModelReader)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method org.apache.maven.model.building.DefaultModelProcessor org.apache.maven.model.building.DefaultModelProcessor::setModelLocator(org.apache.maven.model.locator.ModelLocator)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.apache.maven.model.building.DefaultModelProcessor org.apache.maven.model.building.DefaultModelProcessor::setModelReader(org.apache.maven.model.io.ModelReader)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.apache.maven.model.building.ModelSource2 org.apache.maven.model.building.FileModelSource::getRelatedSource(java.lang.String)
+new: method org.apache.maven.model.building.ModelSource3 org.apache.maven.model.building.ModelSource3::getRelatedSource(java.lang.String) @ org.apache.maven.model.building.FileModelSource
+java.method.returnTypeChangedCovariantly: The return type changed covariantly from 'org.apache.maven.model.building.ModelSource2' to 'org.apache.maven.model.building.ModelSource3'.
+BINARY: BREAKING, SOURCE: NON_BREAKING
+java.method.movedToSuperClass: The method used to be declared in class 'org.apache.maven.model.building.FileModelSource' but is now declared in superclass 'org.apache.maven.model.building.ModelSource3'.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT
+java.element.nowDeprecated: The element is now deprecated.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT
+
+old: <none>
+new: method org.apache.maven.model.building.Result<? extends org.apache.maven.model.Model> org.apache.maven.model.building.ModelBuilder::buildRawModel(java.io.File, int, boolean, org.apache.maven.model.building.TransformerContext)
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method org.apache.maven.model.building.TransformerContextBuilder org.apache.maven.model.building.ModelBuilder::newTransformerContextBuilder()
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: field org.apache.maven.model.building.ModelBuildingRequest.VALIDATION_LEVEL_STRICT
+new: field org.apache.maven.model.building.ModelBuildingRequest.VALIDATION_LEVEL_STRICT
+java.field.constantValueChanged: Constant field changed value from '30' to '40'.
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+
+old: <none>
+new: method org.apache.maven.model.Model org.apache.maven.model.building.ModelBuildingRequest::getFileModel()
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method java.nio.file.Path org.apache.maven.model.building.ModelBuildingRequest::getRootDirectory()
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method org.apache.maven.model.building.TransformerContextBuilder org.apache.maven.model.building.ModelBuildingRequest::getTransformerContextBuilder()
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method org.apache.maven.model.building.ModelBuildingRequest org.apache.maven.model.building.ModelBuildingRequest::setFileModel(org.apache.maven.model.Model)
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method org.apache.maven.model.building.ModelBuildingRequest org.apache.maven.model.building.ModelBuildingRequest::setRootDirectory(java.nio.file.Path)
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method org.apache.maven.model.building.ModelBuildingRequest org.apache.maven.model.building.ModelBuildingRequest::setTransformerContextBuilder(org.apache.maven.model.building.TransformerContextBuilder)
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method org.apache.maven.model.Model org.apache.maven.model.building.ModelBuildingResult::getFileModel()
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: interface org.apache.maven.model.building.ModelCacheTag<T>
+java.class.nonPublicPartOfAPI: Class 'org.apache.maven.model.building.ModelCacheTag<T>' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+BINARY: NON_BREAKING, SOURCE: NON_BREAKING, SEMANTIC: BREAKING
+
+old: method void org.apache.maven.model.composition.DefaultDependencyManagementImporter::importManagement(org.apache.maven.model.Model, java.util.List<? extends org.apache.maven.model.DependencyManagement>, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+new: method org.apache.maven.api.model.Model org.apache.maven.model.composition.DefaultDependencyManagementImporter::importManagement(org.apache.maven.api.model.Model, java.util.List<? extends org.apache.maven.api.model.DependencyManagement>, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.returnTypeChanged: The return type changed from 'void' to  'org.apache.maven.api.model.Model'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void org.apache.maven.model.composition.DefaultDependencyManagementImporter::importManagement(===org.apache.maven.model.Model===, java.util.List<? extends org.apache.maven.model.DependencyManagement>, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+new: parameter org.apache.maven.api.model.Model org.apache.maven.model.composition.DefaultDependencyManagementImporter::importManagement(===org.apache.maven.api.model.Model===, java.util.List<? extends org.apache.maven.api.model.DependencyManagement>, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Model' to 'org.apache.maven.api.model.Model'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void org.apache.maven.model.composition.DependencyManagementImporter::importManagement(org.apache.maven.model.Model, java.util.List<? extends org.apache.maven.model.DependencyManagement>, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+new: method org.apache.maven.api.model.Model org.apache.maven.model.composition.DependencyManagementImporter::importManagement(org.apache.maven.api.model.Model, java.util.List<? extends org.apache.maven.api.model.DependencyManagement>, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.returnTypeChanged: The return type changed from 'void' to  'org.apache.maven.api.model.Model'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void org.apache.maven.model.composition.DependencyManagementImporter::importManagement(===org.apache.maven.model.Model===, java.util.List<? extends org.apache.maven.model.DependencyManagement>, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+new: parameter org.apache.maven.api.model.Model org.apache.maven.model.composition.DependencyManagementImporter::importManagement(===org.apache.maven.api.model.Model===, java.util.List<? extends org.apache.maven.api.model.DependencyManagement>, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Model' to 'org.apache.maven.api.model.Model'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void org.apache.maven.model.inheritance.DefaultInheritanceAssembler.InheritanceModelMerger::mergeModelBase_Properties(org.apache.maven.model.ModelBase, org.apache.maven.model.ModelBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.inheritance.DefaultInheritanceAssembler.InheritanceModelMerger::mergeModelBase_Properties(org.apache.maven.api.model.ModelBase.Builder, org.apache.maven.api.model.ModelBase, org.apache.maven.api.model.ModelBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.inheritance.DefaultInheritanceAssembler.InheritanceModelMerger::mergePlugin(org.apache.maven.model.Plugin, org.apache.maven.model.Plugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method org.apache.maven.api.model.Plugin org.apache.maven.model.inheritance.DefaultInheritanceAssembler.InheritanceModelMerger::mergePlugin(org.apache.maven.api.model.Plugin, org.apache.maven.api.model.Plugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.returnTypeChanged: The return type changed from 'void' to  'org.apache.maven.api.model.Plugin'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void org.apache.maven.model.inheritance.DefaultInheritanceAssembler.InheritanceModelMerger::mergePlugin(===org.apache.maven.model.Plugin===, org.apache.maven.model.Plugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: parameter org.apache.maven.api.model.Plugin org.apache.maven.model.inheritance.DefaultInheritanceAssembler.InheritanceModelMerger::mergePlugin(===org.apache.maven.api.model.Plugin===, org.apache.maven.api.model.Plugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Plugin' to 'org.apache.maven.api.model.Plugin'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void org.apache.maven.model.inheritance.DefaultInheritanceAssembler.InheritanceModelMerger::mergePlugin(org.apache.maven.model.Plugin, ===org.apache.maven.model.Plugin===, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: parameter org.apache.maven.api.model.Plugin org.apache.maven.model.inheritance.DefaultInheritanceAssembler.InheritanceModelMerger::mergePlugin(org.apache.maven.api.model.Plugin, ===org.apache.maven.api.model.Plugin===, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Plugin' to 'org.apache.maven.api.model.Plugin'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void org.apache.maven.model.inheritance.DefaultInheritanceAssembler.InheritanceModelMerger::mergePluginContainer_Plugins(org.apache.maven.model.PluginContainer, org.apache.maven.model.PluginContainer, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.inheritance.DefaultInheritanceAssembler.InheritanceModelMerger::mergePluginContainer_Plugins(org.apache.maven.api.model.PluginContainer.Builder, org.apache.maven.api.model.PluginContainer, org.apache.maven.api.model.PluginContainer, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.inheritance.DefaultInheritanceAssembler.InheritanceModelMerger::mergeReporting_Plugins(org.apache.maven.model.Reporting, org.apache.maven.model.Reporting, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.inheritance.DefaultInheritanceAssembler.InheritanceModelMerger::mergeReporting_Plugins(org.apache.maven.api.model.Reporting.Builder, org.apache.maven.api.model.Reporting, org.apache.maven.api.model.Reporting, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.inheritance.DefaultInheritanceAssembler::assembleModelInheritance(org.apache.maven.model.Model, org.apache.maven.model.Model, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+new: method org.apache.maven.api.model.Model org.apache.maven.model.inheritance.DefaultInheritanceAssembler::assembleModelInheritance(org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.returnTypeChanged: The return type changed from 'void' to  'org.apache.maven.api.model.Model'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void org.apache.maven.model.inheritance.DefaultInheritanceAssembler::assembleModelInheritance(===org.apache.maven.model.Model===, org.apache.maven.model.Model, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+new: parameter org.apache.maven.api.model.Model org.apache.maven.model.inheritance.DefaultInheritanceAssembler::assembleModelInheritance(===org.apache.maven.api.model.Model===, org.apache.maven.api.model.Model, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Model' to 'org.apache.maven.api.model.Model'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void org.apache.maven.model.inheritance.DefaultInheritanceAssembler::assembleModelInheritance(org.apache.maven.model.Model, ===org.apache.maven.model.Model===, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+new: parameter org.apache.maven.api.model.Model org.apache.maven.model.inheritance.DefaultInheritanceAssembler::assembleModelInheritance(org.apache.maven.api.model.Model, ===org.apache.maven.api.model.Model===, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Model' to 'org.apache.maven.api.model.Model'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void org.apache.maven.model.inheritance.InheritanceAssembler::assembleModelInheritance(org.apache.maven.model.Model, org.apache.maven.model.Model, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+new: method org.apache.maven.api.model.Model org.apache.maven.model.inheritance.InheritanceAssembler::assembleModelInheritance(org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.returnTypeChanged: The return type changed from 'void' to  'org.apache.maven.api.model.Model'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void org.apache.maven.model.inheritance.InheritanceAssembler::assembleModelInheritance(===org.apache.maven.model.Model===, org.apache.maven.model.Model, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+new: parameter org.apache.maven.api.model.Model org.apache.maven.model.inheritance.InheritanceAssembler::assembleModelInheritance(===org.apache.maven.api.model.Model===, org.apache.maven.api.model.Model, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Model' to 'org.apache.maven.api.model.Model'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void org.apache.maven.model.inheritance.InheritanceAssembler::assembleModelInheritance(org.apache.maven.model.Model, ===org.apache.maven.model.Model===, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+new: parameter org.apache.maven.api.model.Model org.apache.maven.model.inheritance.InheritanceAssembler::assembleModelInheritance(org.apache.maven.api.model.Model, ===org.apache.maven.api.model.Model===, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Model' to 'org.apache.maven.api.model.Model'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator::<init>()
+new: method void org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator::<init>(org.apache.maven.model.path.PathTranslator, org.apache.maven.model.path.UrlNormalizer, org.apache.maven.model.root.RootLocator)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: parameter java.util.List<? extends org.codehaus.plexus.interpolation.InterpolationPostProcessor> org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator::createPostProcessors(===org.apache.maven.model.Model===, java.io.File, org.apache.maven.model.building.ModelBuildingRequest)
+new: parameter java.util.List<? extends org.codehaus.plexus.interpolation.InterpolationPostProcessor> org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator::createPostProcessors(===org.apache.maven.api.model.Model===, java.io.File, org.apache.maven.model.building.ModelBuildingRequest)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Model' to 'org.apache.maven.api.model.Model'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method org.codehaus.plexus.interpolation.RecursionInterceptor org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator::createRecursionInterceptor()
+new: method org.codehaus.plexus.interpolation.RecursionInterceptor org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator::createRecursionInterceptor(org.apache.maven.model.building.ModelBuildingRequest)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: parameter java.util.List<org.codehaus.plexus.interpolation.ValueSource> org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator::createValueSources(===org.apache.maven.model.Model===, java.io.File, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+new: parameter java.util.List<org.codehaus.plexus.interpolation.ValueSource> org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator::createValueSources(===org.apache.maven.api.model.Model===, java.io.File, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Model' to 'org.apache.maven.api.model.Model'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator::setPathTranslator(org.apache.maven.model.path.PathTranslator)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator::setUrlNormalizer(org.apache.maven.model.path.UrlNormalizer)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator::setVersionPropertiesProcessor(org.apache.maven.model.interpolation.ModelVersionProcessor)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: <none>
+new: method org.apache.maven.api.model.Model org.apache.maven.model.interpolation.ModelInterpolator::interpolateModel(org.apache.maven.api.model.Model, java.io.File, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: class org.apache.maven.model.interpolation.StringSearchModelInterpolator
+new: <none>
+java.class.removed: Class was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.interpolation.StringVisitorModelInterpolator::<init>()
+new: method void org.apache.maven.model.interpolation.StringVisitorModelInterpolator::<init>(org.apache.maven.model.path.PathTranslator, org.apache.maven.model.path.UrlNormalizer, org.apache.maven.model.root.RootLocator)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method void org.apache.maven.model.io.DefaultModelReader::<init>()
+new: method void org.apache.maven.model.io.DefaultModelReader::<init>(org.apache.maven.model.building.ModelSourceTransformer)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method void org.apache.maven.model.io.ModelWriter::write(java.io.File, java.util.Map<java.lang.String, java.lang.Object>, org.apache.maven.api.model.Model) throws java.io.IOException
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method void org.apache.maven.model.io.ModelWriter::write(java.io.OutputStream, java.util.Map<java.lang.String, java.lang.Object>, org.apache.maven.api.model.Model) throws java.io.IOException
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method void org.apache.maven.model.io.ModelWriter::write(java.io.Writer, java.util.Map<java.lang.String, java.lang.Object>, org.apache.maven.api.model.Model) throws java.io.IOException
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method void org.apache.maven.model.management.DefaultDependencyManagementInjector.ManagementModelMerger::mergeDependency_Exclusions(org.apache.maven.model.Dependency, org.apache.maven.model.Dependency, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.management.DefaultDependencyManagementInjector.ManagementModelMerger::mergeDependency_Exclusions(org.apache.maven.api.model.Dependency.Builder, org.apache.maven.api.model.Dependency, org.apache.maven.api.model.Dependency, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.management.DefaultDependencyManagementInjector.ManagementModelMerger::mergeDependency_Optional(org.apache.maven.model.Dependency, org.apache.maven.model.Dependency, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.management.DefaultDependencyManagementInjector.ManagementModelMerger::mergeDependency_Optional(org.apache.maven.api.model.Dependency.Builder, org.apache.maven.api.model.Dependency, org.apache.maven.api.model.Dependency, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.management.DefaultDependencyManagementInjector.ManagementModelMerger::mergeManagedDependencies(org.apache.maven.model.Model)
+new: method org.apache.maven.api.model.Model org.apache.maven.model.management.DefaultDependencyManagementInjector.ManagementModelMerger::mergeManagedDependencies(org.apache.maven.api.model.Model)
+java.method.returnTypeChanged: The return type changed from 'void' to  'org.apache.maven.api.model.Model'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void org.apache.maven.model.management.DefaultDependencyManagementInjector.ManagementModelMerger::mergeManagedDependencies(===org.apache.maven.model.Model===)
+new: parameter org.apache.maven.api.model.Model org.apache.maven.model.management.DefaultDependencyManagementInjector.ManagementModelMerger::mergeManagedDependencies(===org.apache.maven.api.model.Model===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Model' to 'org.apache.maven.api.model.Model'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void org.apache.maven.model.management.DefaultPluginManagementInjector.ManagementModelMerger::mergeManagedBuildPlugins(org.apache.maven.model.Model)
+new: method org.apache.maven.api.model.Model org.apache.maven.model.management.DefaultPluginManagementInjector.ManagementModelMerger::mergeManagedBuildPlugins(org.apache.maven.api.model.Model)
+java.method.returnTypeChanged: The return type changed from 'void' to  'org.apache.maven.api.model.Model'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void org.apache.maven.model.management.DefaultPluginManagementInjector.ManagementModelMerger::mergeManagedBuildPlugins(===org.apache.maven.model.Model===)
+new: parameter org.apache.maven.api.model.Model org.apache.maven.model.management.DefaultPluginManagementInjector.ManagementModelMerger::mergeManagedBuildPlugins(===org.apache.maven.api.model.Model===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Model' to 'org.apache.maven.api.model.Model'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void org.apache.maven.model.management.DefaultPluginManagementInjector.ManagementModelMerger::mergePlugin_Executions(org.apache.maven.model.Plugin, org.apache.maven.model.Plugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.management.DefaultPluginManagementInjector.ManagementModelMerger::mergePlugin_Executions(org.apache.maven.api.model.Plugin.Builder, org.apache.maven.api.model.Plugin, org.apache.maven.api.model.Plugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method java.lang.Object org.apache.maven.model.merge.MavenModelMerger::getDependencyKey(org.apache.maven.model.Dependency)
+new: method org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.Dependency> org.apache.maven.model.merge.MavenModelMerger::getDependencyKey()
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+java.method.returnTypeChanged: The return type changed from 'java.lang.Object' to  'org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.Dependency>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method java.lang.Object org.apache.maven.model.merge.MavenModelMerger::getExclusionKey(org.apache.maven.model.Exclusion)
+new: method org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.Exclusion> org.apache.maven.model.merge.MavenModelMerger::getExclusionKey()
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+java.method.returnTypeChanged: The return type changed from 'java.lang.Object' to  'org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.Exclusion>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method java.lang.Object org.apache.maven.model.merge.MavenModelMerger::getExtensionKey(org.apache.maven.model.Extension)
+new: method org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.Extension> org.apache.maven.model.merge.MavenModelMerger::getExtensionKey()
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+java.method.returnTypeChanged: The return type changed from 'java.lang.Object' to  'org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.Extension>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method java.lang.Object org.apache.maven.model.merge.MavenModelMerger::getPluginExecutionKey(org.apache.maven.model.PluginExecution)
+new: method org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.PluginExecution> org.apache.maven.model.merge.MavenModelMerger::getPluginExecutionKey()
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+java.method.returnTypeChanged: The return type changed from 'java.lang.Object' to  'org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.PluginExecution>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method java.lang.Object org.apache.maven.model.merge.MavenModelMerger::getPluginKey(org.apache.maven.model.Plugin)
+new: method org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.Plugin> org.apache.maven.model.merge.MavenModelMerger::getPluginKey()
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+java.method.returnTypeChanged: The return type changed from 'java.lang.Object' to  'org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.Plugin>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method java.lang.Object org.apache.maven.model.merge.MavenModelMerger::getReportPluginKey(org.apache.maven.model.ReportPlugin)
+new: method org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.ReportPlugin> org.apache.maven.model.merge.MavenModelMerger::getReportPluginKey()
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+java.method.returnTypeChanged: The return type changed from 'java.lang.Object' to  'org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.ReportPlugin>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method java.lang.Object org.apache.maven.model.merge.MavenModelMerger::getReportSetKey(org.apache.maven.model.ReportSet)
+new: method org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.ReportSet> org.apache.maven.model.merge.MavenModelMerger::getReportSetKey()
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+java.method.returnTypeChanged: The return type changed from 'java.lang.Object' to  'org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.ReportSet>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method java.lang.Object org.apache.maven.model.merge.MavenModelMerger::getRepositoryBaseKey(org.apache.maven.model.RepositoryBase)
+new: method org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.RepositoryBase> org.apache.maven.model.merge.MavenModelMerger::getRepositoryBaseKey()
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+java.method.returnTypeChanged: The return type changed from 'java.lang.Object' to  'org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.RepositoryBase>'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter boolean org.apache.maven.model.merge.MavenModelMerger::isSiteEmpty(===org.apache.maven.model.Site===)
+new: parameter boolean org.apache.maven.model.merge.MavenModelMerger::isSiteEmpty(===org.apache.maven.api.model.Site===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Site' to 'org.apache.maven.api.model.Site'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeBuildBase_Filters(org.apache.maven.model.BuildBase, org.apache.maven.model.BuildBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeBuildBase_Filters(org.apache.maven.api.model.BuildBase.Builder, org.apache.maven.api.model.BuildBase, org.apache.maven.api.model.BuildBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeBuildBase_Resources(org.apache.maven.model.BuildBase, org.apache.maven.model.BuildBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeBuildBase_Resources(org.apache.maven.api.model.BuildBase.Builder, org.apache.maven.api.model.BuildBase, org.apache.maven.api.model.BuildBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeBuildBase_TestResources(org.apache.maven.model.BuildBase, org.apache.maven.model.BuildBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeBuildBase_TestResources(org.apache.maven.api.model.BuildBase.Builder, org.apache.maven.api.model.BuildBase, org.apache.maven.api.model.BuildBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeDistributionManagement_Repository(org.apache.maven.model.DistributionManagement, org.apache.maven.model.DistributionManagement, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeDistributionManagement_Repository(org.apache.maven.api.model.DistributionManagement.Builder, org.apache.maven.api.model.DistributionManagement, org.apache.maven.api.model.DistributionManagement, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeDistributionManagement_Site(org.apache.maven.model.DistributionManagement, org.apache.maven.model.DistributionManagement, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeDistributionManagement_Site(org.apache.maven.api.model.DistributionManagement.Builder, org.apache.maven.api.model.DistributionManagement, org.apache.maven.api.model.DistributionManagement, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeDistributionManagement_SnapshotRepository(org.apache.maven.model.DistributionManagement, org.apache.maven.model.DistributionManagement, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeDistributionManagement_SnapshotRepository(org.apache.maven.api.model.DistributionManagement.Builder, org.apache.maven.api.model.DistributionManagement, org.apache.maven.api.model.DistributionManagement, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method org.apache.maven.api.model.Model org.apache.maven.model.merge.MavenModelMerger::mergeModel(org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.returnTypeChanged: The return type changed from 'void' to  'org.apache.maven.api.model.Model'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void org.apache.maven.model.merge.MavenModelMerger::mergeModel(===org.apache.maven.model.Model===, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: parameter org.apache.maven.api.model.Model org.apache.maven.model.merge.MavenModelMerger::mergeModel(===org.apache.maven.api.model.Model===, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Model' to 'org.apache.maven.api.model.Model'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void org.apache.maven.model.merge.MavenModelMerger::mergeModel(org.apache.maven.model.Model, ===org.apache.maven.model.Model===, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: parameter org.apache.maven.api.model.Model org.apache.maven.model.merge.MavenModelMerger::mergeModel(org.apache.maven.api.model.Model, ===org.apache.maven.api.model.Model===, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Model' to 'org.apache.maven.api.model.Model'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModelBase_Modules(org.apache.maven.model.ModelBase, org.apache.maven.model.ModelBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModelBase_Modules(org.apache.maven.api.model.ModelBase.Builder, org.apache.maven.api.model.ModelBase, org.apache.maven.api.model.ModelBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModelBase_PluginRepositories(org.apache.maven.model.ModelBase, org.apache.maven.model.ModelBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModelBase_PluginRepositories(org.apache.maven.api.model.ModelBase.Builder, org.apache.maven.api.model.ModelBase, org.apache.maven.api.model.ModelBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModelBase_Repositories(org.apache.maven.model.ModelBase, org.apache.maven.model.ModelBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModelBase_Repositories(org.apache.maven.api.model.ModelBase.Builder, org.apache.maven.api.model.ModelBase, org.apache.maven.api.model.ModelBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_ArtifactId(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_ArtifactId(org.apache.maven.api.model.Model.Builder, org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_CiManagement(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_CiManagement(org.apache.maven.api.model.Model.Builder, org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Contributors(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Contributors(org.apache.maven.api.model.Model.Builder, org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Developers(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Developers(org.apache.maven.api.model.Model.Builder, org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_IssueManagement(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_IssueManagement(org.apache.maven.api.model.Model.Builder, org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Licenses(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Licenses(org.apache.maven.api.model.Model.Builder, org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_MailingLists(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_MailingLists(org.apache.maven.api.model.Model.Builder, org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_ModelVersion(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_ModelVersion(org.apache.maven.api.model.Model.Builder, org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Name(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Name(org.apache.maven.api.model.Model.Builder, org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Organization(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Organization(org.apache.maven.api.model.Model.Builder, org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Prerequisites(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Prerequisites(org.apache.maven.api.model.Model.Builder, org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Profiles(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Profiles(org.apache.maven.api.model.Model.Builder, org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Url(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Url(org.apache.maven.api.model.Model.Builder, org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergePluginExecution_Goals(org.apache.maven.model.PluginExecution, org.apache.maven.model.PluginExecution, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergePluginExecution_Goals(org.apache.maven.api.model.PluginExecution.Builder, org.apache.maven.api.model.PluginExecution, org.apache.maven.api.model.PluginExecution, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergePlugin_Executions(org.apache.maven.model.Plugin, org.apache.maven.model.Plugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergePlugin_Executions(org.apache.maven.api.model.Plugin.Builder, org.apache.maven.api.model.Plugin, org.apache.maven.api.model.Plugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeReportPlugin_ReportSets(org.apache.maven.model.ReportPlugin, org.apache.maven.model.ReportPlugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeReportPlugin_ReportSets(org.apache.maven.api.model.ReportPlugin.Builder, org.apache.maven.api.model.ReportPlugin, org.apache.maven.api.model.ReportPlugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeScm_Connection(org.apache.maven.model.Scm, org.apache.maven.model.Scm, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeScm_Connection(org.apache.maven.api.model.Scm.Builder, org.apache.maven.api.model.Scm, org.apache.maven.api.model.Scm, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeScm_DeveloperConnection(org.apache.maven.model.Scm, org.apache.maven.model.Scm, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeScm_DeveloperConnection(org.apache.maven.api.model.Scm.Builder, org.apache.maven.api.model.Scm, org.apache.maven.api.model.Scm, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeScm_Url(org.apache.maven.model.Scm, org.apache.maven.model.Scm, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeScm_Url(org.apache.maven.api.model.Scm.Builder, org.apache.maven.api.model.Scm, org.apache.maven.api.model.Scm, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeSite(org.apache.maven.model.Site, org.apache.maven.model.Site, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeSite_Url(org.apache.maven.model.Site, org.apache.maven.model.Site, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeSite_Url(org.apache.maven.api.model.Site.Builder, org.apache.maven.api.model.Site, org.apache.maven.api.model.Site, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.normalization.DefaultModelNormalizer.DuplicateMerger::mergePlugin(org.apache.maven.model.Plugin, org.apache.maven.model.Plugin)
+new: method org.apache.maven.api.model.Plugin org.apache.maven.model.normalization.DefaultModelNormalizer.DuplicateMerger::mergePlugin(org.apache.maven.api.model.Plugin, org.apache.maven.api.model.Plugin)
+java.method.returnTypeChanged: The return type changed from 'void' to  'org.apache.maven.api.model.Plugin'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void org.apache.maven.model.normalization.DefaultModelNormalizer.DuplicateMerger::mergePlugin(===org.apache.maven.model.Plugin===, org.apache.maven.model.Plugin)
+new: parameter org.apache.maven.api.model.Plugin org.apache.maven.model.normalization.DefaultModelNormalizer.DuplicateMerger::mergePlugin(===org.apache.maven.api.model.Plugin===, org.apache.maven.api.model.Plugin)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Plugin' to 'org.apache.maven.api.model.Plugin'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void org.apache.maven.model.normalization.DefaultModelNormalizer.DuplicateMerger::mergePlugin(org.apache.maven.model.Plugin, ===org.apache.maven.model.Plugin===)
+new: parameter org.apache.maven.api.model.Plugin org.apache.maven.model.normalization.DefaultModelNormalizer.DuplicateMerger::mergePlugin(org.apache.maven.api.model.Plugin, ===org.apache.maven.api.model.Plugin===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Plugin' to 'org.apache.maven.api.model.Plugin'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: <none>
+new: method org.apache.maven.api.model.Model org.apache.maven.model.normalization.ModelNormalizer::injectDefaultValues(org.apache.maven.api.model.Model, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method org.apache.maven.api.model.Model org.apache.maven.model.normalization.ModelNormalizer::mergeDuplicates(org.apache.maven.api.model.Model, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.addedToInterface: Method was added to an interface.
+BINARY: NON_BREAKING, SOURCE: BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method void org.apache.maven.model.path.DefaultModelPathTranslator::<init>()
+new: method void org.apache.maven.model.path.DefaultModelPathTranslator::<init>(org.apache.maven.model.path.PathTranslator)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method org.apache.maven.model.path.DefaultModelPathTranslator org.apache.maven.model.path.DefaultModelPathTranslator::setPathTranslator(org.apache.maven.model.path.PathTranslator)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.path.DefaultModelUrlNormalizer::<init>()
+new: method void org.apache.maven.model.path.DefaultModelUrlNormalizer::<init>(org.apache.maven.model.path.UrlNormalizer)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method org.apache.maven.model.path.DefaultModelUrlNormalizer org.apache.maven.model.path.DefaultModelUrlNormalizer::setUrlNormalizer(org.apache.maven.model.path.UrlNormalizer)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.path.ProfileActivationFilePathInterpolator::<init>()
+new: method void org.apache.maven.model.path.ProfileActivationFilePathInterpolator::<init>(org.apache.maven.model.path.PathTranslator, org.apache.maven.model.root.RootLocator)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method org.apache.maven.model.path.ProfileActivationFilePathInterpolator org.apache.maven.model.path.ProfileActivationFilePathInterpolator::setPathTranslator(org.apache.maven.model.path.PathTranslator)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.profile.DefaultProfileInjector.ProfileModelMerger::mergeBuildBase(org.apache.maven.model.BuildBase, org.apache.maven.model.BuildBase)
+new: method void org.apache.maven.model.profile.DefaultProfileInjector.ProfileModelMerger::mergeBuildBase(org.apache.maven.api.model.BuildBase.Builder, org.apache.maven.api.model.BuildBase, org.apache.maven.api.model.BuildBase)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.profile.DefaultProfileInjector.ProfileModelMerger::mergeModelBase(org.apache.maven.model.ModelBase, org.apache.maven.model.ModelBase)
+new: method void org.apache.maven.model.profile.DefaultProfileInjector.ProfileModelMerger::mergeModelBase(org.apache.maven.api.model.ModelBase.Builder, org.apache.maven.api.model.ModelBase, org.apache.maven.api.model.ModelBase)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.profile.DefaultProfileInjector.ProfileModelMerger::mergePluginContainer_Plugins(org.apache.maven.model.PluginContainer, org.apache.maven.model.PluginContainer, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.profile.DefaultProfileInjector.ProfileModelMerger::mergePluginContainer_Plugins(org.apache.maven.api.model.PluginContainer.Builder, org.apache.maven.api.model.PluginContainer, org.apache.maven.api.model.PluginContainer, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.profile.DefaultProfileInjector.ProfileModelMerger::mergePlugin_Executions(org.apache.maven.model.Plugin, org.apache.maven.model.Plugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.profile.DefaultProfileInjector.ProfileModelMerger::mergePlugin_Executions(org.apache.maven.api.model.Plugin.Builder, org.apache.maven.api.model.Plugin, org.apache.maven.api.model.Plugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.profile.DefaultProfileInjector.ProfileModelMerger::mergeReportPlugin_ReportSets(org.apache.maven.model.ReportPlugin, org.apache.maven.model.ReportPlugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.profile.DefaultProfileInjector.ProfileModelMerger::mergeReportPlugin_ReportSets(org.apache.maven.api.model.ReportPlugin.Builder, org.apache.maven.api.model.ReportPlugin, org.apache.maven.api.model.ReportPlugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.profile.DefaultProfileInjector.ProfileModelMerger::mergeReporting_Plugins(org.apache.maven.model.Reporting, org.apache.maven.model.Reporting, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.profile.DefaultProfileInjector.ProfileModelMerger::mergeReporting_Plugins(org.apache.maven.api.model.Reporting.Builder, org.apache.maven.api.model.Reporting, org.apache.maven.api.model.Reporting, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: method void org.apache.maven.model.profile.activation.FileProfileActivator::<init>()
+new: method void org.apache.maven.model.profile.activation.FileProfileActivator::<init>(org.apache.maven.model.path.ProfileActivationFilePathInterpolator)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method org.apache.maven.model.profile.activation.FileProfileActivator org.apache.maven.model.profile.activation.FileProfileActivator::setProfileActivationFilePathInterpolator(org.apache.maven.model.path.ProfileActivationFilePathInterpolator)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: parameter void org.apache.maven.model.resolution.InvalidRepositoryException::<init>(java.lang.String, ===org.apache.maven.model.Repository===)
+new: parameter void org.apache.maven.model.resolution.InvalidRepositoryException::<init>(java.lang.String, ===org.apache.maven.api.model.Repository===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Repository' to 'org.apache.maven.api.model.Repository'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: parameter void org.apache.maven.model.resolution.InvalidRepositoryException::<init>(java.lang.String, ===org.apache.maven.model.Repository===, java.lang.Throwable)
+new: parameter void org.apache.maven.model.resolution.InvalidRepositoryException::<init>(java.lang.String, ===org.apache.maven.api.model.Repository===, java.lang.Throwable)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Repository' to 'org.apache.maven.api.model.Repository'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method org.apache.maven.model.Repository org.apache.maven.model.resolution.InvalidRepositoryException::getRepository()
+new: method org.apache.maven.api.model.Repository org.apache.maven.model.resolution.InvalidRepositoryException::getRepository()
+java.method.returnTypeChanged: The return type changed from 'org.apache.maven.model.Repository' to  'org.apache.maven.api.model.Repository'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+old: method void org.apache.maven.model.superpom.DefaultSuperPomProvider::<init>()
+new: method void org.apache.maven.model.superpom.DefaultSuperPomProvider::<init>(org.apache.maven.model.building.ModelProcessor)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+BINARY: BREAKING, SOURCE: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+BINARY: EQUIVALENT, SOURCE: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method org.apache.maven.model.superpom.DefaultSuperPomProvider org.apache.maven.model.superpom.DefaultSuperPomProvider::setModelProcessor(org.apache.maven.model.building.ModelProcessor)
+new: <none>
+java.method.removed: Method was removed.
+BINARY: BREAKING, SOURCE: BREAKING
+
+old: parameter void org.apache.maven.model.validation.DefaultModelValidator::validateDependencyVersion(org.apache.maven.model.building.ModelProblemCollector, ===org.apache.maven.model.Dependency===, java.lang.String)
+new: parameter void org.apache.maven.model.validation.DefaultModelValidator::validateDependencyVersion(org.apache.maven.model.building.ModelProblemCollector, ===org.apache.maven.api.model.Dependency===, java.lang.String)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Dependency' to 'org.apache.maven.api.model.Dependency'.
+BINARY: BREAKING, SOURCE: POTENTIALLY_BREAKING
+
+20:37:34.480 INFO  Analysis took 14571ms.
+
+/ / / / / / / / /
+revapi log of the subsequent version -- 4.0.0-alpha-9:
+20:38:18.652 INFO  Downloading checked archives
+20:38:18.712 INFO  Downloading extensions
+20:38:24.610 INFO  Starting analysis
+Analysis results
+----------------
+
+Old API: org.apache.maven-maven-model-builder-3.9.6.jar
+New API: org.apache.maven-maven-model-builder-4.0.0-alpha-9.jar
+old: method void org.apache.maven.model.building.DefaultModelBuilder::<init>()
+new: method void org.apache.maven.model.building.DefaultModelBuilder::<init>(org.apache.maven.model.building.ModelProcessor, org.apache.maven.model.validation.ModelValidator, org.apache.maven.model.normalization.ModelNormalizer, org.apache.maven.model.interpolation.ModelInterpolator, org.apache.maven.model.path.ModelPathTranslator, org.apache.maven.model.path.ModelUrlNormalizer, org.apache.maven.model.superpom.SuperPomProvider, org.apache.maven.model.inheritance.InheritanceAssembler, org.apache.maven.model.profile.ProfileSelector, org.apache.maven.model.profile.ProfileInjector, org.apache.maven.model.management.PluginManagementInjector, org.apache.maven.model.management.DependencyManagementInjector, org.apache.maven.model.composition.DependencyManagementImporter, org.apache.maven.model.plugin.LifecycleBindingsInjector, org.apache.maven.model.plugin.PluginConfigurationExpander, org.apache.maven.model.plugin.ReportConfigurationExpander, org.apache.maven.model.path.ProfileActivationFilePathInterpolator, org.apache.maven.model.interpolation.ModelVersionProcessor, org.apache.maven.model.building.ModelSourceTransformer)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method void org.apache.maven.model.building.DefaultModelProcessor::<init>()
+new: method void org.apache.maven.model.building.DefaultModelProcessor::<init>(java.util.Collection<org.apache.maven.api.spi.ModelParser>, org.apache.maven.model.locator.ModelLocator, org.apache.maven.model.io.ModelReader)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method org.apache.maven.model.building.DefaultModelProcessor org.apache.maven.model.building.DefaultModelProcessor::setModelLocator(org.apache.maven.model.locator.ModelLocator)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.apache.maven.model.building.DefaultModelProcessor org.apache.maven.model.building.DefaultModelProcessor::setModelReader(org.apache.maven.model.io.ModelReader)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: <none>
+new: class org.apache.maven.model.building.DefaultTransformerContextBuilder
+java.class.nonPublicPartOfAPI: Class 'org.apache.maven.model.building.DefaultTransformerContextBuilder' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+SOURCE: NON_BREAKING, BINARY: NON_BREAKING, SEMANTIC: BREAKING
+
+old: method org.apache.maven.model.building.ModelSource2 org.apache.maven.model.building.FileModelSource::getRelatedSource(java.lang.String)
+new: method org.apache.maven.model.building.ModelSource3 org.apache.maven.model.building.ModelSource3::getRelatedSource(java.lang.String) @ org.apache.maven.model.building.FileModelSource
+java.method.returnTypeChangedCovariantly: The return type changed covariantly from 'org.apache.maven.model.building.ModelSource2' to 'org.apache.maven.model.building.ModelSource3'.
+SOURCE: NON_BREAKING, BINARY: BREAKING
+java.method.movedToSuperClass: The method used to be declared in class 'org.apache.maven.model.building.FileModelSource' but is now declared in superclass 'org.apache.maven.model.building.ModelSource3'.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+java.element.nowDeprecated: The element is now deprecated.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT
+
+old: <none>
+new: method org.apache.maven.model.building.Result<? extends org.apache.maven.model.Model> org.apache.maven.model.building.ModelBuilder::buildRawModel(java.io.File, int, boolean, org.apache.maven.model.building.TransformerContext)
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method org.apache.maven.model.building.TransformerContextBuilder org.apache.maven.model.building.ModelBuilder::newTransformerContextBuilder()
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: field org.apache.maven.model.building.ModelBuildingRequest.VALIDATION_LEVEL_STRICT
+new: field org.apache.maven.model.building.ModelBuildingRequest.VALIDATION_LEVEL_STRICT
+java.field.constantValueChanged: Constant field changed value from '30' to '40'.
+SOURCE: NON_BREAKING, BINARY: NON_BREAKING, SEMANTIC: BREAKING
+
+old: <none>
+new: method org.apache.maven.model.Model org.apache.maven.model.building.ModelBuildingRequest::getFileModel()
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method java.nio.file.Path org.apache.maven.model.building.ModelBuildingRequest::getRootDirectory()
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method org.apache.maven.model.building.TransformerContextBuilder org.apache.maven.model.building.ModelBuildingRequest::getTransformerContextBuilder()
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method org.apache.maven.model.building.ModelBuildingRequest org.apache.maven.model.building.ModelBuildingRequest::setFileModel(org.apache.maven.model.Model)
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method org.apache.maven.model.building.ModelBuildingRequest org.apache.maven.model.building.ModelBuildingRequest::setRootDirectory(java.nio.file.Path)
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method org.apache.maven.model.building.ModelBuildingRequest org.apache.maven.model.building.ModelBuildingRequest::setTransformerContextBuilder(org.apache.maven.model.building.TransformerContextBuilder)
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method org.apache.maven.model.Model org.apache.maven.model.building.ModelBuildingResult::getFileModel()
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method java.lang.Object org.apache.maven.model.building.ModelCache::computeIfAbsent(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.function.Supplier<java.util.function.Supplier<?>>)
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method java.lang.Object org.apache.maven.model.building.ModelCache::computeIfAbsent(org.apache.maven.building.Source, java.lang.String, java.util.function.Supplier<java.util.function.Supplier<?>>)
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: interface org.apache.maven.model.building.ModelCacheTag<T>
+java.class.nonPublicPartOfAPI: Class 'org.apache.maven.model.building.ModelCacheTag<T>' is indirectly included in the API (by the means of method return type for example) but the class is not accessible (neither public nor protected).
+SOURCE: NON_BREAKING, BINARY: NON_BREAKING, SEMANTIC: BREAKING
+
+old: method void org.apache.maven.model.composition.DefaultDependencyManagementImporter::importManagement(org.apache.maven.model.Model, java.util.List<? extends org.apache.maven.model.DependencyManagement>, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+new: method org.apache.maven.api.model.Model org.apache.maven.model.composition.DefaultDependencyManagementImporter::importManagement(org.apache.maven.api.model.Model, java.util.List<? extends org.apache.maven.api.model.DependencyManagement>, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.returnTypeChanged: The return type changed from 'void' to  'org.apache.maven.api.model.Model'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: parameter void org.apache.maven.model.composition.DefaultDependencyManagementImporter::importManagement(===org.apache.maven.model.Model===, java.util.List<? extends org.apache.maven.model.DependencyManagement>, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+new: parameter org.apache.maven.api.model.Model org.apache.maven.model.composition.DefaultDependencyManagementImporter::importManagement(===org.apache.maven.api.model.Model===, java.util.List<? extends org.apache.maven.api.model.DependencyManagement>, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Model' to 'org.apache.maven.api.model.Model'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.composition.DependencyManagementImporter::importManagement(org.apache.maven.model.Model, java.util.List<? extends org.apache.maven.model.DependencyManagement>, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+new: method org.apache.maven.api.model.Model org.apache.maven.model.composition.DependencyManagementImporter::importManagement(org.apache.maven.api.model.Model, java.util.List<? extends org.apache.maven.api.model.DependencyManagement>, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.returnTypeChanged: The return type changed from 'void' to  'org.apache.maven.api.model.Model'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: parameter void org.apache.maven.model.composition.DependencyManagementImporter::importManagement(===org.apache.maven.model.Model===, java.util.List<? extends org.apache.maven.model.DependencyManagement>, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+new: parameter org.apache.maven.api.model.Model org.apache.maven.model.composition.DependencyManagementImporter::importManagement(===org.apache.maven.api.model.Model===, java.util.List<? extends org.apache.maven.api.model.DependencyManagement>, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Model' to 'org.apache.maven.api.model.Model'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.inheritance.DefaultInheritanceAssembler.InheritanceModelMerger::mergeModelBase_Properties(org.apache.maven.model.ModelBase, org.apache.maven.model.ModelBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.inheritance.DefaultInheritanceAssembler.InheritanceModelMerger::mergeModelBase_Properties(org.apache.maven.api.model.ModelBase.Builder, org.apache.maven.api.model.ModelBase, org.apache.maven.api.model.ModelBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.inheritance.DefaultInheritanceAssembler.InheritanceModelMerger::mergePlugin(org.apache.maven.model.Plugin, org.apache.maven.model.Plugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method org.apache.maven.api.model.Plugin org.apache.maven.model.inheritance.DefaultInheritanceAssembler.InheritanceModelMerger::mergePlugin(org.apache.maven.api.model.Plugin, org.apache.maven.api.model.Plugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.returnTypeChanged: The return type changed from 'void' to  'org.apache.maven.api.model.Plugin'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: parameter void org.apache.maven.model.inheritance.DefaultInheritanceAssembler.InheritanceModelMerger::mergePlugin(===org.apache.maven.model.Plugin===, org.apache.maven.model.Plugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: parameter org.apache.maven.api.model.Plugin org.apache.maven.model.inheritance.DefaultInheritanceAssembler.InheritanceModelMerger::mergePlugin(===org.apache.maven.api.model.Plugin===, org.apache.maven.api.model.Plugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Plugin' to 'org.apache.maven.api.model.Plugin'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: parameter void org.apache.maven.model.inheritance.DefaultInheritanceAssembler.InheritanceModelMerger::mergePlugin(org.apache.maven.model.Plugin, ===org.apache.maven.model.Plugin===, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: parameter org.apache.maven.api.model.Plugin org.apache.maven.model.inheritance.DefaultInheritanceAssembler.InheritanceModelMerger::mergePlugin(org.apache.maven.api.model.Plugin, ===org.apache.maven.api.model.Plugin===, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Plugin' to 'org.apache.maven.api.model.Plugin'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.inheritance.DefaultInheritanceAssembler.InheritanceModelMerger::mergePluginContainer_Plugins(org.apache.maven.model.PluginContainer, org.apache.maven.model.PluginContainer, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.inheritance.DefaultInheritanceAssembler.InheritanceModelMerger::mergePluginContainer_Plugins(org.apache.maven.api.model.PluginContainer.Builder, org.apache.maven.api.model.PluginContainer, org.apache.maven.api.model.PluginContainer, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.inheritance.DefaultInheritanceAssembler.InheritanceModelMerger::mergeReporting_Plugins(org.apache.maven.model.Reporting, org.apache.maven.model.Reporting, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.inheritance.DefaultInheritanceAssembler.InheritanceModelMerger::mergeReporting_Plugins(org.apache.maven.api.model.Reporting.Builder, org.apache.maven.api.model.Reporting, org.apache.maven.api.model.Reporting, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.inheritance.DefaultInheritanceAssembler::assembleModelInheritance(org.apache.maven.model.Model, org.apache.maven.model.Model, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+new: method org.apache.maven.api.model.Model org.apache.maven.model.inheritance.DefaultInheritanceAssembler::assembleModelInheritance(org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.returnTypeChanged: The return type changed from 'void' to  'org.apache.maven.api.model.Model'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: parameter void org.apache.maven.model.inheritance.DefaultInheritanceAssembler::assembleModelInheritance(===org.apache.maven.model.Model===, org.apache.maven.model.Model, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+new: parameter org.apache.maven.api.model.Model org.apache.maven.model.inheritance.DefaultInheritanceAssembler::assembleModelInheritance(===org.apache.maven.api.model.Model===, org.apache.maven.api.model.Model, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Model' to 'org.apache.maven.api.model.Model'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: parameter void org.apache.maven.model.inheritance.DefaultInheritanceAssembler::assembleModelInheritance(org.apache.maven.model.Model, ===org.apache.maven.model.Model===, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+new: parameter org.apache.maven.api.model.Model org.apache.maven.model.inheritance.DefaultInheritanceAssembler::assembleModelInheritance(org.apache.maven.api.model.Model, ===org.apache.maven.api.model.Model===, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Model' to 'org.apache.maven.api.model.Model'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.inheritance.InheritanceAssembler::assembleModelInheritance(org.apache.maven.model.Model, org.apache.maven.model.Model, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+new: method org.apache.maven.api.model.Model org.apache.maven.model.inheritance.InheritanceAssembler::assembleModelInheritance(org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.returnTypeChanged: The return type changed from 'void' to  'org.apache.maven.api.model.Model'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: parameter void org.apache.maven.model.inheritance.InheritanceAssembler::assembleModelInheritance(===org.apache.maven.model.Model===, org.apache.maven.model.Model, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+new: parameter org.apache.maven.api.model.Model org.apache.maven.model.inheritance.InheritanceAssembler::assembleModelInheritance(===org.apache.maven.api.model.Model===, org.apache.maven.api.model.Model, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Model' to 'org.apache.maven.api.model.Model'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: parameter void org.apache.maven.model.inheritance.InheritanceAssembler::assembleModelInheritance(org.apache.maven.model.Model, ===org.apache.maven.model.Model===, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+new: parameter org.apache.maven.api.model.Model org.apache.maven.model.inheritance.InheritanceAssembler::assembleModelInheritance(org.apache.maven.api.model.Model, ===org.apache.maven.api.model.Model===, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Model' to 'org.apache.maven.api.model.Model'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator::<init>()
+new: method void org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator::<init>(org.apache.maven.model.path.PathTranslator, org.apache.maven.model.path.UrlNormalizer, org.apache.maven.model.root.RootLocator)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: parameter java.util.List<? extends org.codehaus.plexus.interpolation.InterpolationPostProcessor> org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator::createPostProcessors(===org.apache.maven.model.Model===, java.io.File, org.apache.maven.model.building.ModelBuildingRequest)
+new: parameter java.util.List<? extends org.codehaus.plexus.interpolation.InterpolationPostProcessor> org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator::createPostProcessors(===org.apache.maven.api.model.Model===, java.io.File, org.apache.maven.model.building.ModelBuildingRequest)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Model' to 'org.apache.maven.api.model.Model'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method org.codehaus.plexus.interpolation.RecursionInterceptor org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator::createRecursionInterceptor()
+new: method org.codehaus.plexus.interpolation.RecursionInterceptor org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator::createRecursionInterceptor(org.apache.maven.model.building.ModelBuildingRequest)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: parameter java.util.List<org.codehaus.plexus.interpolation.ValueSource> org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator::createValueSources(===org.apache.maven.model.Model===, java.io.File, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+new: parameter java.util.List<org.codehaus.plexus.interpolation.ValueSource> org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator::createValueSources(===org.apache.maven.api.model.Model===, java.io.File, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Model' to 'org.apache.maven.api.model.Model'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator::setPathTranslator(org.apache.maven.model.path.PathTranslator)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator::setUrlNormalizer(org.apache.maven.model.path.UrlNormalizer)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator::setVersionPropertiesProcessor(org.apache.maven.model.interpolation.ModelVersionProcessor)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: <none>
+new: method org.apache.maven.api.model.Model org.apache.maven.model.interpolation.ModelInterpolator::interpolateModel(org.apache.maven.api.model.Model, java.io.File, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: class org.apache.maven.model.interpolation.StringSearchModelInterpolator
+new: <none>
+java.class.removed: Class was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.interpolation.StringVisitorModelInterpolator::<init>()
+new: method void org.apache.maven.model.interpolation.StringVisitorModelInterpolator::<init>(org.apache.maven.model.path.PathTranslator, org.apache.maven.model.path.UrlNormalizer, org.apache.maven.model.root.RootLocator)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method void org.apache.maven.model.io.DefaultModelReader::<init>()
+new: method void org.apache.maven.model.io.DefaultModelReader::<init>(org.apache.maven.model.building.ModelSourceTransformer)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method void org.apache.maven.model.io.ModelWriter::write(java.io.File, java.util.Map<java.lang.String, java.lang.Object>, org.apache.maven.api.model.Model) throws java.io.IOException
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method void org.apache.maven.model.io.ModelWriter::write(java.io.OutputStream, java.util.Map<java.lang.String, java.lang.Object>, org.apache.maven.api.model.Model) throws java.io.IOException
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method void org.apache.maven.model.io.ModelWriter::write(java.io.Writer, java.util.Map<java.lang.String, java.lang.Object>, org.apache.maven.api.model.Model) throws java.io.IOException
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method void org.apache.maven.model.management.DefaultDependencyManagementInjector.ManagementModelMerger::mergeDependency_Exclusions(org.apache.maven.model.Dependency, org.apache.maven.model.Dependency, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.management.DefaultDependencyManagementInjector.ManagementModelMerger::mergeDependency_Exclusions(org.apache.maven.api.model.Dependency.Builder, org.apache.maven.api.model.Dependency, org.apache.maven.api.model.Dependency, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.management.DefaultDependencyManagementInjector.ManagementModelMerger::mergeDependency_Optional(org.apache.maven.model.Dependency, org.apache.maven.model.Dependency, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.management.DefaultDependencyManagementInjector.ManagementModelMerger::mergeDependency_Optional(org.apache.maven.api.model.Dependency.Builder, org.apache.maven.api.model.Dependency, org.apache.maven.api.model.Dependency, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.management.DefaultDependencyManagementInjector.ManagementModelMerger::mergeManagedDependencies(org.apache.maven.model.Model)
+new: method org.apache.maven.api.model.Model org.apache.maven.model.management.DefaultDependencyManagementInjector.ManagementModelMerger::mergeManagedDependencies(org.apache.maven.api.model.Model)
+java.method.returnTypeChanged: The return type changed from 'void' to  'org.apache.maven.api.model.Model'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: parameter void org.apache.maven.model.management.DefaultDependencyManagementInjector.ManagementModelMerger::mergeManagedDependencies(===org.apache.maven.model.Model===)
+new: parameter org.apache.maven.api.model.Model org.apache.maven.model.management.DefaultDependencyManagementInjector.ManagementModelMerger::mergeManagedDependencies(===org.apache.maven.api.model.Model===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Model' to 'org.apache.maven.api.model.Model'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.management.DefaultPluginManagementInjector.ManagementModelMerger::mergeManagedBuildPlugins(org.apache.maven.model.Model)
+new: method org.apache.maven.api.model.Model org.apache.maven.model.management.DefaultPluginManagementInjector.ManagementModelMerger::mergeManagedBuildPlugins(org.apache.maven.api.model.Model)
+java.method.returnTypeChanged: The return type changed from 'void' to  'org.apache.maven.api.model.Model'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: parameter void org.apache.maven.model.management.DefaultPluginManagementInjector.ManagementModelMerger::mergeManagedBuildPlugins(===org.apache.maven.model.Model===)
+new: parameter org.apache.maven.api.model.Model org.apache.maven.model.management.DefaultPluginManagementInjector.ManagementModelMerger::mergeManagedBuildPlugins(===org.apache.maven.api.model.Model===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Model' to 'org.apache.maven.api.model.Model'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.management.DefaultPluginManagementInjector.ManagementModelMerger::mergePlugin_Executions(org.apache.maven.model.Plugin, org.apache.maven.model.Plugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.management.DefaultPluginManagementInjector.ManagementModelMerger::mergePlugin_Executions(org.apache.maven.api.model.Plugin.Builder, org.apache.maven.api.model.Plugin, org.apache.maven.api.model.Plugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method java.lang.Object org.apache.maven.model.merge.MavenModelMerger::getDependencyKey(org.apache.maven.model.Dependency)
+new: method org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.Dependency> org.apache.maven.model.merge.MavenModelMerger::getDependencyKey()
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.method.returnTypeChanged: The return type changed from 'java.lang.Object' to  'org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.Dependency>'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method java.lang.Object org.apache.maven.model.merge.MavenModelMerger::getExclusionKey(org.apache.maven.model.Exclusion)
+new: method org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.Exclusion> org.apache.maven.model.merge.MavenModelMerger::getExclusionKey()
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.method.returnTypeChanged: The return type changed from 'java.lang.Object' to  'org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.Exclusion>'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method java.lang.Object org.apache.maven.model.merge.MavenModelMerger::getExtensionKey(org.apache.maven.model.Extension)
+new: method org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.Extension> org.apache.maven.model.merge.MavenModelMerger::getExtensionKey()
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.method.returnTypeChanged: The return type changed from 'java.lang.Object' to  'org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.Extension>'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method java.lang.Object org.apache.maven.model.merge.MavenModelMerger::getPluginExecutionKey(org.apache.maven.model.PluginExecution)
+new: method org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.PluginExecution> org.apache.maven.model.merge.MavenModelMerger::getPluginExecutionKey()
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.method.returnTypeChanged: The return type changed from 'java.lang.Object' to  'org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.PluginExecution>'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method java.lang.Object org.apache.maven.model.merge.MavenModelMerger::getPluginKey(org.apache.maven.model.Plugin)
+new: method org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.Plugin> org.apache.maven.model.merge.MavenModelMerger::getPluginKey()
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.method.returnTypeChanged: The return type changed from 'java.lang.Object' to  'org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.Plugin>'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method java.lang.Object org.apache.maven.model.merge.MavenModelMerger::getReportPluginKey(org.apache.maven.model.ReportPlugin)
+new: method org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.ReportPlugin> org.apache.maven.model.merge.MavenModelMerger::getReportPluginKey()
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.method.returnTypeChanged: The return type changed from 'java.lang.Object' to  'org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.ReportPlugin>'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method java.lang.Object org.apache.maven.model.merge.MavenModelMerger::getReportSetKey(org.apache.maven.model.ReportSet)
+new: method org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.ReportSet> org.apache.maven.model.merge.MavenModelMerger::getReportSetKey()
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.method.returnTypeChanged: The return type changed from 'java.lang.Object' to  'org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.ReportSet>'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method java.lang.Object org.apache.maven.model.merge.MavenModelMerger::getRepositoryBaseKey(org.apache.maven.model.RepositoryBase)
+new: method org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.RepositoryBase> org.apache.maven.model.merge.MavenModelMerger::getRepositoryBaseKey()
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.method.returnTypeChanged: The return type changed from 'java.lang.Object' to  'org.apache.maven.model.v4.MavenMerger.KeyComputer<org.apache.maven.api.model.RepositoryBase>'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: parameter boolean org.apache.maven.model.merge.MavenModelMerger::isSiteEmpty(===org.apache.maven.model.Site===)
+new: parameter boolean org.apache.maven.model.merge.MavenModelMerger::isSiteEmpty(===org.apache.maven.api.model.Site===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Site' to 'org.apache.maven.api.model.Site'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeBuildBase_Filters(org.apache.maven.model.BuildBase, org.apache.maven.model.BuildBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeBuildBase_Filters(org.apache.maven.api.model.BuildBase.Builder, org.apache.maven.api.model.BuildBase, org.apache.maven.api.model.BuildBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeBuildBase_Resources(org.apache.maven.model.BuildBase, org.apache.maven.model.BuildBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeBuildBase_Resources(org.apache.maven.api.model.BuildBase.Builder, org.apache.maven.api.model.BuildBase, org.apache.maven.api.model.BuildBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeBuildBase_TestResources(org.apache.maven.model.BuildBase, org.apache.maven.model.BuildBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeBuildBase_TestResources(org.apache.maven.api.model.BuildBase.Builder, org.apache.maven.api.model.BuildBase, org.apache.maven.api.model.BuildBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeDistributionManagement_Repository(org.apache.maven.model.DistributionManagement, org.apache.maven.model.DistributionManagement, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeDistributionManagement_Repository(org.apache.maven.api.model.DistributionManagement.Builder, org.apache.maven.api.model.DistributionManagement, org.apache.maven.api.model.DistributionManagement, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeDistributionManagement_Site(org.apache.maven.model.DistributionManagement, org.apache.maven.model.DistributionManagement, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeDistributionManagement_Site(org.apache.maven.api.model.DistributionManagement.Builder, org.apache.maven.api.model.DistributionManagement, org.apache.maven.api.model.DistributionManagement, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeDistributionManagement_SnapshotRepository(org.apache.maven.model.DistributionManagement, org.apache.maven.model.DistributionManagement, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeDistributionManagement_SnapshotRepository(org.apache.maven.api.model.DistributionManagement.Builder, org.apache.maven.api.model.DistributionManagement, org.apache.maven.api.model.DistributionManagement, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method org.apache.maven.api.model.Model org.apache.maven.model.merge.MavenModelMerger::mergeModel(org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.returnTypeChanged: The return type changed from 'void' to  'org.apache.maven.api.model.Model'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: parameter void org.apache.maven.model.merge.MavenModelMerger::mergeModel(===org.apache.maven.model.Model===, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: parameter org.apache.maven.api.model.Model org.apache.maven.model.merge.MavenModelMerger::mergeModel(===org.apache.maven.api.model.Model===, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Model' to 'org.apache.maven.api.model.Model'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: parameter void org.apache.maven.model.merge.MavenModelMerger::mergeModel(org.apache.maven.model.Model, ===org.apache.maven.model.Model===, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: parameter org.apache.maven.api.model.Model org.apache.maven.model.merge.MavenModelMerger::mergeModel(org.apache.maven.api.model.Model, ===org.apache.maven.api.model.Model===, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Model' to 'org.apache.maven.api.model.Model'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModelBase_Modules(org.apache.maven.model.ModelBase, org.apache.maven.model.ModelBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModelBase_Modules(org.apache.maven.api.model.ModelBase.Builder, org.apache.maven.api.model.ModelBase, org.apache.maven.api.model.ModelBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModelBase_PluginRepositories(org.apache.maven.model.ModelBase, org.apache.maven.model.ModelBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModelBase_PluginRepositories(org.apache.maven.api.model.ModelBase.Builder, org.apache.maven.api.model.ModelBase, org.apache.maven.api.model.ModelBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModelBase_Repositories(org.apache.maven.model.ModelBase, org.apache.maven.model.ModelBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModelBase_Repositories(org.apache.maven.api.model.ModelBase.Builder, org.apache.maven.api.model.ModelBase, org.apache.maven.api.model.ModelBase, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_ArtifactId(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_ArtifactId(org.apache.maven.api.model.Model.Builder, org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_CiManagement(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_CiManagement(org.apache.maven.api.model.Model.Builder, org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Contributors(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Contributors(org.apache.maven.api.model.Model.Builder, org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Developers(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Developers(org.apache.maven.api.model.Model.Builder, org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_IssueManagement(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_IssueManagement(org.apache.maven.api.model.Model.Builder, org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Licenses(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Licenses(org.apache.maven.api.model.Model.Builder, org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_MailingLists(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_MailingLists(org.apache.maven.api.model.Model.Builder, org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_ModelVersion(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_ModelVersion(org.apache.maven.api.model.Model.Builder, org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Name(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Name(org.apache.maven.api.model.Model.Builder, org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Organization(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Organization(org.apache.maven.api.model.Model.Builder, org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Prerequisites(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Prerequisites(org.apache.maven.api.model.Model.Builder, org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Profiles(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Profiles(org.apache.maven.api.model.Model.Builder, org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Url(org.apache.maven.model.Model, org.apache.maven.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeModel_Url(org.apache.maven.api.model.Model.Builder, org.apache.maven.api.model.Model, org.apache.maven.api.model.Model, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergePluginExecution_Goals(org.apache.maven.model.PluginExecution, org.apache.maven.model.PluginExecution, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergePluginExecution_Goals(org.apache.maven.api.model.PluginExecution.Builder, org.apache.maven.api.model.PluginExecution, org.apache.maven.api.model.PluginExecution, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergePlugin_Executions(org.apache.maven.model.Plugin, org.apache.maven.model.Plugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergePlugin_Executions(org.apache.maven.api.model.Plugin.Builder, org.apache.maven.api.model.Plugin, org.apache.maven.api.model.Plugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeReportPlugin_ReportSets(org.apache.maven.model.ReportPlugin, org.apache.maven.model.ReportPlugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeReportPlugin_ReportSets(org.apache.maven.api.model.ReportPlugin.Builder, org.apache.maven.api.model.ReportPlugin, org.apache.maven.api.model.ReportPlugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeScm_Connection(org.apache.maven.model.Scm, org.apache.maven.model.Scm, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeScm_Connection(org.apache.maven.api.model.Scm.Builder, org.apache.maven.api.model.Scm, org.apache.maven.api.model.Scm, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeScm_DeveloperConnection(org.apache.maven.model.Scm, org.apache.maven.model.Scm, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeScm_DeveloperConnection(org.apache.maven.api.model.Scm.Builder, org.apache.maven.api.model.Scm, org.apache.maven.api.model.Scm, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeScm_Url(org.apache.maven.model.Scm, org.apache.maven.model.Scm, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeScm_Url(org.apache.maven.api.model.Scm.Builder, org.apache.maven.api.model.Scm, org.apache.maven.api.model.Scm, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeSite(org.apache.maven.model.Site, org.apache.maven.model.Site, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.merge.MavenModelMerger::mergeSite_Url(org.apache.maven.model.Site, org.apache.maven.model.Site, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.merge.MavenModelMerger::mergeSite_Url(org.apache.maven.api.model.Site.Builder, org.apache.maven.api.model.Site, org.apache.maven.api.model.Site, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.normalization.DefaultModelNormalizer.DuplicateMerger::mergePlugin(org.apache.maven.model.Plugin, org.apache.maven.model.Plugin)
+new: method org.apache.maven.api.model.Plugin org.apache.maven.model.normalization.DefaultModelNormalizer.DuplicateMerger::mergePlugin(org.apache.maven.api.model.Plugin, org.apache.maven.api.model.Plugin)
+java.method.returnTypeChanged: The return type changed from 'void' to  'org.apache.maven.api.model.Plugin'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: parameter void org.apache.maven.model.normalization.DefaultModelNormalizer.DuplicateMerger::mergePlugin(===org.apache.maven.model.Plugin===, org.apache.maven.model.Plugin)
+new: parameter org.apache.maven.api.model.Plugin org.apache.maven.model.normalization.DefaultModelNormalizer.DuplicateMerger::mergePlugin(===org.apache.maven.api.model.Plugin===, org.apache.maven.api.model.Plugin)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Plugin' to 'org.apache.maven.api.model.Plugin'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: parameter void org.apache.maven.model.normalization.DefaultModelNormalizer.DuplicateMerger::mergePlugin(org.apache.maven.model.Plugin, ===org.apache.maven.model.Plugin===)
+new: parameter org.apache.maven.api.model.Plugin org.apache.maven.model.normalization.DefaultModelNormalizer.DuplicateMerger::mergePlugin(org.apache.maven.api.model.Plugin, ===org.apache.maven.api.model.Plugin===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Plugin' to 'org.apache.maven.api.model.Plugin'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: <none>
+new: method org.apache.maven.api.model.Model org.apache.maven.model.normalization.ModelNormalizer::injectDefaultValues(org.apache.maven.api.model.Model, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: <none>
+new: method org.apache.maven.api.model.Model org.apache.maven.model.normalization.ModelNormalizer::mergeDuplicates(org.apache.maven.api.model.Model, org.apache.maven.model.building.ModelBuildingRequest, org.apache.maven.model.building.ModelProblemCollector)
+java.method.addedToInterface: Method was added to an interface.
+SOURCE: BREAKING, BINARY: NON_BREAKING, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method void org.apache.maven.model.path.DefaultModelPathTranslator::<init>()
+new: method void org.apache.maven.model.path.DefaultModelPathTranslator::<init>(org.apache.maven.model.path.PathTranslator)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method org.apache.maven.model.path.DefaultModelPathTranslator org.apache.maven.model.path.DefaultModelPathTranslator::setPathTranslator(org.apache.maven.model.path.PathTranslator)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.path.DefaultModelUrlNormalizer::<init>()
+new: method void org.apache.maven.model.path.DefaultModelUrlNormalizer::<init>(org.apache.maven.model.path.UrlNormalizer)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method org.apache.maven.model.path.DefaultModelUrlNormalizer org.apache.maven.model.path.DefaultModelUrlNormalizer::setUrlNormalizer(org.apache.maven.model.path.UrlNormalizer)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.path.ProfileActivationFilePathInterpolator::<init>()
+new: method void org.apache.maven.model.path.ProfileActivationFilePathInterpolator::<init>(org.apache.maven.model.path.PathTranslator, org.apache.maven.model.root.RootLocator)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method org.apache.maven.model.path.ProfileActivationFilePathInterpolator org.apache.maven.model.path.ProfileActivationFilePathInterpolator::setPathTranslator(org.apache.maven.model.path.PathTranslator)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.profile.DefaultProfileInjector.ProfileModelMerger::mergeBuildBase(org.apache.maven.model.BuildBase, org.apache.maven.model.BuildBase)
+new: method void org.apache.maven.model.profile.DefaultProfileInjector.ProfileModelMerger::mergeBuildBase(org.apache.maven.api.model.BuildBase.Builder, org.apache.maven.api.model.BuildBase, org.apache.maven.api.model.BuildBase)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.profile.DefaultProfileInjector.ProfileModelMerger::mergeModelBase(org.apache.maven.model.ModelBase, org.apache.maven.model.ModelBase)
+new: method void org.apache.maven.model.profile.DefaultProfileInjector.ProfileModelMerger::mergeModelBase(org.apache.maven.api.model.ModelBase.Builder, org.apache.maven.api.model.ModelBase, org.apache.maven.api.model.ModelBase)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.profile.DefaultProfileInjector.ProfileModelMerger::mergePluginContainer_Plugins(org.apache.maven.model.PluginContainer, org.apache.maven.model.PluginContainer, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.profile.DefaultProfileInjector.ProfileModelMerger::mergePluginContainer_Plugins(org.apache.maven.api.model.PluginContainer.Builder, org.apache.maven.api.model.PluginContainer, org.apache.maven.api.model.PluginContainer, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.profile.DefaultProfileInjector.ProfileModelMerger::mergePlugin_Executions(org.apache.maven.model.Plugin, org.apache.maven.model.Plugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.profile.DefaultProfileInjector.ProfileModelMerger::mergePlugin_Executions(org.apache.maven.api.model.Plugin.Builder, org.apache.maven.api.model.Plugin, org.apache.maven.api.model.Plugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.profile.DefaultProfileInjector.ProfileModelMerger::mergeReportPlugin_ReportSets(org.apache.maven.model.ReportPlugin, org.apache.maven.model.ReportPlugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.profile.DefaultProfileInjector.ProfileModelMerger::mergeReportPlugin_ReportSets(org.apache.maven.api.model.ReportPlugin.Builder, org.apache.maven.api.model.ReportPlugin, org.apache.maven.api.model.ReportPlugin, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.profile.DefaultProfileInjector.ProfileModelMerger::mergeReporting_Plugins(org.apache.maven.model.Reporting, org.apache.maven.model.Reporting, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+new: method void org.apache.maven.model.profile.DefaultProfileInjector.ProfileModelMerger::mergeReporting_Plugins(org.apache.maven.api.model.Reporting.Builder, org.apache.maven.api.model.Reporting, org.apache.maven.api.model.Reporting, boolean, java.util.Map<java.lang.Object, java.lang.Object>)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.profile.activation.FileProfileActivator::<init>()
+new: method void org.apache.maven.model.profile.activation.FileProfileActivator::<init>(org.apache.maven.model.path.ProfileActivationFilePathInterpolator)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method org.apache.maven.model.profile.activation.FileProfileActivator org.apache.maven.model.profile.activation.FileProfileActivator::setProfileActivationFilePathInterpolator(org.apache.maven.model.path.ProfileActivationFilePathInterpolator)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: parameter void org.apache.maven.model.resolution.InvalidRepositoryException::<init>(java.lang.String, ===org.apache.maven.model.Repository===)
+new: parameter void org.apache.maven.model.resolution.InvalidRepositoryException::<init>(java.lang.String, ===org.apache.maven.api.model.Repository===)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Repository' to 'org.apache.maven.api.model.Repository'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: parameter void org.apache.maven.model.resolution.InvalidRepositoryException::<init>(java.lang.String, ===org.apache.maven.model.Repository===, java.lang.Throwable)
+new: parameter void org.apache.maven.model.resolution.InvalidRepositoryException::<init>(java.lang.String, ===org.apache.maven.api.model.Repository===, java.lang.Throwable)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Repository' to 'org.apache.maven.api.model.Repository'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method org.apache.maven.model.Repository org.apache.maven.model.resolution.InvalidRepositoryException::getRepository()
+new: method org.apache.maven.api.model.Repository org.apache.maven.model.resolution.InvalidRepositoryException::getRepository()
+java.method.returnTypeChanged: The return type changed from 'org.apache.maven.model.Repository' to  'org.apache.maven.api.model.Repository'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+old: method void org.apache.maven.model.superpom.DefaultSuperPomProvider::<init>()
+new: method void org.apache.maven.model.superpom.DefaultSuperPomProvider::<init>(org.apache.maven.model.building.ModelProcessor)
+java.method.numberOfParametersChanged: The number of parameters of the method have changed.
+SOURCE: BREAKING, BINARY: BREAKING
+java.annotation.added: Element newly annotated with 'javax.inject.Inject'.
+SOURCE: EQUIVALENT, BINARY: EQUIVALENT, SEMANTIC: POTENTIALLY_BREAKING
+
+old: method org.apache.maven.model.superpom.DefaultSuperPomProvider org.apache.maven.model.superpom.DefaultSuperPomProvider::setModelProcessor(org.apache.maven.model.building.ModelProcessor)
+new: <none>
+java.method.removed: Method was removed.
+SOURCE: BREAKING, BINARY: BREAKING
+
+old: parameter void org.apache.maven.model.validation.DefaultModelValidator::validateDependencyVersion(org.apache.maven.model.building.ModelProblemCollector, ===org.apache.maven.model.Dependency===, java.lang.String)
+new: parameter void org.apache.maven.model.validation.DefaultModelValidator::validateDependencyVersion(org.apache.maven.model.building.ModelProblemCollector, ===org.apache.maven.api.model.Dependency===, java.lang.String)
+java.method.parameterTypeChanged: The type of the parameter changed from 'org.apache.maven.model.Dependency' to 'org.apache.maven.api.model.Dependency'.
+SOURCE: POTENTIALLY_BREAKING, BINARY: BREAKING
+
+20:38:37.307 INFO  Analysis took 12697ms.
+
+
+* * * * * * * *
+>>>>>>
+compilation log of 4.0.0-alpha-8:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< org.apache.logging.log4j:log4j-api-test >---------------
+[INFO] Building Apache Log4j API Tests 2.23.1
+[INFO]   from _temp_org.apache.maven_maven-model-builder_4.0.0-alpha-8_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ log4j-api-test ---
+[INFO] 
+[INFO] --- flatten:1.5.0:clean (clean-flattened-pom) @ log4j-api-test ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ log4j-api-test ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ log4j-api-test ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-upper-bound-deps) @ log4j-api-test ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (ban-wildcard-imports) @ log4j-api-test ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (ban-logging-dependencies) @ log4j-api-test ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- build-helper:3.5.0:parse-version (parse-version) @ log4j-api-test ---
+[INFO] 
+[INFO] --- clean:3.3.2:clean (delete-module-descriptors) @ log4j-api-test ---
+[INFO] 
+[INFO] --- remote-resources:3.1.0:process (process-resource-bundles) @ log4j-api-test ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ log4j-api-test ---
+[INFO] Copying 2 resources from src/main/resources to target/classes
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/classes
+[INFO] 
+[INFO] --- flatten:1.5.0:flatten (flatten-revision) @ log4j-api-test ---
+[INFO] Generating flattened POM of project org.apache.logging.log4j:log4j-api-test:jar:2.23.1...
+[INFO] 
+[INFO] --- clean:3.3.2:clean (delete-module-descriptor) @ log4j-api-test ---
+[INFO] Deleting /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/target/classes (includes = [module-info.class], excludes = [])
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ log4j-api-test ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 50 source files with javac [debug release 8] to target/classes
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/AbstractSerializationTest.java:[41,9] <T>assertThat(T,org.hamcrest.Matcher<? super T>) in org.junit.Assert has been deprecated
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/AbstractSerializationTest.java:[46,9] <T>assertThat(T,org.hamcrest.Matcher<? super T>) in org.junit.Assert has been deprecated
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/junit/StatusLoggerLevelExtension.java:[37,15] setLevel(org.apache.logging.log4j.Level) in org.apache.logging.log4j.status.StatusLogger has been deprecated
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/junit/StatusLoggerLevelExtension.java:[42,33] setLevel(org.apache.logging.log4j.Level) in org.apache.logging.log4j.status.StatusLogger has been deprecated
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/junit/AbstractFileCleaner.java:[55,38] [UnnecessaryAsync] Variables which are initialized and do not escape the current scope do not need to worry about concurrency. Using the non-concurrent type will reduce overhead and verbosity.
+    (see https://errorprone.info/bugpattern/UnnecessaryAsync)
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/TestLoggerContext.java:[28,1] [MissingSummary] A summary line is required on public/protected Javadocs.
+    (see https://google.github.io/styleguide/javaguide.html#s7.2-summary-fragment)
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/ThreadContextHolder.java:[46,8] [EmptyBlockTag] A block tag (@param, @return, @throws, @deprecated) has an empty description. Block tags without descriptions don't add much value for future readers of the code; consider removing the tag entirely or adding a description.
+    (see https://google.github.io/styleguide/javaguide.html#s7.1.3-javadoc-block-tags)
+  Did you mean '*'?
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/ThreadContextHolder.java:[47,8] [EmptyBlockTag] A block tag (@param, @return, @throws, @deprecated) has an empty description. Block tags without descriptions don't add much value for future readers of the code; consider removing the tag entirely or adding a description.
+    (see https://google.github.io/styleguide/javaguide.html#s7.1.3-javadoc-block-tags)
+  Did you mean '*'?
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/junit/BundleTestInfo.java:[37,40] [DefaultCharset] Implicit use of the platform default charset, which can result in differing behaviour between JVM executions or incorrect behavior if the encoding of the data source doesn't match expectations.
+    (see https://errorprone.info/bugpattern/DefaultCharset)
+  Did you mean 'try (final Reader reader = Files.newBufferedReader(Paths.get("pom.xml"), UTF_8)) {' or 'try (final Reader reader = Files.newBufferedReader(Paths.get("pom.xml"), Charset.defaultCharset())) {'?
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/TestLoggerContextFactory.java:[26,1] [MissingSummary] A summary line is required on public/protected Javadocs.
+    (see https://google.github.io/styleguide/javaguide.html#s7.2-summary-fragment)
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/junit/SetTestProperty.java:[35,4] [UnrecognisedJavadocTag] This Javadoc tag wasn't recognised by the parser. Is it malformed somehow, perhaps with mismatched braces?
+    (see https://errorprone.info/bugpattern/UnrecognisedJavadocTag)
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/util/OsgiServiceLocatorTest.java:[31,8] [EmptyBlockTag] A block tag (@param, @return, @throws, @deprecated) has an empty description. Block tags without descriptions don't add much value for future readers of the code; consider removing the tag entirely or adding a description.
+    (see https://google.github.io/styleguide/javaguide.html#s7.1.3-javadoc-block-tags)
+  Did you mean '*'?
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/junit/SerialUtil.java:[73,25] [TypeParameterUnusedInFormals] Declaring a type parameter that is only used in the return type is a misuse of generics: operations on the type parameter are unchecked, it hides unsafe casts at invocations of the method, and it interacts badly with method overload resolution.
+    (see https://errorprone.info/bugpattern/TypeParameterUnusedInFormals)
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/TestLogger.java:[35,1] [MissingSummary] A summary line is required on public/protected Javadocs.
+    (see https://google.github.io/styleguide/javaguide.html#s7.2-summary-fragment)
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/TestLogger.java:[102,36] [DefaultCharset] Implicit use of the platform default charset, which can result in differing behaviour between JVM executions or incorrect behavior if the encoding of the data source doesn't match expectations.
+    (see https://errorprone.info/bugpattern/DefaultCharset)
+  Did you mean 'sb.append(baos.toString(UTF_8));' or 'sb.append(baos.toString(Charset.defaultCharset()));'?
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  11.088 s
+[INFO] Finished at: 2024-07-08T20:43:30+08:00
+[INFO] ------------------------------------------------------------------------
+
+>>>>>>
+subsequent compilation log of 4.0.0-alpha-9:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< org.apache.logging.log4j:log4j-api-test >---------------
+[INFO] Building Apache Log4j API Tests 2.23.1
+[INFO]   from _temp_org.apache.maven_maven-model-builder_4.0.0-alpha-9_.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ log4j-api-test ---
+[INFO] 
+[INFO] --- flatten:1.5.0:clean (clean-flattened-pom) @ log4j-api-test ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ log4j-api-test ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ log4j-api-test ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-upper-bound-deps) @ log4j-api-test ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (ban-wildcard-imports) @ log4j-api-test ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (ban-logging-dependencies) @ log4j-api-test ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- build-helper:3.5.0:parse-version (parse-version) @ log4j-api-test ---
+[INFO] 
+[INFO] --- clean:3.3.2:clean (delete-module-descriptors) @ log4j-api-test ---
+[INFO] 
+[INFO] --- remote-resources:3.1.0:process (process-resource-bundles) @ log4j-api-test ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ log4j-api-test ---
+[INFO] Copying 2 resources from src/main/resources to target/classes
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/classes
+[INFO] 
+[INFO] --- flatten:1.5.0:flatten (flatten-revision) @ log4j-api-test ---
+[INFO] Generating flattened POM of project org.apache.logging.log4j:log4j-api-test:jar:2.23.1...
+[INFO] 
+[INFO] --- clean:3.3.2:clean (delete-module-descriptor) @ log4j-api-test ---
+[INFO] Deleting /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/target/classes (includes = [module-info.class], excludes = [])
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ log4j-api-test ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 50 source files with javac [debug release 8] to target/classes
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/AbstractSerializationTest.java:[41,9] <T>assertThat(T,org.hamcrest.Matcher<? super T>) in org.junit.Assert has been deprecated
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/AbstractSerializationTest.java:[46,9] <T>assertThat(T,org.hamcrest.Matcher<? super T>) in org.junit.Assert has been deprecated
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/junit/StatusLoggerLevelExtension.java:[37,15] setLevel(org.apache.logging.log4j.Level) in org.apache.logging.log4j.status.StatusLogger has been deprecated
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/junit/StatusLoggerLevelExtension.java:[42,33] setLevel(org.apache.logging.log4j.Level) in org.apache.logging.log4j.status.StatusLogger has been deprecated
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/junit/AbstractFileCleaner.java:[55,38] [UnnecessaryAsync] Variables which are initialized and do not escape the current scope do not need to worry about concurrency. Using the non-concurrent type will reduce overhead and verbosity.
+    (see https://errorprone.info/bugpattern/UnnecessaryAsync)
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/TestLoggerContext.java:[28,1] [MissingSummary] A summary line is required on public/protected Javadocs.
+    (see https://google.github.io/styleguide/javaguide.html#s7.2-summary-fragment)
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/ThreadContextHolder.java:[46,8] [EmptyBlockTag] A block tag (@param, @return, @throws, @deprecated) has an empty description. Block tags without descriptions don't add much value for future readers of the code; consider removing the tag entirely or adding a description.
+    (see https://google.github.io/styleguide/javaguide.html#s7.1.3-javadoc-block-tags)
+  Did you mean '*'?
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/ThreadContextHolder.java:[47,8] [EmptyBlockTag] A block tag (@param, @return, @throws, @deprecated) has an empty description. Block tags without descriptions don't add much value for future readers of the code; consider removing the tag entirely or adding a description.
+    (see https://google.github.io/styleguide/javaguide.html#s7.1.3-javadoc-block-tags)
+  Did you mean '*'?
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/junit/BundleTestInfo.java:[37,40] [DefaultCharset] Implicit use of the platform default charset, which can result in differing behaviour between JVM executions or incorrect behavior if the encoding of the data source doesn't match expectations.
+    (see https://errorprone.info/bugpattern/DefaultCharset)
+  Did you mean 'try (final Reader reader = Files.newBufferedReader(Paths.get("pom.xml"), UTF_8)) {' or 'try (final Reader reader = Files.newBufferedReader(Paths.get("pom.xml"), Charset.defaultCharset())) {'?
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/TestLoggerContextFactory.java:[26,1] [MissingSummary] A summary line is required on public/protected Javadocs.
+    (see https://google.github.io/styleguide/javaguide.html#s7.2-summary-fragment)
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/junit/SetTestProperty.java:[35,4] [UnrecognisedJavadocTag] This Javadoc tag wasn't recognised by the parser. Is it malformed somehow, perhaps with mismatched braces?
+    (see https://errorprone.info/bugpattern/UnrecognisedJavadocTag)
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/util/OsgiServiceLocatorTest.java:[31,8] [EmptyBlockTag] A block tag (@param, @return, @throws, @deprecated) has an empty description. Block tags without descriptions don't add much value for future readers of the code; consider removing the tag entirely or adding a description.
+    (see https://google.github.io/styleguide/javaguide.html#s7.1.3-javadoc-block-tags)
+  Did you mean '*'?
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/junit/SerialUtil.java:[73,25] [TypeParameterUnusedInFormals] Declaring a type parameter that is only used in the return type is a misuse of generics: operations on the type parameter are unchecked, it hides unsafe casts at invocations of the method, and it interacts badly with method overload resolution.
+    (see https://errorprone.info/bugpattern/TypeParameterUnusedInFormals)
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/TestLogger.java:[35,1] [MissingSummary] A summary line is required on public/protected Javadocs.
+    (see https://google.github.io/styleguide/javaguide.html#s7.2-summary-fragment)
+[WARNING] /home/ray/Tool/Dataset/logging-log4j2/log4j-api-test/src/main/java/org/apache/logging/log4j/test/TestLogger.java:[102,36] [DefaultCharset] Implicit use of the platform default charset, which can result in differing behaviour between JVM executions or incorrect behavior if the encoding of the data source doesn't match expectations.
+    (see https://errorprone.info/bugpattern/DefaultCharset)
+  Did you mean 'sb.append(baos.toString(UTF_8));' or 'sb.append(baos.toString(Charset.defaultCharset()));'?
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  10.977 s
+[INFO] Finished at: 2024-07-08T20:43:44+08:00
+[INFO] ------------------------------------------------------------------------
+
+
+* * * * * * * *
