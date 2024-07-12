@@ -43,7 +43,7 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
             create_new_folder(os.path.join(module_error_folder, 'fn'))
             create_new_folder(os.path.join(module_error_folder, 'jar'))
             # travel the match.json and pass one dep for Dep
-            json_path = os.path.join(item_path, f"dep/match.json")
+            json_path = os.path.join(item_path, f"dep/../match.json")
             dep_path = os.path.join(item_path, f"dep/")
             
             with open(json_path, 'r') as f:
@@ -169,7 +169,7 @@ def cal_test_a_dep(false_folder_lock, json_lock, one_dict:dict, dep_path:str, pa
     print(f"-- start sorting versions of {one_dict['GroupId']}:{one_dict['ArtifactId']} -- ")
     res_dict.update({'AllVersion':dep.fetch_versions_sorted()})
     print(f"-- get all versions of {one_dict['GroupId']}:{one_dict['ArtifactId']} -- ")
-    write_a_dep(json_lock, os.path.join(dep_path, 'match.json'), res_dict)
+    write_a_dep(json_lock, os.path.join(dep_path, '../match.json'), res_dict)
     # get the newest compatible versoin
     print(f"-- start calculating  best version of {one_dict['GroupId']}:{one_dict['ArtifactId']} in {module_name} -- ")
     bestversion, breaking_reason = dep.get_best_version(tqdm_log_module_folder)
@@ -177,7 +177,7 @@ def cal_test_a_dep(false_folder_lock, json_lock, one_dict:dict, dep_path:str, pa
     res_dict.update({'BestVersion': bestversion})
     res_dict.update({'Breaking_Reason': breaking_reason})
     print(f"-- best version of {one_dict['GroupId']}:{one_dict['ArtifactId']} is {res_dict['BestVersion']} -- ")
-    write_a_dep(json_lock, os.path.join(dep_path, 'match.json'), res_dict)
+    write_a_dep(json_lock, os.path.join(dep_path, '../match.json'), res_dict)
     print(f"-- start validating the best version of {one_dict['GroupId']}:{one_dict['ArtifactId']} in {module_name} --")
     flag = check_version_module(false_folder_lock, res_dict, dep_path, path_to_cloned_folder, module_error_folder, tqdm_log_module_folder)
     print(f"-- validation to the best version of {one_dict['GroupId']}:{one_dict['ArtifactId']} in {module_name}  done --")

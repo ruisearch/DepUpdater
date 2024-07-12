@@ -23,7 +23,8 @@ class Api:
         # txt_path: path to client_api.txt
         self.txt_path = os.path.join(self.client_folder, f"client_api.txt")
         # match_path : path to match.json
-        self.match_path = os.path.join(self.dep, f"match.json")
+        # self.match_path = os.path.join(self.dep, f"match.json")
+        self.match_path = os.path.join(self.dep, f"../match.json")
         # self.reachable_apis : reachable apis in cg
         self.reachable_apis = set()
         

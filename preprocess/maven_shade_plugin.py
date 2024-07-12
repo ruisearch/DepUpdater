@@ -1,3 +1,4 @@
+# deprecated ! 
 from bs4 import BeautifulSoup
 ## insert maven-shade-plugin into the <build><plugins> in pom.xml
 # input : path to pom.xml
