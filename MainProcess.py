@@ -43,13 +43,13 @@ Jar.Get(path_to_folder, relative_path_to_module)
 print("\n****** preprocess.getjar done! ******\n")
 print("\n****** preprocess done! ******\n")
 
-# # match:
-# # input ：the ./data/Jar folder containing all jars
-# # output : the mapping from dep jars to APIs which are called directly or transitively by client
-# print("\n****** match ... ******\n")
+# match:
+# input ：the ./data/Jar folder containing all jars
+# output : the mapping from dep jars to APIs which are called directly or transitively by client
+print("\n****** match ... ******\n")
 # match.all(relative_path_to_module)
-# # match.all(relative_path_to_module)
-# print("\n****** match done ! ******\n")
+match.all()
+print("\n****** match done ! ******\n")
 
 # # create folder to contain false_cases; the false negative cases and false positive cases will be stored in false_cases/
 # # project_error_folder(like _home_ray_Work_Tool_Data_fudan_paper_client_584_java-design-patterns/ in false_cases/) represents a project rather than a module

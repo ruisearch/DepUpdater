@@ -20,19 +20,22 @@ class CallGraph:
                 break
         # get paths to dep jars
         self.dep_jars = []
-        contents = os.listdir(self.dep_folder)
-        for item in contents:
-            if item.endswith(".jar"):
-                self.dep_jars.append(os.path.join(self.dep_folder,item))
+        # contents = os.listdir(self.dep_folder)
+        # for item in contents:
+        #     if item.endswith(".jar"):
+        #         self.dep_jars.append(os.path.join(self.dep_folder,item))
+        
+        # pass match.json to get path to effective_dep_jar
+        match_json_path = os.path.join(self.dep_folder, '../match.json')
+        with open(match_json_path, 'r') as f:
+            data = json.load(f)
+        for dep in data:
+            self.dep_jars.append(os.path.join(self.dep_folder, dep["JarFileName"]))
         
         # path to call_graph.json containing the total call graph
         self.json_path = os.path.join(path_to_module, 'Uber/call_graph.json')
         # path to Uber/call_graph.txt
         self.txt_path = os.path.join(path_to_module, 'Uber/call_graph.txt')
-        # # set path to call_graph.txt
-        # self.txt_path = os.path.join(self.Uber_folder, f"call_graph.txt")
-        # # set path to call_graph.json
-        # self.json_path = os.path.join(self.Uber_folder, f"call_graph.json")
         
     ## generate call_graph.json
     def gen_json(self):
