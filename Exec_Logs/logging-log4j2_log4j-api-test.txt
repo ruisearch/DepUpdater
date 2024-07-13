@@ -1,4 +1,4 @@
-Script started on 2024-07-12 21:11:42+08:00 [TERM="xterm-256color" TTY="/dev/pts/6" COLUMNS="118" LINES="30"]
+Script started on 2024-07-13 17:45:42+08:00 [TERM="xterm-256color" TTY="/dev/pts/6" COLUMNS="128" LINES="30"]
 
 ****** preprocessing ... ******
 
@@ -150,8 +150,8 @@ import org.apache.commons.codec.digest.*;
 [[1;34mINFO[m] [1m------------------------------------------------------------------------[m
 [[1;34mINFO[m] [1;32mBUILD SUCCESS[m
 [[1;34mINFO[m] [1m------------------------------------------------------------------------[m
-[[1;34mINFO[m] Total time:  4.637 s
-[[1;34mINFO[m] Finished at: 2024-07-12T21:11:49+08:00
+[[1;34mINFO[m] Total time:  4.708 s
+[[1;34mINFO[m] Finished at: 2024-07-13T17:45:48+08:00
 [[1;34mINFO[m] [1m------------------------------------------------------------------------[m
 [0m[0m[[1;34mINFO[m] Scanning for projects...
 [[1;34mINFO[m] 
@@ -294,8 +294,8 @@ import org.apache.commons.codec.digest.*;
 [[1;34mINFO[m] [1m------------------------------------------------------------------------[m
 [[1;34mINFO[m] [1;32mBUILD SUCCESS[m
 [[1;34mINFO[m] [1m------------------------------------------------------------------------[m
-[[1;34mINFO[m] Total time:  4.793 s
-[[1;34mINFO[m] Finished at: 2024-07-12T21:11:55+08:00
+[[1;34mINFO[m] Total time:  4.716 s
+[[1;34mINFO[m] Finished at: 2024-07-13T17:45:53+08:00
 [[1;34mINFO[m] [1m------------------------------------------------------------------------[m
 [0m[0m
 ****** preprocess.package done! ******
@@ -315,59 +315,59 @@ dependency tree is generated in ./data/dependency_verbose_tree.txt successfully
 ****** extract deps... ******
 
 org.hamcrest-hamcrest-core-2.2.jar downloaded successfully.
-org.opentest4j-opentest4j-1.3.0.jar downloaded successfully.
 org.apiguardian-apiguardian-api-1.1.2.jar downloaded successfully.
 org.codehaus.plexus-plexus-sec-dispatcher-2.0.jar downloaded successfully.
+org.codehaus.plexus-plexus-cipher-2.0.jar downloaded successfully.
+org.opentest4j-opentest4j-1.3.0.jar downloaded successfully.
+org.apache.maven-maven-settings-builder-3.9.6.jar downloaded successfully.
+org.apache.maven-maven-settings-3.9.6.jar downloaded successfully.
 org.hamcrest-hamcrest-2.2.jar downloaded successfully.
 org.junit.platform-junit-platform-commons-1.10.2.jar downloaded successfully.
-org.junit.platform-junit-platform-launcher-1.10.2.jar downloaded successfully.
 org.junit.jupiter-junit-jupiter-api-5.10.2.jar downloaded successfully.
+org.junit-pioneer-junit-pioneer-1.9.1.jar downloaded successfully.
+org.junit.platform-junit-platform-launcher-1.10.2.jar downloaded successfully.
 org.apache.logging.log4j-log4j-api-2.23.1.jar downloaded successfully.
 junit-junit-4.13.2.jar downloaded successfully.
-org.apache.maven-maven-core-3.9.6.jar downloaded successfully.
-org.apache.maven-maven-repository-metadata-3.9.6.jar downloaded successfully.
-org.apache.maven-maven-artifact-3.9.6.jar downloaded successfully.
-org.codehaus.plexus-plexus-cipher-2.0.jar downloaded successfully.
-org.apache.maven-maven-plugin-api-3.9.6.jar downloaded successfully.
-org.apache.maven-maven-resolver-provider-3.9.6.jar downloaded successfully.
-org.apache.maven-maven-settings-builder-3.9.6.jar downloaded successfully.
-org.apache.maven.resolver-maven-resolver-named-locks-1.9.18.jar downloaded successfully.
-org.apache.maven-maven-model-builder-3.9.6.jar downloaded successfully.
-org.apache.maven-maven-settings-3.9.6.jar downloaded successfully.
-org.apache.maven.resolver-maven-resolver-spi-1.9.18.jar downloaded successfully.
-org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar downloaded successfully.
-org.junit.jupiter-junit-jupiter-api-5.9.0.jar downloaded successfully.
-org.apache.maven.resolver-maven-resolver-api-1.9.18.jar downloaded successfully.
-org.apache.maven-maven-builder-support-3.9.6.jar downloaded successfully.
-javax.annotation-javax.annotation-api-1.2.jar downloaded successfully.
-org.apache.maven.resolver-maven-resolver-util-1.9.18.jar downloaded successfully.
-aopalliance-aopalliance-1.0.jar downloaded successfully.
-com.google.guava-failureaccess-1.0.1.jar downloaded successfully.
-org.eclipse.sisu-org.eclipse.sisu.inject-0.9.0.M2.jar downloaded successfully.
-org.codehaus.plexus-plexus-classworlds-2.7.0.jar downloaded successfully.
-org.slf4j-slf4j-api-2.0.9.jar downloaded successfully.
-com.google.inject-guice-5.1.0.jar downloaded successfully.
-org.codehaus.plexus-plexus-utils-3.5.1.jar downloaded successfully.
-org.apache.maven.shared-maven-shared-utils-3.3.4.jar downloaded successfully.
-org.junit.platform-junit-platform-engine-1.10.2.jar downloaded successfully.
-org.codehaus.plexus-plexus-classworlds-2.6.0.jar downloaded successfully.
-org.slf4j-slf4j-api-1.7.36.jar downloaded successfully.
-org.codehaus.plexus-plexus-component-annotations-2.1.0.jar downloaded successfully.
-org.mockito-mockito-core-4.11.0.jar downloaded successfully.
-org.junit-pioneer-junit-pioneer-1.9.1.jar downloaded successfully.
-org.objenesis-objenesis-3.3.jar downloaded successfully.
-net.bytebuddy-byte-buddy-1.14.11.jar downloaded successfully.
-javax.inject-javax.inject-1.jar downloaded successfully.
-org.apache.maven-maven-model-3.9.6.jar downloaded successfully.
-com.google.guava-guava-33.0.0-jre.jar downloaded successfully.
-org.codehaus.plexus-plexus-interpolation-1.26.jar downloaded successfully.
-org.eclipse.sisu-org.eclipse.sisu.plexus-0.9.0.M2.jar downloaded successfully.
-org.codehaus.plexus-plexus-utils-3.4.1.jar downloaded successfully.
-net.bytebuddy-byte-buddy-1.12.19.jar downloaded successfully.
-net.bytebuddy-byte-buddy-agent-1.12.19.jar downloaded successfully.
-org.codehaus.plexus-plexus-utils-3.3.0.jar downloaded successfully.
 org.apache.commons-commons-lang3-3.14.0.jar downloaded successfully.
+org.apache.maven-maven-core-3.9.6.jar downloaded successfully.
+org.apache.maven-maven-builder-support-3.9.6.jar downloaded successfully.
+org.apache.maven-maven-repository-metadata-3.9.6.jar downloaded successfully.
+org.apache.maven-maven-plugin-api-3.9.6.jar downloaded successfully.
+org.apache.maven-maven-artifact-3.9.6.jar downloaded successfully.
+org.apache.maven.resolver-maven-resolver-named-locks-1.9.18.jar downloaded successfully.
+org.apache.maven-maven-resolver-provider-3.9.6.jar downloaded successfully.
+org.apache.maven-maven-model-builder-3.9.6.jar downloaded successfully.
+org.apache.maven.resolver-maven-resolver-spi-1.9.18.jar downloaded successfully.
+org.apache.maven.resolver-maven-resolver-api-1.9.18.jar downloaded successfully.
+org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar downloaded successfully.
+javax.annotation-javax.annotation-api-1.2.jar downloaded successfully.
+org.apache.maven.shared-maven-shared-utils-3.3.4.jar downloaded successfully.
+org.junit.jupiter-junit-jupiter-api-5.9.0.jar downloaded successfully.
+org.apache.maven.resolver-maven-resolver-util-1.9.18.jar downloaded successfully.
+org.eclipse.sisu-org.eclipse.sisu.plexus-0.9.0.M2.jar downloaded successfully.
+aopalliance-aopalliance-1.0.jar downloaded successfully.
+javax.inject-javax.inject-1.jar downloaded successfully.
+com.google.guava-failureaccess-1.0.1.jar downloaded successfully.
 org.apache.commons-commons-lang3-3.12.0.jar downloaded successfully.
+org.eclipse.sisu-org.eclipse.sisu.inject-0.9.0.M2.jar downloaded successfully.
+org.codehaus.plexus-plexus-component-annotations-2.1.0.jar downloaded successfully.
+org.codehaus.plexus-plexus-classworlds-2.7.0.jar downloaded successfully.
+com.google.inject-guice-5.1.0.jar downloaded successfully.
+org.codehaus.plexus-plexus-interpolation-1.26.jar downloaded successfully.
+org.slf4j-slf4j-api-2.0.9.jar downloaded successfully.
+org.apache.maven-maven-model-3.9.6.jar downloaded successfully.
+org.objenesis-objenesis-3.3.jar downloaded successfully.
+org.codehaus.plexus-plexus-utils-3.5.1.jar downloaded successfully.
+com.google.guava-guava-33.0.0-jre.jar downloaded successfully.
+org.junit.platform-junit-platform-engine-1.10.2.jar downloaded successfully.
+net.bytebuddy-byte-buddy-agent-1.12.19.jar downloaded successfully.
+org.codehaus.plexus-plexus-classworlds-2.6.0.jar downloaded successfully.
+org.mockito-mockito-core-4.11.0.jar downloaded successfully.
+org.slf4j-slf4j-api-1.7.36.jar downloaded successfully.
+net.bytebuddy-byte-buddy-1.14.11.jar downloaded successfully.
+org.codehaus.plexus-plexus-utils-3.4.1.jar downloaded successfully.
+org.codehaus.plexus-plexus-utils-3.3.0.jar downloaded successfully.
+net.bytebuddy-byte-buddy-1.12.19.jar downloaded successfully.
 
 ****** preprocess.getjar done! ******
 
@@ -375,4 +375,1174 @@ org.apache.commons-commons-lang3-3.12.0.jar downloaded successfully.
 ****** preprocess done! ******
 
 
-Script done on 2024-07-12 21:12:21+08:00 [COMMAND_EXIT_CODE="0"]
+****** match ... ******
+
+**** start generating call graph of client: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/client/log4j-api-test-2.23.1.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/client/log4j-api-test-2.23.1.jar generated ****
+Generating call graphs of deps:   0%|                                                                    | 0/47 [00:00<?, ?it/s]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.logging.log4j-log4j-api-2.23.1.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+Exception in thread "main" java.lang.RuntimeException: An error occurred while processing <META-INF.versions.9.org.apache.logging.log4j.util.Base64Util: java.lang.String encode(java.lang.String)> in callgraph
+	at soot.jimple.spark.solver.OnFlyCallGraph.processReachables(OnFlyCallGraph.java:122)
+	at soot.jimple.spark.solver.OnFlyCallGraph.build(OnFlyCallGraph.java:106)
+	at soot.jimple.spark.builder.ContextInsensitiveBuilder.build(ContextInsensitiveBuilder.java:94)
+	at soot.jimple.spark.SparkTransformer.internalTransform(SparkTransformer.java:101)
+	at soot.SceneTransformer.transform(SceneTransformer.java:36)
+	at soot.Transform.apply(Transform.java:105)
+	at soot.RadioScenePack.internalApply(RadioScenePack.java:64)
+	at soot.jimple.toolkits.callgraph.CallGraphPack.internalApply(CallGraphPack.java:61)
+	at soot.Pack.apply(Pack.java:118)
+	at soot.PackManager.runWholeProgramPacks(PackManager.java:619)
+	at soot.PackManager.runPacksNormally(PackManager.java:500)
+	at soot.PackManager.runPacks(PackManager.java:425)
+	at ecnu.se.getcg.TestSootCallGraph.main(TestSootCallGraph.java:43)
+Caused by: java.lang.NullPointerException: Cannot invoke "soot.SootField.getType()" because the return value of "soot.jimple.StaticFieldRef.getField()" is null
+	at soot.jimple.spark.builder.MethodNodeFactory.caseStaticFieldRef(MethodNodeFactory.java:401)
+	at soot.jimple.StaticFieldRef.apply(StaticFieldRef.java:83)
+	at soot.jimple.spark.builder.MethodNodeFactory$1.caseAssignStmt(MethodNodeFactory.java:162)
+	at soot.jimple.internal.JAssignStmt.apply(JAssignStmt.java:217)
+	at soot.jimple.spark.builder.MethodNodeFactory.handleStmt(MethodNodeFactory.java:150)
+	at soot.jimple.spark.pag.MethodPAG.buildNormal(MethodPAG.java:224)
+	at soot.jimple.spark.pag.MethodPAG.build(MethodPAG.java:186)
+	at soot.jimple.spark.solver.OnFlyCallGraph.processReachables(OnFlyCallGraph.java:116)
+	... 12 more
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.logging.log4j-log4j-api-2.23.1.jar generated ****
+Generating call graphs of deps:   2%|█▎                                                          | 1/47 [00:02<01:34,  2.06s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.commons-commons-lang3-3.14.0.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.commons-commons-lang3-3.14.0.jar generated ****
+Generating call graphs of deps:   4%|██▌                                                         | 2/47 [00:06<02:32,  3.39s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.hamcrest-hamcrest-2.2.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.hamcrest-hamcrest-2.2.jar generated ****
+Generating call graphs of deps:   6%|███▊                                                        | 3/47 [00:08<01:54,  2.61s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/junit-junit-4.13.2.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/junit-junit-4.13.2.jar generated ****
+Generating call graphs of deps:   9%|█████                                                       | 4/47 [00:10<01:48,  2.53s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.hamcrest-hamcrest-core-2.2.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.hamcrest-hamcrest-core-2.2.jar generated ****
+Generating call graphs of deps:  11%|██████▍                                                     | 5/47 [00:11<01:19,  1.88s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit.jupiter-junit-jupiter-api-5.10.2.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit.jupiter-junit-jupiter-api-5.10.2.jar generated ****
+Generating call graphs of deps:  13%|███████▋                                                    | 6/47 [00:13<01:20,  1.96s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.opentest4j-opentest4j-1.3.0.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.opentest4j-opentest4j-1.3.0.jar generated ****
+Generating call graphs of deps:  15%|████████▉                                                   | 7/47 [00:14<01:06,  1.65s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apiguardian-apiguardian-api-1.1.2.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apiguardian-apiguardian-api-1.1.2.jar generated ****
+Generating call graphs of deps:  17%|██████████▏                                                 | 8/47 [00:15<00:54,  1.40s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit-pioneer-junit-pioneer-1.9.1.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit-pioneer-junit-pioneer-1.9.1.jar generated ****
+Generating call graphs of deps:  19%|███████████▍                                                | 9/47 [00:17<01:00,  1.59s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit.platform-junit-platform-launcher-1.10.2.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit.platform-junit-platform-launcher-1.10.2.jar generated ****
+Generating call graphs of deps:  21%|████████████▌                                              | 10/47 [00:19<01:04,  1.74s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit.platform-junit-platform-commons-1.10.2.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit.platform-junit-platform-commons-1.10.2.jar generated ****
+Generating call graphs of deps:  23%|█████████████▊                                             | 11/47 [00:21<01:03,  1.76s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-core-3.9.6.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-core-3.9.6.jar generated ****
+Generating call graphs of deps:  26%|███████████████                                            | 12/47 [00:24<01:19,  2.27s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-settings-3.9.6.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-settings-3.9.6.jar generated ****
+Generating call graphs of deps:  28%|████████████████▎                                          | 13/47 [00:25<01:07,  1.97s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-settings-builder-3.9.6.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-settings-builder-3.9.6.jar generated ****
+Generating call graphs of deps:  30%|█████████████████▌                                         | 14/47 [00:26<00:56,  1.71s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-sec-dispatcher-2.0.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-sec-dispatcher-2.0.jar generated ****
+Generating call graphs of deps:  32%|██████████████████▊                                        | 15/47 [00:27<00:48,  1.51s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-cipher-2.0.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-cipher-2.0.jar generated ****
+Generating call graphs of deps:  34%|████████████████████                                       | 16/47 [00:28<00:42,  1.37s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-builder-support-3.9.6.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-builder-support-3.9.6.jar generated ****
+Generating call graphs of deps:  36%|█████████████████████▎                                     | 17/47 [00:29<00:36,  1.23s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-repository-metadata-3.9.6.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-repository-metadata-3.9.6.jar generated ****
+Generating call graphs of deps:  38%|██████████████████████▌                                    | 18/47 [00:31<00:34,  1.20s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-artifact-3.9.6.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-artifact-3.9.6.jar generated ****
+Generating call graphs of deps:  40%|███████████████████████▊                                   | 19/47 [00:32<00:34,  1.22s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-plugin-api-3.9.6.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-plugin-api-3.9.6.jar generated ****
+Generating call graphs of deps:  43%|█████████████████████████                                  | 20/47 [00:33<00:32,  1.22s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-model-builder-3.9.6.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-model-builder-3.9.6.jar generated ****
+Generating call graphs of deps:  45%|██████████████████████████▎                                | 21/47 [00:35<00:37,  1.45s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-resolver-provider-3.9.6.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-resolver-provider-3.9.6.jar generated ****
+Generating call graphs of deps:  47%|███████████████████████████▌                               | 22/47 [00:36<00:35,  1.40s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar generated ****
+Generating call graphs of deps:  49%|████████████████████████████▊                              | 23/47 [00:39<00:40,  1.69s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.resolver-maven-resolver-named-locks-1.9.18.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.resolver-maven-resolver-named-locks-1.9.18.jar generated ****
+Generating call graphs of deps:  51%|██████████████████████████████▏                            | 24/47 [00:40<00:35,  1.53s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.resolver-maven-resolver-api-1.9.18.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.resolver-maven-resolver-api-1.9.18.jar generated ****
+Generating call graphs of deps:  53%|███████████████████████████████▍                           | 25/47 [00:42<00:35,  1.62s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.resolver-maven-resolver-spi-1.9.18.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.resolver-maven-resolver-spi-1.9.18.jar generated ****
+Generating call graphs of deps:  55%|████████████████████████████████▋                          | 26/47 [00:43<00:31,  1.48s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.resolver-maven-resolver-util-1.9.18.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.resolver-maven-resolver-util-1.9.18.jar generated ****
+Generating call graphs of deps:  57%|█████████████████████████████████▉                         | 27/47 [00:45<00:34,  1.71s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.shared-maven-shared-utils-3.3.4.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.shared-maven-shared-utils-3.3.4.jar generated ****
+Generating call graphs of deps:  60%|███████████████████████████████████▏                       | 28/47 [00:47<00:34,  1.81s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.eclipse.sisu-org.eclipse.sisu.plexus-0.9.0.M2.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.eclipse.sisu-org.eclipse.sisu.plexus-0.9.0.M2.jar generated ****
+Generating call graphs of deps:  62%|████████████████████████████████████▍                      | 29/47 [00:49<00:33,  1.84s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/javax.annotation-javax.annotation-api-1.2.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/javax.annotation-javax.annotation-api-1.2.jar generated ****
+Generating call graphs of deps:  64%|█████████████████████████████████████▋                     | 30/47 [00:50<00:25,  1.52s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.eclipse.sisu-org.eclipse.sisu.inject-0.9.0.M2.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.eclipse.sisu-org.eclipse.sisu.inject-0.9.0.M2.jar generated ****
+Generating call graphs of deps:  66%|██████████████████████████████████████▉                    | 31/47 [00:53<00:31,  1.98s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/com.google.inject-guice-5.1.0.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/com.google.inject-guice-5.1.0.jar generated ****
+Generating call graphs of deps:  68%|████████████████████████████████████████▏                  | 32/47 [00:57<00:38,  2.57s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/aopalliance-aopalliance-1.0.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/aopalliance-aopalliance-1.0.jar generated ****
+Generating call graphs of deps:  70%|█████████████████████████████████████████▍                 | 33/47 [00:58<00:28,  2.05s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/com.google.guava-guava-33.0.0-jre.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/com.google.guava-guava-33.0.0-jre.jar generated ****
+Generating call graphs of deps:  72%|██████████████████████████████████████████▋                | 34/47 [01:07<00:55,  4.25s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/com.google.guava-failureaccess-1.0.1.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/com.google.guava-failureaccess-1.0.1.jar generated ****
+Generating call graphs of deps:  74%|███████████████████████████████████████████▉               | 35/47 [01:08<00:38,  3.19s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/javax.inject-javax.inject-1.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/javax.inject-javax.inject-1.jar generated ****
+Generating call graphs of deps:  77%|█████████████████████████████████████████████▏             | 36/47 [01:08<00:26,  2.45s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-classworlds-2.7.0.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-classworlds-2.7.0.jar generated ****
+Generating call graphs of deps:  79%|██████████████████████████████████████████████▍            | 37/47 [01:10<00:20,  2.10s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-interpolation-1.26.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-interpolation-1.26.jar generated ****
+Generating call graphs of deps:  81%|███████████████████████████████████████████████▋           | 38/47 [01:11<00:17,  1.91s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-component-annotations-2.1.0.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-component-annotations-2.1.0.jar generated ****
+Generating call graphs of deps:  83%|████████████████████████████████████████████████▉          | 39/47 [01:12<00:12,  1.56s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.slf4j-slf4j-api-2.0.9.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.slf4j-slf4j-api-2.0.9.jar generated ****
+Generating call graphs of deps:  85%|██████████████████████████████████████████████████▏        | 40/47 [01:13<00:10,  1.51s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-model-3.9.6.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-model-3.9.6.jar generated ****
+Generating call graphs of deps:  87%|███████████████████████████████████████████████████▍       | 41/47 [01:16<00:10,  1.81s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-utils-3.5.1.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-utils-3.5.1.jar generated ****
+Generating call graphs of deps:  89%|████████████████████████████████████████████████████▋      | 42/47 [01:19<00:10,  2.14s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/net.bytebuddy-byte-buddy-1.14.11.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/net.bytebuddy-byte-buddy-1.14.11.jar generated ****
+Generating call graphs of deps:  91%|█████████████████████████████████████████████████████▉     | 43/47 [01:29<00:18,  4.56s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit.platform-junit-platform-engine-1.10.2.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit.platform-junit-platform-engine-1.10.2.jar generated ****
+Generating call graphs of deps:  94%|███████████████████████████████████████████████████████▏   | 44/47 [01:31<00:11,  3.77s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.mockito-mockito-core-4.11.0.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.mockito-mockito-core-4.11.0.jar generated ****
+Generating call graphs of deps:  96%|████████████████████████████████████████████████████████▍  | 45/47 [01:34<00:07,  3.68s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/net.bytebuddy-byte-buddy-agent-1.12.19.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/net.bytebuddy-byte-buddy-agent-1.12.19.jar generated ****
+Generating call graphs of deps:  98%|█████████████████████████████████████████████████████████▋ | 46/47 [01:36<00:03,  3.09s/it]**** generating call graph of dep: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.objenesis-objenesis-3.3.jar... ****
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** call graph of /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.objenesis-objenesis-3.3.jar generated ****
+Generating call graphs of deps: 100%|███████████████████████████████████████████████████████████| 47/47 [01:37<00:00,  2.52s/it]Generating call graphs of deps: 100%|███████████████████████████████████████████████████████████| 47/47 [01:37<00:00,  2.08s/it]
+**** generating total call graph ... ****
+**** total call graph got ****
+extract api of client jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/client/log4j-api-test-2.23.1.jar ...
+get api of client jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/client/log4j-api-test-2.23.1.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.logging.log4j-log4j-api-2.23.1.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.logging.log4j-log4j-api-2.23.1.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.commons-commons-lang3-3.14.0.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.commons-commons-lang3-3.14.0.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.hamcrest-hamcrest-2.2.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.hamcrest-hamcrest-2.2.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/junit-junit-4.13.2.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/junit-junit-4.13.2.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.hamcrest-hamcrest-core-2.2.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.hamcrest-hamcrest-core-2.2.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit.jupiter-junit-jupiter-api-5.10.2.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit.jupiter-junit-jupiter-api-5.10.2.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.opentest4j-opentest4j-1.3.0.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.opentest4j-opentest4j-1.3.0.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apiguardian-apiguardian-api-1.1.2.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apiguardian-apiguardian-api-1.1.2.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit-pioneer-junit-pioneer-1.9.1.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit-pioneer-junit-pioneer-1.9.1.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit.platform-junit-platform-launcher-1.10.2.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit.platform-junit-platform-launcher-1.10.2.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit.platform-junit-platform-commons-1.10.2.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit.platform-junit-platform-commons-1.10.2.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-core-3.9.6.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-core-3.9.6.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-settings-3.9.6.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-settings-3.9.6.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-settings-builder-3.9.6.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-settings-builder-3.9.6.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-sec-dispatcher-2.0.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-sec-dispatcher-2.0.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-cipher-2.0.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-cipher-2.0.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-builder-support-3.9.6.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-builder-support-3.9.6.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-repository-metadata-3.9.6.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-repository-metadata-3.9.6.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-artifact-3.9.6.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-artifact-3.9.6.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-plugin-api-3.9.6.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-plugin-api-3.9.6.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-model-builder-3.9.6.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-model-builder-3.9.6.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-resolver-provider-3.9.6.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-resolver-provider-3.9.6.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.resolver-maven-resolver-named-locks-1.9.18.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.resolver-maven-resolver-named-locks-1.9.18.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.resolver-maven-resolver-api-1.9.18.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.resolver-maven-resolver-api-1.9.18.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.resolver-maven-resolver-spi-1.9.18.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.resolver-maven-resolver-spi-1.9.18.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.resolver-maven-resolver-util-1.9.18.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.resolver-maven-resolver-util-1.9.18.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.shared-maven-shared-utils-3.3.4.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.shared-maven-shared-utils-3.3.4.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.eclipse.sisu-org.eclipse.sisu.plexus-0.9.0.M2.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.eclipse.sisu-org.eclipse.sisu.plexus-0.9.0.M2.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/javax.annotation-javax.annotation-api-1.2.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/javax.annotation-javax.annotation-api-1.2.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.eclipse.sisu-org.eclipse.sisu.inject-0.9.0.M2.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.eclipse.sisu-org.eclipse.sisu.inject-0.9.0.M2.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/com.google.inject-guice-5.1.0.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/com.google.inject-guice-5.1.0.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/aopalliance-aopalliance-1.0.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/aopalliance-aopalliance-1.0.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/com.google.guava-guava-33.0.0-jre.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/com.google.guava-guava-33.0.0-jre.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/com.google.guava-failureaccess-1.0.1.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/com.google.guava-failureaccess-1.0.1.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/javax.inject-javax.inject-1.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/javax.inject-javax.inject-1.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-classworlds-2.7.0.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-classworlds-2.7.0.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-interpolation-1.26.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-interpolation-1.26.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-component-annotations-2.1.0.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-component-annotations-2.1.0.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.slf4j-slf4j-api-2.0.9.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.slf4j-slf4j-api-2.0.9.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-model-3.9.6.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-model-3.9.6.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-utils-3.5.1.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-utils-3.5.1.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/net.bytebuddy-byte-buddy-1.14.11.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/net.bytebuddy-byte-buddy-1.14.11.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit.platform-junit-platform-engine-1.10.2.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit.platform-junit-platform-engine-1.10.2.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.mockito-mockito-core-4.11.0.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.mockito-mockito-core-4.11.0.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/net.bytebuddy-byte-buddy-agent-1.12.19.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/net.bytebuddy-byte-buddy-agent-1.12.19.jar
+
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.objenesis-objenesis-3.3.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.objenesis-objenesis-3.3.jar
+
+**** get reachable api... ****
+**** reachable api got ****
+
+****map dep jar to reachable api...****
+
+====== generate partial call graph of omitted_dep by org.apache.commons-commons-lang3-3.14.0.jar: org.apache.commons-commons-lang3-3.12.0.jar ======
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.apache.commons-commons-lang3-3.12.0.jar got ======
+====== generate reachable api of omitted_dep by org.apache.commons-commons-lang3-3.14.0.jar: org.apache.commons-commons-lang3-3.12.0.jar ======
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.commons-commons-lang3-3.12.0.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.commons-commons-lang3-3.12.0.jar
+
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.apache.commons-commons-lang3-3.12.0.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.apache.commons-commons-lang3-3.14.0.jar: org.apache.commons-commons-lang3-3.12.0.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.apache.commons-commons-lang3-3.12.0.jar got ======
+====== generate reachable api of omitted_dep by org.apache.commons-commons-lang3-3.14.0.jar: org.apache.commons-commons-lang3-3.12.0.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.apache.commons-commons-lang3-3.12.0.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.hamcrest-hamcrest-2.2.jar: org.hamcrest-hamcrest-2.2.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.hamcrest-hamcrest-2.2.jar got ======
+====== generate reachable api of omitted_dep by org.hamcrest-hamcrest-2.2.jar: org.hamcrest-hamcrest-2.2.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.hamcrest-hamcrest-2.2.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.junit.jupiter-junit-jupiter-api-5.10.2.jar: org.junit.jupiter-junit-jupiter-api-5.9.0.jar ======
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.junit.jupiter-junit-jupiter-api-5.9.0.jar got ======
+====== generate reachable api of omitted_dep by org.junit.jupiter-junit-jupiter-api-5.10.2.jar: org.junit.jupiter-junit-jupiter-api-5.9.0.jar ======
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit.jupiter-junit-jupiter-api-5.9.0.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit.jupiter-junit-jupiter-api-5.9.0.jar
+
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.junit.jupiter-junit-jupiter-api-5.9.0.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.opentest4j-opentest4j-1.3.0.jar: org.opentest4j-opentest4j-1.3.0.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.opentest4j-opentest4j-1.3.0.jar got ======
+====== generate reachable api of omitted_dep by org.opentest4j-opentest4j-1.3.0.jar: org.opentest4j-opentest4j-1.3.0.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.opentest4j-opentest4j-1.3.0.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.apiguardian-apiguardian-api-1.1.2.jar: org.apiguardian-apiguardian-api-1.1.2.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.apiguardian-apiguardian-api-1.1.2.jar got ======
+====== generate reachable api of omitted_dep by org.apiguardian-apiguardian-api-1.1.2.jar: org.apiguardian-apiguardian-api-1.1.2.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.apiguardian-apiguardian-api-1.1.2.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.apiguardian-apiguardian-api-1.1.2.jar: org.apiguardian-apiguardian-api-1.1.2.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.apiguardian-apiguardian-api-1.1.2.jar got ======
+====== generate reachable api of omitted_dep by org.apiguardian-apiguardian-api-1.1.2.jar: org.apiguardian-apiguardian-api-1.1.2.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.apiguardian-apiguardian-api-1.1.2.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.apiguardian-apiguardian-api-1.1.2.jar: org.apiguardian-apiguardian-api-1.1.2.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.apiguardian-apiguardian-api-1.1.2.jar got ======
+====== generate reachable api of omitted_dep by org.apiguardian-apiguardian-api-1.1.2.jar: org.apiguardian-apiguardian-api-1.1.2.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.apiguardian-apiguardian-api-1.1.2.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.junit.platform-junit-platform-commons-1.10.2.jar: org.junit.platform-junit-platform-commons-1.10.2.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.junit.platform-junit-platform-commons-1.10.2.jar got ======
+====== generate reachable api of omitted_dep by org.junit.platform-junit-platform-commons-1.10.2.jar: org.junit.platform-junit-platform-commons-1.10.2.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.junit.platform-junit-platform-commons-1.10.2.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.junit.platform-junit-platform-commons-1.10.2.jar: org.junit.platform-junit-platform-commons-1.10.2.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.junit.platform-junit-platform-commons-1.10.2.jar got ======
+====== generate reachable api of omitted_dep by org.junit.platform-junit-platform-commons-1.10.2.jar: org.junit.platform-junit-platform-commons-1.10.2.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.junit.platform-junit-platform-commons-1.10.2.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.apache.maven-maven-settings-3.9.6.jar: org.apache.maven-maven-settings-3.9.6.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.apache.maven-maven-settings-3.9.6.jar got ======
+====== generate reachable api of omitted_dep by org.apache.maven-maven-settings-3.9.6.jar: org.apache.maven-maven-settings-3.9.6.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.apache.maven-maven-settings-3.9.6.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.apache.maven-maven-builder-support-3.9.6.jar: org.apache.maven-maven-builder-support-3.9.6.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.apache.maven-maven-builder-support-3.9.6.jar got ======
+====== generate reachable api of omitted_dep by org.apache.maven-maven-builder-support-3.9.6.jar: org.apache.maven-maven-builder-support-3.9.6.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.apache.maven-maven-builder-support-3.9.6.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.apache.maven-maven-builder-support-3.9.6.jar: org.apache.maven-maven-builder-support-3.9.6.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.apache.maven-maven-builder-support-3.9.6.jar got ======
+====== generate reachable api of omitted_dep by org.apache.maven-maven-builder-support-3.9.6.jar: org.apache.maven-maven-builder-support-3.9.6.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.apache.maven-maven-builder-support-3.9.6.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.apache.maven-maven-repository-metadata-3.9.6.jar: org.apache.maven-maven-repository-metadata-3.9.6.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.apache.maven-maven-repository-metadata-3.9.6.jar got ======
+====== generate reachable api of omitted_dep by org.apache.maven-maven-repository-metadata-3.9.6.jar: org.apache.maven-maven-repository-metadata-3.9.6.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.apache.maven-maven-repository-metadata-3.9.6.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.apache.maven-maven-artifact-3.9.6.jar: org.apache.maven-maven-artifact-3.9.6.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.apache.maven-maven-artifact-3.9.6.jar got ======
+====== generate reachable api of omitted_dep by org.apache.maven-maven-artifact-3.9.6.jar: org.apache.maven-maven-artifact-3.9.6.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.apache.maven-maven-artifact-3.9.6.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.apache.maven-maven-artifact-3.9.6.jar: org.apache.maven-maven-artifact-3.9.6.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.apache.maven-maven-artifact-3.9.6.jar got ======
+====== generate reachable api of omitted_dep by org.apache.maven-maven-artifact-3.9.6.jar: org.apache.maven-maven-artifact-3.9.6.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.apache.maven-maven-artifact-3.9.6.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.apache.maven-maven-model-builder-3.9.6.jar: org.apache.maven-maven-model-builder-3.9.6.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.apache.maven-maven-model-builder-3.9.6.jar got ======
+====== generate reachable api of omitted_dep by org.apache.maven-maven-model-builder-3.9.6.jar: org.apache.maven-maven-model-builder-3.9.6.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.apache.maven-maven-model-builder-3.9.6.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar: org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar got ======
+====== generate reachable api of omitted_dep by org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar: org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.apache.maven.resolver-maven-resolver-api-1.9.18.jar: org.apache.maven.resolver-maven-resolver-api-1.9.18.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.apache.maven.resolver-maven-resolver-api-1.9.18.jar got ======
+====== generate reachable api of omitted_dep by org.apache.maven.resolver-maven-resolver-api-1.9.18.jar: org.apache.maven.resolver-maven-resolver-api-1.9.18.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.apache.maven.resolver-maven-resolver-api-1.9.18.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.apache.maven.resolver-maven-resolver-api-1.9.18.jar: org.apache.maven.resolver-maven-resolver-api-1.9.18.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.apache.maven.resolver-maven-resolver-api-1.9.18.jar got ======
+====== generate reachable api of omitted_dep by org.apache.maven.resolver-maven-resolver-api-1.9.18.jar: org.apache.maven.resolver-maven-resolver-api-1.9.18.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.apache.maven.resolver-maven-resolver-api-1.9.18.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.apache.maven.resolver-maven-resolver-api-1.9.18.jar: org.apache.maven.resolver-maven-resolver-api-1.9.18.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.apache.maven.resolver-maven-resolver-api-1.9.18.jar got ======
+====== generate reachable api of omitted_dep by org.apache.maven.resolver-maven-resolver-api-1.9.18.jar: org.apache.maven.resolver-maven-resolver-api-1.9.18.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.apache.maven.resolver-maven-resolver-api-1.9.18.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.apache.maven.resolver-maven-resolver-api-1.9.18.jar: org.apache.maven.resolver-maven-resolver-api-1.9.18.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.apache.maven.resolver-maven-resolver-api-1.9.18.jar got ======
+====== generate reachable api of omitted_dep by org.apache.maven.resolver-maven-resolver-api-1.9.18.jar: org.apache.maven.resolver-maven-resolver-api-1.9.18.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.apache.maven.resolver-maven-resolver-api-1.9.18.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.apache.maven.resolver-maven-resolver-spi-1.9.18.jar: org.apache.maven.resolver-maven-resolver-spi-1.9.18.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.apache.maven.resolver-maven-resolver-spi-1.9.18.jar got ======
+====== generate reachable api of omitted_dep by org.apache.maven.resolver-maven-resolver-spi-1.9.18.jar: org.apache.maven.resolver-maven-resolver-spi-1.9.18.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.apache.maven.resolver-maven-resolver-spi-1.9.18.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.apache.maven.resolver-maven-resolver-spi-1.9.18.jar: org.apache.maven.resolver-maven-resolver-spi-1.9.18.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.apache.maven.resolver-maven-resolver-spi-1.9.18.jar got ======
+====== generate reachable api of omitted_dep by org.apache.maven.resolver-maven-resolver-spi-1.9.18.jar: org.apache.maven.resolver-maven-resolver-spi-1.9.18.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.apache.maven.resolver-maven-resolver-spi-1.9.18.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.apache.maven.resolver-maven-resolver-util-1.9.18.jar: org.apache.maven.resolver-maven-resolver-util-1.9.18.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.apache.maven.resolver-maven-resolver-util-1.9.18.jar got ======
+====== generate reachable api of omitted_dep by org.apache.maven.resolver-maven-resolver-util-1.9.18.jar: org.apache.maven.resolver-maven-resolver-util-1.9.18.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.apache.maven.resolver-maven-resolver-util-1.9.18.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.apache.maven.resolver-maven-resolver-util-1.9.18.jar: org.apache.maven.resolver-maven-resolver-util-1.9.18.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.apache.maven.resolver-maven-resolver-util-1.9.18.jar got ======
+====== generate reachable api of omitted_dep by org.apache.maven.resolver-maven-resolver-util-1.9.18.jar: org.apache.maven.resolver-maven-resolver-util-1.9.18.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.apache.maven.resolver-maven-resolver-util-1.9.18.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.eclipse.sisu-org.eclipse.sisu.plexus-0.9.0.M2.jar: org.eclipse.sisu-org.eclipse.sisu.plexus-0.9.0.M2.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.eclipse.sisu-org.eclipse.sisu.plexus-0.9.0.M2.jar got ======
+====== generate reachable api of omitted_dep by org.eclipse.sisu-org.eclipse.sisu.plexus-0.9.0.M2.jar: org.eclipse.sisu-org.eclipse.sisu.plexus-0.9.0.M2.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.eclipse.sisu-org.eclipse.sisu.plexus-0.9.0.M2.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.eclipse.sisu-org.eclipse.sisu.inject-0.9.0.M2.jar: org.eclipse.sisu-org.eclipse.sisu.inject-0.9.0.M2.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.eclipse.sisu-org.eclipse.sisu.inject-0.9.0.M2.jar got ======
+====== generate reachable api of omitted_dep by org.eclipse.sisu-org.eclipse.sisu.inject-0.9.0.M2.jar: org.eclipse.sisu-org.eclipse.sisu.inject-0.9.0.M2.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.eclipse.sisu-org.eclipse.sisu.inject-0.9.0.M2.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.eclipse.sisu-org.eclipse.sisu.inject-0.9.0.M2.jar: org.eclipse.sisu-org.eclipse.sisu.inject-0.9.0.M2.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.eclipse.sisu-org.eclipse.sisu.inject-0.9.0.M2.jar got ======
+====== generate reachable api of omitted_dep by org.eclipse.sisu-org.eclipse.sisu.inject-0.9.0.M2.jar: org.eclipse.sisu-org.eclipse.sisu.inject-0.9.0.M2.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.eclipse.sisu-org.eclipse.sisu.inject-0.9.0.M2.jar got ======
+
+
+====== generate partial call graph of omitted_dep by javax.inject-javax.inject-1.jar: javax.inject-javax.inject-1.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : javax.inject-javax.inject-1.jar got ======
+====== generate reachable api of omitted_dep by javax.inject-javax.inject-1.jar: javax.inject-javax.inject-1.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : javax.inject-javax.inject-1.jar got ======
+
+
+====== generate partial call graph of omitted_dep by javax.inject-javax.inject-1.jar: javax.inject-javax.inject-1.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : javax.inject-javax.inject-1.jar got ======
+====== generate reachable api of omitted_dep by javax.inject-javax.inject-1.jar: javax.inject-javax.inject-1.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : javax.inject-javax.inject-1.jar got ======
+
+
+====== generate partial call graph of omitted_dep by javax.inject-javax.inject-1.jar: javax.inject-javax.inject-1.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : javax.inject-javax.inject-1.jar got ======
+====== generate reachable api of omitted_dep by javax.inject-javax.inject-1.jar: javax.inject-javax.inject-1.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : javax.inject-javax.inject-1.jar got ======
+
+
+====== generate partial call graph of omitted_dep by javax.inject-javax.inject-1.jar: javax.inject-javax.inject-1.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : javax.inject-javax.inject-1.jar got ======
+====== generate reachable api of omitted_dep by javax.inject-javax.inject-1.jar: javax.inject-javax.inject-1.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : javax.inject-javax.inject-1.jar got ======
+
+
+====== generate partial call graph of omitted_dep by javax.inject-javax.inject-1.jar: javax.inject-javax.inject-1.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : javax.inject-javax.inject-1.jar got ======
+====== generate reachable api of omitted_dep by javax.inject-javax.inject-1.jar: javax.inject-javax.inject-1.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : javax.inject-javax.inject-1.jar got ======
+
+
+====== generate partial call graph of omitted_dep by javax.inject-javax.inject-1.jar: javax.inject-javax.inject-1.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : javax.inject-javax.inject-1.jar got ======
+====== generate reachable api of omitted_dep by javax.inject-javax.inject-1.jar: javax.inject-javax.inject-1.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : javax.inject-javax.inject-1.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.codehaus.plexus-plexus-classworlds-2.7.0.jar: org.codehaus.plexus-plexus-classworlds-2.7.0.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.codehaus.plexus-plexus-classworlds-2.7.0.jar got ======
+====== generate reachable api of omitted_dep by org.codehaus.plexus-plexus-classworlds-2.7.0.jar: org.codehaus.plexus-plexus-classworlds-2.7.0.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.codehaus.plexus-plexus-classworlds-2.7.0.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.codehaus.plexus-plexus-classworlds-2.7.0.jar: org.codehaus.plexus-plexus-classworlds-2.6.0.jar ======
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.codehaus.plexus-plexus-classworlds-2.6.0.jar got ======
+====== generate reachable api of omitted_dep by org.codehaus.plexus-plexus-classworlds-2.7.0.jar: org.codehaus.plexus-plexus-classworlds-2.6.0.jar ======
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-classworlds-2.6.0.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-classworlds-2.6.0.jar
+
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.codehaus.plexus-plexus-classworlds-2.6.0.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.codehaus.plexus-plexus-interpolation-1.26.jar: org.codehaus.plexus-plexus-interpolation-1.26.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.codehaus.plexus-plexus-interpolation-1.26.jar got ======
+====== generate reachable api of omitted_dep by org.codehaus.plexus-plexus-interpolation-1.26.jar: org.codehaus.plexus-plexus-interpolation-1.26.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.codehaus.plexus-plexus-interpolation-1.26.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.codehaus.plexus-plexus-interpolation-1.26.jar: org.codehaus.plexus-plexus-interpolation-1.26.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.codehaus.plexus-plexus-interpolation-1.26.jar got ======
+====== generate reachable api of omitted_dep by org.codehaus.plexus-plexus-interpolation-1.26.jar: org.codehaus.plexus-plexus-interpolation-1.26.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.codehaus.plexus-plexus-interpolation-1.26.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.codehaus.plexus-plexus-component-annotations-2.1.0.jar: org.codehaus.plexus-plexus-component-annotations-2.1.0.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.codehaus.plexus-plexus-component-annotations-2.1.0.jar got ======
+====== generate reachable api of omitted_dep by org.codehaus.plexus-plexus-component-annotations-2.1.0.jar: org.codehaus.plexus-plexus-component-annotations-2.1.0.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.codehaus.plexus-plexus-component-annotations-2.1.0.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.slf4j-slf4j-api-2.0.9.jar: org.slf4j-slf4j-api-1.7.36.jar ======
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.slf4j-slf4j-api-1.7.36.jar got ======
+====== generate reachable api of omitted_dep by org.slf4j-slf4j-api-2.0.9.jar: org.slf4j-slf4j-api-1.7.36.jar ======
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.slf4j-slf4j-api-1.7.36.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.slf4j-slf4j-api-1.7.36.jar
+
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.slf4j-slf4j-api-1.7.36.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.slf4j-slf4j-api-2.0.9.jar: org.slf4j-slf4j-api-1.7.36.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.slf4j-slf4j-api-1.7.36.jar got ======
+====== generate reachable api of omitted_dep by org.slf4j-slf4j-api-2.0.9.jar: org.slf4j-slf4j-api-1.7.36.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.slf4j-slf4j-api-1.7.36.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.apache.maven-maven-model-3.9.6.jar: org.apache.maven-maven-model-3.9.6.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.apache.maven-maven-model-3.9.6.jar got ======
+====== generate reachable api of omitted_dep by org.apache.maven-maven-model-3.9.6.jar: org.apache.maven-maven-model-3.9.6.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.apache.maven-maven-model-3.9.6.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.apache.maven-maven-model-3.9.6.jar: org.apache.maven-maven-model-3.9.6.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.apache.maven-maven-model-3.9.6.jar got ======
+====== generate reachable api of omitted_dep by org.apache.maven-maven-model-3.9.6.jar: org.apache.maven-maven-model-3.9.6.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.apache.maven-maven-model-3.9.6.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.apache.maven-maven-model-3.9.6.jar: org.apache.maven-maven-model-3.9.6.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.apache.maven-maven-model-3.9.6.jar got ======
+====== generate reachable api of omitted_dep by org.apache.maven-maven-model-3.9.6.jar: org.apache.maven-maven-model-3.9.6.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.apache.maven-maven-model-3.9.6.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.apache.maven-maven-model-3.9.6.jar: org.apache.maven-maven-model-3.9.6.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.apache.maven-maven-model-3.9.6.jar got ======
+====== generate reachable api of omitted_dep by org.apache.maven-maven-model-3.9.6.jar: org.apache.maven-maven-model-3.9.6.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.apache.maven-maven-model-3.9.6.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.codehaus.plexus-plexus-utils-3.5.1.jar: org.codehaus.plexus-plexus-utils-3.5.1.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.codehaus.plexus-plexus-utils-3.5.1.jar got ======
+====== generate reachable api of omitted_dep by org.codehaus.plexus-plexus-utils-3.5.1.jar: org.codehaus.plexus-plexus-utils-3.5.1.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.codehaus.plexus-plexus-utils-3.5.1.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.codehaus.plexus-plexus-utils-3.5.1.jar: org.codehaus.plexus-plexus-utils-3.5.1.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.codehaus.plexus-plexus-utils-3.5.1.jar got ======
+====== generate reachable api of omitted_dep by org.codehaus.plexus-plexus-utils-3.5.1.jar: org.codehaus.plexus-plexus-utils-3.5.1.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.codehaus.plexus-plexus-utils-3.5.1.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.codehaus.plexus-plexus-utils-3.5.1.jar: org.codehaus.plexus-plexus-utils-3.4.1.jar ======
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.codehaus.plexus-plexus-utils-3.4.1.jar got ======
+====== generate reachable api of omitted_dep by org.codehaus.plexus-plexus-utils-3.5.1.jar: org.codehaus.plexus-plexus-utils-3.4.1.jar ======
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-utils-3.4.1.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-utils-3.4.1.jar
+
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.codehaus.plexus-plexus-utils-3.4.1.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.codehaus.plexus-plexus-utils-3.5.1.jar: org.codehaus.plexus-plexus-utils-3.5.1.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.codehaus.plexus-plexus-utils-3.5.1.jar got ======
+====== generate reachable api of omitted_dep by org.codehaus.plexus-plexus-utils-3.5.1.jar: org.codehaus.plexus-plexus-utils-3.5.1.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.codehaus.plexus-plexus-utils-3.5.1.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.codehaus.plexus-plexus-utils-3.5.1.jar: org.codehaus.plexus-plexus-utils-3.5.1.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.codehaus.plexus-plexus-utils-3.5.1.jar got ======
+====== generate reachable api of omitted_dep by org.codehaus.plexus-plexus-utils-3.5.1.jar: org.codehaus.plexus-plexus-utils-3.5.1.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.codehaus.plexus-plexus-utils-3.5.1.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.codehaus.plexus-plexus-utils-3.5.1.jar: org.codehaus.plexus-plexus-utils-3.5.1.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.codehaus.plexus-plexus-utils-3.5.1.jar got ======
+====== generate reachable api of omitted_dep by org.codehaus.plexus-plexus-utils-3.5.1.jar: org.codehaus.plexus-plexus-utils-3.5.1.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.codehaus.plexus-plexus-utils-3.5.1.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.codehaus.plexus-plexus-utils-3.5.1.jar: org.codehaus.plexus-plexus-utils-3.5.1.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.codehaus.plexus-plexus-utils-3.5.1.jar got ======
+====== generate reachable api of omitted_dep by org.codehaus.plexus-plexus-utils-3.5.1.jar: org.codehaus.plexus-plexus-utils-3.5.1.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.codehaus.plexus-plexus-utils-3.5.1.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.codehaus.plexus-plexus-utils-3.5.1.jar: org.codehaus.plexus-plexus-utils-3.5.1.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.codehaus.plexus-plexus-utils-3.5.1.jar got ======
+====== generate reachable api of omitted_dep by org.codehaus.plexus-plexus-utils-3.5.1.jar: org.codehaus.plexus-plexus-utils-3.5.1.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.codehaus.plexus-plexus-utils-3.5.1.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.codehaus.plexus-plexus-utils-3.5.1.jar: org.codehaus.plexus-plexus-utils-3.3.0.jar ======
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.codehaus.plexus-plexus-utils-3.3.0.jar got ======
+====== generate reachable api of omitted_dep by org.codehaus.plexus-plexus-utils-3.5.1.jar: org.codehaus.plexus-plexus-utils-3.3.0.jar ======
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-utils-3.3.0.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-utils-3.3.0.jar
+
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.codehaus.plexus-plexus-utils-3.3.0.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.codehaus.plexus-plexus-utils-3.5.1.jar: org.codehaus.plexus-plexus-utils-3.5.1.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.codehaus.plexus-plexus-utils-3.5.1.jar got ======
+====== generate reachable api of omitted_dep by org.codehaus.plexus-plexus-utils-3.5.1.jar: org.codehaus.plexus-plexus-utils-3.5.1.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.codehaus.plexus-plexus-utils-3.5.1.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.codehaus.plexus-plexus-utils-3.5.1.jar: org.codehaus.plexus-plexus-utils-3.5.1.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.codehaus.plexus-plexus-utils-3.5.1.jar got ======
+====== generate reachable api of omitted_dep by org.codehaus.plexus-plexus-utils-3.5.1.jar: org.codehaus.plexus-plexus-utils-3.5.1.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.codehaus.plexus-plexus-utils-3.5.1.jar got ======
+
+
+====== generate partial call graph of omitted_dep by net.bytebuddy-byte-buddy-1.14.11.jar: net.bytebuddy-byte-buddy-1.12.19.jar ======
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : net.bytebuddy-byte-buddy-1.12.19.jar got ======
+====== generate reachable api of omitted_dep by net.bytebuddy-byte-buddy-1.14.11.jar: net.bytebuddy-byte-buddy-1.12.19.jar ======
+extract api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/net.bytebuddy-byte-buddy-1.12.19.jar ...
+get api of dep jar: /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/net.bytebuddy-byte-buddy-1.12.19.jar
+
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : net.bytebuddy-byte-buddy-1.12.19.jar got ======
+
+
+====== generate partial call graph of omitted_dep by org.junit.platform-junit-platform-engine-1.10.2.jar: org.junit.platform-junit-platform-engine-1.10.2.jar ======
+**** generating total call graph ... ****
+**** total call graph got ****
+====== partial call graph of omitted_dep : org.junit.platform-junit-platform-engine-1.10.2.jar got ======
+====== generate reachable api of omitted_dep by org.junit.platform-junit-platform-engine-1.10.2.jar: org.junit.platform-junit-platform-engine-1.10.2.jar ======
+**** get reachable api... ****
+**** reachable api got ****
+
+====== reachable api of omitted_dep : org.junit.platform-junit-platform-engine-1.10.2.jar got ======
+
+****map done****
+
+**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/client/log4j-api-test-2.23.1.jar got ****
+Extracting reference used by deps:   0%|                                                                 | 0/54 [00:00<?, ?it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apiguardian-apiguardian-api-1.1.2.jar got ****"
+Extracting reference used by deps:   2%|█                                                        | 1/54 [00:00<00:07,  6.67it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-model-builder-3.9.6.jar got ****"
+Extracting reference used by deps:   4%|██                                                       | 2/54 [00:00<00:11,  4.52it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/aopalliance-aopalliance-1.0.jar got ****"
+Extracting reference used by deps:   6%|███▏                                                     | 3/54 [00:00<00:09,  5.55it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.resolver-maven-resolver-named-locks-1.9.18.jar got ****"
+Extracting reference used by deps:   7%|████▏                                                    | 4/54 [00:00<00:08,  5.81it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-utils-3.4.1.jar got ****"
+Extracting reference used by deps:   9%|█████▎                                                   | 5/54 [00:00<00:10,  4.79it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/net.bytebuddy-byte-buddy-1.14.11.jar got ****"
+Extracting reference used by deps:  11%|██████▎                                                  | 6/54 [00:02<00:23,  2.05it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-artifact-3.9.6.jar got ****"
+Extracting reference used by deps:  13%|███████▍                                                 | 7/54 [00:02<00:18,  2.50it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.commons-commons-lang3-3.12.0.jar got ****"
+Extracting reference used by deps:  15%|████████▍                                                | 8/54 [00:02<00:20,  2.24it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/net.bytebuddy-byte-buddy-1.12.19.jar got ****"
+Extracting reference used by deps:  17%|█████████▌                                               | 9/54 [00:03<00:27,  1.61it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-utils-3.3.0.jar got ****"
+Extracting reference used by deps:  19%|██████████▎                                             | 10/54 [00:04<00:22,  1.92it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-classworlds-2.7.0.jar got ****"
+Extracting reference used by deps:  20%|███████████▍                                            | 11/54 [00:04<00:18,  2.36it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-model-3.9.6.jar got ****"
+Extracting reference used by deps:  22%|████████████▍                                           | 12/54 [00:04<00:17,  2.45it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.resolver-maven-resolver-util-1.9.18.jar got ****"
+Extracting reference used by deps:  24%|█████████████▍                                          | 13/54 [00:04<00:14,  2.89it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.resolver-maven-resolver-api-1.9.18.jar got ****"
+Extracting reference used by deps:  26%|██████████████▌                                         | 14/54 [00:05<00:12,  3.21it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/net.bytebuddy-byte-buddy-agent-1.12.19.jar got ****"
+Extracting reference used by deps:  28%|███████████████▌                                        | 15/54 [00:05<00:10,  3.63it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit.platform-junit-platform-launcher-1.10.2.jar got ****"
+Extracting reference used by deps:  30%|████████████████▌                                       | 16/54 [00:05<00:09,  3.85it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-builder-support-3.9.6.jar got ****"
+Extracting reference used by deps:  31%|█████████████████▋                                      | 17/54 [00:05<00:08,  4.47it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.hamcrest-hamcrest-core-2.2.jar got ****"
+Extracting reference used by deps:  33%|██████████████████▋                                     | 18/54 [00:05<00:07,  5.10it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.logging.log4j-log4j-api-2.23.1.jar got ****"
+Extracting reference used by deps:  35%|███████████████████▋                                    | 19/54 [00:06<00:08,  3.99it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.mockito-mockito-core-4.11.0.jar got ****"
+Extracting reference used by deps:  37%|████████████████████▋                                   | 20/54 [00:06<00:09,  3.62it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-settings-builder-3.9.6.jar got ****"
+Extracting reference used by deps:  39%|█████████████████████▊                                  | 21/54 [00:06<00:07,  4.16it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-interpolation-1.26.jar got ****"
+Extracting reference used by deps:  41%|██████████████████████▊                                 | 22/54 [00:06<00:07,  4.52it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.resolver-maven-resolver-spi-1.9.18.jar got ****"
+Extracting reference used by deps:  43%|███████████████████████▊                                | 23/54 [00:06<00:06,  4.83it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.hamcrest-hamcrest-2.2.jar got ****"
+Extracting reference used by deps:  44%|████████████████████████▉                               | 24/54 [00:07<00:06,  4.74it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-resolver-provider-3.9.6.jar got ****"
+Extracting reference used by deps:  46%|█████████████████████████▉                              | 25/54 [00:07<00:05,  5.11it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-core-3.9.6.jar got ****"
+Extracting reference used by deps:  48%|██████████████████████████▉                             | 26/54 [00:07<00:07,  3.85it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/com.google.guava-failureaccess-1.0.1.jar got ****"
+Extracting reference used by deps:  50%|████████████████████████████                            | 27/54 [00:07<00:05,  4.61it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.slf4j-slf4j-api-2.0.9.jar got ****"
+Extracting reference used by deps:  52%|█████████████████████████████                           | 28/54 [00:08<00:05,  4.62it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.commons-commons-lang3-3.14.0.jar got ****"
+Extracting reference used by deps:  54%|██████████████████████████████                          | 29/54 [00:08<00:08,  3.09it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-repository-metadata-3.9.6.jar got ****"
+Extracting reference used by deps:  56%|███████████████████████████████                         | 30/54 [00:08<00:06,  3.61it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-classworlds-2.6.0.jar got ****"
+Extracting reference used by deps:  57%|████████████████████████████████▏                       | 31/54 [00:09<00:05,  3.94it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-sec-dispatcher-2.0.jar got ****"
+Extracting reference used by deps:  59%|█████████████████████████████████▏                      | 32/54 [00:09<00:04,  4.41it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit.platform-junit-platform-engine-1.10.2.jar got ****"
+Extracting reference used by deps:  61%|██████████████████████████████████▏                     | 33/54 [00:09<00:04,  4.37it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/javax.inject-javax.inject-1.jar got ****"
+Extracting reference used by deps:  63%|███████████████████████████████████▎                    | 34/54 [00:09<00:04,  4.94it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-settings-3.9.6.jar got ****"
+Extracting reference used by deps:  65%|████████████████████████████████████▎                   | 35/54 [00:09<00:03,  4.93it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-component-annotations-2.1.0.jar got ****"
+Extracting reference used by deps:  67%|█████████████████████████████████████▎                  | 36/54 [00:09<00:03,  5.38it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/junit-junit-4.13.2.jar got ****"
+Extracting reference used by deps:  69%|██████████████████████████████████████▎                 | 37/54 [00:10<00:03,  4.53it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-utils-3.5.1.jar got ****"
+Extracting reference used by deps:  70%|███████████████████████████████████████▍                | 38/54 [00:10<00:03,  4.19it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.objenesis-objenesis-3.3.jar got ****"
+Extracting reference used by deps:  72%|████████████████████████████████████████▍               | 39/54 [00:10<00:03,  4.69it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit-pioneer-junit-pioneer-1.9.1.jar got ****"
+Extracting reference used by deps:  74%|█████████████████████████████████████████▍              | 40/54 [00:10<00:03,  4.56it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/javax.annotation-javax.annotation-api-1.2.jar got ****"
+Extracting reference used by deps:  76%|██████████████████████████████████████████▌             | 41/54 [00:11<00:02,  5.01it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven-maven-plugin-api-3.9.6.jar got ****"
+Extracting reference used by deps:  78%|███████████████████████████████████████████▌            | 42/54 [00:11<00:02,  5.15it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/com.google.guava-guava-33.0.0-jre.jar got ****"
+Extracting reference used by deps:  80%|████████████████████████████████████████████▌           | 43/54 [00:12<00:04,  2.43it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.shared-maven-shared-utils-3.3.4.jar got ****"
+Extracting reference used by deps:  81%|█████████████████████████████████████████████▋          | 44/54 [00:12<00:03,  2.79it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.eclipse.sisu-org.eclipse.sisu.plexus-0.9.0.M2.jar got ****"
+Extracting reference used by deps:  83%|██████████████████████████████████████████████▋         | 45/54 [00:12<00:02,  3.13it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar got ****"
+Extracting reference used by deps:  85%|███████████████████████████████████████████████▋        | 46/54 [00:12<00:02,  3.28it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.slf4j-slf4j-api-1.7.36.jar got ****"
+Extracting reference used by deps:  87%|████████████████████████████████████████████████▋       | 47/54 [00:13<00:01,  3.77it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit.platform-junit-platform-commons-1.10.2.jar got ****"
+Extracting reference used by deps:  89%|█████████████████████████████████████████████████▊      | 48/54 [00:13<00:01,  3.73it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit.jupiter-junit-jupiter-api-5.9.0.jar got ****"
+Extracting reference used by deps:  91%|██████████████████████████████████████████████████▊     | 49/54 [00:13<00:01,  3.66it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.eclipse.sisu-org.eclipse.sisu.inject-0.9.0.M2.jar got ****"
+Extracting reference used by deps:  93%|███████████████████████████████████████████████████▊    | 50/54 [00:13<00:01,  3.54it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.junit.jupiter-junit-jupiter-api-5.10.2.jar got ****"
+Extracting reference used by deps:  94%|████████████████████████████████████████████████████▉   | 51/54 [00:14<00:00,  3.62it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.codehaus.plexus-plexus-cipher-2.0.jar got ****"
+Extracting reference used by deps:  96%|█████████████████████████████████████████████████████▉  | 52/54 [00:14<00:00,  4.20it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/com.google.inject-guice-5.1.0.jar got ****"
+Extracting reference used by deps:  98%|██████████████████████████████████████████████████████▉ | 53/54 [00:14<00:00,  3.31it/s]"**** reference used by /home/ray/Tool/com_tool/data/Jar/log4j-api-test_/dep/org.opentest4j-opentest4j-1.3.0.jar got ****"
+Extracting reference used by deps: 100%|████████████████████████████████████████████████████████| 54/54 [00:14<00:00,  3.83it/s]Extracting reference used by deps: 100%|████████████████████████████████████████████████████████| 54/54 [00:14<00:00,  3.61it/s]
+
+****** match done ! ******
+
+
+Script done on 2024-07-13 17:48:34+08:00 [COMMAND_EXIT_CODE="0"]
