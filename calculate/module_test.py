@@ -236,7 +236,8 @@ def recompile(path_to_cloned_folder: str, new_pom_path: str):
     # command = f"cd {path_to_cloned_folder} && mvn clean && mvn compile -Dmaven.test.skip=true -Dcheckstyle.skip=true -pl {relative_path_to_module_folder} -am"
     # command = f"cd {path_to_cloned_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -f {new_pom_path} clean compile"
     # note: skip maven-enforcer-plugin
-    command = f"cd {path_to_cloned_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true -f {new_pom_path} clean compile"
+    # command = f"cd {path_to_cloned_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true -f {new_pom_path} clean compile"
+    command = f"cd {path_to_cloned_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true -f {new_pom_path} clean compile -am"
     try:
         result = subprocess.run(command, shell=True, text=True, capture_output=True)
         # check if the command was successful
