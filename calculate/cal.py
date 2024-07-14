@@ -4,6 +4,7 @@ import json
 import concurrent.futures
 import multiprocessing
 import shutil
+import copy
 from lxml import etree
 from tqdm import tqdm
 from calculate.constants import JAR_FOLDER, TQDM_LOG_PATH
@@ -28,7 +29,7 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
     # create tqdm_log/ containing the progress of each process denoting a dep
     create_new_folder(TQDM_LOG_PATH)
     
-    # handle the folders in data/Jar represent the modules
+    # handle the folder in data/Jar representing  the module
     Jar_contents = os.listdir(JAR_FOLDER)
     for item in Jar_contents:
         item_path = os.path.join(JAR_FOLDER, item)
@@ -43,7 +44,7 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
             create_new_folder(os.path.join(module_error_folder, 'fn'))
             create_new_folder(os.path.join(module_error_folder, 'jar'))
             # travel the match.json and pass one dep for Dep
-            json_path = os.path.join(item_path, f"dep/../match.json")
+            json_path = os.path.join(item_path, f"match.json")
             dep_path = os.path.join(item_path, f"dep/")
             
             with open(json_path, 'r') as f:
@@ -60,7 +61,6 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
             tqdm_log_module_folder = os.path.join(TQDM_LOG_PATH, f'{item}')
             create_new_folder(tqdm_log_module_folder)
             
-            # for one_dict in dict_list:
             num_workers = os.cpu_count()
             with concurrent.futures.ProcessPoolExecutor(max_workers=num_workers) as executor:
                 # initializing the progress bar
@@ -149,7 +149,7 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
 # false_folder_lock: lock to guarantee process mutual exclusion when writing fp or fn to false_cases/'(deprecated)
 # json_lock: lock to write to match.json
 # one_dict: a dict containing the information of a dep after matching
-# dep_path: path to dep/ folder(a parameter of Dep constractor; get inform.json to get module relative path)
+# dep_path: path to data/Jar/{module/dep/ folder(a parameter of Dep constractor; get inform.json to get module relative path)
 # path_to_cloned_folder: path to the root of cloned project
 # module_error_folder: path to module folder in false_cases 
 # tqdm_log_module_folder: path to tqdm_log/{module_name}/ containing files denoting the progress of each process
@@ -157,7 +157,7 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
 # flag: if this dep is true positive, flag is True, False otherwise
 def cal_test_a_dep(false_folder_lock, json_lock, one_dict:dict, dep_path:str, path_to_cloned_folder:str, module_error_folder: str, tqdm_log_module_folder:str):
     dep = Dep(one_dict, dep_path)
-    res_dict = one_dict
+    res_dict = copy.deepcopy(one_dict)
     # get the module name
     inform_json_path = os.path.join(dep_path, '../inform.json')
     with open(inform_json_path, 'r') as f:
@@ -193,7 +193,7 @@ def write_a_dep(json_lock, path_to_match_json:str, res_dict:dict):
             deps = json.load(f_json)
             # find the dep
             for i in range(len(deps)):
-                if i == res_dict['Index']:
+                if deps[i]['JarFileName'] == res_dict['JarFileName']:
                     deps[i] = res_dict
                     break
         with open(path_to_match_json, 'w') as f_json:

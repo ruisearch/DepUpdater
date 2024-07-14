@@ -299,17 +299,28 @@ def store_error(lock, module_data_folder:str, dep_list:list, result, subsuquent_
             log_txt.write(f'reachable api of old version:\n')
             for reachable_api in dep['ReachableAPIs']:
                 log_txt.write(f'    {reachable_api}\n')
+            new_dep_path = os.path.join(module_data_folder, 'dep/new_dep')
+            files = os.listdir(new_dep_path)
             # current version revapi log
             if dep['Version'] != dep['BestVersion']:
                 log_txt.write(f'/ / / / / / / / /\nrevapi log of former version -- {dep["BestVersion"]}:\n')
+                former_revapi_log_paths = []
                 if dep['Classifier'] == '':
-                    former_revapi_log_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{dep["BestVersion"]}.jar.ret.txt')
+                    for file in files:
+                        if file.startswith(f'{dep["GroupId"]}-{dep["ArtifactId"]}-{dep["BestVersion"]}#'):
+                            former_revapi_log_paths.append(os.path.join(new_dep_path, file))
+                    # former_revapi_log_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{dep["BestVersion"]}.jar.ret.txt')
                     former_jar_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{dep["BestVersion"]}.jar')
                 else:
-                    former_revapi_log_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{dep["BestVersion"]}-{dep["Classifier"]}.jar.ret.txt')
+                    for file in files:
+                        if file.startswith(f'{dep["GroupId"]}-{dep["ArtifactId"]}-{dep["BestVersion"]}-{dep["Classifier"]}#'):
+                           former_revapi_log_paths.append(os.path.join(new_dep_path, file)) 
+                    # former_revapi_log_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{dep["BestVersion"]}-{dep["Classifier"]}.jar.ret.txt')
                     former_jar_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{dep["BestVersion"]}-{dep["Classifier"]}.jar')
-                with open(former_revapi_log_path, 'r') as revapi_log:
-                    log_txt.write(f'{revapi_log.read()}\n')
+                for former_revapi_log_path in former_revapi_log_paths:
+                    with open(former_revapi_log_path, 'r') as revapi_log:
+                        log_txt.write(f'{revapi_log.read()}\n')
+                        log_txt.write(f'<< << << << << << << << <<\n')
                 shutil.copy(former_jar_path, jar_folder)
             # subsequent version(breaking version) revapi log
             idx = 0
@@ -320,15 +331,24 @@ def store_error(lock, module_data_folder:str, dep_list:list, result, subsuquent_
             if idx != len(dep['AllVersion'])-1:
                 subsequent_idx = idx+1
                 subsequent_version = dep['AllVersion'][subsequent_idx]['version']
+                sub_revapi_log_paths = []
                 if dep['Classifier'] == '':
-                    sub_revapi_log_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{subsequent_version}.jar.ret.txt')
+                    for file in files:
+                        if file.startswith(f'{dep["GroupId"]}-{dep["ArtifactId"]}-{subsequent_version}#'):
+                            sub_revapi_log_paths.append(os.path.join(new_dep_path, file))
+                    # sub_revapi_log_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{subsequent_version}.jar.ret.txt')
                     sub_jar_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{subsequent_version}.jar')
                 else:
-                    sub_revapi_log_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{subsequent_version}-{dep["Classifier"]}.jar.ret.txt')
+                    for file in files:
+                        if file.startswith(f'{dep["GroupId"]}-{dep["ArtifactId"]}-{subsequent_version}-{dep["Classifier"]}#'):
+                            sub_revapi_log_paths.append(os.path.join(new_dep_path, file))
+                    # sub_revapi_log_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{subsequent_version}-{dep["Classifier"]}.jar.ret.txt')
                     sub_jar_path = os.path.join(module_data_folder, f'dep/new_dep/{dep["GroupId"]}-{dep["ArtifactId"]}-{subsequent_version}-{dep["Classifier"]}.jar')
                 log_txt.write(f'/ / / / / / / / /\nrevapi log of the subsequent version -- {subsequent_version}:\n')
-                with open(sub_revapi_log_path, 'r') as revapi_log:
-                    log_txt.write(f'{revapi_log.read()}\n')
+                for sub_revapi_log_path in sub_revapi_log_paths:
+                    with open(sub_revapi_log_path, 'r') as revapi_log:
+                        log_txt.write(f'{revapi_log.read()}\n')
+                        log_txt.write(f'<< << << << << << << << <<\n')
                 shutil.copy(sub_jar_path, jar_folder)
             log_txt.write(f'\n* * * * * * * *\n')
         print(f">>>>>> compilation log for former version")

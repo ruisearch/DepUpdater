@@ -5,13 +5,14 @@ import re
 import requests
 import subprocess
 import time
+import copy
 from tqdm import tqdm
 from calculate.constants import REVAPI_FOLDER
 from calculate.constants import ADDEDTOINTERFACE_PATH
 # from constants import REVAPI_FOLDER
 # from constants import ADDEDTOINTERFACE_PATH
 class Revapi:
-    def __init__(self, gavc:dict, ReachableAPIs:list, AllVersion:list, Pwd:str, JarName:str, DependedBy:list):
+    def __init__(self, gavc:dict, ReachableAPIs:list, AllVersion:list, Pwd:str, JarName:str, DependedBy:list, Omitted:list):
         self.gavc = gavc
         self.api = ReachableAPIs
         self.allVersion = AllVersion
@@ -20,6 +21,7 @@ class Revapi:
         self.jar = os.path.join(Pwd, JarName) # jar path
         self.new_dep = os.path.join(Pwd, f'new_dep/')
         self.DependedBy = DependedBy
+        self.Omitted = Omitted
     # # create dep/new_dep to contain new jar
     # def new_dep_folder(self):
     #     # Check if the folder already exists
@@ -44,6 +46,7 @@ class Revapi:
             dest = os.path.join(self.new_dep, self.jar_name)
             shutil.copy(self.jar, dest)
             return self.gavc['v'], ''
+        # current_version is not the lastest version, calculation continue
         best_version = self.gavc['v']
         
         # file to contain tqdm log
@@ -54,9 +57,12 @@ class Revapi:
         with open(dep_tqdm_log_file, 'a') as f:
             with tqdm(total=length-idx, desc=f'Calculate version', file=f) as pbar:
                 # containing the breaking version which is detected by tool as well as the breaking reason
-                Breaking_Reason_Dict = {}
-                former_flag = True
+                # contains all breaking version and its breaking reason
+                Breaking_Reason_List = []
+                # pass all newer version to find the newest and compatible version
                 for i in range(idx+1, length):
+                    # new_dep_jar is path to the downloaded new jar
+                    # ret_txt is new_dep_jar with the suffix '.jar' removed
                     new_dep_jar, ret_txt = self.download_new_dep(self.gavc['g'],self.gavc['a'],self.allVersion[i]['version'], self.gavc['c'])
                     # if new_dep_jar is None, it means that the download of a particular version of the jar failed
                     if new_dep_jar is None:
@@ -66,23 +72,69 @@ class Revapi:
                             print(f"=={self.gavc['g']}:{self.gavc['a']}:{self.allVersion[i]['version']}:{self.gavc['c']} download fails, so skip")
                         pbar.update(1)
                         continue
-                    flag, breaking_reason = self.compare(self.jar, new_dep_jar, ret_txt)
+                    # the most important method : determine whether new version is compatible
+                    # revapi_ret_txt == {ret_txt}#{current_version}
+                    revapi_ret_txt = ret_txt+f"#{self.gavc['v']}"
+                    flag, breaking_reason = self.compare(self.jar, new_dep_jar, revapi_ret_txt)
                     # compare current jar with new jar
-                    # if self.compare(self.jar, new_dep_jar, ret_txt):
                     if flag :
-                        # no BC
-                        best_version = self.allVersion[i]['version']
-                    elif former_flag is True and flag is False:
+                        # no BC for effective_dep
+                        # now consider omitted_deps for dependency conflict
+                        # pass the omitted dep
+                        flag_1 = True
+                        for omitted_dep in self.Omitted:
+                            flag_1, breaking_reason = self.conflict_resolution(omitted_dep, new_dep_jar, ret_txt)
+                            if flag_1 is False:
+                                # conflict occured
+                                break
+                        if flag_1 == False:
+                            dependedby = ""
+                            for dependant in omitted_dep["DependedBy"]:
+                                dependedby = dependedby + f' {dependant}'
+                            breaking_reason = f'conflict with {omitted_dep["JarFileName"]} dependedby {dependedby} ### ' + breaking_reason
+                            Breaking_Reason = {}
+                            # new dep is incompatible, recording the breaking reason
+                            Breaking_Reason.update({'breaking_version': self.allVersion[i]['version']})
+                            Breaking_Reason.update({'breaking_reason': breaking_reason})
+                            Breaking_Reason_List.append(Breaking_Reason)
+                        else :
+                            best_version = self.allVersion[i]['version']
+                    else :
+                        Breaking_Reason = {}
                         # new dep is incompatible, recording the breaking reason
-                        Breaking_Reason_Dict.update({'breaking_version': self.allVersion[i]['version']})
-                        Breaking_Reason_Dict.update({'breaking_reason': breaking_reason})
-                    former_flag = flag
+                        Breaking_Reason.update({'breaking_version': self.allVersion[i]['version']})
+                        Breaking_Reason.update({'breaking_reason': breaking_reason})
+                        Breaking_Reason_List.append(Breaking_Reason)
                     pbar.update(1)
                     # test:
                     # self.compare(self.jar, new_dep_jar, ret_txt)
                     # break
-        return best_version, Breaking_Reason_Dict
+        return best_version, Breaking_Reason_List
             
+    # conflict-resolution
+    # omitted_dep : a dict contain information about an omitted_dep{JarFileName, Version, DependedBy, ReachableAPIs}
+    # new_dep_jar : path to new version of jar
+    # ret_txt : "#{version_of_omitted_dep}" to be added
+    def conflict_resolution(self, omitted_dep:dict, new_dep_jar:str, ret_txt:str):
+        # compare new jar with omitted_dep jar, so need to change some member variable to use compare method
+        # self.api should be changed into reachable api of this omitted_dep
+        # self.DependedBy should be changed into DependedBy of this omitted_dep
+        # record the variable in advance to reduce afterwards
+        reachable_api = copy.deepcopy(self.api)
+        DependedBy = copy.deepcopy(self.DependedBy)
+        revapi_ret_txt =ret_txt+f'#{omitted_dep["Version"]}'
+        
+        self.api = omitted_dep["ReachableAPIs"]
+        omitted_dep_jar_path = os.path.join(self.Pwd, omitted_dep["JarFileName"])
+        self.DependedBy = omitted_dep["DependedBy"]
+        
+        flag, breaking_reason = self.compare(omitted_dep_jar_path, new_dep_jar, revapi_ret_txt)
+        
+        # reduction
+        self.api = reachable_api
+        self.DependedBy = DependedBy
+        return flag, breaking_reason
+        
     # return the idx of current version in allversion
     def find_current_version_idx(self):
         for idx in range(0, len(self.allVersion)):
@@ -122,7 +174,9 @@ class Revapi:
                     print(f"start analysising dependency {group_id}-{artifact_id}-{version}.jar ")
                 else :
                     print(f"start analysising dependency {group_id}-{artifact_id}-{version}-{classifier}.jar ")
-                return os.path.join(self.new_dep,file_name), os.path.join(self.new_dep,f"{file_name}.ret.txt")
+                # the second return value is part of the name of file containing revapi result
+                # it's just file_name without '.jar'
+                return os.path.join(self.new_dep,file_name), os.path.join(self.new_dep,f"{file_name.removesuffix('.jar')}")
         except Exception as e:
             if classifier == '':
                 print(f"Failed to download {group_id}-{artifact_id}-{version}.jar from central repository; Reason: {str(e)}")
@@ -132,15 +186,17 @@ class Revapi:
             return None, None
     # compare old jar and new jar
     # return value: True : no BC ; False : has BC
-    # return value: breaking reason(which api breaks)
+    # return value: breaking reason
     def compare(self, old_jar, new_jar, ret_txt_path):
         sh_path = os.path.join(REVAPI_FOLDER, "revapi.sh")
         command = f'''{sh_path} --extensions=org.revapi:revapi-java:0.28.1,org.revapi:revapi-reporter-text:0.15.0 --old={old_jar} --new={new_jar} -D revapi.reporter.text.minSeverity=BREAKING > {ret_txt_path}'''
-        os.system(command)
-        # flag, records = self.parse_ret(ret_txt_path)
+        if os.path.exists(ret_txt_path) is False:
+            os.system(command)
+        # parse ret_txt and handle some corner case
         flag, records = self.parse_ret(ret_txt_path)
         if flag is False:
-            # this records is which class implements a breaking interface
+            # this records is broken because corner case like java.method.addedToInterface / reference BC / dependency conflict
+            # now, the records is the breaking reason rather than the records in revapi result
             return False, records
         # test
         # print("test\n",records)
@@ -155,8 +211,8 @@ class Revapi:
             # if record is None:
             #     return False
         
-            # skip None, as None is the reture value of some corner cases, which is not handled by reachable API
-            # like java.method.addedToInterface
+            # skip None, as None is the reture value of some corner cases(not breaking), which is not handled by reachable API
+            # like java.method.addedToInterface / reference BC / dependency conflict
             if record is None:
                 continue
             for API in self.api:
@@ -165,13 +221,14 @@ class Revapi:
                 if new_api.startswith(record):
                     # new_api is breaking
                     return False, f"breaking api: {API} <<<<< transformed old api of breaking record: {record}"
+        # True means compatible, so breaking_reason is ''
         return True, ''
         
     # parse the ret.txt
     # return the flag, filtered_records
     # if flag == True, use filtered_records containing breaking api to match the reachable api
-    # if flag == False, then the version is breaking, letting filtered_records[i] be None, won't be handled by reachable api afterwards
-    # flag == False is used to handle the corner case which cann't be handled by reachableAPI, like java.method.addedToInterface
+    # if flag == False, then the version is breaking, filtered_records is breaking_reason
+    # flag == False denotes the corner case breaks which cann't be handled by reachableAPI, like java.method.addedToInterface
     def parse_ret(self, ret_path):
         with open(ret_path, 'r') as f:
             content = f.read()
@@ -205,6 +262,7 @@ class Revapi:
                     return False, breaking_reason
                 filtered_records[i] = None
                 continue
+            
             
             # using reachable API
             pattern = r'old: (.+?)\n'

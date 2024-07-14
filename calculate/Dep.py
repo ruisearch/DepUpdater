@@ -2,6 +2,7 @@ import os
 import requests
 import json
 import time
+import copy
 from functools import cmp_to_key
 # from operator import itemgetter
 from calculate.Revapi import Revapi
@@ -17,7 +18,8 @@ class Dep:
         self.Version = dep_dict["Version"]
         self.ReachableAPIs = dep_dict["ReachableAPIs"]
         self.Classifier = dep_dict['Classifier']
-        self.DependedBy = dep_dict['DependedBy']
+        self.DependedBy = copy.deepcopy(dep_dict['DependedBy'])
+        self.Omitted = copy.deepcopy(dep_dict['Omitted'])
         self.Pwd = dep_path
 
     def fetch_versions_sorted(self):
@@ -103,7 +105,7 @@ class Dep:
     # tqdm_log_module_folder: path to tqdm_log/{module_name}/ containing files denoting the progress of each process
     def get_best_version(self, tqdm_log_module_folder:str):
         gavc = {'g':self.GroupId, 'a':self.ArtifactId, 'v':self.Version, 'c':self.Classifier}
-        rev = Revapi(gavc, self.ReachableAPIs, self.AllVersion, self.Pwd, self.JarFileName, self.DependedBy)
+        rev = Revapi(gavc, self.ReachableAPIs, self.AllVersion, self.Pwd, self.JarFileName, self.DependedBy, self.Omitted)
         return rev.get_best_version(tqdm_log_module_folder)
         
     
