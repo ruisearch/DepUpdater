@@ -7,8 +7,8 @@
         "Version": "2.23.1",
         "Type": "compile",
         "Depth": 1,
-        "Index": 0,
         "DependedBy": [],
+        "Omitted": [],
         "ReachableAPIs": [
             "org.apache.logging.log4j.Level: org.apache.logging.log4j.Level valueOf(java.lang.String)",
             "org.apache.logging.log4j.LogManager: org.apache.logging.log4j.spi.LoggerContextFactory getFactory()",
@@ -300,10 +300,20 @@
             }
         ],
         "BestVersion": "2.23.1",
-        "Breaking_Reason": {
-            "breaking_version": "3.0.0-alpha1",
-            "breaking_reason": "reference broken: org.apache.logging.log4j.Level breaks log4j-api-test-2.23.1.jar/org.apache.logging.log4j.test.ListStatusListener: java.util.stream.Stream findStatusData(org.apache.logging.log4j.Level)"
-        }
+        "Breaking_Reason": [
+            {
+                "breaking_version": "3.0.0-alpha1",
+                "breaking_reason": "reference broken: org.apache.logging.log4j.Level breaks log4j-api-test-2.23.1.jar/org.apache.logging.log4j.test.ListStatusListener: java.util.stream.Stream findStatusData(org.apache.logging.log4j.Level)"
+            },
+            {
+                "breaking_version": "3.0.0-beta1",
+                "breaking_reason": "reference broken: org.apache.logging.log4j.Level breaks log4j-api-test-2.23.1.jar/org.apache.logging.log4j.test.ListStatusListener: java.util.stream.Stream findStatusData(org.apache.logging.log4j.Level)"
+            },
+            {
+                "breaking_version": "3.0.0-beta2",
+                "breaking_reason": "reference broken: org.apache.logging.log4j.Level breaks log4j-api-test-2.23.1.jar/org.apache.logging.log4j.test.ListStatusListener: java.util.stream.Stream findStatusData(org.apache.logging.log4j.Level)"
+            }
+        ]
     },
     {
         "JarFileName": "org.apache.commons-commons-lang3-3.14.0.jar",
@@ -313,8 +323,42 @@
         "Version": "3.14.0",
         "Type": "compile",
         "Depth": 1,
-        "Index": 1,
         "DependedBy": [],
+        "Omitted": [
+            {
+                "JarFileName": "org.apache.commons-commons-lang3-3.12.0.jar",
+                "Version": "3.12.0",
+                "DependedBy": [
+                    "org.apache.maven-maven-artifact-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": [
+                    "org.apache.commons.lang3.SerializationException: void <init>(java.lang.Throwable)",
+                    "org.apache.commons.lang3.SerializationUtils: java.lang.Object deserialize(byte[])",
+                    "org.apache.commons.lang3.SerializationUtils: java.lang.Object deserialize(java.io.InputStream)",
+                    "org.apache.commons.lang3.SerializationUtils: java.io.Serializable roundtrip(java.io.Serializable)",
+                    "org.apache.commons.lang3.SerializationUtils: byte[] serialize(java.io.Serializable)",
+                    "org.apache.commons.lang3.SerializationUtils: void serialize(java.io.Serializable,java.io.OutputStream)",
+                    "org.apache.commons.lang3.Validate: java.lang.Object notNull(java.lang.Object,java.lang.String,java.lang.Object[])"
+                ]
+            },
+            {
+                "JarFileName": "org.apache.commons-commons-lang3-3.12.0.jar",
+                "Version": "3.12.0",
+                "DependedBy": [
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": [
+                    "org.apache.commons.lang3.SerializationException: void <init>(java.lang.Throwable)",
+                    "org.apache.commons.lang3.SerializationUtils: java.lang.Object deserialize(byte[])",
+                    "org.apache.commons.lang3.SerializationUtils: java.lang.Object deserialize(java.io.InputStream)",
+                    "org.apache.commons.lang3.SerializationUtils: java.io.Serializable roundtrip(java.io.Serializable)",
+                    "org.apache.commons.lang3.SerializationUtils: byte[] serialize(java.io.Serializable)",
+                    "org.apache.commons.lang3.SerializationUtils: void serialize(java.io.Serializable,java.io.OutputStream)",
+                    "org.apache.commons.lang3.Validate: java.lang.Object notNull(java.lang.Object,java.lang.String,java.lang.Object[])"
+                ]
+            }
+        ],
         "ReachableAPIs": [
             "org.apache.commons.lang3.SerializationException: void <init>(java.lang.Throwable)",
             "org.apache.commons.lang3.SerializationUtils: java.lang.Object deserialize(byte[])",
@@ -416,8 +460,42 @@
         "Version": "2.2",
         "Type": "compile",
         "Depth": 1,
-        "Index": 2,
         "DependedBy": [],
+        "Omitted": [
+            {
+                "JarFileName": "org.hamcrest-hamcrest-2.2.jar",
+                "Version": "2.2",
+                "DependedBy": [
+                    "org.hamcrest-hamcrest-core-2.2.jar",
+                    "junit-junit-4.13.2.jar"
+                ],
+                "ReachableAPIs": [
+                    "org.hamcrest.core.IsEqual: void <init>(java.lang.Object)",
+                    "org.hamcrest.core.IsEqual: org.hamcrest.Matcher equalTo(java.lang.Object)",
+                    "org.hamcrest.core.IsInstanceOf: void <init>(java.lang.Class)",
+                    "org.hamcrest.core.IsInstanceOf: java.lang.Class matchableClass(java.lang.Class)",
+                    "org.hamcrest.core.IsInstanceOf: org.hamcrest.Matcher any(java.lang.Class)",
+                    "org.hamcrest.TypeSafeDiagnosingMatcher: void <init>(org.hamcrest.internal.ReflectiveTypeFinder)",
+                    "org.hamcrest.TypeSafeDiagnosingMatcher: void <clinit>()",
+                    "org.hamcrest.FeatureMatcher: void <init>(org.hamcrest.Matcher,java.lang.String,java.lang.String)",
+                    "org.hamcrest.FeatureMatcher: void <clinit>()",
+                    "org.hamcrest.MatcherAssert: void assertThat(java.lang.String,java.lang.Object,org.hamcrest.Matcher)",
+                    "org.hamcrest.BaseMatcher: void <init>()",
+                    "org.hamcrest.DiagnosingMatcher: void <init>()",
+                    "org.hamcrest.BaseDescription: void <init>()",
+                    "org.hamcrest.BaseDescription: org.hamcrest.Description appendText(java.lang.String)",
+                    "org.hamcrest.BaseDescription: org.hamcrest.Description appendDescriptionOf(org.hamcrest.SelfDescribing)",
+                    "org.hamcrest.StringDescription: void <init>()",
+                    "org.hamcrest.StringDescription: void <init>(java.lang.Appendable)",
+                    "org.hamcrest.StringDescription: void append(java.lang.String)",
+                    "org.hamcrest.StringDescription: java.lang.String toString()",
+                    "org.hamcrest.internal.ReflectiveTypeFinder: void <init>(java.lang.String,int,int)",
+                    "org.hamcrest.internal.ReflectiveTypeFinder: java.lang.Class findExpectedType(java.lang.Class)",
+                    "org.hamcrest.internal.ReflectiveTypeFinder: boolean canObtainExpectedTypeFrom(java.lang.reflect.Method)",
+                    "org.hamcrest.internal.ReflectiveTypeFinder: java.lang.Class expectedTypeFrom(java.lang.reflect.Method)"
+                ]
+            }
+        ],
         "ReachableAPIs": [
             "org.hamcrest.core.IsEqual: void <init>(java.lang.Object)",
             "org.hamcrest.core.IsEqual: org.hamcrest.Matcher equalTo(java.lang.Object)",
@@ -486,8 +564,8 @@
         "Version": "4.13.2",
         "Type": "compile",
         "Depth": 1,
-        "Index": 3,
         "DependedBy": [],
+        "Omitted": [],
         "ReachableAPIs": [
             "junit.framework.Assert: java.lang.String format(java.lang.String,java.lang.Object,java.lang.Object)",
             "junit.framework.ComparisonFailure: java.lang.String getMessage()",
@@ -679,10 +757,10 @@
         "Version": "2.2",
         "Type": "compile",
         "Depth": 2,
-        "Index": 4,
         "DependedBy": [
             "junit-junit-4.13.2.jar"
         ],
+        "Omitted": [],
         "ReachableAPIs": [],
         "AllVersion": [
             {
@@ -741,8 +819,66 @@
         "Version": "5.10.2",
         "Type": "compile",
         "Depth": 1,
-        "Index": 5,
         "DependedBy": [],
+        "Omitted": [
+            {
+                "JarFileName": "org.junit.jupiter-junit-jupiter-api-5.9.0.jar",
+                "Version": "5.9.0",
+                "DependedBy": [
+                    "org.junit-pioneer-junit-pioneer-1.9.1.jar"
+                ],
+                "ReachableAPIs": [
+                    "org.junit.jupiter.api.AssertEquals: void assertEquals(int,int)",
+                    "org.junit.jupiter.api.AssertEquals: void assertEquals(int,int,java.lang.String)",
+                    "org.junit.jupiter.api.AssertEquals: void assertEquals(java.lang.Object,java.lang.Object)",
+                    "org.junit.jupiter.api.AssertEquals: void assertEquals(java.lang.Object,java.lang.Object,java.lang.String)",
+                    "org.junit.jupiter.api.AssertEquals: void failNotEqual(java.lang.Object,java.lang.Object,java.lang.Object)",
+                    "org.junit.jupiter.api.AssertNotNull: void assertNotNull(java.lang.Object)",
+                    "org.junit.jupiter.api.AssertNotNull: void assertNotNull(java.lang.Object,java.lang.String)",
+                    "org.junit.jupiter.api.AssertNotNull: void failNull(java.lang.Object)",
+                    "org.junit.jupiter.api.AssertThrows: java.lang.Throwable assertThrows(java.lang.Class,org.junit.jupiter.api.function.Executable)",
+                    "org.junit.jupiter.api.AssertThrows: java.lang.Throwable assertThrows(java.lang.Class,org.junit.jupiter.api.function.Executable,java.lang.Object)",
+                    "org.junit.jupiter.api.AssertTrue: void assertTrue(boolean)",
+                    "org.junit.jupiter.api.AssertTrue: void assertTrue(boolean,java.lang.String)",
+                    "org.junit.jupiter.api.AssertTrue: void failNotTrue(java.lang.Object)",
+                    "org.junit.jupiter.api.AssertionFailureBuilder: org.junit.jupiter.api.AssertionFailureBuilder assertionFailure()",
+                    "org.junit.jupiter.api.AssertionFailureBuilder: void <init>()",
+                    "org.junit.jupiter.api.AssertionFailureBuilder: org.junit.jupiter.api.AssertionFailureBuilder message(java.lang.Object)",
+                    "org.junit.jupiter.api.AssertionFailureBuilder: org.junit.jupiter.api.AssertionFailureBuilder reason(java.lang.String)",
+                    "org.junit.jupiter.api.AssertionFailureBuilder: org.junit.jupiter.api.AssertionFailureBuilder cause(java.lang.Throwable)",
+                    "org.junit.jupiter.api.AssertionFailureBuilder: org.junit.jupiter.api.AssertionFailureBuilder expected(java.lang.Object)",
+                    "org.junit.jupiter.api.AssertionFailureBuilder: org.junit.jupiter.api.AssertionFailureBuilder actual(java.lang.Object)",
+                    "org.junit.jupiter.api.AssertionFailureBuilder: void buildAndThrow()",
+                    "org.junit.jupiter.api.AssertionFailureBuilder: org.opentest4j.AssertionFailedError build()",
+                    "org.junit.jupiter.api.AssertionFailureBuilder: java.lang.String nullSafeGet(java.lang.Object)",
+                    "org.junit.jupiter.api.AssertionFailureBuilder: java.lang.String buildPrefix(java.lang.String)",
+                    "org.junit.jupiter.api.AssertionFailureBuilder: java.lang.String formatValues(java.lang.Object,java.lang.Object)",
+                    "org.junit.jupiter.api.AssertionFailureBuilder: java.lang.String formatClassAndValue(java.lang.Object,java.lang.String)",
+                    "org.junit.jupiter.api.AssertionFailureBuilder: java.lang.String toString(java.lang.Object)",
+                    "org.junit.jupiter.api.AssertionFailureBuilder: java.lang.String toHash(java.lang.Object)",
+                    "org.junit.jupiter.api.AssertionFailureBuilder: java.lang.String getClassName(java.lang.Object)",
+                    "org.junit.jupiter.api.AssertionUtils: void fail(java.lang.String)",
+                    "org.junit.jupiter.api.AssertionUtils: java.lang.String getCanonicalName(java.lang.Class)",
+                    "org.junit.jupiter.api.AssertionUtils: boolean objectsAreEqual(java.lang.Object,java.lang.Object)",
+                    "org.junit.jupiter.api.Assertions: java.lang.Object fail(java.lang.String)",
+                    "org.junit.jupiter.api.Assertions: void assertTrue(boolean)",
+                    "org.junit.jupiter.api.Assertions: void assertNotNull(java.lang.Object)",
+                    "org.junit.jupiter.api.Assertions: void assertNotNull(java.lang.Object,java.lang.String)",
+                    "org.junit.jupiter.api.Assertions: void assertEquals(int,int)",
+                    "org.junit.jupiter.api.Assertions: void assertEquals(java.lang.Object,java.lang.Object)",
+                    "org.junit.jupiter.api.Assertions: java.lang.Throwable assertThrows(java.lang.Class,org.junit.jupiter.api.function.Executable)",
+                    "org.junit.jupiter.api.AssertionsKt$assertDoesNotThrow$1: java.lang.String invoke()",
+                    "org.junit.jupiter.api.AssertionsKt$assertThrows$1: void execute()",
+                    "org.junit.jupiter.api.AssertionsKt$assertThrows$2: java.lang.String invoke()",
+                    "org.junit.jupiter.api.AssertionsKt$assertThrows$3: void execute()",
+                    "org.junit.jupiter.api.AssertionsKt$sam$i$java_util_function_Supplier$0: java.lang.Object get()",
+                    "org.junit.jupiter.api.AssertionsKt$sam$java_util_function_Supplier$0: java.lang.Object get()",
+                    "org.junit.jupiter.api.extension.ExtensionContext$Namespace: org.junit.jupiter.api.extension.ExtensionContext$Namespace create(java.lang.Object[])",
+                    "org.junit.jupiter.api.extension.ExtensionContext$Namespace: void <init>(java.util.List)",
+                    "org.junit.jupiter.api.extension.ExtensionContext$Namespace: void <clinit>()"
+                ]
+            }
+        ],
         "ReachableAPIs": [
             "org.junit.jupiter.api.AssertEquals: void assertEquals(int,int)",
             "org.junit.jupiter.api.AssertEquals: void assertEquals(int,int,java.lang.String)",
@@ -1074,7 +1210,7 @@
             }
         ],
         "BestVersion": "5.11.0-M2",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "org.opentest4j-opentest4j-1.3.0.jar",
@@ -1084,9 +1220,19 @@
         "Version": "1.3.0",
         "Type": "compile",
         "Depth": 2,
-        "Index": 6,
         "DependedBy": [
             "org.junit.jupiter-junit-jupiter-api-5.10.2.jar"
+        ],
+        "Omitted": [
+            {
+                "JarFileName": "org.opentest4j-opentest4j-1.3.0.jar",
+                "Version": "1.3.0",
+                "DependedBy": [
+                    "org.junit.platform-junit-platform-engine-1.10.2.jar",
+                    "org.codehaus.plexus-plexus-utils-3.5.1.jar"
+                ],
+                "ReachableAPIs": []
+            }
         ],
         "ReachableAPIs": [
             "org.opentest4j.AssertionFailedError$1: void <init>(java.lang.String)",
@@ -1162,9 +1308,36 @@
         "Version": "1.1.2",
         "Type": "compile",
         "Depth": 2,
-        "Index": 7,
         "DependedBy": [
             "org.junit.jupiter-junit-jupiter-api-5.10.2.jar"
+        ],
+        "Omitted": [
+            {
+                "JarFileName": "org.apiguardian-apiguardian-api-1.1.2.jar",
+                "Version": "1.1.2",
+                "DependedBy": [
+                    "org.junit.platform-junit-platform-launcher-1.10.2.jar",
+                    "org.junit-pioneer-junit-pioneer-1.9.1.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "org.apiguardian-apiguardian-api-1.1.2.jar",
+                "Version": "1.1.2",
+                "DependedBy": [
+                    "org.junit.platform-junit-platform-commons-1.10.2.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "org.apiguardian-apiguardian-api-1.1.2.jar",
+                "Version": "1.1.2",
+                "DependedBy": [
+                    "org.junit.platform-junit-platform-engine-1.10.2.jar",
+                    "org.codehaus.plexus-plexus-utils-3.5.1.jar"
+                ],
+                "ReachableAPIs": []
+            }
         ],
         "ReachableAPIs": [],
         "AllVersion": [
@@ -1196,8 +1369,8 @@
         "Version": "1.9.1",
         "Type": "compile",
         "Depth": 1,
-        "Index": 8,
         "DependedBy": [],
+        "Omitted": [],
         "ReachableAPIs": [],
         "AllVersion": [
             {
@@ -1378,7 +1551,7 @@
             }
         ],
         "BestVersion": "2.2.0",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "org.junit.platform-junit-platform-launcher-1.10.2.jar",
@@ -1388,10 +1561,10 @@
         "Version": "1.10.2",
         "Type": "runtime",
         "Depth": 2,
-        "Index": 9,
         "DependedBy": [
             "org.junit-pioneer-junit-pioneer-1.9.1.jar"
         ],
+        "Omitted": [],
         "ReachableAPIs": [],
         "AllVersion": [
             {
@@ -1672,7 +1845,7 @@
             }
         ],
         "BestVersion": "1.11.0-M2",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "org.junit.platform-junit-platform-commons-1.10.2.jar",
@@ -1682,8 +1855,219 @@
         "Version": "1.10.2",
         "Type": "compile",
         "Depth": 1,
-        "Index": 10,
         "DependedBy": [],
+        "Omitted": [
+            {
+                "JarFileName": "org.junit.platform-junit-platform-commons-1.10.2.jar",
+                "Version": "1.10.2",
+                "DependedBy": [
+                    "org.junit.jupiter-junit-jupiter-api-5.10.2.jar"
+                ],
+                "ReachableAPIs": [
+                    "org.junit.platform.commons.JUnitException: void <init>(java.lang.String)",
+                    "org.junit.platform.commons.JUnitException: void <init>(java.lang.String,java.lang.Throwable)",
+                    "org.junit.platform.commons.PreconditionViolationException: void <init>(java.lang.String)",
+                    "org.junit.platform.commons.function.Try$Failure: void <init>(java.lang.Exception)",
+                    "org.junit.platform.commons.function.Try$Failure: java.lang.Object getOrThrow(java.util.function.Function)",
+                    "org.junit.platform.commons.function.Try$Failure: java.util.Optional toOptional()",
+                    "org.junit.platform.commons.function.Try$Success: void <init>(java.lang.Object)",
+                    "org.junit.platform.commons.function.Try$Success: java.lang.Object getOrThrow(java.util.function.Function)",
+                    "org.junit.platform.commons.function.Try$Success: java.util.Optional toOptional()",
+                    "org.junit.platform.commons.function.Try$Success: org.junit.platform.commons.function.Try lambda$andThen$1(java.util.function.Function)",
+                    "org.junit.platform.commons.function.Try: org.junit.platform.commons.function.Try call(java.util.concurrent.Callable)",
+                    "org.junit.platform.commons.function.Try: org.junit.platform.commons.function.Try success(java.lang.Object)",
+                    "org.junit.platform.commons.function.Try: org.junit.platform.commons.function.Try failure(java.lang.Exception)",
+                    "org.junit.platform.commons.function.Try: java.lang.Object checkNotNull(java.lang.Object,java.lang.String)",
+                    "org.junit.platform.commons.function.Try: org.junit.platform.commons.function.Try of(java.util.concurrent.Callable)",
+                    "org.junit.platform.commons.function.Try: void <init>()",
+                    "org.junit.platform.commons.function.Try: org.junit.platform.commons.function.Try lambda$call$0(java.util.concurrent.Callable)",
+                    "org.junit.platform.commons.function.Try: void <init>(org.junit.platform.commons.function.Try$1)",
+                    "org.junit.platform.commons.function.Try: java.lang.Object access$100(java.lang.Object,java.lang.String)",
+                    "org.junit.platform.commons.logging.LoggerFactory$DelegatingLogger: void <init>(java.lang.String)",
+                    "org.junit.platform.commons.logging.LoggerFactory$DelegatingLogger: void <clinit>()",
+                    "org.junit.platform.commons.logging.LoggerFactory: org.junit.platform.commons.logging.Logger getLogger(java.lang.Class)",
+                    "org.junit.platform.commons.logging.LoggerFactory: void <clinit>()",
+                    "org.junit.platform.commons.support.AnnotationSupport: boolean isAnnotated(java.lang.reflect.AnnotatedElement,java.lang.Class)",
+                    "org.junit.platform.commons.support.AnnotationSupport: java.util.List findRepeatableAnnotations(java.lang.reflect.AnnotatedElement,java.lang.Class)",
+                    "org.junit.platform.commons.support.AnnotationSupport: java.util.List findAnnotatedFields(java.lang.Class,java.lang.Class,java.util.function.Predicate)",
+                    "org.junit.platform.commons.support.ModifierSupport: boolean isStatic(java.lang.reflect.Member)",
+                    "org.junit.platform.commons.support.ModifierSupport: boolean isNotStatic(java.lang.reflect.Member)",
+                    "org.junit.platform.commons.support.ReflectionSupport: java.util.List findFields(java.lang.Class,java.util.function.Predicate,org.junit.platform.commons.support.HierarchyTraversalMode)",
+                    "org.junit.platform.commons.util.AnnotationUtils: boolean isAnnotated(java.lang.reflect.AnnotatedElement,java.lang.Class)",
+                    "org.junit.platform.commons.util.AnnotationUtils: java.util.Optional findAnnotation(java.lang.reflect.AnnotatedElement,java.lang.Class)",
+                    "org.junit.platform.commons.util.AnnotationUtils: java.util.Optional findAnnotation(java.lang.reflect.AnnotatedElement,java.lang.Class,boolean,java.util.Set)",
+                    "org.junit.platform.commons.util.AnnotationUtils: java.util.List findRepeatableAnnotations(java.lang.reflect.AnnotatedElement,java.lang.Class)",
+                    "org.junit.platform.commons.util.AnnotationUtils: void findRepeatableAnnotations(java.lang.reflect.AnnotatedElement,java.lang.Class,java.lang.Class,boolean,java.util.Set,java.util.Set)",
+                    "org.junit.platform.commons.util.AnnotationUtils: boolean isRepeatableAnnotationContainer(java.lang.Class)",
+                    "org.junit.platform.commons.util.AnnotationUtils: java.util.List findAnnotatedFields(java.lang.Class,java.lang.Class,java.util.function.Predicate)",
+                    "org.junit.platform.commons.util.AnnotationUtils: java.util.List findAnnotatedFields(java.lang.Class,java.lang.Class,java.util.function.Predicate,org.junit.platform.commons.util.ReflectionUtils$HierarchyTraversalMode)",
+                    "org.junit.platform.commons.util.AnnotationUtils: boolean isInJavaLangAnnotationPackage(java.lang.Class)",
+                    "org.junit.platform.commons.util.AnnotationUtils: org.junit.platform.commons.JUnitException lambda$findRepeatableAnnotations$1(java.lang.Class,java.lang.Class,java.lang.Exception)",
+                    "org.junit.platform.commons.util.AnnotationUtils: java.lang.String lambda$findRepeatableAnnotations$0(java.lang.Class)",
+                    "org.junit.platform.commons.util.AnnotationUtils: void <clinit>()",
+                    "org.junit.platform.commons.util.ClassNamePatternFilterUtils: java.util.function.Predicate excludeMatchingClassNames(java.lang.String)",
+                    "org.junit.platform.commons.util.ClassNamePatternFilterUtils: java.util.function.Predicate excludeMatchingClasses(java.lang.String,java.util.function.Function)",
+                    "org.junit.platform.commons.util.ClasspathScanner: void <init>(java.util.function.Supplier,java.util.function.BiFunction)",
+                    "org.junit.platform.commons.util.ClasspathScanner: java.lang.String lambda$findClassesForPath$2(java.nio.file.Path)",
+                    "org.junit.platform.commons.util.ClasspathScanner: void <clinit>()",
+                    "org.junit.platform.commons.util.CollectionUtils: java.util.stream.Collector toUnmodifiableList()",
+                    "org.junit.platform.commons.util.CollectionUtils: java.lang.String lambda$getOnlyElement$0(java.util.Collection)",
+                    "org.junit.platform.commons.util.ExceptionUtils: java.lang.RuntimeException throwAsUncheckedException(java.lang.Throwable)",
+                    "org.junit.platform.commons.util.ExceptionUtils: void throwAs(java.lang.Throwable)",
+                    "org.junit.platform.commons.util.ExceptionUtils: void <clinit>()",
+                    "org.junit.platform.commons.util.PreconditionViolationException: void <init>(java.lang.String)",
+                    "org.junit.platform.commons.util.Preconditions: java.lang.Object notNull(java.lang.Object,java.lang.String)",
+                    "org.junit.platform.commons.util.Preconditions: java.lang.Object notNull(java.lang.Object,java.util.function.Supplier)",
+                    "org.junit.platform.commons.util.Preconditions: java.lang.Object[] notEmpty(java.lang.Object[],java.lang.String)",
+                    "org.junit.platform.commons.util.Preconditions: java.lang.Object[] containsNoNullElements(java.lang.Object[],java.lang.String)",
+                    "org.junit.platform.commons.util.Preconditions: java.lang.String notBlank(java.lang.String,java.lang.String)",
+                    "org.junit.platform.commons.util.Preconditions: void condition(boolean,java.lang.String)",
+                    "org.junit.platform.commons.util.Preconditions: void condition(boolean,java.util.function.Supplier)",
+                    "org.junit.platform.commons.util.ReflectionUtils$HierarchyTraversalMode: org.junit.platform.commons.util.ReflectionUtils$HierarchyTraversalMode valueOf(java.lang.String)",
+                    "org.junit.platform.commons.util.ReflectionUtils$HierarchyTraversalMode: void <init>(java.lang.String,int)",
+                    "org.junit.platform.commons.util.ReflectionUtils$HierarchyTraversalMode: org.junit.platform.commons.util.ReflectionUtils$HierarchyTraversalMode[] $values()",
+                    "org.junit.platform.commons.util.ReflectionUtils$HierarchyTraversalMode: void <clinit>()",
+                    "org.junit.platform.commons.util.ReflectionUtils: boolean isStatic(java.lang.reflect.Member)",
+                    "org.junit.platform.commons.util.ReflectionUtils: boolean isNotStatic(java.lang.reflect.Member)",
+                    "org.junit.platform.commons.util.ReflectionUtils: org.junit.platform.commons.function.Try tryToReadFieldValue(java.lang.reflect.Field,java.lang.Object)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.lang.Object invokeMethod(java.lang.reflect.Method,java.lang.Object,java.lang.Object[])",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.lang.Class loadArrayType(java.lang.ClassLoader,java.lang.String,int)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.util.List findFields(java.lang.Class,java.util.function.Predicate,org.junit.platform.commons.util.ReflectionUtils$HierarchyTraversalMode)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.util.stream.Stream streamFields(java.lang.Class,java.util.function.Predicate,org.junit.platform.commons.util.ReflectionUtils$HierarchyTraversalMode)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.util.List findAllFieldsInHierarchy(java.lang.Class,org.junit.platform.commons.util.ReflectionUtils$HierarchyTraversalMode)",
+                    "org.junit.platform.commons.util.ReflectionUtils: org.junit.platform.commons.function.Try tryToGetMethod(java.lang.Class,java.lang.String,java.lang.Class[])",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.util.List getFields(java.lang.Class)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.util.List getDeclaredFields(java.lang.Class)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.util.List toSortedMutableList(java.lang.reflect.Field[])",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.util.List getInterfaceFields(java.lang.Class,org.junit.platform.commons.util.ReflectionUtils$HierarchyTraversalMode)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.util.List getSuperclassFields(java.lang.Class,org.junit.platform.commons.util.ReflectionUtils$HierarchyTraversalMode)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.lang.reflect.AccessibleObject makeAccessible(java.lang.reflect.AccessibleObject)",
+                    "org.junit.platform.commons.util.ReflectionUtils: boolean isSearchable(java.lang.Class)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.lang.Throwable getUnderlyingCause(java.lang.Throwable)",
+                    "org.junit.platform.commons.util.ReflectionUtils: org.junit.platform.commons.JUnitException lambda$loadRequiredParameterType$24(java.lang.String,java.lang.String,java.lang.Class,java.lang.Exception)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.lang.reflect.Method lambda$tryToGetMethod$21(java.lang.Class,java.lang.String,java.lang.Class[])",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.lang.String lambda$getDeclaredConstructor$17(java.lang.Class)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.lang.String lambda$parseFullyQualifiedMethodName$10(java.lang.String)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.lang.Class lambda$tryToLoadClass$9(java.lang.String,java.lang.ClassLoader)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.lang.String lambda$invokeMethod$8(java.lang.reflect.Method)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.lang.Object lambda$tryToReadFieldValue$5(java.lang.reflect.Field,java.lang.Object)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.lang.String lambda$tryToReadFieldValue$4(java.lang.reflect.Field)",
+                    "org.junit.platform.commons.util.ReflectionUtils: org.junit.platform.commons.function.Try lambda$tryToReadFieldValue$3(java.lang.Object,java.lang.reflect.Field)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.lang.reflect.Field lambda$tryToReadFieldValue$2(java.lang.Class,java.lang.String)",
+                    "org.junit.platform.commons.util.ReflectionUtils: void <clinit>()",
+                    "org.junit.platform.commons.util.StringUtils: java.util.regex.Pattern compileIsoControlPattern()",
+                    "org.junit.platform.commons.util.StringUtils: boolean isBlank(java.lang.String)",
+                    "org.junit.platform.commons.util.StringUtils: boolean isNotBlank(java.lang.String)",
+                    "org.junit.platform.commons.util.StringUtils: java.lang.String nullSafeToString(java.lang.Object)",
+                    "org.junit.platform.commons.util.StringUtils: java.lang.String defaultToString(java.lang.Object)",
+                    "org.junit.platform.commons.util.StringUtils: void <clinit>()",
+                    "org.junit.platform.commons.util.UnrecoverableExceptions: void rethrowIfUnrecoverable(java.lang.Throwable)"
+                ]
+            },
+            {
+                "JarFileName": "org.junit.platform-junit-platform-commons-1.10.2.jar",
+                "Version": "1.10.2",
+                "DependedBy": [
+                    "org.junit.platform-junit-platform-engine-1.10.2.jar",
+                    "org.codehaus.plexus-plexus-utils-3.5.1.jar"
+                ],
+                "ReachableAPIs": [
+                    "org.junit.platform.commons.JUnitException: void <init>(java.lang.String)",
+                    "org.junit.platform.commons.JUnitException: void <init>(java.lang.String,java.lang.Throwable)",
+                    "org.junit.platform.commons.PreconditionViolationException: void <init>(java.lang.String)",
+                    "org.junit.platform.commons.function.Try$Failure: void <init>(java.lang.Exception)",
+                    "org.junit.platform.commons.function.Try$Failure: java.lang.Object getOrThrow(java.util.function.Function)",
+                    "org.junit.platform.commons.function.Try$Failure: java.util.Optional toOptional()",
+                    "org.junit.platform.commons.function.Try$Success: void <init>(java.lang.Object)",
+                    "org.junit.platform.commons.function.Try$Success: java.lang.Object getOrThrow(java.util.function.Function)",
+                    "org.junit.platform.commons.function.Try$Success: java.util.Optional toOptional()",
+                    "org.junit.platform.commons.function.Try$Success: org.junit.platform.commons.function.Try lambda$andThen$1(java.util.function.Function)",
+                    "org.junit.platform.commons.function.Try: org.junit.platform.commons.function.Try call(java.util.concurrent.Callable)",
+                    "org.junit.platform.commons.function.Try: org.junit.platform.commons.function.Try success(java.lang.Object)",
+                    "org.junit.platform.commons.function.Try: org.junit.platform.commons.function.Try failure(java.lang.Exception)",
+                    "org.junit.platform.commons.function.Try: java.lang.Object checkNotNull(java.lang.Object,java.lang.String)",
+                    "org.junit.platform.commons.function.Try: org.junit.platform.commons.function.Try of(java.util.concurrent.Callable)",
+                    "org.junit.platform.commons.function.Try: void <init>()",
+                    "org.junit.platform.commons.function.Try: org.junit.platform.commons.function.Try lambda$call$0(java.util.concurrent.Callable)",
+                    "org.junit.platform.commons.function.Try: void <init>(org.junit.platform.commons.function.Try$1)",
+                    "org.junit.platform.commons.function.Try: java.lang.Object access$100(java.lang.Object,java.lang.String)",
+                    "org.junit.platform.commons.logging.LoggerFactory$DelegatingLogger: void <init>(java.lang.String)",
+                    "org.junit.platform.commons.logging.LoggerFactory$DelegatingLogger: void <clinit>()",
+                    "org.junit.platform.commons.logging.LoggerFactory: org.junit.platform.commons.logging.Logger getLogger(java.lang.Class)",
+                    "org.junit.platform.commons.logging.LoggerFactory: void <clinit>()",
+                    "org.junit.platform.commons.support.AnnotationSupport: boolean isAnnotated(java.lang.reflect.AnnotatedElement,java.lang.Class)",
+                    "org.junit.platform.commons.support.AnnotationSupport: java.util.List findRepeatableAnnotations(java.lang.reflect.AnnotatedElement,java.lang.Class)",
+                    "org.junit.platform.commons.support.AnnotationSupport: java.util.List findAnnotatedFields(java.lang.Class,java.lang.Class,java.util.function.Predicate)",
+                    "org.junit.platform.commons.support.ModifierSupport: boolean isStatic(java.lang.reflect.Member)",
+                    "org.junit.platform.commons.support.ModifierSupport: boolean isNotStatic(java.lang.reflect.Member)",
+                    "org.junit.platform.commons.support.ReflectionSupport: java.util.List findFields(java.lang.Class,java.util.function.Predicate,org.junit.platform.commons.support.HierarchyTraversalMode)",
+                    "org.junit.platform.commons.util.AnnotationUtils: boolean isAnnotated(java.lang.reflect.AnnotatedElement,java.lang.Class)",
+                    "org.junit.platform.commons.util.AnnotationUtils: java.util.Optional findAnnotation(java.lang.reflect.AnnotatedElement,java.lang.Class)",
+                    "org.junit.platform.commons.util.AnnotationUtils: java.util.Optional findAnnotation(java.lang.reflect.AnnotatedElement,java.lang.Class,boolean,java.util.Set)",
+                    "org.junit.platform.commons.util.AnnotationUtils: java.util.List findRepeatableAnnotations(java.lang.reflect.AnnotatedElement,java.lang.Class)",
+                    "org.junit.platform.commons.util.AnnotationUtils: void findRepeatableAnnotations(java.lang.reflect.AnnotatedElement,java.lang.Class,java.lang.Class,boolean,java.util.Set,java.util.Set)",
+                    "org.junit.platform.commons.util.AnnotationUtils: boolean isRepeatableAnnotationContainer(java.lang.Class)",
+                    "org.junit.platform.commons.util.AnnotationUtils: java.util.List findAnnotatedFields(java.lang.Class,java.lang.Class,java.util.function.Predicate)",
+                    "org.junit.platform.commons.util.AnnotationUtils: java.util.List findAnnotatedFields(java.lang.Class,java.lang.Class,java.util.function.Predicate,org.junit.platform.commons.util.ReflectionUtils$HierarchyTraversalMode)",
+                    "org.junit.platform.commons.util.AnnotationUtils: boolean isInJavaLangAnnotationPackage(java.lang.Class)",
+                    "org.junit.platform.commons.util.AnnotationUtils: org.junit.platform.commons.JUnitException lambda$findRepeatableAnnotations$1(java.lang.Class,java.lang.Class,java.lang.Exception)",
+                    "org.junit.platform.commons.util.AnnotationUtils: java.lang.String lambda$findRepeatableAnnotations$0(java.lang.Class)",
+                    "org.junit.platform.commons.util.AnnotationUtils: void <clinit>()",
+                    "org.junit.platform.commons.util.ClassNamePatternFilterUtils: java.util.function.Predicate excludeMatchingClassNames(java.lang.String)",
+                    "org.junit.platform.commons.util.ClassNamePatternFilterUtils: java.util.function.Predicate excludeMatchingClasses(java.lang.String,java.util.function.Function)",
+                    "org.junit.platform.commons.util.ClasspathScanner: void <init>(java.util.function.Supplier,java.util.function.BiFunction)",
+                    "org.junit.platform.commons.util.ClasspathScanner: java.lang.String lambda$findClassesForPath$2(java.nio.file.Path)",
+                    "org.junit.platform.commons.util.ClasspathScanner: void <clinit>()",
+                    "org.junit.platform.commons.util.CollectionUtils: java.util.stream.Collector toUnmodifiableList()",
+                    "org.junit.platform.commons.util.CollectionUtils: java.lang.String lambda$getOnlyElement$0(java.util.Collection)",
+                    "org.junit.platform.commons.util.ExceptionUtils: java.lang.RuntimeException throwAsUncheckedException(java.lang.Throwable)",
+                    "org.junit.platform.commons.util.ExceptionUtils: void throwAs(java.lang.Throwable)",
+                    "org.junit.platform.commons.util.ExceptionUtils: void <clinit>()",
+                    "org.junit.platform.commons.util.PreconditionViolationException: void <init>(java.lang.String)",
+                    "org.junit.platform.commons.util.Preconditions: java.lang.Object notNull(java.lang.Object,java.lang.String)",
+                    "org.junit.platform.commons.util.Preconditions: java.lang.Object notNull(java.lang.Object,java.util.function.Supplier)",
+                    "org.junit.platform.commons.util.Preconditions: java.lang.String notBlank(java.lang.String,java.lang.String)",
+                    "org.junit.platform.commons.util.Preconditions: void condition(boolean,java.lang.String)",
+                    "org.junit.platform.commons.util.Preconditions: void condition(boolean,java.util.function.Supplier)",
+                    "org.junit.platform.commons.util.ReflectionUtils$HierarchyTraversalMode: org.junit.platform.commons.util.ReflectionUtils$HierarchyTraversalMode valueOf(java.lang.String)",
+                    "org.junit.platform.commons.util.ReflectionUtils$HierarchyTraversalMode: void <init>(java.lang.String,int)",
+                    "org.junit.platform.commons.util.ReflectionUtils$HierarchyTraversalMode: org.junit.platform.commons.util.ReflectionUtils$HierarchyTraversalMode[] $values()",
+                    "org.junit.platform.commons.util.ReflectionUtils$HierarchyTraversalMode: void <clinit>()",
+                    "org.junit.platform.commons.util.ReflectionUtils: boolean isStatic(java.lang.reflect.Member)",
+                    "org.junit.platform.commons.util.ReflectionUtils: boolean isNotStatic(java.lang.reflect.Member)",
+                    "org.junit.platform.commons.util.ReflectionUtils: org.junit.platform.commons.function.Try tryToReadFieldValue(java.lang.reflect.Field,java.lang.Object)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.lang.Object invokeMethod(java.lang.reflect.Method,java.lang.Object,java.lang.Object[])",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.lang.Class loadArrayType(java.lang.ClassLoader,java.lang.String,int)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.util.List findFields(java.lang.Class,java.util.function.Predicate,org.junit.platform.commons.util.ReflectionUtils$HierarchyTraversalMode)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.util.stream.Stream streamFields(java.lang.Class,java.util.function.Predicate,org.junit.platform.commons.util.ReflectionUtils$HierarchyTraversalMode)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.util.List findAllFieldsInHierarchy(java.lang.Class,org.junit.platform.commons.util.ReflectionUtils$HierarchyTraversalMode)",
+                    "org.junit.platform.commons.util.ReflectionUtils: org.junit.platform.commons.function.Try tryToGetMethod(java.lang.Class,java.lang.String,java.lang.Class[])",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.util.List getFields(java.lang.Class)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.util.List getDeclaredFields(java.lang.Class)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.util.List toSortedMutableList(java.lang.reflect.Field[])",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.util.List getInterfaceFields(java.lang.Class,org.junit.platform.commons.util.ReflectionUtils$HierarchyTraversalMode)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.util.List getSuperclassFields(java.lang.Class,org.junit.platform.commons.util.ReflectionUtils$HierarchyTraversalMode)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.lang.reflect.AccessibleObject makeAccessible(java.lang.reflect.AccessibleObject)",
+                    "org.junit.platform.commons.util.ReflectionUtils: boolean isSearchable(java.lang.Class)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.lang.Throwable getUnderlyingCause(java.lang.Throwable)",
+                    "org.junit.platform.commons.util.ReflectionUtils: org.junit.platform.commons.JUnitException lambda$loadRequiredParameterType$24(java.lang.String,java.lang.String,java.lang.Class,java.lang.Exception)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.lang.reflect.Method lambda$tryToGetMethod$21(java.lang.Class,java.lang.String,java.lang.Class[])",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.lang.String lambda$getDeclaredConstructor$17(java.lang.Class)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.lang.String lambda$parseFullyQualifiedMethodName$10(java.lang.String)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.lang.Class lambda$tryToLoadClass$9(java.lang.String,java.lang.ClassLoader)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.lang.String lambda$invokeMethod$8(java.lang.reflect.Method)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.lang.Object lambda$tryToReadFieldValue$5(java.lang.reflect.Field,java.lang.Object)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.lang.String lambda$tryToReadFieldValue$4(java.lang.reflect.Field)",
+                    "org.junit.platform.commons.util.ReflectionUtils: org.junit.platform.commons.function.Try lambda$tryToReadFieldValue$3(java.lang.Object,java.lang.reflect.Field)",
+                    "org.junit.platform.commons.util.ReflectionUtils: java.lang.reflect.Field lambda$tryToReadFieldValue$2(java.lang.Class,java.lang.String)",
+                    "org.junit.platform.commons.util.ReflectionUtils: void <clinit>()",
+                    "org.junit.platform.commons.util.StringUtils: java.util.regex.Pattern compileIsoControlPattern()",
+                    "org.junit.platform.commons.util.StringUtils: boolean isBlank(java.lang.String)",
+                    "org.junit.platform.commons.util.StringUtils: boolean isNotBlank(java.lang.String)",
+                    "org.junit.platform.commons.util.StringUtils: void <clinit>()"
+                ]
+            }
+        ],
         "ReachableAPIs": [
             "org.junit.platform.commons.JUnitException: void <init>(java.lang.String)",
             "org.junit.platform.commons.JUnitException: void <init>(java.lang.String,java.lang.Throwable)",
@@ -2063,7 +2447,7 @@
             }
         ],
         "BestVersion": "1.11.0-M2",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "org.apache.maven-maven-core-3.9.6.jar",
@@ -2073,8 +2457,8 @@
         "Version": "3.9.6",
         "Type": "compile",
         "Depth": 1,
-        "Index": 11,
         "DependedBy": [],
+        "Omitted": [],
         "ReachableAPIs": [
             "org.apache.maven.project.MavenProject: void <init>(org.apache.maven.model.Model)"
         ],
@@ -2425,7 +2809,7 @@
             }
         ],
         "BestVersion": "4.0.0-beta-3",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "org.apache.maven-maven-settings-3.9.6.jar",
@@ -2435,9 +2819,19 @@
         "Version": "3.9.6",
         "Type": "compile",
         "Depth": 2,
-        "Index": 12,
         "DependedBy": [
             "org.apache.maven-maven-core-3.9.6.jar"
+        ],
+        "Omitted": [
+            {
+                "JarFileName": "org.apache.maven-maven-settings-3.9.6.jar",
+                "Version": "3.9.6",
+                "DependedBy": [
+                    "org.apache.maven-maven-settings-builder-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            }
         ],
         "ReachableAPIs": [],
         "AllVersion": [
@@ -2779,10 +3173,52 @@
             }
         ],
         "BestVersion": "3.9.8",
-        "Breaking_Reason": {
-            "breaking_version": "4.0.0-alpha-10",
-            "breaking_reason": "reference broken: org.apache.maven.settings.RuntimeInfo breaks org.apache.maven-maven-core-3.9.6.jar/org.apache.maven.execution.SettingsAdapter: void <init>(org.apache.maven.execution.MavenExecutionRequest)"
-        }
+        "Breaking_Reason": [
+            {
+                "breaking_version": "4.0.0-alpha-10",
+                "breaking_reason": "reference broken: org.apache.maven.settings.RuntimeInfo breaks org.apache.maven-maven-core-3.9.6.jar/org.apache.maven.execution.SettingsAdapter: void <init>(org.apache.maven.execution.MavenExecutionRequest)"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-12",
+                "breaking_reason": "reference broken: org.apache.maven.settings.RuntimeInfo breaks org.apache.maven-maven-core-3.9.6.jar/org.apache.maven.execution.SettingsAdapter: void <init>(org.apache.maven.execution.MavenExecutionRequest)"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-13",
+                "breaking_reason": "reference broken: org.apache.maven.settings.RuntimeInfo breaks org.apache.maven-maven-core-3.9.6.jar/org.apache.maven.execution.SettingsAdapter: void <init>(org.apache.maven.execution.MavenExecutionRequest)"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-2",
+                "breaking_reason": "reference broken: org.apache.maven.settings.RuntimeInfo breaks org.apache.maven-maven-core-3.9.6.jar/org.apache.maven.execution.SettingsAdapter: void <init>(org.apache.maven.execution.MavenExecutionRequest)"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-3",
+                "breaking_reason": "reference broken: org.apache.maven.settings.RuntimeInfo breaks org.apache.maven-maven-core-3.9.6.jar/org.apache.maven.execution.SettingsAdapter: void <init>(org.apache.maven.execution.MavenExecutionRequest)"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-4",
+                "breaking_reason": "reference broken: org.apache.maven.settings.RuntimeInfo breaks org.apache.maven-maven-core-3.9.6.jar/org.apache.maven.execution.SettingsAdapter: void <init>(org.apache.maven.execution.MavenExecutionRequest)"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-5",
+                "breaking_reason": "reference broken: org.apache.maven.settings.RuntimeInfo breaks org.apache.maven-maven-core-3.9.6.jar/org.apache.maven.execution.SettingsAdapter: void <init>(org.apache.maven.execution.MavenExecutionRequest)"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-7",
+                "breaking_reason": "reference broken: org.apache.maven.settings.RuntimeInfo breaks org.apache.maven-maven-core-3.9.6.jar/org.apache.maven.execution.SettingsAdapter: void <init>(org.apache.maven.execution.MavenExecutionRequest)"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-8",
+                "breaking_reason": "reference broken: org.apache.maven.settings.RuntimeInfo breaks org.apache.maven-maven-core-3.9.6.jar/org.apache.maven.execution.SettingsAdapter: void <init>(org.apache.maven.execution.MavenExecutionRequest)"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-9",
+                "breaking_reason": "reference broken: org.apache.maven.settings.RuntimeInfo breaks org.apache.maven-maven-core-3.9.6.jar/org.apache.maven.execution.SettingsAdapter: void <init>(org.apache.maven.execution.MavenExecutionRequest)"
+            },
+            {
+                "breaking_version": "4.0.0-beta-3",
+                "breaking_reason": "reference broken: org.apache.maven.settings.RuntimeInfo breaks org.apache.maven-maven-core-3.9.6.jar/org.apache.maven.execution.SettingsAdapter: void <init>(org.apache.maven.execution.MavenExecutionRequest)"
+            }
+        ]
     },
     {
         "JarFileName": "org.apache.maven-maven-settings-builder-3.9.6.jar",
@@ -2792,10 +3228,10 @@
         "Version": "3.9.6",
         "Type": "compile",
         "Depth": 2,
-        "Index": 13,
         "DependedBy": [
             "org.apache.maven-maven-core-3.9.6.jar"
         ],
+        "Omitted": [],
         "ReachableAPIs": [],
         "AllVersion": [
             {
@@ -3024,7 +3460,7 @@
             }
         ],
         "BestVersion": "4.0.0-beta-3",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "org.codehaus.plexus-plexus-sec-dispatcher-2.0.jar",
@@ -3034,11 +3470,11 @@
         "Version": "2.0",
         "Type": "compile",
         "Depth": 3,
-        "Index": 14,
         "DependedBy": [
             "org.apache.maven-maven-settings-builder-3.9.6.jar",
             "org.apache.maven-maven-core-3.9.6.jar"
         ],
+        "Omitted": [],
         "ReachableAPIs": [],
         "AllVersion": [
             {
@@ -3057,12 +3493,12 @@
         "Version": "2.0",
         "Type": "compile",
         "Depth": 4,
-        "Index": 15,
         "DependedBy": [
             "org.codehaus.plexus-plexus-sec-dispatcher-2.0.jar",
             "org.apache.maven-maven-settings-builder-3.9.6.jar",
             "org.apache.maven-maven-core-3.9.6.jar"
         ],
+        "Omitted": [],
         "ReachableAPIs": [],
         "AllVersion": [
             {
@@ -3079,7 +3515,7 @@
             }
         ],
         "BestVersion": "2.1.0",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "org.apache.maven-maven-builder-support-3.9.6.jar",
@@ -3089,9 +3525,28 @@
         "Version": "3.9.6",
         "Type": "compile",
         "Depth": 2,
-        "Index": 16,
         "DependedBy": [
             "org.apache.maven-maven-core-3.9.6.jar"
+        ],
+        "Omitted": [
+            {
+                "JarFileName": "org.apache.maven-maven-builder-support-3.9.6.jar",
+                "Version": "3.9.6",
+                "DependedBy": [
+                    "org.apache.maven-maven-settings-builder-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "org.apache.maven-maven-builder-support-3.9.6.jar",
+                "Version": "3.9.6",
+                "DependedBy": [
+                    "org.apache.maven-maven-model-builder-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            }
         ],
         "ReachableAPIs": [],
         "AllVersion": [
@@ -3261,7 +3716,7 @@
             }
         ],
         "BestVersion": "4.0.0-beta-3",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "org.apache.maven-maven-repository-metadata-3.9.6.jar",
@@ -3271,9 +3726,19 @@
         "Version": "3.9.6",
         "Type": "compile",
         "Depth": 2,
-        "Index": 17,
         "DependedBy": [
             "org.apache.maven-maven-core-3.9.6.jar"
+        ],
+        "Omitted": [
+            {
+                "JarFileName": "org.apache.maven-maven-repository-metadata-3.9.6.jar",
+                "Version": "3.9.6",
+                "DependedBy": [
+                    "org.apache.maven-maven-resolver-provider-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            }
         ],
         "ReachableAPIs": [],
         "AllVersion": [
@@ -3579,7 +4044,7 @@
             }
         ],
         "BestVersion": "4.0.0-beta-3",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "org.apache.maven-maven-artifact-3.9.6.jar",
@@ -3589,9 +4054,28 @@
         "Version": "3.9.6",
         "Type": "compile",
         "Depth": 2,
-        "Index": 18,
         "DependedBy": [
             "org.apache.maven-maven-core-3.9.6.jar"
+        ],
+        "Omitted": [
+            {
+                "JarFileName": "org.apache.maven-maven-artifact-3.9.6.jar",
+                "Version": "3.9.6",
+                "DependedBy": [
+                    "org.apache.maven-maven-plugin-api-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "org.apache.maven-maven-artifact-3.9.6.jar",
+                "Version": "3.9.6",
+                "DependedBy": [
+                    "org.apache.maven-maven-model-builder-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            }
         ],
         "ReachableAPIs": [],
         "AllVersion": [
@@ -3941,7 +4425,7 @@
             }
         ],
         "BestVersion": "4.0.0-beta-3",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "org.apache.maven-maven-plugin-api-3.9.6.jar",
@@ -3951,10 +4435,10 @@
         "Version": "3.9.6",
         "Type": "compile",
         "Depth": 2,
-        "Index": 19,
         "DependedBy": [
             "org.apache.maven-maven-core-3.9.6.jar"
         ],
+        "Omitted": [],
         "ReachableAPIs": [],
         "AllVersion": [
             {
@@ -4299,10 +4783,52 @@
             }
         ],
         "BestVersion": "3.9.8",
-        "Breaking_Reason": {
-            "breaking_version": "4.0.0-alpha-10",
-            "breaking_reason": "reference broken: org.apache.maven.monitor.logging.DefaultLog breaks org.apache.maven-maven-core-3.9.6.jar/org.apache.maven.plugin.internal.DefaultMavenPluginManager: java.lang.Object getConfiguredMojo(java.lang.Class,org.apache.maven.execution.MavenSession,org.apache.maven.plugin.MojoExecution)"
-        }
+        "Breaking_Reason": [
+            {
+                "breaking_version": "4.0.0-alpha-10",
+                "breaking_reason": "reference broken: org.apache.maven.monitor.logging.DefaultLog breaks org.apache.maven-maven-core-3.9.6.jar/org.apache.maven.plugin.internal.DefaultMavenPluginManager: java.lang.Object getConfiguredMojo(java.lang.Class,org.apache.maven.execution.MavenSession,org.apache.maven.plugin.MojoExecution)"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-12",
+                "breaking_reason": "reference broken: org.apache.maven.monitor.logging.DefaultLog breaks org.apache.maven-maven-core-3.9.6.jar/org.apache.maven.plugin.internal.DefaultMavenPluginManager: java.lang.Object getConfiguredMojo(java.lang.Class,org.apache.maven.execution.MavenSession,org.apache.maven.plugin.MojoExecution)"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-13",
+                "breaking_reason": "reference broken: org.apache.maven.monitor.logging.DefaultLog breaks org.apache.maven-maven-core-3.9.6.jar/org.apache.maven.plugin.internal.DefaultMavenPluginManager: java.lang.Object getConfiguredMojo(java.lang.Class,org.apache.maven.execution.MavenSession,org.apache.maven.plugin.MojoExecution)"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-2",
+                "breaking_reason": "reference broken: org.apache.maven.monitor.logging.DefaultLog breaks org.apache.maven-maven-core-3.9.6.jar/org.apache.maven.plugin.internal.DefaultMavenPluginManager: java.lang.Object getConfiguredMojo(java.lang.Class,org.apache.maven.execution.MavenSession,org.apache.maven.plugin.MojoExecution)"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-3",
+                "breaking_reason": "reference broken: org.apache.maven.monitor.logging.DefaultLog breaks org.apache.maven-maven-core-3.9.6.jar/org.apache.maven.plugin.internal.DefaultMavenPluginManager: java.lang.Object getConfiguredMojo(java.lang.Class,org.apache.maven.execution.MavenSession,org.apache.maven.plugin.MojoExecution)"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-4",
+                "breaking_reason": "reference broken: org.apache.maven.monitor.logging.DefaultLog breaks org.apache.maven-maven-core-3.9.6.jar/org.apache.maven.plugin.internal.DefaultMavenPluginManager: java.lang.Object getConfiguredMojo(java.lang.Class,org.apache.maven.execution.MavenSession,org.apache.maven.plugin.MojoExecution)"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-5",
+                "breaking_reason": "reference broken: org.apache.maven.monitor.logging.DefaultLog breaks org.apache.maven-maven-core-3.9.6.jar/org.apache.maven.plugin.internal.DefaultMavenPluginManager: java.lang.Object getConfiguredMojo(java.lang.Class,org.apache.maven.execution.MavenSession,org.apache.maven.plugin.MojoExecution)"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-7",
+                "breaking_reason": "reference broken: org.apache.maven.monitor.logging.DefaultLog breaks org.apache.maven-maven-core-3.9.6.jar/org.apache.maven.plugin.internal.DefaultMavenPluginManager: java.lang.Object getConfiguredMojo(java.lang.Class,org.apache.maven.execution.MavenSession,org.apache.maven.plugin.MojoExecution)"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-8",
+                "breaking_reason": "reference broken: org.apache.maven.monitor.logging.DefaultLog breaks org.apache.maven-maven-core-3.9.6.jar/org.apache.maven.plugin.internal.DefaultMavenPluginManager: java.lang.Object getConfiguredMojo(java.lang.Class,org.apache.maven.execution.MavenSession,org.apache.maven.plugin.MojoExecution)"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-9",
+                "breaking_reason": "reference broken: org.apache.maven.monitor.logging.DefaultLog breaks org.apache.maven-maven-core-3.9.6.jar/org.apache.maven.plugin.internal.DefaultMavenPluginManager: java.lang.Object getConfiguredMojo(java.lang.Class,org.apache.maven.execution.MavenSession,org.apache.maven.plugin.MojoExecution)"
+            },
+            {
+                "breaking_version": "4.0.0-beta-3",
+                "breaking_reason": "reference broken: org.apache.maven.monitor.logging.DefaultLog breaks org.apache.maven-maven-core-3.9.6.jar/org.apache.maven.plugin.internal.DefaultMavenPluginManager: java.lang.Object getConfiguredMojo(java.lang.Class,org.apache.maven.execution.MavenSession,org.apache.maven.plugin.MojoExecution)"
+            }
+        ]
     },
     {
         "JarFileName": "org.apache.maven-maven-model-builder-3.9.6.jar",
@@ -4312,9 +4838,19 @@
         "Version": "3.9.6",
         "Type": "compile",
         "Depth": 2,
-        "Index": 20,
         "DependedBy": [
             "org.apache.maven-maven-core-3.9.6.jar"
+        ],
+        "Omitted": [
+            {
+                "JarFileName": "org.apache.maven-maven-model-builder-3.9.6.jar",
+                "Version": "3.9.6",
+                "DependedBy": [
+                    "org.apache.maven-maven-resolver-provider-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            }
         ],
         "ReachableAPIs": [],
         "AllVersion": [
@@ -4568,10 +5104,28 @@
             }
         ],
         "BestVersion": "4.0.0-alpha-8",
-        "Breaking_Reason": {
-            "breaking_version": "4.0.0-alpha-9",
-            "breaking_reason": "java.method.addedToInterface: org.apache.maven.model.building.ModelCache breaks org.apache.maven-maven-core-3.9.6.jar"
-        }
+        "Breaking_Reason": [
+            {
+                "breaking_version": "4.0.0-alpha-10",
+                "breaking_reason": "java.method.addedToInterface: org.apache.maven.model.building.ModelCache breaks org.apache.maven-maven-core-3.9.6.jar"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-12",
+                "breaking_reason": "java.method.addedToInterface: org.apache.maven.model.building.ModelCache breaks org.apache.maven-maven-core-3.9.6.jar"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-13",
+                "breaking_reason": "java.method.addedToInterface: org.apache.maven.model.building.ModelCache breaks org.apache.maven-maven-core-3.9.6.jar"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-9",
+                "breaking_reason": "java.method.addedToInterface: org.apache.maven.model.building.ModelCache breaks org.apache.maven-maven-core-3.9.6.jar"
+            },
+            {
+                "breaking_version": "4.0.0-beta-3",
+                "breaking_reason": "java.method.addedToInterface: org.apache.maven.model.building.ModelCache breaks org.apache.maven-maven-core-3.9.6.jar"
+            }
+        ]
     },
     {
         "JarFileName": "org.apache.maven-maven-resolver-provider-3.9.6.jar",
@@ -4581,10 +5135,10 @@
         "Version": "3.9.6",
         "Type": "compile",
         "Depth": 2,
-        "Index": 21,
         "DependedBy": [
             "org.apache.maven-maven-core-3.9.6.jar"
         ],
+        "Omitted": [],
         "ReachableAPIs": [],
         "AllVersion": [
             {
@@ -4741,7 +5295,7 @@
             }
         ],
         "BestVersion": "4.0.0-beta-3",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar",
@@ -4751,9 +5305,19 @@
         "Version": "1.9.18",
         "Type": "compile",
         "Depth": 2,
-        "Index": 22,
         "DependedBy": [
             "org.apache.maven-maven-core-3.9.6.jar"
+        ],
+        "Omitted": [
+            {
+                "JarFileName": "org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar",
+                "Version": "1.9.18",
+                "DependedBy": [
+                    "org.apache.maven-maven-resolver-provider-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            }
         ],
         "ReachableAPIs": [],
         "AllVersion": [
@@ -4958,8 +5522,49 @@
                 "date": 1719910477000
             }
         ],
-        "BestVersion": "2.0.0",
-        "Breaking_Reason": {}
+        "BestVersion": "1.9.21",
+        "Breaking_Reason": [
+            {
+                "breaking_version": "2.0.0-alpha-1",
+                "breaking_reason": "conflict with org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar dependedby  org.apache.maven-maven-resolver-provider-3.9.6.jar org.apache.maven-maven-core-3.9.6.jar ### reference broken: org.eclipse.aether.impl.DefaultServiceLocator breaks org.apache.maven-maven-resolver-provider-3.9.6.jar/org.apache.maven.repository.internal.MavenRepositorySystemUtils: org.eclipse.aether.impl.DefaultServiceLocator newServiceLocator()"
+            },
+            {
+                "breaking_version": "2.0.0-alpha-10",
+                "breaking_reason": "conflict with org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar dependedby  org.apache.maven-maven-resolver-provider-3.9.6.jar org.apache.maven-maven-core-3.9.6.jar ### reference broken: org.eclipse.aether.impl.DefaultServiceLocator breaks org.apache.maven-maven-resolver-provider-3.9.6.jar/org.apache.maven.repository.internal.MavenRepositorySystemUtils: org.eclipse.aether.impl.DefaultServiceLocator newServiceLocator()"
+            },
+            {
+                "breaking_version": "2.0.0-alpha-11",
+                "breaking_reason": "conflict with org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar dependedby  org.apache.maven-maven-resolver-provider-3.9.6.jar org.apache.maven-maven-core-3.9.6.jar ### reference broken: org.eclipse.aether.impl.DefaultServiceLocator breaks org.apache.maven-maven-resolver-provider-3.9.6.jar/org.apache.maven.repository.internal.MavenRepositorySystemUtils: org.eclipse.aether.impl.DefaultServiceLocator newServiceLocator()"
+            },
+            {
+                "breaking_version": "2.0.0-alpha-2",
+                "breaking_reason": "conflict with org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar dependedby  org.apache.maven-maven-resolver-provider-3.9.6.jar org.apache.maven-maven-core-3.9.6.jar ### reference broken: org.eclipse.aether.impl.DefaultServiceLocator breaks org.apache.maven-maven-resolver-provider-3.9.6.jar/org.apache.maven.repository.internal.MavenRepositorySystemUtils: org.eclipse.aether.impl.DefaultServiceLocator newServiceLocator()"
+            },
+            {
+                "breaking_version": "2.0.0-alpha-3",
+                "breaking_reason": "conflict with org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar dependedby  org.apache.maven-maven-resolver-provider-3.9.6.jar org.apache.maven-maven-core-3.9.6.jar ### reference broken: org.eclipse.aether.impl.DefaultServiceLocator breaks org.apache.maven-maven-resolver-provider-3.9.6.jar/org.apache.maven.repository.internal.MavenRepositorySystemUtils: org.eclipse.aether.impl.DefaultServiceLocator newServiceLocator()"
+            },
+            {
+                "breaking_version": "2.0.0-alpha-5",
+                "breaking_reason": "conflict with org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar dependedby  org.apache.maven-maven-resolver-provider-3.9.6.jar org.apache.maven-maven-core-3.9.6.jar ### reference broken: org.eclipse.aether.impl.DefaultServiceLocator breaks org.apache.maven-maven-resolver-provider-3.9.6.jar/org.apache.maven.repository.internal.MavenRepositorySystemUtils: org.eclipse.aether.impl.DefaultServiceLocator newServiceLocator()"
+            },
+            {
+                "breaking_version": "2.0.0-alpha-6",
+                "breaking_reason": "conflict with org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar dependedby  org.apache.maven-maven-resolver-provider-3.9.6.jar org.apache.maven-maven-core-3.9.6.jar ### reference broken: org.eclipse.aether.impl.DefaultServiceLocator breaks org.apache.maven-maven-resolver-provider-3.9.6.jar/org.apache.maven.repository.internal.MavenRepositorySystemUtils: org.eclipse.aether.impl.DefaultServiceLocator newServiceLocator()"
+            },
+            {
+                "breaking_version": "2.0.0-alpha-7",
+                "breaking_reason": "conflict with org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar dependedby  org.apache.maven-maven-resolver-provider-3.9.6.jar org.apache.maven-maven-core-3.9.6.jar ### reference broken: org.eclipse.aether.impl.DefaultServiceLocator breaks org.apache.maven-maven-resolver-provider-3.9.6.jar/org.apache.maven.repository.internal.MavenRepositorySystemUtils: org.eclipse.aether.impl.DefaultServiceLocator newServiceLocator()"
+            },
+            {
+                "breaking_version": "2.0.0-alpha-8",
+                "breaking_reason": "conflict with org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar dependedby  org.apache.maven-maven-resolver-provider-3.9.6.jar org.apache.maven-maven-core-3.9.6.jar ### reference broken: org.eclipse.aether.impl.DefaultServiceLocator breaks org.apache.maven-maven-resolver-provider-3.9.6.jar/org.apache.maven.repository.internal.MavenRepositorySystemUtils: org.eclipse.aether.impl.DefaultServiceLocator newServiceLocator()"
+            },
+            {
+                "breaking_version": "2.0.0",
+                "breaking_reason": "conflict with org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar dependedby  org.apache.maven-maven-resolver-provider-3.9.6.jar org.apache.maven-maven-core-3.9.6.jar ### reference broken: org.eclipse.aether.impl.DefaultServiceLocator breaks org.apache.maven-maven-resolver-provider-3.9.6.jar/org.apache.maven.repository.internal.MavenRepositorySystemUtils: org.eclipse.aether.impl.DefaultServiceLocator newServiceLocator()"
+            }
+        ]
     },
     {
         "JarFileName": "org.apache.maven.resolver-maven-resolver-named-locks-1.9.18.jar",
@@ -4969,11 +5574,11 @@
         "Version": "1.9.18",
         "Type": "compile",
         "Depth": 3,
-        "Index": 23,
         "DependedBy": [
             "org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar",
             "org.apache.maven-maven-core-3.9.6.jar"
         ],
+        "Omitted": [],
         "ReachableAPIs": [],
         "AllVersion": [
             {
@@ -5126,7 +5731,7 @@
             }
         ],
         "BestVersion": "2.0.0",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "org.apache.maven.resolver-maven-resolver-api-1.9.18.jar",
@@ -5136,9 +5741,46 @@
         "Version": "1.9.18",
         "Type": "compile",
         "Depth": 2,
-        "Index": 24,
         "DependedBy": [
             "org.apache.maven-maven-core-3.9.6.jar"
+        ],
+        "Omitted": [
+            {
+                "JarFileName": "org.apache.maven.resolver-maven-resolver-api-1.9.18.jar",
+                "Version": "1.9.18",
+                "DependedBy": [
+                    "org.apache.maven-maven-resolver-provider-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "org.apache.maven.resolver-maven-resolver-api-1.9.18.jar",
+                "Version": "1.9.18",
+                "DependedBy": [
+                    "org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "org.apache.maven.resolver-maven-resolver-api-1.9.18.jar",
+                "Version": "1.9.18",
+                "DependedBy": [
+                    "org.apache.maven.resolver-maven-resolver-spi-1.9.18.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "org.apache.maven.resolver-maven-resolver-api-1.9.18.jar",
+                "Version": "1.9.18",
+                "DependedBy": [
+                    "org.apache.maven.resolver-maven-resolver-util-1.9.18.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            }
         ],
         "ReachableAPIs": [],
         "AllVersion": [
@@ -5343,8 +5985,49 @@
                 "date": 1719910404000
             }
         ],
-        "BestVersion": "2.0.0",
-        "Breaking_Reason": {}
+        "BestVersion": "1.9.21",
+        "Breaking_Reason": [
+            {
+                "breaking_version": "2.0.0-alpha-1",
+                "breaking_reason": "conflict with org.apache.maven.resolver-maven-resolver-api-1.9.18.jar dependedby  org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar org.apache.maven-maven-core-3.9.6.jar ### java.method.addedToInterface: org.eclipse.aether.RepositorySystem breaks org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar"
+            },
+            {
+                "breaking_version": "2.0.0-alpha-10",
+                "breaking_reason": "conflict with org.apache.maven.resolver-maven-resolver-api-1.9.18.jar dependedby  org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar org.apache.maven-maven-core-3.9.6.jar ### java.method.addedToInterface: org.eclipse.aether.RepositorySystem breaks org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar"
+            },
+            {
+                "breaking_version": "2.0.0-alpha-11",
+                "breaking_reason": "conflict with org.apache.maven.resolver-maven-resolver-api-1.9.18.jar dependedby  org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar org.apache.maven-maven-core-3.9.6.jar ### java.method.addedToInterface: org.eclipse.aether.RepositorySystem breaks org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar"
+            },
+            {
+                "breaking_version": "2.0.0-alpha-2",
+                "breaking_reason": "conflict with org.apache.maven.resolver-maven-resolver-api-1.9.18.jar dependedby  org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar org.apache.maven-maven-core-3.9.6.jar ### java.method.addedToInterface: org.eclipse.aether.RepositorySystem breaks org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar"
+            },
+            {
+                "breaking_version": "2.0.0-alpha-3",
+                "breaking_reason": "conflict with org.apache.maven.resolver-maven-resolver-api-1.9.18.jar dependedby  org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar org.apache.maven-maven-core-3.9.6.jar ### java.method.addedToInterface: org.eclipse.aether.RepositorySystem breaks org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar"
+            },
+            {
+                "breaking_version": "2.0.0-alpha-5",
+                "breaking_reason": "conflict with org.apache.maven.resolver-maven-resolver-api-1.9.18.jar dependedby  org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar org.apache.maven-maven-core-3.9.6.jar ### java.method.addedToInterface: org.eclipse.aether.RepositorySystem breaks org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar"
+            },
+            {
+                "breaking_version": "2.0.0-alpha-6",
+                "breaking_reason": "conflict with org.apache.maven.resolver-maven-resolver-api-1.9.18.jar dependedby  org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar org.apache.maven-maven-core-3.9.6.jar ### java.method.addedToInterface: org.eclipse.aether.RepositorySystem breaks org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar"
+            },
+            {
+                "breaking_version": "2.0.0-alpha-7",
+                "breaking_reason": "conflict with org.apache.maven.resolver-maven-resolver-api-1.9.18.jar dependedby  org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar org.apache.maven-maven-core-3.9.6.jar ### java.method.addedToInterface: org.eclipse.aether.RepositorySystem breaks org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar"
+            },
+            {
+                "breaking_version": "2.0.0-alpha-8",
+                "breaking_reason": "conflict with org.apache.maven.resolver-maven-resolver-api-1.9.18.jar dependedby  org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar org.apache.maven-maven-core-3.9.6.jar ### java.method.addedToInterface: org.eclipse.aether.RepositorySystem breaks org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar"
+            },
+            {
+                "breaking_version": "2.0.0",
+                "breaking_reason": "conflict with org.apache.maven.resolver-maven-resolver-api-1.9.18.jar dependedby  org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar org.apache.maven-maven-core-3.9.6.jar ### java.method.addedToInterface: org.eclipse.aether.RepositorySystem breaks org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar"
+            }
+        ]
     },
     {
         "JarFileName": "org.apache.maven.resolver-maven-resolver-spi-1.9.18.jar",
@@ -5354,9 +6037,28 @@
         "Version": "1.9.18",
         "Type": "compile",
         "Depth": 2,
-        "Index": 25,
         "DependedBy": [
             "org.apache.maven-maven-core-3.9.6.jar"
+        ],
+        "Omitted": [
+            {
+                "JarFileName": "org.apache.maven.resolver-maven-resolver-spi-1.9.18.jar",
+                "Version": "1.9.18",
+                "DependedBy": [
+                    "org.apache.maven-maven-resolver-provider-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "org.apache.maven.resolver-maven-resolver-spi-1.9.18.jar",
+                "Version": "1.9.18",
+                "DependedBy": [
+                    "org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            }
         ],
         "ReachableAPIs": [],
         "AllVersion": [
@@ -5562,7 +6264,7 @@
             }
         ],
         "BestVersion": "2.0.0",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "org.apache.maven.resolver-maven-resolver-util-1.9.18.jar",
@@ -5572,9 +6274,28 @@
         "Version": "1.9.18",
         "Type": "compile",
         "Depth": 2,
-        "Index": 26,
         "DependedBy": [
             "org.apache.maven-maven-core-3.9.6.jar"
+        ],
+        "Omitted": [
+            {
+                "JarFileName": "org.apache.maven.resolver-maven-resolver-util-1.9.18.jar",
+                "Version": "1.9.18",
+                "DependedBy": [
+                    "org.apache.maven-maven-resolver-provider-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "org.apache.maven.resolver-maven-resolver-util-1.9.18.jar",
+                "Version": "1.9.18",
+                "DependedBy": [
+                    "org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            }
         ],
         "ReachableAPIs": [],
         "AllVersion": [
@@ -5780,7 +6501,7 @@
             }
         ],
         "BestVersion": "2.0.0",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "org.apache.maven.shared-maven-shared-utils-3.3.4.jar",
@@ -5790,10 +6511,10 @@
         "Version": "3.3.4",
         "Type": "compile",
         "Depth": 2,
-        "Index": 27,
         "DependedBy": [
             "org.apache.maven-maven-core-3.9.6.jar"
         ],
+        "Omitted": [],
         "ReachableAPIs": [],
         "AllVersion": [
             {
@@ -5870,7 +6591,7 @@
             }
         ],
         "BestVersion": "3.4.2",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "org.eclipse.sisu-org.eclipse.sisu.plexus-0.9.0.M2.jar",
@@ -5880,9 +6601,19 @@
         "Version": "0.9.0.M2",
         "Type": "compile",
         "Depth": 2,
-        "Index": 28,
         "DependedBy": [
             "org.apache.maven-maven-core-3.9.6.jar"
+        ],
+        "Omitted": [
+            {
+                "JarFileName": "org.eclipse.sisu-org.eclipse.sisu.plexus-0.9.0.M2.jar",
+                "Version": "0.9.0.M2",
+                "DependedBy": [
+                    "org.apache.maven-maven-plugin-api-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            }
         ],
         "ReachableAPIs": [],
         "AllVersion": [
@@ -5980,7 +6711,7 @@
             }
         ],
         "BestVersion": "0.9.0.M3",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "javax.annotation-javax.annotation-api-1.2.jar",
@@ -5990,11 +6721,11 @@
         "Version": "1.2",
         "Type": "compile",
         "Depth": 3,
-        "Index": 29,
         "DependedBy": [
             "org.eclipse.sisu-org.eclipse.sisu.plexus-0.9.0.M2.jar",
             "org.apache.maven-maven-core-3.9.6.jar"
         ],
+        "Omitted": [],
         "ReachableAPIs": [],
         "AllVersion": [
             {
@@ -6031,7 +6762,7 @@
             }
         ],
         "BestVersion": "1.3.2",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "org.eclipse.sisu-org.eclipse.sisu.inject-0.9.0.M2.jar",
@@ -6041,9 +6772,28 @@
         "Version": "0.9.0.M2",
         "Type": "compile",
         "Depth": 2,
-        "Index": 30,
         "DependedBy": [
             "org.apache.maven-maven-core-3.9.6.jar"
+        ],
+        "Omitted": [
+            {
+                "JarFileName": "org.eclipse.sisu-org.eclipse.sisu.inject-0.9.0.M2.jar",
+                "Version": "0.9.0.M2",
+                "DependedBy": [
+                    "org.apache.maven-maven-model-builder-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "org.eclipse.sisu-org.eclipse.sisu.inject-0.9.0.M2.jar",
+                "Version": "0.9.0.M2",
+                "DependedBy": [
+                    "org.eclipse.sisu-org.eclipse.sisu.plexus-0.9.0.M2.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            }
         ],
         "ReachableAPIs": [],
         "AllVersion": [
@@ -6141,7 +6891,7 @@
             }
         ],
         "BestVersion": "0.9.0.M3",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "com.google.inject-guice-5.1.0.jar",
@@ -6151,10 +6901,10 @@
         "Version": "5.1.0",
         "Type": "compile",
         "Depth": 2,
-        "Index": 31,
         "DependedBy": [
             "org.apache.maven-maven-core-3.9.6.jar"
         ],
+        "Omitted": [],
         "ReachableAPIs": [
             "com.google.inject.ConfigurationException: java.lang.String getMessage()",
             "com.google.inject.CreationException: java.lang.String getMessage()",
@@ -6301,7 +7051,7 @@
             }
         ],
         "BestVersion": "7.0.0",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "aopalliance-aopalliance-1.0.jar",
@@ -6311,11 +7061,11 @@
         "Version": "1.0",
         "Type": "compile",
         "Depth": 3,
-        "Index": 32,
         "DependedBy": [
             "com.google.inject-guice-5.1.0.jar",
             "org.apache.maven-maven-core-3.9.6.jar"
         ],
+        "Omitted": [],
         "ReachableAPIs": [],
         "AllVersion": [
             {
@@ -6334,10 +7084,10 @@
         "Version": "33.0.0-jre",
         "Type": "compile",
         "Depth": 2,
-        "Index": 33,
         "DependedBy": [
             "org.apache.maven-maven-core-3.9.6.jar"
         ],
+        "Omitted": [],
         "ReachableAPIs": [
             "com.google.common.base.Absent: com.google.common.base.Optional withType()",
             "com.google.common.base.Absent: void <init>()",
@@ -9400,10 +10150,20 @@
             }
         ],
         "BestVersion": "33.2.1-jre",
-        "Breaking_Reason": {
-            "breaking_version": "33.2.1-android",
-            "breaking_reason": "breaking api: com.google.common.collect.AbstractMapBasedMultiset: void forEachEntry(java.util.function.ObjIntConsumer) <<<<< transformed old api of breaking record: com.google.common.collect.AbstractMapBasedMultiset: void forEachEntry(java.util.function.ObjIntConsumer)"
-        }
+        "Breaking_Reason": [
+            {
+                "breaking_version": "33.1.0-android",
+                "breaking_reason": "breaking api: com.google.common.collect.AbstractMapBasedMultiset: void forEachEntry(java.util.function.ObjIntConsumer) <<<<< transformed old api of breaking record: com.google.common.collect.AbstractMapBasedMultiset: void forEachEntry(java.util.function.ObjIntConsumer)"
+            },
+            {
+                "breaking_version": "33.2.0-android",
+                "breaking_reason": "breaking api: com.google.common.collect.AbstractMapBasedMultiset: void forEachEntry(java.util.function.ObjIntConsumer) <<<<< transformed old api of breaking record: com.google.common.collect.AbstractMapBasedMultiset: void forEachEntry(java.util.function.ObjIntConsumer)"
+            },
+            {
+                "breaking_version": "33.2.1-android",
+                "breaking_reason": "breaking api: com.google.common.collect.AbstractMapBasedMultiset: void forEachEntry(java.util.function.ObjIntConsumer) <<<<< transformed old api of breaking record: com.google.common.collect.AbstractMapBasedMultiset: void forEachEntry(java.util.function.ObjIntConsumer)"
+            }
+        ]
     },
     {
         "JarFileName": "com.google.guava-failureaccess-1.0.1.jar",
@@ -9413,10 +10173,10 @@
         "Version": "1.0.1",
         "Type": "compile",
         "Depth": 2,
-        "Index": 34,
         "DependedBy": [
             "org.apache.maven-maven-core-3.9.6.jar"
         ],
+        "Omitted": [],
         "ReachableAPIs": [
             "com.google.common.util.concurrent.internal.InternalFutureFailureAccess: void <init>()",
             "com.google.common.util.concurrent.internal.InternalFutures: java.lang.Throwable tryInternalFastPathGetFailure(com.google.common.util.concurrent.internal.InternalFutureFailureAccess)"
@@ -9436,7 +10196,7 @@
             }
         ],
         "BestVersion": "1.0.2",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "javax.inject-javax.inject-1.jar",
@@ -9446,9 +10206,67 @@
         "Version": "1",
         "Type": "compile",
         "Depth": 2,
-        "Index": 35,
         "DependedBy": [
             "org.apache.maven-maven-core-3.9.6.jar"
+        ],
+        "Omitted": [
+            {
+                "JarFileName": "javax.inject-javax.inject-1.jar",
+                "Version": "1",
+                "DependedBy": [
+                    "org.apache.maven-maven-settings-builder-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "javax.inject-javax.inject-1.jar",
+                "Version": "1",
+                "DependedBy": [
+                    "org.codehaus.plexus-plexus-cipher-2.0.jar",
+                    "org.codehaus.plexus-plexus-sec-dispatcher-2.0.jar",
+                    "org.apache.maven-maven-settings-builder-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "javax.inject-javax.inject-1.jar",
+                "Version": "1",
+                "DependedBy": [
+                    "org.codehaus.plexus-plexus-sec-dispatcher-2.0.jar",
+                    "org.apache.maven-maven-settings-builder-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "javax.inject-javax.inject-1.jar",
+                "Version": "1",
+                "DependedBy": [
+                    "org.apache.maven-maven-model-builder-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "javax.inject-javax.inject-1.jar",
+                "Version": "1",
+                "DependedBy": [
+                    "org.apache.maven-maven-resolver-provider-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "javax.inject-javax.inject-1.jar",
+                "Version": "1",
+                "DependedBy": [
+                    "com.google.inject-guice-5.1.0.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            }
         ],
         "ReachableAPIs": [],
         "AllVersion": [
@@ -9468,9 +10286,28 @@
         "Version": "2.7.0",
         "Type": "compile",
         "Depth": 2,
-        "Index": 36,
         "DependedBy": [
             "org.apache.maven-maven-core-3.9.6.jar"
+        ],
+        "Omitted": [
+            {
+                "JarFileName": "org.codehaus.plexus-plexus-classworlds-2.7.0.jar",
+                "Version": "2.7.0",
+                "DependedBy": [
+                    "org.apache.maven-maven-plugin-api-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "org.codehaus.plexus-plexus-classworlds-2.6.0.jar",
+                "Version": "2.6.0",
+                "DependedBy": [
+                    "org.eclipse.sisu-org.eclipse.sisu.plexus-0.9.0.M2.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            }
         ],
         "ReachableAPIs": [],
         "AllVersion": [
@@ -9604,7 +10441,7 @@
             }
         ],
         "BestVersion": "2.8.0",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "org.codehaus.plexus-plexus-interpolation-1.26.jar",
@@ -9614,9 +10451,28 @@
         "Version": "1.26",
         "Type": "compile",
         "Depth": 2,
-        "Index": 37,
         "DependedBy": [
             "org.apache.maven-maven-core-3.9.6.jar"
+        ],
+        "Omitted": [
+            {
+                "JarFileName": "org.codehaus.plexus-plexus-interpolation-1.26.jar",
+                "Version": "1.26",
+                "DependedBy": [
+                    "org.apache.maven-maven-settings-builder-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "org.codehaus.plexus-plexus-interpolation-1.26.jar",
+                "Version": "1.26",
+                "DependedBy": [
+                    "org.apache.maven-maven-model-builder-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            }
         ],
         "ReachableAPIs": [],
         "AllVersion": [
@@ -9738,7 +10594,7 @@
             }
         ],
         "BestVersion": "1.27",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "org.codehaus.plexus-plexus-component-annotations-2.1.0.jar",
@@ -9748,9 +10604,19 @@
         "Version": "2.1.0",
         "Type": "compile",
         "Depth": 2,
-        "Index": 38,
         "DependedBy": [
             "org.apache.maven-maven-core-3.9.6.jar"
+        ],
+        "Omitted": [
+            {
+                "JarFileName": "org.codehaus.plexus-plexus-component-annotations-2.1.0.jar",
+                "Version": "2.1.0",
+                "DependedBy": [
+                    "org.eclipse.sisu-org.eclipse.sisu.plexus-0.9.0.M2.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            }
         ],
         "ReachableAPIs": [],
         "AllVersion": [
@@ -9964,7 +10830,7 @@
             }
         ],
         "BestVersion": "2.2.0",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "org.slf4j-slf4j-api-2.0.9.jar",
@@ -9974,9 +10840,29 @@
         "Version": "2.0.9",
         "Type": "compile",
         "Depth": 2,
-        "Index": 39,
         "DependedBy": [
             "org.apache.maven-maven-core-3.9.6.jar"
+        ],
+        "Omitted": [
+            {
+                "JarFileName": "org.slf4j-slf4j-api-1.7.36.jar",
+                "Version": "1.7.36",
+                "DependedBy": [
+                    "org.apache.maven.resolver-maven-resolver-named-locks-1.9.18.jar",
+                    "org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "org.slf4j-slf4j-api-1.7.36.jar",
+                "Version": "1.7.36",
+                "DependedBy": [
+                    "org.apache.maven.resolver-maven-resolver-impl-1.9.18.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            }
         ],
         "ReachableAPIs": [],
         "AllVersion": [
@@ -10382,7 +11268,7 @@
             }
         ],
         "BestVersion": "2.1.0-alpha1",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "org.apache.maven-maven-model-3.9.6.jar",
@@ -10392,8 +11278,60 @@
         "Version": "3.9.6",
         "Type": "compile",
         "Depth": 1,
-        "Index": 40,
         "DependedBy": [],
+        "Omitted": [
+            {
+                "JarFileName": "org.apache.maven-maven-model-3.9.6.jar",
+                "Version": "3.9.6",
+                "DependedBy": [
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": [
+                    "org.apache.maven.model.io.xpp3.MavenXpp3Reader$1: void <init>()",
+                    "org.apache.maven.model.io.xpp3.MavenXpp3Reader: void <init>()",
+                    "org.apache.maven.model.io.xpp3.MavenXpp3Reader: org.apache.maven.model.Model read(java.io.Reader)"
+                ]
+            },
+            {
+                "JarFileName": "org.apache.maven-maven-model-3.9.6.jar",
+                "Version": "3.9.6",
+                "DependedBy": [
+                    "org.apache.maven-maven-plugin-api-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": [
+                    "org.apache.maven.model.io.xpp3.MavenXpp3Reader$1: void <init>()",
+                    "org.apache.maven.model.io.xpp3.MavenXpp3Reader: void <init>()",
+                    "org.apache.maven.model.io.xpp3.MavenXpp3Reader: org.apache.maven.model.Model read(java.io.Reader)"
+                ]
+            },
+            {
+                "JarFileName": "org.apache.maven-maven-model-3.9.6.jar",
+                "Version": "3.9.6",
+                "DependedBy": [
+                    "org.apache.maven-maven-model-builder-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": [
+                    "org.apache.maven.model.io.xpp3.MavenXpp3Reader$1: void <init>()",
+                    "org.apache.maven.model.io.xpp3.MavenXpp3Reader: void <init>()",
+                    "org.apache.maven.model.io.xpp3.MavenXpp3Reader: org.apache.maven.model.Model read(java.io.Reader)"
+                ]
+            },
+            {
+                "JarFileName": "org.apache.maven-maven-model-3.9.6.jar",
+                "Version": "3.9.6",
+                "DependedBy": [
+                    "org.apache.maven-maven-resolver-provider-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": [
+                    "org.apache.maven.model.io.xpp3.MavenXpp3Reader$1: void <init>()",
+                    "org.apache.maven.model.io.xpp3.MavenXpp3Reader: void <init>()",
+                    "org.apache.maven.model.io.xpp3.MavenXpp3Reader: org.apache.maven.model.Model read(java.io.Reader)"
+                ]
+            }
+        ],
         "ReachableAPIs": [
             "org.apache.maven.model.io.xpp3.MavenXpp3Reader$1: void <init>()",
             "org.apache.maven.model.io.xpp3.MavenXpp3Reader: void <init>()",
@@ -10746,10 +11684,52 @@
             }
         ],
         "BestVersion": "3.9.8",
-        "Breaking_Reason": {
-            "breaking_version": "4.0.0-alpha-10",
-            "breaking_reason": "breaking api: org.apache.maven.model.io.xpp3.MavenXpp3Reader: void <init>() <<<<< transformed old api of breaking record: org.apache.maven.model.io.xpp3.MavenXpp3Reader:"
-        }
+        "Breaking_Reason": [
+            {
+                "breaking_version": "4.0.0-alpha-10",
+                "breaking_reason": "breaking api: org.apache.maven.model.io.xpp3.MavenXpp3Reader: void <init>() <<<<< transformed old api of breaking record: org.apache.maven.model.io.xpp3.MavenXpp3Reader:"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-12",
+                "breaking_reason": "breaking api: org.apache.maven.model.io.xpp3.MavenXpp3Reader: void <init>() <<<<< transformed old api of breaking record: org.apache.maven.model.io.xpp3.MavenXpp3Reader:"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-13",
+                "breaking_reason": "breaking api: org.apache.maven.model.io.xpp3.MavenXpp3Reader: void <init>() <<<<< transformed old api of breaking record: org.apache.maven.model.io.xpp3.MavenXpp3Reader:"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-2",
+                "breaking_reason": "breaking api: org.apache.maven.model.io.xpp3.MavenXpp3Reader: void <init>() <<<<< transformed old api of breaking record: org.apache.maven.model.io.xpp3.MavenXpp3Reader:"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-3",
+                "breaking_reason": "breaking api: org.apache.maven.model.io.xpp3.MavenXpp3Reader: void <init>() <<<<< transformed old api of breaking record: org.apache.maven.model.io.xpp3.MavenXpp3Reader:"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-4",
+                "breaking_reason": "breaking api: org.apache.maven.model.io.xpp3.MavenXpp3Reader: void <init>() <<<<< transformed old api of breaking record: org.apache.maven.model.io.xpp3.MavenXpp3Reader:"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-5",
+                "breaking_reason": "breaking api: org.apache.maven.model.io.xpp3.MavenXpp3Reader: void <init>() <<<<< transformed old api of breaking record: org.apache.maven.model.io.xpp3.MavenXpp3Reader:"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-7",
+                "breaking_reason": "breaking api: org.apache.maven.model.io.xpp3.MavenXpp3Reader: void <init>() <<<<< transformed old api of breaking record: org.apache.maven.model.io.xpp3.MavenXpp3Reader:"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-8",
+                "breaking_reason": "breaking api: org.apache.maven.model.io.xpp3.MavenXpp3Reader: void <init>() <<<<< transformed old api of breaking record: org.apache.maven.model.io.xpp3.MavenXpp3Reader:"
+            },
+            {
+                "breaking_version": "4.0.0-alpha-9",
+                "breaking_reason": "breaking api: org.apache.maven.model.io.xpp3.MavenXpp3Reader: void <init>() <<<<< transformed old api of breaking record: org.apache.maven.model.io.xpp3.MavenXpp3Reader:"
+            },
+            {
+                "breaking_version": "4.0.0-beta-3",
+                "breaking_reason": "breaking api: org.apache.maven.model.io.xpp3.MavenXpp3Reader: void <init>() <<<<< transformed old api of breaking record: org.apache.maven.model.io.xpp3.MavenXpp3Reader:"
+            }
+        ]
     },
     {
         "JarFileName": "org.codehaus.plexus-plexus-utils-3.5.1.jar",
@@ -10759,8 +11739,107 @@
         "Version": "3.5.1",
         "Type": "compile",
         "Depth": 1,
-        "Index": 41,
         "DependedBy": [],
+        "Omitted": [
+            {
+                "JarFileName": "org.codehaus.plexus-plexus-utils-3.5.1.jar",
+                "Version": "3.5.1",
+                "DependedBy": [
+                    "org.apache.maven-maven-settings-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "org.codehaus.plexus-plexus-utils-3.5.1.jar",
+                "Version": "3.5.1",
+                "DependedBy": [
+                    "org.apache.maven-maven-settings-builder-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "org.codehaus.plexus-plexus-utils-3.4.1.jar",
+                "Version": "3.4.1",
+                "DependedBy": [
+                    "org.codehaus.plexus-plexus-sec-dispatcher-2.0.jar",
+                    "org.apache.maven-maven-settings-builder-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "org.codehaus.plexus-plexus-utils-3.5.1.jar",
+                "Version": "3.5.1",
+                "DependedBy": [
+                    "org.apache.maven-maven-repository-metadata-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "org.codehaus.plexus-plexus-utils-3.5.1.jar",
+                "Version": "3.5.1",
+                "DependedBy": [
+                    "org.apache.maven-maven-artifact-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "org.codehaus.plexus-plexus-utils-3.5.1.jar",
+                "Version": "3.5.1",
+                "DependedBy": [
+                    "org.apache.maven-maven-plugin-api-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "org.codehaus.plexus-plexus-utils-3.5.1.jar",
+                "Version": "3.5.1",
+                "DependedBy": [
+                    "org.apache.maven-maven-model-builder-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "org.codehaus.plexus-plexus-utils-3.5.1.jar",
+                "Version": "3.5.1",
+                "DependedBy": [
+                    "org.apache.maven-maven-resolver-provider-3.9.6.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "org.codehaus.plexus-plexus-utils-3.3.0.jar",
+                "Version": "3.3.0",
+                "DependedBy": [
+                    "org.eclipse.sisu-org.eclipse.sisu.plexus-0.9.0.M2.jar",
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "org.codehaus.plexus-plexus-utils-3.5.1.jar",
+                "Version": "3.5.1",
+                "DependedBy": [
+                    "org.apache.maven-maven-core-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            },
+            {
+                "JarFileName": "org.codehaus.plexus-plexus-utils-3.5.1.jar",
+                "Version": "3.5.1",
+                "DependedBy": [
+                    "org.apache.maven-maven-model-3.9.6.jar"
+                ],
+                "ReachableAPIs": []
+            }
+        ],
         "ReachableAPIs": [
             "org.codehaus.plexus.util.dag.CycleDetectedException: java.lang.String cycleToString()",
             "org.codehaus.plexus.util.dag.CycleDetectedException: java.lang.String getMessage()"
@@ -11084,10 +12163,16 @@
             }
         ],
         "BestVersion": "3.5.1",
-        "Breaking_Reason": {
-            "breaking_version": "4.0.0",
-            "breaking_reason": "reference broken: org.codehaus.plexus.util.xml.pull.XmlPullParserException breaks log4j-api-test-2.23.1.jar/org.apache.logging.log4j.test.junit.BundleTestInfo: void <init>()"
-        }
+        "Breaking_Reason": [
+            {
+                "breaking_version": "4.0.0",
+                "breaking_reason": "reference broken: org.codehaus.plexus.util.xml.pull.XmlPullParserException breaks log4j-api-test-2.23.1.jar/org.apache.logging.log4j.test.junit.BundleTestInfo: void <init>()"
+            },
+            {
+                "breaking_version": "4.0.1",
+                "breaking_reason": "reference broken: org.codehaus.plexus.util.xml.pull.XmlPullParserException breaks log4j-api-test-2.23.1.jar/org.apache.logging.log4j.test.junit.BundleTestInfo: void <init>()"
+            }
+        ]
     },
     {
         "JarFileName": "net.bytebuddy-byte-buddy-1.14.11.jar",
@@ -11097,16 +12182,21 @@
         "Version": "1.14.11",
         "Type": "compile",
         "Depth": 2,
-        "Index": 42,
         "DependedBy": [
             "org.codehaus.plexus-plexus-utils-3.5.1.jar"
         ],
+        "Omitted": [
+            {
+                "JarFileName": "net.bytebuddy-byte-buddy-1.12.19.jar",
+                "Version": "1.12.19",
+                "DependedBy": [
+                    "org.mockito-mockito-core-4.11.0.jar"
+                ],
+                "ReachableAPIs": []
+            }
+        ],
         "ReachableAPIs": [],
         "AllVersion": [
-            {
-                "version": "1.9.5",
-                "date": 1542907850000
-            },
             {
                 "version": "1.9.6",
                 "date": 1544736401000
@@ -11502,10 +12592,14 @@
             {
                 "version": "1.14.17",
                 "date": 1717007699000
+            },
+            {
+                "version": "1.14.18",
+                "date": 1720465576000
             }
         ],
-        "BestVersion": "1.14.17",
-        "Breaking_Reason": {}
+        "BestVersion": "1.14.18",
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "org.junit.platform-junit-platform-engine-1.10.2.jar",
@@ -11515,9 +12609,19 @@
         "Version": "1.10.2",
         "Type": "runtime",
         "Depth": 2,
-        "Index": 43,
         "DependedBy": [
             "org.codehaus.plexus-plexus-utils-3.5.1.jar"
+        ],
+        "Omitted": [
+            {
+                "JarFileName": "org.junit.platform-junit-platform-engine-1.10.2.jar",
+                "Version": "1.10.2",
+                "DependedBy": [
+                    "org.junit.platform-junit-platform-launcher-1.10.2.jar",
+                    "org.junit-pioneer-junit-pioneer-1.9.1.jar"
+                ],
+                "ReachableAPIs": []
+            }
         ],
         "ReachableAPIs": [],
         "AllVersion": [
@@ -11799,7 +12903,7 @@
             }
         ],
         "BestVersion": "1.11.0-M2",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "org.mockito-mockito-core-4.11.0.jar",
@@ -11809,8 +12913,8 @@
         "Version": "4.11.0",
         "Type": "compile",
         "Depth": 1,
-        "Index": 44,
         "DependedBy": [],
+        "Omitted": [],
         "ReachableAPIs": [
             "org.mockito.Answers: void <init>(java.lang.String,int,org.mockito.stubbing.Answer)",
             "org.mockito.Answers: void <clinit>()",
@@ -12367,7 +13471,7 @@
             }
         ],
         "BestVersion": "5.12.0",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "net.bytebuddy-byte-buddy-agent-1.12.19.jar",
@@ -12377,16 +13481,12 @@
         "Version": "1.12.19",
         "Type": "compile",
         "Depth": 2,
-        "Index": 45,
         "DependedBy": [
             "org.mockito-mockito-core-4.11.0.jar"
         ],
+        "Omitted": [],
         "ReachableAPIs": [],
         "AllVersion": [
-            {
-                "version": "1.9.5",
-                "date": 1542907822000
-            },
             {
                 "version": "1.9.6",
                 "date": 1544736127000
@@ -12782,10 +13882,14 @@
             {
                 "version": "1.14.17",
                 "date": 1717007702000
+            },
+            {
+                "version": "1.14.18",
+                "date": 1720465577000
             }
         ],
-        "BestVersion": "1.14.17",
-        "Breaking_Reason": {}
+        "BestVersion": "1.14.18",
+        "Breaking_Reason": []
     },
     {
         "JarFileName": "org.objenesis-objenesis-3.3.jar",
@@ -12795,10 +13899,10 @@
         "Version": "3.3",
         "Type": "runtime",
         "Depth": 2,
-        "Index": 46,
         "DependedBy": [
             "org.mockito-mockito-core-4.11.0.jar"
         ],
+        "Omitted": [],
         "ReachableAPIs": [],
         "AllVersion": [
             {
@@ -12879,6 +13983,6 @@
             }
         ],
         "BestVersion": "3.4",
-        "Breaking_Reason": {}
+        "Breaking_Reason": []
     }
 ]
