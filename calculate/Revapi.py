@@ -195,7 +195,7 @@ class Revapi:
         # parse ret_txt and handle some corner case
         flag, records = self.parse_ret(ret_txt_path)
         if flag is False:
-            # this records is broken because corner case like java.method.addedToInterface / reference BC / dependency conflict
+            # this records is broken because corner case like java.method.addedToInterface / reference BC
             # now, the records is the breaking reason rather than the records in revapi result
             return False, records
         # test
@@ -212,7 +212,7 @@ class Revapi:
             #     return False
         
             # skip None, as None is the reture value of some corner cases(not breaking), which is not handled by reachable API
-            # like java.method.addedToInterface / reference BC / dependency conflict
+            # like java.method.addedToInterface / reference BC
             if record is None:
                 continue
             for API in self.api:

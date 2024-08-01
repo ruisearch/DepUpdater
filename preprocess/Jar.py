@@ -21,6 +21,7 @@ def create_folder(folder_path:str):
 
     
 ## get dep jar using GAV from maven central repository
+# dep_folder : path to data/Jar/{module-name}/dep folder
 def get_dep_jar(dep_folder:str, group_id:str, artifact_id:str, version:str, classifier:str):
     # debug
     # print(f'dep {group_id}:{artifact_id}:{version}')
@@ -140,6 +141,7 @@ def parse_tree_for_deps(dependency_tree:str, path_to_cloned_folder:str, relative
     
             
 # return a list containing all deps as well as the dependent and depth
+# the list contains effective deps as well as omitted deps
 def parse_all_dep(tree:str):
     dep_pattern = r"^\[INFO\] (.*?)- (.+?)$"
     dep_matches = re.finditer(dep_pattern, tree, re.MULTILINE)
@@ -150,16 +152,18 @@ def parse_all_dep(tree:str):
     for dep_match in dep_matches:
         is_test = ":test" in dep_match.group(2)
         is_provided = ":provided" in dep_match.group(2)
+        # exclude the dependency for test or provided
         if is_test is False and is_provided is False:
             dep = {}
             dep.update({'dep':dep_match.group(2)})
             # get depth from the lenth of substring between "[INFO] " and "-"
             depth = (int)((len(dep_match.group(1))+2) / 3)
-            # depth == 1 means direct which depth > 1 means transitive
+            # depth == 1 means direct while depth > 1 means transitive
             dep.update({'Depth':depth})
             deps.append(dep)
     
     # get dependent
+    # the order of deps is the order of depth-first traversal of the dependency tree
     for idx in range(len(deps)):
         depth = deps[idx]['Depth'] - 1
         DependedBy = []
@@ -167,7 +171,13 @@ def parse_all_dep(tree:str):
             if depth == 0:
                 break
             if deps[i]['Depth'] == depth:
-                DependedBy.append(deps[i]['dep'])
+                # note: "DependedBy" above is dependents like "org.mockito:mockito-core:jar:4.11.0:compile"
+                # and DependedBy is always effective deps
+                # so, I change the record into the JarFileName in order to relate the dependent with the dep when clearing the local module
+                
+                # DependedBy.append(deps[i]['dep'])
+                dependent_jar_name = dict_to_JarFileName(record_to_dict(deps[i]['dep']))
+                DependedBy.append(dependent_jar_name)
                 depth = depth - 1
         deps[idx].update({"DependedBy":DependedBy})
     
@@ -205,7 +215,7 @@ def filter_dep(all_deps:list):
             effective_deps.append(dep)
     return effective_deps, omitted_deps
 
-# parse the dep in effective_deps and _deps to get jar and match.json
+# parse the dep in effective_deps and omitted_deps to get jar and match.json
 # module_folder : path to data/Jar/{module_name}
 # dep key:{dep, Depth, DependedBy}
 def parse_for_jar_and_json(effective_deps:list, omitted_deps:list, module_folder:str):
@@ -239,15 +249,13 @@ def parse_for_jar_and_json(effective_deps:list, omitted_deps:list, module_folder
 # Omitted is a list of dict containing Omitted_dep
 # omitted_dep{group_id, artifact_id, classifier, version, type, depth, DependedBy}
 # --> related{JarFileName, Version, DependedBy}
-# note: "DependedBy" above is dependants like "org.mockito:mockito-core:jar:4.11.0:compile"
-# and DependedBy is always effective deps
-# so, should change the record into the JarFileName
+# note: DependedBy is JarFileName of the dependents
 def process_an_effective_dep(path_to_dep:str, effective_dep:dict, omitted_deps:list):
-    get_dep_jar(path_to_dep, effective_dep['group_id'], effective_dep['artifact_id'], effective_dep['version'], effective_dep['classifier'])
     JarFileName = dict_to_JarFileName(effective_dep)
-    # change the DependedBy of effective_dep
-    for i in range(len(effective_dep['DependedBy'])):
-        effective_dep['DependedBy'][i] = dict_to_JarFileName(record_to_dict(effective_dep['DependedBy'][i]))
+    get_dep_jar(path_to_dep, effective_dep['group_id'], effective_dep['artifact_id'], effective_dep['version'], effective_dep['classifier'])
+    # # change the DependedBy of effective_dep
+    # for i in range(len(effective_dep['DependedBy'])):
+    #     effective_dep['DependedBy'][i] = dict_to_JarFileName(record_to_dict(effective_dep['DependedBy'][i]))
     
     Omitted = []
     # find the related omitted_deps
@@ -262,8 +270,9 @@ def process_an_effective_dep(path_to_dep:str, effective_dep:dict, omitted_deps:l
             omitted_jarfilename = dict_to_JarFileName(omitted_dep)
             Version = omitted_dep['version']
             DependedBy = []
-            for dependant in omitted_dep['DependedBy']:
-                DependedBy.append(dict_to_JarFileName(record_to_dict(dependant)))
+            for dependent in omitted_dep['DependedBy']:
+                # DependedBy.append(dict_to_JarFileName(record_to_dict(dependent)))
+                DependedBy.append(dependent)
             related.update({'JarFileName':omitted_jarfilename})
             related.update({'Version':Version})
             related.update({'DependedBy':DependedBy})
@@ -300,6 +309,7 @@ def dict_to_JarFileName(dep:dict):
 
 # change the effective_deps
 # dep key:{dep, Depth, DependedBy} --> dep key:{group_id, artifact_id, classifier, version, type, depth, DependedBy}
+# DependedBy is still like 'org.eclipse.sisu:org.eclipse.sisu.inject:jar:0.9.0.M2:compile' rather than JarFileName
 def change_effective_deps(effective_deps:list):
     gav_pattern = r"(.+?):(.+?):jar(.*):(.+?):(.+?)\b"
     for i in range(len(effective_deps)):
@@ -318,6 +328,7 @@ def change_effective_deps(effective_deps:list):
 
 # change the omitted_deps
 # dep key:{dep, Depth, DependedBy} --> dep key:{group_id, artifact_id, classifier, version, type, depth, DependedBy}
+# DependedBy is still like 'org.eclipse.sisu:org.eclipse.sisu.inject:jar:0.9.0.M2:compile' rather than JarFileName
 def change_omitted_deps(omitted_deps:list):
     # duplicate and covered by pom
     # eg:
