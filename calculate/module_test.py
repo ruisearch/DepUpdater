@@ -117,7 +117,7 @@ def set_one_dep(dep:dict, module_path:str, pom_path:str)->str:
         add_or_update_transitive_dependency(temp_pom_path,group_id, artifact_id, new_version, classifier)
     return temp_pom_path
     
-# main method to check(one module)
+# main method to check one dep in a module after calculating its best version
 # res_dict: a dict containing all inform of a dep after calculating
 # dep_path: path to dep/ folder in data/Jar, meaning all dep of a module
 # path_to_cloned_folder: path to the root of cloned project
