@@ -6,8 +6,8 @@ import concurrent.futures
 import requests
 import time
 import json
-from preprocess.constants import JAR_FOLDER, DEPENDENCY_TREE_FILE, DEPENDENCY_VERBOSE_TREE_FILE
-# from constants import JAR_FOLDER, DEPENDENCY_TREE_FILE
+from preprocess.constants import JAR_FOLDER, DEPENDENCY_VERBOSE_TREE_FILE
+# from constants import JAR_FOLDER, DEPENDENCY_VERBOSE_TREE_FILE
 
 ## create a folder
 ## folder_path : path to folder
@@ -19,10 +19,15 @@ def create_folder(folder_path:str):
     # Create the new folder
     os.makedirs(folder_path)
 
+def get_dep_jar(dep_folder:str, group_id:str, artifact_id:str, version:str, classifier:str)->bool:
+    """get dep jar using GAV from maven central repository
     
-## get dep jar using GAV from maven central repository
-# dep_folder : path to data/Jar/{module-name}/dep folder
-def get_dep_jar(dep_folder:str, group_id:str, artifact_id:str, version:str, classifier:str):
+    Args:
+        dep_folder : path to data/Jar/{module-name}/dep folder
+        
+    Returns:
+        True means downloading success while False means downloading fail
+    """
     # debug
     # print(f'dep {group_id}:{artifact_id}:{version}')
     
@@ -52,7 +57,7 @@ def get_dep_jar(dep_folder:str, group_id:str, artifact_id:str, version:str, clas
             file_name = os.path.join(dep_folder, f"{group_id}-{artifact_id}-{version}-{classifier}.jar")
         # prevent download repeatly
         if os.path.exists(file_name):
-            return
+            return True
         response = handle_error_get(jar_url)
         # Proceed if the download was successful
         if response and response.status_code == 200:
@@ -60,20 +65,24 @@ def get_dep_jar(dep_folder:str, group_id:str, artifact_id:str, version:str, clas
                 jar_file.write(response.content)
             if classifier == '':
                 print(f"{group_id}-{artifact_id}-{version}.jar downloaded successfully.")
+                return True
             else :
                 print(f"{group_id}-{artifact_id}-{version}-{classifier}.jar downloaded successfully.")
+                return True
     except Exception as e:
         if classifier == '':
             print(f"Failed to download {artifact_id}-{version}.jar from central repository; Reason: {str(e)}")
+            return False
         else:
             print(f"Failed to download {artifact_id}-{version}-{classifier}.jar from central repository; Reason: {str(e)}")
+            return False
         # # sometimes, the dep is a local artifact, so try to get the jar from local repository
         # print("try to get it from local repository:")
         # command = f"mvn dependency:copy -Dartifact={group_id}:{artifact_id}:{version} -DoutputDirectory={dep_folder}"
         # os.system(command)
 
 ## parse tree(verbose) to get a list of deps(without imformation like GAV, just the record as well as the dependents and depth)
-# create the Jar folder and copy client jar as well 
+# create the Jar folder and copy client jar as well
 def parse_tree_for_deps(dependency_tree:str, path_to_cloned_folder:str, relative_path_to_module:str):
     ## regular expression to get a block
     block_pattern = r'\[INFO\] Building .+?\n\[INFO\].+?from (.*?)pom.xml\n\[INFO\] -+?\[ (.+?) \]-+?\n.*?\[INFO\] (\S+?):(\S+?):\S+?:(\S+?)\n(.+?)\[INFO\] -'
@@ -82,7 +91,7 @@ def parse_tree_for_deps(dependency_tree:str, path_to_cloned_folder:str, relative
     # sometimes, the jar name is not as expect;
     # sometimes, the client is war;
     # above clients are ignored
-    ignore_client = os.path.join(JAR_FOLDER, f'ignore.txt')
+    ignore_client = os.path.join(JAR_FOLDER, 'ignore.txt')
     if os.path.exists(ignore_client):
         os.remove(ignore_client)
     for block in blocks:
@@ -133,15 +142,14 @@ def parse_tree_for_deps(dependency_tree:str, path_to_cloned_folder:str, relative
                     f.write(f'{block.group(3)}:{block.group(4)}:{block.group(5)}\n')
                 shutil.rmtree(folder)
                 continue
-            
+
             # parse tree to get all deps
             deps = parse_all_dep(block.group(6))
             # return path to Jar folder and deps list
-            return folder, deps
-    
+            return folder, deps  
             
 # return a list containing all deps as well as the dependent and depth
-# the list contains effective deps as well as omitted deps
+# the list contains valid deps as well as omitted deps denoted by dict{dep, Depth, DependedBy}
 def parse_all_dep(tree:str):
     dep_pattern = r"^\[INFO\] (.*?)- (.+?)$"
     dep_matches = re.finditer(dep_pattern, tree, re.MULTILINE)
@@ -155,6 +163,7 @@ def parse_all_dep(tree:str):
         # exclude the dependency for test or provided
         if is_test is False and is_provided is False:
             dep = {}
+            # {'dep': the record in tree list 'org.junit-pioneer:junit-pioneer:jar:1.9.1:compile'}
             dep.update({'dep':dep_match.group(2)})
             # get depth from the lenth of substring between "[INFO] " and "-"
             depth = (int)((len(dep_match.group(1))+2) / 3)
@@ -164,31 +173,31 @@ def parse_all_dep(tree:str):
     
     # get dependent
     # the order of deps is the order of depth-first traversal of the dependency tree
-    for idx in range(len(deps)):
-        depth = deps[idx]['Depth'] - 1
+    for idx, one_dep in enumerate(deps):
+        depth = one_dep['Depth'] - 1
         DependedBy = []
         for i in range(idx, -1, -1):
             if depth == 0:
                 break
             if deps[i]['Depth'] == depth:
-                # note: "DependedBy" above is dependents like "org.mockito:mockito-core:jar:4.11.0:compile"
-                # and DependedBy is always effective deps
-                # so, I change the record into the JarFileName in order to relate the dependent with the dep when clearing the local module
-                
-                # DependedBy.append(deps[i]['dep'])
-                dependent_jar_name = dict_to_JarFileName(record_to_dict(deps[i]['dep']))
-                DependedBy.append(dependent_jar_name)
+                # note: "DependedBy" above are dependents like "org.mockito:mockito-core:jar:4.11.0:compile"
+                # and DependedBy are always valid deps
+                # so, I change the record into the dict in order to relate the dependent with the dep when clearing the local module
+                # dict is {'GroupId', 'ArtifactId', 'Classifier'}
+                # we don't need 'Version' as the version will be updated afterwards
+
+                dependent_dict = record_to_dict(deps[i]['dep'])
+                dependent_dict.pop('Version')
+                DependedBy.append(dependent_dict)
                 depth = depth - 1
-        deps[idx].update({"DependedBy":DependedBy})
-    
-    
+        one_dep.update({"DependedBy":DependedBy})
     return deps
 
 
 ## main method in this file
 # path_to_folder:path to cloned folder
 # relative_path_to_module: relative path from project root 
-def Get(path_to_cloned_folder:str, relative_path_to_module:str):
+def Get(path_to_cloned_folder:str, relative_path_to_module:str)->None:
     ## create Jar folder
     create_folder(JAR_FOLDER)
     ## parse
@@ -198,138 +207,195 @@ def Get(path_to_cloned_folder:str, relative_path_to_module:str):
     # parse tree
     # parse_for_jar(dependency_tree, path_to_cloned_folder, relative_path_to_module)
     folder, all_deps = parse_tree_for_deps(dependency_tree, path_to_cloned_folder, relative_path_to_module)
-    # filter the deps into effective_deps and omitted_deps
-    effective_deps, omitted_deps = filter_dep(all_deps)
-    # parse the dep in effective_deps and omitted_deps to get jar and match.json
-    parse_for_jar_and_json(effective_deps, omitted_deps, folder)
+    # filter the deps into valid_deps and omitted_deps
+    valid_deps, omitted_deps = filter_dep(all_deps)
+    # parse the dep in valid_deps and omitted_deps to get jar and match.json
+    parse_for_jar_and_json(valid_deps, omitted_deps, folder)
 
-# filter the deps into effective_deps and omitted_deps
+# filter the deps into valid_deps and omitted_deps
 def filter_dep(all_deps:list):
-    effective_deps = []
+    valid_deps = []
     omitted_deps = []
     for dep in all_deps:
         if dep['dep'].startswith('('):
             # omitted dep
             omitted_deps.append(dep)
         else:
-            effective_deps.append(dep)
-    return effective_deps, omitted_deps
+            valid_deps.append(dep)
+    return valid_deps, omitted_deps
 
-# parse the dep in effective_deps and omitted_deps to get jar and match.json
-# module_folder : path to data/Jar/{module_name}
+
 # dep key:{dep, Depth, DependedBy}
-def parse_for_jar_and_json(effective_deps:list, omitted_deps:list, module_folder:str):
-    # change the effective_deps
-    change_effective_deps(effective_deps)
+def parse_for_jar_and_json(valid_deps:list, omitted_deps:list, module_folder:str):
+    """parse the dep in valid_deps and omitted_deps to get jar and match.json
+    
+    Args:
+        module_folder : path to data/Jar/{module_name}
+    """
+    # change the valid_deps
+    change_valid_deps(valid_deps)
     # change the omitted_deps
     change_omitted_deps(omitted_deps)
     # path to Jar/{module}/dep
     path_to_dep = os.path.join(module_folder, "dep")
     create_folder(path_to_dep)
+    # clearing the local modules which couldn't be downloaded from maven central repository
+    clear_local_module(valid_deps, omitted_deps, path_to_dep)
     # get dep jar and update the list of dicts which will be displayed in json
     # jarname ----> gav
     mappings = []
-    # pass the effective_deps using processPool
+    # traverse the valid_deps using processPool
     num_workers = os.cpu_count()
     with concurrent.futures.ProcessPoolExecutor(max_workers=num_workers) as executor:
         futures = []
-        for i in range(len(effective_deps)):
-            futures.append(executor.submit(process_an_effective_dep, path_to_dep, effective_deps[i], omitted_deps))
+        for valid_dep in valid_deps:
+            futures.append(executor.submit(process_a_valid_dep, valid_dep, omitted_deps))
     for future in futures:
-        mappings.append(future.result()) 
+        mappings.append(future.result())
         
     # create json
     json_path = os.path.join(module_folder, 'match.json')
     with open(json_path, 'w') as json_file:
         json.dump(mappings, json_file, indent=4)
-        
-# process an effective dep: get the jar, get the related omitted dep and download the related omitted jar
-# effective_dep{group_id, artifact_id, classifier, version, type, depth, DependedBy}
-# --> mapping{JarFileName, GroupId, ArtifactId, Classifier, Version, Type, Depth, DependedBy, Omitted}
-# Omitted is a list of dict containing Omitted_dep
-# omitted_dep{group_id, artifact_id, classifier, version, type, depth, DependedBy}
-# --> related{JarFileName, Version, DependedBy}
-# note: DependedBy is JarFileName of the dependents
-def process_an_effective_dep(path_to_dep:str, effective_dep:dict, omitted_deps:list):
-    JarFileName = dict_to_JarFileName(effective_dep)
-    get_dep_jar(path_to_dep, effective_dep['group_id'], effective_dep['artifact_id'], effective_dep['version'], effective_dep['classifier'])
-    # # change the DependedBy of effective_dep
-    # for i in range(len(effective_dep['DependedBy'])):
-    #     effective_dep['DependedBy'][i] = dict_to_JarFileName(record_to_dict(effective_dep['DependedBy'][i]))
+
+def clear_local_module(valid_deps:list, omitted_deps:list, path_to_dep:str) -> None:
+    """clear local module which couldn't be downloaded from maven central \
+        repository(usually local module) and their dependencies as well
+
+    Args: 
+        path_to_dep : path to Jar/{module}/dep
+        valid_deps : {GroupId, ArtifactId, Classifier, Version, Type, Depth, DependedBy}\
+            (from change_valid_deps)
+    """
+    valid_flag_list = [True for _ in valid_deps] # False means the element should be deleted
+    omitted_flag_list = [True for _ in omitted_deps]
+    for i, valid_dep in enumerate(valid_deps):
+        if valid_flag_list[i] is True:
+            flag = get_dep_jar(path_to_dep, valid_dep['GroupId'], valid_dep['ArtifactId'], valid_dep['Version'], valid_dep['Classifier'])
+            if flag is False:
+                # a local module
+                valid_flag_list[i] = False
+                # mark valid dep of the local module
+                mark_dep_of_local_module(valid_dep, valid_deps, valid_flag_list)
+                # mark omitted dep of local module
+                mark_dep_of_local_module(valid_dep, omitted_deps, omitted_flag_list)
+    remove_dep_of_local_module(valid_deps, valid_flag_list)
+    remove_dep_of_local_module(omitted_deps, omitted_flag_list)
+
+def mark_dep_of_local_module(local_module:dict, dep_list:list, flag_list:list)->None:
+    """mark the dependency(valid or omitted) of local module from tree
+    
+    Args:
+        local_module : a dict presents a local module (from clear_local_module)
+        dep_list : valid list or omitted list (from clear_local_module)
+        flag_list : mark the elements in dep_list that should be deleted (from clear_local_module)
+    """
+    for i, dep in enumerate(dep_list):
+        for dependent in dep['DependedBy']:
+            if dependent['GroupId'] == local_module['GroupId'] and \
+                dependent['ArtifactId'] == local_module['ArtifactId'] and \
+                dependent['Classifier'] == local_module['Classifier']:
+                # the dep is a dependency of the local_module
+                flag_list[i] = False
+                break
+
+def remove_dep_of_local_module(dep_list:list, flag_list:list)->None:
+    """remove dep of local from dep_list from flags in flag_list
+    
+    Args:
+        dep_list : valid list or omitted list (from clear_local_module)
+        flag_list : mark the elements in dep_list that should be deleted (from clear_local_module)
+    """
+    for i in range(len(flag_list)-1, -1, -1):
+        if flag_list[i] is False:
+            del dep_list[i]
+
+def process_a_valid_dep(valid_dep:dict, omitted_deps:list)->dict:
+    """process an valid dep: get the related omitted dep and restore the omitted dependency edge
+    
+    Args:
+        valid_dep : a valid dep (from change_valid_deps)
+        omitted_deps : the list of dict containing all Omitted_dep \n
+            from change_omitted_deps \n
+            --> related{Version, DependedBy}
+    
+    Returns:
+        the computed valid_dep which will be displayed in match.json\n
+        {GroupId, ArtifactId, Classifier, Version, Type, Depth, DependedBy, JarFileName, Omitted}
+    """
+    JarFileName = dict_to_JarFileName(valid_dep)
+    valid_dep.update({"JarFileName": JarFileName})
     
     Omitted = []
-    # find the related omitted_deps
+    # find the related omitted_deps with the valid_dep and restore the omitted edges of the tree
     for omitted_dep in omitted_deps:
         related = {}
-        if omitted_dep['group_id'] == effective_dep['group_id'] and omitted_dep['artifact_id'] == effective_dep['artifact_id'] \
-            and omitted_dep['classifier'] == effective_dep['classifier'] :
-            # omitted_dep is the omitted dep of effective_dep
-            # download the omitted_dep
-            get_dep_jar(path_to_dep, omitted_dep['group_id'], omitted_dep['artifact_id'], omitted_dep['version'], omitted_dep['classifier'])
-            # relate effective_dep with omitted_dep
-            omitted_jarfilename = dict_to_JarFileName(omitted_dep)
-            Version = omitted_dep['version']
+        if omitted_dep['GroupId'] == valid_dep['GroupId'] and omitted_dep['ArtifactId'] == valid_dep['ArtifactId'] \
+            and omitted_dep['Classifier'] == valid_dep['Classifier']:
+            # omitted_dep is the omitted dep of valid_dep
+            Version = omitted_dep['Version']
             DependedBy = []
             for dependent in omitted_dep['DependedBy']:
-                # DependedBy.append(dict_to_JarFileName(record_to_dict(dependent)))
                 DependedBy.append(dependent)
-            related.update({'JarFileName':omitted_jarfilename})
             related.update({'Version':Version})
             related.update({'DependedBy':DependedBy})
             Omitted.append(related)
-    
-    # return the mapping(which will be dispalyed in match.json) of effective_dep
-    mapping = {
-        "JarFileName": JarFileName,
-        "GroupId": effective_dep['group_id'],
-        "ArtifactId": effective_dep['artifact_id'],
-        "Classifier": effective_dep['classifier'],
-        "Version": effective_dep['version'],
-        "Type": effective_dep['type'],
-        "Depth": effective_dep['depth'],
-        "DependedBy":effective_dep['DependedBy'],
-        "Omitted":Omitted
-    }
-    
-    return mapping
-    
+            # add the omitted dependency edges
+            add_omitted_edges_of_a_dep(valid_dep['DependedBy'], related['DependedBy'])
+    # record the omitted deps of the valid dep
+    valid_dep.update({"Omitted":Omitted})
+    return valid_dep
+
+def add_omitted_edges_of_a_dep(existing_dependents:list, omitted_dependents:list)->None:
+    """add the omitted_dependents to existing_dependents"""
+    for omitted_depentent in omitted_dependents:
+        # prevent add edges repeatly
+        if omitted_depentent not in existing_dependents:
+            existing_dependents.append(omitted_depentent)
             
-  
-# transform a record into tree to dep{group_id, artifact_id, classifier, version}
 def record_to_dict(record:str):
+    """transform a record(valid) into tree to dep{GroupId, ArtifactId, Classifier, Version}"""
     pattern = r"(.+?):(.+?):jar(.*):(.+?):.+?\b"
     match = re.search(pattern, record)
-    return {'group_id':match.group(1), 'artifact_id':match.group(2), 'classifier':match.group(3), 'version':match.group(4)}
-# transform dep{group_id, artifact_id, classifier, version} into JarFileName
-def dict_to_JarFileName(dep:dict):
-    if dep['classifier'] == "":
-        return f'{dep["group_id"]}-{dep["artifact_id"]}-{dep["version"]}.jar'
-    else:
-        return f'{dep["group_id"]}-{dep["artifact_id"]}-{dep["version"]}-{dep["classifier"]}.jar'
+    return {'GroupId':match.group(1), 'ArtifactId':match.group(2), 'Classifier':match.group(3), 'Version':match.group(4)}
 
-# change the effective_deps
-# dep key:{dep, Depth, DependedBy} --> dep key:{group_id, artifact_id, classifier, version, type, depth, DependedBy}
-# DependedBy is still like 'org.eclipse.sisu:org.eclipse.sisu.inject:jar:0.9.0.M2:compile' rather than JarFileName
-def change_effective_deps(effective_deps:list):
+def dict_to_JarFileName(dep:dict):
+    """transform dep{GroupId, ArtifactId, Classifier, Version} into JarFileName"""
+    if dep['Classifier'] == "":
+        return f'{dep["GroupId"]}-{dep["ArtifactId"]}-{dep["Version"]}.jar'
+    else:
+        return f'{dep["GroupId"]}-{dep["ArtifactId"]}-{dep["Version"]}-{dep["Classifier"]}.jar'
+
+def change_valid_deps(valid_deps:list):
+    """change the valid_deps \n
+    dep key:{dep, Depth, DependedBy} --> dep key:{GroupId, ArtifactId, Classifier, Version, Type, Depth, DependedBy}
+    
+    Args:
+        valid_deps : from parse_all_dep
+    """
     gav_pattern = r"(.+?):(.+?):jar(.*):(.+?):(.+?)\b"
-    for i in range(len(effective_deps)):
+    for i, valid_dep in enumerate(valid_deps):
         dep = {}
-        match = re.search(gav_pattern, effective_deps[i]['dep'])
-        dep.update({'group_id':match.group(1)})
-        dep.update({'artifact_id':match.group(2)})
-        dep.update({'classifier':match.group(3).replace(":","")})
-        dep.update({'version':match.group(4)})
-        dep.update({'type':match.group(5)})
-        dep.update({'depth':effective_deps[i]['Depth']})
-        dep.update({'DependedBy':effective_deps[i]['DependedBy']})
+        match = re.search(gav_pattern, valid_dep['dep'])
+        dep.update({'GroupId':match.group(1)})
+        dep.update({'ArtifactId':match.group(2)})
+        dep.update({'Classifier':match.group(3).replace(":","")})
+        dep.update({'Version':match.group(4)})
+        dep.update({'Type':match.group(5)})
+        dep.update({'Depth':valid_dep['Depth']})
+        dep.update({'DependedBy':valid_dep['DependedBy']})
         # test
         # print(dep)
-        effective_deps[i] = dep
+        valid_deps[i] = dep
 
-# change the omitted_deps
-# dep key:{dep, Depth, DependedBy} --> dep key:{group_id, artifact_id, classifier, version, type, depth, DependedBy}
-# DependedBy is still like 'org.eclipse.sisu:org.eclipse.sisu.inject:jar:0.9.0.M2:compile' rather than JarFileName
+
 def change_omitted_deps(omitted_deps:list):
+    """change the omitted_deps \n
+        dep key:{dep, Depth, DependedBy} --> dep key:{GroupId, ArtifactId, Classifier, Version, Type, Depth, DependedBy}
+        
+    Args:
+        omitted_deps : from parse_all_dep
+    """
     # duplicate and covered by pom
     # eg:
     # (org.junit.platform:junit-platform-engine:jar:1.10.2:runtime - version managed from 1.10.2; omitted for duplicate)
@@ -342,109 +408,50 @@ def change_omitted_deps(omitted_deps:list):
     # eg:
     # (org.codehaus.plexus:plexus-classworlds:jar:2.6.0:compile - omitted for conflict with 2.7.0)
     gav_pattern_3 = r"\((.+?):(.+?):jar(.*):(.+?):(.+?) - omitted for conflict with (.+?)\)"
-    for i in range(len(omitted_deps)):
+    for i, omitted_dep in enumerate(omitted_deps):
         dep = {}
-        match = re.search(gav_pattern_1, omitted_deps[i]['dep'])
+        match = re.search(gav_pattern_1, omitted_dep['dep'])
         if match is not None:
             # duplicate and covered by pom
-            dep.update({'group_id':match.group(1)})
-            dep.update({'artifact_id':match.group(2)})
-            dep.update({'classifier':match.group(3).replace(":","")})
-            dep.update({'version':match.group(6)})
-            dep.update({'type':match.group(5)})
-            dep.update({'depth':omitted_deps[i]['Depth']})
+            dep.update({'GroupId':match.group(1)})
+            dep.update({'ArtifactId':match.group(2)})
+            dep.update({'Classifier':match.group(3).replace(":","")})
+            dep.update({'Version':match.group(6)})
+            dep.update({'Type':match.group(4)})
+            dep.update({'Depth':omitted_deps[i]['Depth']})
             dep.update({'DependedBy':omitted_deps[i]['DependedBy']})
             omitted_deps[i] = dep
             continue
-        match = re.search(gav_pattern_2, omitted_deps[i]['dep'])
+        match = re.search(gav_pattern_2, omitted_dep['dep'])
         if match is not None:
             # duplicate but not covered by pom
-            dep.update({'group_id':match.group(1)})
-            dep.update({'artifact_id':match.group(2)})
-            dep.update({'classifier':match.group(3).replace(":","")})
-            dep.update({'version':match.group(4)})
-            dep.update({'type':match.group(5)})
-            dep.update({'depth':omitted_deps[i]['Depth']})
+            dep.update({'GroupId':match.group(1)})
+            dep.update({'ArtifactId':match.group(2)})
+            dep.update({'Classifier':match.group(3).replace(":","")})
+            dep.update({'Version':match.group(4)})
+            dep.update({'Type':match.group(5)})
+            dep.update({'Depth':omitted_deps[i]['Depth']})
             dep.update({'DependedBy':omitted_deps[i]['DependedBy']})
             omitted_deps[i] = dep
             continue
-        match = re.search(gav_pattern_3, omitted_deps[i]['dep'])
+        match = re.search(gav_pattern_3, omitted_dep['dep'])
         if match is not None:
             # conflict
-            dep.update({'group_id':match.group(1)})
-            dep.update({'artifact_id':match.group(2)})
-            dep.update({'classifier':match.group(3).replace(":","")})
-            dep.update({'version':match.group(4)})
-            dep.update({'type':match.group(5)})
-            dep.update({'depth':omitted_deps[i]['Depth']})
+            dep.update({'GroupId':match.group(1)})
+            dep.update({'ArtifactId':match.group(2)})
+            dep.update({'Classifier':match.group(3).replace(":","")})
+            dep.update({'Version':match.group(4)})
+            dep.update({'Type':match.group(5)})
+            dep.update({'Depth':omitted_deps[i]['Depth']})
             dep.update({'DependedBy':omitted_deps[i]['DependedBy']})
             omitted_deps[i] = dep
             continue
-            
-# test   
+# test
 if __name__ == "__main__":
-    # def expand_resolve_abspath(path):
-    #     expanded_path = os.path.expanduser(path)
-    #     resolved_path = os.path.normpath(expanded_path)
-    #     absolute_path = os.path.abspath(resolved_path)
-    #     return absolute_path
-    # path = expand_resolve_abspath(f"~/Work/Tool/Tool/data/preprocess/dependency_tree.txt")
-    # with open(path, 'r') as f:
-    #     dependency_tree = f.read()
-    #     parse_for_jar(dependency_tree)
-#     tree = '''[INFO] -----------------------< com.iluwatar:strangler >-----------------------
-# [INFO] Building strangler 1.26.0-SNAPSHOT                             [131/168]
-# [INFO]   from strangler/pom.xml
-# [INFO] --------------------------------[ jar ]---------------------------------
-# [INFO] 
-# [INFO] --- dependency:3.6.0:tree (default-cli) @ strangler ---
-# [INFO] com.iluwatar:strangler:jar:1.26.0-SNAPSHOT
-# [INFO] +- org.junit.jupiter:junit-jupiter-engine:jar:5.8.2:test
-# [INFO] |  +- org.junit.platform:junit-platform-engine:jar:1.8.2:test
-# [INFO] |  |  +- org.opentest4j:opentest4j:jar:1.2.0:test
-# [INFO] |  |  \- org.junit.platform:junit-platform-commons:jar:1.8.2:test
-# [INFO] |  +- org.junit.jupiter:junit-jupiter-api:jar:5.8.2:test
-# [INFO] |  \- org.apiguardian:apiguardian-api:jar:1.1.2:test
-# [INFO] +- org.slf4j:slf4j-api:jar:1.7.36:compile
-# [INFO] +- ch.qos.logback:logback-classic:jar:1.2.11:compile
-# [INFO] +- ch.qos.logback:logback-core:jar:1.2.11:compile
-# [INFO] \- org.projectlombok:lombok:jar:1.18.24:provided
-# [INFO] 
-# '''
-#     # download in /preprocess/data/preprocess/Jar rather than /data/preprocess/Jar in test
-#     parse_for_jar(tree, f"/home/ray/Work/Tool/Data/fudan_paper_client/584/java-design-patterns")
-
-#     dep = '''[INFO] +- org.junit.jupiter:junit-jupiter-engine:jar:5.8.2:test
-# [INFO] |  +- org.junit.platform:junit-platform-engine:jar:1.8.2:test
-# [INFO] |  |  +- org.opentest4j:opentest4j:jar:1.2.0:test
-# [INFO] |  |  \- org.junit.platform:junit-platform-commons:jar:1.9.0:test
-# [INFO] |  +- org.junit.jupiter:junit-jupiter-api:jar:5.8.2:test
-# [INFO] |  \- org.apiguardian:apiguardian-api:jar:1.1.2:test
-# [INFO] +- org.slf4j:slf4j-api:jar:2.0.12:compile
-# [INFO] +- ch.qos.logback:logback-classic:jar:1.5.3:compile
-# [INFO] +- ch.qos.logback:logback-core:jar:1.5.3:compile
-# [INFO] \- org.projectlombok:lombok:jar:1.18.24:provided'''
-#     dep = '''[INFO] |  |  +- io.netty:netty-transport-native-unix-common:jar:4.1.100.Final:compile
-# [INFO] |  |  +- io.netty:netty-handler-proxy:jar:4.1.100.Final:compile
-# [INFO] |  |  +- io.netty:netty-handler-ssl-ocsp:jar:4.1.100.Final:compile
-# [INFO] |  |  +- io.netty:netty-resolver:jar:4.1.100.Final:compile
-# [INFO] |  |  +- io.netty:netty-resolver-dns:jar:4.1.100.Final:compile
-# [INFO] |  |  +- io.netty:netty-transport:jar:4.1.100.Final:compile
-# [INFO] |  |  +- io.netty:netty-transport-rxtx:jar:4.1.100.Final:compile
-# [INFO] |  |  +- io.netty:netty-transport-sctp:jar:4.1.100.Final:compile
-# [INFO] |  |  +- io.netty:netty-transport-udt:jar:4.1.100.Final:compile
-# [INFO] |  |  +- io.netty:netty-transport-classes-epoll:jar:4.1.100.Final:compile
-# [INFO] |  |  +- io.netty:netty-transport-classes-kqueue:jar:4.1.100.Final:compile
-# [INFO] |  |  +- io.netty:netty-resolver-dns-classes-macos:jar:4.1.100.Final:compile
-# [INFO] |  |  +- io.netty:netty-transport-native-epoll:jar:linux-x86_64:4.1.100.Final:runtime
-# [INFO] |  |  +- io.netty:netty-transport-native-epoll:jar:linux-aarch_64:4.1.100.Final:runtime
-# [INFO] |  |  +- io.netty:netty-transport-native-kqueue:jar:osx-x86_64:4.1.100.Final:runtime
-# [INFO] |  |  +- io.netty:netty-transport-native-kqueue:jar:osx-aarch_64:4.1.100.Final:runtime
-# [INFO] |  |  +- io.netty:netty-resolver-dns-native-macos:jar:osx-x86_64:4.1.100.Final:runtime
-# [INFO] |  |  \- io.netty:netty-resolver-dns-native-macos:jar:osx-aarch_64:4.1.100.Final:runtime'''
-#     print(parse_dep(dep))
-    dep = 'com.fasterxml.jackson.core:jackson-annotations:jar:2.16.1:test (version managed from 2.16.1)'
-    dep = 'org.mockito:mockito-core:jar:4.11.0:compile'
-    gav_pattern = r"(.+?):(.+?):jar(.*):(.+?):(.+?)\b"
-    match = re.search(gav_pattern, dep)
-    print(match.group(1),match.group(2),match.group(3),match.group(4),match.group(5))
+    # test remove_dep_of_local_module
+    test_list = [1, 2, 3, 4, 5]
+    test_flag_list = [True, False, True, False, True]
+    remove_dep_of_local_module(test_list, test_flag_list)
+    print(test_list)
+    
+    

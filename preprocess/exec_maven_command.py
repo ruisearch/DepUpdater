@@ -14,19 +14,17 @@ def create_folder(folder_path:str):
     # Create the new folder
     os.makedirs(folder_path)
     
-# execute "mvn package"
 def mvn_package(path_to_folder:str, relative_path_to_module:str):
-    # if relative_path_to_module != '.':
-    #     path_to_folder = os.path.join(path_to_folder, relative_path_to_module)
+    """execute \"mvn package\""""
+    # firstly, execute mvn package in module folder
     if relative_path_to_module == '.':
         command = f"cd {path_to_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true clean package"
     else :
         command = f"cd {os.path.join(path_to_folder, relative_path_to_module)} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true clean package"
-        # command = f"cd {path_to_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -pl {relative_path_to_module} -am clean package "
     print("mvn clean and mvn package...")
     exit_status = os.system(command)
-    # if "cd relative_path_to_module && mvn clean package " fails, try to use "mvn clean package -pl -am"
     if exit_status != 0:
+        # mvn package is unexecutable in module folder, so execute it in root with the help of -pl -am
         if relative_path_to_module == '.':
             command = f"cd {path_to_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true clean package"
         else :
