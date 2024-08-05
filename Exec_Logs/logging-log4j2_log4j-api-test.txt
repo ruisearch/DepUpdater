@@ -1,4 +1,4 @@
-Script started on 2024-08-04 16:50:53+08:00 [TERM="xterm-256color" TTY="/dev/pts/6" COLUMNS="106" LINES="30"]
+Script started on 2024-08-05 09:19:41+08:00 [TERM="xterm-256color" TTY="/dev/pts/6" COLUMNS="113" LINES="30"]
 
 ****** preprocessing ... ******
 
@@ -151,7 +151,7 @@ import org.apache.commons.codec.digest.*;
 [[1;34mINFO[m] [1;32mBUILD SUCCESS[m
 [[1;34mINFO[m] [1m------------------------------------------------------------------------[m
 [[1;34mINFO[m] Total time:  4.593 s
-[[1;34mINFO[m] Finished at: 2024-08-04T16:51:00+08:00
+[[1;34mINFO[m] Finished at: 2024-08-05T09:19:48+08:00
 [[1;34mINFO[m] [1m------------------------------------------------------------------------[m
 [0m[0m[[1;34mINFO[m] Scanning for projects...
 [[1;34mINFO[m] 
@@ -294,8 +294,8 @@ import org.apache.commons.codec.digest.*;
 [[1;34mINFO[m] [1m------------------------------------------------------------------------[m
 [[1;34mINFO[m] [1;32mBUILD SUCCESS[m
 [[1;34mINFO[m] [1m------------------------------------------------------------------------[m
-[[1;34mINFO[m] Total time:  4.616 s
-[[1;34mINFO[m] Finished at: 2024-08-04T16:51:05+08:00
+[[1;34mINFO[m] Total time:  4.707 s
+[[1;34mINFO[m] Finished at: 2024-08-05T09:19:53+08:00
 [[1;34mINFO[m] [1m------------------------------------------------------------------------[m
 [0m[0m
 ****** preprocess.package done! ******
@@ -358,8 +358,6 @@ org.apache.maven-maven-model-3.9.6.jar downloaded successfully.
 org.codehaus.plexus-plexus-utils-3.5.1.jar downloaded successfully.
 net.bytebuddy-byte-buddy-1.14.11.jar downloaded successfully.
 org.junit.platform-junit-platform-engine-1.10.2.jar downloaded successfully.
-Attempt 1 failed for mockito-core-4.11.0.jar: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
-Attempt 2 failed for mockito-core-4.11.0.jar: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
 org.mockito-mockito-core-4.11.0.jar downloaded successfully.
 net.bytebuddy-byte-buddy-agent-1.12.19.jar downloaded successfully.
 org.objenesis-objenesis-3.3.jar downloaded successfully.
@@ -370,4 +368,4 @@ org.objenesis-objenesis-3.3.jar downloaded successfully.
 ****** preprocess done! ******
 
 
-Script done on 2024-08-04 16:52:12+08:00 [COMMAND_EXIT_CODE="0"]
+Script done on 2024-08-05 09:20:57+08:00 [COMMAND_EXIT_CODE="0"]

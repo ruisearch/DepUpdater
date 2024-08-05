@@ -9,9 +9,9 @@ import json
 from preprocess.constants import JAR_FOLDER, DEPENDENCY_VERBOSE_TREE_FILE
 # from constants import JAR_FOLDER, DEPENDENCY_VERBOSE_TREE_FILE
 
-## create a folder
-## folder_path : path to folder
+
 def create_folder(folder_path:str):
+    """create a folder"""
     # Check if the folder already exists
     if os.path.exists(folder_path):
         # Remove the existing folder
@@ -81,9 +81,10 @@ def get_dep_jar(dep_folder:str, group_id:str, artifact_id:str, version:str, clas
         # command = f"mvn dependency:copy -Dartifact={group_id}:{artifact_id}:{version} -DoutputDirectory={dep_folder}"
         # os.system(command)
 
-## parse tree(verbose) to get a list of deps(without imformation like GAV, just the record as well as the dependents and depth)
-# create the Jar folder and copy client jar as well
 def parse_tree_for_deps(dependency_tree:str, path_to_cloned_folder:str, relative_path_to_module:str):
+    """parse tree(verbose) to get a list of deps\
+        (without imformation like GAV, just the record as well as the dependents and depth)\n
+        create the Jar folder and copy client jar as well"""
     ## regular expression to get a block
     block_pattern = r'\[INFO\] Building .+?\n\[INFO\].+?from (.*?)pom.xml\n\[INFO\] -+?\[ (.+?) \]-+?\n.*?\[INFO\] (\S+?):(\S+?):\S+?:(\S+?)\n(.+?)\[INFO\] -'
     blocks = re.finditer(block_pattern, dependency_tree, flags=re.DOTALL)
@@ -252,10 +253,13 @@ def parse_for_jar_and_json(valid_deps:list, omitted_deps:list, module_folder:str
             futures.append(executor.submit(process_a_valid_dep, valid_dep, omitted_deps))
     for future in futures:
         mappings.append(future.result())
-        
+
+    # sort deps by their depths so that the sequential traversal is BFS
+    mappings.sort(key=lambda dep:dep['Depth'])
+
     # create json
     json_path = os.path.join(module_folder, 'match.json')
-    with open(json_path, 'w') as json_file:
+    with open(json_path, 'w', encoding='utf-8') as json_file:
         json.dump(mappings, json_file, indent=4)
 
 def clear_local_module(valid_deps:list, omitted_deps:list, path_to_dep:str) -> None:
