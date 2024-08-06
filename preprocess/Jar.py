@@ -3,11 +3,11 @@ import os
 import shutil
 import re
 import concurrent.futures
-import requests
-import time
 import json
+import time
+import requests
 from preprocess.constants import JAR_FOLDER, DEPENDENCY_VERBOSE_TREE_FILE
-# from constants import JAR_FOLDER, DEPENDENCY_VERBOSE_TREE_FILE
+
 
 
 def create_folder(folder_path:str):
@@ -457,5 +457,4 @@ if __name__ == "__main__":
     test_flag_list = [True, False, True, False, True]
     remove_dep_of_local_module(test_list, test_flag_list)
     print(test_list)
-    
     

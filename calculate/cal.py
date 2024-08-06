@@ -160,7 +160,7 @@ def cal_test_a_dep(false_folder_lock, json_lock, one_dict:dict, dep_path:str, pa
     res_dict = copy.deepcopy(one_dict)
     # get the module name
     inform_json_path = os.path.join(dep_path, '../inform.json')
-    with open(inform_json_path, 'r') as f:
+    with open(inform_json_path, 'r', encoding='utf-8') as f:
         inform = json.load(f)
     module_name = inform['Module']
     if module_name == '':

@@ -1,6 +1,6 @@
 # a class that extract all types of references used by a module
 # note : generate client-reference in client/, dep-reference in dep/
-import os 
+import os
 from tqdm import tqdm
 import subprocess
 from match.constants import BCEL_REFERENCE

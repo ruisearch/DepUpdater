@@ -18,3 +18,6 @@ tqdm_log/
 
 # ignore false_cases/{project/module}/jar/
 **/jar/
+
+# ignore reusable_daat.sqlite
+reusable_data.sqlite
