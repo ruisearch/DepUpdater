@@ -5,14 +5,14 @@ from preprocess import Jar
 from match import match
 from calculate import cal
 
-## expand the path to absolute path
 def expand_resolve_abspath(path):
+    """expand the path to absolute path"""
     expanded_path = os.path.expanduser(path)
     resolved_path = os.path.normpath(expanded_path)
     absolute_path = os.path.abspath(resolved_path)
     return absolute_path
 
-## preprocess: 
+## preprocess
 ## input : the path to the cloned folder
 ## output ： client jar/dependencies jar(from dependency tree)
 print("\n****** preprocessing ... ******\n")
