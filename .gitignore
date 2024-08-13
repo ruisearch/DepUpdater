@@ -21,3 +21,6 @@ tqdm_log/
 
 # ignore reusable_daat.sqlite
 reusable_data.sqlite
+
+# ignore venv
+.venv/

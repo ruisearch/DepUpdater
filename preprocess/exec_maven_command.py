@@ -3,14 +3,13 @@
 import os
 import shutil
 import subprocess
-from preprocess.constants import DEPENDENCY_TREE_FILE, DATA, DEPENDENCY_VERBOSE_TREE_FILE
+from preprocess.constants import TREE_DIR
 
 # create a folder
 def create_folder(folder_path:str):
     # Check if the folder already exists
     if os.path.exists(folder_path):
-        # Remove the existing folder
-        shutil.rmtree(folder_path)
+        return
     # Create the new folder
     os.makedirs(folder_path)
     
@@ -32,28 +31,30 @@ def mvn_package(path_to_folder:str, relative_path_to_module:str):
     exit_status = os.system(command)
     return exit_status
 
-# execute "mvn dependency:tree"
-def mvn_dependency_tree(path_to_folder:str, relative_path_to_module:str):
-    # MainProcess_pwd = os.getcwd()
-    # log_path = os.path.join(MainProcess_pwd, "data/dependency_tree.txt")
-    # create ./DATA
-    create_folder(DATA)
-    command = f"cd {path_to_folder} && mvn dependency:tree -pl {relative_path_to_module} -am -fae"
-    print("generating dependency tree...")
-    result = subprocess.run(command, shell=True, text=True, capture_output=True)
-    with open(DEPENDENCY_TREE_FILE, 'w') as f:
-        f.write(f'{result.stdout}')
-    # os.system(command)
-    print("dependency tree is generated in ./data/dependency_tree.txt successfully")
+# # execute "mvn dependency:tree"
+# def mvn_dependency_tree(path_to_folder:str, relative_path_to_module:str):
+#     # MainProcess_pwd = os.getcwd()
+#     # log_path = os.path.join(MainProcess_pwd, "data/dependency_tree.txt")
+#     # create ./DATA
+#     create_folder(DATA)
+#     command = f"cd {path_to_folder} && mvn dependency:tree -pl {relative_path_to_module} -am -fae"
+#     print("generating dependency tree...")
+#     result = subprocess.run(command, shell=True, text=True, capture_output=True)
+#     with open(DEPENDENCY_TREE_FILE, 'w') as f:
+#         f.write(f'{result.stdout}')
+#     # os.system(command)
+#     print("dependency tree is generated in ./data/dependency_tree.txt successfully")
     
-# execute "mvn dependency:tree -Dverbose"
 def mvn_verbose_dependency_tree(path_to_folder:str, relative_path_to_module:str):
+    """execute mvn dependency:tree -Dverbose"""
     command = f"cd {path_to_folder} && mvn dependency:tree -pl {relative_path_to_module} -am -Dverbose -fae"
     print("generating dependency tree...")
     result = subprocess.run(command, shell=True, text=True, capture_output=True)
-    with open(DEPENDENCY_VERBOSE_TREE_FILE, 'w') as f:
+    create_folder(TREE_DIR)
+    tree_file = os.path.join(TREE_DIR, f"{path_to_folder.replace('/','_')}_{relative_path_to_module.replace('/','_')}.txt")
+    with open(tree_file, 'w', encoding='utf-8') as f:
         f.write(f'{result.stdout}')
     # os.system(command)
-    print("dependency tree is generated in ./data/dependency_verbose_tree.txt successfully")
-    
+    print("dependency tree is generated successfully")
+    return tree_file
     
