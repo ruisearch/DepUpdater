@@ -1,10 +1,13 @@
 # a class that encapsulates all operations on the call graphs of a module
 # note : generate client cg in client/, dep cg in dep/
-import os 
 import json
+import os
 import re
+
 from tqdm import tqdm
+
 from match.constants import SOOTCG_PATH
+
 
 class CallGraph:
     def __init__(self,path_to_module:str):

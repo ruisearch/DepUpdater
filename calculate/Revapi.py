@@ -1,14 +1,17 @@
 ## get the newest compatible version according to revapi
+import copy
 import os
-import shutil
 import re
-import requests
+import shutil
 import subprocess
 import time
-import copy
+
+import requests
 from tqdm import tqdm
-from calculate.constants import REVAPI_FOLDER
-from calculate.constants import ADDEDTOINTERFACE_PATH
+
+from calculate.constants import ADDEDTOINTERFACE_PATH, REVAPI_FOLDER
+
+
 # from constants import REVAPI_FOLDER
 # from constants import ADDEDTOINTERFACE_PATH
 class Revapi:

@@ -1,9 +1,11 @@
-import sys
 import os
+import sys
+
+from calculate import cal
+from match import match
 from preprocess import exec_maven_command
 from preprocess.Restore import Restore
-from match import match
-from calculate import cal
+
 
 def expand_resolve_abspath(path):
     """expand the path to absolute path"""

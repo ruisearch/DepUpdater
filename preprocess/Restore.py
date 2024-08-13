@@ -1,15 +1,17 @@
 ## restore tree to graph
-import os
-import shutil
-import re
 import concurrent.futures
 import json
+import os
+import re
+import shutil
 import time
+
 import requests
-from database.sqlite import Sqlite
-from constants import TREE_DIR, JAR_DIR, RET_DIR
-from database.sqlite import Sqlite
+
+from constants import JAR_DIR, RET_DIR, TREE_DIR
 from database.constants import SQLITE_PATH
+from database.sqlite import Sqlite
+
 
 class Restore:
     def __init__(self, path_to_cloned_folder:str, relative_path_to_module:str,\
