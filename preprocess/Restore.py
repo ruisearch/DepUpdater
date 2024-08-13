@@ -7,7 +7,7 @@ import json
 import time
 import requests
 from database.sqlite import Sqlite
-from ..constants import TREE_DIR, JAR_DIR, RET_DIR
+from constants import TREE_DIR, JAR_DIR, RET_DIR
 from database.sqlite import Sqlite
 from database.constants import SQLITE_PATH
 
@@ -49,7 +49,7 @@ class Restore:
         # filter the deps into valid_deps and omitted_deps
         valid_deps, omitted_deps = self.filter_dep(all_deps)
         # parse the dep in valid_deps and omitted_deps to get jar and match.json
-        self.parse_for_jar_and_json(valid_deps, omitted_deps)
+        json_path = self.parse_for_jar_and_json(valid_deps, omitted_deps)
 
     def filter_dep(self, all_deps:list):
         """filter the deps into valid_deps and omitted_deps"""
@@ -63,11 +63,8 @@ class Restore:
                 valid_deps.append(dep)
         return valid_deps, omitted_deps
 
-    def get_dep_jar(self, dep_folder:str, group_id:str, artifact_id:str, version:str, classifier:str)->bool:
-        """get dep jar using GAV from maven central repository
-        
-        Args:
-            dep_folder : path to data/Jar/{module-name}/dep folder
+    def get_dep_jar(self, group_id:str, artifact_id:str, version:str)->bool:
+        """get dep jar using GAV from maven central repository and store them in data/jar
             
         Returns:
             True means downloading success while False means downloading fail
@@ -93,24 +90,21 @@ class Restore:
         
         # Call the function with retry logic
         try:
-            file_name = os.path.join(dep_folder, f"{artifact_id}-{version}.jar")
+            file_name = self.query_to_get_jar_location(group_id, artifact_id, version)
             # prevent download repeatly
             if os.path.exists(file_name):
+                print(f"{artifact_id}-{version}.jar has been downloaded before.")
                 return True
             response = handle_error_get(jar_url)
             # Proceed if the download was successful
             if response and response.status_code == 200:
                 with open(file_name, "wb") as jar_file:
                     jar_file.write(response.content)
-                if classifier == '':
-                    print(f"{group_id}-{artifact_id}-{version}.jar downloaded successfully.")
-                    return True
-                else :
-                    print(f"{group_id}-{artifact_id}-{version}-{classifier}.jar downloaded successfully.")
+                    print(f"{artifact_id}-{version}.jar downloaded successfully.")
                     return True
         except Exception as e:
-                print(f"Failed to download {artifact_id}-{version}.jar from central repository; Reason: {str(e)}")
-                return False
+            print(f"Failed to download {artifact_id}-{version}.jar from central repository; Reason: {str(e)}")
+            return False
 
     def parse_tree_for_deps(self, dependency_tree:str, path_to_cloned_folder:str, relative_path_to_module:str):
         """parse tree(verbose) to get a list of deps\
@@ -158,6 +152,7 @@ class Restore:
                 path_to_client_jar_in_repo = os.path.join(target, client_jar)
                 path_to_client_jar_storage = self.query_to_get_jar_location(self.client_groupId,\
                     self.client_artifactId, self.client_version)
+                # store client jar
                 try:
                     shutil.copy(path_to_client_jar_in_repo, path_to_client_jar_storage)
                 except FileNotFoundError as e:
@@ -183,9 +178,9 @@ class Restore:
             path_to_record = f'{groupId}/{artifactId}/{version}/{artifactId}-{version}.jar'
             db.insert_data('artifacts', {'groupId':groupId, 'artifactId':artifactId, 'version':version, \
                 'relative_path': path_to_record})
-            relative_path = [path_to_record]
+            relative_path = [(path_to_record,)]
         db.close()
-        jar_path = os.path.join(JAR_DIR, relative_path[0])
+        jar_path = os.path.join(JAR_DIR, relative_path[0][0])
         dir_path = os.path.dirname(jar_path)
         self.create_folder(dir_path)
         return jar_path
@@ -213,28 +208,29 @@ class Restore:
                 dep.update({'Depth':depth})
                 deps.append(dep)
 
-        # get dependent(parent actually)
+        # get dependent(parent in tree actually) of all deps
         for idx, one_dep in enumerate(deps):
             dependent_depth = one_dep['Depth'] - 1
+            Dependents = []
             for i in range(idx, -1, -1):
-                if depth == 0:
+                if dependent_depth == 0:
+                    # dependent is client
+                    Dependent = {'GroupId':self.client_groupId, 'ArtifactId':self.client_artifactId,\
+                        'Version': self.client_version}
+                    Dependents.append(Dependent)
                     break
                 if deps[i]['Depth'] == depth:
                     # note: "Dependents" above are dependents like "org.mockito:mockito-core:jar:4.11.0:compile"
-                    # and Dependents are always valid deps
+                    # and Dependents are always valid deps or client
                     # so, I change the record into the dict in order to relate the dependent with the dep when clearing the local module
-                    # dict is {'GroupId', 'ArtifactId', 'Classifier'}
-                    # we don't need 'Version' as the version will be updated afterwards
-
-                    dependent_dict = self.record_to_dict(deps[i]['dep'])
-                    dependent_dict.pop('Version')
-                    Dependents.append(dependent_dict)
-                    depth = depth - 1
+                    # dict is {'GroupId', 'ArtifactId', 'Version'}
+                    Dependent = self.record_to_dict(deps[i]['dep'])
+                    Dependents.append(Dependent)
             one_dep.update({"Dependents":Dependents})
         return deps
 
     # dep key:{dep, Depth, Dependents}
-    def parse_for_jar_and_json(self, valid_deps:list, omitted_deps:list, module_folder:str):
+    def parse_for_jar_and_json(self, valid_deps:list, omitted_deps:list):
         """parse the dep in valid_deps and omitted_deps to get jar and match.json
         
         Args:
@@ -244,14 +240,14 @@ class Restore:
         self.change_valid_deps(valid_deps)
         # change the omitted_deps
         self.change_omitted_deps(omitted_deps)
-        # path to Jar/{module}/dep
-        path_to_dep = os.path.join(module_folder, "dep")
-        self.create_folder(path_to_dep)
         # clearing the local modules which couldn't be downloaded from maven central repository
-        self.clear_local_module(valid_deps, omitted_deps, path_to_dep)
+        # and optional transitive deps as well
+        self.clear_spare_deps(valid_deps, omitted_deps)
         # get dep jar and update the list of dicts which will be displayed in json
         # jarname ----> gav
-        mappings = []
+        mappings = [{'GroupId':self.client_groupId, 'ArtifactId':self.client_artifactId,\
+            'Original_Version':self.client_version, 'Best_Version':'', 'Type':'',\
+                'Depth':0, 'Dependents':[]}] # add client at first
         # traverse the valid_deps using processPool
         num_workers = os.cpu_count()
         with concurrent.futures.ProcessPoolExecutor(max_workers=num_workers) as executor:
@@ -261,60 +257,64 @@ class Restore:
         for future in futures:
             mappings.append(future.result())
 
-        # sort deps by their depths so that the sequential traversal is BFS
-        mappings.sort(key=lambda dep:dep['Depth'])
-
         # create json
-        json_path = os.path.join(module_folder, 'match.json')
+        # stored in data/result/{repo_name}/{relative_path_to_module}/match.json
+        repo_name = os.path.basename(self.path_to_cloned_folder)
+        json_folder = os.path.join(RET_DIR, f'{repo_name}/{self.relative_path_to_module}')
+        self.create_folder(json_folder)
+        json_path = os.path.join(json_folder, 'match.json')
         with open(json_path, 'w', encoding='utf-8') as json_file:
             json.dump(mappings, json_file, indent=4)
+        return json_path
 
-    def clear_local_module(self,valid_deps:list, omitted_deps:list, path_to_dep:str) -> None:
-        """clear local module which couldn't be downloaded from maven central \
-            repository(usually local module) and their dependencies as well
+    def clear_spare_deps(self,valid_deps:list, omitted_deps:list) -> None:
+        """clear spare deps and their dependencies as well\n
+            consider two kinds of deps : local module which couldn't be downloaded from maven central \
+            repository(usually local module); optional transitive deps
 
         Args: 
             path_to_dep : path to Jar/{module}/dep
-            valid_deps : {GroupId, ArtifactId, Classifier, Version, Type, Depth, Dependents}\
+            valid_deps : {GroupId, ArtifactId, Version, Type, Depth, Dependents}\
                 (from change_valid_deps)
         """
         valid_flag_list = [True for _ in valid_deps] # False means the element should be deleted
         omitted_flag_list = [True for _ in omitted_deps]
         for i, valid_dep in enumerate(valid_deps):
-            if valid_flag_list[i] is True:
-                flag = self.get_dep_jar(path_to_dep, valid_dep['GroupId'], valid_dep['ArtifactId'], valid_dep['Version'], valid_dep['Classifier'])
-                if flag is False:
-                    # a local module
+            optional_transitive_flag = valid_dep['Depth'] > 1 and valid_dep['isoptional'] == True
+            if valid_flag_list[i] is True: # has not been removed
+                flag = self.get_dep_jar(valid_dep['GroupId'], valid_dep['ArtifactId'], valid_dep['Version'])
+                if flag is False or optional_transitive_flag is True:
+                    # a local module or optional transitive dep
                     valid_flag_list[i] = False
-                    # mark valid dep of the local module
-                    self.mark_dep_of_local_module(valid_dep, valid_deps, valid_flag_list)
-                    # mark omitted dep of local module
-                    self.mark_dep_of_local_module(valid_dep, omitted_deps, omitted_flag_list)
-        self.remove_dep_of_local_module(valid_deps, valid_flag_list)
-        self.remove_dep_of_local_module(omitted_deps, omitted_flag_list)
+                    # mark valid deps of spare dep
+                    self.mark_dep_of_spare_deps(valid_dep, valid_deps, valid_flag_list)
+                    # mark omitted dep of spare dep
+                    self.mark_dep_of_spare_deps(valid_dep, omitted_deps, omitted_flag_list)
+        self.remove_dep_of_spare_deps(valid_deps, valid_flag_list)
+        self.remove_dep_of_spare_deps(omitted_deps, omitted_flag_list)
 
-    def mark_dep_of_local_module(self, local_module:dict, dep_list:list, flag_list:list)->None:
-        """mark the dependency(valid or omitted) of local module from tree
+    def mark_dep_of_spare_deps(self, spare_dep:dict, dep_list:list, flag_list:list)->None:
+        """mark the dependency(valid or omitted) of spare dep from tree
         
         Args:
-            local_module : a dict presents a local module (from clear_local_module)
-            dep_list : valid list or omitted list (from clear_local_module)
-            flag_list : mark the elements in dep_list that should be deleted (from clear_local_module)
+            spare_dep : a dict presents a spare dep (from clear_spare_deps)
+            dep_list : valid list or omitted list (from clear_spare_deps)
+            flag_list : mark the elements in dep_list that should be deleted (from clear_spare_deps)
         """
         for i, dep in enumerate(dep_list):
             for dependent in dep['Dependents']:
-                if dependent['GroupId'] == local_module['GroupId'] and \
-                    dependent['ArtifactId'] == local_module['ArtifactId']:
-                    # the dep is a dependency of the local_module
+                if dependent['GroupId'] == spare_dep['GroupId'] and \
+                    dependent['ArtifactId'] == spare_dep['ArtifactId']:
+                    # the dep is a dependency of the spare_dep
                     flag_list[i] = False
                     break
 
-    def remove_dep_of_local_module(self, dep_list:list, flag_list:list)->None:
+    def remove_dep_of_spare_deps(self, dep_list:list, flag_list:list)->None:
         """remove dep of local from dep_list from flags in flag_list
         
         Args:
-            dep_list : valid list or omitted list (from clear_local_module)
-            flag_list : mark the elements in dep_list that should be deleted (from clear_local_module)
+            dep_list : valid list or omitted list (from clear_spare_deps)
+            flag_list : mark the elements in dep_list that should be deleted (from clear_spare_deps)
         """
         for i in range(len(flag_list)-1, -1, -1):
             if flag_list[i] is False:
@@ -327,47 +327,44 @@ class Restore:
             valid_dep : a valid dep (from change_valid_deps)
             omitted_deps : the list of dict containing all Omitted_dep \n
                 from change_omitted_deps \n
-                --> related{Version, Dependents}
         
         Returns:
             the computed valid_dep which will be displayed in match.json\n
-            {GroupId, ArtifactId, Classifier, Version, Type, Depth, Dependents, JarFileName, Omitted}
+            {GroupId, ArtifactId, Original_Version, Best_Version, Type, Depth, Dependents}\n
+            Dependents is a list of dict {GroupId, ArtifactId, Version, Define_Version}
         """
-        JarFileName = self.dict_to_JarFileName(valid_dep)
-        valid_dep.update({"JarFileName": JarFileName})
-        
-        Omitted = []
-        # find the related omitted_deps with the valid_dep and restore the omitted edges of the tree
+        valid_dep.pop('isoptional') # isoptional is not in need
+        # find the related omitted_deps with the valid_dep and restore the omitted dependents of the tree
         for omitted_dep in omitted_deps:
-            related = {}
-            if omitted_dep['GroupId'] == valid_dep['GroupId'] and omitted_dep['ArtifactId'] == valid_dep['ArtifactId'] \
-                and omitted_dep['Classifier'] == valid_dep['Classifier']:
+            if omitted_dep['GroupId'] == valid_dep['GroupId'] and omitted_dep['ArtifactId'] == valid_dep['ArtifactId']:
                 # omitted_dep is the omitted dep of valid_dep
-                Version = omitted_dep['Version']
-                Dependents = []
-                for dependent in omitted_dep['Dependents']:
-                    Dependents.append(dependent)
-                related.update({'Version':Version})
-                related.update({'Dependents':Dependents})
-                Omitted.append(related)
-                # add the omitted dependency edges
-                self.add_omitted_edges_of_a_dep(valid_dep['Dependents'], related['Dependents'])
-        # record the omitted deps of the valid dep
-        valid_dep.update({"Omitted":Omitted})
-        return valid_dep
+                # download this omitted jar
+                self.get_dep_jar(omitted_dep['GroupId'], omitted_dep['ArtifactId'],\
+                    omitted_dep['Version'])
+                self.add_omitted_dependents_of_a_dep(valid_dep['Dependents'], omitted_dep['Dependents'])
+        result_dep = {
+            'GroupId': valid_dep['GroupId'],
+            'ArtifactId': valid_dep['ArtifactId'],
+            'Original_Version': valid_dep['Version'],
+            'Best_Version': '',
+            'Type': valid_dep['Type'],
+            'Depth': valid_dep['Depth'],
+            'Dependents': valid_dep['Dependents']
+        }
+        return result_dep
 
-    def add_omitted_edges_of_a_dep(self, existing_dependents:list, omitted_dependents:list)->None:
+    def add_omitted_dependents_of_a_dep(self, existing_dependents:list, omitted_dependents:list)->None:
         """add the omitted_dependents to existing_dependents"""
-        for omitted_depentent in omitted_dependents:
-            # prevent add edges repeatly
-            if omitted_depentent not in existing_dependents:
-                existing_dependents.append(omitted_depentent)
+        for omitted_dependent in omitted_dependents:
+            # prevent add dependents repeatedly
+            if omitted_dependent not in existing_dependents:
+                existing_dependents.append(omitted_dependent)
                 
     def record_to_dict(self, record:str):
-        """transform a record(valid) into tree to dep{GroupId, ArtifactId, Classifier, Version}"""
+        """transform a record(valid) into tree to dep{GroupId, ArtifactId, Version}"""
         pattern = r"(.+?):(.+?):jar(.*):(.+?):.+?\b"
         match = re.search(pattern, record)
-        return {'GroupId':match.group(1), 'ArtifactId':match.group(2), 'Classifier':match.group(3), 'Version':match.group(4)}
+        return {'GroupId':match.group(1), 'ArtifactId':match.group(2), 'Version':match.group(4)}
 
     def dict_to_JarFileName(self, dep:dict):
         """transform dep{GroupId, ArtifactId, Version} into JarFileName"""
@@ -375,7 +372,7 @@ class Restore:
 
     def change_valid_deps(self, valid_deps:list):
         """change the valid_deps \n
-        dep key:{dep, Depth, Dependents} --> dep key:{GroupId, ArtifactId, Classifier, Version, Type, Depth, Dependents}
+        dep key:{dep, Depth, Dependents} --> dep key:{GroupId, ArtifactId, Version, Type, Depth, Dependents, isoptional}
         
         Args:
             valid_deps : from parse_all_dep
@@ -386,11 +383,15 @@ class Restore:
             match = re.search(gav_pattern, valid_dep['dep'])
             dep.update({'GroupId':match.group(1)})
             dep.update({'ArtifactId':match.group(2)})
-            dep.update({'Classifier':match.group(3).replace(":","")})
             dep.update({'Version':match.group(4)})
             dep.update({'Type':match.group(5)})
             dep.update({'Depth':valid_dep['Depth']})
-            dep.update({'Dependents':valid_dep['Dependents']})
+            Dependent = valid_dep['Dependents'][0]
+            # Defined_Version is the version defined by the dependent
+            Dependent.update({'Defined_Version':match.group(4)})
+            dep.update({'Dependents':[Dependent]})
+            isoptional_flag = 'optional' in match.group(5)
+            dep.update({'isoptional': isoptional_flag})
             # test
             # print(dep)
             valid_deps[i] = dep
@@ -422,11 +423,13 @@ class Restore:
                 # duplicate and covered by pom
                 dep.update({'GroupId':match.group(1)})
                 dep.update({'ArtifactId':match.group(2)})
-                dep.update({'Classifier':match.group(3).replace(":","")})
                 dep.update({'Version':match.group(6)})
                 dep.update({'Type':match.group(4)})
                 dep.update({'Depth':omitted_deps[i]['Depth']})
-                dep.update({'Dependents':omitted_deps[i]['Dependents']})
+                # Defined_Version is the version defined by the dependent
+                Dependent = omitted_dep['Dependents'][0]
+                Dependent.update({'Defined_Version':match.group(6)})
+                dep.update({'Dependents':[Dependent]})
                 omitted_deps[i] = dep
                 continue
             match = re.search(gav_pattern_2, omitted_dep['dep'])
@@ -434,11 +437,13 @@ class Restore:
                 # duplicate but not covered by pom
                 dep.update({'GroupId':match.group(1)})
                 dep.update({'ArtifactId':match.group(2)})
-                dep.update({'Classifier':match.group(3).replace(":","")})
                 dep.update({'Version':match.group(4)})
                 dep.update({'Type':match.group(5)})
                 dep.update({'Depth':omitted_deps[i]['Depth']})
-                dep.update({'Dependents':omitted_deps[i]['Dependents']})
+                # Defined_Version is the version defined by the dependent
+                Dependent = omitted_dep['Dependents'][0]
+                Dependent.update({'Defined_Version':match.group(4)})
+                dep.update({'Dependents':[Dependent]})
                 omitted_deps[i] = dep
                 continue
             match = re.search(gav_pattern_3, omitted_dep['dep'])
@@ -446,20 +451,22 @@ class Restore:
                 # conflict
                 dep.update({'GroupId':match.group(1)})
                 dep.update({'ArtifactId':match.group(2)})
-                dep.update({'Classifier':match.group(3).replace(":","")})
                 dep.update({'Version':match.group(4)})
                 dep.update({'Type':match.group(5)})
                 dep.update({'Depth':omitted_deps[i]['Depth']})
-                dep.update({'Dependents':omitted_deps[i]['Dependents']})
+                # Defined_Version is the version defined by the dependent
+                Dependent = omitted_dep['Dependents'][0]
+                Dependent.update({'Defined_Version':match.group(4)})
+                dep.update({'Dependents':[Dependent]})
                 omitted_deps[i] = dep
                 continue
 # test
 if __name__ == "__main__":
-    # # test remove_dep_of_local_module
-    # test_list = [1, 2, 3, 4, 5]
-    # test_flag_list = [True, False, True, False, True]
-    # ex = Restore(None, None, None)
-    # ex.remove_dep_of_local_module(test_list, test_flag_list)
-    # print(test_list)
+    # test remove_dep_of_local_module
+    test_list = [1, 2, 3, 4, 5]
+    test_flag_list = [True, False, True, False, True]
+    ex = Restore(None, None, None)
+    ex.remove_dep_of_local_module(test_list, test_flag_list)
+    print(test_list)
 
     # test

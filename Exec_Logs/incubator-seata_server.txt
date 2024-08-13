@@ -1,4 +1,4 @@
-Script started on 2024-08-04 16:36:37+08:00 [TERM="xterm-256color" TTY="/dev/pts/6" COLUMNS="122" LINES="30"]
+Script started on 2024-08-13 22:51:14+08:00 [TERM="xterm-256color" TTY="/dev/pts/8" COLUMNS="118" LINES="30"]
 
 ****** preprocessing ... ******
 
@@ -149,6 +149,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-build[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/build/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/build (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-build[0;1m ---[m
@@ -184,6 +185,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-parent[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-parent[0;1m ---[m
@@ -256,6 +258,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-common[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/common/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/common (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-common[0;1m ---[m
@@ -370,6 +373,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-config[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/config/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/config (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-config[0;1m ---[m
@@ -434,6 +438,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-config-core[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/config/seata-config-core/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/config/seata-config-core (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-config-core[0;1m ---[m
@@ -544,6 +549,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-config-custom[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/config/seata-config-custom/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/config/seata-config-custom (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-config-custom[0;1m ---[m
@@ -650,6 +656,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-config-apollo[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/config/seata-config-apollo/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/config/seata-config-apollo (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-config-apollo[0;1m ---[m
@@ -757,6 +764,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-config-nacos[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/config/seata-config-nacos/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/config/seata-config-nacos (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-config-nacos[0;1m ---[m
@@ -864,6 +872,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-config-zk[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/config/seata-config-zk/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/config/seata-config-zk (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-config-zk[0;1m ---[m
@@ -971,6 +980,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-config-consul[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/config/seata-config-consul/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/config/seata-config-consul (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-config-consul[0;1m ---[m
@@ -1078,6 +1088,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-config-etcd3[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/config/seata-config-etcd3/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/config/seata-config-etcd3 (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-config-etcd3[0;1m ---[m
@@ -1186,6 +1197,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-config-spring-cloud[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/config/seata-config-spring-cloud/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/config/seata-config-spring-cloud (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-config-spring-cloud[0;1m ---[m
@@ -1291,6 +1303,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-discovery[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/discovery/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/discovery (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-discovery[0;1m ---[m
@@ -1355,6 +1368,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-discovery-core[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/discovery/seata-discovery-core/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/discovery/seata-discovery-core (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-discovery-core[0;1m ---[m
@@ -1463,6 +1477,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-core[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/core/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/core (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-core[0;1m ---[m
@@ -1582,6 +1597,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-discovery-custom[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/discovery/seata-discovery-custom/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/discovery/seata-discovery-custom (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-discovery-custom[0;1m ---[m
@@ -1686,6 +1702,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-discovery-consul[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/discovery/seata-discovery-consul/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/discovery/seata-discovery-consul (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-discovery-consul[0;1m ---[m
@@ -1795,6 +1812,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-discovery-eureka[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/discovery/seata-discovery-eureka/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/discovery/seata-discovery-eureka (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-discovery-eureka[0;1m ---[m
@@ -1904,6 +1922,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-discovery-nacos[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/discovery/seata-discovery-nacos/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/discovery/seata-discovery-nacos (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-discovery-nacos[0;1m ---[m
@@ -2011,6 +2030,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-discovery-redis[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/discovery/seata-discovery-redis/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/discovery/seata-discovery-redis (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-discovery-redis[0;1m ---[m
@@ -2118,6 +2138,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-discovery-sofa[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/discovery/seata-discovery-sofa/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/discovery/seata-discovery-sofa (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-discovery-sofa[0;1m ---[m
@@ -2225,6 +2246,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-discovery-raft[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/discovery/seata-discovery-raft/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/discovery/seata-discovery-raft (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-discovery-raft[0;1m ---[m
@@ -2331,6 +2353,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-discovery-zk[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/discovery/seata-discovery-zk/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/discovery/seata-discovery-zk (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-discovery-zk[0;1m ---[m
@@ -2439,6 +2462,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-discovery-etcd3[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/discovery/seata-discovery-etcd3/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/discovery/seata-discovery-etcd3 (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-discovery-etcd3[0;1m ---[m
@@ -2549,6 +2573,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-tm[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/tm/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/tm (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-tm[0;1m ---[m
@@ -2656,6 +2681,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-rpc-core[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/integration/rpc-core/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/integration/rpc-core (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-rpc-core[0;1m ---[m
@@ -2760,6 +2786,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-brpc[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/integration/brpc/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/integration/brpc (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-brpc[0;1m ---[m
@@ -2866,6 +2893,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-http[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/integration/http/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/integration/http (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-http[0;1m ---[m
@@ -2977,6 +3005,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-http-jakarta[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/integration/http-jakarta/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/integration/http-jakarta (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-http-jakarta[0;1m ---[m
@@ -3083,6 +3112,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-dubbo-alibaba[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/integration/dubbo-alibaba/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/integration/dubbo-alibaba (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-dubbo-alibaba[0;1m ---[m
@@ -3188,6 +3218,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-sofa-rpc[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/integration/sofa-rpc/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/integration/sofa-rpc (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-sofa-rpc[0;1m ---[m
@@ -3295,6 +3326,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-motan[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/integration/motan/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/integration/motan (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-motan[0;1m ---[m
@@ -3401,6 +3433,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-rm[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/rm/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/rm (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-rm[0;1m ---[m
@@ -3506,6 +3539,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-sqlparser[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/sqlparser/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/sqlparser (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-sqlparser[0;1m ---[m
@@ -3570,6 +3604,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-sqlparser-core[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/sqlparser/seata-sqlparser-core/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/sqlparser/seata-sqlparser-core (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-sqlparser-core[0;1m ---[m
@@ -3674,6 +3709,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-compressor[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/compressor/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/compressor (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-compressor[0;1m ---[m
@@ -3738,6 +3774,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-compressor-gzip[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/compressor/seata-compressor-gzip/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/compressor/seata-compressor-gzip (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-compressor-gzip[0;1m ---[m
@@ -3842,6 +3879,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-compressor-bzip2[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/compressor/seata-compressor-bzip2/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/compressor/seata-compressor-bzip2 (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-compressor-bzip2[0;1m ---[m
@@ -3947,6 +3985,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-compressor-zip[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/compressor/seata-compressor-zip/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/compressor/seata-compressor-zip (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-compressor-zip[0;1m ---[m
@@ -4051,6 +4090,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-compressor-lz4[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/compressor/seata-compressor-lz4/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/compressor/seata-compressor-lz4 (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-compressor-lz4[0;1m ---[m
@@ -4156,6 +4196,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-compressor-deflater[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/compressor/seata-compressor-deflater/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/compressor/seata-compressor-deflater (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-compressor-deflater[0;1m ---[m
@@ -4260,6 +4301,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-compressor-zstd[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/compressor/seata-compressor-zstd/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/compressor/seata-compressor-zstd (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-compressor-zstd[0;1m ---[m
@@ -4365,6 +4407,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-compressor-all[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/compressor/seata-compressor-all/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/compressor/seata-compressor-all (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-compressor-all[0;1m ---[m
@@ -4478,6 +4521,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-sqlparser-druid[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/sqlparser/seata-sqlparser-druid/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/sqlparser/seata-sqlparser-druid (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-sqlparser-druid[0;1m ---[m
@@ -4589,6 +4633,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-rm-datasource[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/rm-datasource/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/rm-datasource (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-rm-datasource[0;1m ---[m
@@ -4715,6 +4760,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-serializer[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/serializer/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/serializer (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-serializer[0;1m ---[m
@@ -4779,6 +4825,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-serializer-seata[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/serializer/seata-serializer-seata/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/serializer/seata-serializer-seata (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-serializer-seata[0;1m ---[m
@@ -4885,6 +4932,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-serializer-protobuf[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/serializer/seata-serializer-protobuf/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/serializer/seata-serializer-protobuf (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-serializer-protobuf[0;1m ---[m
@@ -4998,6 +5046,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-serializer-kryo[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/serializer/seata-serializer-kryo/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/serializer/seata-serializer-kryo (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-serializer-kryo[0;1m ---[m
@@ -5107,6 +5156,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-serializer-hessian[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/serializer/seata-serializer-hessian/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/serializer/seata-serializer-hessian (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-serializer-hessian[0;1m ---[m
@@ -5214,6 +5264,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-serializer-all[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/serializer/seata-serializer-all/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/serializer/seata-serializer-all (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-serializer-all[0;1m ---[m
@@ -5325,6 +5376,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-integration-tx-api[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/integration-tx-api/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/integration-tx-api (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-integration-tx-api[0;1m ---[m
@@ -5438,6 +5490,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-tcc[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/tcc/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/tcc (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-tcc[0;1m ---[m
@@ -5549,6 +5602,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-rocketmq[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/rocketmq/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/rocketmq (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-rocketmq[0;1m ---[m
@@ -5656,6 +5710,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-sqlparser-antlr[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/sqlparser/seata-sqlparser-antlr/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/sqlparser/seata-sqlparser-antlr (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-sqlparser-antlr[0;1m ---[m
@@ -5764,6 +5819,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-spring[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/spring/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/spring (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-spring[0;1m ---[m
@@ -5885,6 +5941,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-grpc[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/integration/grpc/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/integration/grpc (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-grpc[0;1m ---[m
@@ -6002,6 +6059,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-hsf[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/integration/hsf/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/integration/hsf (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-hsf[0;1m ---[m
@@ -6107,6 +6165,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-saga[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/saga/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/saga (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-saga[0;1m ---[m
@@ -6175,6 +6234,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-saga-processctrl[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/saga/seata-saga-processctrl/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/saga/seata-saga-processctrl (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-saga-processctrl[0;1m ---[m
@@ -6275,6 +6335,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-saga-statelang[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/saga/seata-saga-statelang/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/saga/seata-saga-statelang (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-saga-statelang[0;1m ---[m
@@ -6375,6 +6436,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-saga-engine-store[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/saga/seata-saga-engine-store/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/saga/seata-saga-engine-store (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-saga-engine-store[0;1m ---[m
@@ -6482,6 +6544,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-saga-engine[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/saga/seata-saga-engine/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/saga/seata-saga-engine (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-saga-engine[0;1m ---[m
@@ -6595,6 +6658,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-saga-rm[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/saga/seata-saga-rm/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/saga/seata-saga-rm (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-saga-rm[0;1m ---[m
@@ -6705,6 +6769,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-saga-spring[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/saga/seata-saga-spring/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/saga/seata-saga-spring (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-saga-spring[0;1m ---[m
@@ -6820,6 +6885,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-metrics[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/metrics/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/metrics (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-metrics[0;1m ---[m
@@ -6884,6 +6950,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-metrics-api[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/metrics/seata-metrics-api/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/metrics/seata-metrics-api (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-metrics-api[0;1m ---[m
@@ -6980,6 +7047,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-all[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/compatible/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/compatible (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-all[0;1m ---[m
@@ -7114,6 +7182,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-all[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/all/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/all (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-all[0;1m ---[m
@@ -7500,6 +7569,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-config-all[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/config/seata-config-all/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/config/seata-config-all (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-config-all[0;1m ---[m
@@ -7613,6 +7683,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-console[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/console/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/console (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-console[0;1m ---[m
@@ -7734,6 +7805,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-discovery-all[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/discovery/seata-discovery-all/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/discovery/seata-discovery-all (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-discovery-all[0;1m ---[m
@@ -7849,6 +7921,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-spring-autoconfigure[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/seata-spring-autoconfigure/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/seata-spring-autoconfigure (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-spring-autoconfigure[0;1m ---[m
@@ -7917,6 +7990,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-spring-autoconfigure-core[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/seata-spring-autoconfigure/seata-spring-autoconfigure-core/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/seata-spring-autoconfigure/seata-spring-autoconfigure-core (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-spring-autoconfigure-core[0;1m ---[m
@@ -8020,6 +8094,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-spring-autoconfigure-server[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/seata-spring-autoconfigure/seata-spring-autoconfigure-server/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/seata-spring-autoconfigure/seata-spring-autoconfigure-server (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-spring-autoconfigure-server[0;1m ---[m
@@ -8124,6 +8199,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-metrics-core[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/metrics/seata-metrics-core/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/metrics/seata-metrics-core (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-metrics-core[0;1m ---[m
@@ -8231,6 +8307,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-metrics-registry-compact[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/metrics/seata-metrics-registry-compact/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/metrics/seata-metrics-registry-compact (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-metrics-registry-compact[0;1m ---[m
@@ -8338,6 +8415,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-metrics-exporter-prometheus[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/metrics/seata-metrics-exporter-prometheus/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/metrics/seata-metrics-exporter-prometheus (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-metrics-exporter-prometheus[0;1m ---[m
@@ -8446,6 +8524,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-metrics-all[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/metrics/seata-metrics-all/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/metrics/seata-metrics-all (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-metrics-all[0;1m ---[m
@@ -8557,6 +8636,7 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mclean:3.1.0:clean[m [1m(default-clean)[m @ [36mseata-server[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/server/target
 [[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/incubator-seata/server (includes = [*-pom.xml, **/db_store/**, **/sessionStore/**, **/root.data], excludes = [])
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32menforcer:3.0.0-M3:enforce[m [1m(enforce-maven-version)[m @ [36mseata-server[0;1m ---[m
@@ -8700,232 +8780,462 @@ mvn clean and mvn package...
 [[1;34mINFO[m] [1m------------------------------------------------------------------------[m
 [[1;34mINFO[m] [1mReactor Summary for Seata Parent POM 2.1.0 2.1.0:[m
 [[1;34mINFO[m] 
-[[1;34mINFO[m] Seata Build 2.1.0 .................................. [1;32mSUCCESS[m [  0.673 s]
-[[1;34mINFO[m] Seata Parent POM 2.1.0 ............................. [1;32mSUCCESS[m [  0.876 s]
-[[1;34mINFO[m] seata-common 2.1.0 ................................. [1;32mSUCCESS[m [  1.780 s]
-[[1;34mINFO[m] seata-config 2.1.0 ................................. [1;32mSUCCESS[m [  0.038 s]
-[[1;34mINFO[m] seata-config-core 2.1.0 ............................ [1;32mSUCCESS[m [  0.435 s]
-[[1;34mINFO[m] seata-config-custom 2.1.0 .......................... [1;32mSUCCESS[m [  0.197 s]
-[[1;34mINFO[m] seata-config-apollo 2.1.0 .......................... [1;32mSUCCESS[m [  0.250 s]
-[[1;34mINFO[m] seata-config-nacos 2.1.0 ........................... [1;32mSUCCESS[m [  0.318 s]
-[[1;34mINFO[m] seata-config-zk 2.1.0 .............................. [1;32mSUCCESS[m [  0.241 s]
-[[1;34mINFO[m] seata-config-consul 2.1.0 .......................... [1;32mSUCCESS[m [  0.220 s]
-[[1;34mINFO[m] seata-config-etcd3 2.1.0 ........................... [1;32mSUCCESS[m [  0.279 s]
-[[1;34mINFO[m] seata-config-spring-cloud 2.1.0 .................... [1;32mSUCCESS[m [  0.187 s]
-[[1;34mINFO[m] seata-discovery 2.1.0 .............................. [1;32mSUCCESS[m [  0.025 s]
-[[1;34mINFO[m] seata-discovery-core 2.1.0 ......................... [1;32mSUCCESS[m [  0.257 s]
-[[1;34mINFO[m] seata-core 2.1.0 ................................... [1;32mSUCCESS[m [  0.789 s]
-[[1;34mINFO[m] seata-discovery-custom 2.1.0 ....................... [1;32mSUCCESS[m [  0.143 s]
-[[1;34mINFO[m] seata-discovery-consul 2.1.0 ....................... [1;32mSUCCESS[m [  0.192 s]
-[[1;34mINFO[m] seata-discovery-eureka 2.1.0 ....................... [1;32mSUCCESS[m [  0.310 s]
-[[1;34mINFO[m] seata-discovery-nacos 2.1.0 ........................ [1;32mSUCCESS[m [  0.209 s]
-[[1;34mINFO[m] seata-discovery-redis 2.1.0 ........................ [1;32mSUCCESS[m [  0.176 s]
-[[1;34mINFO[m] seata-discovery-sofa 2.1.0 ......................... [1;32mSUCCESS[m [  0.245 s]
-[[1;34mINFO[m] seata-discovery-raft 2.1.0 ......................... [1;32mSUCCESS[m [  0.149 s]
-[[1;34mINFO[m] seata-discovery-zk 2.1.0 ........................... [1;32mSUCCESS[m [  0.173 s]
-[[1;34mINFO[m] seata-discovery-etcd3 2.1.0 ........................ [1;32mSUCCESS[m [  0.239 s]
-[[1;34mINFO[m] seata-tm 2.1.0 ..................................... [1;32mSUCCESS[m [  0.168 s]
-[[1;34mINFO[m] seata-rpc-core 2.1.0 ............................... [1;32mSUCCESS[m [  0.129 s]
-[[1;34mINFO[m] seata-brpc 2.1.0 ................................... [1;32mSUCCESS[m [  0.168 s]
-[[1;34mINFO[m] seata-http 2.1.0 ................................... [1;32mSUCCESS[m [  0.178 s]
-[[1;34mINFO[m] seata-http 2.1.0 ................................... [1;32mSUCCESS[m [  0.138 s]
-[[1;34mINFO[m] seata-dubbo-alibaba 2.1.0 .......................... [1;32mSUCCESS[m [  0.140 s]
-[[1;34mINFO[m] seata-sofa-rpc 2.1.0 ............................... [1;32mSUCCESS[m [  0.254 s]
-[[1;34mINFO[m] seata-motan 2.1.0 .................................. [1;32mSUCCESS[m [  0.161 s]
-[[1;34mINFO[m] seata-rm 2.1.0 ..................................... [1;32mSUCCESS[m [  0.142 s]
-[[1;34mINFO[m] seata-sqlparser 2.1.0 .............................. [1;32mSUCCESS[m [  0.015 s]
-[[1;34mINFO[m] seata-sqlparser-core 2.1.0 ......................... [1;32mSUCCESS[m [  0.150 s]
-[[1;34mINFO[m] seata-compressor 2.1.0 ............................. [1;32mSUCCESS[m [  0.021 s]
-[[1;34mINFO[m] seata-compressor-gzip 2.1.0 ........................ [1;32mSUCCESS[m [  0.128 s]
-[[1;34mINFO[m] seata-compressor-bzip2 2.1.0 ....................... [1;32mSUCCESS[m [  0.152 s]
-[[1;34mINFO[m] seata-compressor-zip 2.1.0 ......................... [1;32mSUCCESS[m [  0.116 s]
-[[1;34mINFO[m] seata-compressor-lz4 2.1.0 ......................... [1;32mSUCCESS[m [  0.123 s]
-[[1;34mINFO[m] seata-compressor-deflater 2.1.0 .................... [1;32mSUCCESS[m [  0.152 s]
-[[1;34mINFO[m] seata-compressor-zstd 2.1.0 ........................ [1;32mSUCCESS[m [  0.116 s]
-[[1;34mINFO[m] seata-compressor-all 2.1.0 ......................... [1;32mSUCCESS[m [  0.107 s]
-[[1;34mINFO[m] seata-sqlparser-druid 2.1.0 ........................ [1;32mSUCCESS[m [ 28.509 s]
-[[1;34mINFO[m] seata-rm-datasource 2.1.0 .......................... [1;32mSUCCESS[m [  0.655 s]
-[[1;34mINFO[m] seata-serializer 2.1.0 ............................. [1;32mSUCCESS[m [  0.015 s]
-[[1;34mINFO[m] seata-serializer-seata 2.1.0 ....................... [1;32mSUCCESS[m [  0.181 s]
-[[1;34mINFO[m] seata-serializer-protobuf 2.1.0 .................... [1;32mSUCCESS[m [  1.059 s]
-[[1;34mINFO[m] seata-serializer-kryo 2.1.0 ........................ [1;32mSUCCESS[m [  0.136 s]
-[[1;34mINFO[m] seata-serializer-hessian 2.1.0 ..................... [1;32mSUCCESS[m [  0.123 s]
-[[1;34mINFO[m] seata-serializer-all 2.1.0 ......................... [1;32mSUCCESS[m [  0.134 s]
-[[1;34mINFO[m] seata-integration-tx-api 2.1.0 ..................... [1;32mSUCCESS[m [  0.299 s]
-[[1;34mINFO[m] seata-tcc 2.1.0 .................................... [1;32mSUCCESS[m [  0.209 s]
+[[1;34mINFO[m] Seata Build 2.1.0 .................................. [1;32mSUCCESS[m [  0.806 s]
+[[1;34mINFO[m] Seata Parent POM 2.1.0 ............................. [1;32mSUCCESS[m [  0.983 s]
+[[1;34mINFO[m] seata-common 2.1.0 ................................. [1;32mSUCCESS[m [  2.169 s]
+[[1;34mINFO[m] seata-config 2.1.0 ................................. [1;32mSUCCESS[m [  0.042 s]
+[[1;34mINFO[m] seata-config-core 2.1.0 ............................ [1;32mSUCCESS[m [  0.453 s]
+[[1;34mINFO[m] seata-config-custom 2.1.0 .......................... [1;32mSUCCESS[m [  0.227 s]
+[[1;34mINFO[m] seata-config-apollo 2.1.0 .......................... [1;32mSUCCESS[m [  0.386 s]
+[[1;34mINFO[m] seata-config-nacos 2.1.0 ........................... [1;32mSUCCESS[m [  0.402 s]
+[[1;34mINFO[m] seata-config-zk 2.1.0 .............................. [1;32mSUCCESS[m [  0.235 s]
+[[1;34mINFO[m] seata-config-consul 2.1.0 .......................... [1;32mSUCCESS[m [  0.239 s]
+[[1;34mINFO[m] seata-config-etcd3 2.1.0 ........................... [1;32mSUCCESS[m [  0.319 s]
+[[1;34mINFO[m] seata-config-spring-cloud 2.1.0 .................... [1;32mSUCCESS[m [  0.220 s]
+[[1;34mINFO[m] seata-discovery 2.1.0 .............................. [1;32mSUCCESS[m [  0.043 s]
+[[1;34mINFO[m] seata-discovery-core 2.1.0 ......................... [1;32mSUCCESS[m [  0.277 s]
+[[1;34mINFO[m] seata-core 2.1.0 ................................... [1;32mSUCCESS[m [  0.942 s]
+[[1;34mINFO[m] seata-discovery-custom 2.1.0 ....................... [1;32mSUCCESS[m [  0.173 s]
+[[1;34mINFO[m] seata-discovery-consul 2.1.0 ....................... [1;32mSUCCESS[m [  0.297 s]
+[[1;34mINFO[m] seata-discovery-eureka 2.1.0 ....................... [1;32mSUCCESS[m [  0.419 s]
+[[1;34mINFO[m] seata-discovery-nacos 2.1.0 ........................ [1;32mSUCCESS[m [  0.243 s]
+[[1;34mINFO[m] seata-discovery-redis 2.1.0 ........................ [1;32mSUCCESS[m [  0.219 s]
+[[1;34mINFO[m] seata-discovery-sofa 2.1.0 ......................... [1;32mSUCCESS[m [  0.272 s]
+[[1;34mINFO[m] seata-discovery-raft 2.1.0 ......................... [1;32mSUCCESS[m [  0.170 s]
+[[1;34mINFO[m] seata-discovery-zk 2.1.0 ........................... [1;32mSUCCESS[m [  0.211 s]
+[[1;34mINFO[m] seata-discovery-etcd3 2.1.0 ........................ [1;32mSUCCESS[m [  0.251 s]
+[[1;34mINFO[m] seata-tm 2.1.0 ..................................... [1;32mSUCCESS[m [  0.181 s]
+[[1;34mINFO[m] seata-rpc-core 2.1.0 ............................... [1;32mSUCCESS[m [  0.152 s]
+[[1;34mINFO[m] seata-brpc 2.1.0 ................................... [1;32mSUCCESS[m [  0.188 s]
+[[1;34mINFO[m] seata-http 2.1.0 ................................... [1;32mSUCCESS[m [  0.195 s]
+[[1;34mINFO[m] seata-http 2.1.0 ................................... [1;32mSUCCESS[m [  0.149 s]
+[[1;34mINFO[m] seata-dubbo-alibaba 2.1.0 .......................... [1;32mSUCCESS[m [  0.154 s]
+[[1;34mINFO[m] seata-sofa-rpc 2.1.0 ............................... [1;32mSUCCESS[m [  0.358 s]
+[[1;34mINFO[m] seata-motan 2.1.0 .................................. [1;32mSUCCESS[m [  0.174 s]
+[[1;34mINFO[m] seata-rm 2.1.0 ..................................... [1;32mSUCCESS[m [  0.170 s]
+[[1;34mINFO[m] seata-sqlparser 2.1.0 .............................. [1;32mSUCCESS[m [  0.033 s]
+[[1;34mINFO[m] seata-sqlparser-core 2.1.0 ......................... [1;32mSUCCESS[m [  0.168 s]
+[[1;34mINFO[m] seata-compressor 2.1.0 ............................. [1;32mSUCCESS[m [  0.018 s]
+[[1;34mINFO[m] seata-compressor-gzip 2.1.0 ........................ [1;32mSUCCESS[m [  0.121 s]
+[[1;34mINFO[m] seata-compressor-bzip2 2.1.0 ....................... [1;32mSUCCESS[m [  0.132 s]
+[[1;34mINFO[m] seata-compressor-zip 2.1.0 ......................... [1;32mSUCCESS[m [  0.127 s]
+[[1;34mINFO[m] seata-compressor-lz4 2.1.0 ......................... [1;32mSUCCESS[m [  0.166 s]
+[[1;34mINFO[m] seata-compressor-deflater 2.1.0 .................... [1;32mSUCCESS[m [  0.126 s]
+[[1;34mINFO[m] seata-compressor-zstd 2.1.0 ........................ [1;32mSUCCESS[m [  0.126 s]
+[[1;34mINFO[m] seata-compressor-all 2.1.0 ......................... [1;32mSUCCESS[m [  0.121 s]
+[[1;34mINFO[m] seata-sqlparser-druid 2.1.0 ........................ [1;32mSUCCESS[m [ 31.252 s]
+[[1;34mINFO[m] seata-rm-datasource 2.1.0 .......................... [1;32mSUCCESS[m [  0.705 s]
+[[1;34mINFO[m] seata-serializer 2.1.0 ............................. [1;32mSUCCESS[m [  0.020 s]
+[[1;34mINFO[m] seata-serializer-seata 2.1.0 ....................... [1;32mSUCCESS[m [  0.221 s]
+[[1;34mINFO[m] seata-serializer-protobuf 2.1.0 .................... [1;32mSUCCESS[m [  1.171 s]
+[[1;34mINFO[m] seata-serializer-kryo 2.1.0 ........................ [1;32mSUCCESS[m [  0.140 s]
+[[1;34mINFO[m] seata-serializer-hessian 2.1.0 ..................... [1;32mSUCCESS[m [  0.136 s]
+[[1;34mINFO[m] seata-serializer-all 2.1.0 ......................... [1;32mSUCCESS[m [  0.128 s]
+[[1;34mINFO[m] seata-integration-tx-api 2.1.0 ..................... [1;32mSUCCESS[m [  0.348 s]
+[[1;34mINFO[m] seata-tcc 2.1.0 .................................... [1;32mSUCCESS[m [  0.221 s]
 [[1;34mINFO[m] seata-rocketmq 2.1.0 ............................... [1;32mSUCCESS[m [  0.199 s]
-[[1;34mINFO[m] seata-sqlparser-antlr 2.1.0 ........................ [1;32mSUCCESS[m [  1.638 s]
-[[1;34mINFO[m] seata-spring 2.1.0 ................................. [1;32mSUCCESS[m [  2.961 s]
-[[1;34mINFO[m] seata-grpc 2.1.0 ................................... [1;32mSUCCESS[m [  0.289 s]
-[[1;34mINFO[m] seata-hsf 2.1.0 .................................... [1;32mSUCCESS[m [  0.167 s]
-[[1;34mINFO[m] seata-saga 2.1.0 ................................... [1;32mSUCCESS[m [  0.096 s]
-[[1;34mINFO[m] seata-saga-processctrl 2.1.0 ....................... [1;32mSUCCESS[m [  0.181 s]
-[[1;34mINFO[m] seata-saga-statelang 2.1.0 ......................... [1;32mSUCCESS[m [  0.248 s]
-[[1;34mINFO[m] seata-saga-engine-store 2.1.0 ...................... [1;32mSUCCESS[m [  0.144 s]
-[[1;34mINFO[m] seata-saga-engine 2.1.0 ............................ [1;32mSUCCESS[m [  0.332 s]
-[[1;34mINFO[m] seata-saga-rm 2.1.0 ................................ [1;32mSUCCESS[m [  0.132 s]
-[[1;34mINFO[m] seata-saga-spring 2.1.0 ............................ [1;32mSUCCESS[m [  0.241 s]
-[[1;34mINFO[m] seata-metrics 2.1.0 ................................ [1;32mSUCCESS[m [  0.014 s]
-[[1;34mINFO[m] seata-metrics-api 2.1.0 ............................ [1;32mSUCCESS[m [  0.041 s]
-[[1;34mINFO[m] seata-all 2.1.0 .................................... [1;32mSUCCESS[m [  0.375 s]
-[[1;34mINFO[m] Seata All-in-one 2.1.0 ............................. [1;32mSUCCESS[m [  1.159 s]
-[[1;34mINFO[m] seata-config-all 2.1.0 ............................. [1;32mSUCCESS[m [  0.196 s]
-[[1;34mINFO[m] seata-console 2.1.0 ................................ [1;32mSUCCESS[m [  0.509 s]
-[[1;34mINFO[m] seata-discovery-all 2.1.0 .......................... [1;32mSUCCESS[m [  0.305 s]
-[[1;34mINFO[m] seata-spring-autoconfigure 2.1.0 ................... [1;32mSUCCESS[m [  0.286 s]
-[[1;34mINFO[m] seata-spring-autoconfigure-core 2.1.0 .............. [1;32mSUCCESS[m [  0.690 s]
-[[1;34mINFO[m] seata-spring-autoconfigure-server 2.1.0 ............ [1;32mSUCCESS[m [  0.394 s]
-[[1;34mINFO[m] seata-metrics-core 2.1.0 ........................... [1;32mSUCCESS[m [  0.118 s]
-[[1;34mINFO[m] seata-metrics-registry-compact 2.1.0 ............... [1;32mSUCCESS[m [  0.111 s]
-[[1;34mINFO[m] seata-metrics-exporter-prometheus 2.1.0 ............ [1;32mSUCCESS[m [  0.124 s]
-[[1;34mINFO[m] seata-metrics-all 2.1.0 ............................ [1;32mSUCCESS[m [  0.097 s]
-[[1;34mINFO[m] seata-server 2.1.0 ................................. [1;32mSUCCESS[m [  1.066 s]
+[[1;34mINFO[m] seata-sqlparser-antlr 2.1.0 ........................ [1;32mSUCCESS[m [  1.766 s]
+[[1;34mINFO[m] seata-spring 2.1.0 ................................. [1;32mSUCCESS[m [  3.026 s]
+[[1;34mINFO[m] seata-grpc 2.1.0 ................................... [1;32mSUCCESS[m [  0.272 s]
+[[1;34mINFO[m] seata-hsf 2.1.0 .................................... [1;32mSUCCESS[m [  0.232 s]
+[[1;34mINFO[m] seata-saga 2.1.0 ................................... [1;32mSUCCESS[m [  0.156 s]
+[[1;34mINFO[m] seata-saga-processctrl 2.1.0 ....................... [1;32mSUCCESS[m [  0.157 s]
+[[1;34mINFO[m] seata-saga-statelang 2.1.0 ......................... [1;32mSUCCESS[m [  0.253 s]
+[[1;34mINFO[m] seata-saga-engine-store 2.1.0 ...................... [1;32mSUCCESS[m [  0.137 s]
+[[1;34mINFO[m] seata-saga-engine 2.1.0 ............................ [1;32mSUCCESS[m [  0.345 s]
+[[1;34mINFO[m] seata-saga-rm 2.1.0 ................................ [1;32mSUCCESS[m [  0.148 s]
+[[1;34mINFO[m] seata-saga-spring 2.1.0 ............................ [1;32mSUCCESS[m [  0.219 s]
+[[1;34mINFO[m] seata-metrics 2.1.0 ................................ [1;32mSUCCESS[m [  0.016 s]
+[[1;34mINFO[m] seata-metrics-api 2.1.0 ............................ [1;32mSUCCESS[m [  0.043 s]
+[[1;34mINFO[m] seata-all 2.1.0 .................................... [1;32mSUCCESS[m [  0.383 s]
+[[1;34mINFO[m] Seata All-in-one 2.1.0 ............................. [1;32mSUCCESS[m [  1.279 s]
+[[1;34mINFO[m] seata-config-all 2.1.0 ............................. [1;32mSUCCESS[m [  0.249 s]
+[[1;34mINFO[m] seata-console 2.1.0 ................................ [1;32mSUCCESS[m [  0.626 s]
+[[1;34mINFO[m] seata-discovery-all 2.1.0 .......................... [1;32mSUCCESS[m [  0.322 s]
+[[1;34mINFO[m] seata-spring-autoconfigure 2.1.0 ................... [1;32mSUCCESS[m [  0.289 s]
+[[1;34mINFO[m] seata-spring-autoconfigure-core 2.1.0 .............. [1;32mSUCCESS[m [  0.853 s]
+[[1;34mINFO[m] seata-spring-autoconfigure-server 2.1.0 ............ [1;32mSUCCESS[m [  0.457 s]
+[[1;34mINFO[m] seata-metrics-core 2.1.0 ........................... [1;32mSUCCESS[m [  0.123 s]
+[[1;34mINFO[m] seata-metrics-registry-compact 2.1.0 ............... [1;32mSUCCESS[m [  0.117 s]
+[[1;34mINFO[m] seata-metrics-exporter-prometheus 2.1.0 ............ [1;32mSUCCESS[m [  0.145 s]
+[[1;34mINFO[m] seata-metrics-all 2.1.0 ............................ [1;32mSUCCESS[m [  0.135 s]
+[[1;34mINFO[m] seata-server 2.1.0 ................................. [1;32mSUCCESS[m [  1.200 s]
 [[1;34mINFO[m] [1m------------------------------------------------------------------------[m
 [[1;34mINFO[m] [1;32mBUILD SUCCESS[m
 [[1;34mINFO[m] [1m------------------------------------------------------------------------[m
-[[1;34mINFO[m] Total time:  54.896 s
-[[1;34mINFO[m] Finished at: 2024-08-04T16:37:35+08:00
+[[1;34mINFO[m] Total time:  01:00 min
+[[1;34mINFO[m] Finished at: 2024-08-13T22:52:18+08:00
 [[1;34mINFO[m] [1m------------------------------------------------------------------------[m
 [0m[0m
 ****** preprocess.package done! ******
 
 
-****** preprocess.analysis_tree ... ******
+****** get tree ... ******
 
 generating dependency tree...
-dependency tree is generated in ./data/dependency_verbose_tree.txt successfully
+dependency tree is generated successfully
 
-****** preprocess.analysis_tree done! ******
+****** tree got! ******
 
 
-****** preprocess.getjar ... ******
+****** restore dependency to graph ... ******
 
 
 ****** extract deps... ******
 
-org.springframework.boot-spring-boot-starter-web-2.7.17.jar downloaded successfully.
-org.springframework.boot-spring-boot-starter-2.7.17.jar downloaded successfully.
-org.springframework.boot-spring-boot-2.7.17.jar downloaded successfully.
-org.springframework.boot-spring-boot-autoconfigure-2.7.17.jar downloaded successfully.
-org.springframework.boot-spring-boot-starter-logging-2.7.17.jar downloaded successfully.
-org.slf4j-jul-to-slf4j-1.7.36.jar downloaded successfully.
-jakarta.annotation-jakarta.annotation-api-1.3.5.jar downloaded successfully.
-org.springframework.boot-spring-boot-starter-json-2.7.17.jar downloaded successfully.
-com.fasterxml.jackson.datatype-jackson-datatype-jdk8-2.13.5.jar downloaded successfully.
-com.fasterxml.jackson.datatype-jackson-datatype-jsr310-2.13.5.jar downloaded successfully.
-com.fasterxml.jackson.module-jackson-module-parameter-names-2.13.5.jar downloaded successfully.
-org.springframework.boot-spring-boot-starter-tomcat-2.7.17.jar downloaded successfully.
-org.apache.tomcat.embed-tomcat-embed-el-9.0.82.jar downloaded successfully.
-org.apache.tomcat.embed-tomcat-embed-websocket-9.0.82.jar downloaded successfully.
-org.springframework-spring-web-5.3.30.jar downloaded successfully.
-org.springframework-spring-beans-5.3.30.jar downloaded successfully.
-org.springframework-spring-webmvc-5.3.30.jar downloaded successfully.
-org.springframework-spring-aop-5.3.30.jar downloaded successfully.
-org.springframework-spring-context-5.3.30.jar downloaded successfully.
-org.springframework-spring-expression-5.3.30.jar downloaded successfully.
-org.yaml-snakeyaml-2.0.jar downloaded successfully.
-org.springframework-spring-core-5.3.30.jar downloaded successfully.
-org.springframework-spring-jcl-5.3.30.jar downloaded successfully.
+spring-boot-starter-web-2.7.17.jar has been downloaded before.
+spring-boot-starter-2.7.17.jar has been downloaded before.
+spring-boot-2.7.17.jar has been downloaded before.
+spring-boot-autoconfigure-2.7.17.jar has been downloaded before.
+spring-boot-starter-logging-2.7.17.jar has been downloaded before.
+jul-to-slf4j-1.7.36.jar has been downloaded before.
+jakarta.annotation-api-1.3.5.jar has been downloaded before.
+spring-boot-starter-json-2.7.17.jar has been downloaded before.
+jackson-datatype-jdk8-2.13.5.jar has been downloaded before.
+jackson-datatype-jsr310-2.13.5.jar has been downloaded before.
+jackson-module-parameter-names-2.13.5.jar has been downloaded before.
+spring-boot-starter-tomcat-2.7.17.jar has been downloaded before.
+tomcat-embed-el-9.0.82.jar has been downloaded before.
+tomcat-embed-websocket-9.0.82.jar has been downloaded before.
+spring-web-5.3.30.jar has been downloaded before.
+spring-beans-5.3.30.jar has been downloaded before.
+spring-webmvc-5.3.30.jar has been downloaded before.
+spring-aop-5.3.30.jar has been downloaded before.
+spring-context-5.3.30.jar has been downloaded before.
+spring-expression-5.3.30.jar has been downloaded before.
+snakeyaml-2.0.jar has been downloaded before.
+spring-core-5.3.30.jar has been downloaded before.
+spring-jcl-5.3.30.jar has been downloaded before.
 Attempt 1 failed for seata-spring-autoconfigure-server-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-spring-autoconfigure-server/2.1.0/seata-spring-autoconfigure-server-2.1.0.jar
 Attempt 2 failed for seata-spring-autoconfigure-server-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-spring-autoconfigure-server/2.1.0/seata-spring-autoconfigure-server-2.1.0.jar
 Attempt 3 failed for seata-spring-autoconfigure-server-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-spring-autoconfigure-server/2.1.0/seata-spring-autoconfigure-server-2.1.0.jar
 Attempt 4 failed for seata-spring-autoconfigure-server-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-spring-autoconfigure-server/2.1.0/seata-spring-autoconfigure-server-2.1.0.jar
 Attempt 5 failed for seata-spring-autoconfigure-server-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-spring-autoconfigure-server/2.1.0/seata-spring-autoconfigure-server-2.1.0.jar
 Failed to download seata-spring-autoconfigure-server-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-spring-autoconfigure-server/2.1.0/seata-spring-autoconfigure-server-2.1.0.jar
+Attempt 1 failed for seata-spring-autoconfigure-core-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-spring-autoconfigure-core/2.1.0/seata-spring-autoconfigure-core-2.1.0.jar
+Attempt 2 failed for seata-spring-autoconfigure-core-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-spring-autoconfigure-core/2.1.0/seata-spring-autoconfigure-core-2.1.0.jar
+Attempt 3 failed for seata-spring-autoconfigure-core-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-spring-autoconfigure-core/2.1.0/seata-spring-autoconfigure-core-2.1.0.jar
+Attempt 4 failed for seata-spring-autoconfigure-core-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-spring-autoconfigure-core/2.1.0/seata-spring-autoconfigure-core-2.1.0.jar
+Attempt 5 failed for seata-spring-autoconfigure-core-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-spring-autoconfigure-core/2.1.0/seata-spring-autoconfigure-core-2.1.0.jar
+Failed to download seata-spring-autoconfigure-core-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-spring-autoconfigure-core/2.1.0/seata-spring-autoconfigure-core-2.1.0.jar
 Attempt 1 failed for seata-core-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-core/2.1.0/seata-core-2.1.0.jar
 Attempt 2 failed for seata-core-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-core/2.1.0/seata-core-2.1.0.jar
 Attempt 3 failed for seata-core-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-core/2.1.0/seata-core-2.1.0.jar
 Attempt 4 failed for seata-core-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-core/2.1.0/seata-core-2.1.0.jar
 Attempt 5 failed for seata-core-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-core/2.1.0/seata-core-2.1.0.jar
 Failed to download seata-core-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-core/2.1.0/seata-core-2.1.0.jar
+Attempt 1 failed for seata-common-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-common/2.1.0/seata-common-2.1.0.jar
+Attempt 2 failed for seata-common-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-common/2.1.0/seata-common-2.1.0.jar
+Attempt 3 failed for seata-common-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-common/2.1.0/seata-common-2.1.0.jar
+Attempt 4 failed for seata-common-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-common/2.1.0/seata-common-2.1.0.jar
+Attempt 5 failed for seata-common-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-common/2.1.0/seata-common-2.1.0.jar
+Failed to download seata-common-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-common/2.1.0/seata-common-2.1.0.jar
+Attempt 1 failed for seata-discovery-core-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-core/2.1.0/seata-discovery-core-2.1.0.jar
+Attempt 2 failed for seata-discovery-core-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-core/2.1.0/seata-discovery-core-2.1.0.jar
+Attempt 3 failed for seata-discovery-core-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-core/2.1.0/seata-discovery-core-2.1.0.jar
+Attempt 4 failed for seata-discovery-core-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-core/2.1.0/seata-discovery-core-2.1.0.jar
+Attempt 5 failed for seata-discovery-core-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-core/2.1.0/seata-discovery-core-2.1.0.jar
+Failed to download seata-discovery-core-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-core/2.1.0/seata-discovery-core-2.1.0.jar
+netty-all-4.1.100.Final.jar has been downloaded before.
+netty-buffer-4.1.100.Final.jar has been downloaded before.
+netty-codec-4.1.100.Final.jar has been downloaded before.
+netty-codec-dns-4.1.100.Final.jar has been downloaded before.
+netty-codec-haproxy-4.1.100.Final.jar has been downloaded before.
+netty-codec-http-4.1.100.Final.jar has been downloaded before.
+netty-codec-http2-4.1.100.Final.jar has been downloaded before.
+netty-codec-memcache-4.1.100.Final.jar has been downloaded before.
+netty-codec-mqtt-4.1.100.Final.jar has been downloaded before.
+netty-codec-redis-4.1.100.Final.jar has been downloaded before.
+netty-codec-smtp-4.1.100.Final.jar has been downloaded before.
+netty-codec-socks-4.1.100.Final.jar has been downloaded before.
+netty-codec-stomp-4.1.100.Final.jar has been downloaded before.
+netty-codec-xml-4.1.100.Final.jar has been downloaded before.
+netty-common-4.1.100.Final.jar has been downloaded before.
+netty-handler-4.1.100.Final.jar has been downloaded before.
+netty-transport-native-unix-common-4.1.100.Final.jar has been downloaded before.
+netty-handler-proxy-4.1.100.Final.jar has been downloaded before.
+netty-handler-ssl-ocsp-4.1.100.Final.jar has been downloaded before.
+netty-resolver-4.1.100.Final.jar has been downloaded before.
+netty-resolver-dns-4.1.100.Final.jar has been downloaded before.
+netty-transport-4.1.100.Final.jar has been downloaded before.
+netty-transport-rxtx-4.1.100.Final.jar has been downloaded before.
+netty-transport-sctp-4.1.100.Final.jar has been downloaded before.
+netty-transport-udt-4.1.100.Final.jar has been downloaded before.
+netty-transport-classes-epoll-4.1.100.Final.jar has been downloaded before.
+netty-transport-classes-kqueue-4.1.100.Final.jar has been downloaded before.
+netty-resolver-dns-classes-macos-4.1.100.Final.jar has been downloaded before.
+netty-transport-native-epoll-4.1.100.Final.jar has been downloaded before.
+netty-transport-native-epoll-4.1.100.Final.jar has been downloaded before.
+netty-transport-native-kqueue-4.1.100.Final.jar has been downloaded before.
+netty-transport-native-kqueue-4.1.100.Final.jar has been downloaded before.
+netty-resolver-dns-native-macos-4.1.100.Final.jar has been downloaded before.
+netty-resolver-dns-native-macos-4.1.100.Final.jar has been downloaded before.
+commons-pool-1.6.jar has been downloaded before.
 Attempt 1 failed for seata-config-all-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-all/2.1.0/seata-config-all-2.1.0.jar
 Attempt 2 failed for seata-config-all-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-all/2.1.0/seata-config-all-2.1.0.jar
 Attempt 3 failed for seata-config-all-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-all/2.1.0/seata-config-all-2.1.0.jar
 Attempt 4 failed for seata-config-all-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-all/2.1.0/seata-config-all-2.1.0.jar
 Attempt 5 failed for seata-config-all-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-all/2.1.0/seata-config-all-2.1.0.jar
 Failed to download seata-config-all-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-all/2.1.0/seata-config-all-2.1.0.jar
+Attempt 1 failed for seata-config-apollo-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-apollo/2.1.0/seata-config-apollo-2.1.0.jar
+Attempt 2 failed for seata-config-apollo-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-apollo/2.1.0/seata-config-apollo-2.1.0.jar
+Attempt 3 failed for seata-config-apollo-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-apollo/2.1.0/seata-config-apollo-2.1.0.jar
+Attempt 4 failed for seata-config-apollo-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-apollo/2.1.0/seata-config-apollo-2.1.0.jar
+Attempt 5 failed for seata-config-apollo-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-apollo/2.1.0/seata-config-apollo-2.1.0.jar
+Failed to download seata-config-apollo-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-apollo/2.1.0/seata-config-apollo-2.1.0.jar
+Attempt 1 failed for seata-config-zk-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-zk/2.1.0/seata-config-zk-2.1.0.jar
+Attempt 2 failed for seata-config-zk-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-zk/2.1.0/seata-config-zk-2.1.0.jar
+Attempt 3 failed for seata-config-zk-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-zk/2.1.0/seata-config-zk-2.1.0.jar
+Attempt 4 failed for seata-config-zk-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-zk/2.1.0/seata-config-zk-2.1.0.jar
+Attempt 5 failed for seata-config-zk-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-zk/2.1.0/seata-config-zk-2.1.0.jar
+Failed to download seata-config-zk-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-zk/2.1.0/seata-config-zk-2.1.0.jar
+Attempt 1 failed for seata-config-nacos-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-nacos/2.1.0/seata-config-nacos-2.1.0.jar
+Attempt 2 failed for seata-config-nacos-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-nacos/2.1.0/seata-config-nacos-2.1.0.jar
+Attempt 3 failed for seata-config-nacos-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-nacos/2.1.0/seata-config-nacos-2.1.0.jar
+Attempt 4 failed for seata-config-nacos-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-nacos/2.1.0/seata-config-nacos-2.1.0.jar
+Attempt 5 failed for seata-config-nacos-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-nacos/2.1.0/seata-config-nacos-2.1.0.jar
+Failed to download seata-config-nacos-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-nacos/2.1.0/seata-config-nacos-2.1.0.jar
+Attempt 1 failed for seata-config-etcd3-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-etcd3/2.1.0/seata-config-etcd3-2.1.0.jar
+Attempt 2 failed for seata-config-etcd3-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-etcd3/2.1.0/seata-config-etcd3-2.1.0.jar
+Attempt 3 failed for seata-config-etcd3-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-etcd3/2.1.0/seata-config-etcd3-2.1.0.jar
+Attempt 4 failed for seata-config-etcd3-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-etcd3/2.1.0/seata-config-etcd3-2.1.0.jar
+Attempt 5 failed for seata-config-etcd3-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-etcd3/2.1.0/seata-config-etcd3-2.1.0.jar
+Failed to download seata-config-etcd3-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-etcd3/2.1.0/seata-config-etcd3-2.1.0.jar
+Attempt 1 failed for seata-config-consul-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-consul/2.1.0/seata-config-consul-2.1.0.jar
+Attempt 2 failed for seata-config-consul-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-consul/2.1.0/seata-config-consul-2.1.0.jar
+Attempt 3 failed for seata-config-consul-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-consul/2.1.0/seata-config-consul-2.1.0.jar
+Attempt 4 failed for seata-config-consul-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-consul/2.1.0/seata-config-consul-2.1.0.jar
+Attempt 5 failed for seata-config-consul-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-consul/2.1.0/seata-config-consul-2.1.0.jar
+Failed to download seata-config-consul-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-consul/2.1.0/seata-config-consul-2.1.0.jar
+Attempt 1 failed for seata-config-spring-cloud-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-spring-cloud/2.1.0/seata-config-spring-cloud-2.1.0.jar
+Attempt 2 failed for seata-config-spring-cloud-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-spring-cloud/2.1.0/seata-config-spring-cloud-2.1.0.jar
+Attempt 3 failed for seata-config-spring-cloud-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-spring-cloud/2.1.0/seata-config-spring-cloud-2.1.0.jar
+Attempt 4 failed for seata-config-spring-cloud-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-spring-cloud/2.1.0/seata-config-spring-cloud-2.1.0.jar
+Attempt 5 failed for seata-config-spring-cloud-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-spring-cloud/2.1.0/seata-config-spring-cloud-2.1.0.jar
+Failed to download seata-config-spring-cloud-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-config-spring-cloud/2.1.0/seata-config-spring-cloud-2.1.0.jar
 Attempt 1 failed for seata-discovery-all-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-all/2.1.0/seata-discovery-all-2.1.0.jar
 Attempt 2 failed for seata-discovery-all-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-all/2.1.0/seata-discovery-all-2.1.0.jar
 Attempt 3 failed for seata-discovery-all-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-all/2.1.0/seata-discovery-all-2.1.0.jar
 Attempt 4 failed for seata-discovery-all-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-all/2.1.0/seata-discovery-all-2.1.0.jar
 Attempt 5 failed for seata-discovery-all-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-all/2.1.0/seata-discovery-all-2.1.0.jar
 Failed to download seata-discovery-all-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-all/2.1.0/seata-discovery-all-2.1.0.jar
+Attempt 1 failed for seata-discovery-consul-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-consul/2.1.0/seata-discovery-consul-2.1.0.jar
+Attempt 2 failed for seata-discovery-consul-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-consul/2.1.0/seata-discovery-consul-2.1.0.jar
+Attempt 3 failed for seata-discovery-consul-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-consul/2.1.0/seata-discovery-consul-2.1.0.jar
+Attempt 4 failed for seata-discovery-consul-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-consul/2.1.0/seata-discovery-consul-2.1.0.jar
+Attempt 5 failed for seata-discovery-consul-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-consul/2.1.0/seata-discovery-consul-2.1.0.jar
+Failed to download seata-discovery-consul-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-consul/2.1.0/seata-discovery-consul-2.1.0.jar
+Attempt 1 failed for seata-discovery-custom-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-custom/2.1.0/seata-discovery-custom-2.1.0.jar
+Attempt 2 failed for seata-discovery-custom-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-custom/2.1.0/seata-discovery-custom-2.1.0.jar
+Attempt 3 failed for seata-discovery-custom-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-custom/2.1.0/seata-discovery-custom-2.1.0.jar
+Attempt 4 failed for seata-discovery-custom-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-custom/2.1.0/seata-discovery-custom-2.1.0.jar
+Attempt 5 failed for seata-discovery-custom-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-custom/2.1.0/seata-discovery-custom-2.1.0.jar
+Failed to download seata-discovery-custom-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-custom/2.1.0/seata-discovery-custom-2.1.0.jar
+Attempt 1 failed for seata-discovery-eureka-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-eureka/2.1.0/seata-discovery-eureka-2.1.0.jar
+Attempt 2 failed for seata-discovery-eureka-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-eureka/2.1.0/seata-discovery-eureka-2.1.0.jar
+Attempt 3 failed for seata-discovery-eureka-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-eureka/2.1.0/seata-discovery-eureka-2.1.0.jar
+Attempt 4 failed for seata-discovery-eureka-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-eureka/2.1.0/seata-discovery-eureka-2.1.0.jar
+Attempt 5 failed for seata-discovery-eureka-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-eureka/2.1.0/seata-discovery-eureka-2.1.0.jar
+Failed to download seata-discovery-eureka-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-eureka/2.1.0/seata-discovery-eureka-2.1.0.jar
+Attempt 1 failed for seata-discovery-zk-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-zk/2.1.0/seata-discovery-zk-2.1.0.jar
+Attempt 2 failed for seata-discovery-zk-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-zk/2.1.0/seata-discovery-zk-2.1.0.jar
+Attempt 3 failed for seata-discovery-zk-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-zk/2.1.0/seata-discovery-zk-2.1.0.jar
+Attempt 4 failed for seata-discovery-zk-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-zk/2.1.0/seata-discovery-zk-2.1.0.jar
+Attempt 5 failed for seata-discovery-zk-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-zk/2.1.0/seata-discovery-zk-2.1.0.jar
+Failed to download seata-discovery-zk-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-zk/2.1.0/seata-discovery-zk-2.1.0.jar
+Attempt 1 failed for seata-discovery-redis-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-redis/2.1.0/seata-discovery-redis-2.1.0.jar
+Attempt 2 failed for seata-discovery-redis-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-redis/2.1.0/seata-discovery-redis-2.1.0.jar
+Attempt 3 failed for seata-discovery-redis-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-redis/2.1.0/seata-discovery-redis-2.1.0.jar
+Attempt 4 failed for seata-discovery-redis-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-redis/2.1.0/seata-discovery-redis-2.1.0.jar
+Attempt 5 failed for seata-discovery-redis-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-redis/2.1.0/seata-discovery-redis-2.1.0.jar
+Failed to download seata-discovery-redis-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-redis/2.1.0/seata-discovery-redis-2.1.0.jar
+Attempt 1 failed for seata-discovery-nacos-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-nacos/2.1.0/seata-discovery-nacos-2.1.0.jar
+Attempt 2 failed for seata-discovery-nacos-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-nacos/2.1.0/seata-discovery-nacos-2.1.0.jar
+Attempt 3 failed for seata-discovery-nacos-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-nacos/2.1.0/seata-discovery-nacos-2.1.0.jar
+Attempt 4 failed for seata-discovery-nacos-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-nacos/2.1.0/seata-discovery-nacos-2.1.0.jar
+Attempt 5 failed for seata-discovery-nacos-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-nacos/2.1.0/seata-discovery-nacos-2.1.0.jar
+Failed to download seata-discovery-nacos-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-nacos/2.1.0/seata-discovery-nacos-2.1.0.jar
+Attempt 1 failed for seata-discovery-etcd3-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-etcd3/2.1.0/seata-discovery-etcd3-2.1.0.jar
+Attempt 2 failed for seata-discovery-etcd3-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-etcd3/2.1.0/seata-discovery-etcd3-2.1.0.jar
+Attempt 3 failed for seata-discovery-etcd3-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-etcd3/2.1.0/seata-discovery-etcd3-2.1.0.jar
+Attempt 4 failed for seata-discovery-etcd3-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-etcd3/2.1.0/seata-discovery-etcd3-2.1.0.jar
+Attempt 5 failed for seata-discovery-etcd3-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-etcd3/2.1.0/seata-discovery-etcd3-2.1.0.jar
+Failed to download seata-discovery-etcd3-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-etcd3/2.1.0/seata-discovery-etcd3-2.1.0.jar
+Attempt 1 failed for seata-discovery-sofa-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-sofa/2.1.0/seata-discovery-sofa-2.1.0.jar
+Attempt 2 failed for seata-discovery-sofa-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-sofa/2.1.0/seata-discovery-sofa-2.1.0.jar
+Attempt 3 failed for seata-discovery-sofa-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-sofa/2.1.0/seata-discovery-sofa-2.1.0.jar
+Attempt 4 failed for seata-discovery-sofa-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-sofa/2.1.0/seata-discovery-sofa-2.1.0.jar
+Attempt 5 failed for seata-discovery-sofa-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-sofa/2.1.0/seata-discovery-sofa-2.1.0.jar
+Failed to download seata-discovery-sofa-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-discovery-sofa/2.1.0/seata-discovery-sofa-2.1.0.jar
 Attempt 1 failed for seata-serializer-all-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-all/2.1.0/seata-serializer-all-2.1.0.jar
 Attempt 2 failed for seata-serializer-all-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-all/2.1.0/seata-serializer-all-2.1.0.jar
 Attempt 3 failed for seata-serializer-all-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-all/2.1.0/seata-serializer-all-2.1.0.jar
 Attempt 4 failed for seata-serializer-all-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-all/2.1.0/seata-serializer-all-2.1.0.jar
 Attempt 5 failed for seata-serializer-all-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-all/2.1.0/seata-serializer-all-2.1.0.jar
 Failed to download seata-serializer-all-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-all/2.1.0/seata-serializer-all-2.1.0.jar
+Attempt 1 failed for seata-serializer-seata-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-seata/2.1.0/seata-serializer-seata-2.1.0.jar
+Attempt 2 failed for seata-serializer-seata-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-seata/2.1.0/seata-serializer-seata-2.1.0.jar
+Attempt 3 failed for seata-serializer-seata-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-seata/2.1.0/seata-serializer-seata-2.1.0.jar
+Attempt 4 failed for seata-serializer-seata-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-seata/2.1.0/seata-serializer-seata-2.1.0.jar
+Attempt 5 failed for seata-serializer-seata-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-seata/2.1.0/seata-serializer-seata-2.1.0.jar
+Failed to download seata-serializer-seata-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-seata/2.1.0/seata-serializer-seata-2.1.0.jar
+Attempt 1 failed for seata-serializer-protobuf-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-protobuf/2.1.0/seata-serializer-protobuf-2.1.0.jar
+Attempt 2 failed for seata-serializer-protobuf-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-protobuf/2.1.0/seata-serializer-protobuf-2.1.0.jar
+Attempt 3 failed for seata-serializer-protobuf-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-protobuf/2.1.0/seata-serializer-protobuf-2.1.0.jar
+Attempt 4 failed for seata-serializer-protobuf-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-protobuf/2.1.0/seata-serializer-protobuf-2.1.0.jar
+Attempt 5 failed for seata-serializer-protobuf-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-protobuf/2.1.0/seata-serializer-protobuf-2.1.0.jar
+Failed to download seata-serializer-protobuf-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-protobuf/2.1.0/seata-serializer-protobuf-2.1.0.jar
+Attempt 1 failed for seata-serializer-kryo-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-kryo/2.1.0/seata-serializer-kryo-2.1.0.jar
+Attempt 2 failed for seata-serializer-kryo-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-kryo/2.1.0/seata-serializer-kryo-2.1.0.jar
+Attempt 3 failed for seata-serializer-kryo-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-kryo/2.1.0/seata-serializer-kryo-2.1.0.jar
+Attempt 4 failed for seata-serializer-kryo-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-kryo/2.1.0/seata-serializer-kryo-2.1.0.jar
+Attempt 5 failed for seata-serializer-kryo-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-kryo/2.1.0/seata-serializer-kryo-2.1.0.jar
+Failed to download seata-serializer-kryo-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-kryo/2.1.0/seata-serializer-kryo-2.1.0.jar
+Attempt 1 failed for seata-serializer-hessian-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-hessian/2.1.0/seata-serializer-hessian-2.1.0.jar
+Attempt 2 failed for seata-serializer-hessian-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-hessian/2.1.0/seata-serializer-hessian-2.1.0.jar
+Attempt 3 failed for seata-serializer-hessian-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-hessian/2.1.0/seata-serializer-hessian-2.1.0.jar
+Attempt 4 failed for seata-serializer-hessian-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-hessian/2.1.0/seata-serializer-hessian-2.1.0.jar
+Attempt 5 failed for seata-serializer-hessian-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-hessian/2.1.0/seata-serializer-hessian-2.1.0.jar
+Failed to download seata-serializer-hessian-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-serializer-hessian/2.1.0/seata-serializer-hessian-2.1.0.jar
 Attempt 1 failed for seata-compressor-all-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-all/2.1.0/seata-compressor-all-2.1.0.jar
 Attempt 2 failed for seata-compressor-all-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-all/2.1.0/seata-compressor-all-2.1.0.jar
 Attempt 3 failed for seata-compressor-all-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-all/2.1.0/seata-compressor-all-2.1.0.jar
 Attempt 4 failed for seata-compressor-all-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-all/2.1.0/seata-compressor-all-2.1.0.jar
 Attempt 5 failed for seata-compressor-all-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-all/2.1.0/seata-compressor-all-2.1.0.jar
 Failed to download seata-compressor-all-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-all/2.1.0/seata-compressor-all-2.1.0.jar
+Attempt 1 failed for seata-compressor-gzip-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-gzip/2.1.0/seata-compressor-gzip-2.1.0.jar
+Attempt 2 failed for seata-compressor-gzip-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-gzip/2.1.0/seata-compressor-gzip-2.1.0.jar
+Attempt 3 failed for seata-compressor-gzip-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-gzip/2.1.0/seata-compressor-gzip-2.1.0.jar
+Attempt 4 failed for seata-compressor-gzip-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-gzip/2.1.0/seata-compressor-gzip-2.1.0.jar
+Attempt 5 failed for seata-compressor-gzip-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-gzip/2.1.0/seata-compressor-gzip-2.1.0.jar
+Failed to download seata-compressor-gzip-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-gzip/2.1.0/seata-compressor-gzip-2.1.0.jar
+Attempt 1 failed for seata-compressor-bzip2-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-bzip2/2.1.0/seata-compressor-bzip2-2.1.0.jar
+Attempt 2 failed for seata-compressor-bzip2-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-bzip2/2.1.0/seata-compressor-bzip2-2.1.0.jar
+Attempt 3 failed for seata-compressor-bzip2-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-bzip2/2.1.0/seata-compressor-bzip2-2.1.0.jar
+Attempt 4 failed for seata-compressor-bzip2-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-bzip2/2.1.0/seata-compressor-bzip2-2.1.0.jar
+Attempt 5 failed for seata-compressor-bzip2-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-bzip2/2.1.0/seata-compressor-bzip2-2.1.0.jar
+Failed to download seata-compressor-bzip2-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-bzip2/2.1.0/seata-compressor-bzip2-2.1.0.jar
+Attempt 1 failed for seata-compressor-zip-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-zip/2.1.0/seata-compressor-zip-2.1.0.jar
+Attempt 2 failed for seata-compressor-zip-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-zip/2.1.0/seata-compressor-zip-2.1.0.jar
+Attempt 3 failed for seata-compressor-zip-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-zip/2.1.0/seata-compressor-zip-2.1.0.jar
+Attempt 4 failed for seata-compressor-zip-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-zip/2.1.0/seata-compressor-zip-2.1.0.jar
+Attempt 5 failed for seata-compressor-zip-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-zip/2.1.0/seata-compressor-zip-2.1.0.jar
+Failed to download seata-compressor-zip-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-zip/2.1.0/seata-compressor-zip-2.1.0.jar
+Attempt 1 failed for seata-compressor-lz4-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-lz4/2.1.0/seata-compressor-lz4-2.1.0.jar
+Attempt 2 failed for seata-compressor-lz4-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-lz4/2.1.0/seata-compressor-lz4-2.1.0.jar
+Attempt 3 failed for seata-compressor-lz4-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-lz4/2.1.0/seata-compressor-lz4-2.1.0.jar
+Attempt 4 failed for seata-compressor-lz4-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-lz4/2.1.0/seata-compressor-lz4-2.1.0.jar
+Attempt 5 failed for seata-compressor-lz4-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-lz4/2.1.0/seata-compressor-lz4-2.1.0.jar
+Failed to download seata-compressor-lz4-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-lz4/2.1.0/seata-compressor-lz4-2.1.0.jar
+Attempt 1 failed for seata-compressor-deflater-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-deflater/2.1.0/seata-compressor-deflater-2.1.0.jar
+Attempt 2 failed for seata-compressor-deflater-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-deflater/2.1.0/seata-compressor-deflater-2.1.0.jar
+Attempt 3 failed for seata-compressor-deflater-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-deflater/2.1.0/seata-compressor-deflater-2.1.0.jar
+Attempt 4 failed for seata-compressor-deflater-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-deflater/2.1.0/seata-compressor-deflater-2.1.0.jar
+Attempt 5 failed for seata-compressor-deflater-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-deflater/2.1.0/seata-compressor-deflater-2.1.0.jar
+Failed to download seata-compressor-deflater-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-deflater/2.1.0/seata-compressor-deflater-2.1.0.jar
+Attempt 1 failed for seata-compressor-zstd-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-zstd/2.1.0/seata-compressor-zstd-2.1.0.jar
+Attempt 2 failed for seata-compressor-zstd-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-zstd/2.1.0/seata-compressor-zstd-2.1.0.jar
+Attempt 3 failed for seata-compressor-zstd-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-zstd/2.1.0/seata-compressor-zstd-2.1.0.jar
+Attempt 4 failed for seata-compressor-zstd-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-zstd/2.1.0/seata-compressor-zstd-2.1.0.jar
+Attempt 5 failed for seata-compressor-zstd-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-zstd/2.1.0/seata-compressor-zstd-2.1.0.jar
+Failed to download seata-compressor-zstd-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-compressor-zstd/2.1.0/seata-compressor-zstd-2.1.0.jar
 Attempt 1 failed for seata-metrics-all-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-all/2.1.0/seata-metrics-all-2.1.0.jar
 Attempt 2 failed for seata-metrics-all-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-all/2.1.0/seata-metrics-all-2.1.0.jar
 Attempt 3 failed for seata-metrics-all-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-all/2.1.0/seata-metrics-all-2.1.0.jar
 Attempt 4 failed for seata-metrics-all-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-all/2.1.0/seata-metrics-all-2.1.0.jar
 Attempt 5 failed for seata-metrics-all-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-all/2.1.0/seata-metrics-all-2.1.0.jar
 Failed to download seata-metrics-all-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-all/2.1.0/seata-metrics-all-2.1.0.jar
+Attempt 1 failed for seata-metrics-api-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-api/2.1.0/seata-metrics-api-2.1.0.jar
+Attempt 2 failed for seata-metrics-api-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-api/2.1.0/seata-metrics-api-2.1.0.jar
+Attempt 3 failed for seata-metrics-api-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-api/2.1.0/seata-metrics-api-2.1.0.jar
+Attempt 4 failed for seata-metrics-api-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-api/2.1.0/seata-metrics-api-2.1.0.jar
+Attempt 5 failed for seata-metrics-api-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-api/2.1.0/seata-metrics-api-2.1.0.jar
+Failed to download seata-metrics-api-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-api/2.1.0/seata-metrics-api-2.1.0.jar
+Attempt 1 failed for seata-metrics-core-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-core/2.1.0/seata-metrics-core-2.1.0.jar
+Attempt 2 failed for seata-metrics-core-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-core/2.1.0/seata-metrics-core-2.1.0.jar
+Attempt 3 failed for seata-metrics-core-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-core/2.1.0/seata-metrics-core-2.1.0.jar
+Attempt 4 failed for seata-metrics-core-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-core/2.1.0/seata-metrics-core-2.1.0.jar
+Attempt 5 failed for seata-metrics-core-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-core/2.1.0/seata-metrics-core-2.1.0.jar
+Failed to download seata-metrics-core-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-core/2.1.0/seata-metrics-core-2.1.0.jar
+Attempt 1 failed for seata-metrics-registry-compact-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-registry-compact/2.1.0/seata-metrics-registry-compact-2.1.0.jar
+Attempt 2 failed for seata-metrics-registry-compact-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-registry-compact/2.1.0/seata-metrics-registry-compact-2.1.0.jar
+Attempt 3 failed for seata-metrics-registry-compact-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-registry-compact/2.1.0/seata-metrics-registry-compact-2.1.0.jar
+Attempt 4 failed for seata-metrics-registry-compact-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-registry-compact/2.1.0/seata-metrics-registry-compact-2.1.0.jar
+Attempt 5 failed for seata-metrics-registry-compact-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-registry-compact/2.1.0/seata-metrics-registry-compact-2.1.0.jar
+Failed to download seata-metrics-registry-compact-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-registry-compact/2.1.0/seata-metrics-registry-compact-2.1.0.jar
+Attempt 1 failed for seata-metrics-exporter-prometheus-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-exporter-prometheus/2.1.0/seata-metrics-exporter-prometheus-2.1.0.jar
+Attempt 2 failed for seata-metrics-exporter-prometheus-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-exporter-prometheus/2.1.0/seata-metrics-exporter-prometheus-2.1.0.jar
+Attempt 3 failed for seata-metrics-exporter-prometheus-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-exporter-prometheus/2.1.0/seata-metrics-exporter-prometheus-2.1.0.jar
+Attempt 4 failed for seata-metrics-exporter-prometheus-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-exporter-prometheus/2.1.0/seata-metrics-exporter-prometheus-2.1.0.jar
+Attempt 5 failed for seata-metrics-exporter-prometheus-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-exporter-prometheus/2.1.0/seata-metrics-exporter-prometheus-2.1.0.jar
+Failed to download seata-metrics-exporter-prometheus-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-metrics-exporter-prometheus/2.1.0/seata-metrics-exporter-prometheus-2.1.0.jar
 Attempt 1 failed for seata-console-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-console/2.1.0/seata-console-2.1.0.jar
 Attempt 2 failed for seata-console-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-console/2.1.0/seata-console-2.1.0.jar
 Attempt 3 failed for seata-console-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-console/2.1.0/seata-console-2.1.0.jar
 Attempt 4 failed for seata-console-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-console/2.1.0/seata-console-2.1.0.jar
 Attempt 5 failed for seata-console-2.1.0.jar: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-console/2.1.0/seata-console-2.1.0.jar
 Failed to download seata-console-2.1.0.jar from central repository; Reason: 404 Client Error: Not Found for url: https://repo1.maven.org/maven2/org/apache/seata/seata-console/2.1.0/seata-console-2.1.0.jar
-com.alibaba-druid-1.2.7.jar downloaded successfully.
-javax.annotation-javax.annotation-api-1.3.2.jar downloaded successfully.
-org.apache.commons-commons-dbcp2-2.9.0.jar downloaded successfully.
-org.apache.commons-commons-pool2-2.11.1.jar downloaded successfully.
-com.zaxxer-HikariCP-4.0.3.jar downloaded successfully.
-org.slf4j-slf4j-api-1.7.36.jar downloaded successfully.
-com.h2database-h2-2.1.214.jar downloaded successfully.
-org.postgresql-postgresql-42.3.8.jar downloaded successfully.
-org.checkerframework-checker-qual-3.5.0.jar downloaded successfully.
-com.dameng-DmJdbcDriver18-8.1.2.192.jar downloaded successfully.
-com.beust-jcommander-1.82.jar downloaded successfully.
-com.google.guava-guava-32.1.3-jre.jar downloaded successfully.
-com.google.guava-failureaccess-1.0.1.jar downloaded successfully.
-com.google.code.findbugs-jsr305-3.0.2.jar downloaded successfully.
-com.google.errorprone-error_prone_annotations-2.21.1.jar downloaded successfully.
-com.google.j2objc-j2objc-annotations-2.8.jar downloaded successfully.
-redis.clients-jedis-3.8.0.jar downloaded successfully.
-com.alibaba-fastjson-1.2.83.jar downloaded successfully.
-ch.qos.logback-logback-classic-1.2.12.jar downloaded successfully.
-ch.qos.logback-logback-core-1.2.12.jar downloaded successfully.
-net.logstash.logback-logstash-logback-encoder-6.5.jar downloaded successfully.
-com.fasterxml.jackson.core-jackson-databind-2.13.5.jar downloaded successfully.
-com.fasterxml.jackson.core-jackson-annotations-2.13.5.jar downloaded successfully.
-com.fasterxml.jackson.core-jackson-core-2.13.5.jar downloaded successfully.
-com.github.danielwegener-logback-kafka-appender-0.2.0-RC2.jar downloaded successfully.
-org.apache.kafka-kafka-clients-3.6.1.jar downloaded successfully.
-com.github.luben-zstd-jni-1.5.0-4.jar downloaded successfully.
-org.lz4-lz4-java-1.7.1.jar downloaded successfully.
-org.xerial.snappy-snappy-java-1.1.10.5.jar downloaded successfully.
-com.alipay.sofa-jraft-core-1.3.14.jar downloaded successfully.
-org.ow2.asm-asm-6.0.jar downloaded successfully.
-org.rocksdb-rocksdbjni-8.8.1.jar downloaded successfully.
-net.java.dev.jna-jna-5.5.0.jar downloaded successfully.
-org.jctools-jctools-core-2.1.1.jar downloaded successfully.
-com.lmax-disruptor-3.3.7.jar downloaded successfully.
-com.google.protobuf-protobuf-java-3.16.3.jar downloaded successfully.
-commons-io-commons-io-2.8.0.jar downloaded successfully.
-commons-lang-commons-lang-2.6.jar downloaded successfully.
-com.alipay.sofa-hessian-4.0.3.jar downloaded successfully.
-io.dropwizard.metrics-metrics-core-4.2.21.jar downloaded successfully.
-com.alipay.sofa-bolt-1.6.7.jar downloaded successfully.
-com.alipay.sofa.common-sofa-common-tools-1.0.12.jar downloaded successfully.
-org.codehaus.janino-janino-3.1.10.jar downloaded successfully.
-org.codehaus.janino-commons-compiler-3.1.10.jar downloaded successfully.
-org.apache.tomcat.embed-tomcat-embed-core-9.0.83.jar downloaded successfully.
-org.apache.tomcat-tomcat-annotations-api-9.0.82.jar downloaded successfully.
-org.objenesis-objenesis-3.2.jar downloaded successfully.
+spring-boot-starter-security-2.7.17.jar has been downloaded before.
+spring-security-config-5.7.11.jar has been downloaded before.
+spring-security-core-5.7.11.jar has been downloaded before.
+spring-security-crypto-5.7.11.jar has been downloaded before.
+spring-security-web-5.7.11.jar has been downloaded before.
+javax.servlet-api-4.0.1.jar has been downloaded before.
+jjwt-api-0.10.5.jar has been downloaded before.
+jjwt-impl-0.10.5.jar has been downloaded before.
+jjwt-jackson-0.10.5.jar has been downloaded before.
+druid-1.2.7.jar has been downloaded before.
+javax.annotation-api-1.3.2.jar has been downloaded before.
+commons-dbcp2-2.9.0.jar has been downloaded before.
+commons-pool2-2.11.1.jar has been downloaded before.
+HikariCP-4.0.3.jar has been downloaded before.
+slf4j-api-1.7.36.jar has been downloaded before.
+h2-2.1.214.jar has been downloaded before.
+postgresql-42.3.8.jar has been downloaded before.
+checker-qual-3.5.0.jar has been downloaded before.
+DmJdbcDriver18-8.1.2.192.jar has been downloaded before.
+jcommander-1.82.jar has been downloaded before.
+guava-32.1.3-jre.jar has been downloaded before.
+failureaccess-1.0.1.jar has been downloaded before.
+jsr305-3.0.2.jar has been downloaded before.
+error_prone_annotations-2.21.1.jar has been downloaded before.
+j2objc-annotations-2.8.jar has been downloaded before.
+jedis-3.8.0.jar has been downloaded before.
+fastjson-1.2.83.jar has been downloaded before.
+logback-classic-1.2.12.jar has been downloaded before.
+logback-core-1.2.12.jar has been downloaded before.
+logstash-logback-encoder-6.5.jar has been downloaded before.
+jackson-databind-2.13.5.jar has been downloaded before.
+jackson-annotations-2.13.5.jar has been downloaded before.
+jackson-core-2.13.5.jar has been downloaded before.
+logback-kafka-appender-0.2.0-RC2.jar has been downloaded before.
+kafka-clients-3.6.1.jar has been downloaded before.
+zstd-jni-1.5.0-4.jar has been downloaded before.
+lz4-java-1.7.1.jar has been downloaded before.
+snappy-java-1.1.10.5.jar has been downloaded before.
+jraft-core-1.3.14.jar has been downloaded before.
+asm-6.0.jar has been downloaded before.
+rocksdbjni-8.8.1.jar has been downloaded before.
+jna-5.5.0.jar has been downloaded before.
+jctools-core-2.1.1.jar has been downloaded before.
+disruptor-3.3.7.jar has been downloaded before.
+protobuf-java-3.16.3.jar has been downloaded before.
+commons-io-2.8.0.jar has been downloaded before.
+commons-lang-2.6.jar has been downloaded before.
+hessian-4.0.3.jar has been downloaded before.
+metrics-core-4.2.21.jar has been downloaded before.
+bolt-1.6.7.jar has been downloaded before.
+sofa-common-tools-1.0.12.jar has been downloaded before.
+janino-3.1.10.jar has been downloaded before.
+commons-compiler-3.1.10.jar has been downloaded before.
+tomcat-embed-core-9.0.83.jar has been downloaded before.
+tomcat-annotations-api-9.0.82.jar has been downloaded before.
+objenesis-3.2.jar has been downloaded before.
 
-****** preprocess.getjar done! ******
+****** dependency graph got! ******
 
 
 ****** preprocess done! ******
 
 
-Script done on 2024-08-04 16:41:18+08:00 [COMMAND_EXIT_CODE="0"]
+Script done on 2024-08-13 23:01:22+08:00 [COMMAND_EXIT_CODE="0"]

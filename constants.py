@@ -7,7 +7,9 @@
     | | | ├── {version}/
     | ...
     ├── tree/
-    | {path_to_repo}_{relative_path_to_module}.txt
+    | ├── {repo_name}/
+    | | ├── {relative_path_to_module}/
+    | | | ├── verbose_tree.txt
     |  ...
     ├── result/
     | ├── {repo_name}/
