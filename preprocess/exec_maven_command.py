@@ -3,7 +3,7 @@
 import os
 import shutil
 import subprocess
-from preprocess.constants import TREE_DIR
+from constants import TREE_DIR
 
 # create a folder
 def create_folder(folder_path:str):
@@ -50,8 +50,10 @@ def mvn_verbose_dependency_tree(path_to_folder:str, relative_path_to_module:str)
     command = f"cd {path_to_folder} && mvn dependency:tree -pl {relative_path_to_module} -am -Dverbose -fae"
     print("generating dependency tree...")
     result = subprocess.run(command, shell=True, text=True, capture_output=True)
-    create_folder(TREE_DIR)
-    tree_file = os.path.join(TREE_DIR, f"{path_to_folder.replace('/','_')}_{relative_path_to_module.replace('/','_')}.txt")
+    repo_name = os.path.basename(path_to_folder)
+    tree_folder = os.path.join(TREE_DIR, f'{repo_name}/{relative_path_to_module}')
+    create_folder(tree_folder)
+    tree_file = os.path.join(tree_folder, 'verbose_tree.txt')
     with open(tree_file, 'w', encoding='utf-8') as f:
         f.write(f'{result.stdout}')
     # os.system(command)

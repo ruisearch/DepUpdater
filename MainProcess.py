@@ -41,7 +41,7 @@ print("\n****** tree got! ******\n")
 # then download dependencies jar and copy client jar
 print("\n****** restore dependency to graph ... ******\n")
 graph = Restore(path_to_folder, relative_path_to_module, tree_file)
-graph.restore()
+json_path = graph.restore()
 print("\n****** dependency graph got! ******\n")
 print("\n****** preprocess done! ******\n")
 
