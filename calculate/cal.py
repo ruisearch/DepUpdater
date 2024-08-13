@@ -1,15 +1,21 @@
 ## calculate best version and then calcute lag(after testing)
-import os
-import json
 import concurrent.futures
-import multiprocessing
-import shutil
 import copy
+import json
+import multiprocessing
+import os
+import shutil
+
 from lxml import etree
 from tqdm import tqdm
+
 from calculate.constants import JAR_FOLDER, TQDM_LOG_PATH
 from calculate.Dep import Dep
-from calculate.module_test import check_version_module, recompile, store_error, reset, add_or_update_direct_dependency,add_or_update_transitive_dependency
+from calculate.module_test import (add_or_update_direct_dependency,
+                                   add_or_update_transitive_dependency,
+                                   check_version_module, recompile, reset,
+                                   store_error)
+
 
 def create_new_folder(folder:str):
     # Check if folder already exists

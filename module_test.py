@@ -1,9 +1,10 @@
 # testing script
-import os
-import sys
 import json
-import subprocess
+import os
 import shutil
+import subprocess
+import sys
+
 from lxml import etree
 
 # folder to store false cases(already exists)

@@ -1,10 +1,12 @@
 ## all api operations are defined in Api class
+import json
 import os
 import subprocess
 from collections import deque
-import json
+
 from match.CallGraph import CallGraph
 from match.constants import BCEL_PATH, SOOTCG_PATH
+
 
 class Api:
     # module:path to module folder

@@ -1,12 +1,16 @@
-import os
-import requests
-import json
-import time
 import copy
+import json
+import os
+import time
 from functools import cmp_to_key
+
+import requests
+import semver
+
 # from operator import itemgetter
 from calculate.Revapi import Revapi
-import semver
+
+
 class Dep:
     # dep_path : path to dep/
     # dep_dict : the json object

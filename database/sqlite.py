@@ -1,6 +1,9 @@
 """all operations on the sqlite db which stores the reusable data"""
 import sqlite3
+
 from database.constants import SQLITE_PATH
+
+
 class Sqlite:
     def __init__(self, sqlite_path):
         """set path to sqlite file"""

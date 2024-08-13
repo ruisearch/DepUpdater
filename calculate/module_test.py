@@ -1,12 +1,15 @@
 # testing script
-import os
-import json
-import subprocess
-import shutil
 import copy
+import json
+import os
+import shutil
+import subprocess
 import time
-from tqdm import tqdm
+
 from lxml import etree
+from tqdm import tqdm
+
+
 # set transitive dependency in pom
 def add_or_update_transitive_dependency(file_path, group_id, artifact_id, version, classifier):
     parser = etree.XMLParser(remove_blank_text=True)
