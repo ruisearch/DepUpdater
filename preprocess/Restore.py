@@ -1,4 +1,4 @@
-## restore tree to graph
+"""restore tree to graph"""
 import concurrent.futures
 import json
 import os
@@ -50,8 +50,9 @@ class Restore:
         all_deps = self.parse_tree_for_deps(dependency_tree, self.path_to_cloned_folder, self.relative_path_to_module)
         # filter the deps into valid_deps and omitted_deps
         valid_deps, omitted_deps = self.filter_dep(all_deps)
-        # parse the dep in valid_deps and omitted_deps to get jar and match.json
+        # parse the dep in valid_deps and omitted_deps to get jar and version.json
         json_path = self.parse_for_jar_and_json(valid_deps, omitted_deps)
+        return json_path
 
     def filter_dep(self, all_deps:list):
         """filter the deps into valid_deps and omitted_deps"""
@@ -166,6 +167,13 @@ class Restore:
                 
                 # parse tree to get all deps
                 deps = self.parse_all_dep(block.group(6))
+                
+                # debug : write deps to RET_DIR/{repo_name}/{relative_path_to_module}/deps.json
+                # ret_folder = os.path.join(RET_DIR, f'{os.path.basename(path_to_cloned_folder)}/{self.relative_path_to_module}')
+                # self.create_folder(ret_folder)
+                # dep_path = os.path.join(ret_folder, 'deps.json')
+                # with open(dep_path, 'w', encoding='utf-8') as dep_file:
+                #     json.dump(deps, dep_file, indent=4)
                 return deps
 
     def query_to_get_jar_location(self, groupId, artifactId, version):
@@ -187,9 +195,10 @@ class Restore:
         self.create_folder(dir_path)
         return jar_path
 
-    # return a list containing all deps as well as the dependent and depth
-    # the list contains valid deps as well as omitted deps denoted by dict{dep, Depth, Dependents}
     def parse_all_dep(self,tree:str):
+        """return a list containing all deps as well as the dependent and dep\n
+        the list contains valid deps as well as omitted deps denoted by dict{dep, Depth, Dependents}
+        """
         dep_pattern = r"^\[INFO\] (.*?)- (.+?)$"
         dep_matches = re.finditer(dep_pattern, tree, re.MULTILINE)
         # group(1): lag
@@ -214,26 +223,27 @@ class Restore:
         for idx, one_dep in enumerate(deps):
             dependent_depth = one_dep['Depth'] - 1
             Dependents = []
-            for i in range(idx, -1, -1):
-                if dependent_depth == 0:
+            if dependent_depth == 0:
                     # dependent is client
                     Dependent = {'GroupId':self.client_groupId, 'ArtifactId':self.client_artifactId,\
                         'Version': self.client_version}
                     Dependents.append(Dependent)
-                    break
-                if deps[i]['Depth'] == depth:
-                    # note: "Dependents" above are dependents like "org.mockito:mockito-core:jar:4.11.0:compile"
-                    # and Dependents are always valid deps or client
-                    # so, I change the record into the dict in order to relate the dependent with the dep when clearing the local module
-                    # dict is {'GroupId', 'ArtifactId', 'Version'}
-                    Dependent = self.record_to_dict(deps[i]['dep'])
-                    Dependents.append(Dependent)
+            else:
+                for i in range(idx, -1, -1):
+                    if deps[i]['Depth'] == dependent_depth:
+                        # note: "Dependents" above are dependents like "org.mockito:mockito-core:jar:4.11.0:compile"
+                        # and Dependents are always valid deps or client
+                        # so, I change the record into the dict in order to relate the dependent with the dep when clearing the local module
+                        # dict is {'GroupId', 'ArtifactId', 'Version'}
+                        Dependent = self.record_to_dict(deps[i]['dep'])
+                        Dependents.append(Dependent)
+                        break
             one_dep.update({"Dependents":Dependents})
         return deps
 
     # dep key:{dep, Depth, Dependents}
     def parse_for_jar_and_json(self, valid_deps:list, omitted_deps:list):
-        """parse the dep in valid_deps and omitted_deps to get jar and match.json
+        """parse the dep in valid_deps and omitted_deps to get jar and version.json
         
         Args:
             module_folder : path to data/Jar/{module_name}
@@ -260,11 +270,11 @@ class Restore:
             mappings.append(future.result())
 
         # create json
-        # stored in data/result/{repo_name}/{relative_path_to_module}/match.json
+        # stored in data/result/{repo_name}/{relative_path_to_module}/version.json
         repo_name = os.path.basename(self.path_to_cloned_folder)
         json_folder = os.path.join(RET_DIR, f'{repo_name}/{self.relative_path_to_module}')
         self.create_folder(json_folder)
-        json_path = os.path.join(json_folder, 'match.json')
+        json_path = os.path.join(json_folder, 'version.json')
         with open(json_path, 'w', encoding='utf-8') as json_file:
             json.dump(mappings, json_file, indent=4)
         return json_path
@@ -331,7 +341,7 @@ class Restore:
                 from change_omitted_deps \n
         
         Returns:
-            the computed valid_dep which will be displayed in match.json\n
+            the computed valid_dep which will be displayed in version.json\n
             {GroupId, ArtifactId, Original_Version, Best_Version, Type, Depth, Dependents}\n
             Dependents is a list of dict {GroupId, ArtifactId, Version, Define_Version}
         """
@@ -389,8 +399,8 @@ class Restore:
             dep.update({'Type':match.group(5)})
             dep.update({'Depth':valid_dep['Depth']})
             Dependent = valid_dep['Dependents'][0]
-            # Defined_Version is the version defined by the dependent
-            Dependent.update({'Defined_Version':match.group(4)})
+            # Define_Version is the version defined by the dependent
+            Dependent.update({'Define_Version':match.group(4)})
             dep.update({'Dependents':[Dependent]})
             isoptional_flag = 'optional' in match.group(5)
             dep.update({'isoptional': isoptional_flag})
@@ -428,9 +438,9 @@ class Restore:
                 dep.update({'Version':match.group(6)})
                 dep.update({'Type':match.group(4)})
                 dep.update({'Depth':omitted_deps[i]['Depth']})
-                # Defined_Version is the version defined by the dependent
+                # Define_Version is the version defined by the dependent
                 Dependent = omitted_dep['Dependents'][0]
-                Dependent.update({'Defined_Version':match.group(6)})
+                Dependent.update({'Define_Version':match.group(6)})
                 dep.update({'Dependents':[Dependent]})
                 omitted_deps[i] = dep
                 continue
@@ -442,9 +452,9 @@ class Restore:
                 dep.update({'Version':match.group(4)})
                 dep.update({'Type':match.group(5)})
                 dep.update({'Depth':omitted_deps[i]['Depth']})
-                # Defined_Version is the version defined by the dependent
+                # Define_Version is the version defined by the dependent
                 Dependent = omitted_dep['Dependents'][0]
-                Dependent.update({'Defined_Version':match.group(4)})
+                Dependent.update({'Define_Version':match.group(4)})
                 dep.update({'Dependents':[Dependent]})
                 omitted_deps[i] = dep
                 continue
@@ -456,9 +466,9 @@ class Restore:
                 dep.update({'Version':match.group(4)})
                 dep.update({'Type':match.group(5)})
                 dep.update({'Depth':omitted_deps[i]['Depth']})
-                # Defined_Version is the version defined by the dependent
+                # Define_Version is the version defined by the dependent
                 Dependent = omitted_dep['Dependents'][0]
-                Dependent.update({'Defined_Version':match.group(4)})
+                Dependent.update({'Define_Version':match.group(4)})
                 dep.update({'Dependents':[Dependent]})
                 omitted_deps[i] = dep
                 continue

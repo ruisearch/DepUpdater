@@ -1,3 +1,4 @@
+"""Main process of the tool"""
 import os
 import sys
 
@@ -69,8 +70,8 @@ print("\n****** preprocess done! ******\n")
     
 
 # ## calculate:
-# ## input : the ./data/Jar folder containing match.json
-# ## output : the newest compatible version of each dep in match.json and finial lag result(after test)
+# ## input : the ./data/Jar folder containing version.json
+# ## output : the newest compatible version of each dep in version.json and finial lag result(after test)
 # print("\n****** calculate: ******\n")
 # cal.select_best_version(path_to_folder, project_error_folder)
 # cal.calculate_lag()

@@ -1,5 +1,7 @@
-# define the constants about the data location
-"""data folder structure:
+"""
+define the constants about the data location
+
+data folder structure:
     {MainProcess_pwd}/data/
     ├── jar/
     | ├── {group_id}/
