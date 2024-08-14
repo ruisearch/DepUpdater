@@ -6,6 +6,7 @@ from calculate import cal
 from match import match
 from preprocess import exec_maven_command
 from preprocess.Restore import Restore
+from traverse.traverse import Traverse
 
 
 def expand_resolve_abspath(path):
@@ -47,6 +48,10 @@ graph = Restore(path_to_folder, relative_path_to_module, tree_file)
 json_path = graph.restore()
 print("\n****** dependency graph got! ******\n")
 print("\n****** preprocess done! ******\n")
+
+# Traverse the dependency graph to compute the newest compatible version of each dependency
+tra = Traverse(json_path)
+tra.traverse()
 
 # # match:
 # # input ：the ./data/Jar folder containing all jars

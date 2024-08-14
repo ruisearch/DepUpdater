@@ -1,22 +1,32 @@
 """main file for traversing in the dependency graph"""
+import json
 from collections import deque
 
+
 class Traverse:
-    def __init__(self, module):
-        self.module = module
-        self.visited = set()
+    def __init__(self, json_path):
+        with open(json_path, 'r', encoding='utf-8') as f:
+            self.graph = json.load(f)
+        self.json_path = json_path
         self.queue = deque()
+        self.init_queue()
+    
+    def init_queue(self):
+        """put all direct dependencies of client jar into queue"""
+        for dep in self.graph:
+            if dep['Depth'] == 1:
+                self.queue.append(dep)
 
-    def __iter__(self):
-        self.queue.append(self.module)
-        return self
+    def traverse(self):
+        """traverse the graph to compute the newest compatible version of each dependency"""
+        while self.queue:
+            cur_dep = self.queue.popleft()
+            # find the newest compatible version of cur_dep,
+            # and return its new dependencies and old dependencies to update the graph,
+            # record the graph in version.json in real time
+            # --> old_deps, new_deps = compute_newest_version(cur_dep, self.graph, self.json_path)
+            # update the graph and queue,
+            # record the graph in version.json in real time
+            # --> update_graph(cur_dep, old_deps, new_deps, self.graph, self.queue, self.json_path)
 
-    def __next__(self):
-        if not self.queue:
-            raise StopIteration
-        module = self.queue.popleft()
-        if module in self.visited:
-            return self.__next__()
-        self.visited.add(module)
-        self.queue.extend(module.dependencies)
-        return module
+
