@@ -1,0 +1,1 @@
+"""compute the newest compatible version of a dependency"""
