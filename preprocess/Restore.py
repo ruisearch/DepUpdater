@@ -259,7 +259,7 @@ class Restore:
         # jarname ----> gav
         mappings = [{'GroupId':self.client_groupId, 'ArtifactId':self.client_artifactId,\
             'Original_Version':self.client_version, 'Best_Version':'', 'Type':'',\
-                'Depth':0, 'Dependents':[]}] # add client at first
+                'Depth':0, 'Count':0, 'Dependents':[]}] # add client at first
         # traverse the valid_deps using processPool
         num_workers = os.cpu_count()
         with concurrent.futures.ProcessPoolExecutor(max_workers=num_workers) as executor:
@@ -361,6 +361,7 @@ class Restore:
             'Best_Version': '',
             'Type': valid_dep['Type'],
             'Depth': valid_dep['Depth'],
+            'Count': 0,
             'Dependents': valid_dep['Dependents']
         }
         return result_dep

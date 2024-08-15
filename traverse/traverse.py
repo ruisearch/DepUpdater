@@ -2,6 +2,7 @@
 import json
 from collections import deque
 
+from computation.computation import Computation
 
 class Traverse:
     def __init__(self, json_path):
@@ -10,12 +11,22 @@ class Traverse:
         self.json_path = json_path
         self.queue = deque()
         self.init_queue()
+        self.compute_api_of_client()
     
     def init_queue(self):
         """put all direct dependencies of client jar into queue"""
         for dep in self.graph:
             if dep['Depth'] == 1:
                 self.queue.append(dep)
+                
+    def compute_api_of_client(self):
+        """get the methods and types of client jar first"""
+        for dep in self.graph:
+            if dep['Depth'] == 0:
+                client_com = Computation(dep, self.graph, self.json_path)
+                client_com.get_reachable_methods()
+                client_com.get_reachable_types()
+                break
 
     def traverse(self):
         """traverse the graph to compute the newest compatible version of each dependency"""
@@ -24,7 +35,9 @@ class Traverse:
             # find the newest compatible version of cur_dep,
             # and return its new dependencies and old dependencies to update the graph,
             # record the graph in version.json in real time
-            # --> old_deps, new_deps = compute_newest_version(cur_dep, self.graph, self.json_path)
+            # --> new_deps = compute_newest_version(cur_dep, self.graph, self.json_path)
+            com = Computation(cur_dep, self.graph, self.json_path)
+            old_deps = com.get_old_deps()
             # update the graph and queue,
             # record the graph in version.json in real time
             # --> update_graph(cur_dep, old_deps, new_deps, self.graph, self.queue, self.json_path)
