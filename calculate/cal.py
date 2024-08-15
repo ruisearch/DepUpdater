@@ -157,7 +157,7 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
 # one_dict: a dict containing the information of a dep after matching
 # dep_path: path to data/Jar/{module/dep/ folder(a parameter of Dep constractor; get inform.json to get module relative path)
 # path_to_cloned_folder: path to the root of cloned project
-# module_error_folder: path to module folder in false_cases 
+# module_error_folder: path to module folder in false_cases
 # tqdm_log_module_folder: path to tqdm_log/{module_name}/ containing files denoting the progress of each process
 # res_dict: the resulting dict containing all versions as well as best version
 # flag: if this dep is true positive, flag is True, False otherwise
