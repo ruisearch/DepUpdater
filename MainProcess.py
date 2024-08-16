@@ -50,8 +50,9 @@ print("\n****** dependency graph got! ******\n")
 print("\n****** preprocess done! ******\n")
 
 # Traverse the dependency graph to compute the newest compatible version of each dependency
-# tra = Traverse(json_path)
-# tra.traverse()
+repo_name = os.path.basename(path_to_folder)
+tra = Traverse(json_path, repo_name, relative_path_to_module)
+tra.traverse()
 
 # # match:
 # # input ：the ./data/Jar folder containing all jars

@@ -16,8 +16,23 @@ data folder structure:
     ├── result/
     | ├── {repo_name}/
     | | ├── {relative_path_to_module}/
-    | | | ├── match.json
+    | | | ├── version.json
     | ...
+    ├── reachableApi/
+    | ├── {repo_name}/
+    | | ├── {relative_path_to_module}/
+    | | | | ├── {group_id}/
+    | | | | | ├── {artifact_id}/
+    | | | | | | ├── {version}/
+    | | | | | | | ├── methods.txt
+    | | | | | | | ├── types.txt
+    | ...
+    ├── tqdm_log/
+    | ├── {module_name}/
+    | | ├── {relative_path_to_module}/
+    | | | ├── {groupId}_{artifactId}.tqdm_log.txt
+    | ...
+
 """
 import os
 
@@ -32,3 +47,7 @@ TREE_DIR = os.path.join(DATA_DIR, 'tree/')
 JAR_DIR = os.path.join(DATA_DIR, 'jar/')
 # path to data/result/
 RET_DIR = os.path.join(DATA_DIR, 'result/')
+# absolute to tqdm_log/
+TQDM_LOG_PATH = os.path.join(DATA_DIR, 'tqdm_log/')
+# path to data/reachableApi/
+REACHABLE_API_DIR = os.path.join(DATA_DIR, 'reachableApi/')
