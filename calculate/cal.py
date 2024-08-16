@@ -108,7 +108,6 @@ def select_best_version(path_to_cloned_folder:str, project_error_folder:str):
                     cg_json_path = os.path.join(Uber_folder, file)
                     shutil.copy(cg_json_path, module_error_folder)
                     break
-                     
             # # write the result_deps into match.json    
             # with open(json_path, 'w') as f:
             #     # json.dump(dict_list, f, indent=4)
