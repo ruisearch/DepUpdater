@@ -19,6 +19,8 @@ class Computation:
         self.json_path = json_path
         self.repo_name = repo_name
         self.relative_path_to_module = relative_path_to_module
+        self.reachable_methods = []
+        self.reachable_methods = []
         
     def get_old_deps(self):
         """get the old dependencies of the current dependency\n

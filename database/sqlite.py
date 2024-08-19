@@ -10,19 +10,19 @@ class Sqlite:
         self.sqlite_path = sqlite_path
         self.conn = None
         self.cursor = None
-        
+
     def connect(self):
         """connect the sqlite db"""
         self.conn = sqlite3.connect(self.sqlite_path)
         self.cursor = self.conn.cursor()
-        
+
     def close(self):
         """close the connection"""
         if self.cursor:
             self.cursor.close()
         if self.conn:
             self.conn.close()
-    
+
     def create_table(self, table_name, columns):
         """create a table"""
         try:
@@ -33,18 +33,19 @@ class Sqlite:
             self.conn.commit()
         except sqlite3.Error as e:
             print(e)
-    
+
     def insert_data(self, table_name, data):
-        """insert one line"""
+        """insert one line if not exists"""
         try:
             columns = ', '.join(data.keys())
             placeholders = ', '.join(['?' for _ in data]) # ？is placeholder of SQL
-            insert_sql = f"INSERT INTO {table_name} ({columns}) VALUES ({placeholders})"
+            # if the line already exists, then ignore
+            insert_sql = f"INSERT OR IGNORE INTO {table_name} ({columns}) VALUES ({placeholders})"
             self.cursor.execute(insert_sql, list(data.values()))
             self.conn.commit()
         except sqlite3.Error as e:
             print(e)
-            
+
     def query_data(self, table_name, columns='*', conditions=None):
         """a query returns columns of the lines comply with conditions
         
@@ -95,7 +96,7 @@ class Sqlite:
             self.conn.commit()
         except sqlite3.Error as e:
             print(e)
-    
+
     def delete_data(self, table_name, conditions):
         """delete some lines comply with the conditions"""
         try:
@@ -114,7 +115,7 @@ class Sqlite:
             self.conn.commit()
         except sqlite3.Error as e:
             print(e)
-            
+
     def drop_table(self, table_name:str):
         """drop a table"""
         drop_table_sql = f'DROP TABLE IF EXISTS {table_name}'
@@ -124,7 +125,7 @@ class Sqlite:
             print(f'table {table_name} has been deleted')
         except sqlite3.Error as e:
             print(f"An error occurred: {e}")
-    
+
     def create_index(self, table_name:str, index_name:list, columns):
         """
         create index for table

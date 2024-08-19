@@ -9,8 +9,7 @@ import time
 import requests
 
 from constants import JAR_DIR, RET_DIR, TREE_DIR
-from database.constants import SQLITE_PATH
-from database.sqlite import Sqlite
+from database.query import query_to_get_jar_location
 
 
 class Restore:
@@ -30,6 +29,7 @@ class Restore:
         self.client_version = None
         self.create_folder(TREE_DIR)
         self.create_folder(JAR_DIR)
+    
     
     def create_folder(self, folder_path:str):
         """create a folder"""
@@ -66,7 +66,8 @@ class Restore:
                 valid_deps.append(dep)
         return valid_deps, omitted_deps
 
-    def get_dep_jar(self, group_id:str, artifact_id:str, version:str)->bool:
+    @staticmethod
+    def get_dep_jar(group_id:str, artifact_id:str, version:str)->bool:
         """get dep jar using GAV from maven central repository and store them in data/jar
             
         Returns:
@@ -93,7 +94,7 @@ class Restore:
         
         # Call the function with retry logic
         try:
-            file_name = self.query_to_get_jar_location(group_id, artifact_id, version)
+            file_name = query_to_get_jar_location(group_id, artifact_id, version)
             # prevent download repeatly
             if os.path.exists(file_name):
                 print(f"{artifact_id}-{version}.jar has been downloaded before.")
@@ -153,7 +154,7 @@ class Restore:
                 # normal name follows this format: artifactId-version.jar
                 client_jar = f"{self.client_artifactId}-{self.client_version}.jar"
                 path_to_client_jar_in_repo = os.path.join(target, client_jar)
-                path_to_client_jar_storage = self.query_to_get_jar_location(self.client_groupId,\
+                path_to_client_jar_storage = query_to_get_jar_location(self.client_groupId,\
                     self.client_artifactId, self.client_version)
                 # store client jar
                 try:
@@ -175,25 +176,6 @@ class Restore:
                 # with open(dep_path, 'w', encoding='utf-8') as dep_file:
                 #     json.dump(deps, dep_file, indent=4)
                 return deps
-
-    def query_to_get_jar_location(self, groupId, artifactId, version):
-        """query artifacts table to find the absolute path to jar\n
-        and create folder if not exist"""
-        db = Sqlite(SQLITE_PATH)
-        db.connect()
-        condition = [('groupId','=',groupId),'AND',('artifactId','=',artifactId),'AND',('version','=',version)]
-        relative_path = db.query_data('artifacts', 'relative_path',condition)
-        if not relative_path:
-            # not in artifacts yet, so insert the record
-            path_to_record = f'{groupId}/{artifactId}/{version}/{artifactId}-{version}.jar'
-            db.insert_data('artifacts', {'groupId':groupId, 'artifactId':artifactId, 'version':version, \
-                'relative_path': path_to_record})
-            relative_path = [(path_to_record,)]
-        db.close()
-        jar_path = os.path.join(JAR_DIR, relative_path[0][0])
-        dir_path = os.path.dirname(jar_path)
-        self.create_folder(dir_path)
-        return jar_path
 
     def parse_all_dep(self,tree:str):
         """return a list containing all deps as well as the dependent and dep\n
