@@ -21,9 +21,8 @@ data folder structure:
     ├── reachableApi/
     | ├── {repo_name}/
     | | ├── {relative_path_to_module}/
-    | | | | ├── {group_id}/
-    | | | | | ├── {artifact_id}/
-    | | | | | | ├── {version}/
+    | | | | ├── {dependent_group_id}-{dependent_artifact_id}/
+    | | | | | ├── {group_id}-{artifact_id}/
     | | | | | | | ├── methods.txt
     | | | | | | | ├── types.txt
     | ...
@@ -51,3 +50,8 @@ RET_DIR = os.path.join(DATA_DIR, 'result/')
 TQDM_LOG_PATH = os.path.join(DATA_DIR, 'tqdm_log/')
 # path to data/reachableApi/
 REACHABLE_API_DIR = os.path.join(DATA_DIR, 'reachableApi/')
+
+# path to sootCG
+SOOTCG_PATH = os.path.join(MainProcess_pwd, 'utils/sootCG-1.0-SNAPSHOT-jar-with-dependencies.jar')
+# path to soot_Type_DG
+SOOT_TYPE_DG_PATH = os.path.join(MainProcess_pwd, 'utils/soot_Type_DG-1.0-SNAPSHOT-jar-with-dependencies.jar')

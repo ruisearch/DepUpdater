@@ -110,6 +110,7 @@ class Dep:
     def get_best_version(self, tqdm_log_module_folder:str):
         gavc = {'g':self.GroupId, 'a':self.ArtifactId, 'v':self.Version, 'c':self.Classifier}
         rev = Revapi(gavc, self.ReachableAPIs, self.AllVersion, self.Pwd, self.JarFileName, self.DependedBy, self.Omitted)
-        return rev.get_best_version(tqdm_log_module_folder)
+        return rev.get_best_
+    version(tqdm_log_module_folder)
         
     
