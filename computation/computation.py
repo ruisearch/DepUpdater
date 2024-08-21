@@ -6,6 +6,7 @@ import json
 import tqdm
 from constants import TQDM_LOG_PATH, REACHABLE_API_DIR
 from versions import get_all_versions
+from api import Api
 class Computation:
     def __init__(self, cur_node:dict, graph:list, json_path: str, repo_name:str, relative_path_to_module:str):
         """
@@ -19,8 +20,8 @@ class Computation:
         self.json_path = json_path
         self.repo_name = repo_name
         self.relative_path_to_module = relative_path_to_module
-        self.reachable_methods = []
-        self.reachable_methods = []
+        self.reachable_method_callee = []
+        self.reachable_type_callee = []
         
     def get_old_deps(self):
         """get the old dependencies of the current dependency\n
@@ -98,48 +99,109 @@ class Computation:
 
 
     def get_reachable_methods(self):
-        """get all reachable methods of the dependency"""
-        # if dependent is empty, then it is the client, and all methods are reachable
-        print('to be continued...')
-        
+        """record all reachable methods of the dependency and return the reachable callees\n
+        Return:
+            callees (list) : a list of reachable callee methods
+        """
+        if self.judge_dependent_empty():
+            # if dependent is empty, then it is the client, and all methods are reachable
+            client_groupId = self.cur_node['GroupId']
+            client_artifactId = self.cur_node['ArtifactId']
+            client_api = Api(client_groupId, client_artifactId, self.cur_node['Original_Version']) 
+            client_cg = client_api.get_cg()
+            reachable_methods = client_api.extract_methods_from_cg(client_cg)
+            self.record_reachable_apis(reachable_methods, 'methods')
+
+        else:
+            # dependent is not empty, then get the callees are the entry points
+            for dependent in self.cur_node['Dependents']:
+                dependent_groupId = dependent['GroupId']
+                dependent_artifactId = dependent['ArtifactId']
+                dependent_version = dependent['Version']
+                defined_version = dependent['Defined_Version']
+                self.append_callee(dependent_groupId, dependent_artifactId, defined_version, 'methods')
+            print('to be continued...')
+
+    def append_callee(self, dependent_groupId:str, dependent_artifactId:str, defined_version:str, api_type:str):
+        """append the callee to the reachable_method_callee or reachable_type_callee
+        dict in reachable_method_callee or reachable_type_callee is like:\n
+            
+        """
+        if api_type == 'methods':
+            callees = self.get_callee(dependent_groupId, dependent_artifactId, defined_version, api_type)
+            self.reachable_method_callee.append()
+        elif api_type == 'types':
+            callees = self.get_callee(dependent_groupId, dependent_artifactId, defined_version, api_type)
+            self.reachable_type_callee.extend(callees)
+        else:
+            raise ValueError("Invalid api_type. Must be 'methods' or 'types'.")
+
     def get_reachable_types(self):
         """get all reachable types of the dependency"""
         # if dependent is empty, then it is the client, and all types are reachable
         print('to be continued...')
+
+    def get_callee(self, dependent_groupId:str, dependent_artifactId:str, defined_version:str, api_type:str):
+        """get the callees in current dependency
+        Return:
+            reachable_pair (list) : a list of tuple, each tuple is a pair of caller and callee\n
+            the caller is in the dependent, and the callee is in the current dependency
+        """
+        dependent_reachable_apis = self.read_reachable_apis(dependent_groupId, dependent_artifactId, api_type)
+        api = Api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], defined_version)
+        if api_type == 'methods':
+            cur_node_methods = api.extract_methods_from_cg(api.get_cg())
+            method_set = set(cur_node_methods)
+            callees = [api for api in dependent_reachable_apis if api in method_set]
+            return callees
+        elif api_type == 'types':
+            cur_node_types = api.extract_types_from_dg(api.get_type_dg())
+            type_set = set(cur_node_types)
+            callees = [api for api in dependent_reachable_apis if api in type_set]
+            return callees
 
     def create_folder(self, folder:str):
         """create a folder if not exists"""
         if not os.path.exists(folder):
             os.makedirs(folder)
 
-    def record_reachable_apis(self, reachable_apis:list, group_id:str, artifact_id:str, version:str, apis_type:str):
+    def record_reachable_apis(self, reachable_apis:list, apis_type:str):
         """record the reachable apis (methods or types) of the dependency in this module\n
-        usually record the reachable apis of this dependency"""
-        module_folder = os.path.join(REACHABLE_API_DIR, self.repo_name, self.relative_path_to_module, group_id, artifact_id, version)
+        usually record the reachable apis of this dependency
+        Args:
+            reachable_apis (list) : a list of reachable api
+            apis_type (str) : 'methods' or 'types'
+        """
+        module_folder = os.path.join(REACHABLE_API_DIR, self.repo_name, self.relative_path_to_module, f'{self.cur_node["GroupId"]}', f'{self.cur_node["ArtifactId"]}')
         self.create_folder(module_folder)
         if apis_type == 'methods':
-            module_file = os.path.join(module_folder, 'methods.txt')
+            module_file = os.path.join(module_folder, 'methods.json')
         elif apis_type == 'types':
-            module_file = os.path.join(module_folder, 'types.txt')
+            module_file = os.path.join(module_folder, 'types.json')
         else:
             raise ValueError("Invalid apis_type. Must be 'methods' or 'types'.")
+        # write the reachable apis into the file
         with open(module_file, 'w', encoding='utf-8') as f:
-            for apis in reachable_apis:
-                f.write(apis)
+            for api in reachable_apis:
+                f.write(api)
                 f.write('\n')
 
-    def read_reachable_apis(self, group_id:str, artifact_id:str, version:str, apis_type:str):
+    def read_reachable_apis(self, group_id:str, artifact_id:str, apis_type:str):
         """read the reachable apis (methods or types) of the dependency in this module\n
-        usually read the reachable apis of the dependent of this dependency"""
-        module_folder = os.path.join(REACHABLE_API_DIR, self.repo_name, self.relative_path_to_module, group_id, artifact_id, version)
+        usually read the reachable apis of the dependent of this dependency
+        Return:
+            reachable_apis (list) : a list of reachable api
+        """
+        module_folder = os.path.join(REACHABLE_API_DIR, self.repo_name, self.relative_path_to_module, group_id, artifact_id)
         if apis_type == 'methods':
             module_file = os.path.join(module_folder, 'methods.txt')
         elif apis_type == 'types':
             module_file = os.path.join(module_folder, 'types.txt')
         else:
             raise ValueError("Invalid apis_type. Must be 'methods' or 'types'.")
+        # read the reachable apis from the file
         with open(module_file, 'r', encoding='utf-8') as f:
-            reachable_apis = f.readlines()
+            reachable_apis = [line.strip() for line in f.readlines()]
         return reachable_apis
 
     def record_graph(self):
@@ -147,3 +209,8 @@ class Computation:
         with open(self.json_path, 'w', encoding='utf-8') as f:
             json.dump(self.graph, f, ensure_ascii=False, indent=4)
 
+    def judge_dependent_empty(self):
+        """judge if the dependent is empty"""
+        if not self.cur_node['Dependents']:
+            return True
+        return False

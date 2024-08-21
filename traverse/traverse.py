@@ -25,7 +25,7 @@ class Traverse:
         """get the methods and types of client jar first"""
         for dep in self.graph:
             if dep['Depth'] == 0:
-                client_com = Computation(dep, self.graph, self.json_path)
+                client_com = Computation(dep, self.graph, self.json_path, self.repo_name, self.relative_path_to_module)
                 client_com.get_reachable_methods()
                 client_com.get_reachable_types()
                 break
