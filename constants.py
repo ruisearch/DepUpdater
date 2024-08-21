@@ -21,10 +21,10 @@ data folder structure:
     ├── reachableApi/
     | ├── {repo_name}/
     | | ├── {relative_path_to_module}/
-    | | | | ├── {dependent_group_id}-{dependent_artifact_id}/
-    | | | | | ├── {group_id}-{artifact_id}/
-    | | | | | | | ├── methods.txt
-    | | | | | | | ├── types.txt
+    | | | | ├── {group_id}/
+    | | | | | ├── {artifact_id}/
+    | | | | | | ├── methods.txt
+    | | | | | | ├── types.txt
     | ...
     ├── tqdm_log/
     | ├── {module_name}/
