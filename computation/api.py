@@ -14,7 +14,10 @@ class Api:
         self.version = version
 
     def get_cg(self):
-        """get the call graph of the jar file"""
+        """get the call graph of the jar file
+        Returns:
+            cg (str): call graph in string format
+        """
         # query the call graph from sqlite
         cg = query_call_graph(self.groupId, self.artifactId, self.version)
         if cg:
@@ -53,25 +56,89 @@ class Api:
     
     def extract_methods_from_cg(self, cg:str):
         """extract methods from call graph"""
-        methods = []
+        methods = set()
         for line in cg.split('\n'):
             # caller -> callee in one line, extract caller and callee
             if '->' in line:
                 caller, callee = line.split(' -> ')
-                methods.append(caller.strip())
-                methods.append(callee.strip())
+                methods.add(caller.strip())
+                methods.add(callee.strip())
         return methods
     
     def extract_types_from_dg(self, dg:str):
         """extract types from dependency graph"""
-        types = []
+        types = set()
         for line in dg.split('\n'):
             # caller -> callee in one line, extract caller and callee
             if '->' in line:
                 caller, callee = line.split(' -> ')
-                types.append(caller.strip())
-                types.append(callee.strip())
+                types.add(caller.strip())
+                types.add(callee.strip())
         return types
+
+    @staticmethod
+    def parse_call_relations(call_relations_str:str):
+        """Parse a string of caller -> callee relations
+        Args:
+            call_relations_str (str): A string of caller -> callee relations\n
+            can be cg ,type_dg or reachable_api_pair from file
+        Returns:
+            call_relations (dict): A dictionary of caller -> callees relations\n
+            key: caller, value: a set of the corresponding callees\n
+        """
+        call_relations = {}
+        callers = set()
+        callees = set()
+        
+        # Split the string by lines
+        lines = call_relations_str.strip().split('\n')
+        
+        # Process each line
+        for line in lines:
+            caller, callee = line.strip().split(' -> ')
+            callers.add(caller)
+            callees.add(callee)
+            if caller in call_relations:
+                call_relations[caller].add(callee)
+            else:
+                call_relations[caller] = {callee}
+        return call_relations
+    
+    @staticmethod
+    def find_matching_relations(call_relations: dict, target_callers:set):
+        """Filter caller -> callee relations in call_relations that callee in target_callers
+        Args:
+            call_relations (dict): A dictionary of caller -> callees relations\n
+            key: caller, value: a set of the corresponding callees\n
+            target_callers (set): A set of target callers\n
+        Returns:
+            matching_relations (set): A set of matching caller -> callee relations tuple\n
+            [0] is caller while [1] is callee
+        """
+        matching_relations = set()
+        
+        for caller, callees in call_relations.items():
+            for callee in callees:
+                if callee in target_callers:
+                    matching_relations.add((caller, callee))
+        return matching_relations
+    
+    @staticmethod
+    def find_reachable_calls(entry_points:set, call_relations:dict):
+        """Recursively find all reachable call relations starting from entry points"""
+        reachable = set()
+        
+        def dfs(caller):
+            if caller in call_relations:
+                for callee in call_relations[caller]:
+                    relation = (caller, callee)
+                    if relation not in reachable:
+                        reachable.add(relation)
+                        dfs(callee)
+        for entry in entry_points:
+            dfs(entry)
+        
+        return reachable
 
 if __name__ == '__main__':
     api = Api('joda-time', 'joda-time', '2.12.7')

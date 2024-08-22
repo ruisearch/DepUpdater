@@ -26,8 +26,7 @@ class Traverse:
         for dep in self.graph:
             if dep['Depth'] == 0:
                 client_com = Computation(dep, self.graph, self.json_path, self.repo_name, self.relative_path_to_module)
-                client_com.get_reachable_methods()
-                client_com.get_reachable_types()
+                client_com.get_reachable_api()
                 break
 
     def traverse(self):
@@ -40,6 +39,8 @@ class Traverse:
             # --> new_deps = compute_newest_version(cur_dep, self.graph, self.json_path)
             com = Computation(cur_dep, self.graph, self.json_path, self.repo_name, self.relative_path_to_module)
             old_deps = com.get_old_deps()
+            best_version = com.compute_best_version()
+            com.get_and_record_reachable_api(best_version)
             # update the graph and queue,
             # record the graph in version.json in real time
             # --> update_graph(cur_dep, old_deps, new_deps, self.graph, self.queue, self.json_path)

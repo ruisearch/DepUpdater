@@ -20,8 +20,11 @@ class Computation:
         self.json_path = json_path
         self.repo_name = repo_name
         self.relative_path_to_module = relative_path_to_module
-        self.reachable_method_callee = []
-        self.reachable_type_callee = []
+        # method_caller_callee_pair and type_caller_callee_pair are used to compare with the Revapi result
+        # consist with dicts like {'caller': caller_api, 'callee': callee_api, 'dependent': dependent_groupId:dependent_artifactId:dependent_version}
+        # callee_api is the entry point of the method or type
+        self.method_entry_points = []
+        self.type_entry_points = []
         
     def get_old_deps(self):
         """get the old dependencies of the current dependency\n
@@ -50,9 +53,10 @@ class Computation:
         if not all_versions:
             return self.cur_node['Original_Version']
 
-        # get reachable methods and types of the dependency
-        self.get_reachable_methods()
-        self.get_reachable_types()
+        # get entry points and caller of the dependency
+        for dependent in self.cur_node['Dependents']:
+            self.get_entry_points_and_caller(dependent['GroupId'], dependent['ArtifactId'], dependent['Version'], dependent['Define_Version'], 'methods')
+            self.get_entry_points_and_caller(dependent['GroupId'], dependent['ArtifactId'], dependent['Version'], dependent['Define_Version'], 'types')
         # create a folder to store the log of tqdm
         tqdm_log_module_folder = os.path.join(TQDM_LOG_PATH, self.repo_name, self.relative_path_to_module)
         self.create_folder(tqdm_log_module_folder)
@@ -98,99 +102,114 @@ class Computation:
         print('to be continued...')
 
 
-    def get_reachable_methods(self):
-        """record all reachable methods of the dependency and return the reachable callees\n
-        Return:
-            callees (list) : a list of reachable callee methods
-        """
-        if self.judge_dependent_empty():
-            # if dependent is empty, then it is the client, and all methods are reachable
+    def get_and_record_reachable_api(self, best_version = None):
+        """record all reachable caller_callee_pairs of the dependency at the best version\n"""
+        if best_version is None:
+            # if best_version is None , then it is the client, and all methods are reachable
+            # its actual best_version is the Original_Version
+            # note : this branch is executed only once
             client_groupId = self.cur_node['GroupId']
             client_artifactId = self.cur_node['ArtifactId']
-            client_api = Api(client_groupId, client_artifactId, self.cur_node['Original_Version']) 
+            client_api = Api(client_groupId, client_artifactId, self.cur_node['Original_Version'])
             client_cg = client_api.get_cg()
-            reachable_methods = client_api.extract_methods_from_cg(client_cg)
-            self.record_reachable_apis(reachable_methods, 'methods')
-
+            client_cg_dict = Api.parse_call_relations(client_cg)
+            self.record_reachable_apis(client_cg_dict, 'methods')
+            client_dg = client_api.get_type_dg()
+            client_dg_dict = Api.parse_call_relations(client_dg)
+            self.record_reachable_apis(client_dg_dict, 'types')
         else:
-            # dependent is not empty, then get the callees are the entry points
-            for dependent in self.cur_node['Dependents']:
-                dependent_groupId = dependent['GroupId']
-                dependent_artifactId = dependent['ArtifactId']
-                dependent_version = dependent['Version']
-                defined_version = dependent['Defined_Version']
-                self.append_callee(dependent_groupId, dependent_artifactId, defined_version, 'methods')
-            print('to be continued...')
+            best_version_api = Api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], best_version)
+            best_version_cg = best_version_api.get_cg()
+            entry_point_methods = self.get_entry_points_set('methods')
+            method_call_relations = Api.parse_call_relations(best_version_cg)
+            reachable_method_pairs = Api.find_reachable_calls(method_call_relations, entry_point_methods)
+            self.record_reachable_apis(reachable_method_pairs, 'methods')
+            entry_point_types = self.get_entry_points_set('types')
+            best_version_dg = best_version_api.get_type_dg()
+            type_call_relations = Api.parse_call_relations(best_version_dg)
+            reachable_type_pairs = Api.find_reachable_calls(type_call_relations, entry_point_types)
+            self.record_reachable_apis(reachable_type_pairs, 'types')
 
-    def append_callee(self, dependent_groupId:str, dependent_artifactId:str, defined_version:str, api_type:str):
-        """append the callee to the reachable_method_callee or reachable_type_callee
+    def get_entry_points_and_caller(self, dependent_groupId:str, dependent_artifactId:str, dependent_version:str, defined_version:str, api_type:str):
+        """get the entry points in the dependency and the corresponding caller in the dependent\n
         dict in reachable_method_callee or reachable_type_callee is like:\n
-            
+        {\n
+            'caller': caller_api,\n
+            'callee': callee_api,\n
+            'dependent': dependent_groupId:dependent_artifactId:dependent_version\n
+        }\n
+        the callee is the entry point
         """
+        defined_version_api = Api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], defined_version)
+        dependent_reachable_apis = self.read_reachable_apis(dependent_groupId, dependent_artifactId, api_type)
         if api_type == 'methods':
-            callees = self.get_callee(dependent_groupId, dependent_artifactId, defined_version, api_type)
-            self.reachable_method_callee.append()
+            defined_version_cg = defined_version_api.get_cg()
+            all_methods = defined_version_api.extract_methods_from_cg(defined_version_cg)
+            matching_method_pairs = Api.find_matching_relations(dependent_reachable_apis, all_methods)
+            for pair in matching_method_pairs:
+                self.method_entry_points.append(
+                    {
+                        'caller': pair[0],
+                        'callee': pair[1],
+                        'dependent': f'{dependent_groupId}:{dependent_artifactId}:{dependent_version}'
+                    }
+                )
         elif api_type == 'types':
-            callees = self.get_callee(dependent_groupId, dependent_artifactId, defined_version, api_type)
-            self.reachable_type_callee.extend(callees)
+            defined_version_dg = defined_version_api.get_type_dg()
+            all_types = defined_version_api.extract_types_from_dg(defined_version_dg)
+            matching_type_pairs = Api.find_matching_relations(dependent_reachable_apis, all_types)
+            for pair in matching_type_pairs:
+                self.type_entry_points.append(
+                    {
+                        'caller': pair[0],
+                        'callee': pair[1],
+                        'dependent': f'{dependent_groupId}:{dependent_artifactId}:{dependent_version}'
+                    }
+                )
         else:
             raise ValueError("Invalid api_type. Must be 'methods' or 'types'.")
-
-    def get_reachable_types(self):
-        """get all reachable types of the dependency"""
-        # if dependent is empty, then it is the client, and all types are reachable
-        print('to be continued...')
-
-    def get_callee(self, dependent_groupId:str, dependent_artifactId:str, defined_version:str, api_type:str):
-        """get the callees in current dependency
-        Return:
-            reachable_pair (list) : a list of tuple, each tuple is a pair of caller and callee\n
-            the caller is in the dependent, and the callee is in the current dependency
-        """
-        dependent_reachable_apis = self.read_reachable_apis(dependent_groupId, dependent_artifactId, api_type)
-        api = Api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], defined_version)
+        
+    def get_entry_points_set(self, api_type:str):
+        """get the set of entry points of the dependency for reachable api"""
         if api_type == 'methods':
-            cur_node_methods = api.extract_methods_from_cg(api.get_cg())
-            method_set = set(cur_node_methods)
-            callees = [api for api in dependent_reachable_apis if api in method_set]
-            return callees
+            return set([api['callee'] for api in self.method_entry_points])
         elif api_type == 'types':
-            cur_node_types = api.extract_types_from_dg(api.get_type_dg())
-            type_set = set(cur_node_types)
-            callees = [api for api in dependent_reachable_apis if api in type_set]
-            return callees
+            return set([api['callee'] for api in self.type_entry_points])
+
 
     def create_folder(self, folder:str):
         """create a folder if not exists"""
         if not os.path.exists(folder):
             os.makedirs(folder)
 
-    def record_reachable_apis(self, reachable_apis:list, apis_type:str):
+    def record_reachable_apis(self, reachable_apis:dict , apis_type:str):
         """record the reachable apis (methods or types) of the dependency in this module\n
-        usually record the reachable apis of this dependency
+        usually record the reachable apis of this dependency at the best version
         Args:
-            reachable_apis (list) : a list of reachable api
+            reachable_apis (list) : A dictionary of caller -> callees relations\n
+            key: caller, value: a set of the corresponding callees\n
             apis_type (str) : 'methods' or 'types'
         """
         module_folder = os.path.join(REACHABLE_API_DIR, self.repo_name, self.relative_path_to_module, f'{self.cur_node["GroupId"]}', f'{self.cur_node["ArtifactId"]}')
         self.create_folder(module_folder)
         if apis_type == 'methods':
-            module_file = os.path.join(module_folder, 'methods.json')
+            module_file = os.path.join(module_folder, 'methods.txt')
         elif apis_type == 'types':
-            module_file = os.path.join(module_folder, 'types.json')
+            module_file = os.path.join(module_folder, 'types.txt')
         else:
             raise ValueError("Invalid apis_type. Must be 'methods' or 'types'.")
         # write the reachable apis into the file
         with open(module_file, 'w', encoding='utf-8') as f:
-            for api in reachable_apis:
-                f.write(api)
-                f.write('\n')
+            for caller, callees in reachable_apis.items():
+                for callee in callees:
+                    f.write(f'{caller} -> {callee}\n')
 
     def read_reachable_apis(self, group_id:str, artifact_id:str, apis_type:str):
-        """read the reachable apis (methods or types) of the dependency in this module\n
-        usually read the reachable apis of the dependent of this dependency
+        """read the reachable caller_callee_pairs (methods or types) of the dependency in this module\n
+        usually read the reachable apis of the dependent of cur_node
         Return:
-            reachable_apis (list) : a list of reachable api
+            reachable_apis : A dictionary of caller -> callees relations tuple\n
+            key: caller, value: a set of the corresponding callees\n
         """
         module_folder = os.path.join(REACHABLE_API_DIR, self.repo_name, self.relative_path_to_module, group_id, artifact_id)
         if apis_type == 'methods':
@@ -201,7 +220,8 @@ class Computation:
             raise ValueError("Invalid apis_type. Must be 'methods' or 'types'.")
         # read the reachable apis from the file
         with open(module_file, 'r', encoding='utf-8') as f:
-            reachable_apis = [line.strip() for line in f.readlines()]
+            call_relations_str = f.read()
+        reachable_apis = Api.parse_call_relations(call_relations_str)
         return reachable_apis
 
     def record_graph(self):
