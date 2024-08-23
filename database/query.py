@@ -67,3 +67,21 @@ def store_type_dependency_graph(groupId, artifactId, version, tdg):
     db.insert_data('api', {'groupId':groupId, 'artifactId':artifactId, 'version':version})
     db.update_data('api', {'typeDependencyGraph':tdg}, condition)
     db.close()
+    
+def query_revapi_report(groudId, artifactId, oldVersion, newVersion):
+    """query Revapi table to get the compatibility report"""
+    db = Sqlite(SQLITE_PATH)
+    db.connect()
+    condition = [('groupId','=',groudId),'AND',('artifactId','=',artifactId),'AND',('oldVersion','=',oldVersion),'AND',('newVersion','=',newVersion)]
+    report_record = db.query_data('Revapi', 'report', condition)
+    report = report_record[0][0] if report_record else ""
+    db.close()
+    return report
+
+def store_revapi_report(groudId, artifactId, oldVersion, newVersion, report):
+    """store the compatibility report"""
+    db = Sqlite(SQLITE_PATH)
+    db.connect()
+    # insert ga v1 v2 first if not exists
+    db.insert_data('Revapi', {'groupId':groudId, 'artifactId':artifactId, 'oldVersion':oldVersion, 'newVersion':newVersion, 'report':report})
+    db.close()

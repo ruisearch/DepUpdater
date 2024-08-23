@@ -49,7 +49,7 @@ class Computation:
             all_versions = get_all_versions(self.cur_node['GroupId'], self.cur_node['ArtifactId'], self.cur_node['Original_Version'])
             # record the versions in the graph
             self.cur_node['Versions'] = [{'version': version, 'breaking_reason':''} for version in all_versions]
-        
+
         if not all_versions:
             return self.cur_node['Original_Version']
 
