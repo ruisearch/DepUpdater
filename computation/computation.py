@@ -5,8 +5,8 @@ import copy
 import json
 import tqdm
 from constants import TQDM_LOG_PATH, REACHABLE_API_DIR
-from versions import get_all_versions
-from api import Api
+from computation.versions import get_all_versions
+from computation.api import Api
 class Computation:
     def __init__(self, cur_node:dict, graph:list, json_path: str, repo_name:str, relative_path_to_module:str):
         """
@@ -234,3 +234,44 @@ class Computation:
         if not self.cur_node['Dependents']:
             return True
         return False
+    
+if __name__ == '__main__':
+    ## test get caller and callee
+    # test case : org.apache.druid.extensions.contrib:druid-influxdb-emitter:28.0.1
+    # -> joda-time:joda-time:2.12.5
+    client_dict = {
+        'GroupId': 'org.apache.druid.extensions.contrib',
+        'ArtifactId': 'druid-influxdb-emitter',
+        'Original_Version': '28.0.1',
+        'Best_Version': '',
+        'Depth':0,
+        'Count':0,
+        'Dependents':[]
+    }
+    client = Computation(client_dict, [], '', 'test', 'example1')
+    client.get_and_record_reachable_api()
+    
+    dep_dict = {
+        'GroupId': 'joda-time',
+        'ArtifactId': 'joda-time',
+        'Original_Version': '2.12.5',
+        'Best_Version': '',
+        'Depth':1,
+        'Count':0,
+        'Dependents':[
+            {
+                'GroupId': 'org.apache.druid.extensions.contrib',
+                'ArtifactId': 'druid-influxdb-emitter',
+                'Version': '28.0.1',
+                'Define_Version': '2.12.5'
+            }
+        ]
+    }
+    dep = Computation(dep_dict, [], '', 'test', 'example1')
+    # get dep's entry points and caller
+    dep.get_entry_points_and_caller('org.apache.druid.extensions.contrib', 'druid-influxdb-emitter', '28.0.1', '2.12.5', 'methods')
+    dep.get_entry_points_and_caller('org.apache.druid.extensions.contrib', 'druid-influxdb-emitter', '28.0.1', '2.12.5', 'types')
+    # print methods and types entry points
+    print(dep.method_entry_points)
+    print(dep.type_entry_points)
+    # result: method_entry_points is empty, and type_entry_points has one fp 'org.joda.time.DateTime' due to soot_Type_DG
