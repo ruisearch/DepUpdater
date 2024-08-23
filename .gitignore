@@ -24,3 +24,6 @@ reusable_data.sqlite
 
 # ignore venv
 .venv/
+
+# ignore test/ containing all test files
+test/
