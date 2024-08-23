@@ -55,3 +55,5 @@ REACHABLE_API_DIR = os.path.join(DATA_DIR, 'reachableApi/')
 SOOTCG_PATH = os.path.join(MainProcess_pwd, 'utils/sootCG-1.0-SNAPSHOT-jar-with-dependencies.jar')
 # path to soot_Type_DG
 SOOT_TYPE_DG_PATH = os.path.join(MainProcess_pwd, 'utils/soot_Type_DG-1.0-SNAPSHOT-jar-with-dependencies.jar')
+# path to revapi.sh
+REVAPI_SH_PATH = os.path.join(MainProcess_pwd, 'utils', 'revapi-0.12.0', 'revapi.sh')
