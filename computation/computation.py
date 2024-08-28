@@ -21,8 +21,7 @@ class Computation:
         self.repo_name = repo_name
         self.relative_path_to_module = relative_path_to_module
         # method_caller_callee_pair and type_caller_callee_pair are used to compare with the Revapi result
-        # consist with dicts like {'caller': caller_api, 'callee': callee_api, 'dependent': dependent_groupId:dependent_artifactId:dependent_version}
-        # callee_api is the entry point of the method or type
+        # these two list are got by get_entry_points_and_caller method
         self.method_entry_points = []
         self.type_entry_points = []
         
@@ -133,12 +132,14 @@ class Computation:
     def get_entry_points_and_caller(self, dependent_groupId:str, dependent_artifactId:str, dependent_version:str, defined_version:str, api_type:str):
         """get the entry points in the dependency and the corresponding caller in the dependent\n
         dict in reachable_method_callee or reachable_type_callee is like:\n
-        {\n
-            'caller': caller_api,\n
-            'callee': callee_api,\n
-            'dependent': dependent_groupId:dependent_artifactId:dependent_version\n
-        }\n
-        the callee is the entry point
+            {
+                'dependent': dependent_groupId:dependent_artifactId:dependent_version
+                'baselineVerison': defined_version
+                'api': {
+                    callee : the set of corresponding callers
+                }
+            }
+        the callee is the entry point; 'api' is a dict of callee -> set of callers
         """
         defined_version_api = Api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], defined_version)
         dependent_reachable_apis = self.read_reachable_apis(dependent_groupId, dependent_artifactId, api_type)
@@ -146,26 +147,26 @@ class Computation:
             defined_version_cg = defined_version_api.get_cg()
             all_methods = defined_version_api.extract_methods_from_cg(defined_version_cg)
             matching_method_pairs = Api.find_matching_relations(dependent_reachable_apis, all_methods)
+            entry_point_dict = {
+                'dependent': f'{dependent_groupId}:{dependent_artifactId}:{dependent_version}',
+                'baselineVersion': defined_version,
+                'api': {}
+            }
             for pair in matching_method_pairs:
-                self.method_entry_points.append(
-                    {
-                        'caller': pair[0],
-                        'callee': pair[1],
-                        'dependent': f'{dependent_groupId}:{dependent_artifactId}:{dependent_version}'
-                    }
-                )
+                entry_point_dict['api'].setdefault(pair[1], set()).add(pair[0])
+            self.method_entry_points.append(entry_point_dict)
         elif api_type == 'types':
             defined_version_dg = defined_version_api.get_type_dg()
             all_types = defined_version_api.extract_types_from_dg(defined_version_dg)
             matching_type_pairs = Api.find_matching_relations(dependent_reachable_apis, all_types)
+            entry_point_dict = {
+                'dependent': f'{dependent_groupId}:{dependent_artifactId}:{dependent_version}',
+                'baselineVersion': defined_version,
+                'api': {}
+            }
             for pair in matching_type_pairs:
-                self.type_entry_points.append(
-                    {
-                        'caller': pair[0],
-                        'callee': pair[1],
-                        'dependent': f'{dependent_groupId}:{dependent_artifactId}:{dependent_version}'
-                    }
-                )
+                entry_point_dict['api'].setdefault(pair[1], set()).add(pair[0])
+            self.type_entry_points.append(entry_point_dict)
         else:
             raise ValueError("Invalid api_type. Must be 'methods' or 'types'.")
         
