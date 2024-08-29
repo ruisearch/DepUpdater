@@ -86,7 +86,7 @@ class Revapi:
             api_type = match.group(1)
             api = match.group(2)
             if api_type == 'class' or api_type == 'interface' \
-                or api_type == 'enum':
+                or api_type == 'enum' or api_type == '@interface':
                 # api is the bc type
                 api = self.transform_type(api)
                 bc_type.setdefault(api, set()).add(record)
@@ -118,13 +118,32 @@ class Revapi:
                 bc_method.setdefault(api, set()).add(record)
 
     def transform_type(self, _type:str):
-        """transform the type to the format in the type dependency graph"""
+        """transform the type to the format in the type dependency graph
+        remove <> to disregard generic
+        """
+        _type = self.remove_angle_brackets(_type)
         return _type
     
     def transform_method(self, method:str):
-        """transform the method to the format in the call graph"""
+        """transform the method to the format in the call graph
+        1. change a generic type to its upper bound
+        2. remove <> to disregard generic
+        """
+        # handle generic type defined in the class
+        
         return method
     
+    def remove_angle_brackets(self, text:str):
+        """remove <> in the text"""
+        pattern = r"<.*>"
+        def replace_angle_bracket(match):
+            # If the matched string is '<init>' or '<clinit>', return it as is.
+            if match.group(0) == '<init>' or match.group(0) == '<clinit>':
+                return match.group(0)
+            # Otherwise, return an empty string to "delete" the <>.
+            return ''
+        return re.sub(pattern, replace_angle_bracket, text)
+
     def extract_source_breaking_methods(self, report:str):
         """extract the source breaking methods from the report"""
         source_breaking_methods = []
