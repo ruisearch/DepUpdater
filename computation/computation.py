@@ -7,6 +7,9 @@ import tqdm
 from constants import TQDM_LOG_PATH, REACHABLE_API_DIR
 from computation.versions import get_all_versions
 from computation.api import Api
+from compuation.revapi import Revapi
+from database.query import query_to_get_jar_location
+from preprocess import Restore
 class Computation:
     def __init__(self, cur_node:dict, graph:list, json_path: str, repo_name:str, relative_path_to_module:str):
         """
@@ -47,7 +50,7 @@ class Computation:
         else:
             all_versions = get_all_versions(self.cur_node['GroupId'], self.cur_node['ArtifactId'], self.cur_node['Original_Version'])
             # record the versions in the graph
-            self.cur_node['Versions'] = [{'version': version, 'breaking_reason':''} for version in all_versions]
+            self.cur_node['Versions'] = [{'version': version, 'breaking_reason':[]} for version in all_versions]
 
         if not all_versions:
             return self.cur_node['Original_Version']
@@ -77,11 +80,10 @@ class Computation:
 
         # find the newest compatible version from self.cur_node['Versions']
         best_version = self.get_best_version(self.cur_node['Versions'])
-        
+
         # record the graph into json file
         self.record_graph()
         return best_version
-            
 
     def get_best_version(self, Versions:list):
         """find the newest compatible version from Versions"""
@@ -98,8 +100,65 @@ class Computation:
             this dict is extracted from the self.cur_node['Versions'], and will be updated in the self.cur_node['Versions']\n
             as well as the graph
         """
-        print('to be continued...')
+        # find the dict in self.cur_node['Versions'] with the version
+        for version_dict in self.cur_node['Versions']:
+            if version_dict['version'] == version:
+                ret_dict = version_dict
+                break
+        # clear ret_dict['breaking_reason'] first
+        ret_dict['breaking_reason'] = []
+        # judge if this node is direct dependency
+        depth = self.cur_node['Depth']
+        if depth == 1:
+            binary_or_source = 'binary'
+        else:
+            binary_or_source = 'source'
+        # for each dict in method_entry_points and type_entry_points, compare the entry points with BC api from Revapi result
+        for method_entry_point in self.method_entry_points:
+            baselineVersion = method_entry_point['baselineVersion']
+            old_jar = query_to_get_jar_location(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion)
+            Restore.get_dep_jar(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion)
+            new_jar = query_to_get_jar_location(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
+            Restore.get_dep_jar(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
+            revapi = Revapi(old_jar, new_jar)
+            bc_method, _ = revapi.get_bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version, binary_or_source)
+            client_impacting_methods = self.intersect_api(bc_method, method_entry_point['api'])
+            for client_impacting_method in client_impacting_methods:
+                breaking_reason = {
+                    'api': client_impacting_method,
+                    'dependent': method_entry_point['dependent'],
+                    'callers': [caller for caller in method_entry_point['api'][client_impacting_method]],
+                    'record': bc_method[client_impacting_method]
+                }
+                ret_dict['breaking_reason'].append(breaking_reason)
+        for type_entry_point in self.type_entry_points:
+            baselineVersion = type_entry_point['baselineVersion']
+            old_jar = query_to_get_jar_location(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion)
+            Restore.get_dep_jar(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion)
+            new_jar = query_to_get_jar_location(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
+            Restore.get_dep_jar(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
+            revapi = Revapi(old_jar, new_jar)
+            _, bc_type = revapi.get_bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version, binary_or_source)
+            client_impacting_types = self.intersect_api(bc_type, type_entry_point['api'])
+            for client_impacting_type in client_impacting_types:
+                breaking_reason = {
+                    'api': client_impacting_type,
+                    'dependent': type_entry_point['dependent'],
+                    'callers': [caller for caller in type_entry_point['api'][client_impacting_type]],
+                    'record': bc_type[client_impacting_type]
+                }
+                ret_dict['breaking_reason'].append(breaking_reason)
+        return ret_dict
 
+    @staticmethod
+    def intersect_api(api1:dict, api2:dict):
+        """intersect two api dicts to get the common api
+        Args:
+            api1 : the first api dict, its key is an api
+            api2 : the second api dict, its key is an api
+        """
+        common_apis = set(api1.keys() & api2.keys())
+        return common_apis
 
     def get_and_record_reachable_api(self, best_version = None):
         """record all reachable caller_callee_pairs of the dependency at the best version\n"""
@@ -169,7 +228,7 @@ class Computation:
             self.type_entry_points.append(entry_point_dict)
         else:
             raise ValueError("Invalid api_type. Must be 'methods' or 'types'.")
-        
+
     def get_entry_points_set(self, api_type:str):
         """get the set of entry points of the dependency for reachable api"""
         if api_type == 'methods':
@@ -235,7 +294,7 @@ class Computation:
         if not self.cur_node['Dependents']:
             return True
         return False
-    
+
 if __name__ == '__main__':
     # test get caller and callee
     # # test case 1 : org.apache.druid.extensions.contrib:druid-influxdb-emitter:28.0.1
