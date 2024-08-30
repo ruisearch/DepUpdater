@@ -117,48 +117,72 @@ class Revapi:
                 api = self.transform_method(api)
                 bc_method.setdefault(api, set()).add(record)
 
-    def transform_type(self, _type:str):
+    @staticmethod
+    def transform_type(_type:str):
         """transform the type to the format in the type dependency graph
         remove <> to disregard generic
         """
-        _type = self.remove_angle_brackets(_type)
+        _type = Revapi.remove_angle_brackets(_type)
         return _type
-    
-    def transform_method(self, method:str):
+
+    @staticmethod
+    def transform_method(method:str):
         """transform the method to the format in the call graph
         1. change a generic type to its upper bound
         2. remove <> to disregard generic
         """
         # handle generic type defined in the class
-        
+        class_generic_type_pattern = r'(<[^<>]*>)::'
+        class_generic_match = re.search(class_generic_type_pattern, method)
+        if class_generic_match:
+            # generic type exists in the class
+            class_generic_declaration = class_generic_match.group(1)
+            letter, upper_bound = Revapi.handle_generic_declaration(class_generic_declaration)
+            method = Revapi.replace_letter_with_upper_bound(method, letter, upper_bound)
+        # # handle generic type defined in the method
+        method_generic_type_pattern = r'^(<.*?>)'
+        method_generic_match = re.search(method_generic_type_pattern, method)
+        if method_generic_match:
+            # generic type exists in the method
+            method_generic_declaration = method_generic_match.group(1)
+            letter, upper_bound = Revapi.handle_generic_declaration(method_generic_declaration)
+            method = Revapi.replace_letter_with_upper_bound(method, letter, upper_bound)
+        # remove <> to disregard generic
+        method = Revapi.remove_angle_brackets(method).strip()
         return method
-    
-    def remove_angle_brackets(self, text:str):
-        """remove <> in the text"""
-        pattern = r"<.*>"
-        def replace_angle_bracket(match):
-            # If the matched string is '<init>' or '<clinit>', return it as is.
-            if match.group(0) == '<init>' or match.group(0) == '<clinit>':
-                return match.group(0)
-            # Otherwise, return an empty string to "delete" the <>.
-            return ''
-        return re.sub(pattern, replace_angle_bracket, text)
 
-    def extract_source_breaking_methods(self, report:str):
-        """extract the source breaking methods from the report"""
-        source_breaking_methods = []
-        lines = report.split('\n')
-        for i, line in enumerate(lines):
-            if re.match(r'^\s+source\s+breaking\s+changes\s*$', line):
-                # print('source breaking changes')
-                j = i + 2
-                while not re.match(r'^\s+binary\s+breaking\s+changes\s*$', lines[j]):
-                    if re.match(r'^\s+.*$', lines[j]):
-                        source_breaking_methods.append(lines[j].strip())
-                    j += 1
-                break
-        return source_breaking_methods
-    
+    @staticmethod
+    def handle_generic_declaration(generic_declaration:str):
+        """handle the generic type
+        Args:
+            generic_declaration (str): the generic declaration, like <S extends java.lang.annotation.Annotation>
+        Returns:
+            generic_letter (str): the letter representing generic type, like S
+            generic_type (str): the upper bound of the generic type, like java.lang.annotation.Annotation
+        """
+        if ' extends ' in generic_declaration:
+            # upper bound is defined after 'extends'
+            generic_letter = generic_declaration[generic_declaration.find('<')+1:generic_declaration.find(' extends ')]
+            generic_type = generic_declaration[generic_declaration.find(' extends ')+9: generic_declaration.rfind('>')]
+            return generic_letter, generic_type
+        # upper bound is java.lang.Object
+        generic_letter = generic_declaration[generic_declaration.find('<')+1:generic_declaration.rfind('>')]
+        return generic_letter, 'java.lang.Object'
+
+    @staticmethod
+    def replace_letter_with_upper_bound(method:str, generic_letter:str, upper_bound:str):
+        """replace the generic letter with its upper bound
+        in parameter, return type"""
+        letter_pattern = r'\b' + generic_letter + r'\b'
+        return re.sub(letter_pattern, upper_bound, method)
+
+    @staticmethod
+    def remove_angle_brackets(text:str):
+        """remove <> in the text"""
+        while re.search(r'<[^<>]*>', text):
+            text = re.sub(r'<[^<>]*>', '', text)
+        return text
+
 if __name__ == '__main__':
     from constants import MainProcess_pwd
     old_jar = os.path.join(MainProcess_pwd, 'test', 'byte-buddy-1.12.19.jar')
@@ -176,3 +200,9 @@ if __name__ == '__main__':
     print(revapi.source_bc_method)
     print(revapi.binary_bc_method)
     print(revapi.binary_bc_type)
+    
+    # # test transform_method
+    # test_method = '<S extends java.lang.annotation.Annotation> net.bytebuddy.asm.Advice.OffsetMapping.Factory<S> net.bytebuddy.asm.Advice.OffsetMapping.ForSerializedValue.Factory<T extends java.lang.annotation.Annotation>::of(java.lang.Class<S>, java.io.Serializable, java.lang.Class<?>)'
+    # test_method = '<T> T test.soot.CG.Cg_Main::test_generic(T)'
+    test_method = '<T extends org.test> T org.test.A<T extends org.class.test>::test(T, lang.String)'
+    print(Revapi.transform_method(test_method))
