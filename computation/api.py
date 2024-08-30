@@ -79,7 +79,7 @@ class Api:
                 if self.filter_type(callee):
                     types.add(callee.strip())
         return types
-    
+
     def filter_method(self, method:str):
         """filter built-in methods
         if methods are built-in methods, return False
