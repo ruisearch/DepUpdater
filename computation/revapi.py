@@ -3,7 +3,8 @@ import os
 import re
 import subprocess
 from constants import REVAPI_SH_PATH
-from database.query import query_revapi_report, store_revapi_report
+from database.query import query_revapi_report, store_revapi_report,\
+    query_bc_api, store_binary_bc_api, store_source_bc_api
 class Revapi:
     """Revapi tool class"""
 
@@ -25,6 +26,38 @@ class Revapi:
         self.binary_bc_type = {}
         self.source_bc_method = {}
         self.source_bc_type = {}
+        
+    def bc_api(self, groupId:str, artifactId:str, old_version:str, new_version:str, binary_or_source:str):
+        """main method of this file, get the bc api in the format of dict
+        Args:
+            binary_or_source (str): 'binary' or 'source' to distinguish the type of the bc api
+        """
+        if binary_or_source == 'binary':
+            binary_bc_method, binary_bc_type, _, _ = query_bc_api(groupId, artifactId, old_version, new_version)
+            if binary_bc_method and binary_bc_type:
+                # bc api exists in the database
+                return binary_bc_method, binary_bc_type
+            # bc api not exists in the database
+            report = self.compare(groupId, artifactId, old_version, new_version)
+            self.extract_bc_records(report)
+            for record in self.binary_bc_records:
+                self.extract_bc_api(record, 'binary')
+            store_binary_bc_api(groupId, artifactId, old_version, new_version, self.binary_bc_method, self.binary_bc_type)
+            return self.binary_bc_method, self.binary_bc_type
+        elif binary_or_source == 'source':
+            _, _, source_bc_method, source_bc_type = query_bc_api(groupId, artifactId, old_version, new_version)
+            if source_bc_method and source_bc_type:
+                # bc api exists in the database
+                return source_bc_method, source_bc_type
+            # bc api not exists in the database
+            report = self.compare(groupId, artifactId, old_version, new_version)
+            self.extract_bc_records(report)
+            for record in self.source_bc_records:
+                self.extract_bc_api(record, 'source')
+            store_source_bc_api(groupId, artifactId, old_version, new_version, self.source_bc_method, self.source_bc_type)
+            return self.source_bc_method, self.source_bc_type
+        else:
+            raise ValueError('binary_or_source should be binary or source')
 
     def compare(self, groupId:str, artifactId:str, old_version:str, new_version:str):
         """get the compatibility report between two jar files\n
@@ -79,7 +112,7 @@ class Revapi:
             match = re.search(api_pattern, record)
             api = match.group(1)
             api = self.transform_type(api)
-            bc_type.setdefault(api, set()).add(record)
+            bc_type.setdefault(api, []).append(record)
         else:
             api_pattern = r"old: (.+?) (.+?)\n"
             match = re.search(api_pattern, record)
@@ -89,7 +122,7 @@ class Revapi:
                 or api_type == 'enum' or api_type == '@interface':
                 # api is the bc type
                 api = self.transform_type(api)
-                bc_type.setdefault(api, set()).add(record)
+                bc_type.setdefault(api, []).append(record)
             elif api_type == 'field':
                 # api is the filed of a the bc type
                 # remove inherited class
@@ -98,7 +131,7 @@ class Revapi:
                 # restore it to the type, means ignore the last . and the field name
                 api = api[:api.rfind('.')]
                 api = self.transform_type(api)
-                bc_type.setdefault(api, set()).add(record)
+                bc_type.setdefault(api, []).append(record)
             elif api_type == 'method':
                 # remove inherited class
                 if ' @' in api:
@@ -107,7 +140,7 @@ class Revapi:
                 if ' throws ' in api:
                     api = api[:api.find(' throws ')]
                 api = self.transform_method(api)
-                bc_method.setdefault(api, set()).add(record)
+                bc_method.setdefault(api, []).append(record)
             elif api_type == 'parameter':
                 # remove inherited class
                 if ' @' in api:
@@ -115,7 +148,7 @@ class Revapi:
                 # remove === === in the ParameterType
                 api = api.replace('===', '')
                 api = self.transform_method(api)
-                bc_method.setdefault(api, set()).add(record)
+                bc_method.setdefault(api, []).append(record)
 
     @staticmethod
     def transform_type(_type:str):
@@ -188,21 +221,26 @@ if __name__ == '__main__':
     old_jar = os.path.join(MainProcess_pwd, 'test', 'byte-buddy-1.12.19.jar')
     new_jar = os.path.join(MainProcess_pwd, 'test', 'byte-buddy-1.14.13.jar')
     revapi = Revapi(old_jar, new_jar)
-    report = revapi.compare('net.bytebuddy', 'byte-buddy', '1.12.19', '1.14.13')
+    # report = revapi.compare('net.bytebuddy', 'byte-buddy', '1.12.19', '1.14.13')
     
-    # test extract_bc_api
-    revapi.extract_bc_records(report)
-    for record in revapi.source_bc_records:
-        revapi.extract_bc_api(record, 'source')
-    for record in revapi.binary_bc_records:
-        revapi.extract_bc_api(record, 'binary')
-    print(revapi.source_bc_type)
-    print(revapi.source_bc_method)
-    print(revapi.binary_bc_method)
-    print(revapi.binary_bc_type)
+    # # test extract_bc_api
+    # revapi.extract_bc_records(report)
+    # for record in revapi.source_bc_records:
+    #     revapi.extract_bc_api(record, 'source')
+    # for record in revapi.binary_bc_records:
+    #     revapi.extract_bc_api(record, 'binary')
+    # print(revapi.source_bc_type)
+    # print(revapi.source_bc_method)
+    # print(revapi.binary_bc_method)
+    # print(revapi.binary_bc_type)
     
-    # # test transform_method
-    # test_method = '<S extends java.lang.annotation.Annotation> net.bytebuddy.asm.Advice.OffsetMapping.Factory<S> net.bytebuddy.asm.Advice.OffsetMapping.ForSerializedValue.Factory<T extends java.lang.annotation.Annotation>::of(java.lang.Class<S>, java.io.Serializable, java.lang.Class<?>)'
-    # test_method = '<T> T test.soot.CG.Cg_Main::test_generic(T)'
-    test_method = '<T extends org.test> T org.test.A<T extends org.class.test>::test(T, lang.String)'
-    print(Revapi.transform_method(test_method))
+    # # # test transform_method
+    # # test_method = '<S extends java.lang.annotation.Annotation> net.bytebuddy.asm.Advice.OffsetMapping.Factory<S> net.bytebuddy.asm.Advice.OffsetMapping.ForSerializedValue.Factory<T extends java.lang.annotation.Annotation>::of(java.lang.Class<S>, java.io.Serializable, java.lang.Class<?>)'
+    # # test_method = '<T> T test.soot.CG.Cg_Main::test_generic(T)'
+    # test_method = '<T extends org.test> T org.test.A<T extends org.class.test>::test(T, lang.String)'
+    # print(Revapi.transform_method(test_method))
+    
+    # test bc_api
+    binary_bc_method, binary_bc_type = revapi.bc_api('net.bytebuddy', 'byte-buddy', '1.12.19', '1.14.13', 'binary')
+    source_bc_method, source_bc_type = revapi.bc_api('net.bytebuddy', 'byte-buddy', '1.12.19', '1.14.13', 'source')
+    print(source_bc_method)
