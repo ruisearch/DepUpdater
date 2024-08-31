@@ -15,12 +15,12 @@ def get_all_versions(groupId, artifactId, original_version):
     if original_version_idx == -1:
         print(f"Fail to find the original version {original_version} in {groupId}:{artifactId}")
         return []
-    return all_versions[original_version_idx + 1:]
-    
+    return all_versions[original_version_idx :]
+
 def find_original_version_idx(all_versions, original_version):
     """find the index of the original version in all versions"""
     for idx, version in enumerate(all_versions):
-        if version['version'] == original_version:
+        if version == original_version:
             return idx
     return -1
 
@@ -65,18 +65,22 @@ def version_comparator(a, b):
         b_semver = None
         b_is_semver = False
 
-    # If both versions are valid SemVer, compare them as such
+    # If both are SemVer compliant, sort by SemVer
     if a_is_semver and b_is_semver:
-        return semver.compare(a_semver, b_semver)
+        if a_semver < b_semver:
+            return -1
+        elif a_semver > b_semver:
+            return 1
+        else:
+            return 0
 
-    # If one version is SemVer and the other is not, the SemVer version is newer
-    if a_is_semver:
-        return 1
-    if b_is_semver:
+    # If either is not SemVer compliant, sort by date
+    if a['date'] < b['date']:
         return -1
-
-    # If neither version is SemVer, compare them as strings
-    return (a > b) - (a < b)
+    elif a['date'] > b['date']:
+        return 1
+    else:
+        return 0
 
 
 def get_resource_with_retry(url, params=None, max_retries=5, sleep_time=5):
@@ -93,5 +97,3 @@ def get_resource_with_retry(url, params=None, max_retries=5, sleep_time=5):
             print(f"Fail to get {url}, reason:{e}")
             print(f"Retrying in {sleep_time} seconds...")
             time.sleep(sleep_time)
-    else:
-        raise

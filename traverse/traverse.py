@@ -26,7 +26,7 @@ class Traverse:
         for dep in self.graph:
             if dep['Depth'] == 0:
                 client_com = Computation(dep, self.graph, self.json_path, self.repo_name, self.relative_path_to_module)
-                client_com.get_reachable_api()
+                client_com.get_and_record_reachable_api()
                 break
 
     def traverse(self):
