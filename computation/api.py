@@ -148,16 +148,24 @@ class Api:
     
     @staticmethod
     def find_reachable_calls(entry_points:set, call_relations:dict):
-        """Recursively find all reachable call relations starting from entry points"""
-        reachable = set()
+        """Recursively find all reachable call relations starting from entry points
+        Returns:
+            reachable (dict): A caller -> set of the corresponding callees\n
+        """
+        reachable = {}
+        visited = set()
         
         def dfs(caller):
+            if caller in visited:
+                return
+            visited.add(caller)
             if caller in call_relations:
                 for callee in call_relations[caller]:
-                    relation = (caller, callee)
-                    if relation not in reachable:
-                        reachable.add(relation)
-                        dfs(callee)
+                    # relation = (caller, callee)
+                    # if relation not in reachable:
+                    #     reachable.add(relation)
+                    reachable.setdefault(caller, set()).add(callee)
+                    dfs(callee)
         for entry in entry_points:
             dfs(entry)
         

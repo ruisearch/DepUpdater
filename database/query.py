@@ -71,6 +71,7 @@ def store_type_dependency_graph(groupId, artifactId, version, tdg):
     
 def query_revapi_report(groupId, artifactId, oldVersion, newVersion):
     """query Revapi table to get the compatibility report"""
+    print(f"query revapi report of {groupId}:{artifactId}:{oldVersion} -> {newVersion}")
     db = Sqlite(SQLITE_PATH)
     db.connect()
     condition = [('groupId','=',groupId),'AND',('artifactId','=',artifactId),'AND',('oldVersion','=',oldVersion),'AND',('newVersion','=',newVersion)]
@@ -89,14 +90,18 @@ def store_revapi_report(groupId, artifactId, oldVersion, newVersion, report):
     
 def query_bc_api(groupId, artifactId, oldVersion, newVersion):
     """query Revapi table to get binaryBcMethod, binaryBcType, sourceBcMethod, sourceBcType"""
+    print(f'query bc api of {groupId}:{artifactId}:{oldVersion} -> {newVersion}')
     db = Sqlite(SQLITE_PATH)
     db.connect()
     condition = [('groupId','=',groupId),'AND',('artifactId','=',artifactId),'AND',('oldVersion','=',oldVersion),'AND',('newVersion','=',newVersion)]
     api_record = db.query_data('Revapi', 'binaryBcMethod, binaryBcType, sourceBcMethod, sourceBcType', condition)
+    if not api_record:
+        return None, None, None, None
     binaryBcMethod = json.loads(api_record[0][0]) if api_record[0][0] else None
     binaryBcType = json.loads(api_record[0][1]) if api_record[0][1] else None
     sourceBcMethod = json.loads(api_record[0][2]) if api_record[0][2] else None
     sourceBcType = json.loads(api_record[0][3]) if api_record[0][3] else None
+    db.close()
     return binaryBcMethod, binaryBcType, sourceBcMethod, sourceBcType
 
 def store_binary_bc_api(groupId, artifactId, oldVersion, newVersion, binary_bc_method, binary_bc_type):

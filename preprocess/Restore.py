@@ -29,8 +29,7 @@ class Restore:
         self.client_version = None
         self.create_folder(TREE_DIR)
         self.create_folder(JAR_DIR)
-    
-    
+
     def create_folder(self, folder_path:str):
         """create a folder"""
         # Check if the folder already exists

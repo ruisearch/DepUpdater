@@ -36,6 +36,7 @@ class Revapi:
             binary_bc_method, binary_bc_type, _, _ = query_bc_api(groupId, artifactId, old_version, new_version)
             if binary_bc_method and binary_bc_type:
                 # bc api exists in the database
+                print(f"bc api of {groupId}:{artifactId}:{old_version} -> {groupId}:{artifactId}:{new_version} exists in the database")
                 return binary_bc_method, binary_bc_type
             # bc api not exists in the database
             report = self.compare(groupId, artifactId, old_version, new_version)
@@ -48,6 +49,7 @@ class Revapi:
             _, _, source_bc_method, source_bc_type = query_bc_api(groupId, artifactId, old_version, new_version)
             if source_bc_method and source_bc_type:
                 # bc api exists in the database
+                print(f'bc api of {groupId}:{artifactId}:{old_version} -> {groupId}:{artifactId}:{new_version} exists in the database')
                 return source_bc_method, source_bc_type
             # bc api not exists in the database
             report = self.compare(groupId, artifactId, old_version, new_version)
@@ -67,7 +69,7 @@ class Revapi:
         report = query_revapi_report(groupId, artifactId, old_version, new_version)
         if report:
             # report exists in the database
-            # print('Report exists in the database')
+            print('Report exists in the database')
             return report
         report = self.run()
         # store report in sqlite

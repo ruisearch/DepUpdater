@@ -3,13 +3,13 @@ import os
 import concurrent.futures
 import copy
 import json
-import tqdm
+from tqdm import tqdm
 from constants import TQDM_LOG_PATH, REACHABLE_API_DIR
 from computation.versions import get_all_versions
 from computation.api import Api
 from computation.revapi import Revapi
 from database.query import query_to_get_jar_location
-from preprocess import Restore
+from preprocess.Restore import Restore
 class Computation:
     def __init__(self, cur_node:dict, graph:list, json_path: str, repo_name:str, relative_path_to_module:str):
         """
@@ -52,17 +52,20 @@ class Computation:
             # record the versions in the graph
             self.cur_node['Versions'] = [{'version': version, 'breaking_reason':[]} for version in all_versions]
 
-        if not all_versions:
-            return self.cur_node['Original_Version']
-
         # get entry points and caller of the dependency
         for dependent in self.cur_node['Dependents']:
             self.get_entry_points_and_caller(dependent['GroupId'], dependent['ArtifactId'], dependent['Version'], dependent['Define_Version'], 'methods')
             self.get_entry_points_and_caller(dependent['GroupId'], dependent['ArtifactId'], dependent['Version'], dependent['Define_Version'], 'types')
+            # # debug
+            # print('print method entry points')
+            # print(self.method_entry_points)
         # create a folder to store the log of tqdm
         tqdm_log_module_folder = os.path.join(TQDM_LOG_PATH, self.repo_name, self.relative_path_to_module)
         self.create_folder(tqdm_log_module_folder)
-        
+
+        # get gav of client
+        client_gav = self.get_client_gav()
+
         # compute the newest compatible version
         # use process pool to compute the versions in all_versions in parallel
         # I'll compute all versions, finally choose the newest compatible version
@@ -71,7 +74,7 @@ class Computation:
             # initializing the progress bar
             pbar = tqdm(total=len(all_versions), desc=f"Dep in {self.repo_name}/{self.relative_path_to_module}", position=0, leave=True)
             # submit the tasks to the executor
-            tasks = {executor.submit(self.version_compatibility_checker, version): version for version in all_versions}
+            tasks = {executor.submit(self.version_compatibility_checker, version, client_gav): version for version in all_versions}
 
             for _ in concurrent.futures.as_completed(tasks):
                 # update the progress bar
@@ -80,19 +83,31 @@ class Computation:
 
         # find the newest compatible version from self.cur_node['Versions']
         best_version = self.get_best_version(self.cur_node['Versions'])
+        
+        # record the best version in self.cur_node
+        self.cur_node['Best_Version'] = best_version
 
         # record the graph into json file
         self.record_graph()
         return best_version
 
+    def get_client_gav(self):
+        """get the groupId, artifactId and version of the client"""
+        for dep in self.graph:
+            if dep['Depth'] == 0:
+                return f"{dep['GroupId']}:{dep['ArtifactId']}:{dep['Original_Version']}"
+
     def get_best_version(self, Versions:list):
         """find the newest compatible version from Versions"""
         # Iterate in reverse order to find the first version without breaking_reason
-        for version in Versions[::-1]:
+        for version in reversed(Versions):
             if not version['breaking_reason']:
-                return version
+                return version['version']
+        # all version have breaking_reason, which is not expected, so exit to analysis
+        print(f"Fail to find the newest compatible version of {self.cur_node['GroupId']}:{self.cur_node['ArtifactId']}")
+        exit()
 
-    def version_compatibility_checker(self, version:str):
+    def version_compatibility_checker(self, version:str, client_gav:str):
         """check if the version is compatible 
         Return:
             version (dict) : {'version': version, 'breaking_reason': breaking_reason}\n
@@ -107,21 +122,24 @@ class Computation:
                 break
         # clear ret_dict['breaking_reason'] first
         ret_dict['breaking_reason'] = []
-        # judge if this node is direct dependency
-        depth = self.cur_node['Depth']
-        if depth == 1:
-            binary_or_source = 'binary'
-        else:
-            binary_or_source = 'source'
         # for each dict in method_entry_points and type_entry_points, compare the entry points with BC api from Revapi result
         for method_entry_point in self.method_entry_points:
+            # if dependent is client, then judge source compatibility
+            dependent_gav = method_entry_point['dependent']
+            if client_gav != dependent_gav:
+                binary_or_source = 'binary'
+            else:
+                binary_or_source = 'source'
+
             baselineVersion = method_entry_point['baselineVersion']
+            if baselineVersion == version:
+                continue
             old_jar = query_to_get_jar_location(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion)
             Restore.get_dep_jar(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion)
             new_jar = query_to_get_jar_location(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
             Restore.get_dep_jar(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
             revapi = Revapi(old_jar, new_jar)
-            bc_method, _ = revapi.get_bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version, binary_or_source)
+            bc_method, _ = revapi.bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version, binary_or_source)
             client_impacting_methods = self.intersect_api(bc_method, method_entry_point['api'])
             for client_impacting_method in client_impacting_methods:
                 breaking_reason = {
@@ -132,13 +150,22 @@ class Computation:
                 }
                 ret_dict['breaking_reason'].append(breaking_reason)
         for type_entry_point in self.type_entry_points:
+            # if dependent is client, then judge source compatibility
+            dependent_gav = type_entry_point['dependent']
+            if client_gav != dependent_gav:
+                binary_or_source = 'binary'
+            else:
+                binary_or_source = 'source'
+
             baselineVersion = type_entry_point['baselineVersion']
+            if baselineVersion == version:
+                continue
             old_jar = query_to_get_jar_location(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion)
             Restore.get_dep_jar(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion)
             new_jar = query_to_get_jar_location(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
             Restore.get_dep_jar(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
             revapi = Revapi(old_jar, new_jar)
-            _, bc_type = revapi.get_bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version, binary_or_source)
+            _, bc_type = revapi.bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version, binary_or_source)
             client_impacting_types = self.intersect_api(bc_type, type_entry_point['api'])
             for client_impacting_type in client_impacting_types:
                 breaking_reason = {
@@ -180,20 +207,20 @@ class Computation:
             best_version_cg = best_version_api.get_cg()
             entry_point_methods = self.get_entry_points_set('methods')
             method_call_relations = Api.parse_call_relations(best_version_cg)
-            reachable_method_pairs = Api.find_reachable_calls(method_call_relations, entry_point_methods)
+            reachable_method_pairs = Api.find_reachable_calls(entry_point_methods, method_call_relations)
             self.record_reachable_apis(reachable_method_pairs, 'methods')
             entry_point_types = self.get_entry_points_set('types')
             best_version_dg = best_version_api.get_type_dg()
             type_call_relations = Api.parse_call_relations(best_version_dg)
-            reachable_type_pairs = Api.find_reachable_calls(type_call_relations, entry_point_types)
+            reachable_type_pairs = Api.find_reachable_calls(entry_point_types, type_call_relations)
             self.record_reachable_apis(reachable_type_pairs, 'types')
 
     def get_entry_points_and_caller(self, dependent_groupId:str, dependent_artifactId:str, dependent_version:str, defined_version:str, api_type:str):
         """get the entry points in the dependency and the corresponding caller in the dependent\n
         dict in reachable_method_callee or reachable_type_callee is like:\n
             {
-                'dependent': dependent_groupId:dependent_artifactId:dependent_version
-                'baselineVerison': defined_version
+                'dependent': dependent_groupId:dependent_artifactId:dependent_version,
+                'baselineVerison': defined_version,
                 'api': {
                     callee : the set of corresponding callers
                 }
@@ -231,23 +258,48 @@ class Computation:
 
     def get_entry_points_set(self, api_type:str):
         """get the set of entry points of the dependency for reachable api"""
+        entry_points = set()
         if api_type == 'methods':
-            return set([api['callee'] for api in self.method_entry_points])
+            for method_entry_point in self.method_entry_points:
+                entry_points.update(method_entry_point['api'].keys())
+            return entry_points
         elif api_type == 'types':
-            return set([api['callee'] for api in self.type_entry_points])
-
+            for type_entry_point in self.type_entry_points:
+                entry_points.update(type_entry_point['api'].keys())
+            return entry_points
 
     def create_folder(self, folder:str):
         """create a folder if not exists"""
         if not os.path.exists(folder):
             os.makedirs(folder)
 
-    def record_reachable_apis(self, reachable_apis:dict , apis_type:str):
+    # def record_reachable_apis(self, reachable_apis:dict , apis_type:str):
+    #     """record the reachable apis (methods or types) of the dependency in this module\n
+    #     usually record the reachable apis of this dependency at the best version
+    #     Args:
+    #         reachable_apis (list) : A dictionary of caller -> callees relations\n
+    #         key: caller, value: a set of the corresponding callees\n
+    #         apis_type (str) : 'methods' or 'types'
+    #     """
+    #     module_folder = os.path.join(REACHABLE_API_DIR, self.repo_name, self.relative_path_to_module, f'{self.cur_node["GroupId"]}', f'{self.cur_node["ArtifactId"]}')
+    #     self.create_folder(module_folder)
+    #     if apis_type == 'methods':
+    #         module_file = os.path.join(module_folder, 'methods.txt')
+    #     elif apis_type == 'types':
+    #         module_file = os.path.join(module_folder, 'types.txt')
+    #     else:
+    #         raise ValueError("Invalid apis_type. Must be 'methods' or 'types'.")
+    #     # write the reachable apis into the file
+    #     with open(module_file, 'w', encoding='utf-8') as f:
+    #         for caller, callees in reachable_apis.items():
+    #             for callee in callees:
+    #                 f.write(f'{caller} -> {callee}\n')
+    
+    def record_reachable_apis(self, reachable_apis:set , apis_type:str):
         """record the reachable apis (methods or types) of the dependency in this module\n
         usually record the reachable apis of this dependency at the best version
         Args:
-            reachable_apis (list) : A dictionary of caller -> callees relations\n
-            key: caller, value: a set of the corresponding callees\n
+            reachable_apis (set) : A set of (caller,callee) tuples\n
             apis_type (str) : 'methods' or 'types'
         """
         module_folder = os.path.join(REACHABLE_API_DIR, self.repo_name, self.relative_path_to_module, f'{self.cur_node["GroupId"]}', f'{self.cur_node["ArtifactId"]}')
