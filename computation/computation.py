@@ -7,7 +7,7 @@ import tqdm
 from constants import TQDM_LOG_PATH, REACHABLE_API_DIR
 from computation.versions import get_all_versions
 from computation.api import Api
-from compuation.revapi import Revapi
+from computation.revapi import Revapi
 from database.query import query_to_get_jar_location
 from preprocess import Restore
 class Computation:

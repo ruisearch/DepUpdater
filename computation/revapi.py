@@ -165,21 +165,21 @@ class Revapi:
         2. remove <> to disregard generic
         """
         # handle generic type defined in the class
-        class_generic_type_pattern = r'(<[^<>]*>)::'
+        class_generic_type_pattern = r'<([^<>]*)>::'
         class_generic_match = re.search(class_generic_type_pattern, method)
         if class_generic_match:
             # generic type exists in the class
             class_generic_declaration = class_generic_match.group(1)
-            letter, upper_bound = Revapi.handle_generic_declaration(class_generic_declaration)
-            method = Revapi.replace_letter_with_upper_bound(method, letter, upper_bound)
+            generic_letter_and_type = Revapi.handle_generic_declaration(class_generic_declaration)
+            method = Revapi.replace_letter_with_upper_bound(method, generic_letter_and_type)
         # # handle generic type defined in the method
-        method_generic_type_pattern = r'^(<.*?>)'
+        method_generic_type_pattern = r'^<(.*?)>'
         method_generic_match = re.search(method_generic_type_pattern, method)
         if method_generic_match:
             # generic type exists in the method
             method_generic_declaration = method_generic_match.group(1)
-            letter, upper_bound = Revapi.handle_generic_declaration(method_generic_declaration)
-            method = Revapi.replace_letter_with_upper_bound(method, letter, upper_bound)
+            generic_letter_and_type = Revapi.handle_generic_declaration(method_generic_declaration)
+            method = Revapi.replace_letter_with_upper_bound(method, generic_letter_and_type)
         # remove <> to disregard generic
         method = Revapi.remove_angle_brackets(method).strip()
         return method
@@ -188,26 +188,36 @@ class Revapi:
     def handle_generic_declaration(generic_declaration:str):
         """handle the generic type
         Args:
-            generic_declaration (str): the generic declaration, like <S extends java.lang.annotation.Annotation>
+            generic_declaration (str): the generic declaration, like <S extends java.lang.annotation.Annotation, T>
         Returns:
-            generic_letter (str): the letter representing generic type, like S
-            generic_type (str): the upper bound of the generic type, like java.lang.annotation.Annotation
+            generic_letter_and_type (list): a list of tuple, each tuple contains the generic letter and its upper bound\n
+            generic_letter is the letter representing generic type, like S and T
+            generic_type is the upper bound of the generic type, like java.lang.annotation.Annotation and java.lang.Object
         """
-        if ' extends ' in generic_declaration:
-            # upper bound is defined after 'extends'
-            generic_letter = generic_declaration[generic_declaration.find('<')+1:generic_declaration.find(' extends ')]
-            generic_type = generic_declaration[generic_declaration.find(' extends ')+9: generic_declaration.rfind('>')]
-            return generic_letter, generic_type
-        # upper bound is java.lang.Object
-        generic_letter = generic_declaration[generic_declaration.find('<')+1:generic_declaration.rfind('>')]
-        return generic_letter, 'java.lang.Object'
+        # may have multiple generic types
+        individual_declarations = generic_declaration.split(', ')
+        generic_letter_and_type = []
+        for declaration in individual_declarations:
+            if ' extends ' in declaration:
+                # upper bound is defined after 'extends'
+                generic_letter = declaration[:declaration.find(' extends ')]
+                generic_type = declaration[declaration.find(' extends ')+9:]
+                generic_letter_and_type.append((generic_letter, generic_type))
+            else:
+                # upper bound is java.lang.Object
+                generic_letter = declaration
+                generic_letter_and_type.append((generic_letter, 'java.lang.Object'))
+        # print(generic_letter_and_type)
+        return generic_letter_and_type
 
     @staticmethod
-    def replace_letter_with_upper_bound(method:str, generic_letter:str, upper_bound:str):
+    def replace_letter_with_upper_bound(method:str, generic_letter_and_type:list):
         """replace the generic letter with its upper bound
         in parameter, return type"""
-        letter_pattern = r'\b' + generic_letter + r'\b'
-        return re.sub(letter_pattern, upper_bound, method)
+        for generic_letter, upper_bound in generic_letter_and_type:
+            letter_pattern = r'\b' + generic_letter + r'\b'
+            method = re.sub(letter_pattern, upper_bound, method)
+        return method
 
     @staticmethod
     def remove_angle_brackets(text:str):
@@ -234,13 +244,14 @@ if __name__ == '__main__':
     # print(revapi.binary_bc_method)
     # print(revapi.binary_bc_type)
     
-    # # # test transform_method
-    # # test_method = '<S extends java.lang.annotation.Annotation> net.bytebuddy.asm.Advice.OffsetMapping.Factory<S> net.bytebuddy.asm.Advice.OffsetMapping.ForSerializedValue.Factory<T extends java.lang.annotation.Annotation>::of(java.lang.Class<S>, java.io.Serializable, java.lang.Class<?>)'
-    # # test_method = '<T> T test.soot.CG.Cg_Main::test_generic(T)'
+    # # test transform_method
+    # test_method = '<S extends java.lang.annotation.Annotation> net.bytebuddy.asm.Advice.OffsetMapping.Factory<S> net.bytebuddy.asm.Advice.OffsetMapping.ForSerializedValue.Factory<T extends java.lang.annotation.Annotation>::of(java.lang.Class<S>, java.io.Serializable, java.lang.Class<?>)'
+    # test_method = '<T> T test.soot.CG.Cg_Main::test_generic(T)'
     # test_method = '<T extends org.test> T org.test.A<T extends org.class.test>::test(T, lang.String)'
-    # print(Revapi.transform_method(test_method))
+    test_method = '<S extends test.soot.error, T> java.util.List<S> test.soot.CG.Cg_Main::test_multi_generic(S, T)'
+    print(Revapi.transform_method(test_method))
     
-    # test bc_api
-    binary_bc_method, binary_bc_type = revapi.bc_api('net.bytebuddy', 'byte-buddy', '1.12.19', '1.14.13', 'binary')
-    source_bc_method, source_bc_type = revapi.bc_api('net.bytebuddy', 'byte-buddy', '1.12.19', '1.14.13', 'source')
-    print(source_bc_method)
+    # # test bc_api
+    # binary_bc_method, binary_bc_type = revapi.bc_api('net.bytebuddy', 'byte-buddy', '1.12.19', '1.14.13', 'binary')
+    # source_bc_method, source_bc_type = revapi.bc_api('net.bytebuddy', 'byte-buddy', '1.12.19', '1.14.13', 'source')
+    # print(source_bc_method)
