@@ -4,7 +4,7 @@ import re
 import subprocess
 from constants import REVAPI_SH_PATH
 from database.query import query_revapi_report, store_revapi_report,\
-    query_bc_api, store_binary_bc_api, store_source_bc_api
+    query_bc_api, store_bc_api
 class Revapi:
     """Revapi tool class"""
 
@@ -32,34 +32,31 @@ class Revapi:
         Args:
             binary_or_source (str): 'binary' or 'source' to distinguish the type of the bc api
         """
-        if binary_or_source == 'binary':
-            binary_bc_method, binary_bc_type, _, _ = query_bc_api(groupId, artifactId, old_version, new_version)
-            if binary_bc_method and binary_bc_type:
-                # bc api exists in the database
-                print(f"bc api of {groupId}:{artifactId}:{old_version} -> {groupId}:{artifactId}:{new_version} exists in the database")
-                return binary_bc_method, binary_bc_type
-            # bc api not exists in the database
-            report = self.compare(groupId, artifactId, old_version, new_version)
-            self.extract_bc_records(report)
-            for record in self.binary_bc_records:
-                self.extract_bc_api(record, 'binary')
-            store_binary_bc_api(groupId, artifactId, old_version, new_version, self.binary_bc_method, self.binary_bc_type)
-            return self.binary_bc_method, self.binary_bc_type
-        elif binary_or_source == 'source':
-            _, _, source_bc_method, source_bc_type = query_bc_api(groupId, artifactId, old_version, new_version)
-            if source_bc_method and source_bc_type:
-                # bc api exists in the database
-                print(f'bc api of {groupId}:{artifactId}:{old_version} -> {groupId}:{artifactId}:{new_version} exists in the database')
-                return source_bc_method, source_bc_type
-            # bc api not exists in the database
-            report = self.compare(groupId, artifactId, old_version, new_version)
-            self.extract_bc_records(report)
-            for record in self.source_bc_records:
-                self.extract_bc_api(record, 'source')
-            store_source_bc_api(groupId, artifactId, old_version, new_version, self.source_bc_method, self.source_bc_type)
-            return self.source_bc_method, self.source_bc_type
-        else:
+        if binary_or_source != 'binary' and binary_or_source != 'source':
             raise ValueError('binary_or_source should be binary or source')
+        binary_bc_method, binary_bc_type, source_bc_method, source_bc_type = query_bc_api(groupId, artifactId, old_version, new_version)
+        if binary_bc_method is not None \
+            and binary_bc_type is not None \
+                and source_bc_method is not None \
+                    and source_bc_type is not None:
+            # bc api exists in the database
+            # print(f"bc api of {groupId}:{artifactId}:{old_version} -> {groupId}:{artifactId}:{new_version} exists in the database")
+            if binary_or_source == 'binary':
+                return binary_bc_method, binary_bc_type
+            if binary_or_source == 'source':
+                return source_bc_method, source_bc_type
+        # bc api not exists in the database
+        report = self.compare(groupId, artifactId, old_version, new_version)
+        self.extract_bc_records(report)
+        for record in self.binary_bc_records:
+            self.extract_bc_api(record, 'binary')
+        for record in self.source_bc_records:
+            self.extract_bc_api(record, 'source')
+        store_bc_api(groupId, artifactId, old_version, new_version, self.binary_bc_method, self.binary_bc_type, self.source_bc_method, self.source_bc_type)
+        if binary_or_source == 'binary':
+            return self.binary_bc_method, self.binary_bc_type
+        if binary_or_source == 'source':
+            return self.source_bc_method, self.source_bc_type
 
     def compare(self, groupId:str, artifactId:str, old_version:str, new_version:str):
         """get the compatibility report between two jar files\n
