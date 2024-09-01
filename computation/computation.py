@@ -56,9 +56,6 @@ class Computation:
         for dependent in self.cur_node['Dependents']:
             self.get_entry_points_and_caller(dependent['GroupId'], dependent['ArtifactId'], dependent['Version'], dependent['Define_Version'], 'methods')
             self.get_entry_points_and_caller(dependent['GroupId'], dependent['ArtifactId'], dependent['Version'], dependent['Define_Version'], 'types')
-            # # debug
-            # print('print method entry points')
-            # print(self.method_entry_points)
         # create a folder to store the log of tqdm
         tqdm_log_module_folder = os.path.join(TQDM_LOG_PATH, self.repo_name, self.relative_path_to_module)
         self.create_folder(tqdm_log_module_folder)
@@ -70,15 +67,23 @@ class Computation:
         # use process pool to compute the versions in all_versions in parallel
         # I'll compute all versions, finally choose the newest compatible version
         num_workers = os.cpu_count()
+        # clear breaking_reason of all versions
+        for version_dict in self.cur_node['Versions']:
+            version_dict['breaking_reason'] = []
         with concurrent.futures.ProcessPoolExecutor(max_workers=num_workers) as executor:
             # initializing the progress bar
-            pbar = tqdm(total=len(all_versions), desc=f"Dep in {self.repo_name}/{self.relative_path_to_module}", position=0, leave=True)
+            pbar = tqdm(total=len(all_versions), desc=f"analyze versions of {self.cur_node['GroupId']}:{self.cur_node['ArtifactId']}", position=0, leave=True)
             # submit the tasks to the executor
             tasks = {executor.submit(self.version_compatibility_checker, version, client_gav): version for version in all_versions}
 
-            for _ in concurrent.futures.as_completed(tasks):
+            for breaking_reason in concurrent.futures.as_completed(tasks):
                 # update the progress bar
                 pbar.update(1)
+                # update the breaking_reason of the version in self.cur_node['Versions']
+                for version_dict in self.cur_node['Versions']:
+                    if version_dict['version'] == breaking_reason.result()['version']:
+                        version_dict['breaking_reason'] = breaking_reason.result()['breaking_reason']
+                        break
             pbar.close()
 
         # find the newest compatible version from self.cur_node['Versions']
@@ -120,8 +125,6 @@ class Computation:
             if version_dict['version'] == version:
                 ret_dict = version_dict
                 break
-        # clear ret_dict['breaking_reason'] first
-        ret_dict['breaking_reason'] = []
         # for each dict in method_entry_points and type_entry_points, compare the entry points with BC api from Revapi result
         for method_entry_point in self.method_entry_points:
             # if dependent is client, then judge source compatibility
@@ -139,7 +142,9 @@ class Computation:
             new_jar = query_to_get_jar_location(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
             Restore.get_dep_jar(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
             revapi = Revapi(old_jar, new_jar)
+            print(f'extract bc method of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{baselineVersion} -> {version}')
             bc_method, _ = revapi.bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version, binary_or_source)
+            print(f'judge method compatibility of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{version} with {dependent_gav}')
             client_impacting_methods = self.intersect_api(bc_method, method_entry_point['api'])
             for client_impacting_method in client_impacting_methods:
                 breaking_reason = {
@@ -165,7 +170,9 @@ class Computation:
             new_jar = query_to_get_jar_location(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
             Restore.get_dep_jar(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
             revapi = Revapi(old_jar, new_jar)
+            print(f'extract bc type of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{baselineVersion} -> {version}')
             _, bc_type = revapi.bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version, binary_or_source)
+            print(f'judge type compatibility of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{version} with {dependent_gav}')
             client_impacting_types = self.intersect_api(bc_type, type_entry_point['api'])
             for client_impacting_type in client_impacting_types:
                 breaking_reason = {
@@ -175,6 +182,7 @@ class Computation:
                     'record': bc_type[client_impacting_type]
                 }
                 ret_dict['breaking_reason'].append(breaking_reason)
+
         return ret_dict
 
     @staticmethod

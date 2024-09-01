@@ -90,17 +90,18 @@ def store_revapi_report(groupId, artifactId, oldVersion, newVersion, report):
     
 def query_bc_api(groupId, artifactId, oldVersion, newVersion):
     """query Revapi table to get binaryBcMethod, binaryBcType, sourceBcMethod, sourceBcType"""
-    print(f'query bc api of {groupId}:{artifactId}:{oldVersion} -> {newVersion}')
+    # print(f'query bc api of {groupId}:{artifactId}:{oldVersion} -> {newVersion}')
     db = Sqlite(SQLITE_PATH)
     db.connect()
     condition = [('groupId','=',groupId),'AND',('artifactId','=',artifactId),'AND',('oldVersion','=',oldVersion),'AND',('newVersion','=',newVersion)]
     api_record = db.query_data('Revapi', 'binaryBcMethod, binaryBcType, sourceBcMethod, sourceBcType', condition)
+    # if not exists, return None
     if not api_record:
         return None, None, None, None
-    binaryBcMethod = json.loads(api_record[0][0]) if api_record[0][0] else None
-    binaryBcType = json.loads(api_record[0][1]) if api_record[0][1] else None
-    sourceBcMethod = json.loads(api_record[0][2]) if api_record[0][2] else None
-    sourceBcType = json.loads(api_record[0][3]) if api_record[0][3] else None
+    binaryBcMethod = json.loads(api_record[0][0]) if api_record[0][0] is not None else None
+    binaryBcType = json.loads(api_record[0][1]) if api_record[0][1] is not None else None
+    sourceBcMethod = json.loads(api_record[0][2]) if api_record[0][2] is not None else None
+    sourceBcType = json.loads(api_record[0][3]) if api_record[0][3] is not None else None
     db.close()
     return binaryBcMethod, binaryBcType, sourceBcMethod, sourceBcType
 
@@ -122,4 +123,15 @@ def store_source_bc_api(groupId, artifactId, oldVersion, newVersion, source_bc_m
     # insert ga v1 v2 first if not exists
     db.insert_data('Revapi', {'groupId':groupId, 'artifactId':artifactId, 'oldVersion':oldVersion, 'newVersion':newVersion})
     db.update_data('Revapi', {'sourceBcMethod':json.dumps(source_bc_method), 'sourceBcType':json.dumps(source_bc_type)}, condition)
+    db.close()
+    
+def store_bc_api(groupId, aritifactId, oldVersion, newVersion, binary_bc_method, binary_bc_type, source_bc_method, source_bc_type):
+    """store the binary and source bc api"""
+    db = Sqlite(SQLITE_PATH)
+    db.connect()
+    condition = [('groupId','=',groupId),'AND',('artifactId','=',aritifactId),'AND',('oldVersion','=',oldVersion),'AND',('newVersion','=',newVersion)]
+    # insert ga v1 v2 first if not exists
+    db.insert_data('Revapi', {'groupId':groupId, 'artifactId':aritifactId, 'oldVersion':oldVersion, 'newVersion':newVersion})
+    db.update_data('Revapi', {'binaryBcMethod':json.dumps(binary_bc_method), 'binaryBcType':json.dumps(binary_bc_type), \
+        'sourceBcMethod':json.dumps(source_bc_method), 'sourceBcType':json.dumps(source_bc_type)}, condition)
     db.close()
