@@ -165,7 +165,7 @@ def check_version_module(lock, res_dict:dict, dep_path:str, path_to_cloned_folde
     real_positive_result = None
     # find actual newest version which is compatible(real_positive_version)
     # first ~ last
-     
+
     # file to contain tqdm log
     # for fp, record two recompilation results: positive_result + subsequent_positive_result(the version after positive version);
     # for fn, record two recompilation results: real_positive_result + subsequent_real_positive_result(the version after real positive version);
