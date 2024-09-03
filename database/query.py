@@ -88,7 +88,7 @@ def store_revapi_report(groupId, artifactId, oldVersion, newVersion, report):
     db.insert_data('Revapi', {'groupId':groupId, 'artifactId':artifactId, 'oldVersion':oldVersion, 'newVersion':newVersion, 'report':report})
     db.close()
     
-def query_bc_api(groupId, artifactId, oldVersion, newVersion):
+def query_revapi_bc_api(groupId, artifactId, oldVersion, newVersion):
     """query Revapi table to get binaryBcMethod, binaryBcType, sourceBcMethod, sourceBcType"""
     # print(f'query bc api of {groupId}:{artifactId}:{oldVersion} -> {newVersion}')
     db = Sqlite(SQLITE_PATH)
@@ -105,7 +105,7 @@ def query_bc_api(groupId, artifactId, oldVersion, newVersion):
     db.close()
     return binaryBcMethod, binaryBcType, sourceBcMethod, sourceBcType
 
-def store_binary_bc_api(groupId, artifactId, oldVersion, newVersion, binary_bc_method, binary_bc_type):
+def store_revapi_binary_bc_api(groupId, artifactId, oldVersion, newVersion, binary_bc_method, binary_bc_type):
     """store the binary bc api"""
     db = Sqlite(SQLITE_PATH)
     db.connect()
@@ -115,7 +115,7 @@ def store_binary_bc_api(groupId, artifactId, oldVersion, newVersion, binary_bc_m
     db.update_data('Revapi', {'binaryBcMethod':json.dumps(binary_bc_method), 'binaryBcType':json.dumps(binary_bc_type)}, condition)
     db.close()
     
-def store_source_bc_api(groupId, artifactId, oldVersion, newVersion, source_bc_method, source_bc_type):
+def store_revapi_source_bc_api(groupId, artifactId, oldVersion, newVersion, source_bc_method, source_bc_type):
     """store the source bc api"""
     db = Sqlite(SQLITE_PATH)
     db.connect()
@@ -125,7 +125,7 @@ def store_source_bc_api(groupId, artifactId, oldVersion, newVersion, source_bc_m
     db.update_data('Revapi', {'sourceBcMethod':json.dumps(source_bc_method), 'sourceBcType':json.dumps(source_bc_type)}, condition)
     db.close()
     
-def store_bc_api(groupId, aritifactId, oldVersion, newVersion, binary_bc_method, binary_bc_type, source_bc_method, source_bc_type):
+def store_revapi_bc_api(groupId, aritifactId, oldVersion, newVersion, binary_bc_method, binary_bc_type, source_bc_method, source_bc_type):
     """store the binary and source bc api"""
     db = Sqlite(SQLITE_PATH)
     db.connect()
