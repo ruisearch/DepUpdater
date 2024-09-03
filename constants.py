@@ -27,11 +27,18 @@ data folder structure:
     | | | | | | ├── types.txt
     | ...
     ├── tqdm_log/
-    | ├── {module_name}/
+    | ├── {repo_name}/
     | | ├── {relative_path_to_module}/
     | | | ├── {groupId}_{artifactId}.tqdm_log.txt
     | ...
-
+    ├── validation_log/
+    | ├── {repo_name}/
+    | | ├── {relative_path_to_module}/
+    | | | ├── {group_id}/
+    | | | | ├── {artifact_id}/
+    | | | | | ├── {version}/
+    | | | | | | ├── recompile.txt
+    | | | | | | ├── binary_bc_api.json
 """
 import os
 
@@ -50,6 +57,8 @@ RET_DIR = os.path.join(DATA_DIR, 'result/')
 TQDM_LOG_PATH = os.path.join(DATA_DIR, 'tqdm_log/')
 # path to data/reachableApi/
 REACHABLE_API_DIR = os.path.join(DATA_DIR, 'reachableApi/')
+# path to data/validation_log/
+VALIDATION_LOG_DIR = os.path.join(DATA_DIR, 'validation_log/')
 
 # path to sootCG
 SOOTCG_PATH = os.path.join(MainProcess_pwd, 'utils/sootCG-1.0-SNAPSHOT-jar-with-dependencies.jar')

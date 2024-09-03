@@ -4,7 +4,7 @@ import re
 import subprocess
 from constants import REVAPI_SH_PATH
 from database.query import query_revapi_report, store_revapi_report,\
-    query_bc_api, store_bc_api
+    query_revapi_bc_api, store_revapi_bc_api
 class Revapi:
     """Revapi tool class"""
 
@@ -34,7 +34,7 @@ class Revapi:
         """
         if binary_or_source != 'binary' and binary_or_source != 'source':
             raise ValueError('binary_or_source should be binary or source')
-        binary_bc_method, binary_bc_type, source_bc_method, source_bc_type = query_bc_api(groupId, artifactId, old_version, new_version)
+        binary_bc_method, binary_bc_type, source_bc_method, source_bc_type = query_revapi_bc_api(groupId, artifactId, old_version, new_version)
         if binary_bc_method is not None \
             and binary_bc_type is not None \
                 and source_bc_method is not None \
@@ -52,7 +52,7 @@ class Revapi:
             self.extract_bc_api(record, 'binary')
         for record in self.source_bc_records:
             self.extract_bc_api(record, 'source')
-        store_bc_api(groupId, artifactId, old_version, new_version, self.binary_bc_method, self.binary_bc_type, self.source_bc_method, self.source_bc_type)
+        store_revapi_bc_api(groupId, artifactId, old_version, new_version, self.binary_bc_method, self.binary_bc_type, self.source_bc_method, self.source_bc_type)
         if binary_or_source == 'binary':
             return self.binary_bc_method, self.binary_bc_type
         if binary_or_source == 'source':

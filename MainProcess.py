@@ -50,8 +50,8 @@ print("\n****** dependency graph got! ******\n")
 print("\n****** preprocess done! ******\n")
 
 # Traverse the dependency graph to compute the newest compatible version of each dependency
-repo_name = os.path.basename(path_to_folder)
-tra = Traverse(json_path, repo_name, relative_path_to_module)
+# repo_name = os.path.basename(path_to_folder)
+tra = Traverse(json_path, path_to_folder, relative_path_to_module)
 tra.traverse()
 
 # # match:

@@ -127,12 +127,13 @@ class Computation:
                 break
         # for each dict in method_entry_points and type_entry_points, compare the entry points with BC api from Revapi result
         for method_entry_point in self.method_entry_points:
-            # if dependent is client, then judge source compatibility
+            # if dependent is client, then judge source compatibility and binary compatibility
+            # if dependent is not client, only judge binary compatibility
             dependent_gav = method_entry_point['dependent']
             if client_gav != dependent_gav:
-                binary_or_source = 'binary'
+                depended_by_client = False
             else:
-                binary_or_source = 'source'
+                depended_by_client = True
 
             baselineVersion = method_entry_point['baselineVersion']
             if baselineVersion == version:
@@ -143,7 +144,12 @@ class Computation:
             Restore.get_dep_jar(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
             revapi = Revapi(old_jar, new_jar)
             print(f'extract bc method of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{baselineVersion} -> {version}')
-            bc_method, _ = revapi.bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version, binary_or_source)
+            bc_method, _ = revapi.bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version, 'binary')
+            if depended_by_client:
+                # judge source compatibility as well
+                src_bc_method, _ = revapi.bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version, 'source')
+                Computation.merge_bc_api_dict(bc_method, src_bc_method)
+
             print(f'judge method compatibility of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{version} with {dependent_gav}')
             client_impacting_methods = self.intersect_api(bc_method, method_entry_point['api'])
             for client_impacting_method in client_impacting_methods:
@@ -158,9 +164,9 @@ class Computation:
             # if dependent is client, then judge source compatibility
             dependent_gav = type_entry_point['dependent']
             if client_gav != dependent_gav:
-                binary_or_source = 'binary'
+                depended_by_client = False
             else:
-                binary_or_source = 'source'
+                depended_by_client = True
 
             baselineVersion = type_entry_point['baselineVersion']
             if baselineVersion == version:
@@ -171,7 +177,11 @@ class Computation:
             Restore.get_dep_jar(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
             revapi = Revapi(old_jar, new_jar)
             print(f'extract bc type of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{baselineVersion} -> {version}')
-            _, bc_type = revapi.bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version, binary_or_source)
+            _, bc_type = revapi.bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version, 'binary')
+            if depended_by_client:
+                # judge source compatibility as well
+                _, src_bc_type = revapi.bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version, 'source')
+                Computation.merge_bc_api_dict(bc_type, src_bc_type)
             print(f'judge type compatibility of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{version} with {dependent_gav}')
             client_impacting_types = self.intersect_api(bc_type, type_entry_point['api'])
             for client_impacting_type in client_impacting_types:
@@ -184,6 +194,23 @@ class Computation:
                 ret_dict['breaking_reason'].append(breaking_reason)
 
         return ret_dict
+    
+    @staticmethod
+    def merge_bc_api_dict(target, source):
+        """merge source to target
+        Args:
+            target : the dict to be merged, key is bc api while value is a list of Revapi records
+            source : the dict to merge, key is bc api while value is a list of Revapi records
+        """
+        for key, value in source.items():
+            if key in target:
+                target[key].extend(record for record in value if record not in target[key])
+            else:
+                target[key] = value
+    
+    def return_entry_points(self):
+        """return entry points api for validating by Japicmp afterwards"""
+        return self.method_entry_points, self.type_entry_points
 
     @staticmethod
     def intersect_api(api1:dict, api2:dict):
@@ -280,28 +307,6 @@ class Computation:
         """create a folder if not exists"""
         if not os.path.exists(folder):
             os.makedirs(folder)
-
-    # def record_reachable_apis(self, reachable_apis:dict , apis_type:str):
-    #     """record the reachable apis (methods or types) of the dependency in this module\n
-    #     usually record the reachable apis of this dependency at the best version
-    #     Args:
-    #         reachable_apis (list) : A dictionary of caller -> callees relations\n
-    #         key: caller, value: a set of the corresponding callees\n
-    #         apis_type (str) : 'methods' or 'types'
-    #     """
-    #     module_folder = os.path.join(REACHABLE_API_DIR, self.repo_name, self.relative_path_to_module, f'{self.cur_node["GroupId"]}', f'{self.cur_node["ArtifactId"]}')
-    #     self.create_folder(module_folder)
-    #     if apis_type == 'methods':
-    #         module_file = os.path.join(module_folder, 'methods.txt')
-    #     elif apis_type == 'types':
-    #         module_file = os.path.join(module_folder, 'types.txt')
-    #     else:
-    #         raise ValueError("Invalid apis_type. Must be 'methods' or 'types'.")
-    #     # write the reachable apis into the file
-    #     with open(module_file, 'w', encoding='utf-8') as f:
-    #         for caller, callees in reachable_apis.items():
-    #             for callee in callees:
-    #                 f.write(f'{caller} -> {callee}\n')
     
     def record_reachable_apis(self, reachable_apis:set , apis_type:str):
         """record the reachable apis (methods or types) of the dependency in this module\n
