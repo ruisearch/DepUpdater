@@ -62,11 +62,11 @@ class Revapi:
         """get the compatibility report between two jar files\n
         query sqlite first. if not exist, run revapi to get and store the report in sqlite
         """
-        print(f'Comparing {groupId}:{artifactId}:{old_version} -> {groupId}:{artifactId}:{new_version}')
+        # print(f'Comparing {groupId}:{artifactId}:{old_version} -> {groupId}:{artifactId}:{new_version}')
         report = query_revapi_report(groupId, artifactId, old_version, new_version)
         if report:
             # report exists in the database
-            print('Report exists in the database')
+            # print('Report exists in the database')
             return report
         report = self.run()
         # store report in sqlite
@@ -75,7 +75,7 @@ class Revapi:
 
     def run(self):
         """run revapi to get the compatibility report"""
-        command = command = f'''{REVAPI_SH_PATH} --extensions=org.revapi:revapi-java:0.28.1,org.revapi:revapi-reporter-text:0.15.0 --old={self.old_jar} --new={self.new_jar} -D revapi.reporter.text.minSeverity=BREAKING'''
+        command = f'''{REVAPI_SH_PATH} --extensions=org.revapi:revapi-java:0.28.1,org.revapi:revapi-reporter-text:0.15.0 --old={self.old_jar} --new={self.new_jar} -D revapi.reporter.text.minSeverity=BREAKING'''
         result = subprocess.run(command, shell=True, text=True, capture_output=True)
         return result.stdout
 

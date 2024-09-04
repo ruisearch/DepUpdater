@@ -135,3 +135,47 @@ def store_revapi_bc_api(groupId, aritifactId, oldVersion, newVersion, binary_bc_
     db.update_data('Revapi', {'binaryBcMethod':json.dumps(binary_bc_method), 'binaryBcType':json.dumps(binary_bc_type), \
         'sourceBcMethod':json.dumps(source_bc_method), 'sourceBcType':json.dumps(source_bc_type)}, condition)
     db.close()
+    
+def query_japicmp_bc_api(groupId, artifactId, oldVersion, newVersion):
+    """query Japicmp table to get binaryBcMethod, binaryBcType"""
+    # print(f'query bc api of {groupId}:{artifactId}:{oldVersion} -> {newVersion}')
+    db = Sqlite(SQLITE_PATH)
+    db.connect()
+    condition = [('groupId','=',groupId),'AND',('artifactId','=',artifactId),'AND',('oldVersion','=',oldVersion),'AND',('newVersion','=',newVersion)]
+    api_record = db.query_data('Japicmp', 'binaryBcMethod, binaryBcType', condition)
+    # if not exists, return None
+    if not api_record:
+        return None, None
+    binaryBcMethod = json.loads(api_record[0][0]) if api_record[0][0] is not None else None
+    binaryBcType = json.loads(api_record[0][1]) if api_record[0][1] is not None else None
+    db.close()
+    return binaryBcMethod, binaryBcType
+
+def query_japicmp_report(groupId, artifactId, oldVersion, newVersion):
+    """query Japicmp table to get the compatibility report"""
+    print(f'query Japicmp report of {groupId}:{artifactId}:{oldVersion} -> {newVersion}')
+    db = Sqlite(SQLITE_PATH)
+    db.connect()
+    condition = [('groupId','=',groupId),'AND',('artifactId','=',artifactId),'AND',('oldVersion','=',oldVersion),'AND',('newVersion','=',newVersion)]
+    report_record = db.query_data('Japicmp', 'report', condition)
+    report = report_record[0][0] if report_record else ""
+    db.close()
+    return report
+
+def store_japicmp_report(groupId, artifactId, oldVersion, newVersion, report):
+    """store the compatibility report"""
+    db = Sqlite(SQLITE_PATH)
+    db.connect()
+    # insert ga v1 v2 first if not exists
+    db.insert_data('Japicmp', {'groupId':groupId, 'artifactId':artifactId, 'oldVersion':oldVersion, 'newVersion':newVersion, 'report':report})
+    db.close()
+    
+def store_japicmp_bc_api(groupId, aritifactId, oldVersion, newVersion, binary_bc_method, binary_bc_type):
+    """store the binary bc api"""
+    db = Sqlite(SQLITE_PATH)
+    db.connect()
+    condition = [('groupId','=',groupId),'AND',('artifactId','=',aritifactId),'AND',('oldVersion','=',oldVersion),'AND',('newVersion','=',newVersion)]
+    # insert ga v1 v2 first if not exists
+    db.insert_data('Japicmp', {'groupId':groupId, 'artifactId':aritifactId, 'oldVersion':oldVersion, 'newVersion':newVersion})
+    db.update_data('Japicmp', {'binaryBcMethod':json.dumps(binary_bc_method), 'binaryBcType':json.dumps(binary_bc_type)}, condition)
+    db.close()
