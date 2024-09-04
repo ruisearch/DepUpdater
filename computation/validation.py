@@ -12,21 +12,19 @@ from constants import VALIDATION_LOG_DIR
 class Validation:
     def __init__(self, path_to_cloned_folder: str, relative_path_to_module: str) -> None:
         self.path_to_cloned_folder = path_to_cloned_folder
+        self.repo_name = os.path.basename(path_to_cloned_folder)
         self.relative_path_to_module = relative_path_to_module
         self.pom_path = os.path.join(path_to_cloned_folder, relative_path_to_module, 'pom.xml')
-        
-    def validate(self, group_id: str, artifact_id: str, versions: list, method_entry_points: dict, type_entry_points:dict, direct_or_transitive:str):
-        """validate the best version of the dependency
-        Args:
-            group_id (str): the group id of the dependency
-            artifact_id (str): the artifact id of the dependency
-            versions (list): all versions of the dependency
-            direct_or_transitive (str): 'direct' or 'transitive'
-            method_entry_points (dict): the method entry points of the dependency(by the computation module;used to binary compatibility validation)
-            type_entry_points (dict): the type entry points of the dependency(by the computation module;used to binary compatibility validation)
-        """
+
+    def validate(self, group_id: str, artifact_id: str, versions: list, best_version: str, method_entry_points: dict, \
+        type_entry_points:dict, direct_or_transitive:str)->str:
+        """main method: validating the best version of the dependency got by the computation module. If the best version is different from the actual best version, exit"""
         # get the actual best version
-        best_version = self.get_actual_best_version(group_id, artifact_id, versions, method_entry_points, type_entry)
+        actual_best_version = self.get_actual_best_version(group_id, artifact_id, versions, method_entry_points, type_entry_points, direct_or_transitive)
+        if best_version != actual_best_version:
+            print(f"Error: the best version of {group_id}:{artifact_id} got by tool is {best_version}, but the actual best version is {actual_best_version}")
+            exit(1)
+
 
     @staticmethod
     def backup_pom(path_to_backed_up_pom: str, path_to_pom: str):
@@ -73,23 +71,22 @@ class Validation:
         Return:
             best_version (str): the actual best version of the dependency
         """
-        
-        original_pom_path = os.path.join(self.path_to_cloned_folder, self.relative_path_to_module, '_original_pom.xml')
-        Validation.backup_pom(original_pom_path, self.pom_path)
         # add the property about version of the dependency into the pom.xml
         # and set the version to the property
         # direct_dependency and transitive_dependency are not in the same format
         initial_version = versions[0]
         if direct_or_transitive == 'direct':
-            property_tag_name = self.add_direct_dependency(group_id, artifact_id, initial_version)
+            property_tag_name = self.set_pom_property_value(group_id, artifact_id, initial_version)
+            self.add_direct_dependency(group_id, artifact_id, property_tag_name)
         elif direct_or_transitive == 'transitive':
-            property_tag_name = self.add_transitive_dependency(group_id, artifact_id, initial_version)
+            property_tag_name = self.set_pom_property_value(group_id, artifact_id, initial_version)
+            self.add_transitive_dependency(group_id, artifact_id, property_tag_name)
 
         # store the actual compatibility(source and binary) of each version
         # the key is the version, the value is a tuple of source compatibility and binary compatibility
         version_compatibility = {}
         for version in versions:
-            version_compatibility[version] = (False, False)
+            version_compatibility[version] = [False, False]
         # recompile the module from the initial version to the newest version of the dependency
         # to get the actual best version(source compatible)
         num_workers = os.cpu_count()
@@ -100,7 +97,8 @@ class Validation:
             source_validate_tasks = {executor.submit(self.recompile, property_tag_name, version): version for version in versions}
 
             # get the situation of the recompilation of each version, which is used to judge source compatibility
-            for is_success,result,version in concurrent.futures.as_completed(source_validate_tasks):
+            for future in concurrent.futures.as_completed(source_validate_tasks):
+                is_success,result,version = future.result()
                 pbar.update(1)
                 # store the result of the recompilation despite of the success or failure
                 self.store_validation_log(group_id, artifact_id, version, result.stdout, 'recompile')
@@ -114,7 +112,8 @@ class Validation:
             binary_validate_tasks = {executor.submit(self.check_binary_compatibility, group_id, artifact_id, version, method_entry_points, type_entry_points): version for version in versions}
 
             # get the situation of the binary compatibility of each version, which is used to judge binary compatibility
-            for is_compatible, bin_bc_api, version in concurrent.futures.as_completed(binary_validate_tasks):
+            for future in concurrent.futures.as_completed(binary_validate_tasks):
+                is_compatible, bin_bc_api, version = future.result()
                 pbar.update(1)
                 # store the binary BC api
                 self.store_validation_log(group_id, artifact_id, version, bin_bc_api, 'binary_bc_api')
@@ -129,10 +128,7 @@ class Validation:
                 break
         # store the actual best version in <properties>
         self.set_pom_property_value(group_id, artifact_id, best_version)
-        
-        # restore the pom.xml and back up the pom.xml after validating
-        backed_up_pom_path = os.path.join(self.path_to_cloned_folder, self.relative_path_to_module, '_backed_up_pom.xml')
-        Validation.restore_pom(original_pom_path, self.pom_path, backed_up_pom_path)
+
         
         return best_version
 
@@ -147,7 +143,7 @@ class Validation:
             version (str): the version of the dependency
         """
         # note: skip maven-enforcer-plugin
-        command = f"cd {self.path_to_cloned_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true -D{property_tag_name}={version} compile -am"
+        command = f"cd {self.path_to_cloned_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true -D{property_tag_name}={version}  -pl {self.relative_path_to_module} clean compile -am"
         try:
             result = subprocess.run(command, shell=True, text=True, capture_output=True)
             if result.returncode != 0:
@@ -160,23 +156,20 @@ class Validation:
     def check_binary_compatibility(self, group_id: str, artifact_id: str, version: str, method_entry_points: dict, type_entry_points: dict):
         """check the binary compatibility of the version"""
         # to be implemented ...
-        pass
+        return True, {}, version
 
-    def add_direct_dependency(self, group_id: str, artifact_id: str, initial_version: str):
+    def add_direct_dependency(self, group_id: str, artifact_id: str, property_tag_name:str):
         """add the direct dependency into the pom.xml
-        1. update the <dependencies>;
-        2. add {group_id}_{artifact_id}_version property im the <properties>;
-        3. set the version of the dependency to the property
+        update the <dependencies>
+        Args:
+            property_tag_name (str): the name of the property tag, from set_pom_property_value method
         Return:
             property_tag_name (str): the name of the property tag
         """
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(self.pom_path, parser)
         root = tree.getroot()
-        ns = {'m': 'http://maven.apache.org/POM/4.0.0'}  # Make sure this matches your pom.xml's namespace
-        
-        # add a property tag to the <properties> in the pom.xml
-        property_tag_name = self.set_pom_property_value(group_id, artifact_id, initial_version)
+        ns = {'m': 'http://maven.apache.org/POM/4.0.0'}
 
         # Check if dependency exists and create/update as necessary
         dependencies = root.find('.//m:dependencies', namespaces=ns)
@@ -190,7 +183,9 @@ class Validation:
             if g_id is not None and a_id is not None and g_id.text == group_id and a_id.text == artifact_id:
                 # set version to the property
                 version = dep.find('m:version', namespaces=ns)
-                version.text = f'${{{group_id}_{artifact_id}_version}}'
+                if version is None:
+                    version = etree.SubElement(dep, '{http://maven.apache.org/POM/4.0.0}version')
+                version.text = f'${{{property_tag_name}}}'
                 dependency = dep
                 break
 
@@ -201,7 +196,7 @@ class Validation:
             aid = etree.SubElement(dependency, '{http://maven.apache.org/POM/4.0.0}artifactId')
             aid.text = artifact_id
             version = etree.SubElement(dependency, '{http://maven.apache.org/POM/4.0.0}version')
-            version.text = f'${{{group_id}_{artifact_id}_version}}'
+            version.text = f'${{{property_tag_name}}}'
 
         # write back
         tree.write(self.pom_path, pretty_print=True, xml_declaration=True, encoding='utf-8')
@@ -209,11 +204,11 @@ class Validation:
         # return the name of the property tag
         return property_tag_name
 
-    def add_transitive_dependency(self, group_id: str, artifact_id: str, initial_version: str):
+    def add_transitive_dependency(self, group_id: str, artifact_id: str, property_tag_name:str):
         """add the transitive dependency into the pom.xml
-        1. update the <dependencyManagement>;
-        2. add {group_id}_{artifact_id}_version property im the <properties>;
-        3. set the version of the dependency to the property
+        update the <dependencyManagement>;
+        Args:
+            property_tag_name (str): the name of the property tag, from set_pom_property_value method
         Return:
             property_tag_name (str): the name of the property tag
         """
@@ -221,9 +216,6 @@ class Validation:
         tree = etree.parse(self.pom_path, parser)
         root = tree.getroot()
         ns = {'m': 'http://maven.apache.org/POM/4.0.0'}
-        
-        # add a property tag to the <properties> in the pom.xml
-        property_tag_name = self.set_pom_property_value(group_id, artifact_id, initial_version)
         
         # Check if dependency exists and create/update as necessary
         dependencyManagement = root.find('.//m:dependencyManagement', namespaces=ns)
@@ -241,7 +233,9 @@ class Validation:
             if g_id is not None and a_id is not None and g_id.text == group_id and a_id.text == artifact_id:
                 # set version to the property
                 version = dep.find('m:version', namespaces=ns)
-                version.text = f'${{{group_id}_{artifact_id}_version}}'
+                if version is None:
+                    version = etree.SubElement(dep, '{http://maven.apache.org/POM/4.0.0}version')
+                version.text = f'${{{property_tag_name}}}'
                 dependency = dep
                 break
 
@@ -252,8 +246,8 @@ class Validation:
             aid = etree.SubElement(dependency, '{http://maven.apache.org/POM/4.0.0}artifactId')
             aid.text = artifact_id
             version = etree.SubElement(dependency, '{http://maven.apache.org/POM/4.0.0}version')
-            version.text = f'${{{group_id}_{artifact_id}_version}}'
-            
+            version.text = f'${{{property_tag_name}}}'
+
         # write back
         tree.write(self.pom_path, pretty_print=True, xml_declaration=True, encoding='utf-8')
 
@@ -295,7 +289,7 @@ class Validation:
             log_type (str): the type of the log, 'recompile' or 'binary_bc_api'
         """
         # create the folder to store the log
-        log_folder = os.path.join(VALIDATION_LOG_DIR, self.path_to_cloned_folder, self.relative_path_to_module, group_id, artifact_id, version)
+        log_folder = os.path.join(VALIDATION_LOG_DIR, self.repo_name, self.relative_path_to_module, group_id, artifact_id, version)
         if not os.path.exists(log_folder):
             os.makedirs(log_folder)
         # store the log
