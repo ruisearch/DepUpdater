@@ -9,6 +9,7 @@ from lxml import etree
 from tqdm import tqdm
 
 from constants import VALIDATION_LOG_DIR
+from computation.japicmp import Japicmp
 class Validation:
     def __init__(self, path_to_cloned_folder: str, relative_path_to_module: str) -> None:
         self.path_to_cloned_folder = path_to_cloned_folder
@@ -129,7 +130,7 @@ class Validation:
         # store the actual best version in <properties>
         self.set_pom_property_value(group_id, artifact_id, best_version)
 
-        
+
         return best_version
 
     def recompile(self, property_tag_name:str, version: str):
