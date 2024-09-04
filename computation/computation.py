@@ -107,6 +107,7 @@ class Computation:
         # Iterate in reverse order to find the first version without breaking_reason
         for version in reversed(Versions):
             if not version['breaking_reason']:
+                print(f'best version of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]} is {version["version"]}')
                 return version['version']
         # all version have breaking_reason, which is not expected, so exit to analysis
         print(f"Fail to find the newest compatible version of {self.cur_node['GroupId']}:{self.cur_node['ArtifactId']}")

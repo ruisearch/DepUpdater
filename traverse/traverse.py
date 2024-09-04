@@ -7,13 +7,13 @@ from computation.computation import Computation
 from computation.validation import Validation
 
 class Traverse:
-    def __init__(self, json_path, path_to_folder, relative_path_to_module):
+    def __init__(self, json_path, path_to_project_folder, relative_path_to_module):
         with open(json_path, 'r', encoding='utf-8') as f:
             self.graph = json.load(f)
         self.json_path = json_path
         self.queue = deque()
-        self.repo_name = os.basename(path_to_folder)
-        self.path_to_project_folder = path_to_folder
+        self.repo_name = os.path.basename(path_to_project_folder)
+        self.path_to_project_folder = path_to_project_folder
         self.relative_path_to_module = relative_path_to_module
         self.init_queue()
         self.compute_api_of_client()
@@ -34,30 +34,55 @@ class Traverse:
 
     def traverse(self):
         """traverse the graph to compute the newest compatible version of each dependency"""
+        # back up the original pom.xml
+        pom_path = os.path.join(self.path_to_project_folder, self.relative_path_to_module, 'pom.xml')
+        original_pom_path = os.path.join(self.path_to_project_folder, self.relative_path_to_module, '_original_pom.xml')
+        Validation.backup_pom(original_pom_path, pom_path)
+        
         while self.queue:
             cur_dep = self.queue.popleft()
             # find the newest compatible version of cur_dep,
             # and return its new dependencies and old dependencies to update the graph,
             # record the graph in version.json in real time
             # --> new_deps = compute_newest_version(cur_dep, self.graph, self.json_path)
-            com = Computation(cur_dep, self.graph, self.json_path, self.repo_name, self.relative_path_to_module)
-            old_deps = com.get_old_deps()
-            best_version = com.compute_best_version()
-            method_entry_points, type_entry_points = com.return_entry_points()
-            # validate. If the actually best version is different from the best version got by tool, exit
-            self.validate(cur_dep, best_version, method_entry_points, type_entry_points)
-            com.get_and_record_reachable_api(best_version)
+            old_deps = self.compute_and_validate(cur_dep)
             # update the graph and queue,
             # record the graph in version.json in real time
             # --> update_graph(cur_dep, old_deps, new_deps, self.graph, self.queue, self.json_path)
+        
+        # restore the pom.xml and back up the pom.xml after validating
+        backed_up_pom_path = os.path.join(self.path_to_project_folder, self.relative_path_to_module, '_backed_up_pom.xml')
+        Validation.restore_pom(original_pom_path, pom_path, backed_up_pom_path)
+
+
+    def compute_and_validate(self, cur_dep:dict):
+        """compute the newest compatible version of the dependency and validate it
+        Args:
+            cur_dep (dict): the dependency to be computed and validated
+        Returns:
+            old_deps (list): the old dependencies of cur dep
+        """
+        com = Computation(cur_dep, self.graph, self.json_path, self.repo_name, self.relative_path_to_module)
+        old_deps = com.get_old_deps()
+        # compute the newest compatible version of cur_dep
+        best_version = com.compute_best_version()
+        method_entry_points, type_entry_points = com.return_entry_points()
+        # validate. If the actually best version is different from the best version got by tool, exit
+        self.validate(cur_dep, best_version, method_entry_points, type_entry_points)
+        com.get_and_record_reachable_api(best_version)
+        cur_dep['Best_Version'] = best_version
+        # #debug
+        # print(self.graph)
+        com.record_graph()
+        return old_deps
 
     def validate(self, cur_dep, best_version, method_entry_points, type_entry_points):
-        """get the actually best version and compare it with the best version got by tool
+        """get the actually best version and compare it with the best version got by tool. If they are different, exit
         Args:
             cur_dep (dict): the dependency to be validated
             best_version (str): the best version got by tool
-            method_entry_points (list): the entry points of methods
-            type_entry_points (list): the entry points of types
+            method_entry_points (list): the entry points of methods(from computation phase)
+            type_entry_points (list): the entry points of types(from computation phase)
         """
         val = Validation(self.path_to_project_folder, self.relative_path_to_module)
         group_id = cur_dep['GroupId']
@@ -67,7 +92,4 @@ class Traverse:
             direct_or_transitive = 'direct'
         else:
             direct_or_transitive = 'transitive'
-        actual_best_version = val.validate(group_id, artifact_id, versions, method_entry_points, type_entry_points, direct_or_transitive)
-        if best_version != actual_best_version:
-            print(f"Error: the best version of {group_id}:{artifact_id} got by tool is {best_version}, but the actual best version is {actual_best_version}")
-            exit(1)
+        val.validate(group_id, artifact_id, versions, best_version, method_entry_points, type_entry_points, direct_or_transitive)
