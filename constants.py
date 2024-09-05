@@ -66,3 +66,5 @@ SOOTCG_PATH = os.path.join(MainProcess_pwd, 'utils/sootCG-1.0-SNAPSHOT-jar-with-
 SOOT_TYPE_DG_PATH = os.path.join(MainProcess_pwd, 'utils/soot_Type_DG-1.0-SNAPSHOT-jar-with-dependencies.jar')
 # path to revapi.sh
 REVAPI_SH_PATH = os.path.join(MainProcess_pwd, 'utils', 'revapi-0.12.0', 'revapi.sh')
+# path to japicmp-0.18.3-jar-with-dependencies.jar
+JAPICMP_PATH = os.path.join(MainProcess_pwd, 'utils', 'japicmp-0.18.3-jar-with-dependencies.jar')
