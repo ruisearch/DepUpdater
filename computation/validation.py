@@ -10,6 +10,9 @@ from tqdm import tqdm
 
 from constants import VALIDATION_LOG_DIR
 from computation.japicmp import Japicmp
+from computation.computation import Computation
+from preprocess.Restore import Restore
+from database.query import query_to_get_jar_location
 class Validation:
     def __init__(self, path_to_cloned_folder: str, relative_path_to_module: str) -> None:
         self.path_to_cloned_folder = path_to_cloned_folder
@@ -87,6 +90,8 @@ class Validation:
         # the key is the version, the value is a tuple of source compatibility and binary compatibility
         version_compatibility = {}
         for version in versions:
+            # [0] is whether the version is source compatible
+            # [1] is whether the version is binary compatible
             version_compatibility[version] = [False, False]
         # recompile the module from the initial version to the newest version of the dependency
         # to get the actual best version(source compatible)
@@ -153,11 +158,73 @@ class Validation:
         except subprocess.SubprocessError as e:
             print(f"An error occured while executing the command: {e}")
             return False, result, version
-        
-    def check_binary_compatibility(self, group_id: str, artifact_id: str, version: str, method_entry_points: dict, type_entry_points: dict):
-        """check the binary compatibility of the version"""
-        # to be implemented ...
-        return True, {}, version
+
+    def check_binary_compatibility(self, groupId: str, artifactId: str, version: str, method_entry_points: dict, type_entry_points: dict):
+        """check the binary compatibility of the version
+        Returns:
+            flag (bool): whether the version is binary compatible
+            api_list (list): a list of dict. One dict represent one client impacting binary bc api\n
+            {
+                'api': client_impacting_api,
+                'dependent: gav of the dependent jar,
+                'callers': callers of the client impacting api in the dependent jar,
+                'record': the bc record of the client impacting api in Japicmp report
+            }\n
+            version (str): the version under checking
+        """
+        api_list = []
+        for method_entry_point in method_entry_points:
+            dependent_gav = method_entry_point['dependent']
+            baselineVersion = method_entry_point['baselineVersion']
+            if baselineVersion == version:
+                continue
+            old_jar = query_to_get_jar_location(groupId, artifactId, baselineVersion)
+            Restore.get_dep_jar(groupId, artifactId, baselineVersion)
+            new_jar = query_to_get_jar_location(groupId, artifactId, version)
+            Restore.get_dep_jar(groupId, artifactId, version)
+            japicmp = Japicmp(old_jar, new_jar)
+            print(f'extract bin bc api of {groupId}:{artifactId}:{baselineVersion} -> {version} by Japicmp')
+            bin_bc_method, _ = japicmp.bc_api(groupId, artifactId, baselineVersion, version)
+
+            print(f'validate bin method compatibility of {groupId}:{artifactId}:{baselineVersion} -> {version}')
+            client_impacting_bin_methods = Computation.intersect_api(bin_bc_method, method_entry_point['api'])
+            for client_impacting_bin_method in client_impacting_bin_methods:
+                api_list.append({
+                    'api': client_impacting_bin_method,
+                    'dependent': dependent_gav,
+                    'callers': [caller for caller in method_entry_point['api'][client_impacting_bin_method]],
+                    'record': bin_bc_method[client_impacting_bin_method]
+                })
+
+        for type_entry_point in type_entry_points:
+            dependent_gav = type_entry_point['dependent']
+            baselineVersion = type_entry_point['baselineVersion']
+            if baselineVersion == version:
+                continue
+            old_jar = query_to_get_jar_location(groupId, artifactId, baselineVersion)
+            Restore.get_dep_jar(groupId, artifactId, baselineVersion)
+            new_jar = query_to_get_jar_location(groupId, artifactId, version)
+            Restore.get_dep_jar(groupId, artifactId, version)
+            print(f'extract bin bc api of {groupId}:{artifactId}:{baselineVersion} -> {version} by Japicmp')
+            japicmp = Japicmp(old_jar, new_jar)
+            _, bin_bc_type = japicmp.bc_api(groupId, artifactId, baselineVersion, version)
+
+            print(f'validate bin type compatibility of {groupId}:{artifactId}:{baselineVersion} -> {version}')
+            client_impacting_bin_types = Computation.intersect_api(bin_bc_type, type_entry_point['api'])
+            for client_impacting_bin_type in client_impacting_bin_types:
+                api_list.append({
+                    'api': client_impacting_bin_type,
+                    'dependent': dependent_gav,
+                    'callers': [caller for caller in type_entry_point['api'][client_impacting_bin_type]],
+                    'record': bin_bc_type[client_impacting_bin_type]
+                })
+
+        if api_list:
+            flag = False
+        else:
+            flag = True
+
+        return flag, api_list, version
 
     def add_direct_dependency(self, group_id: str, artifact_id: str, property_tag_name:str):
         """add the direct dependency into the pom.xml
@@ -279,7 +346,7 @@ class Validation:
         tree.write(self.pom_path, pretty_print=True, xml_declaration=True, encoding='utf-8')
 
         return property_tag_name
-    
+
     def store_validation_log(self, group_id:str, artifact_id:str, version:str, log, log_type:str):
         """store the recompilation log and binary BC api got by japicmp
         Args:

@@ -1,8 +1,13 @@
 """use japicmp to check the binary compatibility of one version"""
 import subprocess
+import re
+
+
 from constants import JAPICMP_PATH
 from database.query import query_japicmp_bc_api, query_japicmp_report,\
-    store_japicmp_report, store_japicmp_bc_api
+    store_japicmp_report, store_japicmp_bc_api, query_to_get_jar_location
+from computation.revapi import Revapi
+
 
 class Japicmp:
     """japicmp tool class"""
@@ -22,12 +27,6 @@ class Japicmp:
         # the content are got from extract_bc_api method
         self.binary_bc_method = {}
         self.binary_bc_type = {}
-
-    def client_impacting_bin_bc_api(self, groupId: str, artifactId: str, oldVersion: str, newVersion: str, method_entry_points:list, type_entry_points:list):
-        """main method: get the client impacting binary bc api in the format of dict"""
-        # like version_compatibility_checker in computation.py, interact bc_method/bc_type with method_entry_points/type_entry_points
-        # to be implemented
-        pass
 
     def bc_api(self, groupId: str, artifactId: str, oldVersion: str, newVersion: str):
         """get the bin bc api in the format of dict"""
@@ -70,10 +69,10 @@ class Japicmp:
         """extract the binary bc records from the report
         and store then in self.binary_bc_records
         """
-        # to be implemented
-        pass
-        
-        
+        record_pattern = r'(?:\n\*\*\*! |\n===! |\n---! |\n\+\+\+! ).*?(?=\n\*\*\*! |\n===! |\n---! |\n\+\+\+! |\Z)'
+        records = re.findall(record_pattern, report, re.DOTALL)
+        self.binary_bc_records = records
+
     def extract_bc_api(self, record:str):
         """extract the binary bc api from a record
         and store them in self.binary_bc_method and self.binary_bc_type
@@ -81,5 +80,68 @@ class Japicmp:
         Args:
             record (str): a bin bc record from japicmp report
         """
-        # to be implemented
-        pass
+        # extract the type name
+        type_pattern = r' ([^ ]*?)  \('
+        bc_type_name = re.search(type_pattern, record).group(1).replace('$', '.')
+        self.binary_bc_type.setdefault(bc_type_name, []).append(record)
+        api_lines = record.split('\n')
+        method_pattern = r' ([^()]*?) ([^()]*?)(\([^()]*?\))\Z'
+        constructor_pattern = r' [^()]*?(\([^()]*?\))\Z'
+        for api_line in api_lines:
+            api_line = (Revapi.remove_angle_brackets(api_line)).replace('$', '.')
+            # extract methods in record
+            if 'METHOD:' in api_line:
+                # # debug
+                # print('method:', api_line)
+                method_match = re.search(method_pattern, api_line)
+                return_type = method_match.group(1)
+                # # debug
+                # print('return_type:', return_type)
+                method_name = method_match.group(2)
+                # # debug
+                # print('method_name:', method_name)
+                parameter_list = method_match.group(3)
+                # # debug
+                # print('parameter_list:', parameter_list)
+                complete_method_name = f'{return_type} {bc_type_name}::{method_name}{parameter_list}'
+                self.binary_bc_method.setdefault(complete_method_name, []).append(record)
+                continue
+            # extract constructors
+            if 'CONSTRUCTOR:' in api_line:
+                # # debug
+                # print('constructor:', api_line)
+                constructor_match = re.search(constructor_pattern, api_line)
+                parameter_list = constructor_match.group(1)
+                # # debug
+                # print('parameter_list:', parameter_list)
+                complete_constructor_name = f'void {bc_type_name}::<init>{parameter_list}'
+                self.binary_bc_method.setdefault(complete_constructor_name, []).append(record)
+                continue
+
+if __name__ == '__main__':
+    # test extract_bc_records
+    japicmp = Japicmp('jars/commons-lang3-3.9.jar', 'jars/commons-lang3-3.10.jar')
+    report = """Comparing binary compatibility of /home/ray/Tool/test_soot-1.0-SNAPSHOT.jar against /home/ray/Tool/test_soot/target/test_soot-1.0-SNAPSHOT.jar
+WARNING: You are using the option '--ignore-missing-classes', i.e. superclasses and interfaces that could not be found on the classpath are ignored. Hence changes caused by these superclasses and interfaces are not reflected in the output.
+***! MODIFIED CLASS: PUBLIC test.soot.CG.Cg_Main  (not serializable)
+	===  CLASS FILE FORMAT VERSION: 61.0 <- 61.0
+	---! REMOVED METHOD: PUBLIC(-) void test_anonymousClass()
+	---! REMOVED METHOD: PUBLIC(-) java.util.List<S> test_multi_generic(test.soot.error, java.lang.Object)
+		GENERIC TEMPLATES: --- S:test.soot.error, --- T:java.lang.Object
+	---! REMOVED METHOD: PUBLIC(-) java.lang.String[] test_return_array()
+***! MODIFIED CLASS: PUBLIC test.soot.CG.Cg_Main$genericClass  (not serializable)
+	===  CLASS FILE FORMAT VERSION: 61.0 <- 61.0
+	GENERIC TEMPLATES: === T:test.soot.test_interface
+	---! REMOVED METHOD: PUBLIC(-) void print(java.util.List<? extends test.soot.test_interface>)
+***! MODIFIED CLASS: PROTECTED net.bytebuddy.asm.Advice$Dispatcher$RelocationHandler$ForValue$Bound  (not serializable)
+	===  CLASS FILE FORMAT VERSION: 49.0 <- 49.0
+	===! UNCHANGED INTERFACE: net.bytebuddy.asm.Advice$Dispatcher$RelocationHandler$Bound
+	---! REMOVED CONSTRUCTOR: PROTECTED(-) Advice$Dispatcher$RelocationHandler$ForValue$Bound(boolean)"""
+    japicmp.extract_bc_records(report)
+    for idx, record in enumerate(japicmp.binary_bc_records):
+        print(f'record {idx}: {record}')
+    # test extract_bc_api
+    for record in japicmp.binary_bc_records:
+        japicmp.extract_bc_api(record)
+    print(japicmp.binary_bc_method)
+    print(japicmp.binary_bc_type)

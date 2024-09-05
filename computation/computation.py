@@ -144,11 +144,12 @@ class Computation:
             new_jar = query_to_get_jar_location(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
             Restore.get_dep_jar(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
             revapi = Revapi(old_jar, new_jar)
-            print(f'extract bc method of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{baselineVersion} -> {version}')
-            bc_method, _ = revapi.bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version, 'binary')
+            print(f'extract bc method of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{baselineVersion} -> {version} by Revapi')
+            bin_bc_method, _, src_bc_method, _ = revapi.bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version)
+            # binary compatibility must be considered
+            bc_method = bin_bc_method
             if depended_by_client:
                 # judge source compatibility as well
-                src_bc_method, _ = revapi.bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version, 'source')
                 Computation.merge_bc_api_dict(bc_method, src_bc_method)
 
             print(f'judge method compatibility of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{version} with {dependent_gav}')
@@ -156,7 +157,7 @@ class Computation:
             for client_impacting_method in client_impacting_methods:
                 breaking_reason = {
                     'api': client_impacting_method,
-                    'dependent': method_entry_point['dependent'],
+                    'dependent': dependent_gav,
                     'callers': [caller for caller in method_entry_point['api'][client_impacting_method]],
                     'record': bc_method[client_impacting_method]
                 }
@@ -177,25 +178,25 @@ class Computation:
             new_jar = query_to_get_jar_location(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
             Restore.get_dep_jar(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
             revapi = Revapi(old_jar, new_jar)
-            print(f'extract bc type of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{baselineVersion} -> {version}')
-            _, bc_type = revapi.bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version, 'binary')
+            print(f'extract bc type of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{baselineVersion} -> {version} by Revapi')
+            _, bin_bc_type, _, src_bc_type = revapi.bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version)
+            bc_type = bin_bc_type
             if depended_by_client:
                 # judge source compatibility as well
-                _, src_bc_type = revapi.bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version, 'source')
                 Computation.merge_bc_api_dict(bc_type, src_bc_type)
             print(f'judge type compatibility of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{version} with {dependent_gav}')
             client_impacting_types = self.intersect_api(bc_type, type_entry_point['api'])
             for client_impacting_type in client_impacting_types:
                 breaking_reason = {
                     'api': client_impacting_type,
-                    'dependent': type_entry_point['dependent'],
+                    'dependent': dependent_gav,
                     'callers': [caller for caller in type_entry_point['api'][client_impacting_type]],
                     'record': bc_type[client_impacting_type]
                 }
                 ret_dict['breaking_reason'].append(breaking_reason)
 
         return ret_dict
-    
+
     @staticmethod
     def merge_bc_api_dict(target, source):
         """merge source to target
