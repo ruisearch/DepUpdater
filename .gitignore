@@ -22,6 +22,9 @@ tqdm_log/
 # ignore reusable_daat.sqlite
 reusable_data.sqlite
 
+# ignore maven_deps.bson
+maven_deps.bson
+
 # ignore venv
 .venv/
 
