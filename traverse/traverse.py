@@ -28,12 +28,12 @@ class Traverse:
         """get the methods and types of client jar first"""
         for dep in self.graph:
             if dep['Depth'] == 0:
-                client_com = Computation(dep, self.graph, self.json_path, self.repo_name, self.relative_path_to_module)
+                client_com = Computation(dep, self.graph, self.repo_name, self.relative_path_to_module)
                 client_com.get_and_record_reachable_api()
                 break
 
     def traverse(self):
-        """traverse the graph to compute the newest compatible version of each dependency"""
+        """traverse the graph to compute the newest compatible version of each dependency in order"""
         # back up the original pom.xml
         pom_path = os.path.join(self.path_to_project_folder, self.relative_path_to_module, 'pom.xml')
         original_pom_path = os.path.join(self.path_to_project_folder, self.relative_path_to_module, '_original_pom.xml')
@@ -62,7 +62,7 @@ class Traverse:
         Returns:
             old_deps (list): the old dependencies of cur dep
         """
-        com = Computation(cur_dep, self.graph, self.json_path, self.repo_name, self.relative_path_to_module)
+        com = Computation(cur_dep, self.graph, self.repo_name, self.relative_path_to_module)
         old_deps = com.get_old_deps()
         # compute the newest compatible version of cur_dep
         best_version = com.compute_best_version()
@@ -73,7 +73,7 @@ class Traverse:
         cur_dep['Best_Version'] = best_version
         # #debug
         # print(self.graph)
-        com.record_graph()
+        self.record_graph(self.graph, self.json_path)
         return old_deps
 
     def validate(self, cur_dep, best_version, method_entry_points, type_entry_points):
@@ -93,3 +93,9 @@ class Traverse:
         else:
             direct_or_transitive = 'transitive'
         val.validate(group_id, artifact_id, versions, best_version, method_entry_points, type_entry_points, direct_or_transitive)
+        
+    @staticmethod
+    def record_graph(graph, json_path):
+        """record the graph in version.json"""
+        with open(json_path, 'w', encoding='utf-8') as f:
+            json.dump(graph, f, ensure_ascii=False, indent=4)

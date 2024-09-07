@@ -11,16 +11,14 @@ from computation.revapi import Revapi
 from database.query import query_to_get_jar_location
 from preprocess.Restore import Restore
 class Computation:
-    def __init__(self, cur_node:dict, graph:list, json_path: str, repo_name:str, relative_path_to_module:str):
+    def __init__(self, cur_node:dict, graph:list, repo_name:str, relative_path_to_module:str):
         """
         Args:
             cur_node : the dependency to be computed
             graph : the dependency graph
-            json_path : the path to the json file to record the graph
         """
         self.cur_node = cur_node
         self.graph = graph
-        self.json_path = json_path
         self.repo_name = repo_name
         self.relative_path_to_module = relative_path_to_module
         # method_caller_callee_pair and type_caller_callee_pair are used to compare with the Revapi result
@@ -92,8 +90,6 @@ class Computation:
         # record the best version in self.cur_node
         self.cur_node['Best_Version'] = best_version
 
-        # record the graph into json file
-        self.record_graph()
         return best_version
 
     def get_client_gav(self):
@@ -351,10 +347,6 @@ class Computation:
         reachable_apis = Api.parse_call_relations(call_relations_str)
         return reachable_apis
 
-    def record_graph(self):
-        """record the graph into json file"""
-        with open(self.json_path, 'w', encoding='utf-8') as f:
-            json.dump(self.graph, f, ensure_ascii=False, indent=4)
 
     def judge_dependent_empty(self):
         """judge if the dependent is empty"""
@@ -375,7 +367,7 @@ if __name__ == '__main__':
     #     'Count':0,
     #     'Dependents':[]
     # }
-    # client = Computation(client_dict, [], '', 'test', 'example1')
+    # client = Computation(client_dict, [], 'test', 'example1')
     # client.get_and_record_reachable_api()
     
     # dep_dict = {
@@ -394,7 +386,7 @@ if __name__ == '__main__':
     #         }
     #     ]
     # }
-    # dep = Computation(dep_dict, [], '', 'test', 'example1')
+    # dep = Computation(dep_dict, [], 'test', 'example1')
     # # get dep's entry points and caller
     # dep.get_entry_points_and_caller('org.apache.druid.extensions.contrib', 'druid-influxdb-emitter', '28.0.1', '2.12.5', 'methods')
     # dep.get_entry_points_and_caller('org.apache.druid.extensions.contrib', 'druid-influxdb-emitter', '28.0.1', '2.12.5', 'types')
@@ -413,9 +405,9 @@ if __name__ == '__main__':
         'Count':0,
         'Dependents':[]
     }
-    client = Computation(client_dict, [], '', 'test', 'example2')
+    client = Computation(client_dict, [], 'test', 'example2')
     client.get_and_record_reachable_api()
-    
+
     dep_dict = {
         'GroupId': 'joda-time',
         'ArtifactId': 'joda-time',
@@ -432,7 +424,7 @@ if __name__ == '__main__':
             }
         ]
     }
-    dep = Computation(dep_dict, [], '', 'test', 'example2')
+    dep = Computation(dep_dict, [], 'test', 'example2')
     # get dep's entry points and caller
     dep.get_entry_points_and_caller('cat.inspiracio', 'dwr', '3.0.1', '2.12.7', 'methods')
     dep.get_entry_points_and_caller('cat.inspiracio', 'dwr', '3.0.1', '2.12.7', 'types')
