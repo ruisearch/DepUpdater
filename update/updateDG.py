@@ -21,6 +21,18 @@ class Update:
         self.graph_dict = self.get_graph_dict()
         # dict of new new_deps; groupId:artifactId -> [version, type]
         self.new_dict = self.get_new_deps_dict()
+        # dict of queue; groupId:artifactId -> dep dict in queue
+        self.queue_dict = self.get_queue_dict()
+        
+    def get_queue_dict(self):
+        """transform queue from a deque of dicts to a dict of groupId:artifactId -> dep dict in queue
+        Returns:
+            queue (dict): the dependencies in the queue; groupId:artifactId -> dep dict in queue
+        """
+        queue_dict = {}
+        for dep in self.queue:
+            queue_dict[dep['GroupId']+':'+dep['ArtifactId']] = dep
+        return queue_dict
 
     def get_old_deps_dict(self, old_deps:list):
         """transform old_deps from a list of dicts to a dict of groupId:artifactId -> index
@@ -118,7 +130,26 @@ class Update:
 
     def update_existing_deps(self, ga_set:set):
         """situation 1: the dependency is in both old_deps and new_deps"""
-        pass
+        best_version = self.cur_dep['Best_Version']
+        for ga in ga_set:
+            idx = self.graph_dict[ga]
+            dep_dict = self.graph[idx]
+            # update graph
+            for dependent in dep_dict['Dependents']:
+                if self.cur_dep['GroupId'] == dependent['GroupId'] and self.cur_dep['ArtifactId'] == dependent['ArtifactId']:
+                    # update the version of the dependent and the defined version(of this dep) by the dependent
+                    if dependent['Version'] != best_version:
+                        dependent['Version'] = best_version
+                        # the best version of this dependency is outdated
+                        dep_dict['Best_Version'] = ""
+                        dependent['Define_Version'] = self.new_dict[ga][0]
+                    break
+            
+            # update queue
+            # 1. compute the in-degree to judge if the dependency is ready to be computed
+            flag = self.is_ready(dep_dict['Dependents'])
+            # 2. update queue by the in-degree and dep ga
+            # todo --------------------------------------------
 
     def add_new_deps(self, ga_set:set):
         """situation 2: the dependency is in new_deps aw well as original graph but not in old_deps"""
@@ -135,3 +166,26 @@ class Update:
     def return_dep_by_idx(self, idx:int):
         """return the dependency by index"""
         return self.graph[idx]
+
+    def is_ready(self, dependents_list: list):
+        """compute the in-degree of the dependents of the dependency
+        if the in-degree is 0, return True; if in-degree is bigger than 0, return False
+        """
+        
+        for dependent in dependents_list:
+            dependent_g = dependent['GroupId']
+            dependent_a = dependent['ArtifactId']
+            if not self.is_computed_yet(f'{dependent_g}:{dependent_a}'):
+                # a dependent is not computed yet
+                return False
+        return True
+
+    def is_computed_yet(self, ga):
+        """check if the dependency is computed yet
+        Args:
+            ga (str): the groupId:artifactId of the dependency
+        """
+        dep_dict = self.graph[self.graph_dict[ga]]
+        if dep_dict['Best_Version'] == "":
+            return False
+        return True
