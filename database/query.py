@@ -2,6 +2,7 @@
 import os
 import json
 from database.sqlite import Sqlite
+from database.mongodb import Mongo
 from database.constants import SQLITE_PATH
 from constants import JAR_DIR
 
@@ -178,4 +179,35 @@ def store_japicmp_bc_api(groupId, aritifactId, oldVersion, newVersion, binary_bc
     # insert ga v1 v2 first if not exists
     db.insert_data('Japicmp', {'groupId':groupId, 'artifactId':aritifactId, 'oldVersion':oldVersion, 'newVersion':newVersion})
     db.update_data('Japicmp', {'binaryBcMethod':json.dumps(binary_bc_method), 'binaryBcType':json.dumps(binary_bc_type)}, condition)
+    db.close()
+
+def query_dependencies_from_mongo(groupId, artifactId, version):
+    """query the dependencies of a gav
+    Args:
+        gav (str): groupId:artifactId:version
+    Returns:
+        dependencies (list): the dependencies of the gav
+    """
+    gav = f'{groupId}:{artifactId}:{version}'
+    db = Mongo('maven_deps', 'maven_deps')
+    db.connect()
+    document = db.find_document({'parent':gav})
+    if document is None:
+        db.close()
+        return None
+    dependencies = document['dependencies']
+    db.close()
+    return dependencies
+
+def insert_dependencies_into_mongo(groupId, artifactId, version, dependencies):
+    """insert the dependencies of a gav if not exists
+    Args:
+        dependencies (list): the dependencies of the gav
+    """
+    gav = f'{groupId}:{artifactId}:{version}'
+    db = Mongo('maven_deps', 'maven_deps')
+    db.connect()
+    document = db.find_document({'parent':gav})
+    if document is None:
+        db.insert_document({'dependencies':dependencies,'parent':gav})
     db.close()

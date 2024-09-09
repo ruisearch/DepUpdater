@@ -3,36 +3,38 @@ import subprocess
 import xml.etree.ElementTree as ET
 import os
 
-import pymongo
+from database.query import insert_dependencies_into_mongo
 
-from config import MONGO_HOST, MONGO_PORT, pom_path
-from download_pom import download_pom_one
+from constants import POM_PATH
+from update.download_pom import download_pom_one
 
 
-def populate_dep(gav, c=None):
-    if c==None:
-        c = pymongo.MongoClient(MONGO_HOST,
-                                port=MONGO_PORT)
-    maven_deps = c['library-crawler']['maven_deps']
-    # if maven_deps.find_one({'parent': gav.replace('|', ':')}):
-    #     return
-    os.makedirs(pom_path, exist_ok=True)
+def populate_dep(go, ao, vo):
+    """get the dependencies of an artifact and store them in the database
+    Args:
+        go (str): groupId
+        ao (str): artifactId
+        vo (str): version
+    """
+    os.makedirs(POM_PATH, exist_ok=True)
+    gav = go+'|'+ao+'|'+vo
     download_pom_one(gav)
     cwd = os.getcwd()
-    go, ao, vo = gav.split('|')
-    if not os.path.exists(pom_path +ao+'-'+vo+'.pom'):
+    if not os.path.exists(POM_PATH +ao+'-'+vo+'.pom'):
         return
-    os.rename(pom_path +ao+'-'+vo+'.pom', pom_path+'pom.xml')
-    os.chdir(pom_path)
+    os.rename(POM_PATH +ao+'-'+vo+'.pom', POM_PATH+'pom.xml')
+    os.chdir(POM_PATH)
     try:
+        # get the effective pom from the pom.xml
+        print(f'extracting dependencies of {gav}...')
         output = subprocess.check_output('mvn help:effective-pom -Doutput=tmp_pom.xml',stderr=subprocess.STDOUT, shell=True)
         # print(output)
     except:
-        with open('/Users/lyuye/workspace/collegues/yiran/errored.csv', 'a') as fc:
+        with open(os.path.join(POM_PATH,'errored.csv'), 'a') as fc:
             csv.writer(fc).writerow([gav.replace('|', ':')])
     os.chdir(cwd)
     try:
-        mytree = ET.parse(pom_path+'tmp_pom.xml')
+        mytree = ET.parse(POM_PATH+'tmp_pom.xml')
         root = mytree.getroot()
         dependencies = []
         order = 1
@@ -71,10 +73,19 @@ def populate_dep(gav, c=None):
                     dependencies.append(each)
                     order += 1
 
-        os.remove(pom_path+'pom.xml',)
+        os.remove(POM_PATH+'pom.xml')
 
-        maven_deps.update_one({'parent': gav.replace('|', ":")}, {'$set':{'dependencies':dependencies, }},upsert=True)
-        # maven_deps.insert_one({'dependencies':dependencies, 'parent': go+':'+ao+':'+vo})
+        insert_dependencies_into_mongo(go, ao, vo, dependencies)
     except Exception as e:
         print(gav, e)
-    # c.close()
+        
+    print(f'dependencies of {gav} got')
+
+    return dependencies
+
+if __name__ == '__main__':
+    g = 'com.fasterxml.jackson.core'
+    a = 'jackson-databind'
+    v = '2.17.2'
+    dependencies = populate_dep(g, a, v)
+    print(dependencies)

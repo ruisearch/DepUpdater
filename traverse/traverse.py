@@ -5,7 +5,7 @@ from collections import deque
 
 from computation.computation import Computation
 from computation.validation import Validation
-
+from update.updateDG import Update
 class Traverse:
     def __init__(self, json_path, path_to_project_folder, relative_path_to_module):
         with open(json_path, 'r', encoding='utf-8') as f:
@@ -49,6 +49,7 @@ class Traverse:
             # update the graph and queue,
             # record the graph in version.json in real time
             # --> update_graph(cur_dep, old_deps, new_deps, self.graph, self.queue, self.json_path)
+            up = Update(cur_dep, self.graph, self.queue, old_deps)
         
         # restore the pom.xml and back up the pom.xml after validating
         backed_up_pom_path = os.path.join(self.path_to_project_folder, self.relative_path_to_module, '_backed_up_pom.xml')
