@@ -39,6 +39,8 @@ data folder structure:
     | | | | | ├── {version}/
     | | | | | | ├── recompile.txt
     | | | | | | ├── binary_bc_api.json
+    ├── pom/
+    | ├── errored.csv
 """
 import os
 
@@ -59,6 +61,8 @@ TQDM_LOG_PATH = os.path.join(DATA_DIR, 'tqdm_log/')
 REACHABLE_API_DIR = os.path.join(DATA_DIR, 'reachableApi/')
 # path to data/validation_log/
 VALIDATION_LOG_DIR = os.path.join(DATA_DIR, 'validation_log/')
+# path to pom, which store the pom.xml used to update mongodb temporarily
+POM_PATH = os.path.join(DATA_DIR, 'pom/')
 
 # path to sootCG
 SOOTCG_PATH = os.path.join(MainProcess_pwd, 'utils/sootCG-1.0-SNAPSHOT-jar-with-dependencies.jar')
@@ -68,3 +72,5 @@ SOOT_TYPE_DG_PATH = os.path.join(MainProcess_pwd, 'utils/soot_Type_DG-1.0-SNAPSH
 REVAPI_SH_PATH = os.path.join(MainProcess_pwd, 'utils', 'revapi-0.12.0', 'revapi.sh')
 # path to japicmp-0.18.3-jar-with-dependencies.jar
 JAPICMP_PATH = os.path.join(MainProcess_pwd, 'utils', 'japicmp-0.18.3-jar-with-dependencies.jar')
+# path to local maven repository, '~/.m2/repository/' default
+M2_PATH = os.path.expanduser('~') + '/.m2/repository/'
