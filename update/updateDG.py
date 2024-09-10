@@ -64,6 +64,11 @@ class Update:
         """
         graph = {}
         for i, dep in enumerate(self.graph):
+            depth = dep['Depth']
+            if depth > 0 and not dep['Dependents']:
+                # the node is not client and has no dependents
+                # means the node is not in graph actually
+                continue
             graph[dep['GroupId']+':'+dep['ArtifactId']] = i
         return graph
 
@@ -168,6 +173,8 @@ class Update:
                     "Define_Version": self.new_dict[ga][0]
                 }
             )
+            # clear the best version of this dependency
+            dep_dict['Best_Version'] = ""
             # won't affect the queue, so no need to update queue
 
     def remove_deps(self, ga_set:set):
@@ -201,8 +208,10 @@ class Update:
     def is_ready(self, dependents_list: list):
         """compute the in-degree of the dependents of the dependency
         if the in-degree is 0, return True; if in-degree is bigger than 0, return False
+        note: if no dependent, the dependency is not in the graph actually
         """
-        
+        if not dependents_list:
+            return False
         for dependent in dependents_list:
             dependent_g = dependent['GroupId']
             dependent_a = dependent['ArtifactId']
