@@ -155,8 +155,20 @@ class Update:
             self.update_queue(flag, ga)
 
     def add_new_deps(self, ga_set:set):
-        """situation 2: the dependency is in new_deps aw well as original graph but not in old_deps"""
-        pass
+        """situation 2: the dependency is in new_deps as well as original graph but not in old_deps"""
+        for ga in ga_set:
+            # update graph, add the new dependent to the dependency
+            idx = self.graph_dict[ga]
+            dep_dict = self.graph[idx]
+            dep_dict['Dependents'].append(
+                {
+                    "GroupId": self.cur_node['GroupId'],
+                    "ArtifactId": self.cur_node['ArtifactId'],
+                    "Version": self.cur_node['Best_Version'],
+                    "Define_Version": self.new_dict[ga][0]
+                }
+            )
+            # won't affect the queue, so no need to update queue
 
     def remove_deps(self, ga_set:set):
         """situation 3: the dependency is in old_deps but not in new_deps"""
