@@ -50,6 +50,7 @@ class Traverse:
             # record the graph in version.json in real time
             # --> update_graph(cur_dep, old_deps, new_deps, self.graph, self.queue, self.json_path)
             up = Update(cur_dep, self.graph, self.queue, old_deps)
+            up.update()
         
         # restore the pom.xml and back up the pom.xml after validating
         backed_up_pom_path = os.path.join(self.path_to_project_folder, self.relative_path_to_module, '_backed_up_pom.xml')
