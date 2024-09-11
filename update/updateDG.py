@@ -152,7 +152,7 @@ class Update:
                     # update the version of the dependent and the defined version(of this dep) by the dependent
                     if dependent['Version'] != best_version:
                         dependent['Version'] = best_version
-                        # the best version of this dependency is outdated
+                        # the best version of the dependent recorded by this dependency is outdated
                         dep_dict['Best_Version'] = ""
                         dependent['Define_Version'] = self.new_dict[ga][0]
                     break
@@ -187,12 +187,69 @@ class Update:
         """situation 3: the dependency is in old_deps but not in new_deps
         remove some edges (and some nodes if necessary)in the dependency graph
         """
-        pass
+        for ga in ga_set:
+            # update graph, remove the dependent from the dependency
+            idx = self.graph_dict[ga]
+            dep_dict = self.graph[idx]
+            for dependent in dep_dict['Dependents']:
+                if self.cur_node['GroupId'] == dependent['GroupId'] and self.cur_node['ArtifactId'] == dependent['ArtifactId']:
+                    dep_dict['Dependents'].remove(dependent)
+                    break
+
+            # the best version of the dependent recorded by this dependency is outdated
+            dep_dict['Best_Version'] = ""
+            # update queue after deleting an edge
+            flag = self.is_ready(ga)
+            self.update_queue(flag, ga)
+
+            # if the ga has no dependents now, remove the node from the graph
+            if not dep_dict['Dependents']:
+                self.remove_node(ga)
+
+    def remove_node(self, ga:str):
+        """remove the node from the dependency graph recursively
+        helper method for remove_edges
+        Args:
+            ga (str): the groupId:artifactId of the dependency
+            which should be removed from the graph
+        """
+        # handle the dependencies of ga first
+        for node in self.graph:
+            is_dependent = False
+            dependent_idx = -1
+            for idx, dependent in enumerate(node['Dependents']):
+                if ga == dependent['GroupId']+':'+dependent['ArtifactId']:
+                    # ga is a dependent of node
+                    is_dependent = True
+                    dependent_idx = idx
+                    break
+            if is_dependent:
+                # remove ga from the dependents of node
+                node['Dependents'].pop(dependent_idx)
+                node_ga = node['GroupId']+':'+node['ArtifactId']
+
+                # update queue
+                flag = self.is_ready(node_ga)
+                self.update_queue(flag, node_ga)
+                
+                if not node['Dependents']:
+                    # if the node has no dependents now, remove the node from the graph
+                    self.remove_node(node_ga)
+
+        # remove the node from the queue if it is in the queue
+        self.update_queue(False, ga)
+        # remove the node in graph_dict
+        self.graph_dict.pop(ga)
 
     def add_new_nodes(self, ga_set:set):
         """situation 4: the dependency is in new_deps but not in original graph
         add new node and edges to the dependency graph
         """
+        # 1. add new nodes to the graph
+        # 2. add new nodes to the queue
+        # 3. let new nodes be cur_node , old_deps be []
+        # and recursively update the graph and the queue
+        # note: ga_set may update during the process
         pass
 
 
@@ -216,9 +273,9 @@ class Update:
             self.queue_dict.pop(ga)
 
     def is_ready(self, ga:str):
-        """compute the in-degree of the dependents of the dependency(ga)
+        """judge if ga should be stored in the queue
         if the in-degree is 0 and the dependency is not computed, return True; if in-degree is bigger than 0, return False
-        note: if no dependent, the dependency is not in the graph actually
+        note: 
         Args:
             ga (str): the groupId:artifactId of the dependency
         """
@@ -230,8 +287,6 @@ class Update:
         dependents_list = dep['Dependents']
         if not dependents_list:
             # the dependency is not in the graph actually
-            # in fact, this situation should not happen
-            print(f'{ga} is not in the graph actually, something goes wrong')
             return False
         for dependent in dependents_list:
             dependent_g = dependent['GroupId']
