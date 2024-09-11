@@ -14,6 +14,8 @@ class Update:
         """
         self.cur_node = cur_node
         self.graph = graph
+        # queue is used to store the nodes that can be
+        # computed(all dependents have been computed) and need to be computed(node itself is not computed)
         self.queue = queue
         # dict of old_deps; groupId:artifactId -> index
         self.old_dict = self.get_old_deps_dict(old_deps)
@@ -128,16 +130,18 @@ class Update:
         old = set(self.old_dict.keys())
         graph = set(self.graph_dict.keys())
         # handle new & old
-        self.update_existing_deps(new & old)
+        self.update_nodes(new & old)
         # handle (new-old) & graph
-        self.add_new_deps((new - old) & graph)
+        self.add_new_edges((new - old) & graph)
         # handle old - new
-        self.remove_deps(old - new)
+        self.remove_edges(old - new)
         # handle new - graph
-        self.add_new_deps_to_graph(new - graph)
+        self.add_new_nodes(new - graph)
 
-    def update_existing_deps(self, ga_set:set):
-        """situation 1: the dependency is in both old_deps and new_deps"""
+    def update_nodes(self, ga_set:set):
+        """situation 1: the dependency is in both old_deps and new_deps
+        the edges in dependency graph are unchanged
+        """
         best_version = self.cur_node['Best_Version']
         for ga in ga_set:
             idx = self.graph_dict[ga]
@@ -155,12 +159,14 @@ class Update:
 
             # update queue
             # 1. compute the in-degree to judge if the dependency is ready to be computed
-            flag = self.is_ready(dep_dict['Dependents'])
+            flag = self.is_ready(ga)
             # 2. update queue by the in-degree(whether bigger than 0) and dep ga
             self.update_queue(flag, ga)
 
-    def add_new_deps(self, ga_set:set):
-        """situation 2: the dependency is in new_deps as well as original graph but not in old_deps"""
+    def add_new_edges(self, ga_set:set):
+        """situation 2: the dependency is in new_deps as well as original graph but not in old_deps
+        add new edges to the dependency graph and not add new node
+        """
         for ga in ga_set:
             # update graph, add the new dependent to the dependency
             idx = self.graph_dict[ga]
@@ -173,16 +179,20 @@ class Update:
                     "Define_Version": self.new_dict[ga][0]
                 }
             )
-            # clear the best version of this dependency
+            # clear the best version of this dependency as its context has changed
             dep_dict['Best_Version'] = ""
             # won't affect the queue, so no need to update queue
 
-    def remove_deps(self, ga_set:set):
-        """situation 3: the dependency is in old_deps but not in new_deps"""
+    def remove_edges(self, ga_set:set):
+        """situation 3: the dependency is in old_deps but not in new_deps
+        remove some edges (and some nodes if necessary)in the dependency graph
+        """
         pass
 
-    def add_new_deps_to_graph(self, ga_set:set):
-        """situation 4: the dependency is in new_deps but not in original graph"""
+    def add_new_nodes(self, ga_set:set):
+        """situation 4: the dependency is in new_deps but not in original graph
+        add new node and edges to the dependency graph
+        """
         pass
 
 
@@ -205,22 +215,33 @@ class Update:
             self.queue.remove(self.queue_dict[ga])
             self.queue_dict.pop(ga)
 
-    def is_ready(self, dependents_list: list):
-        """compute the in-degree of the dependents of the dependency
-        if the in-degree is 0, return True; if in-degree is bigger than 0, return False
+    def is_ready(self, ga:str):
+        """compute the in-degree of the dependents of the dependency(ga)
+        if the in-degree is 0 and the dependency is not computed, return True; if in-degree is bigger than 0, return False
         note: if no dependent, the dependency is not in the graph actually
+        Args:
+            ga (str): the groupId:artifactId of the dependency
         """
+        if self.is_computed(ga):
+            # if the dependency is computed, return False
+            # as it is not necessary to compute it again
+            return False
+        dep = self.graph[self.graph_dict[ga]]
+        dependents_list = dep['Dependents']
         if not dependents_list:
+            # the dependency is not in the graph actually
+            # in fact, this situation should not happen
+            print(f'{ga} is not in the graph actually, something goes wrong')
             return False
         for dependent in dependents_list:
             dependent_g = dependent['GroupId']
             dependent_a = dependent['ArtifactId']
-            if not self.is_computed_yet(f'{dependent_g}:{dependent_a}'):
-                # a dependent is not computed yet
+            if not self.is_computed(f'{dependent_g}:{dependent_a}'):
+                # a dependent is not computed
                 return False
         return True
 
-    def is_computed_yet(self, ga):
+    def is_computed(self, ga):
         """check if the dependency is computed yet
         Args:
             ga (str): the groupId:artifactId of the dependency
