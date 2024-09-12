@@ -22,7 +22,8 @@ class Update:
         # dict of graph; groupId:artifactId -> index
         self.graph_dict = self.get_graph_dict()
         # dict of new new_deps; groupId:artifactId -> [version, type]
-        self.new_dict = self.get_new_deps_dict()
+        self.new_dict = self.query_dependencies(self.cur_node['GroupId'], self.cur_node['ArtifactId'], \
+            self.cur_node['Best_Version'])
         # dict of queue; groupId:artifactId -> dep dict in queue
         self.queue_dict = self.get_queue_dict()
 
@@ -74,22 +75,12 @@ class Update:
             graph[dep['GroupId']+':'+dep['ArtifactId']] = i
         return graph
 
-    def get_new_deps_dict(self):
-        """get new deps first; then transform new_deps from a list of dicts to a dict of groupId:artifactId -> index
-        Returns:
-            new (dict): the new dependencies of cur_node; groupId:artifactId -> [version, type]
-        """
-        return self.query_dependencies()
-
-    def query_dependencies(self):
+    def query_dependencies(self, groupId:str, artifactId:str, version:str):
         """query the dependencies of the cur_node from the database
         1. get new_deps from mongodb;
         2. filter gav and type of the new_deps;
         3. transform new_deps from a list of dicts to a dict of groupId:artifactId -> [version, type]
         """
-        groupId = self.cur_node['GroupId']
-        artifactId = self.cur_node['ArtifactId']
-        version = self.cur_node['Best_Version']
         # query the dependencies of the cur_node from the database
         dependencies = query_dependencies_from_mongo(groupId, artifactId, version)
         if dependencies is None:
@@ -100,7 +91,7 @@ class Update:
         return dependencies_dict
 
     def filter_dep(self, dependencies:list):
-        """filter the dependencies of the cur_node:
+        """filter the new dependencies of the cur_node:
         1. remove the dependencies that are test or provided
         2. remove the dependencies that are optional and not the direct dependency of the client
         Returns:
@@ -128,15 +119,12 @@ class Update:
         """main method to update the dependency graph and the queue after computing the newest compatible version of a dependency"""
         new = set(self.new_dict.keys())
         old = set(self.old_dict.keys())
-        graph = set(self.graph_dict.keys())
-        # handle new & old
+        # handle new & old, which means the unchanged edges
         self.update_nodes(new & old)
-        # handle (new-old) & graph
-        self.add_new_edges((new - old) & graph)
-        # handle old - new
+        # handle new - old, which means the new edges
+        self.add_edges(new - old)
+        # handle old - new, which means the removed edges
         self.remove_edges(old - new)
-        # handle new - graph
-        self.add_new_nodes(new - graph)
 
     def update_nodes(self, ga_set:set):
         """situation 1: the dependency is in both old_deps and new_deps
@@ -163,25 +151,116 @@ class Update:
             # 2. update queue by the in-degree(whether bigger than 0) and dep ga
             self.update_queue(flag, ga)
 
-    def add_new_edges(self, ga_set:set):
-        """situation 2: the dependency is in new_deps as well as original graph but not in old_deps
-        add new edges to the dependency graph and not add new node
+    def add_edges(self, ga_set:set):
+        """situation 2: the dependency is in new_deps but not in old_deps
+        add new edges to the dependency graph and add new nodes if necessary
         """
         for ga in ga_set:
             # update graph, add the new dependent to the dependency
-            idx = self.graph_dict[ga]
-            dep_dict = self.graph[idx]
-            dep_dict['Dependents'].append(
-                {
-                    "GroupId": self.cur_node['GroupId'],
-                    "ArtifactId": self.cur_node['ArtifactId'],
-                    "Version": self.cur_node['Best_Version'],
-                    "Define_Version": self.new_dict[ga][0]
-                }
-            )
-            # clear the best version of this dependency as its context has changed
-            dep_dict['Best_Version'] = ""
-            # won't affect the queue, so no need to update queue
+            if ga in self.graph_dict:
+                # ga in the graph, so no need to add new nodes
+                idx = self.graph_dict[ga]
+                dep_dict = self.graph[idx]
+                dep_dict['Dependents'].append(
+                    {
+                        "GroupId": self.cur_node['GroupId'],
+                        "ArtifactId": self.cur_node['ArtifactId'],
+                        "Version": self.cur_node['Best_Version'],
+                        "Define_Version": self.new_dict[ga][0]
+                    }
+                )
+                # clear the best version of this dependency as its context has changed
+                dep_dict['Best_Version'] = ""
+            else :
+                # ga not in the graph, so need to add new nodes recursively
+                self.add_node(ga, self.cur_node['GroupId'], self.cur_node['ArtifactId'])
+
+    def add_node(self, ga:str, dependent_g:str, dependent_a:str)->bool:
+        """add the node and its outer-edges to the dependency graph recursively
+        helper method for add_edges
+        Args:
+            ga (str): the groupId:artifactId of the new node
+            dependent_g (str): the groupId of the dependent that induces the new node
+            dependent_a (str): the artifactId of the dependent that induces the new node
+        Returns:
+            flag (bool): if the new node need further process
+            new_node (dict): the new node added to the graph
+        """
+        groupId, artifactId = ga.split(':')
+        version = self.new_dict[ga][0]
+        Dtype = self.new_dict[ga][1]
+
+        # add node to the graph
+        # traverse the graph
+        existing_in_list = False
+        for i, node in enumerate(self.graph):
+            if node['GroupId'] == groupId and node['ArtifactId'] == artifactId:
+                # the node is removed before and need to be added again
+                existing_in_list = True
+                node['Dependents'].append({
+                    "GroupId": dependent_g,
+                    "ArtifactId": dependent_a,
+                    "Version": self.graph_dict[dependent_g+':'+dependent_a]['Best_Version'],
+                    "Define_Version": version
+                })
+                depth = min(self.graph_dict[dependent_g+':'+dependent_a]['Depth'] + 1, node['Depth'])
+                node['Depth'] = depth
+                node['Best_Version'] = ""
+                node['Type'] = Dtype
+                # add the node to graph_dict
+                self.graph_dict[ga] = i
+                break
+        if not existing_in_list:
+            # the node is not removed before
+            # add the node to the graph_list as well as the list
+            new_node = {
+                "GroupId": groupId,
+                "ArtifactId": artifactId,
+                "Original_Version": version,
+                "Best_Version": "",
+                "Type": Dtype,
+                "Depth": self.graph_dict[dependent_g+':'+dependent_a]['Depth'] + 1,
+                "Count": 0,
+                "Dependents": [
+                    {
+                        "GroupId": dependent_g,
+                        "ArtifactId": dependent_a,
+                        "Version": self.graph_dict[dependent_g+':'+dependent_a]['Best_Version'],
+                        "Define_Version": version
+                    }
+                ]
+            }
+            self.graph.append(new_node)
+            self.graph_dict[ga] = len(self.graph) - 1
+
+        # add new outer-edges
+        new_deps_dict = self.query_dependencies(groupId, artifactId, version)
+        for new_dep_ga, new_dep_inform in new_deps_dict.items():
+            if new_dep_ga in self.graph_dict:
+                # the new dependency is in the graph
+                # add the new dependent to the new
+                idx = self.graph_dict[new_dep_ga]
+                new_dep = self.graph[idx]
+                new_dep['Dependents'].append(
+                    {
+                        "GroupId": groupId,
+                        "ArtifactId": artifactId,
+                        "Version": version,
+                        "Define_Version": new_dep_inform[0]
+                    }
+                )
+                # clear the best version of this dependency as its context has changed
+                new_dep['Best_Version'] = ""
+                # update the queue
+                flag = self.is_ready(new_dep_ga)
+                self.update_queue(flag, new_dep_ga)
+            else:
+                # the new dependency is not in the graph
+                # add new nodes recursively
+                self.add_node(new_dep_ga, groupId, artifactId)
+
+        # add the new node to the queue
+        self.update_queue(True, ga)
 
     def remove_edges(self, ga_set:set):
         """situation 3: the dependency is in old_deps but not in new_deps
@@ -198,17 +277,18 @@ class Update:
 
             # the best version of the dependent recorded by this dependency is outdated
             dep_dict['Best_Version'] = ""
-            # update queue after deleting an edge
-            flag = self.is_ready(ga)
-            self.update_queue(flag, ga)
+            # note : queue is always updated after updating the graph
+            # # update queue after deleting an edge
+            # flag = self.is_ready(ga)
+            # self.update_queue(flag, ga)
 
             # if the ga has no dependents now, remove the node from the graph
             if not dep_dict['Dependents']:
                 self.remove_node(ga)
 
     def remove_node(self, ga:str):
-        """remove the node from the dependency graph recursively
-        helper method for remove_edges
+        """remove the node and its outer-edges from the dependency graph recursively
+        helper method for remove_edges; also updated the queue
         Args:
             ga (str): the groupId:artifactId of the dependency
             which should be removed from the graph
@@ -228,30 +308,19 @@ class Update:
                 node['Dependents'].pop(dependent_idx)
                 node_ga = node['GroupId']+':'+node['ArtifactId']
 
-                # update queue
-                flag = self.is_ready(node_ga)
-                self.update_queue(flag, node_ga)
-                
                 if not node['Dependents']:
                     # if the node has no dependents now, remove the node from the graph
                     self.remove_node(node_ga)
+                else :
+                    # just update queue and on need to remove node_ga from the graph
+                    # also means, the graph has been updated, so the queue could be updated
+                    flag = self.is_ready(node_ga)
+                    self.update_queue(flag, node_ga)
 
-        # remove the node from the queue if it is in the queue
-        self.update_queue(False, ga)
         # remove the node in graph_dict
         self.graph_dict.pop(ga)
-
-    def add_new_nodes(self, ga_set:set):
-        """situation 4: the dependency is in new_deps but not in original graph
-        add new node and edges to the dependency graph
-        """
-        # 1. add new nodes to the graph
-        # 2. add new nodes to the queue
-        # 3. let new nodes be cur_node , old_deps be []
-        # and recursively update the graph and the queue
-        # note: ga_set may update during the process
-        pass
-
+        # remove the node from the queue if it is in the queue
+        self.update_queue(False, ga)
 
     def update_queue(self, is_ready:bool, ga:str):
         """update the queue after updating the dependency graph
@@ -287,7 +356,9 @@ class Update:
         dependents_list = dep['Dependents']
         if not dependents_list:
             # the dependency is not in the graph actually
-            return False
+            # something goes wrong as the dependency in graph should have dependents except the client
+            print(f"Dependency {ga} is not in the graph actually, something goes wrong.")
+            exit(1)
         for dependent in dependents_list:
             dependent_g = dependent['GroupId']
             dependent_a = dependent['ArtifactId']

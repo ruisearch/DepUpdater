@@ -41,18 +41,22 @@ class Traverse:
         
         while self.queue:
             cur_dep = self.queue.popleft()
+            if cur_dep['Depth'] == 3:
+                print(f"Dependency {cur_dep['GroupId']}:{cur_dep['ArtifactId']} has been computed for 3 times. Something may goes wrong.")
+                exit(1)
             # find the newest compatible version of cur_dep,
             # and return its new dependencies and old dependencies to update the graph,
             # record the graph in version.json in real time
             # --> new_deps = compute_newest_version(cur_dep, self.graph, self.json_path)
             old_deps = self.compute_and_validate(cur_dep)
+            cur_dep['Depth'] += 1
             # update the graph and queue,
             # record the graph in version.json in real time
             # --> update_graph(cur_dep, old_deps, new_deps, self.graph, self.queue, self.json_path)
             up = Update(cur_dep, self.graph, self.queue, old_deps)
             up.update()
         
-        # restore the pom.xml and back up the pom.xml after validating
+        # restore the pom.xml and back up the pom.xml after computation
         backed_up_pom_path = os.path.join(self.path_to_project_folder, self.relative_path_to_module, '_backed_up_pom.xml')
         Validation.restore_pom(original_pom_path, pom_path, backed_up_pom_path)
 
