@@ -27,12 +27,16 @@ class Mongo:
         result = self.collection.insert_one(document)
 
     def find_document(self, query):
-        """Find the document in the collection matching the query.
+        """Find the documents in the collection matching the query.
         Returns:
-            document (dict): the document matching the query
+            document (list): a list of dicts presenting document matching the query
         """
-        document = self.collection.find_one(query)
-        return document
+        document = self.collection.find(query)
+        return list(document)
+    
+    def delete_documents(self, query):
+        """delete the documents in the collection matching the query"""
+        self.collection.delete_many(query)
 
     def close(self):
         """close the connection"""

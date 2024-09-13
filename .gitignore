@@ -30,3 +30,6 @@ maven_deps.bson
 
 # ignore test/ containing all test files
 test/
+
+# ignore vscode settings folder
+.vscode/

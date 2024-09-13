@@ -192,10 +192,16 @@ def query_dependencies_from_mongo(groupId, artifactId, version):
     db = Mongo('maven_deps', 'maven_deps')
     db.connect()
     document = db.find_document({'parent':gav})
-    if document is None:
+    if document is []:
+        # no document found
         db.close()
         return None
-    dependencies = document['dependencies']
+    # if multiple documents are found, clear all and return None
+    if len(document) > 1:
+        db.delete_documents({'parent':gav})
+        db.close()
+        return None
+    dependencies = document[0]['dependencies']
     db.close()
     return dependencies
 
