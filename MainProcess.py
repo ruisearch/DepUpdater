@@ -2,8 +2,6 @@
 import os
 import sys
 
-from calculate import cal
-from match import match
 from preprocess import exec_maven_command
 from preprocess.Restore import Restore
 from traverse.traverse import Traverse

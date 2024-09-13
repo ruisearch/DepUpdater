@@ -189,7 +189,14 @@ class Update:
         groupId, artifactId = ga.split(':')
         version = self.new_dict[ga][0]
         Dtype = self.new_dict[ga][1]
-
+        dependent_ga = dependent_g + ':' + dependent_a
+        dependent_idx = self.graph_dict[dependent_ga]
+        if not self.is_computed(dependent_ga):
+            # the dependent is also a new node added before
+            dependent_version = self.graph[dependent_idx]['Original_Version']
+        else:
+            # the dependent is the node computed before
+            dependent_version = self.graph[dependent_idx]['Best_Version']
         # add node to the graph
         # traverse the graph
         existing_in_list = False
@@ -200,10 +207,10 @@ class Update:
                 node['Dependents'].append({
                     "GroupId": dependent_g,
                     "ArtifactId": dependent_a,
-                    "Version": self.graph_dict[dependent_g+':'+dependent_a]['Best_Version'],
+                    "Version": dependent_version,
                     "Define_Version": version
                 })
-                depth = min(self.graph_dict[dependent_g+':'+dependent_a]['Depth'] + 1, node['Depth'])
+                depth = min(self.graph_dict[dependent_ga]['Depth'] + 1, node['Depth'])
                 node['Depth'] = depth
                 node['Best_Version'] = ""
                 node['Type'] = Dtype
@@ -225,7 +232,7 @@ class Update:
                     {
                         "GroupId": dependent_g,
                         "ArtifactId": dependent_a,
-                        "Version": self.graph_dict[dependent_g+':'+dependent_a]['Best_Version'],
+                        "Version": dependent_version,
                         "Define_Version": version
                     }
                 ]

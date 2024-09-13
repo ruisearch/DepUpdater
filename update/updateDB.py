@@ -78,7 +78,7 @@ def populate_dep(go, ao, vo):
         insert_dependencies_into_mongo(go, ao, vo, dependencies)
     except Exception as e:
         print(gav, e)
-        
+
     print(f'dependencies of {gav} got')
 
     return dependencies
