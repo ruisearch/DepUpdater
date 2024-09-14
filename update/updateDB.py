@@ -83,6 +83,7 @@ def populate_dep(go, ao, vo):
 
     return dependencies
 
+# test
 if __name__ == '__main__':
     g = 'com.fasterxml.jackson.core'
     a = 'jackson-databind'

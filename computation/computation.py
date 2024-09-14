@@ -4,7 +4,7 @@ import concurrent.futures
 import copy
 import json
 from tqdm import tqdm
-from constants import TQDM_LOG_PATH, REACHABLE_API_DIR
+from constants import TQDM_LOG_PATH, REACHABLE_API_DIR, SOOT_EMPTY_CASES_CSV
 from computation.versions import get_all_versions
 from computation.api import Api
 from computation.revapi import Revapi

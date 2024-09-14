@@ -96,7 +96,7 @@ class Restore:
             file_name = query_to_get_jar_location(group_id, artifact_id, version)
             # prevent download repeatly
             if os.path.exists(file_name):
-                # print(f"{artifact_id}-{version}.jar has been downloaded before.")
+                print(f"{artifact_id}-{version}.jar has been downloaded before.")
                 return True
             response = handle_error_get(jar_url)
             # Proceed if the download was successful

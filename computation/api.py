@@ -1,10 +1,11 @@
 """use soot to get the CG/type_DG of a jar file"""
 import os
 import subprocess
-import requests
+import csv
+
 from database.query import query_to_get_jar_location, query_call_graph,\
     store_call_graph, query_type_dependency_graph, store_type_dependency_graph
-from constants import SOOTCG_PATH,SOOT_TYPE_DG_PATH,REACHABLE_API_DIR
+from constants import SOOTCG_PATH,SOOT_TYPE_DG_PATH,REACHABLE_API_DIR, SOOT_EMPTY_CASES_CSV
 from preprocess.Restore import Restore
 
 class Api:
@@ -31,6 +32,9 @@ class Api:
         result = subprocess.run(command, shell=True, text=True, capture_output=True)
         cg = result.stdout
         store_call_graph(self.groupId, self.artifactId, self.version, cg)
+        if not cg:
+            # store the empty cases
+            self.store_empty_cases('cg')
         return cg
     
     def get_type_dg(self):
@@ -47,7 +51,22 @@ class Api:
         result = subprocess.run(command, shell=True, text=True, capture_output=True)
         type_dg = result.stdout
         store_type_dependency_graph(self.groupId, self.artifactId, self.version, type_dg)
+        if not type_dg:
+            # store the empty cases
+            self.store_empty_cases('type_dg')
         return type_dg
+    
+    def store_empty_cases(self, type:str):
+        """store the gav of the jar file which has empty cg or dg
+        Args:
+            type (str): 'cg' or 'type_dg'
+        """
+        header_written = os.path.exists(SOOT_EMPTY_CASES_CSV) and os.path.getsize(SOOT_EMPTY_CASES_CSV) > 0
+        with open(SOOT_EMPTY_CASES_CSV, mode='a', newline='') as f:
+            writer = csv.writer(f)
+            if not header_written:
+                writer.writerow(['groupId', 'artifactId', 'version', 'type'])
+            writer.writerow([self.groupId, self.artifactId, self.version, type])
 
     def get_jar(self):
         """get the jar file"""
@@ -114,7 +133,10 @@ class Api:
             key: caller, value: a set of the corresponding callees\n
         """
         call_relations = {}
-        
+        if not call_relations_str:
+            # empty string, so call_relations is empty as well
+            return call_relations
+
         # Split the string by lines
         lines = call_relations_str.strip().split('\n')
         

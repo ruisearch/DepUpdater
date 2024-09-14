@@ -1,10 +1,12 @@
 """Main process of the tool"""
 import os
 import sys
+import csv
 
 from preprocess import exec_maven_command
 from preprocess.Restore import Restore
 from traverse.traverse import Traverse
+from constants import LOG_PATH, SOOT_EMPTY_CASES_CSV, RET_DIR
 
 
 def expand_resolve_abspath(path):
@@ -22,6 +24,17 @@ path_to_folder = expand_resolve_abspath(sys.argv[1])
 path_to_pom = os.path.join(path_to_folder, "pom.xml")
 # only handle the module in relative_path_to_module;'.' means the pom of the module is just at the root directory of project
 relative_path_to_module = sys.argv[2]
+# set path to log file and soot empty cases file
+repo_name = os.path.basename(path_to_folder)
+LOG_PATH = os.path.join(RET_DIR, repo_name, relative_path_to_module, 'log.txt')
+SOOT_EMPTY_CASES_CSV = os.path.join(RET_DIR, repo_name, relative_path_to_module, 'soot_empty_cases.csv')
+# remove existing soot empty cases file
+if os.path.exists(SOOT_EMPTY_CASES_CSV):
+    os.remove(SOOT_EMPTY_CASES_CSV)
+# remove existing log file
+if os.path.exists(LOG_PATH):
+    os.remove(LOG_PATH)
+
 # set the git repository to the last tag status
 status_command = f'cd {path_to_folder} && git add . && git reset --hard && git fetch --tags && git tag --sort=-creatordate | head -1 | xargs git checkout'
 print("****** set the git repository to the lastest tag status ******")

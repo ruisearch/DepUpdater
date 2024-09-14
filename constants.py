@@ -17,6 +17,8 @@ data folder structure:
     | ├── {repo_name}/
     | | ├── {relative_path_to_module}/
     | | | ├── version.json
+    | | | ├── log.txt
+    | | | ├── soot_empty_cases.csv 
     | ...
     ├── reachableApi/
     | ├── {repo_name}/
@@ -74,3 +76,8 @@ REVAPI_SH_PATH = os.path.join(MainProcess_pwd, 'utils', 'revapi-0.12.0', 'revapi
 JAPICMP_PATH = os.path.join(MainProcess_pwd, 'utils', 'japicmp-0.18.3-jar-with-dependencies.jar')
 # path to local maven repository, '~/.m2/repository/' default
 M2_PATH = os.path.expanduser('~') + '/.m2/repository/'
+
+# path to the log file. set in process
+LOG_PATH = None
+# path to the soot empty cases file. set in process
+SOOT_EMPTY_CASES_CSV = None

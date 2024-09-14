@@ -192,7 +192,7 @@ def query_dependencies_from_mongo(groupId, artifactId, version):
     db = Mongo('maven_deps', 'maven_deps')
     db.connect()
     document = db.find_document({'parent':gav})
-    if document is []:
+    if document == []:
         # no document found
         db.close()
         return None
