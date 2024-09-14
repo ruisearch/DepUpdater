@@ -41,7 +41,7 @@ class Traverse:
         
         while self.queue:
             cur_dep = self.queue.popleft()
-            if cur_dep['Depth'] == 3:
+            if cur_dep['Count'] == 3:
                 print(f"Dependency {cur_dep['GroupId']}:{cur_dep['ArtifactId']} has been computed for 3 times. Something may goes wrong.")
                 exit(1)
             # find the newest compatible version of cur_dep,
@@ -49,7 +49,7 @@ class Traverse:
             # record the graph in version.json in real time
             # --> new_deps = compute_newest_version(cur_dep, self.graph, self.json_path)
             old_deps = self.compute_and_validate(cur_dep)
-            cur_dep['Depth'] += 1
+            cur_dep['Count'] += 1
             # update the graph and queue,
             # record the graph in version.json in real time
             # --> update_graph(cur_dep, old_deps, new_deps, self.graph, self.queue, self.json_path)
