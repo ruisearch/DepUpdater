@@ -2,6 +2,7 @@
 from collections import deque
 from database.query import query_dependencies_from_mongo
 from update.updateDB import populate_dep
+from logger.logger import log_debug
 class Update:
 
     def __init__(self, cur_node:dict, graph:list, queue:deque, old_deps:list):
@@ -340,13 +341,19 @@ class Update:
         if is_ready and not is_in:
             # the dependency is ready to be computed and not in the queue
             # add the dependency to the queue
+            self.log_queue()
+
             self.queue.append(self.graph[self.graph_dict[ga]])
             self.queue_dict[ga] = self.graph[self.graph_dict[ga]]
+
+            log_debug(f"{ga} enqueue.")
         elif not is_ready and is_in:
             # the dependency is not ready to be computed and in the queue
             # remove the dependency from the queue
             self.queue.remove(self.queue_dict[ga])
             self.queue_dict.pop(ga)
+
+            log_debug(f"{ga} dequeue.")
 
     def is_ready(self, ga:str):
         """judge if ga should be stored in the queue
@@ -383,3 +390,9 @@ class Update:
         if dep_dict['Best_Version'] == "":
             return False
         return True
+    
+    def log_queue(self):
+        """log the queue"""
+        log_debug("Queue:")
+        for ga in self.queue_dict.keys():
+            log_debug(f" {ga}")

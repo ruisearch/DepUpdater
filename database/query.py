@@ -214,6 +214,6 @@ def insert_dependencies_into_mongo(groupId, artifactId, version, dependencies):
     db = Mongo('maven_deps', 'maven_deps')
     db.connect()
     document = db.find_document({'parent':gav})
-    if document is None:
+    if document == []:
         db.insert_document({'dependencies':dependencies,'parent':gav})
     db.close()

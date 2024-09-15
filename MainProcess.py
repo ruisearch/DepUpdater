@@ -1,12 +1,12 @@
 """Main process of the tool"""
 import os
 import sys
-import csv
+
 
 from preprocess import exec_maven_command
 from preprocess.Restore import Restore
 from traverse.traverse import Traverse
-from constants import LOG_PATH, SOOT_EMPTY_CASES_CSV, RET_DIR
+from constants import set_log_path, set_soot_empty_cases_csv, RET_DIR
 
 
 def expand_resolve_abspath(path):
@@ -26,14 +26,16 @@ path_to_pom = os.path.join(path_to_folder, "pom.xml")
 relative_path_to_module = sys.argv[2]
 # set path to log file and soot empty cases file
 repo_name = os.path.basename(path_to_folder)
-LOG_PATH = os.path.join(RET_DIR, repo_name, relative_path_to_module, 'log.txt')
-SOOT_EMPTY_CASES_CSV = os.path.join(RET_DIR, repo_name, relative_path_to_module, 'soot_empty_cases.csv')
+log_path = os.path.join(RET_DIR, repo_name, relative_path_to_module, 'log.txt')
+set_log_path(log_path)
+soot_empty_csv = os.path.join(RET_DIR, repo_name, relative_path_to_module, 'soot_empty_cases.csv')
+set_soot_empty_cases_csv(soot_empty_csv)
 # remove existing soot empty cases file
-if os.path.exists(SOOT_EMPTY_CASES_CSV):
-    os.remove(SOOT_EMPTY_CASES_CSV)
+if os.path.exists(soot_empty_csv):
+    os.remove(soot_empty_csv)
 # remove existing log file
-if os.path.exists(LOG_PATH):
-    os.remove(LOG_PATH)
+if os.path.exists(log_path):
+    os.remove(log_path)
 
 # set the git repository to the last tag status
 status_command = f'cd {path_to_folder} && git add . && git reset --hard && git fetch --tags && git tag --sort=-creatordate | head -1 | xargs git checkout'

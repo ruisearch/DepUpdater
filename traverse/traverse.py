@@ -6,6 +6,7 @@ from collections import deque
 from computation.computation import Computation
 from computation.validation import Validation
 from update.updateDG import Update
+from logger.logger import log_debug
 class Traverse:
     def __init__(self, json_path, path_to_project_folder, relative_path_to_module):
         with open(json_path, 'r', encoding='utf-8') as f:
@@ -17,11 +18,14 @@ class Traverse:
         self.relative_path_to_module = relative_path_to_module
         self.init_queue()
         self.compute_api_of_client()
-    
+
     def init_queue(self):
-        """put all direct dependencies of client jar into queue"""
+        """put all direct dependencies of client jar into queue
+        note: only the dependencies have only one dependent(client) are put into queue
+        """
         for dep in self.graph:
-            if dep['Depth'] == 1:
+            if dep['Depth'] == 1 and len(dep['Dependents']) == 1:
+                log_debug(f"{dep['GroupId']}:{dep['ArtifactId']} enqueue.")
                 self.queue.append(dep)
 
     def compute_api_of_client(self):
@@ -41,6 +45,9 @@ class Traverse:
         
         while self.queue:
             cur_dep = self.queue.popleft()
+
+            log_debug(f"Computing {cur_dep['GroupId']}:{cur_dep['ArtifactId']}")
+
             if cur_dep['Count'] == 3:
                 print(f"Dependency {cur_dep['GroupId']}:{cur_dep['ArtifactId']} has been computed for 3 times. Something may goes wrong.")
                 exit(1)
@@ -50,12 +57,15 @@ class Traverse:
             # --> new_deps = compute_newest_version(cur_dep, self.graph, self.json_path)
             old_deps = self.compute_and_validate(cur_dep)
             cur_dep['Count'] += 1
+
+            log_debug(f"{cur_dep['GroupId']}:{cur_dep['ArtifactId']} has been computed, best version is {cur_dep['Best_Version']}.")
+
             # update the graph and queue,
             # record the graph in version.json in real time
             # --> update_graph(cur_dep, old_deps, new_deps, self.graph, self.queue, self.json_path)
             up = Update(cur_dep, self.graph, self.queue, old_deps)
             up.update()
-        
+
         # restore the pom.xml and back up the pom.xml after computation
         backed_up_pom_path = os.path.join(self.path_to_project_folder, self.relative_path_to_module, '_backed_up_pom.xml')
         Validation.restore_pom(original_pom_path, pom_path, backed_up_pom_path)
