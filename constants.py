@@ -81,3 +81,24 @@ M2_PATH = os.path.expanduser('~') + '/.m2/repository/'
 LOG_PATH = None
 # path to the soot empty cases file. set in process
 SOOT_EMPTY_CASES_CSV = None
+
+def set_log_path(path:str):
+    """lazy-initialize LOG_PATH"""
+    global LOG_PATH
+    LOG_PATH = path
+
+def set_soot_empty_cases_csv(path:str):
+    """lazy-initialize SOOT_EMPTY_CASES_CSV"""
+    global SOOT_EMPTY_CASES_CSV
+    SOOT_EMPTY_CASES_CSV = path
+
+def get_log_path():
+    """get LOG_PATH after setting"""
+    global LOG_PATH
+    return LOG_PATH
+
+# get SOOT_EMPTY_CASES_CSV after setting
+def get_soot_empty_cases_csv():
+    """get SOOT_EMPTY_CASES_CSV after setting"""
+    global SOOT_EMPTY_CASES_CSV
+    return SOOT_EMPTY_CASES_CSV

@@ -5,7 +5,7 @@ import csv
 
 from database.query import query_to_get_jar_location, query_call_graph,\
     store_call_graph, query_type_dependency_graph, store_type_dependency_graph
-from constants import SOOTCG_PATH,SOOT_TYPE_DG_PATH,REACHABLE_API_DIR, SOOT_EMPTY_CASES_CSV
+from constants import SOOTCG_PATH,SOOT_TYPE_DG_PATH,REACHABLE_API_DIR, get_soot_empty_cases_csv
 from preprocess.Restore import Restore
 
 class Api:
@@ -56,17 +56,18 @@ class Api:
             self.store_empty_cases('type_dg')
         return type_dg
     
-    def store_empty_cases(self, type:str):
+    def store_empty_cases(self, _type:str):
         """store the gav of the jar file which has empty cg or dg
         Args:
             type (str): 'cg' or 'type_dg'
         """
-        header_written = os.path.exists(SOOT_EMPTY_CASES_CSV) and os.path.getsize(SOOT_EMPTY_CASES_CSV) > 0
-        with open(SOOT_EMPTY_CASES_CSV, mode='a', newline='') as f:
+        csv_path = get_soot_empty_cases_csv()
+        header_written = os.path.exists(csv_path) and os.path.getsize(csv_path) > 0
+        with open(csv_path, mode='a', newline='', encoding='utf-8') as f:
             writer = csv.writer(f)
             if not header_written:
                 writer.writerow(['groupId', 'artifactId', 'version', 'type'])
-            writer.writerow([self.groupId, self.artifactId, self.version, type])
+            writer.writerow([self.groupId, self.artifactId, self.version, _type])
 
     def get_jar(self):
         """get the jar file"""
