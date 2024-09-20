@@ -173,25 +173,32 @@ class Update:
                 # clear the best version of this dependency as its context has changed
                 dep_dict['Best_Version'] = ""
             else :
+                ga_version = self.new_dict[ga][0]
+                ga_type = self.new_dict[ga][1]
                 # ga not in the graph, so need to add new nodes recursively
-                self.add_node(ga, self.cur_node['GroupId'], self.cur_node['ArtifactId'])
+                self.add_node(ga, self.cur_node['GroupId'], self.cur_node['ArtifactId'], ga_version, ga_type)
 
-    def add_node(self, ga:str, dependent_g:str, dependent_a:str)->bool:
+    def add_node(self, ga:str, dependent_g:str, dependent_a:str, version:str, Dtype:str)->bool:
         """add the node and its outer-edges to the dependency graph recursively
         helper method for add_edges
         Args:
             ga (str): the groupId:artifactId of the new node
             dependent_g (str): the groupId of the dependent that induces the new node
             dependent_a (str): the artifactId of the dependent that induces the new node
+            version (str): the version of the new node
+            Dtype (str): the type of the new node
         Returns:
             flag (bool): if the new node need further process
             new_node (dict): the new node added to the graph
         """
+        log_debug(f'{ga} added')
+
         groupId, artifactId = ga.split(':')
-        version = self.new_dict[ga][0]
-        Dtype = self.new_dict[ga][1]
+        # version = self.new_dict[ga][0]
+        # Dtype = self.new_dict[ga][1]
         dependent_ga = dependent_g + ':' + dependent_a
         dependent_idx = self.graph_dict[dependent_ga]
+        dependent_node = self.graph[dependent_idx]
         if not self.is_computed(dependent_ga):
             # the dependent is also a new node added before
             dependent_version = self.graph[dependent_idx]['Original_Version']
@@ -211,7 +218,7 @@ class Update:
                     "Version": dependent_version,
                     "Define_Version": version
                 })
-                depth = min(self.graph_dict[dependent_ga]['Depth'] + 1, node['Depth'])
+                depth = min(dependent_node['Depth'] + 1, node['Depth'])
                 node['Depth'] = depth
                 node['Best_Version'] = ""
                 node['Type'] = Dtype
@@ -227,7 +234,7 @@ class Update:
                 "Original_Version": version,
                 "Best_Version": "",
                 "Type": Dtype,
-                "Depth": self.graph_dict[dependent_g+':'+dependent_a]['Depth'] + 1,
+                "Depth": dependent_node['Depth'] + 1,
                 "Count": 0,
                 "Dependents": [
                     {
@@ -265,10 +272,11 @@ class Update:
             else:
                 # the new dependency is not in the graph
                 # add new nodes recursively
-                self.add_node(new_dep_ga, groupId, artifactId)
+                self.add_node(new_dep_ga, groupId, artifactId, new_dep_inform[0], new_dep_inform[1])
 
-        # add the new node to the queue
-        self.update_queue(True, ga)
+        # judge if need to add the new node to the queue
+        flag = self.is_ready(ga)
+        self.update_queue(flag, ga)
 
     def remove_edges(self, ga_set:set):
         """situation 3: the dependency is in old_deps but not in new_deps
@@ -285,14 +293,15 @@ class Update:
 
             # the best version of the dependent recorded by this dependency is outdated
             dep_dict['Best_Version'] = ""
-            # note : queue is always updated after updating the graph
-            # # update queue after deleting an edge
-            # flag = self.is_ready(ga)
-            # self.update_queue(flag, ga)
 
             # if the ga has no dependents now, remove the node from the graph
             if not dep_dict['Dependents']:
                 self.remove_node(ga)
+            
+            # note : queue is always updated after updating the graph
+            # update queue after deleting an edge
+            flag = self.is_ready(ga)
+            self.update_queue(flag, ga)
 
     def remove_node(self, ga:str):
         """remove the node and its outer-edges from the dependency graph recursively
@@ -301,6 +310,8 @@ class Update:
             ga (str): the groupId:artifactId of the dependency
             which should be removed from the graph
         """
+        log_debug(f'{ga} removed')
+
         # handle the dependencies of ga first
         for node in self.graph:
             is_dependent = False
@@ -362,6 +373,8 @@ class Update:
         Args:
             ga (str): the groupId:artifactId of the dependency
         """
+        if ga not in self.graph_dict:
+            return False
         if self.is_computed(ga):
             # if the dependency is computed, return False
             # as it is not necessary to compute it again

@@ -97,3 +97,10 @@ def get_resource_with_retry(url, params=None, max_retries=5, sleep_time=5):
             print(f"Fail to get {url}, reason:{e}")
             print(f"Retrying in {sleep_time} seconds...")
             time.sleep(sleep_time)
+
+if __name__ == '__main__':
+    # test get_all_versions
+    g = "net.bytebuddy"
+    a = "byte-buddy"
+    v = '1.12.19'
+    print(get_all_versions(g, a, v))
