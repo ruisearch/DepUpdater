@@ -85,7 +85,8 @@ class Japicmp:
         bc_type_name = re.search(type_pattern, record).group(1).replace('$', '.')
         self.binary_bc_type.setdefault(bc_type_name, []).append(record)
         api_lines = record.split('\n')
-        method_pattern = r' ([^()]*?) ([^()]*?)(\([^()]*?\))\Z'
+        # method_pattern = r' ([^()]*?) ([^()]*?)(\([^()]*?\))\Z'
+        method_pattern = r' ([^()]*?|\(<-.*?\)) ([^() ]*?)(\([^()]*?\))\Z'
         constructor_pattern = r' [^()]*?(\([^()]*?\))\Z'
         for api_line in api_lines:
             api_line = (Revapi.remove_angle_brackets(api_line)).replace('$', '.')
@@ -95,6 +96,8 @@ class Japicmp:
                 # print('method:', api_line)
                 method_match = re.search(method_pattern, api_line)
                 return_type = method_match.group(1)
+                if return_type.startswith('(<-'):
+                    return_type = return_type[3:-1]
                 # # debug
                 # print('return_type:', return_type)
                 method_name = method_match.group(2)

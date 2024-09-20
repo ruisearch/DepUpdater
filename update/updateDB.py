@@ -85,8 +85,9 @@ def populate_dep(go, ao, vo):
 
 # test
 if __name__ == '__main__':
-    g = 'com.fasterxml.jackson.core'
-    a = 'jackson-databind'
-    v = '2.17.2'
-    dependencies = populate_dep(g, a, v)
-    print(dependencies)
+    g = 'org.apache.maven'
+    a = 'maven-core'
+    v = '3.9.9'
+    populate_dep(g, a, v)
+    # dependencies = populate_dep(g, a, v)
+    # print(dependencies)

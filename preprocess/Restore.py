@@ -249,6 +249,9 @@ class Restore:
                 futures.append(executor.submit(self.process_a_valid_dep, valid_dep, omitted_deps))
         for future in futures:
             mappings.append(future.result())
+            
+        # add omitted deps which have no corresponding valid dep
+        self.process_omitted_deps(valid_deps, omitted_deps, mappings)
 
         # create json
         # stored in data/result/{repo_name}/{relative_path_to_module}/version.json
@@ -259,6 +262,48 @@ class Restore:
         with open(json_path, 'w', encoding='utf-8') as json_file:
             json.dump(mappings, json_file, indent=4)
         return json_path
+
+    def process_omitted_deps(self, valid_deps:list, omitted_deps:list, mappings:list):
+        """add omitted deps which have no corresponding valid dep,
+        these valid deps are test or provided so that they are ignored
+        Args:
+            valid_deps : list of dict containing all valid_dep
+            omitted_deps : list of dict containing all omitted_dep
+            mappings: list of dict representing the dependency graph
+        """
+        valid_set = set()
+        for valid_dep in valid_deps:
+            valid_set.add(f"{valid_dep['GroupId']}:{valid_dep['ArtifactId']}")
+        omitted_dict = {}
+        for idx, omitted_dep in enumerate(omitted_deps):
+            omitted_key = f"{omitted_dep['GroupId']}:{omitted_dep['ArtifactId']}"
+            omitted_dict.setdefault(omitted_key, []).append(idx)
+        omitted_set = set(omitted_dict.keys())
+
+        added_omitted_deps = omitted_set - valid_set
+        for ga in added_omitted_deps:
+            first_idx = omitted_dict[ga][0]
+            one_record = omitted_deps[first_idx]
+            groupId = one_record['GroupId']
+            artifactId = one_record['ArtifactId']
+            original_version = one_record['Version']
+            dtype = one_record['Type']
+            depth = one_record['Depth']
+            dependents = []
+            for idx in omitted_dict[ga]:
+                dependents.extend(omitted_deps[idx]['Dependents'])
+            mappings.append(
+                {
+                    'GroupId': groupId,
+                    'ArtifactId': artifactId,
+                    'Original_Version': original_version,
+                    'Best_Version': '',
+                    'Type': dtype,
+                    'Depth': depth,
+                    'Count': 0,
+                    'Dependents': dependents
+                }
+            )
 
     def clear_spare_deps(self,valid_deps:list, omitted_deps:list) -> None:
         """clear spare deps and their dependencies as well\n
@@ -320,7 +365,7 @@ class Restore:
             valid_dep : a valid dep (from change_valid_deps)
             omitted_deps : the list of dict containing all Omitted_dep \n
                 from change_omitted_deps \n
-        
+
         Returns:
             the computed valid_dep which will be displayed in version.json\n
             {GroupId, ArtifactId, Original_Version, Best_Version, Type, Depth, Dependents}\n
@@ -360,10 +405,6 @@ class Restore:
         match = re.search(pattern, record)
         return {'GroupId':match.group(1), 'ArtifactId':match.group(2), 'Version':match.group(4)}
 
-    def dict_to_JarFileName(self, dep:dict):
-        """transform dep{GroupId, ArtifactId, Version} into JarFileName"""
-        return f'{dep["ArtifactId"]}-{dep["Version"]}.jar'
-
     def change_valid_deps(self, valid_deps:list):
         """change the valid_deps \n
         dep key:{dep, Depth, Dependents} --> dep key:{GroupId, ArtifactId, Version, Type, Depth, Dependents, isoptional}
@@ -393,7 +434,7 @@ class Restore:
 
     def change_omitted_deps(self, omitted_deps:list):
         """change the omitted_deps \n
-            dep key:{dep, Depth, Dependents} --> dep key:{GroupId, ArtifactId, Classifier, Version, Type, Depth, Dependents}
+            dep key:{dep, Depth, Dependents} --> dep key:{GroupId, ArtifactId, Version, Type, Depth, Dependents}
             
         Args:
             omitted_deps : from parse_all_dep
@@ -418,7 +459,7 @@ class Restore:
                 dep.update({'GroupId':match.group(1)})
                 dep.update({'ArtifactId':match.group(2)})
                 dep.update({'Version':match.group(6)})
-                dep.update({'Type':match.group(4)})
+                dep.update({'Type':match.group(5)})
                 dep.update({'Depth':omitted_deps[i]['Depth']})
                 # Define_Version is the version defined by the dependent
                 Dependent = omitted_dep['Dependents'][0]
