@@ -83,20 +83,18 @@ def version_comparator(a, b):
         return 0
 
 
-def get_resource_with_retry(url, params=None, max_retries=5, sleep_time=5):
-    for i in range(max_retries):
+def get_resource_with_retry(url, params=None, max_retries=5, backoff_factor=0.3):
+    """get a resource with retry mechanism"""
+    for attempt in range(max_retries):
         try:
-            response = requests.get(url, params=params)
-            if response.status_code == 200:
-                return response
-            else:
-                print(f"Fail to get {url}, status code: {response.status_code}")
-                print(f"Retrying in {sleep_time} seconds...")
-                time.sleep(sleep_time)
-        except Exception as e:
-            print(f"Fail to get {url}, reason:{e}")
-            print(f"Retrying in {sleep_time} seconds...")
-            time.sleep(sleep_time)
+            response = requests.get(url, params=params, timeout=10)
+            response.raise_for_status()
+            return response
+        except requests.RequestException as e:
+            print(f"Attempt {attempt + 1} failed to get {url} :{e}")
+            time.sleep(backoff_factor * (2 ** attempt))  # Exponential backoff
+            if attempt == max_retries - 1:
+                raise  # Re-raise the last exception if all retries fail
 
 if __name__ == '__main__':
     # test get_all_versions
