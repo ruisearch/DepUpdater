@@ -14,7 +14,8 @@ def get_all_versions(groupId, artifactId, original_version):
     if original_version_idx == -1:
         print(f"Fail to find the original version {original_version} in {groupId}:{artifactId}")
         return []
-    return all_versions[:original_version_idx+1]
+    # return all_versions[:original_version_idx+1]
+    return all_versions[original_version_idx:]
 
 def find_original_version_idx(all_versions, original_version):
     """find the index of the original version in all versions"""
@@ -44,7 +45,7 @@ def fetch_versions(groupId, artifactId):
         print(f"Fail to handle {groupId}:{artifactId}, reason:{e}")
     
     # # Sort versions using a custom comparison function
-    # all_versions.sort(key=cmp_to_key(version_comparator))
+    all_versions.sort(key=cmp_to_key(version_comparator))
     
     # the versions in all_versions have been sorted by Maven Central
     # only return the version string
@@ -101,8 +102,16 @@ def get_resource_with_retry(url, params=None, max_retries=5, backoff_factor=0.3)
                 raise  # Re-raise the last exception if all retries fail
 
 if __name__ == '__main__':
-    # test get_all_versions
-    g = "net.bytebuddy"
-    a = "byte-buddy"
-    v = '1.12.19'
+    # # test get_all_versions
+    # # http://search.maven.org/solrsearch/select?q=g:org.junit-pioneer+AND+a:junit-pioneer&core=gav&rows=200&wt=json
+    # g = "org.junit-pioneer"
+    # a = "junit-pioneer"
+    # v = '1.9.1'
+    # print(get_all_versions(g, a, v))
+    
+    # test fetch_versions
+    g = "org.apache.logging.log4j"
+    a = "log4j-api"
+    v = '2.24.0'
+    # print(fetch_versions(g, a))
     print(get_all_versions(g, a, v))

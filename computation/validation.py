@@ -128,8 +128,9 @@ class Validation:
             pbar.close()
 
         # get the actual newest , source compatible and binary compatible version
-        for version in reversed(version_compatibility.keys()):
-            if version_compatibility[version][0] and version_compatibility[version][1]:
+        # for version in reversed(version_compatibility.keys()):
+        for version, compatibility in version_compatibility.items():
+            if compatibility[0] and compatibility[1]:
                 best_version = version
                 break
         # store the actual best version in <properties>
