@@ -1,5 +1,4 @@
 """get and sort all versions of a dependency"""
-import copy
 import time
 from functools import cmp_to_key
 
@@ -15,7 +14,7 @@ def get_all_versions(groupId, artifactId, original_version):
     if original_version_idx == -1:
         print(f"Fail to find the original version {original_version} in {groupId}:{artifactId}")
         return []
-    return all_versions[original_version_idx :]
+    return all_versions[:original_version_idx+1]
 
 def find_original_version_idx(all_versions, original_version):
     """find the index of the original version in all versions"""
@@ -26,7 +25,8 @@ def find_original_version_idx(all_versions, original_version):
 
 def fetch_versions(groupId, artifactId):
     """fetch all versions of the dependency"""
-    url = f"http://search.maven.org/solrsearch/select?q=g:{groupId}+AND+a:{artifactId}&core=gav&rows=20&wt=json"
+    # Fetch all versions(up to 200) of the dependency from Maven Central
+    url = f"http://search.maven.org/solrsearch/select?q=g:{groupId}+AND+a:{artifactId}&core=gav&rows=200&wt=json"
     try:
         response = get_resource_with_retry(url)
         if response:
@@ -43,14 +43,18 @@ def fetch_versions(groupId, artifactId):
     except Exception as e:
         print(f"Fail to handle {groupId}:{artifactId}, reason:{e}")
     
-    # Sort versions using a custom comparison function
-    all_versions.sort(key=cmp_to_key(version_comparator))
+    # # Sort versions using a custom comparison function
+    # all_versions.sort(key=cmp_to_key(version_comparator))
+    
+    # the versions in all_versions have been sorted by Maven Central
     # only return the version string
     all_versions = [version['version'] for version in all_versions]
     return all_versions
 
 def version_comparator(a, b):
-    # Try to parse versions as SemVer
+    """Try to parse versions as SemVer
+    deprecated
+    """
     try:
         a_semver = semver.VersionInfo.parse(a['version'])
         a_is_semver = True
