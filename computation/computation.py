@@ -100,8 +100,9 @@ class Computation:
 
     def get_best_version(self, Versions:list):
         """find the newest compatible version from Versions"""
-        # Iterate in reverse order to find the first version without breaking_reason
-        for version in reversed(Versions):
+        # Iterate to find the first version without breaking_reason(newest version is the first version)
+        # for version in reversed(Versions):
+        for version in Versions:
             if not version['breaking_reason']:
                 print(f'best version of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]} is {version["version"]}')
                 return version['version']
