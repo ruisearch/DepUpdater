@@ -14,8 +14,8 @@ def get_all_versions(groupId, artifactId, original_version):
     if original_version_idx == -1:
         print(f"Fail to find the original version {original_version} in {groupId}:{artifactId}")
         return []
-    # return all_versions[:original_version_idx+1]
-    return all_versions[original_version_idx:]
+    return all_versions[:original_version_idx+1]
+    # return all_versions[original_version_idx:]
 
 def find_original_version_idx(all_versions, original_version):
     """find the index of the original version in all versions"""
@@ -43,18 +43,18 @@ def fetch_versions(groupId, artifactId):
                         })
     except Exception as e:
         print(f"Fail to handle {groupId}:{artifactId}, reason:{e}")
-    
-    # # Sort versions using a custom comparison function
+
+    # Sort versions using a custom comparison function
     all_versions.sort(key=cmp_to_key(version_comparator))
-    
+
     # the versions in all_versions have been sorted by Maven Central
     # only return the version string
     all_versions = [version['version'] for version in all_versions]
     return all_versions
 
 def version_comparator(a, b):
-    """Try to parse versions as SemVer
-    deprecated
+    """Try to parse versions as SemVer and sort by SemVer if possible, otherwise sort by date
+    arrange versions in descending order
     """
     try:
         a_semver = semver.VersionInfo.parse(a['version'])
@@ -73,17 +73,17 @@ def version_comparator(a, b):
     # If both are SemVer compliant, sort by SemVer
     if a_is_semver and b_is_semver:
         if a_semver < b_semver:
-            return -1
-        elif a_semver > b_semver:
             return 1
+        elif a_semver > b_semver:
+            return -1
         else:
             return 0
 
     # If either is not SemVer compliant, sort by date
     if a['date'] < b['date']:
-        return -1
-    elif a['date'] > b['date']:
         return 1
+    elif a['date'] > b['date']:
+        return -1
     else:
         return 0
 
