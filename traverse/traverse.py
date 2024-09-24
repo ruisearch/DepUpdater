@@ -45,6 +45,10 @@ class Traverse:
         
         while self.queue:
             cur_dep = self.queue.popleft()
+            
+            # no need to compute client anymore
+            if cur_dep['Depth'] == 0:
+                continue
 
             log_debug(f"Computing {cur_dep['GroupId']}:{cur_dep['ArtifactId']}")
 
