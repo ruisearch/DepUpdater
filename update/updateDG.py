@@ -170,6 +170,9 @@ class Update:
                         "Define_Version": self.new_dict[ga][0]
                     }
                 )
+
+                log_debug(f'{ga} is a new dep of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}')
+
                 # clear the best version of this dependency as its context has changed
                 dep_dict['Best_Version'] = ""
             else :
@@ -289,6 +292,9 @@ class Update:
             for dependent in dep_dict['Dependents']:
                 if self.cur_node['GroupId'] == dependent['GroupId'] and self.cur_node['ArtifactId'] == dependent['ArtifactId']:
                     dep_dict['Dependents'].remove(dependent)
+
+                    log_debug(f'{ga} is not a dep of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}')
+
                     break
 
             # the best version of the dependent recorded by this dependency is outdated
@@ -373,6 +379,8 @@ class Update:
         Args:
             ga (str): the groupId:artifactId of the dependency
         """
+        # client is no need to be computed
+        
         if ga not in self.graph_dict:
             return False
         if self.is_computed(ga):

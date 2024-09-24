@@ -21,40 +21,52 @@ class Api:
         """
         # query the call graph from sqlite
         cg = query_call_graph(self.groupId, self.artifactId, self.version)
-        if cg:
+        if cg is not None:
             # call graph exists in the database
             return cg
         # call graph does not exist in the database, so use sootCG to get the call graph
         jar_path = self.get_jar()
-        Restore.get_dep_jar(self.groupId, self.artifactId, self.version)
-        # run sootCG
-        command = f"java -jar {SOOTCG_PATH} {jar_path}"
-        result = subprocess.run(command, shell=True, text=True, capture_output=True)
-        cg = result.stdout
-        store_call_graph(self.groupId, self.artifactId, self.version, cg)
-        if not cg:
-            # store the empty cases
+        can_download = Restore.get_dep_jar(self.groupId, self.artifactId, self.version)
+        if can_download:
+            # run sootCG
+            command = f"java -jar {SOOTCG_PATH} {jar_path}"
+            result = subprocess.run(command, shell=True, text=True, capture_output=True)
+            cg = result.stdout
+            store_call_graph(self.groupId, self.artifactId, self.version, cg)
+            if not cg:
+                # store the empty cases
+                # cg is '', so store the empty cases
+                self.store_empty_cases('cg')
+            return cg
+        else:
+            # download failed, store the empty cases
             self.store_empty_cases('cg')
-        return cg
-    
+            return ''
+
     def get_type_dg(self):
         """get the type dependency graph of the jar file"""
         jar_path = self.get_jar()
-        Restore.get_dep_jar(self.groupId, self.artifactId, self.version)
-        # query the type dependency graph from sqlite
-        type_dg = query_type_dependency_graph(self.groupId, self.artifactId, self.version)
-        if type_dg:
-            # type dependency graph exists in the database
+        can_download = Restore.get_dep_jar(self.groupId, self.artifactId, self.version)
+        if can_download:
+            # query the type dependency graph from sqlite
+            type_dg = query_type_dependency_graph(self.groupId, self.artifactId, self.version)
+            if type_dg is not None:
+                # type dependency graph exists in the database
+                return type_dg
+            # run soot_Type_DG
+            command = f"java -jar {SOOT_TYPE_DG_PATH} {jar_path}"
+            result = subprocess.run(command, shell=True, text=True, capture_output=True)
+            type_dg = result.stdout
+            store_type_dependency_graph(self.groupId, self.artifactId, self.version, type_dg)
+            if not type_dg:
+                # store the empty cases
+                # type_dg is '', so store the empty cases
+                self.store_empty_cases('type_dg')
             return type_dg
-        # run soot_Type_DG
-        command = f"java -jar {SOOT_TYPE_DG_PATH} {jar_path}"
-        result = subprocess.run(command, shell=True, text=True, capture_output=True)
-        type_dg = result.stdout
-        store_type_dependency_graph(self.groupId, self.artifactId, self.version, type_dg)
-        if not type_dg:
-            # store the empty cases
+        else:
+            # download failed, store the empty cases
             self.store_empty_cases('type_dg')
-        return type_dg
+            return ''
     
     def store_empty_cases(self, _type:str):
         """store the gav of the jar file which has empty cg or dg
