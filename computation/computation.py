@@ -27,7 +27,7 @@ class Computation:
         self.type_entry_points = []
         
     def get_old_deps(self):
-        """get the old dependencies of the current dependency\n
+        """get the old dependencies of the current dependency
         just return groupId and artifactId of the old dependencies
         """
         old_deps = []
@@ -52,8 +52,7 @@ class Computation:
 
         # get entry points and caller of the dependency
         for dependent in self.cur_node['Dependents']:
-            self.get_entry_points_and_caller(dependent['GroupId'], dependent['ArtifactId'], dependent['Version'], dependent['Define_Version'], 'methods')
-            self.get_entry_points_and_caller(dependent['GroupId'], dependent['ArtifactId'], dependent['Version'], dependent['Define_Version'], 'types')
+            self.get_entry_points_and_caller(dependent['GroupId'], dependent['ArtifactId'], dependent['Version'], dependent['Define_Version'])
         # create a folder to store the log of tqdm
         tqdm_log_module_folder = os.path.join(TQDM_LOG_PATH, self.repo_name, self.relative_path_to_module)
         self.create_folder(tqdm_log_module_folder)
@@ -141,7 +140,7 @@ class Computation:
             new_jar = query_to_get_jar_location(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
             Restore.get_dep_jar(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
             revapi = Revapi(old_jar, new_jar)
-            print(f'extract bc method of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{baselineVersion} -> {version} by Revapi')
+            # print(f'extract bc method of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{baselineVersion} -> {version} by Revapi')
             bin_bc_method, _, src_bc_method, _ = revapi.bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version)
             # binary compatibility must be considered
             bc_method = bin_bc_method
@@ -175,7 +174,7 @@ class Computation:
             new_jar = query_to_get_jar_location(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
             Restore.get_dep_jar(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
             revapi = Revapi(old_jar, new_jar)
-            print(f'extract bc type of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{baselineVersion} -> {version} by Revapi')
+            # print(f'extract bc type of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{baselineVersion} -> {version} by Revapi')
             _, bin_bc_type, _, src_bc_type = revapi.bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version)
             bc_type = bin_bc_type
             if depended_by_client:
@@ -249,7 +248,7 @@ class Computation:
             reachable_type_pairs = Api.find_reachable_calls(entry_point_types, type_call_relations)
             self.record_reachable_apis(reachable_type_pairs, 'types')
 
-    def get_entry_points_and_caller(self, dependent_groupId:str, dependent_artifactId:str, dependent_version:str, defined_version:str, api_type:str):
+    def get_entry_points_and_caller(self, dependent_groupId:str, dependent_artifactId:str, dependent_version:str, defined_version:str):
         """get the entry points in the dependency and the corresponding caller in the dependent\n
         dict in reachable_method_callee or reachable_type_callee is like:\n
             {
@@ -262,33 +261,32 @@ class Computation:
         the callee is the entry point; 'api' is a dict of callee -> set of callers
         """
         defined_version_api = Api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], defined_version)
-        dependent_reachable_apis = self.read_reachable_apis(dependent_groupId, dependent_artifactId, api_type)
-        if api_type == 'methods':
-            defined_version_cg = defined_version_api.get_cg()
-            all_methods = defined_version_api.extract_methods_from_cg(defined_version_cg)
-            matching_method_pairs = Api.find_matching_relations(dependent_reachable_apis, all_methods)
-            entry_point_dict = {
-                'dependent': f'{dependent_groupId}:{dependent_artifactId}:{dependent_version}',
-                'baselineVersion': defined_version,
-                'api': {}
-            }
-            for pair in matching_method_pairs:
-                entry_point_dict['api'].setdefault(pair[1], set()).add(pair[0])
-            self.method_entry_points.append(entry_point_dict)
-        elif api_type == 'types':
-            defined_version_dg = defined_version_api.get_type_dg()
-            all_types = defined_version_api.extract_types_from_dg(defined_version_dg)
-            matching_type_pairs = Api.find_matching_relations(dependent_reachable_apis, all_types)
-            entry_point_dict = {
-                'dependent': f'{dependent_groupId}:{dependent_artifactId}:{dependent_version}',
-                'baselineVersion': defined_version,
-                'api': {}
-            }
-            for pair in matching_type_pairs:
-                entry_point_dict['api'].setdefault(pair[1], set()).add(pair[0])
-            self.type_entry_points.append(entry_point_dict)
-        else:
-            raise ValueError("Invalid api_type. Must be 'methods' or 'types'.")
+        dependent_reachable_methods = self.read_reachable_apis(dependent_groupId, dependent_artifactId, 'methods')
+        dependent_reachable_types = self.read_reachable_apis(dependent_groupId, dependent_artifactId, 'types')
+
+        defined_version_cg = defined_version_api.get_cg()
+        all_methods = defined_version_api.extract_methods_from_cg(defined_version_cg)
+        matching_method_pairs = Api.find_matching_relations(dependent_reachable_methods, all_methods)
+        entry_point_dict = {
+            'dependent': f'{dependent_groupId}:{dependent_artifactId}:{dependent_version}',
+            'baselineVersion': defined_version,
+            'api': {}
+        }
+        for pair in matching_method_pairs:
+            entry_point_dict['api'].setdefault(pair[1], set()).add(pair[0])
+        self.method_entry_points.append(entry_point_dict)
+
+        defined_version_dg = defined_version_api.get_type_dg()
+        all_types = defined_version_api.extract_types_from_dg(defined_version_dg)
+        matching_type_pairs = Api.find_matching_relations(dependent_reachable_types, all_types)
+        entry_point_dict = {
+            'dependent': f'{dependent_groupId}:{dependent_artifactId}:{dependent_version}',
+            'baselineVersion': defined_version,
+            'api': {}
+        }
+        for pair in matching_type_pairs:
+            entry_point_dict['api'].setdefault(pair[1], set()).add(pair[0])
+        self.type_entry_points.append(entry_point_dict)
 
     def get_entry_points_set(self, api_type:str):
         """get the set of entry points of the dependency for reachable api"""
@@ -427,8 +425,7 @@ if __name__ == '__main__':
     }
     dep = Computation(dep_dict, [], 'test', 'example2')
     # get dep's entry points and caller
-    dep.get_entry_points_and_caller('cat.inspiracio', 'dwr', '3.0.1', '2.12.7', 'methods')
-    dep.get_entry_points_and_caller('cat.inspiracio', 'dwr', '3.0.1', '2.12.7', 'types')
+    dep.get_entry_points_and_caller('cat.inspiracio', 'dwr', '3.0.1', '2.12.7')
     # print methods and types entry points
     print(dep.method_entry_points)
     print(dep.type_entry_points)
