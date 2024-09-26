@@ -23,6 +23,8 @@ class Api:
         cg = query_call_graph(self.groupId, self.artifactId, self.version)
         if cg is not None:
             # call graph exists in the database
+            if cg == '':
+                self.store_empty_cases('cg')
             return cg
         # call graph does not exist in the database, so use sootCG to get the call graph
         jar_path = self.get_jar()
@@ -52,6 +54,8 @@ class Api:
             type_dg = query_type_dependency_graph(self.groupId, self.artifactId, self.version)
             if type_dg is not None:
                 # type dependency graph exists in the database
+                if type_dg == '':
+                    self.store_empty_cases('type_dg')
                 return type_dg
             # run soot_Type_DG
             command = f"java -jar {SOOT_TYPE_DG_PATH} {jar_path}"

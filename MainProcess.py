@@ -38,7 +38,8 @@ if os.path.exists(log_path):
     os.remove(log_path)
 
 # set the git repository to the last tag status
-status_command = f'cd {path_to_folder} && git add . && git reset --hard && git fetch --tags && git tag --sort=-creatordate | head -1 | xargs git checkout'
+# status_command = f'cd {path_to_folder} && git add . && git reset --hard && git fetch --tags && git tag --sort=-creatordate | head -1 | xargs git checkout'
+status_command = f'cd {path_to_folder} && git add . && git stash && git stash clear'
 print("****** set the git repository to the lastest tag status ******")
 os.system(status_command)
 print("\n****** preprocess.package ... ******\n")

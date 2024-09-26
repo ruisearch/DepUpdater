@@ -1,7 +1,6 @@
-## exectute the mvn command like "mvn package"
+"""exectute the mvn command like 'mvn package'"""
 # path_to_folder : the path where pom.xml locates
 import os
-import shutil
 import subprocess
 
 from constants import TREE_DIR

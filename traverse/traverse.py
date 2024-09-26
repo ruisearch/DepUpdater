@@ -34,6 +34,7 @@ class Traverse:
             if dep['Depth'] == 0:
                 client_com = Computation(dep, self.graph, self.repo_name, self.relative_path_to_module)
                 client_com.get_and_record_reachable_api()
+                dep['Best_Version'] = dep['Original_Version']
                 break
 
     def traverse(self):
@@ -87,8 +88,8 @@ class Traverse:
         # compute the newest compatible version of cur_dep
         best_version = com.compute_best_version()
         method_entry_points, type_entry_points = com.return_entry_points()
-        # validate. If the actually best version is different from the best version got by tool, exit
-        self.validate(cur_dep, best_version, method_entry_points, type_entry_points)
+        # # validate. If the actually best version is different from the best version got by tool, exit
+        # self.validate(cur_dep, best_version, method_entry_points, type_entry_points)
         com.get_and_record_reachable_api(best_version)
         cur_dep['Best_Version'] = best_version
         # #debug

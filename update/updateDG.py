@@ -142,7 +142,8 @@ class Update:
                     if dependent['Version'] != best_version:
                         dependent['Version'] = best_version
                         # the best version of the dependent recorded by this dependency is outdated
-                        dep_dict['Best_Version'] = ""
+                        # dep_dict['Best_Version'] = ""
+                        self.clear_best_version(dep_dict)
                         dependent['Define_Version'] = self.new_dict[ga][0]
                     break
 
@@ -174,7 +175,8 @@ class Update:
                 log_debug(f'{ga} is a new dep of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}')
 
                 # clear the best version of this dependency as its context has changed
-                dep_dict['Best_Version'] = ""
+                # dep_dict['Best_Version'] = ""
+                self.clear_best_version(dep_dict)
             else :
                 ga_version = self.new_dict[ga][0]
                 ga_type = self.new_dict[ga][1]
@@ -223,7 +225,8 @@ class Update:
                 })
                 depth = min(dependent_node['Depth'] + 1, node['Depth'])
                 node['Depth'] = depth
-                node['Best_Version'] = ""
+                # node['Best_Version'] 
+                self.clear_best_version(node)
                 node['Type'] = Dtype
                 # add the node to graph_dict
                 self.graph_dict[ga] = i
@@ -268,7 +271,8 @@ class Update:
                     }
                 )
                 # clear the best version of this dependency as its context has changed
-                new_dep['Best_Version'] = ""
+                # new_dep['Best_Version'] = ""
+                self.clear_best_version(new_dep)
                 # update the queue
                 flag = self.is_ready(new_dep_ga)
                 self.update_queue(flag, new_dep_ga)
@@ -298,7 +302,8 @@ class Update:
                     break
 
             # the best version of the dependent recorded by this dependency is outdated
-            dep_dict['Best_Version'] = ""
+            # dep_dict['Best_Version'] = ""
+            self.clear_best_version(dep_dict)
 
             # if the ga has no dependents now, remove the node from the graph
             if not dep_dict['Dependents']:
@@ -417,3 +422,9 @@ class Update:
         log_debug("Queue:")
         for ga in self.queue_dict.keys():
             log_debug(f" {ga}")
+
+    @staticmethod
+    def clear_best_version(dep_dict:dict):
+        """clear the best version of a dependency unless it is the client"""
+        if dep_dict['Depth'] != 0:
+            dep_dict['Best_Version'] = ""
