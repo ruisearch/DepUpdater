@@ -177,6 +177,8 @@ class Update:
                 # clear the best version of this dependency as its context has changed
                 # dep_dict['Best_Version'] = ""
                 self.clear_best_version(dep_dict)
+                flag = self.is_ready(ga)
+                self.update_queue(flag, ga)
             else :
                 ga_version = self.new_dict[ga][0]
                 ga_type = self.new_dict[ga][1]

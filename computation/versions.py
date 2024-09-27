@@ -1,14 +1,16 @@
 """get and sort all versions of a dependency"""
 import time
 from functools import cmp_to_key
+from database.query import query_versions_from_mongo
 
 import semver
 import requests
 
 
-def get_all_versions(groupId, artifactId, original_version):
+def get_candidate_versions(groupId, artifactId, original_version):
     """main function to get all versions of a dependency to be computed"""
-    all_versions = fetch_versions(groupId, artifactId)
+    # all_versions = fetch_versions(groupId, artifactId)
+    all_versions = get_versions(groupId, artifactId)
     # the version to be computed are the versions after the original version
     original_version_idx = find_original_version_idx(all_versions, original_version)
     if original_version_idx == -1:
@@ -23,8 +25,7 @@ def get_all_versions(groupId, artifactId, original_version):
     if original_version not in candidate_versions:
         candidate_versions.append(original_version)
     return candidate_versions
-    # return all_versions[:original_version_idx+1]
-    # return all_versions[original_version_idx:]
+
 
 def find_original_version_idx(all_versions, original_version):
     """find the index of the original version in all versions"""
@@ -34,7 +35,8 @@ def find_original_version_idx(all_versions, original_version):
     return -1
 
 def fetch_versions(groupId, artifactId):
-    """fetch all versions of the dependency"""
+    """fetch all versions of the dependency
+    deprecated: use mongodb instead"""
     # Fetch all versions(up to 200) of the dependency from Maven Central
     url = f"http://search.maven.org/solrsearch/select?q=g:{groupId}+AND+a:{artifactId}&core=gav&rows=200&wt=json"
     try:
@@ -57,6 +59,18 @@ def fetch_versions(groupId, artifactId):
     all_versions.sort(key=cmp_to_key(version_comparator))
 
     # the versions in all_versions have been sorted by Maven Central
+    # only return the version string
+    all_versions = [version['version'] for version in all_versions]
+    return all_versions
+
+def get_versions(groupId, artifactId):
+    """get all versions of an artifact"""
+    all_versions = query_versions_from_mongo(groupId, artifactId)
+
+    # Sort versions using a custom comparison function
+    all_versions.sort(key=cmp_to_key(version_comparator))
+
+    # the versions in all_versions have been sortedl
     # only return the version string
     all_versions = [version['version'] for version in all_versions]
     return all_versions
@@ -111,6 +125,7 @@ def get_resource_with_retry(url, params=None, max_retries=5, backoff_factor=0.3)
                 raise  # Re-raise the last exception if all retries fail
 
 if __name__ == '__main__':
+    pass
     # # test get_all_versions
     # # http://search.maven.org/solrsearch/select?q=g:org.junit-pioneer+AND+a:junit-pioneer&core=gav&rows=200&wt=json
     # g = "org.junit-pioneer"
@@ -118,9 +133,9 @@ if __name__ == '__main__':
     # v = '1.9.1'
     # print(get_all_versions(g, a, v))
     
-    # test fetch_versions
-    g = "org.apache.logging.log4j"
-    a = "log4j-api"
-    v = '2.24.0'
-    # print(fetch_versions(g, a))
-    print(get_all_versions(g, a, v))
+    # # test fetch_versions
+    # g = "org.apache.logging.log4j"
+    # a = "log4j-api"
+    # v = '2.24.0'
+    # # print(fetch_versions(g, a))
+    # print(get_all_versions(g, a, v))

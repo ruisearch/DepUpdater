@@ -78,7 +78,7 @@ class Validation:
         # add the property about version of the dependency into the pom.xml
         # and set the version to the property
         # direct_dependency and transitive_dependency are not in the same format
-        initial_version = versions[0]
+        initial_version = versions[len(versions)-1]
         if direct_or_transitive == 'direct':
             property_tag_name = self.set_pom_property_value(group_id, artifact_id, initial_version)
             self.add_direct_dependency(group_id, artifact_id, property_tag_name)

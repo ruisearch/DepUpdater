@@ -189,7 +189,7 @@ def query_dependencies_from_mongo(groupId, artifactId, version):
         dependencies (list): the dependencies of the gav
     """
     gav = f'{groupId}:{artifactId}:{version}'
-    db = Mongo('maven_deps', 'maven_deps')
+    db = Mongo('maven', 'maven_deps')
     db.connect()
     document = db.find_document({'parent':gav})
     if document == []:
@@ -211,9 +211,23 @@ def insert_dependencies_into_mongo(groupId, artifactId, version, dependencies):
         dependencies (list): the dependencies of the gav
     """
     gav = f'{groupId}:{artifactId}:{version}'
-    db = Mongo('maven_deps', 'maven_deps')
+    db = Mongo('maven', 'maven_deps')
     db.connect()
     document = db.find_document({'parent':gav})
     if document == []:
         db.insert_document({'dependencies':dependencies,'parent':gav})
     db.close()
+
+def query_versions_from_mongo(groupId, artifactId):
+    """query all versions(and time) of an artifact"""
+    db = Mongo('maven','maven')
+    db.connect()
+    documents = db.find_document({'group':groupId, 'artifact':artifactId})
+    versions = []
+    for document in documents:
+        versions.append({
+            'version':document['version'],
+            'date':document['time']
+        })
+    db.close()
+    return versions

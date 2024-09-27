@@ -1,11 +1,11 @@
 """get the newest compatible version of a dependency"""
 import os
 import concurrent.futures
-import copy
-import json
+
 from tqdm import tqdm
-from constants import TQDM_LOG_PATH, REACHABLE_API_DIR, SOOT_EMPTY_CASES_CSV
-from computation.versions import get_all_versions
+import pymaven
+from constants import TQDM_LOG_PATH, REACHABLE_API_DIR
+from computation.versions import get_candidate_versions
 from computation.api import Api
 from computation.revapi import Revapi
 from database.query import query_to_get_jar_location
@@ -46,12 +46,21 @@ class Computation:
             # the versions are already fetched
             all_versions = [Version['version'] for Version in self.cur_node['Versions']]
         else:
-            all_versions = get_all_versions(self.cur_node['GroupId'], self.cur_node['ArtifactId'], self.cur_node['Original_Version'])
+            all_versions = get_candidate_versions(self.cur_node['GroupId'], self.cur_node['ArtifactId'], self.cur_node['Original_Version'])
             # record the versions in the graph
             self.cur_node['Versions'] = [{'version': version, 'breaking_reason':[]} for version in all_versions]
 
         # get entry points and caller of the dependency
         for dependent in self.cur_node['Dependents']:
+            # handle the version range
+            if '[' in dependent['Define_Version'] or ']' in dependent['Define_Version'] \
+                or '(' in dependent['Define_Version'] or ')' in dependent['Define_Version']:
+                # version range
+                for version in all_versions:
+                    if self.check_in_range(version, dependent['Define_Version']):
+                        dependent['Define_Version'] = version
+                        break
+
             self.get_entry_points_and_caller(dependent['GroupId'], dependent['ArtifactId'], dependent['Version'], dependent['Define_Version'])
         # create a folder to store the log of tqdm
         tqdm_log_module_folder = os.path.join(TQDM_LOG_PATH, self.repo_name, self.relative_path_to_module)
@@ -90,6 +99,11 @@ class Computation:
         self.cur_node['Best_Version'] = best_version
 
         return best_version
+    
+    @staticmethod
+    def check_in_range(version, range):
+        version_range = pymaven.versioning.VersionRange(range)
+        return version in version_range
 
     def get_client_gav(self):
         """get the groupId, artifactId and version of the client"""
@@ -101,6 +115,7 @@ class Computation:
         """find the newest compatible version from Versions"""
         # Iterate to find the first version without breaking_reason(newest version is the first version)
         # for version in reversed(Versions):
+        print(f'every version of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]} has been analyzed!')
         for version in Versions:
             if not version['breaking_reason']:
                 print(f'best version of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]} is {version["version"]}')
@@ -148,7 +163,7 @@ class Computation:
                 # judge source compatibility as well
                 Computation.merge_bc_api_dict(bc_method, src_bc_method)
 
-            print(f'judge method compatibility of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{version} with {dependent_gav}')
+            # print(f'judge method compatibility of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{version} with {dependent_gav}')
             client_impacting_methods = self.intersect_api(bc_method, method_entry_point['api'])
             for client_impacting_method in client_impacting_methods:
                 breaking_reason = {
@@ -180,7 +195,7 @@ class Computation:
             if depended_by_client:
                 # judge source compatibility as well
                 Computation.merge_bc_api_dict(bc_type, src_bc_type)
-            print(f'judge type compatibility of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{version} with {dependent_gav}')
+            # print(f'judge type compatibility of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{version} with {dependent_gav}')
             client_impacting_types = self.intersect_api(bc_type, type_entry_point['api'])
             for client_impacting_type in client_impacting_types:
                 breaking_reason = {
