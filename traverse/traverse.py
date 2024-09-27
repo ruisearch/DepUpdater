@@ -2,11 +2,13 @@
 import os
 import json
 from collections import deque
+import subprocess
 
 from computation.computation import Computation
 from computation.validation import Validation
 from update.updateDG import Update
 from logger.logger import log_debug
+from constants import VALIDATION_LOG_DIR
 class Traverse:
     def __init__(self, json_path, path_to_project_folder, relative_path_to_module):
         with open(json_path, 'r', encoding='utf-8') as f:
@@ -56,6 +58,8 @@ class Traverse:
             if cur_dep['Count'] == 3:
                 print(f"Dependency {cur_dep['GroupId']}:{cur_dep['ArtifactId']} has been computed for 3 times. Something may goes wrong.")
                 exit(1)
+
+
             # find the newest compatible version of cur_dep,
             # and return its new dependencies and old dependencies to update the graph,
             # record the graph in version.json in real time
@@ -71,6 +75,8 @@ class Traverse:
             up = Update(cur_dep, self.graph, self.queue, old_deps)
             up.update()
 
+        # recompile the project
+        self.recompile()
         # restore the pom.xml and back up the pom.xml after computation
         backed_up_pom_path = os.path.join(self.path_to_project_folder, self.relative_path_to_module, '_backed_up_pom.xml')
         Validation.restore_pom(original_pom_path, pom_path, backed_up_pom_path)
@@ -87,9 +93,12 @@ class Traverse:
         old_deps = com.get_old_deps()
         # compute the newest compatible version of cur_dep
         best_version = com.compute_best_version()
-        method_entry_points, type_entry_points = com.return_entry_points()
+        # method_entry_points, type_entry_points = com.return_entry_points()
         # # validate. If the actually best version is different from the best version got by tool, exit
         # self.validate(cur_dep, best_version, method_entry_points, type_entry_points)
+
+        # change the pom.xml
+        self.change_pom(cur_dep, best_version)
         com.get_and_record_reachable_api(best_version)
         cur_dep['Best_Version'] = best_version
         # #debug
@@ -115,6 +124,41 @@ class Traverse:
             direct_or_transitive = 'transitive'
         val.validate(group_id, artifact_id, versions, best_version, method_entry_points, type_entry_points, direct_or_transitive)
         
+    def change_pom(self, cur_dep, best_version):
+        """change the pom.xml to the best version of the dependency"""
+        val = Validation(self.path_to_project_folder, self.relative_path_to_module)
+        group_id = cur_dep['GroupId']
+        artifact_id = cur_dep['ArtifactId']
+        property_tag_name = val.set_pom_property_value(group_id, artifact_id, best_version)
+        if cur_dep['Depth'] == 1:
+            # direct dependency
+            val.add_direct_dependency(group_id, artifact_id, property_tag_name)
+        else:
+            # transitive dependency
+            val.add_transitive_dependency(group_id, artifact_id, property_tag_name)
+
+    def recompile(self):
+        """recompile the project finally"""
+        command = f"cd {self.path_to_project_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -pl {self.relative_path_to_module} compile -am"
+        try:
+            result = subprocess.run(command, shell=True, text=True, capture_output=True)
+            self.store_compile_log(result.stdout)
+            if result.returncode != 0:
+                print("Recompile failed.")
+        except subprocess.SubprocessError as e:
+            print(f"An error occured while execute the command: {e}")
+
+    def store_compile_log(self, log:str):
+        """store the compile log"""
+        repo_name = os.path.basename(self.path_to_project_folder)
+        log_folder = os.path.join(VALIDATION_LOG_DIR, repo_name, self.relative_path_to_module)
+        if not os.path.exists(log_folder):
+            os.makedirs(log_folder)
+        # store the log
+        log_path = os.path.join(log_folder, 'recompile.txt')
+        with open(log_path, 'w', encoding='utf-8') as f:
+            f.write(log)
+
     @staticmethod
     def record_graph(graph, json_path):
         """record the graph in version.json"""
