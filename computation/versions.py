@@ -14,7 +14,16 @@ def get_all_versions(groupId, artifactId, original_version):
     if original_version_idx == -1:
         print(f"Fail to find the original version {original_version} in {groupId}:{artifactId}")
         return []
-    return all_versions[:original_version_idx+1]
+    # exclude pre-release versions
+    candidate_versions = []
+    for version in all_versions[:original_version_idx]:
+        if 'SNAPSHOT' in version or 'alpha' in version or 'beta' in version or 'RC' in version:
+            continue
+        candidate_versions.append(version)
+    if original_version not in candidate_versions:
+        candidate_versions.append(original_version)
+    return candidate_versions
+    # return all_versions[:original_version_idx+1]
     # return all_versions[original_version_idx:]
 
 def find_original_version_idx(all_versions, original_version):

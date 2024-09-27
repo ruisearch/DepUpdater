@@ -5,7 +5,7 @@ import csv
 
 from database.query import query_to_get_jar_location, query_call_graph,\
     store_call_graph, query_type_dependency_graph, store_type_dependency_graph
-from constants import SOOTCG_PATH,SOOT_TYPE_DG_PATH,REACHABLE_API_DIR, get_soot_empty_cases_csv
+from constants import SOOTCG_PATH,SOOT_TYPE_DG_PATH,get_soot_empty_cases_csv
 from preprocess.Restore import Restore
 
 class Api:

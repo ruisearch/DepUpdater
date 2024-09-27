@@ -25,6 +25,9 @@ reusable_data.sqlite
 # ignore maven_deps.bson
 maven_deps.bson
 
+# ignore maven.bson
+maven.bson
+
 # ignore venv
 .venv/
 
