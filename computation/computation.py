@@ -279,29 +279,53 @@ class Computation:
         dependent_reachable_methods = self.read_reachable_apis(dependent_groupId, dependent_artifactId, 'methods')
         dependent_reachable_types = self.read_reachable_apis(dependent_groupId, dependent_artifactId, 'types')
 
-        defined_version_cg = defined_version_api.get_cg()
-        all_methods = defined_version_api.extract_methods_from_cg(defined_version_cg)
-        matching_method_pairs = Api.find_matching_relations(dependent_reachable_methods, all_methods)
-        entry_point_dict = {
-            'dependent': f'{dependent_groupId}:{dependent_artifactId}:{dependent_version}',
-            'baselineVersion': defined_version,
-            'api': {}
-        }
-        for pair in matching_method_pairs:
-            entry_point_dict['api'].setdefault(pair[1], set()).add(pair[0])
-        self.method_entry_points.append(entry_point_dict)
+        # defined_version_cg = defined_version_api.get_cg()
+        # all_methods = defined_version_api.extract_methods_from_cg(defined_version_cg)
+        all_methods, method_flag = defined_version_api.get_methods()
+        if method_flag:
+            matching_method_pairs = Api.find_matching_relations(dependent_reachable_methods, all_methods)
+            method_entry_point_dict = {
+                'dependent': f'{dependent_groupId}:{dependent_artifactId}:{dependent_version}',
+                'baselineVersion': defined_version,
+                'api': {}
+            }
+            for pair in matching_method_pairs:
+                method_entry_point_dict['api'].setdefault(pair[1], set()).add(pair[0])
+            self.method_entry_points.append(method_entry_point_dict)
+        else:
+            method_entry_point_dict = {
+                'dependent': f'{dependent_groupId}:{dependent_artifactId}:{dependent_version}',
+                'baselineVersion': defined_version,
+                'api': {}
+            }
+            self.method_entry_points.append(method_entry_point_dict)
 
-        defined_version_dg = defined_version_api.get_type_dg()
-        all_types = defined_version_api.extract_types_from_dg(defined_version_dg)
-        matching_type_pairs = Api.find_matching_relations(dependent_reachable_types, all_types)
-        entry_point_dict = {
-            'dependent': f'{dependent_groupId}:{dependent_artifactId}:{dependent_version}',
-            'baselineVersion': defined_version,
-            'api': {}
-        }
-        for pair in matching_type_pairs:
-            entry_point_dict['api'].setdefault(pair[1], set()).add(pair[0])
-        self.type_entry_points.append(entry_point_dict)
+        # defined_version_dg = defined_version_api.get_type_dg()
+        # all_types = defined_version_api.extract_types_from_dg(defined_version_dg)
+        all_types, type_flag = defined_version_api.get_types()
+        if type_flag:
+            matching_type_pairs = Api.find_matching_relations(dependent_reachable_types, all_types)
+            type_entry_point_dict = {
+                'dependent': f'{dependent_groupId}:{dependent_artifactId}:{dependent_version}',
+                'baselineVersion': defined_version,
+                'api': {}
+            }
+            for pair in matching_type_pairs:
+                type_entry_point_dict['api'].setdefault(pair[1], set()).add(pair[0])
+            self.type_entry_points.append(type_entry_point_dict)
+        else:
+            type_entry_point_dict = {
+                'dependent': f'{dependent_groupId}:{dependent_artifactId}:{dependent_version}',
+                'baselineVersion': defined_version,
+                'api': {}
+            }
+            self.type_entry_points.append(type_entry_point_dict)
+
+        # if method and type are all empty, then remove 'api' key in both method_entry_points and type_entry_points
+        # which means that a version with same minor version is compatible with the dependent according to semantic versioning
+        if not method_flag and not type_flag:
+            method_entry_point_dict.pop('api')
+            type_entry_point_dict.pop('api')
 
     def get_entry_points_set(self, api_type:str):
         """get the set of entry points of the dependency for reachable api"""

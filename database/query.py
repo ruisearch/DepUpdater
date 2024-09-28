@@ -49,7 +49,7 @@ def store_call_graph(groupId, artifactId, version, cg):
     db.insert_data('api', {'groupId':groupId, 'artifactId':artifactId, 'version':version})
     db.update_data('api', {'callGraph':cg}, condition)
     db.close()
-    
+
 def query_type_dependency_graph(groupId, artifactId, version):
     """query api table to get the type dependency graph of the jar file if exists"""
     db = Sqlite(SQLITE_PATH)
@@ -69,7 +69,47 @@ def store_type_dependency_graph(groupId, artifactId, version, tdg):
     db.insert_data('api', {'groupId':groupId, 'artifactId':artifactId, 'version':version})
     db.update_data('api', {'typeDependencyGraph':tdg}, condition)
     db.close()
-    
+
+def query_methods(groupId, artifactId, version):
+    """query the methods of a gav"""
+    db = Sqlite(SQLITE_PATH)
+    db.connect()
+    condition = [('groupId','=',groupId),'AND',('artifactId','=',artifactId),'AND',('version','=',version)]
+    methods_record = db.query_data('api', 'methods', condition)
+    methods = methods_record[0][0] if methods_record else ""
+    db.close()
+    return methods
+
+def query_types(groupId, artifactId, version):
+    """query the types of a gav"""
+    db = Sqlite(SQLITE_PATH)
+    db.connect()
+    condition = [('groupId','=',groupId),'AND',('artifactId','=',artifactId),'AND',('version','=',version)]
+    types_record = db.query_data('api', 'types', condition)
+    types = types_record[0][0] if types_record else ""
+    db.close()
+    return types
+
+def store_methods(groupId, artifactId, version, methods:str):
+    """store the methods of a gav"""
+    db = Sqlite(SQLITE_PATH)
+    db.connect()
+    condition = [('groupId','=',groupId),'AND',('artifactId','=',artifactId),'AND',('version','=',version)]
+    # insert gav first if not exists
+    db.insert_data('api', {'groupId':groupId, 'artifactId':artifactId, 'version':version})
+    db.update_data('api', {'methods':methods}, condition)
+    db.close()
+
+def store_types(groupId, artifactId, version, types:str):
+    """store the types of a gav"""
+    db = Sqlite(SQLITE_PATH)
+    db.connect()
+    condition = [('groupId','=',groupId),'AND',('artifactId','=',artifactId),'AND',('version','=',version)]
+    # insert gav first if not exists
+    db.insert_data('api', {'groupId':groupId, 'artifactId':artifactId, 'version':version})
+    db.update_data('api', {'types':types}, condition)
+    db.close()
+
 def query_revapi_report(groupId, artifactId, oldVersion, newVersion):
     """query Revapi table to get the compatibility report"""
     print(f"query revapi report of {groupId}:{artifactId}:{oldVersion} -> {newVersion}")
