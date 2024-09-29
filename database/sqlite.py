@@ -76,7 +76,16 @@ class Sqlite:
             return []
 
     def update_data(self, table_name:str, updates:dict, conditions):
-        """change/update lines comply with conditions"""
+        """change/update lines comply with conditions
+        Args:
+            table_name : name of the table
+            updates (dict): the columns to be updated
+            {
+                'col1': val1,
+                ...
+            }
+            conditions : filter the line in need
+        """
         try:
             updates_str = ', '.join([f"{col}=?" for col in updates.keys()])
             condition_strs = []
