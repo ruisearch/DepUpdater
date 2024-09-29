@@ -26,7 +26,7 @@ class Revapi:
         self.binary_bc_type = {}
         self.source_bc_method = {}
         self.source_bc_type = {}
-        
+
     def bc_api(self, groupId:str, artifactId:str, old_version:str, new_version:str):
         """main method of this file, get the bc api in the format of dict
         Returns:

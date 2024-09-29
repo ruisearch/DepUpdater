@@ -25,7 +25,7 @@ class Computation:
         # these two list are got by get_entry_points_and_caller method
         self.method_entry_points = []
         self.type_entry_points = []
-        
+
     def get_old_deps(self):
         """get the old dependencies of the current dependency
         just return groupId and artifactId of the old dependencies
@@ -62,9 +62,9 @@ class Computation:
                         break
 
             self.get_entry_points_and_caller(dependent['GroupId'], dependent['ArtifactId'], dependent['Version'], dependent['Define_Version'])
-        # create a folder to store the log of tqdm
-        tqdm_log_module_folder = os.path.join(TQDM_LOG_PATH, self.repo_name, self.relative_path_to_module)
-        self.create_folder(tqdm_log_module_folder)
+        # # create a folder to store the log of tqdm
+        # tqdm_log_module_folder = os.path.join(TQDM_LOG_PATH, self.repo_name, self.relative_path_to_module)
+        # self.create_folder(tqdm_log_module_folder)
 
         # get gav of client
         client_gav = self.get_client_gav()
@@ -83,14 +83,15 @@ class Computation:
             tasks = {executor.submit(self.version_compatibility_checker, version, client_gav): version for version in all_versions}
 
             for breaking_reason in concurrent.futures.as_completed(tasks):
-                # update the progress bar
-                pbar.update(1)
                 # update the breaking_reason of the version in self.cur_node['Versions']
                 for version_dict in self.cur_node['Versions']:
                     if version_dict['version'] == breaking_reason.result()['version']:
+                        # print(f'update breaking_reason of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{version_dict["version"]}')
                         version_dict['breaking_reason'] = breaking_reason.result()['breaking_reason']
                         break
-            pbar.close()
+                # update the progress bar
+                pbar.update(1)
+        pbar.close()
 
         # find the newest compatible version from self.cur_node['Versions']
         best_version = self.get_best_version(self.cur_node['Versions'])
@@ -150,6 +151,14 @@ class Computation:
             baselineVersion = method_entry_point['baselineVersion']
             if baselineVersion == version:
                 continue
+            if 'api' not in method_entry_point:
+                # use semantic versioning to judge compatibility
+                if not Computation.semantic_versioning(baselineVersion, version):
+                    # incompatible by semantic versioning
+                    breaking_reason = f"incompatible with {dependent_gav} by semantic versioning"
+                continue
+
+            # judge compatibility by api matching
             old_jar = query_to_get_jar_location(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion)
             Restore.get_dep_jar(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion)
             new_jar = query_to_get_jar_location(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
@@ -173,6 +182,7 @@ class Computation:
                     'record': bc_method[client_impacting_method]
                 }
                 ret_dict['breaking_reason'].append(breaking_reason)
+
         for type_entry_point in self.type_entry_points:
             # if dependent is client, then judge source compatibility
             dependent_gav = type_entry_point['dependent']
@@ -184,6 +194,14 @@ class Computation:
             baselineVersion = type_entry_point['baselineVersion']
             if baselineVersion == version:
                 continue
+            if 'api' not in type_entry_point:
+                # use semantic versioning to judge compatibility
+                if not Computation.semantic_versioning(baselineVersion, version):
+                    # incompatible by semantic versioning
+                    breaking_reason = f"incompatible with {dependent_gav} by semantic versioning"
+                continue
+            
+            # judge compatibility by api matching
             old_jar = query_to_get_jar_location(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion)
             Restore.get_dep_jar(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion)
             new_jar = query_to_get_jar_location(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
@@ -207,6 +225,23 @@ class Computation:
                 ret_dict['breaking_reason'].append(breaking_reason)
 
         return ret_dict
+
+    @staticmethod
+    def semantic_versioning(baselineVersion:str, version:str):
+        """judge whether version is compatible baselineVersion by semver
+        Args:
+            baselineVersion : the baseline version
+            version : the version to be judged
+        Return:
+            compatible (bool): True or False
+        """
+        def extract_major_version(version:str):
+            return version.split('.')[0]
+        baseMajor = extract_major_version(baselineVersion)
+        versionMajor = extract_major_version(version)
+        if baseMajor == versionMajor:
+            return True
+        return False
 
     @staticmethod
     def merge_bc_api_dict(target, source):
@@ -332,11 +367,13 @@ class Computation:
         entry_points = set()
         if api_type == 'methods':
             for method_entry_point in self.method_entry_points:
-                entry_points.update(method_entry_point['api'].keys())
+                if 'api' in method_entry_point:
+                    entry_points.update(method_entry_point['api'].keys())
             return entry_points
         elif api_type == 'types':
             for type_entry_point in self.type_entry_points:
-                entry_points.update(type_entry_point['api'].keys())
+                if 'api' in type_entry_point:
+                    entry_points.update(type_entry_point['api'].keys())
             return entry_points
 
     def create_folder(self, folder:str):

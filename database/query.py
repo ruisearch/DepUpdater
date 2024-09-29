@@ -36,8 +36,12 @@ def query_call_graph(groupId, artifactId, version):
     db.connect()
     condition = [('groupId','=',groupId),'AND',('artifactId','=',artifactId),'AND',('version','=',version)]
     cg_record = db.query_data('api', 'callGraph', condition)
-    cg = cg_record[0][0] if cg_record else ""
     db.close()
+    if cg_record == []:
+        return None
+    if cg_record[0][0] is None:
+        return None
+    cg = cg_record[0][0]
     return cg
 
 def store_call_graph(groupId, artifactId, version, cg):
@@ -56,8 +60,12 @@ def query_type_dependency_graph(groupId, artifactId, version):
     db.connect()
     condition = [('groupId','=',groupId),'AND',('artifactId','=',artifactId),'AND',('version','=',version)]
     tdg_record = db.query_data('api', 'typeDependencyGraph', condition)
-    tdg = tdg_record[0][0] if tdg_record else ""
     db.close()
+    if tdg_record == []:
+        return None
+    if tdg_record[0][0] is None:
+        return None
+    tdg = tdg_record[0][0]
     return tdg
 
 def store_type_dependency_graph(groupId, artifactId, version, tdg):
@@ -76,8 +84,12 @@ def query_methods(groupId, artifactId, version):
     db.connect()
     condition = [('groupId','=',groupId),'AND',('artifactId','=',artifactId),'AND',('version','=',version)]
     methods_record = db.query_data('api', 'methods', condition)
-    methods = methods_record[0][0] if methods_record else ""
     db.close()
+    if methods_record == []:
+        return None
+    if methods_record[0][0] is None:
+        return None
+    methods = methods_record[0][0]
     return methods
 
 def query_types(groupId, artifactId, version):
@@ -86,8 +98,12 @@ def query_types(groupId, artifactId, version):
     db.connect()
     condition = [('groupId','=',groupId),'AND',('artifactId','=',artifactId),'AND',('version','=',version)]
     types_record = db.query_data('api', 'types', condition)
-    types = types_record[0][0] if types_record else ""
     db.close()
+    if types_record == []:
+        return None
+    if types_record[0][0] is None:
+        return None
+    types = types_record[0][0]
     return types
 
 def store_methods(groupId, artifactId, version, methods:str):
@@ -128,7 +144,7 @@ def store_revapi_report(groupId, artifactId, oldVersion, newVersion, report):
     # insert ga v1 v2 first if not exists
     db.insert_data('Revapi', {'groupId':groupId, 'artifactId':artifactId, 'oldVersion':oldVersion, 'newVersion':newVersion, 'report':report})
     db.close()
-    
+
 def query_revapi_bc_api(groupId, artifactId, oldVersion, newVersion):
     """query Revapi table to get binaryBcMethod, binaryBcType, sourceBcMethod, sourceBcType"""
     # print(f'query bc api of {groupId}:{artifactId}:{oldVersion} -> {newVersion}')
@@ -155,7 +171,7 @@ def store_revapi_binary_bc_api(groupId, artifactId, oldVersion, newVersion, bina
     db.insert_data('Revapi', {'groupId':groupId, 'artifactId':artifactId, 'oldVersion':oldVersion, 'newVersion':newVersion})
     db.update_data('Revapi', {'binaryBcMethod':json.dumps(binary_bc_method), 'binaryBcType':json.dumps(binary_bc_type)}, condition)
     db.close()
-    
+
 def store_revapi_source_bc_api(groupId, artifactId, oldVersion, newVersion, source_bc_method, source_bc_type):
     """store the source bc api"""
     db = Sqlite(SQLITE_PATH)
@@ -165,7 +181,7 @@ def store_revapi_source_bc_api(groupId, artifactId, oldVersion, newVersion, sour
     db.insert_data('Revapi', {'groupId':groupId, 'artifactId':artifactId, 'oldVersion':oldVersion, 'newVersion':newVersion})
     db.update_data('Revapi', {'sourceBcMethod':json.dumps(source_bc_method), 'sourceBcType':json.dumps(source_bc_type)}, condition)
     db.close()
-    
+
 def store_revapi_bc_api(groupId, aritifactId, oldVersion, newVersion, binary_bc_method, binary_bc_type, source_bc_method, source_bc_type):
     """store the binary and source bc api"""
     db = Sqlite(SQLITE_PATH)
@@ -176,7 +192,7 @@ def store_revapi_bc_api(groupId, aritifactId, oldVersion, newVersion, binary_bc_
     db.update_data('Revapi', {'binaryBcMethod':json.dumps(binary_bc_method), 'binaryBcType':json.dumps(binary_bc_type), \
         'sourceBcMethod':json.dumps(source_bc_method), 'sourceBcType':json.dumps(source_bc_type)}, condition)
     db.close()
-    
+
 def query_japicmp_bc_api(groupId, artifactId, oldVersion, newVersion):
     """query Japicmp table to get binaryBcMethod, binaryBcType"""
     # print(f'query bc api of {groupId}:{artifactId}:{oldVersion} -> {newVersion}')
@@ -210,7 +226,7 @@ def store_japicmp_report(groupId, artifactId, oldVersion, newVersion, report):
     # insert ga v1 v2 first if not exists
     db.insert_data('Japicmp', {'groupId':groupId, 'artifactId':artifactId, 'oldVersion':oldVersion, 'newVersion':newVersion, 'report':report})
     db.close()
-    
+
 def store_japicmp_bc_api(groupId, aritifactId, oldVersion, newVersion, binary_bc_method, binary_bc_type):
     """store the binary bc api"""
     db = Sqlite(SQLITE_PATH)
