@@ -23,8 +23,9 @@ class Computation:
         self.relative_path_to_module = relative_path_to_module
         # method_caller_callee_pair and type_caller_callee_pair are used to compare with the Revapi result
         # these two list are got by get_entry_points_and_caller method
-        self.method_entry_points = []
-        self.type_entry_points = []
+        # self.method_entry_points = []
+        # self.type_entry_points = []
+        self.api_entry_points = []
 
     def get_old_deps(self):
         """get the old dependencies of the current dependency
@@ -138,24 +139,24 @@ class Computation:
             if version_dict['version'] == version:
                 ret_dict = version_dict
                 break
-        # for each dict in method_entry_points and type_entry_points, compare the entry points with BC api from Revapi result
-        for method_entry_point in self.method_entry_points:
-            # if dependent is client, then judge source compatibility and binary compatibility
-            # if dependent is not client, only judge binary compatibility
-            dependent_gav = method_entry_point['dependent']
+
+        # traverse all dependents of the current dependency
+        for entry_point in self.api_entry_points:
+            dependent_gav = entry_point['dependent']
             if client_gav != dependent_gav:
                 depended_by_client = False
             else:
                 depended_by_client = True
 
-            baselineVersion = method_entry_point['baselineVersion']
+            baselineVersion = entry_point['baselineVersion']
             if baselineVersion == version:
                 continue
-            if 'api' not in method_entry_point:
+            if 'methods' not in entry_point and 'types' not in entry_point:
                 # use semantic versioning to judge compatibility
                 if not Computation.semantic_versioning(baselineVersion, version):
                     # incompatible by semantic versioning
                     breaking_reason = f"incompatible with {dependent_gav} by semantic versioning"
+                    ret_dict['breaking_reason'].append(breaking_reason)
                 continue
 
             # judge compatibility by api matching
@@ -164,62 +165,31 @@ class Computation:
             new_jar = query_to_get_jar_location(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
             Restore.get_dep_jar(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
             revapi = Revapi(old_jar, new_jar)
-            # print(f'extract bc method of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{baselineVersion} -> {version} by Revapi')
-            bin_bc_method, _, src_bc_method, _ = revapi.bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version)
+            # print(f'extract bc method and type of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{baselineVersion} -> {version} by Revapi')
+            bin_bc_method, bin_bc_type, src_bc_method, src_bc_type = revapi.bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version)
             # binary compatibility must be considered
             bc_method = bin_bc_method
+            bc_type = bin_bc_type
             if depended_by_client:
                 # judge source compatibility as well
                 Computation.merge_bc_api_dict(bc_method, src_bc_method)
-
-            # print(f'judge method compatibility of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{version} with {dependent_gav}')
-            client_impacting_methods = self.intersect_api(bc_method, method_entry_point['api'])
+                Computation.merge_bc_api_dict(bc_type, src_bc_type)
+            
+            client_impacting_methods = self.intersect_api(bc_method, entry_point['methods'])
+            client_impacting_types = self.intersect_api(bc_type, entry_point['types'])
             for client_impacting_method in client_impacting_methods:
                 breaking_reason = {
                     'api': client_impacting_method,
                     'dependent': dependent_gav,
-                    'callers': [caller for caller in method_entry_point['api'][client_impacting_method]],
+                    'callers': [caller for caller in entry_point['methods'][client_impacting_method]],
                     'record': bc_method[client_impacting_method]
                 }
                 ret_dict['breaking_reason'].append(breaking_reason)
-
-        for type_entry_point in self.type_entry_points:
-            # if dependent is client, then judge source compatibility
-            dependent_gav = type_entry_point['dependent']
-            if client_gav != dependent_gav:
-                depended_by_client = False
-            else:
-                depended_by_client = True
-
-            baselineVersion = type_entry_point['baselineVersion']
-            if baselineVersion == version:
-                continue
-            if 'api' not in type_entry_point:
-                # use semantic versioning to judge compatibility
-                if not Computation.semantic_versioning(baselineVersion, version):
-                    # incompatible by semantic versioning
-                    breaking_reason = f"incompatible with {dependent_gav} by semantic versioning"
-                continue
-            
-            # judge compatibility by api matching
-            old_jar = query_to_get_jar_location(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion)
-            Restore.get_dep_jar(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion)
-            new_jar = query_to_get_jar_location(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
-            Restore.get_dep_jar(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
-            revapi = Revapi(old_jar, new_jar)
-            # print(f'extract bc type of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{baselineVersion} -> {version} by Revapi')
-            _, bin_bc_type, _, src_bc_type = revapi.bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version)
-            bc_type = bin_bc_type
-            if depended_by_client:
-                # judge source compatibility as well
-                Computation.merge_bc_api_dict(bc_type, src_bc_type)
-            # print(f'judge type compatibility of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{version} with {dependent_gav}')
-            client_impacting_types = self.intersect_api(bc_type, type_entry_point['api'])
             for client_impacting_type in client_impacting_types:
                 breaking_reason = {
                     'api': client_impacting_type,
                     'dependent': dependent_gav,
-                    'callers': [caller for caller in type_entry_point['api'][client_impacting_type]],
+                    'callers': [caller for caller in entry_point['types'][client_impacting_type]],
                     'record': bc_type[client_impacting_type]
                 }
                 ret_dict['breaking_reason'].append(breaking_reason)
@@ -255,10 +225,24 @@ class Computation:
                 target[key].extend(record for record in value if record not in target[key])
             else:
                 target[key] = value
-    
+
     def return_entry_points(self):
         """return entry points api for validating by Japicmp afterwards"""
-        return self.method_entry_points, self.type_entry_points
+        method_entry_points = []
+        type_entry_points = []
+        for entry_point in self.api_entry_points:
+            method_entry_points.append({
+                'dependent': entry_point['dependent'],
+                'baselineVersion': entry_point['baselineVersion'],
+                'api': entry_point['methods']
+            })
+            type_entry_points.append({
+                'dependent': entry_point['dependent'],
+                'baselineVersion': entry_point['baselineVersion'],
+                'api': entry_point['types']
+            })
+        return method_entry_points, type_entry_points
+        # return self.method_entry_points, self.type_entry_points
 
     @staticmethod
     def intersect_api(api1:dict, api2:dict):
@@ -317,63 +301,47 @@ class Computation:
         # defined_version_cg = defined_version_api.get_cg()
         # all_methods = defined_version_api.extract_methods_from_cg(defined_version_cg)
         all_methods, method_flag = defined_version_api.get_methods()
-        if method_flag:
-            matching_method_pairs = Api.find_matching_relations(dependent_reachable_methods, all_methods)
-            method_entry_point_dict = {
-                'dependent': f'{dependent_groupId}:{dependent_artifactId}:{dependent_version}',
-                'baselineVersion': defined_version,
-                'api': {}
-            }
-            for pair in matching_method_pairs:
-                method_entry_point_dict['api'].setdefault(pair[1], set()).add(pair[0])
-            self.method_entry_points.append(method_entry_point_dict)
-        else:
-            method_entry_point_dict = {
-                'dependent': f'{dependent_groupId}:{dependent_artifactId}:{dependent_version}',
-                'baselineVersion': defined_version,
-                'api': {}
-            }
-            self.method_entry_points.append(method_entry_point_dict)
-
-        # defined_version_dg = defined_version_api.get_type_dg()
-        # all_types = defined_version_api.extract_types_from_dg(defined_version_dg)
         all_types, type_flag = defined_version_api.get_types()
-        if type_flag:
-            matching_type_pairs = Api.find_matching_relations(dependent_reachable_types, all_types)
-            type_entry_point_dict = {
-                'dependent': f'{dependent_groupId}:{dependent_artifactId}:{dependent_version}',
-                'baselineVersion': defined_version,
-                'api': {}
-            }
-            for pair in matching_type_pairs:
-                type_entry_point_dict['api'].setdefault(pair[1], set()).add(pair[0])
-            self.type_entry_points.append(type_entry_point_dict)
-        else:
-            type_entry_point_dict = {
-                'dependent': f'{dependent_groupId}:{dependent_artifactId}:{dependent_version}',
-                'baselineVersion': defined_version,
-                'api': {}
-            }
-            self.type_entry_points.append(type_entry_point_dict)
-
-        # if method and type are all empty, then remove 'api' key in both method_entry_points and type_entry_points
-        # which means that a version with same minor version is compatible with the dependent according to semantic versioning
         if not method_flag and not type_flag:
-            method_entry_point_dict.pop('api')
-            type_entry_point_dict.pop('api')
+            # judge compatibility by semantic versioning afterwards
+            entry_point_dict = {
+                'dependent': f'{dependent_groupId}:{dependent_artifactId}:{dependent_version}',
+                'baselineVersion': defined_version
+            }
+        else:
+            # judge compatibility by api matching
+            # match method
+            method_entry_point_dict = {}
+            matching_method_pairs = Api.find_matching_relations(dependent_reachable_methods, all_methods)
+            for pair in matching_method_pairs:
+                method_entry_point_dict.setdefault(pair[1], set()).add(pair[0])
+            # match type
+            type_entry_point_dict = {}
+            matching_type_pairs = Api.find_matching_relations(dependent_reachable_types, all_types)
+            for pair in matching_type_pairs:
+                type_entry_point_dict.setdefault(pair[1], set()).add(pair[0])
+            # record the entry points and caller
+            entry_point_dict = {
+                'dependent': f'{dependent_groupId}:{dependent_artifactId}:{dependent_version}',
+                'baselineVersion': defined_version,
+                'methods': method_entry_point_dict,
+                'types': type_entry_point_dict
+            }
+
+        self.api_entry_points.append(entry_point_dict)
 
     def get_entry_points_set(self, api_type:str):
         """get the set of entry points of the dependency for reachable api"""
         entry_points = set()
         if api_type == 'methods':
-            for method_entry_point in self.method_entry_points:
-                if 'api' in method_entry_point:
-                    entry_points.update(method_entry_point['api'].keys())
+            for method_entry_point in self.api_entry_points:
+                if 'methods' in method_entry_point:
+                    entry_points.update(method_entry_point['methods'].keys())
             return entry_points
         elif api_type == 'types':
-            for type_entry_point in self.type_entry_points:
-                if 'api' in type_entry_point:
-                    entry_points.update(type_entry_point['api'].keys())
+            for type_entry_point in self.api_entry_points:
+                if 'types' in type_entry_point:
+                    entry_points.update(type_entry_point['types'].keys())
             return entry_points
 
     def create_folder(self, folder:str):
