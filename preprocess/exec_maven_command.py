@@ -29,7 +29,11 @@ def mvn_package(path_to_folder:str, relative_path_to_module:str):
             command = f"cd {path_to_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true clean package"
         else :
             command = f"cd {path_to_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -pl {relative_path_to_module} -am clean package "
-    exit_status = os.system(command)
+        exit_status = os.system(command)
+    if exit_status != 0:
+        # mvn package is unexecutable with -pl -am, so execute it in root without -pl -am
+        command = f"cd {path_to_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true clean package"
+        exit_status = os.system(command)
     return exit_status
 
 # # execute "mvn dependency:tree"

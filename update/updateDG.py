@@ -430,3 +430,4 @@ class Update:
         """clear the best version of a dependency unless it is the client"""
         if dep_dict['Depth'] != 0:
             dep_dict['Best_Version'] = ""
+            log_debug(f"Clear the best version of {dep_dict['GroupId']}:{dep_dict['ArtifactId']}.")
