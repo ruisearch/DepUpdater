@@ -29,5 +29,7 @@ def download_pom_one(jar_info):
         # print(result)
         if not os.path.exists(os.path.join(local_path, artifact_id+'-'+version_name+'.pom')):
             shutil.copyfile(M2_PATH+group_id.replace('.', '/')+'/'+artifact_id+'/'+version_name+ '/'+ artifact_id+'-'+version_name+'.pom', local_path+artifact_id+'-'+version_name+'.pom')
+        return True
     except Exception as e:
         print(e)
+        return False

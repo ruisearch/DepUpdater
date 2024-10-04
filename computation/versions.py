@@ -19,7 +19,8 @@ def get_candidate_versions(groupId, artifactId, original_version):
     # exclude pre-release versions
     candidate_versions = []
     for version in all_versions[:original_version_idx]:
-        if 'SNAPSHOT' in version or 'alpha' in version or 'beta' in version or 'RC' in version:
+        upper_version = version.upper()
+        if 'SNAPSHOT' in upper_version or 'ALPHA' in upper_version or 'BETA' in upper_version or 'RC' in upper_version:
             continue
         candidate_versions.append(version)
     if original_version not in candidate_versions:

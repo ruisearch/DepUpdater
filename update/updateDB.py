@@ -18,7 +18,13 @@ def populate_dep(go, ao, vo):
     """
     os.makedirs(POM_PATH, exist_ok=True)
     gav = go+'|'+ao+'|'+vo
-    download_pom_one(gav)
+    can_download = download_pom_one(gav)
+    if not can_download:
+        # cann't download pom.xml
+        with open(os.path.join(POM_PATH,'errored.csv'), 'a') as fc:
+            csv.writer(fc).writerow([gav.replace('|', ':')])
+        return []
+
     cwd = os.getcwd()
     if not os.path.exists(POM_PATH +ao+'-'+vo+'.pom'):
         return
@@ -85,9 +91,14 @@ def populate_dep(go, ao, vo):
 
 # test
 if __name__ == '__main__':
-    g = 'org.apache.maven'
-    a = 'maven-core'
-    v = '3.9.9'
-    populate_dep(g, a, v)
-    # dependencies = populate_dep(g, a, v)
-    # print(dependencies)
+    # g = 'org.apache.maven'
+    # a = 'maven-core'
+    # v = '3.9.9'
+    # populate_dep(g, a, v)
+    # # dependencies = populate_dep(g, a, v)
+    # # print(dependencies)
+    g = 'com.sun'
+    a = 'tools'
+    v = '17.0.9'
+    dependencies = populate_dep(g, a, v)
+    print(dependencies)

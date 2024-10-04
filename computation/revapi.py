@@ -207,7 +207,8 @@ class Revapi:
         """replace the generic letter with its upper bound
         in parameter, return type"""
         for generic_letter, upper_bound in generic_letter_and_type:
-            letter_pattern = r'\b' + generic_letter + r'\b'
+            # letter_pattern = r'\b' + generic_letter + r'\b'
+            letter_pattern = r'\b' + re.escape(generic_letter) + r'\b'
             method = re.sub(letter_pattern, upper_bound, method)
         return method
 
