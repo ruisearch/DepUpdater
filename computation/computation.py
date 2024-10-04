@@ -4,12 +4,13 @@ import concurrent.futures
 
 from tqdm import tqdm
 import pymaven
-from constants import TQDM_LOG_PATH, REACHABLE_API_DIR
+from constants import REACHABLE_API_DIR
 from computation.versions import get_candidate_versions
 from computation.api import Api
 from computation.revapi import Revapi
 from database.query import query_to_get_jar_location
 from preprocess.Restore import Restore
+from logger.logger import log_debug
 class Computation:
     def __init__(self, cur_node:dict, graph:list, repo_name:str, relative_path_to_module:str):
         """
@@ -73,7 +74,11 @@ class Computation:
         # compute the newest compatible version
         # use process pool to compute the versions in all_versions in parallel
         # I'll compute all versions, finally choose the newest compatible version
-        num_workers = os.cpu_count()
+        
+        # num_workers = os.cpu_count()
+        # use 1/2 of the cpu cores to compute the versions in parallel
+        num_workers = os.cpu_count() // 2
+
         # clear breaking_reason of all versions
         for version_dict in self.cur_node['Versions']:
             version_dict['breaking_reason'] = []
@@ -101,7 +106,7 @@ class Computation:
         self.cur_node['Best_Version'] = best_version
 
         return best_version
-    
+
     @staticmethod
     def check_in_range(version, range):
         version_range = pymaven.versioning.VersionRange(range)
@@ -122,9 +127,11 @@ class Computation:
             if not version['breaking_reason']:
                 print(f'best version of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]} is {version["version"]}')
                 return version['version']
-        # all version have breaking_reason, which is not expected, so exit to analysis
-        print(f"Fail to find the newest compatible version of {self.cur_node['GroupId']}:{self.cur_node['ArtifactId']}")
-        exit()
+        # all version have breaking_reason, which is not expected, then use the original version
+        # print(f"Fail to find the newest compatible version of {self.cur_node['GroupId']}:{self.cur_node['ArtifactId']}")
+        log_debug(f"Fail to find the newest compatible version of {self.cur_node['GroupId']}:{self.cur_node['ArtifactId']}, so use the original version!")
+        # exit()
+        return self.cur_node['Original_Version']
 
     def version_compatibility_checker(self, version:str, client_gav:str):
         """check if the version is compatible 
@@ -174,7 +181,7 @@ class Computation:
                 # judge source compatibility as well
                 Computation.merge_bc_api_dict(bc_method, src_bc_method)
                 Computation.merge_bc_api_dict(bc_type, src_bc_type)
-            
+
             client_impacting_methods = self.intersect_api(bc_method, entry_point['methods'])
             client_impacting_types = self.intersect_api(bc_type, entry_point['types'])
             for client_impacting_method in client_impacting_methods:
