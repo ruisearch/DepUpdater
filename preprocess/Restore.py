@@ -38,7 +38,7 @@ class Restore:
         # Create an empty folder
         os.makedirs(folder_path)
         
-    def restore(self)->None:
+    def restore(self):
         """main method in this file,restore"""
         # create TREE folder
         self.create_folder(TREE_DIR)

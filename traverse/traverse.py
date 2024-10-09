@@ -55,9 +55,10 @@ class Traverse:
 
             log_debug(f"Computing {cur_dep['GroupId']}:{cur_dep['ArtifactId']}")
 
-            if cur_dep['Count'] == 3:
-                print(f"Dependency {cur_dep['GroupId']}:{cur_dep['ArtifactId']} has been computed for 3 times. Something may goes wrong.")
-                exit(1)
+            if cur_dep['Count'] >= 3:
+                # print(f"Dependency {cur_dep['GroupId']}:{cur_dep['ArtifactId']} has been computed for 3 times. Something may goes wrong.")
+                log_debug(f'=== Dependency {cur_dep["GroupId"]}:{cur_dep["ArtifactId"]} has been computed for {cur_dep["Count"]} times ===')
+                # exit(1)
 
 
             # find the newest compatible version of cur_dep,
