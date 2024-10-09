@@ -132,7 +132,9 @@ class Update:
         the edges in dependency graph are unchanged
         """
         best_version = self.cur_node['Best_Version']
-        for ga in ga_set:
+        ga_list = sorted(ga_set) # transform into list for reproducibility
+        # for ga in ga_set:
+        for ga in ga_list:
             idx = self.graph_dict[ga]
             dep_dict = self.graph[idx]
             # update graph
@@ -157,7 +159,9 @@ class Update:
         """situation 2: the dependency is in new_deps but not in old_deps
         add new edges to the dependency graph and add new nodes if necessary
         """
-        for ga in ga_set:
+        ga_list = sorted(ga_set)
+        # for ga in ga_set:
+        for ga in ga_list:
             # update graph, add the new dependent to the dependency
             if ga in self.graph_dict:
                 # ga in the graph, so no need to add new nodes
@@ -291,7 +295,9 @@ class Update:
         """situation 3: the dependency is in old_deps but not in new_deps
         remove some edges (and some nodes if necessary)in the dependency graph
         """
-        for ga in ga_set:
+        ga_list = sorted(ga_set)
+        # for ga in ga_set:
+        for ga in ga_list:
             # update graph, remove the dependent from the dependency
             idx = self.graph_dict[ga]
             dep_dict = self.graph[idx]
@@ -365,7 +371,7 @@ class Update:
         if is_ready and not is_in:
             # the dependency is ready to be computed and not in the queue
             # add the dependency to the queue
-            self.log_queue()
+            # self.log_queue()
 
             self.queue.append(self.graph[self.graph_dict[ga]])
             self.queue_dict[ga] = self.graph[self.graph_dict[ga]]
@@ -418,7 +424,7 @@ class Update:
         if dep_dict['Best_Version'] == "":
             return False
         return True
-    
+
     def log_queue(self):
         """log the queue"""
         log_debug("Queue:")
@@ -429,5 +435,6 @@ class Update:
     def clear_best_version(dep_dict:dict):
         """clear the best version of a dependency unless it is the client"""
         if dep_dict['Depth'] != 0:
+            if dep_dict['Best_Version'] != "":
+                log_debug(f"Clear the best version of {dep_dict['GroupId']}:{dep_dict['ArtifactId']}.")
             dep_dict['Best_Version'] = ""
-            log_debug(f"Clear the best version of {dep_dict['GroupId']}:{dep_dict['ArtifactId']}.")
