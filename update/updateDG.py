@@ -145,7 +145,7 @@ class Update:
                         dependent['Version'] = best_version
                         # the best version of the dependent recorded by this dependency is outdated
                         # dep_dict['Best_Version'] = ""
-                        self.clear_best_version(dep_dict)
+                        self.clear_best_version(dep_dict, self.cur_node['GroupId']+':'+self.cur_node['ArtifactId'])
                         dependent['Define_Version'] = self.new_dict[ga][0]
                     break
 
@@ -153,7 +153,7 @@ class Update:
             # 1. compute the in-degree to judge if the dependency is ready to be computed
             flag = self.is_ready(ga)
             # 2. update queue by the in-degree(whether bigger than 0) and dep ga
-            self.update_queue(flag, ga)
+            self.update_queue(flag, ga, self.cur_node['GroupId']+':'+self.cur_node['ArtifactId'])
 
     def add_edges(self, ga_set:set):
         """situation 2: the dependency is in new_deps but not in old_deps
@@ -176,13 +176,13 @@ class Update:
                     }
                 )
 
-                log_debug(f'{ga} is a new dep of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}')
+                log_debug(f'{ga} is a new dep of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]} now')
 
                 # clear the best version of this dependency as its context has changed
                 # dep_dict['Best_Version'] = ""
-                self.clear_best_version(dep_dict)
+                self.clear_best_version(dep_dict, self.cur_node['GroupId']+':'+self.cur_node['ArtifactId'])
                 flag = self.is_ready(ga)
-                self.update_queue(flag, ga)
+                self.update_queue(flag, ga, self.cur_node['GroupId']+':'+self.cur_node['ArtifactId'])
             else :
                 ga_version = self.new_dict[ga][0]
                 ga_type = self.new_dict[ga][1]
@@ -202,7 +202,7 @@ class Update:
             flag (bool): if the new node need further process
             new_node (dict): the new node added to the graph
         """
-        log_debug(f'{ga} added')
+        log_debug(f'{ga} added by {dependent_g}:{dependent_a}')
 
         groupId, artifactId = ga.split(':')
         # version = self.new_dict[ga][0]
@@ -232,7 +232,7 @@ class Update:
                 depth = min(dependent_node['Depth'] + 1, node['Depth'])
                 node['Depth'] = depth
                 # node['Best_Version'] 
-                self.clear_best_version(node)
+                self.clear_best_version(node, dependent_ga)
                 node['Type'] = Dtype
                 # add the node to graph_dict
                 self.graph_dict[ga] = i
@@ -276,12 +276,15 @@ class Update:
                         "Define_Version": new_dep_inform[0]
                     }
                 )
+
+                log_debug(f'{new_dep_ga} is a new dep of {groupId}:{artifactId} now')
+
                 # clear the best version of this dependency as its context has changed
                 # new_dep['Best_Version'] = ""
-                self.clear_best_version(new_dep)
+                self.clear_best_version(new_dep, f'{groupId}:{artifactId}')
                 # update the queue
                 flag = self.is_ready(new_dep_ga)
-                self.update_queue(flag, new_dep_ga)
+                self.update_queue(flag, new_dep_ga, f'{groupId}:{artifactId}')
             else:
                 # the new dependency is not in the graph
                 # add new nodes recursively
@@ -289,7 +292,7 @@ class Update:
 
         # judge if need to add the new node to the queue
         flag = self.is_ready(ga)
-        self.update_queue(flag, ga)
+        self.update_queue(flag, ga, dependent_ga)
 
     def remove_edges(self, ga_set:set):
         """situation 3: the dependency is in old_deps but not in new_deps
@@ -305,31 +308,31 @@ class Update:
                 if self.cur_node['GroupId'] == dependent['GroupId'] and self.cur_node['ArtifactId'] == dependent['ArtifactId']:
                     dep_dict['Dependents'].remove(dependent)
 
-                    log_debug(f'{ga} is not a dep of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}')
+                    log_debug(f'{ga} is not a dep of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]} now')
 
                     break
 
             # the best version of the dependent recorded by this dependency is outdated
             # dep_dict['Best_Version'] = ""
-            self.clear_best_version(dep_dict)
+            self.clear_best_version(dep_dict, self.cur_node['GroupId']+':'+self.cur_node['ArtifactId'])
 
             # if the ga has no dependents now, remove the node from the graph
             if not dep_dict['Dependents']:
-                self.remove_node(ga)
+                self.remove_node(ga, self.cur_node['GroupId']+':'+self.cur_node['ArtifactId'])
             
             # note : queue is always updated after updating the graph
             # update queue after deleting an edge
             flag = self.is_ready(ga)
-            self.update_queue(flag, ga)
+            self.update_queue(flag, ga, self.cur_node['GroupId']+':'+self.cur_node['ArtifactId'])
 
-    def remove_node(self, ga:str):
+    def remove_node(self, ga:str, dependent_ga:str):
         """remove the node and its outer-edges from the dependency graph recursively
         helper method for remove_edges; also updated the queue
         Args:
             ga (str): the groupId:artifactId of the dependency
             which should be removed from the graph
         """
-        log_debug(f'{ga} removed')
+        log_debug(f'{ga} is removed by {dependent_ga}')
 
         # handle the dependencies of ga first
         for node in self.graph:
@@ -344,23 +347,26 @@ class Update:
             if is_dependent:
                 # remove ga from the dependents of node
                 node['Dependents'].pop(dependent_idx)
+
+                log_debug(f'{node["GroupId"]}:{node["ArtifactId"]} is not a dep of {ga} now')
+
                 node_ga = node['GroupId']+':'+node['ArtifactId']
 
                 if not node['Dependents']:
                     # if the node has no dependents now, remove the node from the graph
-                    self.remove_node(node_ga)
+                    self.remove_node(node_ga, ga)
                 else :
                     # just update queue and on need to remove node_ga from the graph
                     # also means, the graph has been updated, so the queue could be updated
                     flag = self.is_ready(node_ga)
-                    self.update_queue(flag, node_ga)
+                    self.update_queue(flag, node_ga, ga)
 
         # remove the node in graph_dict
         self.graph_dict.pop(ga)
         # remove the node from the queue if it is in the queue
-        self.update_queue(False, ga)
+        self.update_queue(False, ga, dependent_ga)
 
-    def update_queue(self, is_ready:bool, ga:str):
+    def update_queue(self, is_ready:bool, ga:str, dependent_ga:str):
         """update the queue after updating the dependency graph
         Args:
             is_ready (bool): if the dependency is ready to be computed(all dependents have been computed)
@@ -376,14 +382,14 @@ class Update:
             self.queue.append(self.graph[self.graph_dict[ga]])
             self.queue_dict[ga] = self.graph[self.graph_dict[ga]]
 
-            log_debug(f"{ga} enqueue.")
+            log_debug(f"{ga} enqueue because of {dependent_ga}.")
         elif not is_ready and is_in:
             # the dependency is not ready to be computed and in the queue
             # remove the dependency from the queue
             self.queue.remove(self.queue_dict[ga])
             self.queue_dict.pop(ga)
 
-            log_debug(f"{ga} dequeue.")
+            log_debug(f"{ga} dequeue because of {dependent_ga}.")
 
     def is_ready(self, ga:str):
         """judge if ga should be stored in the queue
@@ -432,9 +438,8 @@ class Update:
             log_debug(f" {ga}")
 
     @staticmethod
-    def clear_best_version(dep_dict:dict):
+    def clear_best_version(dep_dict:dict, dependent_ga:str):
         """clear the best version of a dependency unless it is the client"""
         if dep_dict['Depth'] != 0:
-            if dep_dict['Best_Version'] != "":
-                log_debug(f"Clear the best version of {dep_dict['GroupId']}:{dep_dict['ArtifactId']}.")
+            log_debug(f"Clear the best version of {dep_dict['GroupId']}:{dep_dict['ArtifactId']} because of {dependent_ga}.")
             dep_dict['Best_Version'] = ""
