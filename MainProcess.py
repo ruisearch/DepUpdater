@@ -71,6 +71,7 @@ tra = Traverse(json_path, path_to_folder, relative_path_to_module)
 tra.traverse()
 
 # compute the technical lag of the module
+print("\n****** compute technical lag ... ******\n")
 lag = TechLag(json_path)
 # record the original lag, current lag and reduced lag in a csv file
 lag_csv_path = os.path.join(DATA_DIR, 'lag.csv')
