@@ -501,7 +501,7 @@ if __name__ == "__main__":
     test_list = [1, 2, 3, 4, 5]
     test_flag_list = [True, False, True, False, True]
     ex = Restore(None, None, None)
-    ex.remove_dep_of_local_module(test_list, test_flag_list)
+    # ex.remove_dep_of_local_module(test_list, test_flag_list)
     print(test_list)
 
     # test
