@@ -2,6 +2,7 @@
 import time
 from functools import cmp_to_key
 from database.query import query_versions_from_mongo
+from logger.logger import log_debug
 
 import semver
 import requests
@@ -14,8 +15,10 @@ def get_candidate_versions(groupId, artifactId, original_version):
     # the version to be computed are the versions after the original version
     original_version_idx = find_original_version_idx(all_versions, original_version)
     if original_version_idx == -1:
-        print(f"Fail to find the original version {original_version} in {groupId}:{artifactId}")
-        return []
+        # print(f"Fail to find the original version {original_version} in {groupId}:{artifactId}")
+        log_debug(f"Fail to find the original version {original_version} in {groupId}:{artifactId}")
+        # just return the original version
+        return [original_version]
     # exclude pre-release versions
     candidate_versions = []
     for version in all_versions[:original_version_idx]:

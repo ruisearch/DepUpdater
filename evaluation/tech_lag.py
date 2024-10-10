@@ -21,7 +21,8 @@ class TechLag:
         ret_deps = []
         for dep in deps:
             if dep['Best_Version'] and dep['Dependents']:
-                # consider the deps that has the best version and has dependents
+            # if dep['Dependents']:
+                # consider the deps that are in graph actually
                 ret_deps.append(dep)
         return ret_deps
 

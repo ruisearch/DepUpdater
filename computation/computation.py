@@ -77,7 +77,9 @@ class Computation:
         
         # num_workers = os.cpu_count()
         # use 1/2 of the cpu cores to compute the versions in parallel
+        
         num_workers = os.cpu_count() // 2
+        # num_workers = 2 # memory is limited, so use 2 workers for testing
 
         # clear breaking_reason of all versions
         for version_dict in self.cur_node['Versions']:
@@ -478,8 +480,8 @@ if __name__ == '__main__':
     # get dep's entry points and caller
     dep.get_entry_points_and_caller('cat.inspiracio', 'dwr', '3.0.1', '2.12.7')
     # print methods and types entry points
-    print(dep.method_entry_points)
-    print(dep.type_entry_points)
+    # print(dep.method_entry_points)
+    # print(dep.type_entry_points)
     # result : method_entry_points has 3 fn 'org.joda.time.LocalDateTime::toDateTime()', 'org.joda.time.base.AbstractInstant::toDate()'
     # and 'org.joda.time.base.BaseDateTime::getMillis()'. First two are called on line 56 of org.directwebremoting.convert.LocalDateTimeConverter.java
     # the last one is called on line 57 of org.directwebremoting.convert.LocalDateTimeConverter.java.
