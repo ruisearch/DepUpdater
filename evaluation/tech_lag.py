@@ -8,11 +8,8 @@ class TechLag:
         """
         self.json_path = json_path
         self.deps = self.extract_deps()
-        self.original_lag = 0
         self.current_lag = 0
-        self.compute_original_lag()
         self.compute_current_lag()
-        self.reduced_lag = self.original_lag - self.current_lag
 
     def extract_deps(self):
         """extract dep from json"""
@@ -25,11 +22,6 @@ class TechLag:
                 # note: the deps that are in graph but has no best version all have classifier
                 ret_deps.append(dep)
         return ret_deps
-
-    def compute_original_lag(self):
-        """compute the original lag of the module"""
-        for dep in self.deps:
-            self.original_lag += len(dep['Dependents']) - 1
 
     def compute_current_lag(self):
         """compute the current lag of the module"""

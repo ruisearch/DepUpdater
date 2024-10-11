@@ -85,6 +85,8 @@ M2_PATH = os.path.expanduser('~') + '/.m2/repository/'
 LOG_PATH = None
 # path to the soot empty cases file. set in process
 SOOT_EMPTY_CASES_CSV = None
+# path to the csv file that stores the download error jar
+DOWNLOAD_ERROR_CSV = os.path.join(JAR_DIR, 'download_fail_jar.csv')
 
 def set_log_path(path:str):
     """lazy-initialize LOG_PATH"""

@@ -61,7 +61,7 @@ print("\n****** tree got! ******\n")
 # then download dependencies jar and copy client jar
 print("\n****** restore dependency to graph ... ******\n")
 graph = Restore(path_to_folder, relative_path_to_module, tree_file)
-json_path = graph.restore()
+json_path, original_tech_lag = graph.restore()
 print("\n****** dependency graph got! ******\n")
 print("\n****** preprocess done! ******\n")
 
@@ -77,4 +77,4 @@ lag = TechLag(json_path)
 lag_csv_path = os.path.join(DATA_DIR, 'lag.csv')
 with open(lag_csv_path, 'a') as f:
     writer = csv.writer(f)
-    writer.writerow([repo_name, relative_path_to_module, lag.original_lag, lag.current_lag, lag.reduced_lag])
+    writer.writerow([repo_name, relative_path_to_module, original_tech_lag, lag.current_lag, original_tech_lag - lag.current_lag])
