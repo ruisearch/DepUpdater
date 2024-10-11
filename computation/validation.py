@@ -249,14 +249,16 @@ class Validation:
         for dep in dependencies.findall('m:dependency', namespaces=ns):
             g_id = dep.find('m:groupId', namespaces=ns)
             a_id = dep.find('m:artifactId', namespaces=ns)
-            if g_id is not None and a_id is not None and g_id.text == group_id and a_id.text == artifact_id:
+            # if g_id is not None and a_id is not None and g_id.text == group_id and a_id.text == artifact_id:
+            if g_id is not None and a_id is not None and a_id.text == artifact_id:
                 # set version to the property
-                version = dep.find('m:version', namespaces=ns)
-                if version is None:
-                    version = etree.SubElement(dep, '{http://maven.apache.org/POM/4.0.0}version')
-                version.text = f'${{{property_tag_name}}}'
-                dependency = dep
-                break
+                if g_id.text == group_id or g_id.text == '${project.groupId}':
+                    version = dep.find('m:version', namespaces=ns)
+                    if version is None:
+                        version = etree.SubElement(dep, '{http://maven.apache.org/POM/4.0.0}version')
+                    version.text = f'${{{property_tag_name}}}'
+                    dependency = dep
+                    break
 
         if dependency is None:
             dependency = etree.SubElement(dependencies, '{http://maven.apache.org/POM/4.0.0}dependency')
@@ -299,14 +301,16 @@ class Validation:
         for dep in dependencies.findall('m:dependency', namespaces=ns):
             g_id = dep.find('m:groupId', namespaces=ns)
             a_id = dep.find('m:artifactId', namespaces=ns)
-            if g_id is not None and a_id is not None and g_id.text == group_id and a_id.text == artifact_id:
+            # if g_id is not None and a_id is not None and g_id.text == group_id and a_id.text == artifact_id:
+            if g_id is not None and a_id is not None and a_id.text == artifact_id:
                 # set version to the property
-                version = dep.find('m:version', namespaces=ns)
-                if version is None:
-                    version = etree.SubElement(dep, '{http://maven.apache.org/POM/4.0.0}version')
-                version.text = f'${{{property_tag_name}}}'
-                dependency = dep
-                break
+                if g_id.text == group_id or g_id.text == '${project.groupId}':
+                    version = dep.find('m:version', namespaces=ns)
+                    if version is None:
+                        version = etree.SubElement(dep, '{http://maven.apache.org/POM/4.0.0}version')
+                    version.text = f'${{{property_tag_name}}}'
+                    dependency = dep
+                    break
 
         if dependency is None:
             dependency = etree.SubElement(dependencies, '{http://maven.apache.org/POM/4.0.0}dependency')
