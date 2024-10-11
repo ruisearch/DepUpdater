@@ -60,6 +60,7 @@ class Traverse:
                 log_debug(f'=== Dependency {cur_dep["GroupId"]}:{cur_dep["ArtifactId"]} has been computed for {cur_dep["Count"]} times ===')
                 # exit(1)
 
+            old_best_version = self.get_old_best_version(cur_dep)
 
             # find the newest compatible version of cur_dep,
             # and return its new dependencies and old dependencies to update the graph,
@@ -69,12 +70,12 @@ class Traverse:
             cur_dep['Count'] += 1
 
             log_debug(f"{cur_dep['GroupId']}:{cur_dep['ArtifactId']} has been computed, best version is {cur_dep['Best_Version']}.")
-
+            
             # update the graph and queue,
             # record the graph in version.json in real time
             # --> update_graph(cur_dep, old_deps, new_deps, self.graph, self.queue, self.json_path)
             up = Update(cur_dep, self.graph, self.queue, old_deps)
-            up.update()
+            up.update(old_best_version)
 
         # recompile the project
         self.recompile()
@@ -148,6 +149,17 @@ class Traverse:
                 print("Recompile failed.")
         except subprocess.SubprocessError as e:
             print(f"An error occured while execute the command: {e}")
+
+    def get_old_best_version(self, cur_dep):
+        """get the old best version of the dependency"""
+        if cur_dep['Count'] == 0:
+            # the first time to compute the dependency
+            return cur_dep['Original_Version']
+        if cur_dep['Best_Version']:
+            # the dependency has been computed before
+            return cur_dep['Best_Version']
+        # the dependency has been computed before, but the best version is cleared in update phase
+        return None
 
     def store_compile_log(self, log:str):
         """store the compile log"""

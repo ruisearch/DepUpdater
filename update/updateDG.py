@@ -116,16 +116,21 @@ class Update:
             dependencies_dict[f'{g}:{a}'] = [f'{v}', dependency['dScope']]
         return dependencies_dict
 
-    def update(self):
+    def update(self, old_best_version:str):
         """main method to update the dependency graph and the queue after computing the newest compatible version of a dependency"""
         new = set(self.new_dict.keys())
         old = set(self.old_dict.keys())
-        # handle new & old, which means the unchanged edges
-        self.update_nodes(new & old)
-        # handle new - old, which means the new edges
-        self.add_edges(new - old)
-        # handle old - new, which means the removed edges
-        self.remove_edges(old - new)
+        if old_best_version == self.cur_node['Best_Version']:
+            # the best version of the dependency is unchanged
+            # no need to use the new dependencies
+            self.update_nodes(old)
+        else:
+            # handle new & old, which means the unchanged edges
+            self.update_nodes(new & old)
+            # handle new - old, which means the new edges
+            self.add_edges(new - old)
+            # handle old - new, which means the removed edges
+            self.remove_edges(old - new)
 
     def update_nodes(self, ga_set:set):
         """situation 1: the dependency is in both old_deps and new_deps

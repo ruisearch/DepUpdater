@@ -1,10 +1,11 @@
 """get the newest compatible version of a dependency"""
 import os
 import concurrent.futures
+import csv
 
 from tqdm import tqdm
 import pymaven
-from constants import REACHABLE_API_DIR
+from constants import REACHABLE_API_DIR, DOWNLOAD_ERROR_CSV
 from computation.versions import get_candidate_versions
 from computation.api import Api
 from computation.revapi import Revapi
@@ -64,9 +65,6 @@ class Computation:
                         break
 
             self.get_entry_points_and_caller(dependent['GroupId'], dependent['ArtifactId'], dependent['Version'], dependent['Define_Version'])
-        # # create a folder to store the log of tqdm
-        # tqdm_log_module_folder = os.path.join(TQDM_LOG_PATH, self.repo_name, self.relative_path_to_module)
-        # self.create_folder(tqdm_log_module_folder)
 
         # get gav of client
         client_gav = self.get_client_gav()
@@ -74,9 +72,6 @@ class Computation:
         # compute the newest compatible version
         # use process pool to compute the versions in all_versions in parallel
         # I'll compute all versions, finally choose the newest compatible version
-        
-        # num_workers = os.cpu_count()
-        # use 1/2 of the cpu cores to compute the versions in parallel
         
         # num_workers = os.cpu_count() // 2
         # num_workers = 2 # memory is limited, so use 2 workers for testing
@@ -171,9 +166,13 @@ class Computation:
 
             # judge compatibility by api matching
             old_jar = query_to_get_jar_location(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion)
-            Restore.get_dep_jar(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion)
+            flag = Restore.get_dep_jar(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion)
+            if not flag:
+                self.record_download_failed(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, self.repo_name, self.relative_path_to_module)
             new_jar = query_to_get_jar_location(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
             Restore.get_dep_jar(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
+            if not flag:
+                self.record_download_failed(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version, self.repo_name, self.relative_path_to_module)
             revapi = Revapi(old_jar, new_jar)
             # print(f'extract bc method and type of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{baselineVersion} -> {version} by Revapi')
             bin_bc_method, bin_bc_type, src_bc_method, src_bc_type = revapi.bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version)
@@ -400,6 +399,13 @@ class Computation:
         reachable_apis = Api.parse_call_relations(call_relations_str)
         return reachable_apis
 
+    @staticmethod
+    def record_download_failed(group_id:str, artifact_id:str, version:str, repo_name:str, relative_path_to_module:str):
+        """record the download failed of the jar"""
+        download_error_csv = DOWNLOAD_ERROR_CSV
+        with open(download_error_csv, 'a', newline='', encoding='utf-8') as f:
+            writer = csv.writer(f)
+            writer.writerow([group_id, artifact_id, version, repo_name, relative_path_to_module])
 
     def judge_dependent_empty(self):
         """judge if the dependent is empty"""

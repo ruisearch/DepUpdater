@@ -10,6 +10,7 @@ import requests
 
 from constants import JAR_DIR, RET_DIR, TREE_DIR
 from database.query import query_to_get_jar_location
+from computation.versions import get_candidate_versions
 
 
 class Restore:
@@ -50,8 +51,8 @@ class Restore:
         # filter the deps into valid_deps and omitted_deps
         valid_deps, omitted_deps = self.filter_dep(all_deps)
         # parse the dep in valid_deps and omitted_deps to get jar and version.json
-        json_path = self.parse_for_jar_and_json(valid_deps, omitted_deps)
-        return json_path
+        json_path, original_tech_lag = self.parse_for_jar_and_json(valid_deps, omitted_deps)
+        return json_path, original_tech_lag
 
     def filter_dep(self, all_deps:list):
         """filter the deps into valid_deps and omitted_deps"""
@@ -253,6 +254,8 @@ class Restore:
         # add omitted deps which have no corresponding valid dep
         self.process_omitted_deps(valid_deps, omitted_deps, mappings)
 
+        # get original tech lag
+        original_tech_lag = self.compute_original_tech_lag(mappings)
         # create json
         # stored in data/result/{repo_name}/{relative_path_to_module}/version.json
         repo_name = os.path.basename(self.path_to_cloned_folder)
@@ -261,7 +264,17 @@ class Restore:
         json_path = os.path.join(json_folder, 'version.json')
         with open(json_path, 'w', encoding='utf-8') as json_file:
             json.dump(mappings, json_file, indent=4)
-        return json_path
+        return json_path, original_tech_lag
+
+    def compute_original_tech_lag(self, deps:list):
+        """compute the original tech lag of the module"""
+        original_tech_lag = 0
+        for dep in deps:
+            if 'Versions' not in dep:
+                all_versions = get_candidate_versions(dep['GroupId'], dep['ArtifactId'], dep['Original_Version'])
+                original_tech_lag += len(all_versions) - 1
+                dep['Versions'] = [{'version': version, 'breaking_reason':[]} for version in all_versions]
+        return original_tech_lag
 
     def process_omitted_deps(self, valid_deps:list, omitted_deps:list, mappings:list):
         """add omitted deps which have no corresponding valid dep,
