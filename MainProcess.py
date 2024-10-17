@@ -9,6 +9,7 @@ from preprocess.Restore import Restore
 from traverse.traverse import Traverse
 from constants import set_log_path, set_soot_empty_cases_csv, RET_DIR, DATA_DIR
 from evaluation.tech_lag import TechLag
+from logger.logger import log_debug
 
 
 def expand_resolve_abspath(path):
@@ -21,7 +22,6 @@ def expand_resolve_abspath(path):
 ## preprocess
 ## input : the path to the cloned folder
 ## output ： client jar/dependencies jar(from dependency tree)
-print("\n****** preprocessing ... ******\n")
 path_to_folder = expand_resolve_abspath(sys.argv[1])
 path_to_pom = os.path.join(path_to_folder, "pom.xml")
 # only handle the module in relative_path_to_module;'.' means the pom of the module is just at the root directory of project
@@ -38,6 +38,12 @@ if os.path.exists(soot_empty_csv):
 # remove existing log file
 if os.path.exists(log_path):
     os.remove(log_path)
+# create the directory for result if not exist
+if not os.path.exists(os.path.dirname(log_path)):
+    os.makedirs(os.path.dirname(log_path))
+
+print("\n****** preprocessing ... ******\n")
+log_debug(f"Start preprocessing for {repo_name}/{relative_path_to_module}")
 
 # set the git repository to the last tag status
 # status_command = f'cd {path_to_folder} && git add . && git reset --hard && git fetch --tags && git tag --sort=-creatordate | head -1 | xargs git checkout'
@@ -67,6 +73,7 @@ print("\n****** preprocess done! ******\n")
 
 # Traverse the dependency graph to compute the newest compatible version of each dependency
 # repo_name = os.path.basename(path_to_folder)
+log_debug(f"Start traversing for {repo_name}/{relative_path_to_module}")
 tra = Traverse(json_path, path_to_folder, relative_path_to_module)
 tra.traverse()
 
