@@ -141,6 +141,7 @@ class Traverse:
 
     def recompile(self):
         """recompile the project finally"""
+        print("\nRecompiling the project to validate...\n")
         command = f"cd {self.path_to_project_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -pl {self.relative_path_to_module} compile -am"
         try:
             result = subprocess.run(command, shell=True, text=True, capture_output=True)

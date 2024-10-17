@@ -11,6 +11,7 @@ import requests
 from constants import JAR_DIR, RET_DIR, TREE_DIR
 from database.query import query_to_get_jar_location
 from computation.versions import get_candidate_versions
+from logger.logger import log_debug
 
 
 class Restore:
@@ -38,7 +39,7 @@ class Restore:
             return
         # Create an empty folder
         os.makedirs(folder_path)
-        
+
     def restore(self):
         """main method in this file,restore"""
         # create TREE folder
@@ -75,8 +76,8 @@ class Restore:
         """
         # debug
         # print(f'dep {group_id}:{artifact_id}:{version}')
-        
-        def handle_error_get(jar_url,  retries=5, backoff_factor=0.3):
+
+        def handle_error_get(jar_url,  retries=3, backoff_factor=0.3):
         # This inner function attempts to get the content from the jar_url with retries
             for attempt in range(retries):
                 try:
@@ -88,8 +89,7 @@ class Restore:
                     time.sleep(backoff_factor * (2 ** attempt))  # Exponential backoff
                     if attempt == retries - 1:
                         raise  # Re-raise the last exception if all retries fail
-        
-        
+
         jar_url = f"https://repo1.maven.org/maven2/{group_id.replace('.', '/')}/{artifact_id}/{version}/{artifact_id}-{version}.jar"
         
         # Call the function with retry logic
@@ -108,6 +108,7 @@ class Restore:
                     return True
         except Exception as e:
             print(f"Failed to download {artifact_id}-{version}.jar from central repository; Reason: {str(e)}")
+            log_debug(f"Failed to download {artifact_id}-{version}.jar from central repository; Reason: {str(e)}")
             return False
 
     def parse_tree_for_deps(self, dependency_tree:str, path_to_cloned_folder:str, relative_path_to_module:str):
@@ -130,7 +131,7 @@ class Restore:
             # print(block.group(4)) # client artifactId
             # print(block.group(5)) # client version
             # print(block.group(6)) # deps
-            
+
             # only handle the specific module in the tree(may contain multiple modules)
             # if relative_path_to_module is ., the module's pom is at the root
             if relative_path_to_module == '.':
@@ -188,18 +189,27 @@ class Restore:
 
         deps = []
         for dep_match in dep_matches:
-            is_test = ":test" in dep_match.group(2)
-            is_provided = ":provided" in dep_match.group(2)
-            # exclude the dependency for test or provided
-            if is_test is False and is_provided is False:
-                dep = {}
-                # {'dep': the record in tree list 'org.junit-pioneer:junit-pioneer:jar:1.9.1:compile'}
-                dep.update({'dep':dep_match.group(2)})
-                # get depth from the length of substring between "[INFO] " and "-"
-                depth = (int)((len(dep_match.group(1))+2) / 3)
-                # depth == 1 means direct while depth > 1 means transitive
-                dep.update({'Depth':depth})
-                deps.append(dep)
+            # is_test = ":test" in dep_match.group(2)
+            # is_provided = ":provided" in dep_match.group(2)
+            # # exclude the dependency for test or provided
+            # if is_test is False and is_provided is False:
+            #     dep = {}
+            #     # {'dep': the record in tree list 'org.junit-pioneer:junit-pioneer:jar:1.9.1:compile'}
+            #     dep.update({'dep':dep_match.group(2)})
+            #     # get depth from the length of substring between "[INFO] " and "-"
+            #     depth = (int)((len(dep_match.group(1))+2) / 3)
+            #     # depth == 1 means direct while depth > 1 means transitive
+            #     dep.update({'Depth':depth})
+            #     deps.append(dep)
+
+            dep = {}
+            # {'dep': the record in tree list 'org.junit-pioneer:junit-pioneer:jar:1.9.1:compile'}
+            dep.update({'dep':dep_match.group(2)})
+            # get depth from the length of substring between "[INFO] " and "-"
+            depth = (int)((len(dep_match.group(1))+2) / 3)
+            # depth == 1 means direct while depth > 1 means transitive
+            dep.update({'Depth':depth})
+            deps.append(dep)
 
         # get dependent(parent in tree actually) of all deps
         for idx, one_dep in enumerate(deps):
@@ -234,9 +244,9 @@ class Restore:
         self.change_valid_deps(valid_deps)
         # change the omitted_deps
         self.change_omitted_deps(omitted_deps)
-        # clearing the local modules which couldn't be downloaded from maven central repository
-        # and optional transitive deps as well
-        self.clear_spare_deps(valid_deps, omitted_deps)
+        # # clearing the local modules which couldn't be downloaded from maven central repository
+        # # and optional transitive deps as well
+        # self.clear_spare_deps(valid_deps, omitted_deps)
         # get dep jar and update the list of dicts which will be displayed in json
         # jarname ----> gav
         mappings = [{'GroupId':self.client_groupId, 'ArtifactId':self.client_artifactId,\
@@ -254,6 +264,10 @@ class Restore:
         # add omitted deps which have no corresponding valid dep
         self.process_omitted_deps(valid_deps, omitted_deps, mappings)
 
+        # prune the graph: remove the dependencies aren't compile or runtime and local module
+        self.prune_graph(mappings)
+        # remove the nodes which have been removed
+        mappings = [node for node in mappings if node['Dependents'] or node['Depth'] == 0]
         # get original tech lag
         original_tech_lag = self.compute_original_tech_lag(mappings)
         # create json
@@ -265,6 +279,60 @@ class Restore:
         with open(json_path, 'w', encoding='utf-8') as json_file:
             json.dump(mappings, json_file, indent=4)
         return json_path, original_tech_lag
+
+    # remove the dependencies aren't compile or runtime and local module
+    def prune_graph(self, mappings:list):
+        """prune the graph: remove the dependencies aren't compile or runtime and local module"""
+        print('\n****** prune graph ... ******\n')
+        # remove the dependencies aren't compile or runtime
+        for node in mappings:
+            if not node['Dependents']:
+                # client or node has been removed
+                continue
+            if node['Type'] not in ['compile', 'runtime']:
+                # log_debug(f'{node["GroupId"]}:{node["ArtifactId"]} is not compile or runtime, so remove it')
+                self.remove_node(node['GroupId']+':'+node['ArtifactId'], mappings)
+        # download the jar of the nodes in the graph and remove the local module
+        for node in mappings:
+            if not node['Dependents']:
+                # client or node has been removed
+                continue
+            flag = self.get_dep_jar(node['GroupId'], node['ArtifactId'], node['Original_Version'])
+            if not flag:
+                # the node is a local module
+                # log_debug(f'{node["GroupId"]}:{node["ArtifactId"]} is a local module, so remove it')
+                self.remove_node(node['GroupId']+':'+node['ArtifactId'], mappings)
+
+    # remove a node from the graph
+    def remove_node(self, ga:str, mappings:list):
+        """remove the node and its outer-edges from the dependency graph recursively
+        Args:
+            ga (str): the groupId:artifactId of the dependency
+            which should be removed from the graph
+            mappings: list of dict representing the dependency graph
+        """
+        # log_debug(f'{ga} removed')
+        # handle the dependencies of ga first
+        for node in mappings:
+            if node['GroupId']+':'+node['ArtifactId'] == ga:
+                # clear the dependents
+                node['Dependents'] = []
+                continue
+            is_dependent = False
+            dependent_idx = -1
+            for idx, dependent in enumerate(node['Dependents']):
+                if ga == dependent['GroupId']+':'+dependent['ArtifactId']:
+                    # ga is a dependent of node
+                    is_dependent = True
+                    dependent_idx = idx
+                    break
+            if is_dependent:
+                # remove ga from the dependents of node
+                node['Dependents'].pop(dependent_idx)
+                node_ga = node['GroupId']+':'+node['ArtifactId']
+                if not node['Dependents']:
+                    # if the node has no dependents now, remove the node from the graph
+                    self.remove_node(node_ga, mappings)
 
     def compute_original_tech_lag(self, deps:list):
         """compute the original tech lag of the module"""
@@ -471,7 +539,8 @@ class Restore:
                 # duplicate and covered by pom
                 dep.update({'GroupId':match.group(1)})
                 dep.update({'ArtifactId':match.group(2)})
-                dep.update({'Version':match.group(6)})
+                # dep.update({'Version':match.group(6)})
+                dep.update({'Version':match.group(4)})
                 dep.update({'Type':match.group(5)})
                 dep.update({'Depth':omitted_deps[i]['Depth']})
                 # Define_Version is the version defined by the dependent
@@ -499,7 +568,8 @@ class Restore:
                 # conflict
                 dep.update({'GroupId':match.group(1)})
                 dep.update({'ArtifactId':match.group(2)})
-                dep.update({'Version':match.group(4)})
+                # dep.update({'Version':match.group(4)})
+                dep.update({'Version':match.group(6)})
                 dep.update({'Type':match.group(5)})
                 dep.update({'Depth':omitted_deps[i]['Depth']})
                 # Define_Version is the version defined by the dependent
