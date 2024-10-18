@@ -1,6 +1,6 @@
 """update dependency graph after computing the newest compatible version of a dependency"""
 from collections import deque, defaultdict
-from database.query import query_dependencies_from_mongo
+from database.query import query_dependencies_from_mongo, insert_dependencies_into_mongo
 from update.updateDB import populate_dep
 from logger.logger import log_debug
 class Update:
@@ -88,12 +88,13 @@ class Update:
             # the dependencies of the cur_node are not in the database
             # get the dependencies and store them in the database
             dependencies = populate_dep(groupId, artifactId, version)
+            insert_dependencies_into_mongo(groupId, artifactId, version, dependencies)
         dependencies_dict = self.filter_dep(dependencies)
         return dependencies_dict
 
     def filter_dep(self, dependencies:list):
         """filter the new dependencies of the cur_node:
-        1. remove the dependencies that are test or provided
+        1. remove the dependencies that are not compile or runtime
         2. remove the dependencies that are optional and not the direct dependency of the client
         Returns:
             dependencies_dict (dict): the dependencies of the cur_node; groupId:artifactId -> [version, type]
@@ -103,10 +104,11 @@ class Update:
             gav = dependency['dep']
             # g,a,v is splited by the first two ':' of gav
             g, a, v = gav.split(':', 2)
-            if dependency['dScope'] == 'test' or dependency['dScope'] == 'provided':
+            if dependency['dScope'] != 'compile' and dependency['dScope'] != 'runtime':
                 continue
             if dependency['isoptional'] == 'true':
                 # check if the dependency is the direct dependency of the client
+                # ignore it if not
                 if f'{g}:{a}' in self.graph_dict:
                     index = self.graph_dict[f'{g}:{a}']
                     depth = self.graph[index]['Depth']
@@ -180,26 +182,26 @@ class Update:
                 idx = self.graph_dict[ga]
                 dep_dict = self.graph[idx]
 
-                # add the edge if not introducing a cycle
-                if not self.node_reachability(ga, self.cur_node['GroupId']+':'+self.cur_node['ArtifactId']):
-                    dep_dict['Dependents'].append(
-                        {
-                            "GroupId": self.cur_node['GroupId'],
-                            "ArtifactId": self.cur_node['ArtifactId'],
-                            "Version": self.cur_node['Best_Version'],
-                            "Define_Version": self.new_dict[ga][0]
-                        }
-                    )
+                # # add the edge if not introducing a cycle
+                # if not self.node_reachability(ga, self.cur_node['GroupId']+':'+self.cur_node['ArtifactId']):
+                dep_dict['Dependents'].append(
+                    {
+                        "GroupId": self.cur_node['GroupId'],
+                        "ArtifactId": self.cur_node['ArtifactId'],
+                        "Version": self.cur_node['Best_Version'],
+                        "Define_Version": self.new_dict[ga][0]
+                    }
+                )
 
-                    log_debug(f'{ga} is a new dep of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]} now')
+                log_debug(f'{ga} is a new dep of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]} now')
 
-                    # clear the best version of this dependency as its context has changed
-                    # dep_dict['Best_Version'] = ""
-                    self.clear_best_version(dep_dict, self.cur_node['GroupId']+':'+self.cur_node['ArtifactId'])
-                    flag = self.is_ready(ga)
-                    self.update_queue(flag, ga, self.cur_node['GroupId']+':'+self.cur_node['ArtifactId'])
-                else:
-                    log_debug(f'Introducing a cycle by adding {ga} as a dep of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}, so quit')
+                # clear the best version of this dependency as its context has changed
+                # dep_dict['Best_Version'] = ""
+                self.clear_best_version(dep_dict, self.cur_node['GroupId']+':'+self.cur_node['ArtifactId'])
+                flag = self.is_ready(ga)
+                self.update_queue(flag, ga, self.cur_node['GroupId']+':'+self.cur_node['ArtifactId'])
+                # else:
+                #     log_debug(f'Introducing a cycle by adding {ga} as a dep of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}, so quit')
             else :
                 ga_version = self.new_dict[ga][0]
                 ga_type = self.new_dict[ga][1]
@@ -286,27 +288,27 @@ class Update:
                 idx = self.graph_dict[new_dep_ga]
                 new_dep = self.graph[idx]
                 
-                # add the edge if not introducing a cycle
-                if not self.node_reachability(new_dep_ga, ga):
-                    new_dep['Dependents'].append(
-                        {
-                            "GroupId": groupId,
-                            "ArtifactId": artifactId,
-                            "Version": version,
-                            "Define_Version": new_dep_inform[0]
-                        }
-                    )
+                # # add the edge if not introducing a cycle
+                # if not self.node_reachability(new_dep_ga, ga):
+                new_dep['Dependents'].append(
+                    {
+                        "GroupId": groupId,
+                        "ArtifactId": artifactId,
+                        "Version": version,
+                        "Define_Version": new_dep_inform[0]
+                    }
+                )
 
-                    log_debug(f'{new_dep_ga} is a new dep of {groupId}:{artifactId} now')
+                log_debug(f'{new_dep_ga} is a new dep of {groupId}:{artifactId} now')
 
-                    # clear the best version of this dependency as its context has changed
-                    # new_dep['Best_Version'] = ""
-                    self.clear_best_version(new_dep, f'{groupId}:{artifactId}')
-                    # update the queue
-                    flag = self.is_ready(new_dep_ga)
-                    self.update_queue(flag, new_dep_ga, f'{groupId}:{artifactId}')
-                else:
-                    log_debug(f'Introducing a cycle by adding {new_dep_ga} as a dep of {groupId}:{artifactId}, so quit')
+                # clear the best version of this dependency as its context has changed
+                # new_dep['Best_Version'] = ""
+                self.clear_best_version(new_dep, f'{groupId}:{artifactId}')
+                # update the queue
+                flag = self.is_ready(new_dep_ga)
+                self.update_queue(flag, new_dep_ga, f'{groupId}:{artifactId}')
+                # else:
+                #     log_debug(f'Introducing a cycle by adding {new_dep_ga} as a dep of {groupId}:{artifactId}, so quit')
             else:
                 # the new dependency is not in the graph
                 # add new nodes recursively
