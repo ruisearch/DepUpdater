@@ -70,6 +70,7 @@ graph = Restore(path_to_folder, relative_path_to_module, tree_file)
 json_path, original_tech_lag = graph.restore()
 print("\n****** dependency graph got! ******\n")
 print("\n****** preprocess done! ******\n")
+log_debug('preprocess done')
 
 # Traverse the dependency graph to compute the newest compatible version of each dependency
 # repo_name = os.path.basename(path_to_folder)
