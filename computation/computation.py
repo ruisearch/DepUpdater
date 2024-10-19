@@ -82,7 +82,7 @@ class Computation:
 
         # clear breaking_reason of all versions except the version not following software debloating
         for version_dict in self.cur_node['Versions']:
-            if version_dict['breaking_reason'] != 'software debloating':
+            if version_dict['breaking_reason'] != ['software debloating']:
                 version_dict['breaking_reason'] = []
 
         with concurrent.futures.ProcessPoolExecutor(max_workers=num_workers) as executor:
@@ -115,9 +115,13 @@ class Computation:
         Args:
             all_versions (list) : all versions of the dependency
         """
+        self.cur_node['Versions'] = []
         original_version = self.cur_node['Original_Version']
         original_dep_count = self.count_amount_of_a_version(original_version)
         for version in all_versions:
+            if version == original_version:
+                self.cur_node['Versions'].append({'version': version, 'breaking_reason':[]})
+                break
             dep_count = self.count_amount_of_a_version(version)
             if dep_count > original_dep_count:
                 # not following software debloating
@@ -180,7 +184,7 @@ class Computation:
                 ret_dict = version_dict
                 break
 
-        if ret_dict['breaking_reason'] == 'software debloating':
+        if ret_dict['breaking_reason'] == ['software debloating']:
             # the version is not following software debloating, which is the primary objective
             # so just return the breaking_reason
             return ret_dict
@@ -494,42 +498,53 @@ if __name__ == '__main__':
     # print(dep.type_entry_points)
     # # result: method_entry_points is empty, and type_entry_points has one fp 'org.joda.time.DateTime' due to soot_Type_DG
     
-    # test case 2 : cat.inspiracio:dwr:3.0.1 -> joda-time:joda-time:2.12.7
-    client_dict = {
-        'GroupId': 'cat.inspiracio',
-        'ArtifactId': 'dwr',
-        'Original_Version': '3.0.1',
-        'Best_Version': '',
-        'Depth':0,
-        'Count':0,
-        'Dependents':[]
-    }
-    client = Computation(client_dict, [], 'test', 'example2')
-    client.get_and_record_reachable_api()
+    # # test case 2 : cat.inspiracio:dwr:3.0.1 -> joda-time:joda-time:2.12.7
+    # client_dict = {
+    #     'GroupId': 'cat.inspiracio',
+    #     'ArtifactId': 'dwr',
+    #     'Original_Version': '3.0.1',
+    #     'Best_Version': '',
+    #     'Depth':0,
+    #     'Count':0,
+    #     'Dependents':[]
+    # }
+    # client = Computation(client_dict, [], 'test', 'example2')
+    # client.get_and_record_reachable_api()
 
-    dep_dict = {
-        'GroupId': 'joda-time',
-        'ArtifactId': 'joda-time',
-        'Original_Version': '2.12.7',
-        'Best_Version': '',
-        'Depth':1,
-        'Count':0,
-        'Dependents':[
-            {
-                'GroupId': 'cat.inspiracio',
-                'ArtifactId': 'dwr',
-                'Version': '3.0.1',
-                'Define_Version': '2.12.7'
-            }
-        ]
+    # dep_dict = {
+    #     'GroupId': 'joda-time',
+    #     'ArtifactId': 'joda-time',
+    #     'Original_Version': '2.12.7',
+    #     'Best_Version': '',
+    #     'Depth':1,
+    #     'Count':0,
+    #     'Dependents':[
+    #         {
+    #             'GroupId': 'cat.inspiracio',
+    #             'ArtifactId': 'dwr',
+    #             'Version': '3.0.1',
+    #             'Define_Version': '2.12.7'
+    #         }
+    #     ]
+    # }
+    # dep = Computation(dep_dict, [], 'test', 'example2')
+    # # get dep's entry points and caller
+    # dep.get_entry_points_and_caller('cat.inspiracio', 'dwr', '3.0.1', '2.12.7')
+    # # print methods and types entry points
+    # # print(dep.method_entry_points)
+    # # print(dep.type_entry_points)
+    # # result : method_entry_points has 3 fn 'org.joda.time.LocalDateTime::toDateTime()', 'org.joda.time.base.AbstractInstant::toDate()'
+    # # and 'org.joda.time.base.BaseDateTime::getMillis()'. First two are called on line 56 of org.directwebremoting.convert.LocalDateTimeConverter.java
+    # # the last one is called on line 57 of org.directwebremoting.convert.LocalDateTimeConverter.java.
+    # # the reason is these 3 methods are not present in the call graph of dwr-3.0.1.jar, which reveals a fn of sootCG on dwr-3.0.1.jar
+    
+    # test count_amount_of_a_version
+    node = {
+        'GroupId': 'io.netty',
+        'ArtifactId': 'netty-common',
+        'Original_Version': '4.1.94.Final',
     }
-    dep = Computation(dep_dict, [], 'test', 'example2')
-    # get dep's entry points and caller
-    dep.get_entry_points_and_caller('cat.inspiracio', 'dwr', '3.0.1', '2.12.7')
-    # print methods and types entry points
-    # print(dep.method_entry_points)
-    # print(dep.type_entry_points)
-    # result : method_entry_points has 3 fn 'org.joda.time.LocalDateTime::toDateTime()', 'org.joda.time.base.AbstractInstant::toDate()'
-    # and 'org.joda.time.base.BaseDateTime::getMillis()'. First two are called on line 56 of org.directwebremoting.convert.LocalDateTimeConverter.java
-    # the last one is called on line 57 of org.directwebremoting.convert.LocalDateTimeConverter.java.
-    # the reason is these 3 methods are not present in the call graph of dwr-3.0.1.jar, which reveals a fn of sootCG on dwr-3.0.1.jar
+    com = Computation(node, [], 'test', 'example1')
+    # com.initialize_breaking_reason(['4.1.113.Final','4.1.94.Final'])
+    # print(node)
+    print(com.count_amount_of_a_version('4.1.94.Final'), com.count_amount_of_a_version('4.1.113.Final'))
