@@ -133,13 +133,6 @@ class Update:
             self.add_edges(new - old)
             # handle old - new, which means the removed edges
             self.remove_edges(old - new)
-        
-        # # handle new & old, which means the unchanged edges
-        # self.update_nodes(new & old)
-        # # handle new - old, which means the new edges
-        # self.add_edges(new - old)
-        # # handle old - new, which means the removed edges
-        # self.remove_edges(old - new)
 
     def update_nodes(self, ga_set:set):
         """situation 1: the dependency is in both old_deps and new_deps

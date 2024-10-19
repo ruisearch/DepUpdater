@@ -214,9 +214,13 @@ class Computation:
             if not flag:
                 self.record_download_failed(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, self.repo_name, self.relative_path_to_module)
             new_jar = query_to_get_jar_location(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
-            Restore.get_dep_jar(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
+            flag = Restore.get_dep_jar(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
             if not flag:
                 self.record_download_failed(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version, self.repo_name, self.relative_path_to_module)
+                # the jar of the version is not downloaded, so just return the breaking_reason
+                ret_dict['breaking_reason'] = ['jar is unavailable']
+                return ret_dict
+
             revapi = Revapi(old_jar, new_jar)
             # print(f'extract bc method and type of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{baselineVersion} -> {version} by Revapi')
             bin_bc_method, bin_bc_type, src_bc_method, src_bc_type = revapi.bc_api(self.cur_node['GroupId'], self.cur_node['ArtifactId'], baselineVersion, version)

@@ -173,6 +173,29 @@ class Traverse:
         with open(log_path, 'w', encoding='utf-8') as f:
             f.write(log)
 
+    def test(self):
+        """test the project finally"""
+        print("\nTesting the project to validate...\n")
+        command = f"cd {self.path_to_project_folder} && mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -pl {self.relative_path_to_module} test -am"
+        try:
+            result = subprocess.run(command, shell=True, text=True, capture_output=True)
+            self.store_compile_log(result.stdout)
+            if result.returncode != 0:
+                print("Test failed.")
+        except subprocess.SubprocessError as e:
+            print(f"An error occured while execute the command: {e}")
+
+    def store_test_log(self, log:str):
+        """store the test log"""
+        repo_name = os.path.basename(self.path_to_project_folder)
+        log_folder = os.path.join(VALIDATION_LOG_DIR, repo_name, self.relative_path_to_module)
+        if not os.path.exists(log_folder):
+            os.makedirs(log_folder)
+        # store the log
+        log_path = os.path.join(log_folder, 'test.txt')
+        with open(log_path, 'w', encoding='utf-8') as f:
+            f.write(log)
+
     @staticmethod
     def record_graph(graph, json_path):
         """record the graph in version.json"""
