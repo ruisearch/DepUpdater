@@ -48,9 +48,9 @@ def populate_dep(go, ao, vo):
             if 'dependencies' in child.tag:
                 for dep in child:
                     each = {}
+                    s = ''
+                    opt=''
                     for ele in dep:
-                        s = ''
-                        opt=''
                         if 'groupId' in ele.tag:
                             g = ele.text
                         if 'artifactId' in ele.tag:
