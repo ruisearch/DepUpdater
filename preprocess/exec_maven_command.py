@@ -36,20 +36,17 @@ def mvn_package(path_to_folder:str, relative_path_to_module:str):
         exit_status = os.system(command)
     return exit_status
 
-# # execute "mvn dependency:tree"
-# def mvn_dependency_tree(path_to_folder:str, relative_path_to_module:str):
-#     # MainProcess_pwd = os.getcwd()
-#     # log_path = os.path.join(MainProcess_pwd, "data/dependency_tree.txt")
-#     # create ./DATA
-#     create_folder(DATA)
-#     command = f"cd {path_to_folder} && mvn dependency:tree -pl {relative_path_to_module} -am -fae"
-#     print("generating dependency tree...")
-#     result = subprocess.run(command, shell=True, text=True, capture_output=True)
-#     with open(DEPENDENCY_TREE_FILE, 'w') as f:
-#         f.write(f'{result.stdout}')
-#     # os.system(command)
-#     print("dependency tree is generated in ./data/dependency_tree.txt successfully")
-    
+def mvn_test(path_to_folder:str, relative_path_to_module:str):
+    """execute mvn test"""
+    # firstly, execute mvn test in module folder
+    if relative_path_to_module == '.':
+        command = f"cd {path_to_folder} && mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true test"
+    else :
+        command = f"cd {path_to_folder} && mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -pl {relative_path_to_module} -am test"
+    print("mvn test...")
+    exit_status = os.system(command)
+    return exit_status
+
 def mvn_verbose_dependency_tree(path_to_folder:str, relative_path_to_module:str):
     """execute mvn dependency:tree -Dverbose"""
     command = f"cd {path_to_folder} && mvn dependency:tree -pl {relative_path_to_module} -am -Dverbose -fae"

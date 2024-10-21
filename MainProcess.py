@@ -56,6 +56,11 @@ if exit_code != 0:
     print("\n****** module package fails. Please check the project ******\n")
     exit()
 print("\n****** preprocess.package done! ******\n")
+exit_code = exec_maven_command.mvn_test(path_to_folder, relative_path_to_module)
+if exit_code != 0:
+    print("\n****** module test fails. Please check the project ******\n")
+    exit()
+
 # execute mvn dependency:tree to generate dependency tree file in convenience of extracting GAV of dependencies
 # result is in ./data/preprocess/dependency_tree.txt
 print("\n****** get tree ... ******\n")
@@ -70,19 +75,28 @@ graph = Restore(path_to_folder, relative_path_to_module, tree_file)
 json_path, original_tech_lag = graph.restore()
 print("\n****** dependency graph got! ******\n")
 print("\n****** preprocess done! ******\n")
-log_debug('preprocess done')
+log_debug('\npreprocess done\n')
 
 # Traverse the dependency graph to compute the newest compatible version of each dependency
 # repo_name = os.path.basename(path_to_folder)
 log_debug(f"Start traversing for {repo_name}/{relative_path_to_module}")
 tra = Traverse(json_path, path_to_folder, relative_path_to_module)
-tra.traverse()
+compile_flag, test_flag = tra.traverse()
 
 # compute the technical lag of the module
 print("\n****** compute technical lag ... ******\n")
+log_debug(f"Start computing tech lag for {repo_name}/{relative_path_to_module}")
 lag = TechLag(json_path)
 # record the original lag, current lag and reduced lag in a csv file
 lag_csv_path = os.path.join(DATA_DIR, 'lag.csv')
 with open(lag_csv_path, 'a') as f:
     writer = csv.writer(f)
     writer.writerow([repo_name, relative_path_to_module, original_tech_lag, lag.current_lag, original_tech_lag - lag.current_lag])
+
+# print the result of the tool
+print("\n****** result ******\n")
+print('compile_flag:', compile_flag)
+print('test_flag:', test_flag)
+print('original technical lag:', original_tech_lag)
+print('current technical lag:', lag.current_lag)
+print('reduced technical lag:', original_tech_lag - lag.current_lag)

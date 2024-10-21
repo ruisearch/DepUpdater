@@ -78,10 +78,13 @@ class Traverse:
             up.update(old_best_version)
 
         # recompile the project
-        self.recompile()
+        compile_flag = self.recompile()
+        # test the project
+        test_flag = self.test()
         # restore the pom.xml and back up the pom.xml after computation
         backed_up_pom_path = os.path.join(self.path_to_project_folder, self.relative_path_to_module, '_backed_up_pom.xml')
         Validation.restore_pom(original_pom_path, pom_path, backed_up_pom_path)
+        return compile_flag, test_flag
 
 
     def compute_and_validate(self, cur_dep:dict):
@@ -140,16 +143,25 @@ class Traverse:
             val.add_transitive_dependency(group_id, artifact_id, property_tag_name)
 
     def recompile(self):
-        """recompile the project finally"""
+        """recompile the project finally
+        Returns:
+            bool: whether the recompile is successful
+        """
         print("\nRecompiling the project to validate...\n")
+        log_debug("Recompiling the project to validate...")
         command = f"cd {self.path_to_project_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -pl {self.relative_path_to_module} compile -am"
         try:
             result = subprocess.run(command, shell=True, text=True, capture_output=True)
             self.store_compile_log(result.stdout)
             if result.returncode != 0:
                 print("Recompile failed.")
+                log_debug("Recompile failed.")
+                return False
+            return True
         except subprocess.SubprocessError as e:
             print(f"An error occured while execute the command: {e}")
+            log_debug(f"An error occured while execute the command: {e}")
+            return False
 
     def get_old_best_version(self, cur_dep):
         """get the old best version of the dependency"""
@@ -176,14 +188,20 @@ class Traverse:
     def test(self):
         """test the project finally"""
         print("\nTesting the project to validate...\n")
-        command = f"cd {self.path_to_project_folder} && mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -pl {self.relative_path_to_module} test -am"
+        
+        command = f"cd {self.path_to_project_folder} && mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -pl {self.relative_path_to_module} -am test"
         try:
             result = subprocess.run(command, shell=True, text=True, capture_output=True)
-            self.store_compile_log(result.stdout)
+            self.store_test_log(result.stdout)
             if result.returncode != 0:
                 print("Test failed.")
+                log_debug("Test failed.")
+                return False
+            return True
         except subprocess.SubprocessError as e:
             print(f"An error occured while execute the command: {e}")
+            log_debug(f"An error occured while execute the command: {e}")
+            return False
 
     def store_test_log(self, log:str):
         """store the test log"""
