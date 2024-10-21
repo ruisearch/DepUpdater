@@ -23,12 +23,9 @@ def mvn_package(path_to_folder:str, relative_path_to_module:str):
         command = f"cd {os.path.join(path_to_folder, relative_path_to_module)} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true clean package"
     print("mvn clean and mvn package...")
     exit_status = os.system(command)
-    if exit_status != 0:
+    if exit_status != 0 and relative_path_to_module != '.':
         # mvn package is unexecutable in module folder, so execute it in root with the help of -pl -am
-        if relative_path_to_module == '.':
-            command = f"cd {path_to_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true clean package"
-        else :
-            command = f"cd {path_to_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -pl {relative_path_to_module} -am clean package "
+        command = f"cd {path_to_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -pl {relative_path_to_module} -am clean package "
         exit_status = os.system(command)
     if exit_status != 0:
         # mvn package is unexecutable with -pl -am, so execute it in root without -pl -am
@@ -42,9 +39,17 @@ def mvn_test(path_to_folder:str, relative_path_to_module:str):
     if relative_path_to_module == '.':
         command = f"cd {path_to_folder} && mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true test"
     else :
-        command = f"cd {path_to_folder} && mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -pl {relative_path_to_module} -am test"
+        command = f"cd {os.path.join(path_to_folder, relative_path_to_module)} && mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true test"
     print("mvn test...")
     exit_status = os.system(command)
+    if exit_status != 0 and relative_path_to_module != '.':
+        # mvn test is unexecutable in module folder, so execute it in root with the help of -pl -am
+        command = f"cd {path_to_folder} && mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -pl {relative_path_to_module} -am test"
+        exit_status = os.system(command)
+    if exit_status != 0:
+        # mvn test is unexecutable with -pl -am, so execute it in root without -pl -am
+        command = f"cd {path_to_folder} && mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true test"
+        exit_status = os.system(command)
     return exit_status
 
 def mvn_verbose_dependency_tree(path_to_folder:str, relative_path_to_module:str):
@@ -61,4 +66,3 @@ def mvn_verbose_dependency_tree(path_to_folder:str, relative_path_to_module:str)
     # os.system(command)
     print("dependency tree is generated successfully")
     return tree_file
-    

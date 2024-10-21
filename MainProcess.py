@@ -57,9 +57,10 @@ if exit_code != 0:
     exit()
 print("\n****** preprocess.package done! ******\n")
 exit_code = exec_maven_command.mvn_test(path_to_folder, relative_path_to_module)
+original_test_flag = True
 if exit_code != 0:
     print("\n****** module test fails. Please check the project ******\n")
-    exit()
+    original_test_flag = False
 
 # execute mvn dependency:tree to generate dependency tree file in convenience of extracting GAV of dependencies
 # result is in ./data/preprocess/dependency_tree.txt
@@ -78,7 +79,6 @@ print("\n****** preprocess done! ******\n")
 log_debug('\npreprocess done\n')
 
 # Traverse the dependency graph to compute the newest compatible version of each dependency
-# repo_name = os.path.basename(path_to_folder)
 log_debug(f"Start traversing for {repo_name}/{relative_path_to_module}")
 tra = Traverse(json_path, path_to_folder, relative_path_to_module)
 compile_flag, test_flag = tra.traverse()
@@ -95,8 +95,9 @@ with open(lag_csv_path, 'a') as f:
 
 # print the result of the tool
 print("\n****** result ******\n")
-print('compile_flag:', compile_flag)
-print('test_flag:', test_flag)
+print('compile success:', compile_flag)
+print('original test pass:', original_test_flag)
+print('test pass:', test_flag)
 print('original technical lag:', original_tech_lag)
 print('current technical lag:', lag.current_lag)
 print('reduced technical lag:', original_tech_lag - lag.current_lag)
