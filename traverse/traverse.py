@@ -188,15 +188,21 @@ class Traverse:
     def test(self):
         """test the project finally"""
         print("\nTesting the project to validate...\n")
-        
-        command = f"cd {self.path_to_project_folder} && mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -pl {self.relative_path_to_module} -am test"
+        # first, mvn test in module folder
+        command = f"cd {os.path.join(self.path_to_project_folder, self.relative_path_to_module)} && mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true test"
         try:
             result = subprocess.run(command, shell=True, text=True, capture_output=True)
-            self.store_test_log(result.stdout)
             if result.returncode != 0:
-                print("Test failed.")
-                log_debug("Test failed.")
-                return False
+                # second, mvn test in root folder with -pl -am
+                command = f"cd {self.path_to_project_folder} && mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -pl {self.relative_path_to_module} -am test"
+                result = subprocess.run(command, shell=True, text=True, capture_output=True)
+                if result.returncode != 0:
+                    # test fails
+                    self.store_test_log(result.stdout)
+                    print("Test failed.")
+                    log_debug("Test failed.")
+                    return False
+            self.store_test_log(result.stdout)
             return True
         except subprocess.SubprocessError as e:
             print(f"An error occured while execute the command: {e}")
