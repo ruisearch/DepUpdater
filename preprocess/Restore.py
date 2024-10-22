@@ -499,9 +499,11 @@ class Restore:
         
         pattern = r"(.+?):(.+?):jar(.*):(.+?):.+?\b"
         match = re.search(pattern, record)
-        # if not match:
-        #     # no match
-        #     return None
+        if not match:
+            # no match
+            # like "org.apache.activemq:activemq-broker:test-jar:tests:5.18.6:test"
+            pattern_1 = r"(.+?):(.+?):test-jar:tests(.*):(.+?):.+?\b"
+            match = re.search(pattern_1, record)
         return {'GroupId':match.group(1), 'ArtifactId':match.group(2), 'Version':match.group(4)}
 
     def change_valid_deps(self, valid_deps:list):
@@ -515,6 +517,10 @@ class Restore:
         for i, valid_dep in enumerate(valid_deps):
             dep = {}
             match = re.search(gav_pattern, valid_dep['dep'])
+            if not match:
+                # like "org.apache.activemq:activemq-broker:test-jar:tests:5.18.6:test"
+                gav_pattern_1 = r"(.+?):(.+?):test-jar:tests(.*):(.+?):(.+?)\b"
+                match = re.search(gav_pattern_1, valid_dep['dep'])
             dep.update({'GroupId':match.group(1)})
             dep.update({'ArtifactId':match.group(2)})
             dep.update({'Version':match.group(4)})
