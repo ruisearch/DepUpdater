@@ -39,7 +39,8 @@ def mvn_test(path_to_folder:str, relative_path_to_module:str):
     if relative_path_to_module == '.':
         command = f"cd {path_to_folder} && mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true test"
     else :
-        command = f"cd {os.path.join(path_to_folder, relative_path_to_module)} && mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true test"
+        command = f"cd {os.path.join(path_to_folder, relative_path_to_module)} && mvn -Dcheckstyle.skip=true \
+            -Denforcer.skip=true -Dflatten.skip=true test"
     print("mvn test...")
     exit_status = os.system(command)
     if exit_status != 0 and relative_path_to_module != '.':
@@ -54,6 +55,18 @@ def mvn_test(path_to_folder:str, relative_path_to_module:str):
 
 def mvn_verbose_dependency_tree(path_to_folder:str, relative_path_to_module:str):
     """execute mvn dependency:tree -Dverbose"""
+    # # firstly, execute mvn dependency:tree in module folder
+    # if relative_path_to_module == '.':
+    #     command = f"cd {path_to_folder} && mvn dependency:tree -Dverbose -fae"
+    # else:
+    #     command = f"cd {os.path.join(path_to_folder, relative_path_to_module)} && mvn dependency:tree -Dverbose"
+    # print("generating dependency tree...")
+    # result = subprocess.run(command, shell=True, text=True, capture_output=True)
+    # if result.returncode != 0 and relative_path_to_module != '.':
+    #     # mvn dependency:tree is unexecutable in module folder, so execute it in root with the help of -pl -am
+    #     command = f"cd {path_to_folder} && mvn dependency:tree -pl {relative_path_to_module} -am -Dverbose -fae"
+    #     result = subprocess.run(command, shell=True, text=True, capture_output=True)
+    
     command = f"cd {path_to_folder} && mvn dependency:tree -pl {relative_path_to_module} -am -Dverbose -fae"
     print("generating dependency tree...")
     result = subprocess.run(command, shell=True, text=True, capture_output=True)
@@ -63,6 +76,5 @@ def mvn_verbose_dependency_tree(path_to_folder:str, relative_path_to_module:str)
     tree_file = os.path.join(tree_folder, 'verbose_tree.txt')
     with open(tree_file, 'w', encoding='utf-8') as f:
         f.write(f'{result.stdout}')
-    # os.system(command)
     print("dependency tree is generated successfully")
     return tree_file
