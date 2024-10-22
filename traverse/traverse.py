@@ -149,14 +149,23 @@ class Traverse:
         """
         print("\nRecompiling the project to validate...\n")
         log_debug("Recompiling the project to validate...")
-        command = f"cd {self.path_to_project_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -pl {self.relative_path_to_module} compile -am"
+        # firstly, mvn compile in module folder
+        command = f"cd {os.path.join(self.path_to_project_folder, self.relative_path_to_module)} &&\
+            mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true compile"
         try:
             result = subprocess.run(command, shell=True, text=True, capture_output=True)
-            self.store_compile_log(result.stdout)
             if result.returncode != 0:
-                print("Recompile failed.")
-                log_debug("Recompile failed.")
-                return False
+                # second, mvn compile in root folder with -pl -am
+                command = f"cd {self.path_to_project_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true \
+                    -Dflatten.skip=true -pl {self.relative_path_to_module} compile -am"
+                result = subprocess.run(command, shell=True, text=True, capture_output=True)
+                if result.returncode != 0:
+                    # recompile fails
+                    self.store_compile_log(result.stdout)
+                    print("Recompile failed.")
+                    log_debug("Recompile failed.")
+                    return False
+            self.store_compile_log(result.stdout)
             return True
         except subprocess.SubprocessError as e:
             print(f"An error occured while execute the command: {e}")

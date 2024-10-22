@@ -137,6 +137,7 @@ class Restore:
             if relative_path_to_module == '.':
                 flag = (block.group(1) == '')
             elif relative_path_to_module.endswith('/'):
+                # the second parameter represents the relative path to the module ends with '/'
                 # block.group(1) endswith '/'
                 flag = (block.group(1) == relative_path_to_module)
             else :
@@ -227,10 +228,17 @@ class Restore:
                         # and Dependents are always valid deps or client
                         # so, I change the record into the dict in order to relate the dependent with the dep when clearing the local module
                         # dict is {'GroupId', 'ArtifactId', 'Version'}
+
+                        # note: record_to_dict may return None means the record cannot be parsed like "org.apache.activemq:activemq-broker:test-jar:tests:5.18.6:test"
+                        # the Dependent is ignored and such one_dep should be removed from deps finally
                         Dependent = self.record_to_dict(deps[i]['dep'])
                         Dependents.append(Dependent)
                         break
             one_dep.update({"Dependents":Dependents})
+        # # remove dep that dependent cannot be parsed
+        # for i in range(len(deps)-1, -1, -1):
+        #     if None in deps[i]['Dependents']:
+        #         del deps[i]
         return deps
 
     # dep key:{dep, Depth, Dependents}
@@ -456,6 +464,9 @@ class Restore:
         valid_dep.pop('isoptional') # isoptional is not in need
         # find the related omitted_deps with the valid_dep and restore the omitted dependents of the tree
         for omitted_dep in omitted_deps:
+            # # debug
+            # print(omitted_dep)
+
             if omitted_dep['GroupId'] == valid_dep['GroupId'] and omitted_dep['ArtifactId'] == valid_dep['ArtifactId']:
                 # omitted_dep is the omitted dep of valid_dep
                 # download this omitted jar
@@ -480,11 +491,17 @@ class Restore:
             # prevent add dependents repeatedly
             if omitted_dependent not in existing_dependents:
                 existing_dependents.append(omitted_dependent)
-                
+
     def record_to_dict(self, record:str):
-        """transform a record(valid) into tree to dep{GroupId, ArtifactId, Version}"""
+        """transform a record(valid) in tree to dep{GroupId, ArtifactId, Version}"""
+        # # debug
+        # print(record)
+        
         pattern = r"(.+?):(.+?):jar(.*):(.+?):.+?\b"
         match = re.search(pattern, record)
+        # if not match:
+        #     # no match
+        #     return None
         return {'GroupId':match.group(1), 'ArtifactId':match.group(2), 'Version':match.group(4)}
 
     def change_valid_deps(self, valid_deps:list):
@@ -533,6 +550,10 @@ class Restore:
         # eg:
         # (org.codehaus.plexus:plexus-classworlds:jar:2.6.0:compile - omitted for conflict with 2.7.0)
         gav_pattern_3 = r"\((.+?):(.+?):jar(.*):(.+?):(.+?) - omitted for conflict with (.+?)\)"
+        # conflict and covered by pom
+        # eg:
+        # (org.glassfish.jaxb:jaxb-runtime:jar:2.3.8:test - version managed from 2.3.1; omitted for conflict with 2.3.2)
+        gav_pattern_4 = r"\((.+?):(.+?):jar(.*):(.+?):(.+?) - version managed from (.+?); omitted for conflict with (.+?)\)"
         for i, omitted_dep in enumerate(omitted_deps):
             dep = {}
             match = re.search(gav_pattern_1, omitted_dep['dep'])
@@ -571,6 +592,20 @@ class Restore:
                 dep.update({'ArtifactId':match.group(2)})
                 # dep.update({'Version':match.group(4)})
                 dep.update({'Version':match.group(6)})
+                dep.update({'Type':match.group(5)})
+                dep.update({'Depth':omitted_deps[i]['Depth']})
+                # Define_Version is the version defined by the dependent
+                Dependent = omitted_dep['Dependents'][0]
+                Dependent.update({'Define_Version':match.group(4)})
+                dep.update({'Dependents':[Dependent]})
+                omitted_deps[i] = dep
+                continue
+            match = re.search(gav_pattern_4, omitted_dep['dep'])
+            if match is not None:
+                # conflict and covered by pom
+                dep.update({'GroupId':match.group(1)})
+                dep.update({'ArtifactId':match.group(2)})
+                dep.update({'Version':match.group(7)})
                 dep.update({'Type':match.group(5)})
                 dep.update({'Depth':omitted_deps[i]['Depth']})
                 # Define_Version is the version defined by the dependent
