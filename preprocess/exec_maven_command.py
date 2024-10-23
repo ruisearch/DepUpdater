@@ -77,4 +77,4 @@ def mvn_verbose_dependency_tree(path_to_folder:str, relative_path_to_module:str)
     with open(tree_file, 'w', encoding='utf-8') as f:
         f.write(f'{result.stdout}')
     print("dependency tree is generated successfully")
-    return tree_file
+    return tree_file, result.returncode
