@@ -57,17 +57,19 @@ if exit_code != 0:
     exit()
 print("\n****** preprocess.package done! ******\n")
 exit_code = exec_maven_command.mvn_test(path_to_folder, relative_path_to_module)
-original_test_flag = True
 if exit_code != 0:
     print("\n****** module test fails. Please check the project ******\n")
-    original_test_flag = False
+    exit()
 
 # execute mvn dependency:tree to generate dependency tree file in convenience of extracting GAV of dependencies
 # result is in ./data/preprocess/dependency_tree.txt
 print("\n****** get tree ... ******\n")
 # exec_maven_command.mvn_dependency_tree(path_to_folder, relative_path_to_module)
 # tree_file : path to the file containing resulting tree
-tree_file = exec_maven_command.mvn_verbose_dependency_tree(path_to_folder, relative_path_to_module)
+tree_file, exit_code = exec_maven_command.mvn_verbose_dependency_tree(path_to_folder, relative_path_to_module)
+if exit_code != 0:
+    print("\n****** module dependency tree fails. Please check the project ******\n")
+    exit()
 print("\n****** tree got! ******\n")
 # parse dependency_tree.txt to get GAV of client jar and dependencies jar,
 # then download dependencies jar and copy client jar
@@ -96,7 +98,6 @@ with open(lag_csv_path, 'a') as f:
 # print the result of the tool
 print("\n****** result ******\n")
 print('compile success:', compile_flag)
-print('original test pass:', original_test_flag)
 print('test pass:', test_flag)
 print('original technical lag:', original_tech_lag)
 print('current technical lag:', lag.current_lag)
