@@ -2,7 +2,7 @@
 import os
 import sys
 import csv
-
+import argparse
 
 from preprocess import exec_maven_command
 from preprocess.Restore import Restore
@@ -19,13 +19,19 @@ def expand_resolve_abspath(path):
     absolute_path = os.path.abspath(resolved_path)
     return absolute_path
 
+args_parser = argparse.ArgumentParser()
+args_parser.add_argument('-r', '--root', help='the path to the cloned folder')
+args_parser.add_argument('-m', '--module', help='the relative path to the module')
+args_parser.add_argument('-j', '--jar', help='the relative path to the client jar')
+
+args = args_parser.parse_args()
 ## preprocess
 ## input : the path to the cloned folder
 ## output ： client jar/dependencies jar(from dependency tree)
-path_to_folder = expand_resolve_abspath(sys.argv[1])
+path_to_folder = expand_resolve_abspath(args.root)
 path_to_pom = os.path.join(path_to_folder, "pom.xml")
 # only handle the module in relative_path_to_module;'.' means the pom of the module is just at the root directory of project
-relative_path_to_module = sys.argv[2]
+relative_path_to_module = args.module
 # set path to log file and soot empty cases file
 repo_name = os.path.basename(path_to_folder)
 log_path = os.path.join(RET_DIR, repo_name, relative_path_to_module, 'log.txt')
@@ -75,7 +81,7 @@ print("\n****** tree got! ******\n")
 # then download dependencies jar and copy client jar
 print("\n****** restore dependency to graph ... ******\n")
 graph = Restore(path_to_folder, relative_path_to_module, tree_file)
-json_path, original_tech_lag = graph.restore()
+json_path, original_tech_lag = graph.restore(args.jar)
 print("\n****** dependency graph got! ******\n")
 print("\n****** preprocess done! ******\n")
 log_debug('\npreprocess done\n')
