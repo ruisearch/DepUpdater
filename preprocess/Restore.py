@@ -40,15 +40,18 @@ class Restore:
         # Create an empty folder
         os.makedirs(folder_path)
 
-    def restore(self):
-        """main method in this file,restore"""
+    def restore(self, client_jar_path:str):
+        """main method in this file,restore
+        Args:
+            client_jar_path : relative path to client jar
+        """
         # create TREE folder
         self.create_folder(TREE_DIR)
         # parse
         with open(self.tree_path, 'r', encoding='utf-8') as tree:
             dependency_tree = tree.read()
         # parse tree
-        all_deps = self.parse_tree_for_deps(dependency_tree, self.path_to_cloned_folder, self.relative_path_to_module)
+        all_deps = self.parse_tree_for_deps(dependency_tree, self.path_to_cloned_folder, self.relative_path_to_module, client_jar_path)
         # filter the deps into valid_deps and omitted_deps
         valid_deps, omitted_deps = self.filter_dep(all_deps)
         # parse the dep in valid_deps and omitted_deps to get jar and version.json
@@ -111,7 +114,7 @@ class Restore:
             log_debug(f"Failed to download {artifact_id}-{version}.jar from central repository; Reason: {str(e)}")
             return False
 
-    def parse_tree_for_deps(self, dependency_tree:str, path_to_cloned_folder:str, relative_path_to_module:str):
+    def parse_tree_for_deps(self, dependency_tree:str, path_to_cloned_folder:str, relative_path_to_module:str, relative_path_to_client_jar:str):
         """parse tree(verbose) to get a list of deps\
             (without information like GAV, just the record as well as the dependents and depth)\n
             create the Jar folder and copy client jar as well
@@ -151,13 +154,18 @@ class Restore:
                 if module == '':
                     # the module pom is at the root of project
                     module = '_'
-                # copy client jar
-                target = os.path.join(path_to_cloned_folder, f"{block.group(1)}target")
-                # normal name follows this format: artifactId-version.jar
-                client_jar = f"{self.client_artifactId}-{self.client_version}.jar"
-                path_to_client_jar_in_repo = os.path.join(target, client_jar)
-                path_to_client_jar_storage = query_to_get_jar_location(self.client_groupId,\
-                    self.client_artifactId, self.client_version)
+                if not relative_path_to_client_jar:
+                    # jar is in target and the name follows this format: artifactId-version.jar
+                    # copy client jar
+                    target = os.path.join(path_to_cloned_folder, f"{block.group(1)}target")
+                    # normal name follows this format: artifactId-version.jar
+                    client_jar = f"{self.client_artifactId}-{self.client_version}.jar"
+                    path_to_client_jar_in_repo = os.path.join(target, client_jar)
+                    path_to_client_jar_storage = query_to_get_jar_location(self.client_groupId,\
+                        self.client_artifactId, self.client_version)
+                else:
+                    # location of client jar is specified
+                    path_to_client_jar_in_repo = os.path.join(path_to_cloned_folder, relative_path_to_client_jar)
                 # store client jar
                 try:
                     shutil.copy(path_to_client_jar_in_repo, path_to_client_jar_storage)
