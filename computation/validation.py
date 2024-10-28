@@ -95,7 +95,7 @@ class Validation:
             version_compatibility[version] = [False, False]
         # recompile the module from the initial version to the newest version of the dependency
         # to get the actual best version(source compatible)
-        num_workers = os.cpu_count()
+        num_workers = os.cpu_count() // 4 * 3
         with concurrent.futures.ThreadPoolExecutor(max_workers=num_workers) as executor:
             # initializing the progress bar of recompilation
             pbar = tqdm(total=len(versions), desc=f'Recompiling versions of {group_id}:{artifact_id}', position=0, leave=True)

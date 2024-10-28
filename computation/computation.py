@@ -79,7 +79,7 @@ class Computation:
         # num_workers = os.cpu_count() // 2
         # num_workers = 2 # memory is limited, so use 2 workers for testing
         # num_workers = 3 # memory is limited, so use 3 workers for testing
-        num_workers = 20
+        num_workers = 40
 
         # clear breaking_reason of all versions except the version not following software debloating
         for version_dict in self.cur_node['Versions']:
