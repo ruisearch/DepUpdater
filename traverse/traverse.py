@@ -151,12 +151,12 @@ class Traverse:
         log_debug("Recompiling the project to validate...")
         # firstly, mvn compile in module folder
         command = f"cd {os.path.join(self.path_to_project_folder, self.relative_path_to_module)} &&\
-            mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true compile"
+            JAVA_HOME=/home/kaixuan/ray/jdk-17.0.12 mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true compile"
         try:
             result = subprocess.run(command, shell=True, text=True, capture_output=True)
             if result.returncode != 0:
                 # second, mvn compile in root folder with -pl -am
-                command = f"cd {self.path_to_project_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true \
+                command = f"cd {self.path_to_project_folder} && JAVA_HOME=/home/kaixuan/ray/jdk-17.0.12 mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true \
                     -Dflatten.skip=true -pl {self.relative_path_to_module} compile -am"
                 result = subprocess.run(command, shell=True, text=True, capture_output=True)
                 if result.returncode != 0:
@@ -198,12 +198,12 @@ class Traverse:
         """test the project finally"""
         print("\nTesting the project to validate...\n")
         # first, mvn test in module folder
-        command = f"cd {os.path.join(self.path_to_project_folder, self.relative_path_to_module)} && mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true test"
+        command = f"cd {os.path.join(self.path_to_project_folder, self.relative_path_to_module)} && JAVA_HOME=/home/kaixuan/ray/jdk-17.0.12 mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true test"
         try:
             result = subprocess.run(command, shell=True, text=True, capture_output=True)
             if result.returncode != 0:
                 # second, mvn test in root folder with -pl -am
-                command = f"cd {self.path_to_project_folder} && mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -pl {self.relative_path_to_module} -am test"
+                command = f"cd {self.path_to_project_folder} && JAVA_HOME=/home/kaixuan/ray/jdk-17.0.12 mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -pl {self.relative_path_to_module} -am test"
                 result = subprocess.run(command, shell=True, text=True, capture_output=True)
                 if result.returncode != 0:
                     # test fails

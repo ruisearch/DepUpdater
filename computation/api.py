@@ -35,7 +35,7 @@ class Api:
         # can_download = Restore.get_dep_jar(self.groupId, self.artifactId, self.version)
         if self.can_download:
             # run sootCG
-            command = f"java -jar {SOOTCG_PATH} {self.jar_path}"
+            command = f"/home/kaixuan/ray/jdk-17.0.12/bin/java -jar {SOOTCG_PATH} {self.jar_path}"
             result = subprocess.run(command, shell=True, text=True, capture_output=True)
             cg = result.stdout
             store_call_graph(self.groupId, self.artifactId, self.version, cg)
@@ -62,7 +62,7 @@ class Api:
                     self.store_empty_cases('type_dg')
                 return type_dg
             # run soot_Type_DG
-            command = f"java -jar {SOOT_TYPE_DG_PATH} {self.jar_path}"
+            command = f"/home/kaixuan/ray/jdk-17.0.12/bin/java -jar {SOOT_TYPE_DG_PATH} {self.jar_path}"
             result = subprocess.run(command, shell=True, text=True, capture_output=True)
             type_dg = result.stdout
             store_type_dependency_graph(self.groupId, self.artifactId, self.version, type_dg)
@@ -91,7 +91,7 @@ class Api:
                     return set(), False
                 return self.split_text(methods), True
             # run BCELgetMethod
-            command = f"java -jar {BCEL_METHOD_PATH} {self.jar_path}"
+            command = f"/home/kaixuan/ray/jdk-17.0.12/bin/java -jar {BCEL_METHOD_PATH} {self.jar_path}"
             result = subprocess.run(command, shell=True, text=True, capture_output=True)
             methods = result.stdout
             store_methods(self.groupId, self.artifactId, self.version, methods)
@@ -111,7 +111,7 @@ class Api:
                     return set(), False
                 return self.split_text(types), True
             # run BCELgetType
-            command = f"java -jar {BCEL_TYPE_PATH} {self.jar_path}"
+            command = f"/home/kaixuan/ray/jdk-17.0.12/bin/java -jar {BCEL_TYPE_PATH} {self.jar_path}"
             result = subprocess.run(command, shell=True, text=True, capture_output=True)
             types = result.stdout
             store_types(self.groupId, self.artifactId, self.version, types)
