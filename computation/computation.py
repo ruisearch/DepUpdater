@@ -77,8 +77,9 @@ class Computation:
         # I'll compute all versions, finally choose the newest compatible version
         
         # num_workers = os.cpu_count() // 2
-        num_workers = 2 # memory is limited, so use 2 workers for testing
+        # num_workers = 2 # memory is limited, so use 2 workers for testing
         # num_workers = 3 # memory is limited, so use 3 workers for testing
+        num_workers = 20
 
         # clear breaking_reason of all versions except the version not following software debloating
         for version_dict in self.cur_node['Versions']:
