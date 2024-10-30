@@ -2,7 +2,7 @@ import subprocess
 import os
 import logging
 import re
-import csv
+import pandas as pd
 from tqdm import tqdm
 from constants import DATA_DIR, RET_DIR
 
@@ -13,31 +13,39 @@ def main():
     # clear log
     if os.path.exists(log_path):
         os.remove(log_path)
-    # clear csv
-    csv_path = os.path.join(DATA_DIR, 'dataset.csv')
-    if os.path.exists(csv_path):
-        os.remove(csv_path)
-    # add head
-    with open(csv_path,'a') as f:
-        writer = csv.writer(f)
-        writer.writerow(['repo','module','compile success','test pass','original tech lag','current tech lag','reduced tech lag'])
     # set log
     logging.basicConfig(filename=log_path,level=logging.INFO,format='%(asctime)s - %(message)s')
+
+    csv_path = os.path.join(DATA_DIR, 'dataset.csv')
+    # Create or load CSV file
+    if os.path.exists(csv_path):
+        dataset_df = pd.read_csv(csv_path)
+    else:
+        # Create a DataFrame with the header if the CSV does not exist
+        dataset_df = pd.DataFrame(columns=['repo', 'module', 'compile success', 'test pass',
+                                           'original tech lag', 'current tech lag', 'reduced tech lag'])
+        dataset_df.to_csv(csv_path, index=False)
+    
     # set module
     modules = dataset()
+
     with tqdm(total=len(modules)) as pbar:
         for module in modules:
             print(module)
-            result = execute_tool(module)
-            repo_name = os.path.basename(module[0])
-            if result.returncode != 0:
-                logging.info(f"{repo_name} : {module[1]} crashes")
-                store_ret_in_csv(repo_name, module[1], result.stdout)
+            repo_name, module_name = module[0], module[1]
+             # Check if this module has already been processed
+            if ((dataset_df['repo'] == repo_name) & (dataset_df['module'] == module_name)).any():
                 pbar.update(1)
                 continue
-            logging.info(f"{repo_name} : {module[1]} done")
-            repo_name = os.path.basename(module[0])
-            store_ret_in_csv(repo_name, module[1], result.stdout)
+
+            result = execute_tool(module)
+            if result.returncode != 0:
+                logging.info(f"{repo_name} : {module_name} crashes")
+                store_ret_in_csv(repo_name, module_name, result.stdout)
+                pbar.update(1)
+                continue
+            logging.info(f"{repo_name} : {module_name} done")
+            store_ret_in_csv(repo_name, module_name, result.stdout)
             pbar.update(1)
 
 def dataset():
@@ -279,10 +287,10 @@ def execute_tool(module: tuple):
     logging.info(f"{module[0]} : {module[1]} start")
     if len(module) == 2:
         # command = f"python3 ./MainProcess.py -r {module[0]} -m {module[1]}"
-        command = f"python3 ./MainProcess.py -r {root_dir} -m {module[1]}"
+        command = f"python3.10 ./MainProcess.py -r {root_dir} -m {module[1]}"
     elif len(module) == 3:
         # command = f"python3 ./MainProcess.py -r {module[0]} -m {module[1]} -j {module[2]}"
-        command = f"python3 ./MainProcess.py -r {root_dir} -m {module[1]} -j {module[2]}"
+        command = f"python3.10 ./MainProcess.py -r {root_dir} -m {module[1]} -j {module[2]}"
     result = subprocess.run(command,shell=True,text=True,\
         stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
     # store_log(repo_name, module[1], result.stdout)
@@ -306,9 +314,11 @@ def store_ret_in_csv(repo_name: str, relative_path_to_module: str, ret:str):
     original_tech_lag = parse_ret(ret,'original technical lag:')
     current_tech_lag = parse_ret(ret,'current technical lag:')
     reduced_tech_lag = parse_ret(ret,'reduced technical lag:')
-    with open(csv_path,'a') as f:
-        writer = csv.writer(f)
-        writer.writerow([repo_name, relative_path_to_module, compile_flag, test_flag, original_tech_lag, current_tech_lag, reduced_tech_lag])
+    new_row = pd.DataFrame([[repo_name, relative_path_to_module, compile_flag, test_flag,
+                         original_tech_lag, current_tech_lag, reduced_tech_lag]],
+                       columns=['repo', 'module', 'compile success', 'test pass',
+                                'original tech lag', 'current tech lag', 'reduced tech lag'])
+    new_row.to_csv(csv_path, mode='a', header=False, index=False)
 
 def parse_ret(ret:str, prefix:str):
     """get ret starts with prefix"""
