@@ -39,8 +39,9 @@ def mvn_test(path_to_folder:str, relative_path_to_module:str):
     if relative_path_to_module == '.':
         command = f"cd {path_to_folder} && JAVA_HOME=/home/kaixuan/ray/jdk-17.0.12 /home/kaixuan/ray/apache-maven-3.9.5/bin/mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true test"
     else :
-        command = f"cd {os.path.join(path_to_folder, relative_path_to_module)} && JAVA_HOME=/home/kaixuan/ray/jdk-17.0.12 /home/kaixuan/ray/apache-maven-3.9.5/bin/mvn -Dcheckstyle.skip=true \
-            -Denforcer.skip=true -Dflatten.skip=true test"
+        command = f"cd {os.path.join(path_to_folder, relative_path_to_module)} && \
+            JAVA_HOME=/home/kaixuan/ray/jdk-17.0.12 /home/kaixuan/ray/apache-maven-3.9.5/bin/mvn -Dcheckstyle.skip=true \
+            -Denforcer.skip=true -Dflatten.skip=true test" 
     print("mvn test...")
     exit_status = os.system(command)
     if exit_status != 0 and relative_path_to_module != '.':

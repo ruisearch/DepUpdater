@@ -7,11 +7,16 @@ dnspython==2.6.1
 idna==3.6
 isort==5.13.2
 lxml==5.1.0
+numpy==2.1.2
+pandas==2.2.3
 pymongo==4.8.0
+python-dateutil==2.9.0.post0
 python-maven==0.0.3
+pytz==2024.2
 requests==2.31.0
 semver==3.0.2
 six==1.16.0
 soupsieve==2.5
 tqdm==4.66.4
+tzdata==2024.2
 urllib3==2.2.1
