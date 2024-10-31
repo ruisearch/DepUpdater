@@ -22,8 +22,8 @@ def main():
         dataset_df = pd.read_csv(csv_path)
     else:
         # Create a DataFrame with the header if the CSV does not exist
-        dataset_df = pd.DataFrame(columns=['repo', 'module', 'compile success', 'test pass',
-                                           'original tech lag', 'current tech lag', 'reduced tech lag'])
+        dataset_df = pd.DataFrame(columns=['repo', 'module', 'compile_success', 'test_pass',
+                                           'original_tech_lag', 'current_tech_lag', 'reduced_tech_lag'])
         dataset_df.to_csv(csv_path, index=False)
     
     # set module
