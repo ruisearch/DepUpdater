@@ -8,7 +8,7 @@ class TechLag:
         """
         self.json_path = json_path
         self.deps = self.extract_deps()
-        self.current_lag = 0
+        self.current_lag = [0,0,0,0,0,0,0,0,0,0,0,0]
         self.compute_current_lag()
 
     def extract_deps(self):
@@ -26,10 +26,16 @@ class TechLag:
     def compute_current_lag(self):
         """compute the current lag of the module"""
         for dep in self.deps:
+            if dep['Depth'] == 0:
+                continue
             all_versions = dep['Versions']
             best_version = dep['Best_Version']
             idx = self.find_idx(all_versions, best_version)
-            self.current_lag += idx
+            self.current_lag[0] += idx
+            if dep['Depth'] <= 10:
+                self.current_lag[dep['Depth']] += idx
+            else:
+                self.current_lag[11] += idx
 
     def find_idx(self, all_versions:list, version:str):
         """find the index of the version in all versions"""

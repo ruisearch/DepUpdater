@@ -284,7 +284,7 @@ class Restore:
         self.prune_graph(mappings)
         # remove the nodes which have been removed
         mappings = [node for node in mappings if node['Dependents'] or node['Depth'] == 0]
-        # get original tech lag
+        # get original tech lag(sum and each depth 1 ~10 and >10)
         original_tech_lag = self.compute_original_tech_lag(mappings)
         # create json
         # stored in data/result/{repo_name}/{relative_path_to_module}/version.json
@@ -352,12 +352,25 @@ class Restore:
                     self.remove_node(node_ga, mappings)
 
     def compute_original_tech_lag(self, deps:list):
-        """compute the original tech lag of the module"""
-        original_tech_lag = 0
+        """compute the original tech lag of the module
+        Returns:
+            original_tech_lag (list): the original tech lag of the module\
+            original_tech_lag[0] is the sum of the original tech lag\
+            original_tech_lag[1] is the original tech lag of depth 1 and so on\
+            original_tech_lag[11] is the original tech lag of depth > 10
+        """
+        original_tech_lag = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         for dep in deps:
+            if dep['Depth'] == 0:
+                # skip the client
+                continue
+            all_versions = get_candidate_versions(dep['GroupId'], dep['ArtifactId'], dep['Original_Version'])
+            original_tech_lag[0] += len(all_versions) - 1
+            if dep['Depth'] <= 10:
+                original_tech_lag[dep['Depth']] += len(all_versions) - 1
+            else:
+                original_tech_lag[11] += len(all_versions) - 1
             if 'Versions' not in dep:
-                all_versions = get_candidate_versions(dep['GroupId'], dep['ArtifactId'], dep['Original_Version'])
-                original_tech_lag += len(all_versions) - 1
                 dep['Versions'] = [{'version': version, 'breaking_reason':[]} for version in all_versions]
         return original_tech_lag
 
