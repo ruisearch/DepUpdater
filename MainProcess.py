@@ -99,12 +99,35 @@ lag = TechLag(json_path)
 lag_csv_path = os.path.join(DATA_DIR, 'lag.csv')
 with open(lag_csv_path, 'a') as f:
     writer = csv.writer(f)
-    writer.writerow([repo_name, relative_path_to_module, original_tech_lag, lag.current_lag, original_tech_lag - lag.current_lag])
+    writer.writerow([repo_name, relative_path_to_module, original_tech_lag[0], lag.current_lag[0], \
+        original_tech_lag[0] - lag.current_lag[0],\
+            original_tech_lag[1] - lag.current_lag[1],\
+                original_tech_lag[2] - lag.current_lag[2],\
+                    original_tech_lag[3] - lag.current_lag[3],\
+                        original_tech_lag[4] - lag.current_lag[4],\
+                            original_tech_lag[5] - lag.current_lag[5],\
+                                original_tech_lag[6] - lag.current_lag[6],\
+                                    original_tech_lag[7] - lag.current_lag[7],\
+                                        original_tech_lag[8] - lag.current_lag[8],\
+                                            original_tech_lag[9] - lag.current_lag[9],\
+                                                original_tech_lag[10] - lag.current_lag[10],\
+                                                    original_tech_lag[11] - lag.current_lag[11]])
 
 # print the result of the tool
 print("\n****** result ******\n")
 print('compile success:', compile_flag)
 print('test pass:', test_flag)
-print('original technical lag:', original_tech_lag)
-print('current technical lag:', lag.current_lag)
-print('reduced technical lag:', original_tech_lag - lag.current_lag)
+print('original technical lag:', original_tech_lag[0])
+print('current technical lag:', lag.current_lag[0])
+print('reduced technical lag:', original_tech_lag[0] - lag.current_lag[0])
+print('reduced technical lag in depth 1:', original_tech_lag[1] - lag.current_lag[1])
+print('reduced technical lag in depth 2:', original_tech_lag[2] - lag.current_lag[2])
+print('reduced technical lag in depth 3:', original_tech_lag[3] - lag.current_lag[3])
+print('reduced technical lag in depth 4:', original_tech_lag[4] - lag.current_lag[4])
+print('reduced technical lag in depth 5:', original_tech_lag[5] - lag.current_lag[5])
+print('reduced technical lag in depth 6:', original_tech_lag[6] - lag.current_lag[6])
+print('reduced technical lag in depth 7:', original_tech_lag[7] - lag.current_lag[7])
+print('reduced technical lag in depth 8:', original_tech_lag[8] - lag.current_lag[8])
+print('reduced technical lag in depth 9:', original_tech_lag[9] - lag.current_lag[9])
+print('reduced technical lag in depth 10:', original_tech_lag[10] - lag.current_lag[10])
+print('reduced technical lag in depth >10:', original_tech_lag[11] - lag.current_lag[11])
