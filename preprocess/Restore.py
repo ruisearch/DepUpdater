@@ -111,7 +111,7 @@ class Restore:
                     return True
         except Exception as e:
             print(f"Failed to download {artifact_id}-{version}.jar from central repository; Reason: {str(e)}")
-            log_debug(f"Failed to download {artifact_id}-{version}.jar from central repository; Reason: {str(e)}")
+            # log_debug(f"Failed to download {artifact_id}-{version}.jar from central repository; Reason: {str(e)}")
             return False
 
     def parse_tree_for_deps(self, dependency_tree:str, path_to_cloned_folder:str, relative_path_to_module:str, relative_path_to_client_jar:str):
@@ -300,14 +300,14 @@ class Restore:
     def prune_graph(self, mappings:list):
         """prune the graph: remove the dependencies aren't compile or runtime and local module"""
         print('\n****** prune graph ... ******\n')
-        log_debug('prune graph')
+        # log_debug('prune graph')
         # remove the dependencies aren't compile or runtime
         for node in mappings:
             if not node['Dependents']:
                 # client or node has been removed
                 continue
             if node['Type'] not in ['compile', 'runtime']:
-                log_debug(f'{node["GroupId"]}:{node["ArtifactId"]} is not compile or runtime, so remove it')
+                # log_debug(f'{node["GroupId"]}:{node["ArtifactId"]} is not compile or runtime, so remove it')
                 self.remove_node(node['GroupId']+':'+node['ArtifactId'], mappings)
         # download the jar of the nodes in the graph and remove the local module
         for node in mappings:
@@ -317,7 +317,7 @@ class Restore:
             flag = self.get_dep_jar(node['GroupId'], node['ArtifactId'], node['Original_Version'])
             if not flag:
                 # the node is a local module
-                log_debug(f'{node["GroupId"]}:{node["ArtifactId"]} is a local module, so remove it')
+                # log_debug(f'{node["GroupId"]}:{node["ArtifactId"]} is a local module, so remove it')
                 self.remove_node(node['GroupId']+':'+node['ArtifactId'], mappings)
 
     # remove a node from the graph
@@ -328,7 +328,7 @@ class Restore:
             which should be removed from the graph
             mappings: list of dict representing the dependency graph
         """
-        log_debug(f'{ga} removed')
+        # log_debug(f'{ga} removed')
         # handle the dependencies of ga first
         for node in mappings:
             if node['GroupId']+':'+node['ArtifactId'] == ga:
