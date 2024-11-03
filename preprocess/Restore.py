@@ -55,8 +55,8 @@ class Restore:
         # filter the deps into valid_deps and omitted_deps
         valid_deps, omitted_deps = self.filter_dep(all_deps)
         # parse the dep in valid_deps and omitted_deps to get jar and version.json
-        json_path, original_tech_lag = self.parse_for_jar_and_json(valid_deps, omitted_deps)
-        return json_path, original_tech_lag
+        json_path, original_json_path, original_tech_lag = self.parse_for_jar_and_json(valid_deps, omitted_deps)
+        return json_path, original_json_path, original_tech_lag
 
     def filter_dep(self, all_deps:list):
         """filter the deps into valid_deps and omitted_deps"""
@@ -111,7 +111,7 @@ class Restore:
                     return True
         except Exception as e:
             print(f"Failed to download {artifact_id}-{version}.jar from central repository; Reason: {str(e)}")
-            # log_debug(f"Failed to download {artifact_id}-{version}.jar from central repository; Reason: {str(e)}")
+            log_debug(f"Failed to download {artifact_id}-{version}.jar from central repository; Reason: {str(e)}")
             return False
 
     def parse_tree_for_deps(self, dependency_tree:str, path_to_cloned_folder:str, relative_path_to_module:str, relative_path_to_client_jar:str):
@@ -294,20 +294,24 @@ class Restore:
         json_path = os.path.join(json_folder, 'version.json')
         with open(json_path, 'w', encoding='utf-8') as json_file:
             json.dump(mappings, json_file, indent=4)
-        return json_path, original_tech_lag
+        # store the original mapping in original_version.json
+        original_json_path = os.path.join(json_folder, 'original_version.json')
+        with open(original_json_path, 'w', encoding='utf-8') as original_json_file:
+            json.dump(mappings, original_json_file, indent=4)
+        return json_path, original_json_path, original_tech_lag
 
     # remove the dependencies aren't compile or runtime and local module
     def prune_graph(self, mappings:list):
         """prune the graph: remove the dependencies aren't compile or runtime and local module"""
         print('\n****** prune graph ... ******\n')
-        # log_debug('prune graph')
+        log_debug('prune graph')
         # remove the dependencies aren't compile or runtime
         for node in mappings:
             if not node['Dependents']:
                 # client or node has been removed
                 continue
             if node['Type'] not in ['compile', 'runtime']:
-                # log_debug(f'{node["GroupId"]}:{node["ArtifactId"]} is not compile or runtime, so remove it')
+                log_debug(f'{node["GroupId"]}:{node["ArtifactId"]} is not compile or runtime, so remove it')
                 self.remove_node(node['GroupId']+':'+node['ArtifactId'], mappings)
         # download the jar of the nodes in the graph and remove the local module
         for node in mappings:
@@ -317,7 +321,7 @@ class Restore:
             flag = self.get_dep_jar(node['GroupId'], node['ArtifactId'], node['Original_Version'])
             if not flag:
                 # the node is a local module
-                # log_debug(f'{node["GroupId"]}:{node["ArtifactId"]} is a local module, so remove it')
+                log_debug(f'{node["GroupId"]}:{node["ArtifactId"]} is a local module, so remove it')
                 self.remove_node(node['GroupId']+':'+node['ArtifactId'], mappings)
 
     # remove a node from the graph
@@ -328,7 +332,7 @@ class Restore:
             which should be removed from the graph
             mappings: list of dict representing the dependency graph
         """
-        # log_debug(f'{ga} removed')
+        log_debug(f'{ga} removed')
         # handle the dependencies of ga first
         for node in mappings:
             if node['GroupId']+':'+node['ArtifactId'] == ga:

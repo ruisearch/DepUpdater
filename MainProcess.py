@@ -9,6 +9,7 @@ from preprocess.Restore import Restore
 from traverse.traverse import Traverse
 from constants import set_log_path, set_soot_empty_cases_csv, RET_DIR, DATA_DIR
 from evaluation.tech_lag import TechLag
+from evaluation.dep_count import count_deps
 from logger.logger import log_debug
 
 
@@ -81,7 +82,7 @@ print("\n****** tree got! ******\n")
 # then download dependencies jar and copy client jar
 print("\n****** restore dependency to graph ... ******\n")
 graph = Restore(path_to_folder, relative_path_to_module, tree_file)
-json_path, original_tech_lag = graph.restore(args.jar)
+json_path, original_json_path, original_tech_lag = graph.restore(args.jar)
 print("\n****** dependency graph got! ******\n")
 print("\n****** preprocess done! ******\n")
 log_debug('\npreprocess done\n')
@@ -100,19 +101,22 @@ lag_csv_path = os.path.join(DATA_DIR, 'lag.csv')
 with open(lag_csv_path, 'a') as f:
     writer = csv.writer(f)
     writer.writerow([repo_name, relative_path_to_module, original_tech_lag[0], lag.current_lag[0], \
-        original_tech_lag[0] - lag.current_lag[0],\
-            original_tech_lag[1] - lag.current_lag[1],\
-                original_tech_lag[2] - lag.current_lag[2],\
-                    original_tech_lag[3] - lag.current_lag[3],\
-                        original_tech_lag[4] - lag.current_lag[4],\
-                            original_tech_lag[5] - lag.current_lag[5],\
-                                original_tech_lag[6] - lag.current_lag[6],\
-                                    original_tech_lag[7] - lag.current_lag[7],\
-                                        original_tech_lag[8] - lag.current_lag[8],\
-                                            original_tech_lag[9] - lag.current_lag[9],\
-                                                original_tech_lag[10] - lag.current_lag[10],\
-                                                    original_tech_lag[11] - lag.current_lag[11]])
+        original_tech_lag[0] - lag.current_lag[0]])
+            # original_tech_lag[1] - lag.current_lag[1],\
+            #     original_tech_lag[2] - lag.current_lag[2],\
+            #         original_tech_lag[3] - lag.current_lag[3],\
+            #             original_tech_lag[4] - lag.current_lag[4],\
+            #                 original_tech_lag[5] - lag.current_lag[5],\
+            #                     original_tech_lag[6] - lag.current_lag[6],\
+            #                         original_tech_lag[7] - lag.current_lag[7],\
+            #                             original_tech_lag[8] - lag.current_lag[8],\
+            #                                 original_tech_lag[9] - lag.current_lag[9],\
+            #                                     original_tech_lag[10] - lag.current_lag[10],\
+            #                                         original_tech_lag[11] - lag.current_lag[11]])
 
+# count the number of dependencies before and after update
+original_dep_count = count_deps(original_json_path)
+current_dep_count = count_deps(json_path)
 # print the result of the tool
 print("\n****** result ******\n")
 print('compile success:', compile_flag)
@@ -120,14 +124,16 @@ print('test pass:', test_flag)
 print('original technical lag:', original_tech_lag[0])
 print('current technical lag:', lag.current_lag[0])
 print('reduced technical lag:', original_tech_lag[0] - lag.current_lag[0])
-print('reduced technical lag in depth 1:', original_tech_lag[1] - lag.current_lag[1])
-print('reduced technical lag in depth 2:', original_tech_lag[2] - lag.current_lag[2])
-print('reduced technical lag in depth 3:', original_tech_lag[3] - lag.current_lag[3])
-print('reduced technical lag in depth 4:', original_tech_lag[4] - lag.current_lag[4])
-print('reduced technical lag in depth 5:', original_tech_lag[5] - lag.current_lag[5])
-print('reduced technical lag in depth 6:', original_tech_lag[6] - lag.current_lag[6])
-print('reduced technical lag in depth 7:', original_tech_lag[7] - lag.current_lag[7])
-print('reduced technical lag in depth 8:', original_tech_lag[8] - lag.current_lag[8])
-print('reduced technical lag in depth 9:', original_tech_lag[9] - lag.current_lag[9])
-print('reduced technical lag in depth 10:', original_tech_lag[10] - lag.current_lag[10])
-print('reduced technical lag in depth >10:', original_tech_lag[11] - lag.current_lag[11])
+print('original dependency count:', original_dep_count)
+print('current dependency count:', current_dep_count)
+# print('reduced technical lag in depth 1:', original_tech_lag[1] - lag.current_lag[1])
+# print('reduced technical lag in depth 2:', original_tech_lag[2] - lag.current_lag[2])
+# print('reduced technical lag in depth 3:', original_tech_lag[3] - lag.current_lag[3])
+# print('reduced technical lag in depth 4:', original_tech_lag[4] - lag.current_lag[4])
+# print('reduced technical lag in depth 5:', original_tech_lag[5] - lag.current_lag[5])
+# print('reduced technical lag in depth 6:', original_tech_lag[6] - lag.current_lag[6])
+# print('reduced technical lag in depth 7:', original_tech_lag[7] - lag.current_lag[7])
+# print('reduced technical lag in depth 8:', original_tech_lag[8] - lag.current_lag[8])
+# print('reduced technical lag in depth 9:', original_tech_lag[9] - lag.current_lag[9])
+# print('reduced technical lag in depth 10:', original_tech_lag[10] - lag.current_lag[10])
+# print('reduced technical lag in depth >10:', original_tech_lag[11] - lag.current_lag[11])
