@@ -19,12 +19,16 @@ def calculate_new_columns(row):
     # 计算升级后每层的tech lag
     json_path = os.path.join(DATA_DIR, 'result', row['repo'], row['module'], 'version.json')
     current_depth_tech_lag = compute_current_depth_tech_lag(json_path)
-    return pd.Series([original_depth_tech_lag[0]-current_depth_tech_lag[0], original_depth_tech_lag[1]-current_depth_tech_lag[1], \
-        original_depth_tech_lag[2]-current_depth_tech_lag[2], original_depth_tech_lag[3]-current_depth_tech_lag[3],\
-            original_depth_tech_lag[4]-current_depth_tech_lag[4], original_depth_tech_lag[5]-current_depth_tech_lag[5], \
-                original_depth_tech_lag[6]-current_depth_tech_lag[6], original_depth_tech_lag[7]-current_depth_tech_lag[7], \
-                    original_depth_tech_lag[8]-current_depth_tech_lag[8], original_depth_tech_lag[9]-current_depth_tech_lag[9],\
-                        original_depth_tech_lag[10]-current_depth_tech_lag[10]])
+    
+    # too lengthy, need to refactor this. @Ray
+    # return pd.Series([original_depth_tech_lag[1]-current_depth_tech_lag[1], \
+    #     original_depth_tech_lag[2]-current_depth_tech_lag[2], original_depth_tech_lag[3]-current_depth_tech_lag[3],\
+    #         original_depth_tech_lag[4]-current_depth_tech_lag[4], original_depth_tech_lag[5]-current_depth_tech_lag[5], \
+    #             original_depth_tech_lag[6]-current_depth_tech_lag[6], original_depth_tech_lag[7]-current_depth_tech_lag[7], \
+    #                 original_depth_tech_lag[8]-current_depth_tech_lag[8], original_depth_tech_lag[9]-current_depth_tech_lag[9],\
+    #                     original_depth_tech_lag[10]-current_depth_tech_lag[10]], \
+    #                         original_depth_tech_lag[11]-current_depth_tech_lag[11])
+    return pd.Series([original_depth_tech_lag[i]-current_depth_tech_lag[i] for i in range(1, 12)])
 
 # 计算升级前每一层的tech lag
 def compute_original_depth_tech_lag(tree_path:str, path_to_cloned_folder:str, relative_path_to_module:str):
