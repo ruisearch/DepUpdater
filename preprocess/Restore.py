@@ -255,6 +255,10 @@ class Restore:
         
         Args:
             module_folder : path to data/Jar/{module_name}
+        Returns:
+            json_path : path to the version.json
+            original_json_path : path to the original_version.json(graph before updating)
+            original_tech_lag : the original tech lag of the module
         """
         # change the valid_deps
         self.change_valid_deps(valid_deps)

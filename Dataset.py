@@ -1,3 +1,4 @@
+"""script to run the tool on the dataset in one run"""
 import subprocess
 import os
 import logging
