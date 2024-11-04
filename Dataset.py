@@ -24,7 +24,8 @@ def main():
     else:
         # Create a DataFrame with the header if the CSV does not exist
         dataset_df = pd.DataFrame(columns=['repo', 'module', 'compile_success', 'test_pass',
-                                           'original_tech_lag', 'current_tech_lag', 'reduced_tech_lag'])
+                                           'original_tech_lag', 'current_tech_lag', 'reduced_tech_lag', \
+                                               'original_dep_count', 'current_dep_count', 'reduced_dep_count'])
         dataset_df.to_csv(csv_path, index=False)
     
     # set module
@@ -315,29 +316,34 @@ def store_ret_in_csv(repo_name: str, relative_path_to_module: str, ret:str):
     original_tech_lag = parse_ret(ret,'original technical lag:')
     current_tech_lag = parse_ret(ret,'current technical lag:')
     reduced_tech_lag = parse_ret(ret,'reduced technical lag:')
-    depth_1_tech_lag = parse_ret(ret,'reduced technical lag in depth 1:')
-    depth_2_tech_lag = parse_ret(ret,'reduced technical lag in depth 2:')
-    depth_3_tech_lag = parse_ret(ret,'reduced technical lag in depth 3:')
-    depth_4_tech_lag = parse_ret(ret,'reduced technical lag in depth 4:')
-    depth_5_tech_lag = parse_ret(ret,'reduced technical lag in depth 5:')
-    depth_6_tech_lag = parse_ret(ret,'reduced technical lag in depth 6:')
-    depth_7_tech_lag = parse_ret(ret,'reduced technical lag in depth 7:')
-    depth_8_tech_lag = parse_ret(ret,'reduced technical lag in depth 8:')
-    depth_9_tech_lag = parse_ret(ret,'reduced technical lag in depth 9:')
-    depth_10_tech_lag = parse_ret(ret,'reduced technical lag in depth 10:')
-    depth_more_tech_lag = parse_ret(ret,'reduced technical lag in depth >10:')
+    original_dep_count = parse_ret(ret,'original dependency count:')
+    current_dep_count = parse_ret(ret,'current dependency count:')
+    reduced_dep_count = parse_ret(ret,'reduced dependency count:')
+    # depth_1_tech_lag = parse_ret(ret,'reduced technical lag in depth 1:')
+    # depth_2_tech_lag = parse_ret(ret,'reduced technical lag in depth 2:')
+    # depth_3_tech_lag = parse_ret(ret,'reduced technical lag in depth 3:')
+    # depth_4_tech_lag = parse_ret(ret,'reduced technical lag in depth 4:')
+    # depth_5_tech_lag = parse_ret(ret,'reduced technical lag in depth 5:')
+    # depth_6_tech_lag = parse_ret(ret,'reduced technical lag in depth 6:')
+    # depth_7_tech_lag = parse_ret(ret,'reduced technical lag in depth 7:')
+    # depth_8_tech_lag = parse_ret(ret,'reduced technical lag in depth 8:')
+    # depth_9_tech_lag = parse_ret(ret,'reduced technical lag in depth 9:')
+    # depth_10_tech_lag = parse_ret(ret,'reduced technical lag in depth 10:')
+    # depth_more_tech_lag = parse_ret(ret,'reduced technical lag in depth >10:')
     new_row = pd.DataFrame([[repo_name, relative_path_to_module, compile_flag, test_flag,
                          original_tech_lag, current_tech_lag, reduced_tech_lag,\
-                             depth_1_tech_lag, depth_2_tech_lag, depth_3_tech_lag,\
-                                 depth_4_tech_lag, depth_5_tech_lag, depth_6_tech_lag,\
-                                     depth_7_tech_lag, depth_8_tech_lag, depth_9_tech_lag,\
-                                         depth_10_tech_lag, depth_more_tech_lag]],\
+                            #  depth_1_tech_lag, depth_2_tech_lag, depth_3_tech_lag,\
+                            #      depth_4_tech_lag, depth_5_tech_lag, depth_6_tech_lag,\
+                            #          depth_7_tech_lag, depth_8_tech_lag, depth_9_tech_lag,\
+                            #              depth_10_tech_lag, depth_more_tech_lag,\
+                                             original_dep_count, current_dep_count, reduced_dep_count]],\
                        columns=['repo', 'module', 'compile_success', 'test_pass',
                                 'original_tech_lag', 'current_tech_lag', 'reduced_tech_lag',\
-                                    '1_depth_reduction', '2_depth_reduction', '3_depth_reduction',\
-                                        '4_depth_reduction', '5_depth_reduction', '6_depth_reduction',\
-                                            '7_depth_reduction', '8_depth_reduction', '9_depth_reduction',\
-                                                '10_depth_reduction', 'more_than_10_depth_reduction'])
+                                    # '1_depth_reduction', '2_depth_reduction', '3_depth_reduction',\
+                                    #     '4_depth_reduction', '5_depth_reduction', '6_depth_reduction',\
+                                    #         '7_depth_reduction', '8_depth_reduction', '9_depth_reduction',\
+                                    #             '10_depth_reduction', 'more_than_10_depth_reduction',\
+                                        'original_dep_count', 'current_dep_count', 'reduced_dep_count'])
     new_row.to_csv(csv_path, mode='a', header=False, index=False)
 
 def parse_ret(ret:str, prefix:str):
