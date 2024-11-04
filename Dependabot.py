@@ -50,7 +50,7 @@ def main():
 
             logging.info(f"processing {repo_name} : {module_name}")
             row_value = evaluate_dependabot(module)
-            row_df = pd.DataFrame(row_value, columns=['repo', 'module', 'compile_success', 'test_pass',
+            row_df = pd.DataFrame([row_value], columns=['repo', 'module', 'compile_success', 'test_pass',\
                                                     'original_tech_lag', 'current_tech_lag', 'reduced_tech_lag', \
                                                         'original_dep_count', 'current_dep_count', 'reduced_dep_count'])
             row_df.to_csv(csv_path, mode='a', header=False, index=False)
@@ -103,10 +103,10 @@ def evaluate_dependabot(module):
     json_path = tree_to_json(tree_path, os.path.join('/home/kaixuan/ray/SRC_dataset/', repo_name), module_name)
     if not json_path:
         # cann't generate dependency graph
-        return [repo_name, module_name, compile_flag, test_flag, int(original_tech_lag), '?', '?', int(original_dep_count), '?', '?']
+        return [repo_name, module_name, compile_flag, test_flag, int(original_tech_lag[0]), '?', '?', int(original_dep_count), '?', '?']
     current_tech_lag = TechLag(json_path).current_lag
     current_dep_count = count_deps(json_path)
-    return [repo_name, module_name, compile_flag, test_flag, int(original_tech_lag), int(current_tech_lag), int(original_tech_lag-current_tech_lag), int(original_dep_count), int(current_dep_count), int(original_dep_count-current_dep_count)]
+    return [repo_name, module_name, compile_flag, test_flag, int(original_tech_lag[0]), int(current_tech_lag[0]), int(original_tech_lag[0]-current_tech_lag[0]), int(original_dep_count), int(current_dep_count), int(original_dep_count-current_dep_count)]
 
 
 def recompile(repo_name, module_path):
