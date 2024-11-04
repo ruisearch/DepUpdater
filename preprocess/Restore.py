@@ -359,7 +359,8 @@ class Restore:
                     # if the node has no dependents now, remove the node from the graph
                     self.remove_node(node_ga, mappings)
 
-    def compute_original_tech_lag(self, deps:list):
+    @staticmethod
+    def compute_original_tech_lag(deps:list):
         """compute the original tech lag of the module
         Returns:
             original_tech_lag (list): the original tech lag of the module\

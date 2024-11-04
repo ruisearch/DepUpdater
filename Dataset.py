@@ -27,7 +27,7 @@ def main():
                                            'original_tech_lag', 'current_tech_lag', 'reduced_tech_lag', \
                                                'original_dep_count', 'current_dep_count', 'reduced_dep_count'])
         dataset_df.to_csv(csv_path, index=False)
-    
+
     # set module
     modules = dataset()
 
