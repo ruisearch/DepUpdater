@@ -77,7 +77,7 @@ def compute_original_depth_tech_lag(tree_path:str, path_to_cloned_folder:str, re
     res.process_omitted_deps(valid_deps, omitted_deps, mappings)
     res.prune_graph(mappings)
     mappings = [node for node in mappings if node['Dependents'] or node['Depth'] == 0]
-    # get original tech lag(sum and each depth 1 ~10 and >10)
+    # get original tech lag(sum and each depth 1 ~ 10 and >10)
     original_tech_lag = res.compute_original_tech_lag(mappings)
     return original_tech_lag
 

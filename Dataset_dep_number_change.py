@@ -73,7 +73,9 @@ def compute_original_dep_number(tree_path:str, path_to_cloned_folder:str, relati
     # mappings is the original dependency graph
     mappings = [node for node in mappings if node['Dependents'] or node['Depth'] == 0]
     # write mappings to original_version.json
-    original_json_path = os.path.join(RET_DIR, os.path.base(path_to_cloned_folder), relative_path_to_module, 'original_version.json')
+    original_json_path = os.path.join(RET_DIR, os.path.basename(path_to_cloned_folder), relative_path_to_module, 'original_version.json')
+    if not os.path.exists(os.path.dirname(original_json_path)):
+        os.makedirs(os.path.dirname(original_json_path))
     with open(original_json_path, 'w') as f:
         json.dump(mappings, f, indent=4)
     return count_deps(original_json_path)
