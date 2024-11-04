@@ -3,7 +3,7 @@
 import pandas as pd
 import json
 import os
-from constants import DATA_DIR, TREE_DIR, RET_DIR
+from constants import DATA_DIR, TREE_DIR, RET_DIR, set_log_path
 import concurrent.futures
 from preprocess.Restore import Restore
 import re
@@ -15,9 +15,10 @@ def add_new_columns(row):
     new columns are the dep number change of each module after update and the reduced dep num
     """
     print(f"processing {row['repo']} : {row['module']}")
+    set_log_path(os.path.join(RET_DIR, row['repo'], row['module'], 'dep_number_change.txt'))
     if row['compile_success'] == '?':
         # '?' means the module can not compile before update, so skip such modules
-        return pd.Series(['?', '?'])
+        return pd.Series(['?', '?', '?'])
     repo_path = os.path.join('/home/kaixuan/ray/SRC_dataset/', row['repo'])
     tree_path = os.path.join(TREE_DIR, row['repo'], row['module'], 'verbose_tree.txt')
     # compute the dep number before upgrade
@@ -25,12 +26,17 @@ def add_new_columns(row):
     # compute the dep number after upgrade
     json_path = os.path.join(DATA_DIR, 'result', row['repo'], row['module'], 'version.json')
     current_dep_count = count_deps(json_path)
-    return pd.Series([original_dep_count, current_dep_count, original_dep_count-current_dep_count])
+    reduced_dep_count = int(original_dep_count-current_dep_count)
+    return pd.Series([original_dep_count, current_dep_count, reduced_dep_count])
 
 
 def compute_original_dep_number(tree_path:str, path_to_cloned_folder:str, relative_path_to_module:str):
     """compute the original dependency number"""
     # extract the original dependency graph from verbose_tree.txt
+    original_json_path = os.path.join(RET_DIR, os.path.basename(path_to_cloned_folder), relative_path_to_module, 'original_version.json')
+    if os.path.exists(original_json_path):
+        # json file already exists, directly return the dep number
+        return count_deps(original_json_path)
     with open(tree_path, 'r') as f:
         tree = f.read()
     res = Restore(path_to_cloned_folder, relative_path_to_module, tree_path)
@@ -73,7 +79,6 @@ def compute_original_dep_number(tree_path:str, path_to_cloned_folder:str, relati
     # mappings is the original dependency graph
     mappings = [node for node in mappings if node['Dependents'] or node['Depth'] == 0]
     # write mappings to original_version.json
-    original_json_path = os.path.join(RET_DIR, os.path.basename(path_to_cloned_folder), relative_path_to_module, 'original_version.json')
     if not os.path.exists(os.path.dirname(original_json_path)):
         os.makedirs(os.path.dirname(original_json_path))
     with open(original_json_path, 'w') as f:

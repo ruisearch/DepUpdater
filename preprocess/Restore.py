@@ -88,7 +88,7 @@ class Restore:
                     response.raise_for_status()  # Will raise an HTTPError for bad responses
                     return response
                 except requests.RequestException as e:
-                    print(f"Attempt {attempt + 1} failed for {artifact_id}-{version}.jar: {str(e)}")
+                    # print(f"Attempt {attempt + 1} failed for {artifact_id}-{version}.jar: {str(e)}")
                     time.sleep(backoff_factor * (2 ** attempt))  # Exponential backoff
                     if attempt == retries - 1:
                         raise  # Re-raise the last exception if all retries fail
@@ -110,7 +110,7 @@ class Restore:
                     print(f"{artifact_id}-{version}.jar downloaded successfully.")
                     return True
         except Exception as e:
-            print(f"Failed to download {artifact_id}-{version}.jar from central repository; Reason: {str(e)}")
+            # print(f"Failed to download {artifact_id}-{version}.jar from central repository; Reason: {str(e)}")
             log_debug(f"Failed to download {artifact_id}-{version}.jar from central repository; Reason: {str(e)}")
             return False
 
