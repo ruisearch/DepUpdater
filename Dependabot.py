@@ -30,9 +30,9 @@ def main():
         dataset_df = pd.read_csv(csv_path)
     else:
         # Create a DataFrame with the header if the CSV does not exist
-        dataset_df = pd.DataFrame(columns=['repo', 'module', 'compile_success', 'test_pass',
-                                           'original_tech_lag', 'current_tech_lag', 'reduced_tech_lag', \
-                                               'original_dep_count', 'current_dep_count', 'reduced_dep_count'])
+        dataset_df = pd.DataFrame(columns=['repo', 'module', 'dependabot_compile_success', 'dependabot_test_pass',
+                                           'original_tech_lag', 'dependabot_current_tech_lag', 'dependabot_reduced_tech_lag', \
+                                               'original_dep_count', 'dependabot_current_dep_count', 'dependabot_reduced_dep_count'])
         dataset_df.to_csv(csv_path, index=False)
 
     # set module
