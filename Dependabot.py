@@ -12,7 +12,7 @@ from tqdm import tqdm
 from constants import DATA_DIR, RET_DIR, set_log_path
 from preprocess.Restore import Restore
 from evaluation.dep_count import count_deps
-from evaluation.tech_lag import TechLag
+
 
 
 def main():
@@ -104,7 +104,9 @@ def evaluate_dependabot(module):
     if not json_path:
         # cann't generate dependency graph
         return [repo_name, module_name, compile_flag, test_flag, int(original_tech_lag[0]), '?', '?', int(original_dep_count), '?', '?']
-    current_tech_lag = TechLag(json_path).current_lag
+    with open(json_path, 'r') as f:
+        current_graph = json.load(f)
+    current_tech_lag = Restore.compute_original_tech_lag(current_graph)
     current_dep_count = count_deps(json_path)
     return [repo_name, module_name, compile_flag, test_flag, int(original_tech_lag[0]), int(current_tech_lag[0]), int(original_tech_lag[0]-current_tech_lag[0]), int(original_dep_count), int(current_dep_count), int(original_dep_count-current_dep_count)]
 
