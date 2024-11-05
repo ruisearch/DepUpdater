@@ -86,6 +86,23 @@ json_path, original_json_path, original_tech_lag = graph.restore(args.jar)
 print("\n****** dependency graph got! ******\n")
 print("\n****** preprocess done! ******\n")
 log_debug('\npreprocess done\n')
+# count the number of dependencies before update
+original_dep_count = count_deps(original_json_path)
+
+# if the original tech lag is 0, then the module is already up-to-date
+if original_tech_lag[0] == 0:
+    print("\n ****** The module is already up-to-date ******\n")
+    log_debug('The module is already up-to-date')
+    print("\n****** result ******\n")
+    print('compile success:', True)
+    print('test pass:', True)
+    print('original technical lag:', 0)
+    print('current technical lag:', 0)
+    print('reduced technical lag:', 0)
+    print('original dependency count:', original_dep_count)
+    print('current dependency count:', original_dep_count)
+    print('reduced dependency count:', 0)
+    exit()
 
 # Traverse the dependency graph to compute the newest compatible version of each dependency
 log_debug(f"Start traversing for {repo_name}/{relative_path_to_module}")
@@ -114,8 +131,7 @@ with open(lag_csv_path, 'a') as f:
             #                                     original_tech_lag[10] - lag.current_lag[10],\
             #                                         original_tech_lag[11] - lag.current_lag[11]])
 
-# count the number of dependencies before and after update
-original_dep_count = count_deps(original_json_path)
+# count the number of dependencies after update
 current_dep_count = count_deps(json_path)
 # print the result of the tool
 print("\n****** result ******\n")
