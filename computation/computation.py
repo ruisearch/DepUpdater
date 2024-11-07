@@ -141,7 +141,7 @@ class Computation:
             dependencies = populate_dep(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
             insert_dependencies_into_mongo(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version, dependencies)
         for dependency in dependencies:
-            if dependency['dScope'] == 'compile' or dependency['dScope'] == 'runtime':
+            if dependency['isoptional'] == 'false' and (dependency['dScope'] == 'compile' or dependency['dScope'] == 'runtime'):
                 count += 1
         return count
 
