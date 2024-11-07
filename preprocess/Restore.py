@@ -379,8 +379,9 @@ class Restore:
                 original_tech_lag[dep['Depth']] += len(all_versions) - 1
             else:
                 original_tech_lag[11] += len(all_versions) - 1
-            if 'Versions' not in dep:
-                dep['Versions'] = [{'version': version, 'breaking_reason':[]} for version in all_versions]
+            # note: 'Versions' will be initialized in Computaion.initialize_breaking_reason
+            # if 'Versions' not in dep:
+            #     dep['Versions'] = [{'version': version, 'breaking_reason':[]} for version in all_versions]
         return original_tech_lag
 
     def process_omitted_deps(self, valid_deps:list, omitted_deps:list, mappings:list):
