@@ -52,10 +52,10 @@ class Computation:
             all_versions = [Version['version'] for Version in self.cur_node['Versions']]
         else:
             all_versions = get_candidate_versions(self.cur_node['GroupId'], self.cur_node['ArtifactId'], self.cur_node['Original_Version'])
-            # initialize breaking_reason of all versions(some versions may not be computed as software debloating)
-            self.initialize_breaking_reason(all_versions)
-            # # record the versions in the graph
-            # self.cur_node['Versions'] = [{'version': version, 'breaking_reason':[]} for version in all_versions]
+            
+        # initialize breaking_reason of all versions(some versions may not be computed as software debloating)
+        self.initialize_breaking_reason(all_versions)
+
 
         # get entry points and caller of the dependency
         for dependent in self.cur_node['Dependents']:
@@ -81,10 +81,10 @@ class Computation:
         # num_workers = 3 # memory is limited, so use 3 workers for testing
         num_workers = 60
 
-        # clear breaking_reason of all versions except the version not following software debloating
-        for version_dict in self.cur_node['Versions']:
-            if version_dict['breaking_reason'] != ['software debloating']:
-                version_dict['breaking_reason'] = []
+        # # clear breaking_reason of all versions except the version not following software debloating
+        # for version_dict in self.cur_node['Versions']:
+        #     if version_dict['breaking_reason'] != ['software debloating']:
+        #         version_dict['breaking_reason'] = []
 
         with concurrent.futures.ProcessPoolExecutor(max_workers=num_workers) as executor:
             # initializing the progress bar
@@ -123,16 +123,24 @@ class Computation:
             if version == original_version:
                 self.cur_node['Versions'].append({'version': version, 'breaking_reason':[]})
                 break
-            dep_count = self.count_amount_of_a_version(version)
+            dep_count, dependencies = self.count_amount_of_a_version(version)
             if dep_count > original_dep_count:
-                # not following software debloating
+                # not following software debloating as the number of direct dependencies has exceeded the original number
                 self.cur_node['Versions'].append({'version': version, 'breaking_reason':['software debloating']})
             else:
+                # consider the new dependencies introduced globally first
+                
+                # todo ....
+                
+                
                 self.cur_node['Versions'].append({'version': version, 'breaking_reason':[]})
 
     def count_amount_of_a_version(self, version:str):
         """count the amount of the version in the graph
         just count the compile or runtime dependencies
+        Returns:
+            count (int): number of the actual direct dependencies
+            actual_dependencies (list): list of dicts containing the actual direct dependencies
         """
         count = 0
         dependencies = query_dependencies_from_mongo(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
@@ -140,10 +148,12 @@ class Computation:
             # not in db yet
             dependencies = populate_dep(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
             insert_dependencies_into_mongo(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version, dependencies)
+        actual_dependencies = []
         for dependency in dependencies:
             if dependency['isoptional'] == 'false' and (dependency['dScope'] == 'compile' or dependency['dScope'] == 'runtime'):
                 count += 1
-        return count
+                actual_dependencies.append(dependency)
+        return count, actual_dependencies
 
     @staticmethod
     def check_in_range(version, range):
