@@ -52,7 +52,7 @@ class Computation:
             all_versions = [Version['version'] for Version in self.cur_node['Versions']]
         else:
             all_versions = get_candidate_versions(self.cur_node['GroupId'], self.cur_node['ArtifactId'], self.cur_node['Original_Version'])
-            
+
         # initialize breaking_reason of all versions(some versions may not be computed as software debloating)
         self.initialize_breaking_reason(all_versions)
 
@@ -117,25 +117,96 @@ class Computation:
             all_versions (list) : all versions of the dependency
         """
         self.cur_node['Versions'] = []
-        original_version = self.cur_node['Original_Version']
-        original_dep_count = self.count_amount_of_a_version(original_version)
+        # original_version = self.cur_node['Original_Version']
+        # original_dep_count = self.count_amount_of_a_version(self.cur_node['GroupId'], self.cur_node['ArtifactId'], original_version)
         for version in all_versions:
+            self.cur_node['Versions'].append({'version': version, 'breaking_reason':[]})
+
+        # # consider debloating to filter versions
+        # for version in all_versions:
+        #     if version == original_version:
+        #         self.cur_node['Versions'].append({'version': version, 'breaking_reason':[]})
+        #         break
+        #     dep_count, dependencies = self.count_amount_of_a_version(self.cur_node['GroupId'], \
+        #         self.cur_node['ArtifactId'], version)
+        #     if dep_count > original_dep_count:
+        #         # not following software debloating as the number of direct dependencies has exceeded the original number
+        #         self.cur_node['Versions'].append({'version': version, 'breaking_reason':['software debloating']})
+        #     else:
+        #         # consider the new dependencies introduced globally first
+        #         graph_set = self.graph_to_set()
+        #         new_dict = {}
+        #         for dependency in dependencies:
+        #             gav = dependency['dep']
+        #             g,a,v = gav.split(':',2)
+        #             if f'{g}:{a}' not in graph_set:
+        #                 new_dict[f"{g}:{a}"] = v
+
+        #         self.count_dependencies_recursive(graph_set, new_dict, dep_count)
+        #         if dep_count > original_dep_count:
+        #             self.cur_node['Versions'].append({'version': version, 'breaking_reason':['software debloating']})
+        #         else:
+        #             self.cur_node['Versions'].append({'version': version, 'breaking_reason':[]})
+
+        self.filter_version_by_debloating()
+
+    def filter_version_by_debloating(self):
+        """filter the versions not follow software debloating"""
+        original_version = self.cur_node['Original_Version']
+        original_dep_count = self.count_amount_of_a_version(self.cur_node['GroupId'], self.cur_node['ArtifactId'], original_version)
+        for Version in self.cur_node['Versions']:
+            version = Version['version']
             if version == original_version:
-                self.cur_node['Versions'].append({'version': version, 'breaking_reason':[]})
+                # original_version is the last version
                 break
-            dep_count, dependencies = self.count_amount_of_a_version(version)
+            dep_count, dependencies = self.count_amount_of_a_version(self.cur_node['GroupId'], \
+                self.cur_node['ArtifactId'], version)
             if dep_count > original_dep_count:
                 # not following software debloating as the number of direct dependencies has exceeded the original number
-                self.cur_node['Versions'].append({'version': version, 'breaking_reason':['software debloating']})
+                Version['breaking_reason'] = ['software debloating']
             else:
                 # consider the new dependencies introduced globally first
-                
-                # todo ....
-                
-                
-                self.cur_node['Versions'].append({'version': version, 'breaking_reason':[]})
+                graph_set = self.graph_to_set()
+                new_dict = {}
+                for dependency in dependencies:
+                    gav = dependency['dep']
+                    g,a,v = gav.split(':',2)
+                    if f'{g}:{a}' not in graph_set:
+                        new_dict[f"{g}:{a}"] = v
 
-    def count_amount_of_a_version(self, version:str):
+                self.count_dependencies_recursive(graph_set, new_dict, dep_count)
+                if dep_count > original_dep_count:
+                    Version['breaking_reason'] = ['software debloating']
+
+    def graph_to_set(self):
+        """transform the node in self.graph into g:a set"""
+        graph_set = {}
+        graph_set.update([f"{node['GroupId']}:{node['ArtifactId']}"] for node in self.graph)
+        return graph_set
+
+    def count_dependencies_recursive(self, graph_set:set, new_dict:dict, dep_count:int):
+        """count the new transitive dependencies as well
+        Args:
+            graph_set (set): the g:a set of current graph;
+            new_dict (list): a dict of the new dep and the map is g:a -> v
+            dep_count (int): current total count
+        """
+        for ga, version in new_dict.items():
+            # ga is a new dep will be introduced
+            graph_set.add(ga)
+            dep_count += 1
+            gid, aid = ga.split(':')
+            _ , dependencies = self.count_amount_of_a_version(gid, aid, version)
+            # dependencies is the direct dependencies of ga
+            transitive_new_dict = {}
+            for dependency in dependencies:
+                gav = dependency['dep']
+                g,a,v = gav.split(':',2)
+                if f'{g}:{a}' not in graph_set:
+                    transitive_new_dict[f"{g}:{a}"] = v
+            self.count_dependencies_recursive(graph_set, transitive_new_dict, dep_count)
+
+    def count_amount_of_a_version(self, groupId:str, artifactId:str, version:str):
         """count the amount of the version in the graph
         just count the compile or runtime dependencies
         Returns:
@@ -143,11 +214,11 @@ class Computation:
             actual_dependencies (list): list of dicts containing the actual direct dependencies
         """
         count = 0
-        dependencies = query_dependencies_from_mongo(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
+        dependencies = query_dependencies_from_mongo(groupId, artifactId, version)
         if dependencies is None:
             # not in db yet
-            dependencies = populate_dep(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version)
-            insert_dependencies_into_mongo(self.cur_node['GroupId'], self.cur_node['ArtifactId'], version, dependencies)
+            dependencies = populate_dep(groupId, artifactId, version)
+            insert_dependencies_into_mongo(groupId, artifactId, version, dependencies)
         actual_dependencies = []
         for dependency in dependencies:
             if dependency['isoptional'] == 'false' and (dependency['dScope'] == 'compile' or dependency['dScope'] == 'runtime'):
@@ -562,4 +633,5 @@ if __name__ == '__main__':
     com = Computation(node, [], 'test', 'example1')
     # com.initialize_breaking_reason(['4.1.113.Final','4.1.94.Final'])
     # print(node)
-    print(com.count_amount_of_a_version('4.1.94.Final'), com.count_amount_of_a_version('4.1.113.Final'))
+    print(com.count_amount_of_a_version(node['GroupId'], node['ArtifactId'], '4.1.94.Final'), \
+        com.count_amount_of_a_version(node['GroupId'], node['ArtifactId'], '4.1.113.Final'))

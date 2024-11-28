@@ -10,7 +10,7 @@ import requests
 
 def get_candidate_versions(groupId, artifactId, original_version):
     """main function to get all versions of a dependency to be computed"""
-    # all_versions = fetch_versions(groupId, artifactId)
+    # all_versions are version from new to old
     all_versions = get_versions(groupId, artifactId)
     # the version to be computed are the versions after the original version
     original_version_idx = find_original_version_idx(all_versions, original_version)
@@ -74,7 +74,7 @@ def get_versions(groupId, artifactId):
     # Sort versions using a custom comparison function
     all_versions.sort(key=cmp_to_key(version_comparator))
 
-    # the versions in all_versions have been sortedl
+    # the versions in all_versions have been sorted
     # only return the version string
     all_versions = [version['version'] for version in all_versions]
     return all_versions
