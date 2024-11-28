@@ -173,8 +173,9 @@ class Computation:
                     g,a,v = gav.split(':',2)
                     if f'{g}:{a}' not in graph_set:
                         new_dict[f"{g}:{a}"] = v
-
-                self.count_dependencies_recursive(graph_set, new_dict, dep_count)
+                # minus the new deps as they will be added in count_dependencies_recursive
+                dep_count -= len(new_dict)
+                dep_count = self.count_dependencies_recursive(graph_set, new_dict, dep_count)
                 if dep_count > original_dep_count:
                     Version['breaking_reason'] = ['software debloating']
 
@@ -184,29 +185,46 @@ class Computation:
         graph_set.update([f"{node['GroupId']}:{node['ArtifactId']}"] for node in self.graph)
         return graph_set
 
-    def count_dependencies_recursive(self, graph_set:set, new_dict:dict, dep_count:int):
+    @staticmethod
+    def count_dependencies_recursive(graph_set:set, new_dict:dict, dep_count:int):
         """count the new transitive dependencies as well
         Args:
             graph_set (set): the g:a set of current graph;
             new_dict (list): a dict of the new dep and the map is g:a -> v
             dep_count (int): current total count
         """
+        # # debug
+        # print('--------')
+        # print(new_dict)
+        # print(dep_count)
+        # print('--------')
         for ga, version in new_dict.items():
-            # ga is a new dep will be introduced
-            graph_set.add(ga)
-            dep_count += 1
-            gid, aid = ga.split(':')
-            _ , dependencies = self.count_amount_of_a_version(gid, aid, version)
-            # dependencies is the direct dependencies of ga
-            transitive_new_dict = {}
-            for dependency in dependencies:
-                gav = dependency['dep']
-                g,a,v = gav.split(':',2)
-                if f'{g}:{a}' not in graph_set:
-                    transitive_new_dict[f"{g}:{a}"] = v
-            self.count_dependencies_recursive(graph_set, transitive_new_dict, dep_count)
+            # note: the nodes in new_dict may not be the new node as they may be added in recursive process
+            if ga not in graph_set:
+                # # debug
+                # print(f'{ga}:{version}')
 
-    def count_amount_of_a_version(self, groupId:str, artifactId:str, version:str):
+                # ga is a new dep will be introduced
+                graph_set.add(ga)
+                dep_count += 1
+                gid, aid = ga.split(':')
+                _ , dependencies = Computation.count_amount_of_a_version(gid, aid, version)
+                
+                # # debug
+                # print(dependencies)
+
+                # dependencies is the direct dependencies of ga
+                transitive_new_dict = {}
+                for dependency in dependencies:
+                    gav = dependency['dep']
+                    g,a,v = gav.split(':',2)
+                    if f'{g}:{a}' not in graph_set:
+                        transitive_new_dict[f"{g}:{a}"] = v
+                dep_count = Computation.count_dependencies_recursive(graph_set, transitive_new_dict, dep_count)
+        return dep_count
+
+    @staticmethod
+    def count_amount_of_a_version(groupId:str, artifactId:str, version:str):
         """count the amount of the version in the graph
         just count the compile or runtime dependencies
         Returns:
