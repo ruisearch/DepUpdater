@@ -10,6 +10,7 @@ from traverse.traverse import Traverse
 from constants import set_log_path, set_soot_empty_cases_csv, RET_DIR, DATA_DIR
 from evaluation.tech_lag import TechLag
 from evaluation.dep_count import count_deps
+from preprocess import multiModule
 from logger.logger import log_debug
 
 
@@ -33,6 +34,14 @@ path_to_folder = expand_resolve_abspath(args.root)
 path_to_pom = os.path.join(path_to_folder, "pom.xml")
 # only handle the module in relative_path_to_module;'.' means the pom of the module is just at the root directory of project
 relative_path_to_module = args.module
+
+# get all local module
+local_module_inform = {}
+module_paths = multiModule.get_all_module(path_to_folder)
+for module_path in module_paths:
+    # local_module_inform is a mapping from local module's gav to its relative path
+    local_module_inform.update(multiModule.get_gav(module_path, path_to_folder))
+
 # set path to log file and soot empty cases file
 repo_name = os.path.basename(path_to_folder)
 log_path = os.path.join(RET_DIR, repo_name, relative_path_to_module, 'log.txt')
