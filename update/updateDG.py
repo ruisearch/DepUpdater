@@ -477,6 +477,12 @@ class Update:
     @staticmethod
     def clear_best_version(dep_dict:dict, dependent_ga:str):
         """clear the best version of a dependency unless it is the client"""
-        if dep_dict['Depth'] != 0:
-            log_debug(f"Clear the best version of {dep_dict['GroupId']}:{dep_dict['ArtifactId']} because of {dependent_ga}.")
-            dep_dict['Best_Version'] = ""
+        backtracking_flag = True # set False to disable backtracking in RQ2 - ablation experiments
+        if backtracking_flag:
+            if dep_dict['Depth'] != 0:
+                log_debug(f"Clear the best version of {dep_dict['GroupId']}:{dep_dict['ArtifactId']} because of {dependent_ga}.")
+                dep_dict['Best_Version'] = ""
+        else:
+            # disable backtracking_flag for RQ2 ---> don't clear the best version 
+            # to let dep_dict back to queue for computing again even if it's dependents(context) have changed
+            return

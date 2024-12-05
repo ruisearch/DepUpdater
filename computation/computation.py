@@ -56,52 +56,8 @@ class Computation:
         # initialize breaking_reason of all versions(some versions may not be computed as software debloating)
         self.initialize_breaking_reason(all_versions)
 
-
-        # get entry points and caller of the dependency
-        for dependent in self.cur_node['Dependents']:
-            # handle the version range
-            if '[' in dependent['Define_Version'] or ']' in dependent['Define_Version'] \
-                or '(' in dependent['Define_Version'] or ')' in dependent['Define_Version']:
-                # version range
-                for version in all_versions:
-                    if self.check_in_range(version, dependent['Define_Version']):
-                        dependent['Define_Version'] = version
-                        break
-            self.get_entry_points_and_caller(dependent['GroupId'], dependent['ArtifactId'], dependent['Version'], dependent['Define_Version'])
-
-        # get gav of client
-        client_gav = self.get_client_gav()
-
-        # compute the newest compatible version
-        # use process pool to compute the versions in all_versions in parallel
-        # I'll compute all versions, finally choose the newest compatible version
-        
-        # num_workers = os.cpu_count() // 2
-        # num_workers = 2 # memory is limited, so use 2 workers for testing
-        # num_workers = 3 # memory is limited, so use 3 workers for testing
-        num_workers = 60
-
-        # # clear breaking_reason of all versions except the version not following software debloating
-        # for version_dict in self.cur_node['Versions']:
-        #     if version_dict['breaking_reason'] != ['software debloating']:
-        #         version_dict['breaking_reason'] = []
-
-        with concurrent.futures.ProcessPoolExecutor(max_workers=num_workers) as executor:
-            # initializing the progress bar
-            pbar = tqdm(total=len(all_versions), desc=f"analyze versions of {self.cur_node['GroupId']}:{self.cur_node['ArtifactId']}", position=0, leave=True)
-            # submit the tasks to the executor
-            tasks = {executor.submit(self.version_compatibility_checker, version, client_gav): version for version in all_versions}
-
-            for breaking_reason in concurrent.futures.as_completed(tasks):
-                # update the breaking_reason of the version in self.cur_node['Versions']
-                for version_dict in self.cur_node['Versions']:
-                    if version_dict['version'] == breaking_reason.result()['version']:
-                        # print(f'update breaking_reason of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{version_dict["version"]}')
-                        version_dict['breaking_reason'] = breaking_reason.result()['breaking_reason']
-                        break
-                # update the progress bar
-                pbar.update(1)
-        pbar.close()
+        # method to judge versions' compatibility
+        self.filter_version_by_compatibility(all_versions)
 
         # find the newest compatible version from self.cur_node['Versions']
         best_version = self.get_best_version(self.cur_node['Versions'])
@@ -178,6 +134,54 @@ class Computation:
                 dep_count = self.count_dependencies_recursive(graph_set, new_dict, dep_count)
                 if dep_count > original_dep_count:
                     Version['breaking_reason'] = ['software debloating']
+
+    def filter_version_by_compatibility(self, all_versions:list):
+        """method to judge versions' compatibility"""
+        # get entry points and caller of the dependency
+        for dependent in self.cur_node['Dependents']:
+            # handle the version range
+            if '[' in dependent['Define_Version'] or ']' in dependent['Define_Version'] \
+                or '(' in dependent['Define_Version'] or ')' in dependent['Define_Version']:
+                # version range
+                for version in all_versions:
+                    if self.check_in_range(version, dependent['Define_Version']):
+                        dependent['Define_Version'] = version
+                        break
+            self.get_entry_points_and_caller(dependent['GroupId'], dependent['ArtifactId'], dependent['Version'], dependent['Define_Version'])
+
+        # get gav of client
+        client_gav = self.get_client_gav()
+
+        # compute the newest compatible version
+        # use process pool to compute the versions in all_versions in parallel
+        # I'll compute all versions, finally choose the newest compatible version
+        
+        # num_workers = os.cpu_count() // 2
+        # num_workers = 2 # memory is limited, so use 2 workers for testing
+        # num_workers = 3 # memory is limited, so use 3 workers for testing
+        num_workers = 60
+
+        # # clear breaking_reason of all versions except the version not following software debloating
+        # for version_dict in self.cur_node['Versions']:
+        #     if version_dict['breaking_reason'] != ['software debloating']:
+        #         version_dict['breaking_reason'] = []
+
+        with concurrent.futures.ProcessPoolExecutor(max_workers=num_workers) as executor:
+            # initializing the progress bar
+            pbar = tqdm(total=len(all_versions), desc=f"analyze versions of {self.cur_node['GroupId']}:{self.cur_node['ArtifactId']}", position=0, leave=True)
+            # submit the tasks to the executor
+            tasks = {executor.submit(self.version_compatibility_checker, version, client_gav): version for version in all_versions}
+
+            for breaking_reason in concurrent.futures.as_completed(tasks):
+                # update the breaking_reason of the version in self.cur_node['Versions']
+                for version_dict in self.cur_node['Versions']:
+                    if version_dict['version'] == breaking_reason.result()['version']:
+                        # print(f'update breaking_reason of {self.cur_node["GroupId"]}:{self.cur_node["ArtifactId"]}:{version_dict["version"]}')
+                        version_dict['breaking_reason'] = breaking_reason.result()['breaking_reason']
+                        break
+                # update the progress bar
+                pbar.update(1)
+        pbar.close()
 
     def graph_to_set(self):
         """transform the node in self.graph into g:a set"""
