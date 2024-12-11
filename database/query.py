@@ -12,7 +12,7 @@ def create_folder(folder_path):
         os.makedirs(folder_path)
 
 def query_to_get_jar_location(groupId, artifactId, version):
-    """query artifacts table to find the absolute path to jar\n
+    """query artifacts table to find the absolute path to the downloaded jar\n
     and create folder if not exist"""
     db = Sqlite(SQLITE_PATH)
     db.connect()
@@ -20,6 +20,7 @@ def query_to_get_jar_location(groupId, artifactId, version):
     relative_path = db.query_data('artifacts', 'relative_path',condition)
     if not relative_path:
         # not in artifacts yet, so insert the record
+        # set the jar name in JAR_DIR as the standard format, naming artifactId-versions.jar
         path_to_record = f'{groupId}/{artifactId}/{version}/{artifactId}-{version}.jar'
         db.insert_data('artifacts', {'groupId':groupId, 'artifactId':artifactId, 'version':version, \
             'relative_path': path_to_record})

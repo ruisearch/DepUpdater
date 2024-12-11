@@ -23,7 +23,7 @@ def get_gav(module_path:str, root_dir:str):
         module_path (str): absolute path to a module dir
         root_dir (str): absolute path to root
     Return:
-        inform (dict): {g:a:v --> module_path}
+        inform (dict): {g:a:v --> relative module_path}
     """
     # generate effective-pom
     command = f"cd {module_path} && mvn help:effective-pom -Doutput=effective-pom.xml"

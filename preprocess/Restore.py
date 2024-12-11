@@ -16,12 +16,13 @@ from logger.logger import log_debug
 
 class Restore:
     def __init__(self, path_to_cloned_folder:str, relative_path_to_module:str,\
-        tree_path:str):
+        tree_path:str, local_module_inform:dict):
         """
         Args :
             path_to_cloned_folder : path to cloned folder
             relative_path_to_module : relative path from project root
             tree_path : path to tree file
+            local_module_inform : all local modules' gav --> their relative path
         """
         self.path_to_cloned_folder = path_to_cloned_folder
         self.relative_path_to_module = relative_path_to_module
@@ -29,6 +30,7 @@ class Restore:
         self.client_groupId = None
         self.client_artifactId = None
         self.client_version = None
+        self.local_module_inform = local_module_inform
         self.create_folder(TREE_DIR)
         self.create_folder(JAR_DIR)
 
@@ -44,6 +46,7 @@ class Restore:
         """main method in this file,restore
         Args:
             client_jar_path : relative path to client jar
+            
         """
         # create TREE folder
         self.create_folder(TREE_DIR)
@@ -118,7 +121,7 @@ class Restore:
         """parse tree(verbose) to get a list of deps\
             (without information like GAV, just the record as well as the dependents and depth)\n
             create the Jar folder and copy client jar as well
-        
+
             Returns:
                 a list containing all deps
         """
@@ -164,8 +167,10 @@ class Restore:
                     path_to_client_jar_storage = query_to_get_jar_location(self.client_groupId,\
                         self.client_artifactId, self.client_version)
                 else:
-                    # location of client jar is specified
+                    # location of client jar is specified by user input, naming args.jar
                     path_to_client_jar_in_repo = os.path.join(path_to_cloned_folder, relative_path_to_client_jar)
+                    path_to_client_jar_storage = query_to_get_jar_location(self.client_groupId,\
+                        self.client_artifactId, self.client_version)
                 # store client jar
                 try:
                     shutil.copy(path_to_client_jar_in_repo, path_to_client_jar_storage)
