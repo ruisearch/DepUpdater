@@ -16,13 +16,14 @@ from logger.logger import log_debug
 
 class Restore:
     def __init__(self, path_to_cloned_folder:str, relative_path_to_module:str,\
-        tree_path:str, local_module_inform:dict):
+        tree_path:str, local_module_inform:dict, local_dep_jar:list):
         """
         Args :
             path_to_cloned_folder : path to cloned folder
             relative_path_to_module : relative path from project root
             tree_path : path to tree file
             local_module_inform : all local modules' gav --> their relative path
+            local_dep_jar : the input relative path to the local dep jar
         """
         self.path_to_cloned_folder = path_to_cloned_folder
         self.relative_path_to_module = relative_path_to_module
@@ -31,6 +32,7 @@ class Restore:
         self.client_artifactId = None
         self.client_version = None
         self.local_module_inform = local_module_inform
+        self.path_to_local_dep_jar = local_dep_jar
         self.create_folder(TREE_DIR)
         self.create_folder(JAR_DIR)
 
@@ -58,8 +60,8 @@ class Restore:
         # filter the deps into valid_deps and omitted_deps
         valid_deps, omitted_deps = self.filter_dep(all_deps)
         # parse the dep in valid_deps and omitted_deps to get jar and version.json
-        json_path, original_json_path, original_tech_lag = self.parse_for_jar_and_json(valid_deps, omitted_deps)
-        return json_path, original_json_path, original_tech_lag
+        json_path, original_json_path, original_tech_lag, local_dep_gav = self.parse_for_jar_and_json(valid_deps, omitted_deps)
+        return json_path, original_json_path, original_tech_lag, local_dep_gav
 
     def filter_dep(self, all_deps:list):
         """filter the deps into valid_deps and omitted_deps"""
@@ -177,7 +179,7 @@ class Restore:
                 except FileNotFoundError as e:
                     # the jar name is not as expect
                     print(e)
-                    print("name of client jar doesn't follow the form : artifactId-version.jar!")
+                    print("the client jar is not in ... target/artifactId-version.jar, please input its relative path!")
                     exit()
                 # client jar has been stored in data/jar/
                 
@@ -264,6 +266,7 @@ class Restore:
             json_path : path to the version.json
             original_json_path : path to the original_version.json(graph before updating)
             original_tech_lag : the original tech lag of the module
+            local_dep_gav : a list of local dep
         """
         # change the valid_deps
         self.change_valid_deps(valid_deps)
@@ -290,11 +293,11 @@ class Restore:
         self.process_omitted_deps(valid_deps, omitted_deps, mappings)
 
         # prune the graph: remove the dependencies aren't compile or runtime and local module
-        self.prune_graph(mappings)
+        local_dep_gav = self.prune_graph(mappings)
         # remove the nodes which have been removed
         mappings = [node for node in mappings if node['Dependents'] or node['Depth'] == 0]
         # get original tech lag(sum and each depth 1 ~10 and >10)
-        original_tech_lag = self.compute_original_tech_lag(mappings)
+        original_tech_lag = self.compute_original_tech_lag(mappings, local_dep_gav)
         # create json
         # stored in data/result/{repo_name}/{relative_path_to_module}/version.json
         repo_name = os.path.basename(self.path_to_cloned_folder)
@@ -307,11 +310,14 @@ class Restore:
         original_json_path = os.path.join(json_folder, 'original_version.json')
         with open(original_json_path, 'w', encoding='utf-8') as original_json_file:
             json.dump(mappings, original_json_file, indent=4)
-        return json_path, original_json_path, original_tech_lag
+        return json_path, original_json_path, original_tech_lag, local_dep_gav
 
-    # remove the dependencies aren't compile or runtime and local module
+    # remove the dependencies aren't compile or runtime and local module(if necessary)
     def prune_graph(self, mappings:list):
-        """prune the graph: remove the dependencies aren't compile or runtime and local module"""
+        """prune the graph: remove the dependencies aren't compile or runtime
+        Return:
+            local_dep (list): a list of gav of the local deps
+        """
         print('\n****** prune graph ... ******\n')
         log_debug('prune graph')
         # remove the dependencies aren't compile or runtime
@@ -322,16 +328,58 @@ class Restore:
             if node['Type'] not in ['compile', 'runtime']:
                 log_debug(f'{node["GroupId"]}:{node["ArtifactId"]} is not compile or runtime, so remove it')
                 self.remove_node(node['GroupId']+':'+node['ArtifactId'], mappings)
-        # download the jar of the nodes in the graph and remove the local module
+        # download the jar of the nodes in the graph and remove the local module if not aim to handle multi-module
+        local_dep_gav = []
         for node in mappings:
             if not node['Dependents']:
                 # client or node has been removed
                 continue
             flag = self.get_dep_jar(node['GroupId'], node['ArtifactId'], node['Original_Version'])
             if not flag:
-                # the node is a local module
-                log_debug(f'{node["GroupId"]}:{node["ArtifactId"]} is a local module, so remove it')
-                self.remove_node(node['GroupId']+':'+node['ArtifactId'], mappings)
+                # the node cannot download
+                # if want to handle multi-module which consider local dependency, use local_dep_handle
+                flag = self.local_dep_handle(node['GroupId'], node['ArtifactId'], node['Original_Version'])
+                if not flag:
+                    # a dep not local dep and unavailable
+                    # log_debug(f'{node["GroupId"]}:{node["ArtifactId"]} is a local module, so remove it')
+                    log_debug(f'{node["GroupId"]}:{node["ArtifactId"]} is unavailable, so remove it')
+                    self.remove_node(node['GroupId']+':'+node['ArtifactId'], mappings)
+                else:
+                    # a local dep
+                    local_dep_gav.append(f"{node['GroupId']}:{node['ArtifactId']}:{node['Original_Version']}")
+
+        return local_dep_gav
+
+    def local_dep_handle(self, groupId:str, artifactId:str, version:str):
+        """judge whether a node is a local dependency and return its jar path if it is
+        Returns:
+            flag (bool): whether it is a local dependency
+        """
+        if f'{groupId}:{artifactId}:{version}' not in self.local_module_inform:
+            return False
+        # a local dep
+        module_path = self.local_module_inform[f'{groupId}:{artifactId}:{version}']
+        target_folder_path = os.path.join(module_path, "target")
+        # standard jar path
+        local_dep_jar_path = os.path.join(self.path_to_cloned_folder, target_folder_path, f'{artifactId}-{version}.jar')
+        # judge whether the path to jar is in self.path_to_local_dep_jar
+        if self.path_to_local_dep_jar:
+            # traverse the self.path_to_local_dep_jar
+            for jar_path in self.path_to_local_dep_jar:
+                if jar_path.startswith(target_folder_path):
+                    local_dep_jar_path = os.path.join(self.path_to_cloned_folder, jar_path)
+                    break
+        # copy the local dep jar
+        path_to_jar_storage = query_to_get_jar_location(groupId, artifactId, version)
+        try:
+            shutil.copy(local_dep_jar_path, path_to_jar_storage)
+        except FileNotFoundError as e:
+            # the jar name is not as expect
+            print(e)
+            print(f"the local dep {groupId}:{artifactId}:{version} is not \
+                in {local_dep_jar_path}, please input its relative path!")
+            exit()
+        return True
 
     # remove a node from the graph
     def remove_node(self, ga:str, mappings:list):
@@ -365,8 +413,11 @@ class Restore:
                     self.remove_node(node_ga, mappings)
 
     @staticmethod
-    def compute_original_tech_lag(deps:list):
+    def compute_original_tech_lag(deps:list, local_dep_gav:list):
         """compute the original tech lag of the module
+        Args:
+            deps (list): a list of all dependencies in the graph
+            local_dep_gav (list): a list of gav of local dep
         Returns:
             original_tech_lag (list): the original tech lag of the module\
             original_tech_lag[0] is the sum of the original tech lag\
@@ -378,7 +429,11 @@ class Restore:
             if dep['Depth'] == 0:
                 # skip the client
                 continue
-            all_versions = get_candidate_versions(dep['GroupId'], dep['ArtifactId'], dep['Original_Version'])
+            if f"{dep['GroupId']}:{dep['ArtifactId']}:{dep['Original_Version']}" in local_dep_gav:
+                # local dep
+                all_versions = [dep['Original_Version']]
+            else:
+                all_versions = get_candidate_versions(dep['GroupId'], dep['ArtifactId'], dep['Original_Version'])
             original_tech_lag[0] += len(all_versions) - 1
             if dep['Depth'] <= 10:
                 original_tech_lag[dep['Depth']] += len(all_versions) - 1

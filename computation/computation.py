@@ -15,16 +15,19 @@ from preprocess.Restore import Restore
 from update.updateDB import populate_dep
 from logger.logger import log_debug
 class Computation:
-    def __init__(self, cur_node:dict, graph:list, repo_name:str, relative_path_to_module:str):
+    def __init__(self, cur_node:dict, graph:list, repo_name:str, relative_path_to_module:str,\
+            local_dep_jar:list):
         """
         Args:
             cur_node : the dependency to be computed
             graph : the dependency graph
+            local_dep_jar: a list of gav of local deps
         """
         self.cur_node = cur_node
         self.graph = graph
         self.repo_name = repo_name
         self.relative_path_to_module = relative_path_to_module
+        self.local_dep_jar = local_dep_jar
         # method_caller_callee_pair and type_caller_callee_pair are used to compare with the Revapi result
         # these two list are got by get_entry_points_and_caller method
         # self.method_entry_points = []
@@ -44,28 +47,43 @@ class Computation:
         return old_deps
 
     def compute_best_version(self):
-        """main function to compute the newest compatible version of the dependency"""
+        """main function to compute the newest compatible version of the dependency
+        Returns:
+            best_version (str) : best version
+            local_dep_flag (bool) : whether cur_node is a local dep
+        """
         # get all versions
         # if self.cur_node has Versions, then use it, else fetch from maven repository
+        local_dep_flag = False
+        if f"{self.cur_node['GroupId']}:{self.cur_node['ArtifactId']}:{self.cur_node['Original_Version']}"\
+                in self.local_dep_jar:
+                    local_dep_flag = True
         if 'Versions' in self.cur_node:
             # the versions are already fetched
             all_versions = [Version['version'] for Version in self.cur_node['Versions']]
         else:
-            all_versions = get_candidate_versions(self.cur_node['GroupId'], self.cur_node['ArtifactId'], self.cur_node['Original_Version'])
+            if local_dep_flag:
+                # current node is a local dep
+                all_versions = [self.cur_node['Original_Version']]
+            else:
+                all_versions = get_candidate_versions(self.cur_node['GroupId'], self.cur_node['ArtifactId'], self.cur_node['Original_Version'])
 
-        # initialize breaking_reason of all versions(some versions may not be computed as software debloating)
-        self.initialize_breaking_reason(all_versions)
+        if not local_dep_flag:
+            # initialize breaking_reason of all versions(some versions may not be computed as software debloating)
+            self.initialize_breaking_reason(all_versions)
 
-        # method to judge versions' compatibility
-        self.filter_version_by_compatibility(all_versions)
+            # method to judge versions' compatibility
+            self.filter_version_by_compatibility(all_versions)
 
-        # find the newest compatible version from self.cur_node['Versions']
-        best_version = self.get_best_version(self.cur_node['Versions'])
+            # find the newest compatible version from self.cur_node['Versions']
+            best_version = self.get_best_version(self.cur_node['Versions'])
+        else:
+            best_version = self.cur_node['Original_Version']
 
         # record the best version in self.cur_node
         self.cur_node['Best_Version'] = best_version
 
-        return best_version
+        return best_version, local_dep_flag
 
     def initialize_breaking_reason(self, all_versions:list):
         """initialize breaking_reason of all versions to exclude the versions that are not software debloating

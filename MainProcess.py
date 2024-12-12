@@ -25,7 +25,7 @@ args_parser = argparse.ArgumentParser()
 args_parser.add_argument('-r', '--root', help='the path to the cloned folder')
 args_parser.add_argument('-m', '--module', help='the relative path to the module')
 args_parser.add_argument('-j', '--jar', help='the relative path to the client jar')
-
+args_parser.add_argument('-l','--local_dep_jar', nargs='+', help='the relative paths to the local module jar depended by client')
 args = args_parser.parse_args()
 ## preprocess
 ## input : the path to the cloned folder
@@ -37,10 +37,12 @@ relative_path_to_module = args.module
 
 # get all local module
 local_module_inform = {}
-module_paths = multiModule.get_all_module(path_to_folder)
-for module_path in module_paths:
-    # local_module_inform is a mapping from local module's gav to its relative path
-    local_module_inform.update(multiModule.get_gav(module_path, path_to_folder))
+MULTI_MODULE_FLAG = True
+if MULTI_MODULE_FLAG:
+    module_paths = multiModule.get_all_module(path_to_folder)
+    for module_path in module_paths:
+        # local_module_inform is a mapping from local module's gav to its relative path
+        local_module_inform.update(multiModule.get_gav(module_path, path_to_folder))
 
 # set path to log file and soot empty cases file
 repo_name = os.path.basename(path_to_folder)
@@ -90,8 +92,8 @@ print("\n****** tree got! ******\n")
 # parse dependency_tree.txt to get GAV of client jar and dependencies jar,
 # then download dependencies jar and copy client jar
 print("\n****** restore dependency to graph ... ******\n")
-graph = Restore(path_to_folder, relative_path_to_module, tree_file)
-json_path, original_json_path, original_tech_lag = graph.restore(args.jar, local_module_inform)
+graph = Restore(path_to_folder, relative_path_to_module, tree_file, local_module_inform, args.local_dep_jar)
+json_path, original_json_path, original_tech_lag, local_dep_gav = graph.restore(args.jar)
 print("\n****** dependency graph got! ******\n")
 print("\n****** preprocess done! ******\n")
 log_debug('\npreprocess done\n')
@@ -116,7 +118,7 @@ if original_tech_lag[0] == 0:
 # Traverse the dependency graph to compute the newest compatible version of each dependency
 log_debug(f"Start traversing for {repo_name}/{relative_path_to_module}")
 tra = Traverse(json_path, path_to_folder, relative_path_to_module)
-compile_flag, test_flag = tra.traverse()
+compile_flag, test_flag = tra.traverse(local_dep_gav)
 
 # compute the technical lag of the module
 print("\n****** compute technical lag ... ******\n")
