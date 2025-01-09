@@ -30,6 +30,10 @@ def get_gav(module_path:str, root_dir:str):
     result = subprocess.run(command, shell=True, text=True, capture_output=True)
     effective_pom_path = os.path.join(module_path, 'effective-pom.xml')
 
+    # # debug
+    # print("module_path:",module_path)
+    # print("effective_pom_path:",effective_pom_path)
+
     # get GAV from effective-pom
     g,a,v = parse_pom(effective_pom_path)
     return {
@@ -51,9 +55,21 @@ def parse_pom(pom:str):
     ns = {'m': 'http://maven.apache.org/POM/4.0.0'}
     project = root.find('m:project', namespaces=ns)
     
+    # project is not None means the root tag is <projects>
+    if project is None:
+        # <project> is the root tag
+        project = root
+
     g_id = project.find('m:groupId', namespaces=ns)
     a_id = project.find('m:artifactId', namespaces=ns)
     v = project.find('m:version', namespaces=ns)
+
+    # # debug
+    # print("pom:",pom)
+    # print("g_id:",g_id.text)
+    # print("a_id:",a_id.text)
+    # print("v:",v.text)
+    # print("- - - - - - -")
 
     return g_id.text, a_id.text, v.text
 

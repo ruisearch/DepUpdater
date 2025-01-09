@@ -18,18 +18,18 @@ def mvn_package(path_to_folder:str, relative_path_to_module:str):
     """execute \"mvn package\""""
     # firstly, execute mvn package in module folder
     if relative_path_to_module == '.':
-        command = f"cd {path_to_folder} && JAVA_HOME=/home/kaixuan/ray/jdk-17.0.12 /home/kaixuan/ray/apache-maven-3.9.5/bin/mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true clean package"
+        command = f"cd {path_to_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true clean package"
     else :
-        command = f"cd {os.path.join(path_to_folder, relative_path_to_module)} && JAVA_HOME=/home/kaixuan/ray/jdk-17.0.12 /home/kaixuan/ray/apache-maven-3.9.5/bin/mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true clean package"
+        command = f"cd {os.path.join(path_to_folder, relative_path_to_module)} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true clean package"
     print("mvn clean and mvn package...")
     exit_status = os.system(command)
     if exit_status != 0 and relative_path_to_module != '.':
         # mvn package is unexecutable in module folder, so execute it in root with the help of -pl -am
-        command = f"cd {path_to_folder} && JAVA_HOME=/home/kaixuan/ray/jdk-17.0.12 /home/kaixuan/ray/apache-maven-3.9.5/bin/mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -pl {relative_path_to_module} -am clean package "
+        command = f"cd {path_to_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -pl {relative_path_to_module} -am clean package "
         exit_status = os.system(command)
     if exit_status != 0:
         # mvn package is unexecutable with -pl -am, so execute it in root without -pl -am
-        command = f"cd {path_to_folder} && JAVA_HOME=/home/kaixuan/ray/jdk-17.0.12 /home/kaixuan/ray/apache-maven-3.9.5/bin/mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true clean package"
+        command = f"cd {path_to_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true clean package"
         exit_status = os.system(command)
     return exit_status
 
@@ -37,27 +37,27 @@ def mvn_test(path_to_folder:str, relative_path_to_module:str):
     """execute mvn test"""
     # firstly, execute mvn test in module folder
     if relative_path_to_module == '.':
-        command = f"cd {path_to_folder} && JAVA_HOME=/home/kaixuan/ray/jdk-17.0.12 /home/kaixuan/ray/apache-maven-3.9.5/bin/mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true test"
+        command = f"cd {path_to_folder} && mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true test"
     else :
         command = f"cd {os.path.join(path_to_folder, relative_path_to_module)} && \
-            JAVA_HOME=/home/kaixuan/ray/jdk-17.0.12 /home/kaixuan/ray/apache-maven-3.9.5/bin/mvn -Dcheckstyle.skip=true \
+            mvn -Dcheckstyle.skip=true \
             -Denforcer.skip=true -Dflatten.skip=true test" 
     print("mvn test...")
     exit_status = os.system(command)
     if exit_status != 0 and relative_path_to_module != '.':
         # mvn test is unexecutable in module folder, so execute it in root with the help of -pl -am
-        command = f"cd {path_to_folder} && JAVA_HOME=/home/kaixuan/ray/jdk-17.0.12 /home/kaixuan/ray/apache-maven-3.9.5/bin/mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -pl {relative_path_to_module} -am test"
+        command = f"cd {path_to_folder} && mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -pl {relative_path_to_module} -am test"
         exit_status = os.system(command)
     if exit_status != 0:
         # mvn test is unexecutable with -pl -am, so execute it in root without -pl -am
-        command = f"cd {path_to_folder} && JAVA_HOME=/home/kaixuan/ray/jdk-17.0.12 /home/kaixuan/ray/apache-maven-3.9.5/bin/mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true test"
+        command = f"cd {path_to_folder} && mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true test"
         exit_status = os.system(command)
     return exit_status
 
 def mvn_verbose_dependency_tree(path_to_folder:str, relative_path_to_module:str):
     """execute mvn dependency:tree -Dverbose"""
     
-    command = f"cd {path_to_folder} && JAVA_HOME=/home/kaixuan/ray/jdk-17.0.12 /home/kaixuan/ray/apache-maven-3.9.5/bin/mvn dependency:tree -pl {relative_path_to_module} -am -Dverbose -fae"
+    command = f"cd {path_to_folder} && mvn dependency:tree -pl {relative_path_to_module} -am -Dverbose -fae"
     print("generating dependency tree...")
     result = subprocess.run(command, shell=True, text=True, capture_output=True)
     repo_name = os.path.basename(path_to_folder)

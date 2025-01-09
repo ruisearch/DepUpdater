@@ -150,7 +150,7 @@ class Validation:
             version (str): the version of the dependency
         """
         # note: skip maven-enforcer-plugin , flatten-maven-plugin, maven-checkstyle-plugin
-        command = f"cd {self.path_to_cloned_folder} && JAVA_HOME=/home/kaixuan/ray/jdk-17.0.12 mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -D{property_tag_name}={version}  -pl {self.relative_path_to_module} compile -am"
+        command = f"cd {self.path_to_cloned_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -D{property_tag_name}={version}  -pl {self.relative_path_to_module} compile -am"
         try:
             result = subprocess.run(command, shell=True, text=True, capture_output=True)
             if result.returncode != 0:
