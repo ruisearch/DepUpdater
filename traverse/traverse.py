@@ -164,13 +164,13 @@ class Traverse:
         log_debug("Recompiling the project to validate...")
         # firstly, mvn compile in module folder
         command = f"cd {os.path.join(self.path_to_project_folder, self.relative_path_to_module)} &&\
-            JAVA_HOME=/home/kaixuan/ray/jdk-17.0.12 /home/kaixuan/ray/apache-maven-3.9.5/bin/mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true \
+            mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true \
                 -Dspotless.check.skip=true compile"
         try:
             result = subprocess.run(command, shell=True, text=True, capture_output=True)
             if result.returncode != 0:
                 # second, mvn compile in root folder with -pl -am
-                command = f"cd {self.path_to_project_folder} && JAVA_HOME=/home/kaixuan/ray/jdk-17.0.12 /home/kaixuan/ray/apache-maven-3.9.5/bin/mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true \
+                command = f"cd {self.path_to_project_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true \
                     -Dflatten.skip=true -Dspotless.check.skip=true \
                         -pl {self.relative_path_to_module} compile -am"
                 result = subprocess.run(command, shell=True, text=True, capture_output=True)
@@ -214,16 +214,14 @@ class Traverse:
         print("\nTesting the project to validate...\n")
         # first, mvn test in module folder
         command = f"cd {os.path.join(self.path_to_project_folder, self.relative_path_to_module)} && \
-            JAVA_HOME=/home/kaixuan/ray/jdk-17.0.12 /home/kaixuan/ray/apache-maven-3.9.5/bin/mvn \
-                -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -Dspotless.check.skip=true test"
+            mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -Dspotless.check.skip=true test"
         try:
             result = subprocess.run(command, shell=True, text=True, capture_output=True)
             if result.returncode != 0:
                 # second, mvn test in root folder with -pl -am
                 command = f"cd {self.path_to_project_folder} && \
-                    JAVA_HOME=/home/kaixuan/ray/jdk-17.0.12 /home/kaixuan/ray/apache-maven-3.9.5/bin/mvn \
-                        -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -Dspotless.check.skip=true\
-                            -pl {self.relative_path_to_module} -am test"
+                    mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -Dspotless.check.skip=true\
+                        -pl {self.relative_path_to_module} -am test"
                 result = subprocess.run(command, shell=True, text=True, capture_output=True)
                 if result.returncode != 0:
                     # test fails
