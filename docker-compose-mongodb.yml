@@ -8,5 +8,5 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - ./../maven_deps.bson:/data/maven_deps.bson
-      - ./../maven.bson:/data/maven.bson
+      - ./maven_deps.bson:/data/maven_deps.bson
+      - ./maven.bson:/data/maven.bson
