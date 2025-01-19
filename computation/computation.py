@@ -127,7 +127,7 @@ class Computation:
     def filter_version_by_debloating(self):
         """filter the versions not follow software debloating"""
         original_version = self.cur_node['Original_Version']
-        original_dep_count = self.count_amount_of_a_version(self.cur_node['GroupId'], self.cur_node['ArtifactId'], original_version)
+        original_dep_count, original_dependencies = self.count_amount_of_a_version(self.cur_node['GroupId'], self.cur_node['ArtifactId'], original_version)
         for Version in self.cur_node['Versions']:
             version = Version['version']
             if version == original_version:
@@ -203,8 +203,8 @@ class Computation:
 
     def graph_to_set(self):
         """transform the node in self.graph into g:a set"""
-        graph_set = {}
-        graph_set.update([f"{node['GroupId']}:{node['ArtifactId']}"] for node in self.graph)
+        graph_set = set()
+        graph_set.update([f"{node['GroupId']}:{node['ArtifactId']}" for node in self.graph])
         return graph_set
 
     @staticmethod

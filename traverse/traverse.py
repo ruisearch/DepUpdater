@@ -40,7 +40,7 @@ class Traverse:
         """get the methods and types of client jar first"""
         for dep in self.graph:
             if dep['Depth'] == 0:
-                client_com = Computation(dep, self.graph, self.repo_name, self.relative_path_to_module)
+                client_com = Computation(dep, self.graph, self.repo_name, self.relative_path_to_module, None)
                 client_com.get_and_record_reachable_api()
                 dep['Best_Version'] = dep['Original_Version']
                 break

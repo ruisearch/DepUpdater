@@ -116,13 +116,13 @@ def recompile(repo_name, module_path):
     compile_log_path = os.path.join(DATA_DIR, 'dependabot', repo_name, module_path, 'compile_log.txt')
     path_to_cloned_folder = os.path.join('/home/kaixuan/ray/SRC_dataset/', repo_name)
     command = f"cd {os.path.join(path_to_cloned_folder, module_path)} &&\
-        JAVA_HOME=/home/kaixuan/ray/jdk-17.0.12 /home/kaixuan/ray/apache-maven-3.9.5/bin/mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true \
+        mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true \
                 -Dspotless.check.skip=true compile"
     try:
         result = subprocess.run(command, shell=True, text=True, capture_output=True)
         if result.returncode != 0:
             # second, mvn compile in root folder with -pl -am
-            command = f"cd {path_to_cloned_folder} && JAVA_HOME=/home/kaixuan/ray/jdk-17.0.12 /home/kaixuan/ray/apache-maven-3.9.5/bin/mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true \
+            command = f"cd {path_to_cloned_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true \
                 -Dflatten.skip=true -Dspotless.check.skip=true \
                     -pl {module_path} compile -am"
             result = subprocess.run(command, shell=True, text=True, capture_output=True)
@@ -144,13 +144,11 @@ def test(repo_name, module_path):
     path_to_cloned_folder = os.path.join('/home/kaixuan/ray/SRC_dataset/', repo_name)
     path_to_project_folder = os.path.join('/home/kaixuan/ray/SRC_dataset/', repo_name)
     command = f"cd {os.path.join(path_to_project_folder, module_path)} && \
-            JAVA_HOME=/home/kaixuan/ray/jdk-17.0.12 /home/kaixuan/ray/apache-maven-3.9.5/bin/mvn \
-                -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -Dspotless.check.skip=true test"
+            mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -Dspotless.check.skip=true test"
     try:
         result = subprocess.run(command, shell=True, text=True, capture_output=True)
         if result.returncode != 0:
-            command = f"cd {path_to_cloned_folder} && JAVA_HOME=/home/kaixuan/ray/jdk-17.0.12 /home/kaixuan/ray/apache-maven-3.9.5/bin/mvn \
-                -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -Dspotless.check.skip=true \
+            command = f"cd {path_to_cloned_folder} && mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -Dspotless.check.skip=true \
                     -pl {module_path} test -am"
         result = subprocess.run(command, shell=True, text=True, capture_output=True)
         if result.returncode != 0:
@@ -228,7 +226,7 @@ def tree_to_json(tree_path:str, path_to_cloned_folder:str, relative_path_to_modu
 
 def mvn_tree(path_to_folder:str, relative_path_to_module:str):
     """execute mvn dependency:tree"""
-    command = f"cd {path_to_folder} && JAVA_HOME=/home/kaixuan/ray/jdk-17.0.12 /home/kaixuan/ray/apache-maven-3.9.5/bin/mvn dependency:tree -pl {relative_path_to_module} -am -Dverbose -fae"
+    command = f"cd {path_to_folder} && mvn dependency:tree -pl {relative_path_to_module} -am -Dverbose -fae"
     result = subprocess.run(command, shell=True, text=True, capture_output=True)
     if result.returncode != 0:
         # cann't generate dependency graph
