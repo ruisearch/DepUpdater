@@ -215,15 +215,18 @@ def execute(root:str, module:str):
     '''
         execute GoblinUpdater
     '''
+    user_path = os.path.expanduser('~')
+    config_file_path = os.path.join(user_path, 'ray', 'Baselines', 'goblinUpdater', 'gUpdaterConfig.yml')
+    jar_file_path = os.path.join(user_path, 'ray', 'Baselines', 'goblinUpdater',\
+        'target', 'goblinUpdater-1.0.0-jar-with-dependencies.jar')
+    
     ret_dir = os.path.join(MainProcess_pwd, 'data', 'result', 'goblinUpdater')
     if not os.path.exists(ret_dir):
         os.makedirs(ret_dir)
 
-    user_path = os.path.expanduser('~')
     path_to_module = os.path.join(user_path, 'ray', 'SRC_dataset', root, module)
     path_to_ret_file = os.path.join(ret_dir, f'{root}_{module}.txt')
-    config_file_path = os.path.join(MainProcess_pwd, 'utils', 'gUpdaterConfig.yml')
-    jar_file_path = os.path.join(MainProcess_pwd, 'utils', 'goblinUpdater-1.0.0-jar-with-dependencies.jar')
+    
     try:
         # execute GoblinUpdater
         subprocess.run(['java', '-DweaverUrl="http://localhost:8080"', f'-DprojectPath="{path_to_module}"',\
