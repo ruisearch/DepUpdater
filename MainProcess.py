@@ -37,8 +37,11 @@ relative_path_to_module = args.module
 
 # get all local module
 local_module_inform = {}
-# MULTI_MODULE_FLAG = True
-MULTI_MODULE_FLAG = False
+if args.local_dep_jar:
+    MULTI_MODULE_FLAG = True
+else:
+    # no local dependencies, so no need to consider multi-module
+    MULTI_MODULE_FLAG = False
 if MULTI_MODULE_FLAG:
     module_paths = multiModule.get_all_module(path_to_folder)
     for module_path in module_paths:
