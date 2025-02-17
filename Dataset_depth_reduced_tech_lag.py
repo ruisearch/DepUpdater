@@ -1,6 +1,7 @@
 """utilize the result of dataset to calculate the tech lag reduction of each depth after upgrade
 which is not computed in the original code
 note: this script is not tested yet, it may contain bugs
+now MainProcess.py can handle the tech lag reduction calculation,so this script is not necessary
 """
 import pandas as pd
 import os

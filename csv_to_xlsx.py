@@ -1,3 +1,7 @@
+"""
+    This script converts total_dataset.csv to total_dataset.xlsx
+    execute this script after running inner_join_two_csv.py
+"""
 import pandas as pd
 import os
 

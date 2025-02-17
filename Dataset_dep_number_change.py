@@ -1,5 +1,7 @@
 """utilize the result of dataset to calculate the dep number change of each module after update
-,which is not completed in the original code"""
+,which is not completed in the original code
+note: now MainProcess.py can handle the dep number change calculation,so this script is not necessary
+"""
 import pandas as pd
 import json
 import os

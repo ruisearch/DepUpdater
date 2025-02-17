@@ -36,9 +36,9 @@ def main():
             print(module)
             repo_name, module_name = module[0], module[1]
              # Check if this module has already been processed
-            if ((dataset_df['repo'] == repo_name) & (dataset_df['module'] == module_name)).any():
-                pbar.update(1)
-                continue
+            # if ((dataset_df['repo'] == repo_name) & (dataset_df['module'] == module_name)).any():
+            #     pbar.update(1)
+            #     continue
 
             result = execute_tool(module)
             if result.returncode != 0:
@@ -282,7 +282,7 @@ def dataset():
 
 def execute_tool(module: tuple):
     """method to execute the tool on one module"""
-    dataset_root = "/home/kaixuan/ray/SRC_dataset"
+    dataset_root = "/home1/kaixuan/ray/SRC_dataset"
     root_dir = os.path.join(dataset_root, module[0])
     # repo_name = os.path.basename(module[0])
     # logging.info(f"{repo_name} : {module[1]} start")

@@ -1,3 +1,9 @@
+"""
+    inner join dataset.csv which is the result of our tool and dependabot_dataset.csv which is the result of dependabot
+    and save the result into total_dataset.csv
+    execute this script after running Dataset.py and dependabot_dataset.py
+"""
+
 from constants import DATA_DIR
 import pandas as pd
 import os
