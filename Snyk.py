@@ -1,31 +1,38 @@
-"""script to run the tool on the dataset in one run"""
+"""evaluate the performance of Snyk
+this script should be executed after Dataset.py
+"""
+import pandas as pd
+import json
+import concurrent.futures
 import subprocess
 import os
 import logging
 import re
-import pandas as pd
 from tqdm import tqdm
-from constants import DATA_DIR, RET_DIR
+from constants import DATA_DIR, RET_DIR, set_log_path
+from preprocess.Restore import Restore
+from evaluation.dep_count import count_deps
+
 
 
 def main():
     """main function"""
-    log_path = os.path.join(DATA_DIR, 'DATASET.log')
+    log_path = os.path.join(DATA_DIR, 'snyk_log.txt')
     # clear log
     if os.path.exists(log_path):
         os.remove(log_path)
     # set log
     logging.basicConfig(filename=log_path,level=logging.INFO,format='%(asctime)s - %(message)s')
 
-    csv_path = os.path.join(DATA_DIR, 'dataset.csv')
+    csv_path = os.path.join(DATA_DIR, 'snyk_dataset.csv')
     # Create or load CSV file
     if os.path.exists(csv_path):
         dataset_df = pd.read_csv(csv_path)
     else:
         # Create a DataFrame with the header if the CSV does not exist
-        dataset_df = pd.DataFrame(columns=['repo', 'module', 'compile_success', 'test_pass',
-                                           'original_tech_lag', 'current_tech_lag', 'reduced_tech_lag', \
-                                               'original_dep_count', 'current_dep_count', 'reduced_dep_count'])
+        dataset_df = pd.DataFrame(columns=['repo', 'module', 'snyk_compile_success', 'snyk_test_pass',
+                                           'original_tech_lag', 'snyk_current_tech_lag', 'snyk_reduced_tech_lag', \
+                                               'original_dep_count', 'snyk_current_dep_count', 'snyk_reduced_dep_count'])
         dataset_df.to_csv(csv_path, index=False)
 
     # set module
@@ -35,45 +42,221 @@ def main():
         for module in modules:
             print(module)
             repo_name, module_name = module[0], module[1]
-             # Check if this module has already been processed
+            # Check if this module has already been processed
             if ((dataset_df['repo'] == repo_name) & (dataset_df['module'] == module_name)).any():
+                logging.info(f"{repo_name} : {module_name} done")
                 pbar.update(1)
                 continue
 
-            result = execute_tool(module)
-            if result.returncode != 0:
-                logging.info(f"{repo_name} : {module_name} crashes")
-                store_ret_in_csv(repo_name, module_name, result.stdout)
-                pbar.update(1)
-                continue
+            logging.info(f"processing {repo_name} : {module_name}")
+            row_value = evaluate_snyk(module)
+            row_df = pd.DataFrame([row_value], columns=['repo', 'module', 'compile_success', 'test_pass',\
+                                                    'original_tech_lag', 'current_tech_lag', 'reduced_tech_lag', \
+                                                        'original_dep_count', 'current_dep_count', 'reduced_dep_count'])
+            row_df.to_csv(csv_path, mode='a', header=False, index=False)
             logging.info(f"{repo_name} : {module_name} done")
-            store_ret_in_csv(repo_name, module_name, result.stdout)
             pbar.update(1)
+
+def evaluate_snyk(module):
+    """evaluate the performance of snyk
+    Return:
+        row_value: list which is a row in the dataset
+    """
+    repo_name, module_name = module[0], module[1]
+    snyk_dir_path = os.path.join(DATA_DIR, 'snyk', repo_name, module_name)
+    if not os.path.exists(snyk_dir_path):
+        os.makedirs(snyk_dir_path)
+    set_log_path(os.path.join(snyk_dir_path, 'snyk_evaluation.txt'))
+    # read original_version.json to get the original tech lag and original dep count
+    original_json_path = os.path.join(RET_DIR, repo_name, module_name, 'original_version.json')
+    with open(original_json_path, 'r') as f:
+        original_graph = json.load(f)
+    original_tech_lag = Restore.compute_original_tech_lag(original_graph)
+    original_dep_count = count_deps(original_json_path)
+
+    # recompie and test
+    compile_log_path = os.path.join(snyk_dir_path, 'compile_log.txt')
+    test_log_path = os.path.join(snyk_dir_path, 'test_log.txt')
+    if not os.path.exists(compile_log_path):
+        # compile to judge whether the module can compile after update
+        compile_flag = recompile(repo_name, module_name)
+    else:
+        with open(compile_log_path, 'r') as f:
+            log = f.read()
+            if "BUILD FAILURE" in log:
+                compile_flag = False
+            else :
+                compile_flag = True
+    if not os.path.exists(test_log_path):
+        # test to judge whether the module can pass the test after update
+        test_flag = test(repo_name, module_name)
+    else:
+        with open(test_log_path, 'r') as f:
+            log = f.read()
+            if "BUILD FAILURE" in log:
+                test_flag = False
+            else :
+                test_flag = True
+
+    # compute the current tech lag and current dep count
+    tree_path = os.path.join(snyk_dir_path, 'verbose_tree.txt')
+    json_path = tree_to_json(tree_path, os.path.join('/home/kaixuan/ray/Extended_dataset/', repo_name), module_name)
+    if not json_path:
+        # cann't generate dependency graph
+        return [repo_name, module_name, compile_flag, test_flag, int(original_tech_lag[0]), '?', '?', int(original_dep_count), '?', '?']
+    with open(json_path, 'r') as f:
+        current_graph = json.load(f)
+    current_tech_lag = Restore.compute_original_tech_lag(current_graph)
+    current_dep_count = count_deps(json_path)
+    return [repo_name, module_name, compile_flag, test_flag, int(original_tech_lag[0]), int(current_tech_lag[0]), int(original_tech_lag[0]-current_tech_lag[0]), int(original_dep_count), int(current_dep_count), int(original_dep_count-current_dep_count)]
+
+
+def recompile(repo_name, module_path):
+    """recompile the module"""
+    compile_log_path = os.path.join(DATA_DIR, 'snyk', repo_name, module_path, 'compile_log.txt')
+    path_to_cloned_folder = os.path.join('/home/kaixuan/ray/Extended_dataset/', repo_name)
+    command = f"cd {os.path.join(path_to_cloned_folder, module_path)} &&\
+        mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true \
+                -Dspotless.check.skip=true compile"
+    try:
+        result = subprocess.run(command, shell=True, text=True, capture_output=True)
+        if result.returncode != 0:
+            # second, mvn compile in root folder with -pl -am
+            command = f"cd {path_to_cloned_folder} && mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true \
+                -Dflatten.skip=true -Dspotless.check.skip=true \
+                    -pl {module_path} compile -am"
+            result = subprocess.run(command, shell=True, text=True, capture_output=True)
+            if result.returncode != 0:
+                # recompile fails
+                with open(compile_log_path, 'w') as f:
+                    f.write(result.stdout)
+                return False
+        with open(compile_log_path, 'w') as f:
+            f.write(result.stdout)
+        return True
+    except subprocess.SubprocessError as e:
+        print(f"An error occured while execute the command: {e}")
+        return False
+
+def test(repo_name, module_path):
+    """test the module"""
+    test_log_path = os.path.join(DATA_DIR, 'snyk', repo_name, module_path, 'test_log.txt')
+    path_to_cloned_folder = os.path.join('/home/kaixuan/ray/Extended_dataset/', repo_name)
+    path_to_project_folder = os.path.join('/home/kaixuan/ray/Extended_dataset/', repo_name)
+    command = f"cd {os.path.join(path_to_project_folder, module_path)} && \
+            mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -Dspotless.check.skip=true test"
+    try:
+        result = subprocess.run(command, shell=True, text=True, capture_output=True)
+        if result.returncode != 0:
+            command = f"cd {path_to_cloned_folder} && mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -Dspotless.check.skip=true \
+                    -pl {module_path} test -am"
+        result = subprocess.run(command, shell=True, text=True, capture_output=True)
+        if result.returncode != 0:
+            # test fails
+            with open(test_log_path, 'w') as f:
+                f.write(result.stdout)
+            return False
+        with open(test_log_path, 'w') as f:
+            f.write(result.stdout)
+        return True
+    except subprocess.SubprocessError as e:
+        print(f"An error occured while execute the command: {e}")
+        return False
+
+def tree_to_json(tree_path:str, path_to_cloned_folder:str, relative_path_to_module:str):
+    """parse verbose_tree.txt to get the dependency graph and store it in the json file"""
+    json_path = os.path.join(DATA_DIR, 'snyk', os.path.basename(path_to_cloned_folder), relative_path_to_module, 'current_version.json')
+    if os.path.exists(json_path):
+        return json_path
+
+    if not os.path.exists(tree_path):
+        # mvn dependency:tree to generate dependency graph
+        tree = mvn_tree(path_to_cloned_folder, relative_path_to_module)
+        if tree is None:
+            # cannlt generate dependency graph
+            return None
+        with open(tree_path, 'w', encoding='utf-8') as f:
+            f.write(tree)
+    else:
+        with open(tree_path, 'r', encoding='utf-8') as f:
+            tree = f.read()
+
+    res = Restore(path_to_cloned_folder, relative_path_to_module, tree_path)
+    # extract the original dependency graph from verbose_tree.txt
+    # inspired by preprocess/Restore.py
+    block_pattern = r'\[INFO\] Building .+?\n\[INFO\].+?from (.*?)pom.xml\n\[INFO\] -+?\[ (.+?) \]-+?\n.*?\[INFO\] (\S+?):(\S+?):\S+?:(\S+?)\n(.+?)\[INFO\] -'
+    blocks = re.finditer(block_pattern, tree, flags=re.DOTALL)
+    deps = None
+    for block in blocks:
+        if relative_path_to_module == '.':
+            flag = (block.group(1) == '')
+        elif relative_path_to_module.endswith('/'):
+            # the second parameter represents the relative path to the module ends with '/'
+            # block.group(1) endswith '/'
+            flag = (block.group(1) == relative_path_to_module)
+        else :
+            flag = (block.group(1) == relative_path_to_module+'/')
+        if block.group(2) == 'jar' and flag:
+            res.client_groupId = block.group(3)
+            res.client_artifactId = block.group(4)
+            res.client_version = block.group(5)
+            deps = res.parse_all_dep(block.group(6))
+            break
+    valid_deps, omitted_deps = res.filter_dep(deps)
+    res.change_valid_deps(valid_deps)
+    res.change_omitted_deps(omitted_deps)
+    mappings = [{'GroupId':res.client_groupId, 'ArtifactId':res.client_artifactId,\
+            'Original_Version':res.client_version, 'Best_Version':'', 'Type':'',\
+                'Depth':0, 'Count':0, 'Dependents':[]}] # add client at first
+    num_workers = os.cpu_count()
+    with concurrent.futures.ProcessPoolExecutor(max_workers=num_workers) as executor:
+        futures = []
+        for valid_dep in valid_deps:
+            futures.append(executor.submit(res.process_a_valid_dep, valid_dep, omitted_deps))
+    for future in futures:
+        mappings.append(future.result())
+
+    res.process_omitted_deps(valid_deps, omitted_deps, mappings)
+    res.prune_graph(mappings)
+    mappings = [node for node in mappings if node['Dependents'] or node['Depth'] == 0]
+    
+    with open(json_path, 'w') as f:
+        json.dump(mappings, f, indent=4)
+    return json_path
+
+def mvn_tree(path_to_folder:str, relative_path_to_module:str):
+    """execute mvn dependency:tree"""
+    command = f"cd {path_to_folder} && mvn dependency:tree -pl {relative_path_to_module} -am -Dverbose -fae"
+    result = subprocess.run(command, shell=True, text=True, capture_output=True)
+    if result.returncode != 0:
+        # cann't generate dependency graph
+        return None
+    return result.stdout
 
 def dataset():
     """set modules in the dataset"""
     modules = [
         ('mall','mall-common'),
         ('mall','mall-security'),
-        ('guava','guava'),
+        # ('guava','guava'),
         ('guava','guava-testlib'),
         ('dubbo','dubbo-test/dubbo-test-common'),
-        ('dubbo','dubbo-test/dubbo-test-check'),
+        # ('dubbo','dubbo-test/dubbo-test-check'),
         ('dubbo','dubbo-test/dubbo-test-modules'),
-        ('dubbo','dubbo-serialization/dubbo-serialization-api'),
+        # ('dubbo','dubbo-serialization/dubbo-serialization-api'),
         ('dubbo','dubbo-serialization/dubbo-serialization-fastjson2'),
         ('dubbo','dubbo-serialization/dubbo-serialization-hessian2'),
-        ('dubbo','dubbo-maven-plugin'),
+        # ('dubbo','dubbo-maven-plugin'),
         ('dubbo','dubbo-spring-boot/dubbo-spring-boot-3-autoconfigure'),
-        ('dubbo','dubbo-configcenter/dubbo-configcenter-apollo'),
-        ('dubbo','dubbo-configcenter/dubbo-configcenter-nacos'),
-        ('dubbo','dubbo-configcenter/dubbo-configcenter-file'),
-        ('dubbo','dubbo-configcenter/dubbo-configcenter-zookeeper'),
+        # ('dubbo','dubbo-configcenter/dubbo-configcenter-apollo'),
+        # ('dubbo','dubbo-configcenter/dubbo-configcenter-nacos'),
+        # ('dubbo','dubbo-configcenter/dubbo-configcenter-file'),
+        # ('dubbo','dubbo-configcenter/dubbo-configcenter-zookeeper'),
         ('dubbo','dubbo-metrics/dubbo-metrics-api'),
         ('dubbo','dubbo-metrics/dubbo-metrics-event'),
-        ('dubbo','dubbo-metrics/dubbo-metrics-prometheus'),
+        # ('dubbo','dubbo-metrics/dubbo-metrics-prometheus'),
         ('dubbo','dubbo-metrics/dubbo-metrics-config-center'),
-        ('dubbo','dubbo-metrics/dubbo-metrics-metadata'),
+        # ('dubbo','dubbo-metrics/dubbo-metrics-metadata'),
         ('dubbo','dubbo-metrics/dubbo-metrics-default'),
         ('dubbo','dubbo-metrics/dubbo-metrics-netty'),
         ('dubbo','dubbo-metrics/dubbo-tracing'),
@@ -81,24 +264,24 @@ def dataset():
         ('dubbo','dubbo-plugin/dubbo-filter-validation'),
         ('dubbo','dubbo-plugin/dubbo-spring-security'),
         ('dubbo','dubbo-plugin/dubbo-compiler'),
-        ('dubbo','dubbo-plugin/dubbo-qos-api'),
+        # ('dubbo','dubbo-plugin/dubbo-qos-api'),
         ('dubbo','dubbo-plugin/dubbo-filter-cache'),
         ('dubbo','dubbo-remoting/dubbo-remoting-api'),
-        ('dubbo','dubbo-remoting/dubbo-remoting-netty4'),
-        ('dubbo','dubbo-remoting/dubbo-remoting-netty'),
+        # ('dubbo','dubbo-remoting/dubbo-remoting-netty4'),
+        # ('dubbo','dubbo-remoting/dubbo-remoting-netty'),
         ('dubbo','dubbo-remoting/dubbo-remoting-zookeeper-curator5'),
         ('dubbo','dubbo-cluster'),
         ('dubbo','dubbo-rpc/dubbo-rpc-api'),
-        ('dubbo','dubbo-rpc/dubbo-rpc-dubbo'),
+        # ('dubbo','dubbo-rpc/dubbo-rpc-dubbo'),
         ('dubbo','dubbo-rpc/dubbo-rpc-injvm'),
         ('dubbo','dubbo-demo/dubbo-demo-interface'),
         ('dubbo','dubbo-demo/dubbo-demo-spring-boot/dubbo-demo-spring-boot-interface'),
         ('netty','buffer'),
-        ('netty','handler-proxy'),
+        # ('netty','handler-proxy'),
         ('netty','testsuite-autobahn'),
-        ('netty','handler-ssl-ocsp'),
+        # ('netty','handler-ssl-ocsp'),
         ('netty','testsuite-http2'),
-        ('netty','codec'),
+        # ('netty','codec'),
         ('netty','codec-dns'),
         ('netty','codec-haproxy'),
         ('netty','codec-memcache'),
@@ -108,13 +291,13 @@ def dataset():
         ('netty','codec-stomp'),
         ('netty','codec-socks'),
         ('netty','codec-xml'),
-        ('netty','common'),
-        ('netty','transport'),
+        # ('netty','common'),
+        # ('netty','transport'),
         ('netty','transport-rxtx'),
-        ('netty','transport-sctp'),
+        # ('netty','transport-sctp'),
         ('netty','transport-udt'),
         ('netty','example'),
-        ('netty','dev-tools'),
+        # ('netty','dev-tools'),
         ('java-design-patterns', 'monad'),
         ('java-design-patterns', 'value-object'),
         ('java-design-patterns', 'ambassador'),
@@ -153,11 +336,11 @@ def dataset():
         ('java-design-patterns', 'dynamic-proxy'),
         ('java-design-patterns', 'caching'),
         ('java-design-patterns', 'bytecode'),
-        ('java-design-patterns', 'microservices-aggregrator'),
+        # ('java-design-patterns', 'microservices-aggregrator'),
         ('java-design-patterns', 'servant'),
         ('java-design-patterns', 'visitor'),
         ('java-design-patterns', 'null-object'),
-        ('java-design-patterns', 'page-object'),
+        # ('java-design-patterns', 'page-object'),
         ('java-design-patterns', 'fluent-interface'),
         ('java-design-patterns', 'event-sourcing'),
         ('java-design-patterns', 'reactor'),
@@ -167,9 +350,9 @@ def dataset():
         ('java-design-patterns', 'marker-interface'),
         ('java-design-patterns', 'function-composition'),
         ('java-design-patterns', 'promise'),
-        ('java-design-patterns', 'naked-objects'),
+        # ('java-design-patterns', 'naked-objects'),
         ('java-design-patterns', 'saga'),
-        ('java-design-patterns', 'localization'),
+        # ('java-design-patterns', 'localization'),
         ('java-design-patterns', 'microservices-log-aggregation'),
         ('java-design-patterns', 'transaction-script'),
         ('java-design-patterns', 'poison-pill'),
@@ -183,14 +366,14 @@ def dataset():
         ('java-design-patterns', 'queue-based-load-leveling'),
         ('java-design-patterns', 'converter'),
         ('java-design-patterns', 'collecting-parameter'),
-        ('java-design-patterns', 'model-view-presenter'),
+        # ('java-design-patterns', 'model-view-presenter'),
         ('java-design-patterns', 'proxy'),
         ('java-design-patterns', 'serialized-entity'),
         ('java-design-patterns', 'business-delegate'),
         ('java-design-patterns', 'combinator'),
-        ('java-design-patterns', 'etc'),
+        # ('java-design-patterns', 'etc'),
         ('java-design-patterns', 'layered-architecture'),
-        ('java-design-patterns', 'intercepting-filter'),
+        # ('java-design-patterns', 'intercepting-filter'),
         ('java-design-patterns', 'data-access-object'),
         ('java-design-patterns', 'abstract-document'),
         ('java-design-patterns', 'virtual-proxy'),
@@ -212,7 +395,7 @@ def dataset():
         ('java-design-patterns', 'service-to-worker'),
         ('java-design-patterns', 'acyclic-visitor'),
         ('java-design-patterns', 'registry'),
-        ('java-design-patterns', 'hexagonal-architecture'),
+        # ('java-design-patterns', 'hexagonal-architecture'),
         ('java-design-patterns', 'front-controller'),
         ('java-design-patterns', 'model-view-intent'),
         ('java-design-patterns', 'type-object'),
@@ -240,7 +423,7 @@ def dataset():
         ('java-design-patterns', 'property'),
         ('java-design-patterns', 'balking'),
         ('java-design-patterns', 'currying'),
-        ('java-design-patterns', 'microservices-distributed-tracing'),
+        # ('java-design-patterns', 'microservices-distributed-tracing'),
         ('java-design-patterns', 'event-aggregator'),
         ('java-design-patterns', 'leader-followers'),
         ('java-design-patterns', 'partial-response'),
@@ -252,12 +435,12 @@ def dataset():
         ('java-design-patterns', 'retry'),
         ('java-design-patterns', 'mute-idiom'),
         ('java-design-patterns', 'role-object'),
-        ('java-design-patterns', 'model-view-viewmodel'),
+        # ('java-design-patterns', 'model-view-viewmodel'),
         ('java-design-patterns', 'event-based-asynchronous'),
         ('java-design-patterns', 'curiously-recurring-template-pattern'),
         ('java-design-patterns', 'adapter'),
         ('java-design-patterns', 'pipeline'),
-        ('java-design-patterns', 'presentation-model'),
+        # ('java-design-patterns', 'presentation-model'),
         ('java-design-patterns', 'circuit-breaker'),
         ('java-design-patterns', 'factory-kit'),
         ('java-design-patterns', 'monitor'),
@@ -266,11 +449,11 @@ def dataset():
         ('java-design-patterns', 'unit-of-work'),
         ('java-design-patterns', 'event-queue'),
         ('java-design-patterns', 'factory'),
-        ('java-design-patterns', 'dependency-injection'),
+        # ('java-design-patterns', 'dependency-injection'),
         ('java-design-patterns', 'execute-around'),
         ('java-design-patterns', 'command'),
         ('java-design-patterns', 'spatial-partition'),
-        ('java-design-patterns', 'microservices-api-gateway'),
+        # ('java-design-patterns', 'microservices-api-gateway'),
         ('java-design-patterns', 'feature-toggle'),
         ('java-design-patterns', 'composite-view'),
         ('java-design-patterns', 'parameter-object'),
@@ -302,6 +485,7 @@ def dataset():
         ('spring-boot-demo', 'demo-dubbo'),
         ('spring-boot-demo', 'demo-dubbo/dubbo-common'),
         ('spring-boot-demo', 'demo-admin'),
+        ('WxJava', '.'),
         ('WxJava', 'weixin-java-cp'),
         ('WxJava', 'weixin-graal'),
         ('WxJava', 'spring-boot-starters'),
@@ -342,83 +526,5 @@ def dataset():
     ]
     return modules
 
-def execute_tool(module: tuple):
-    """method to execute the tool on one module"""
-    dataset_root = "/home1/kaixuan/ray/Extended_dataset"
-    root_dir = os.path.join(dataset_root, module[0])
-    # repo_name = os.path.basename(module[0])
-    # logging.info(f"{repo_name} : {module[1]} start")
-    logging.info(f"{module[0]} : {module[1]} start")
-    if len(module) == 2:
-        # command = f"python3 ./MainProcess.py -r {module[0]} -m {module[1]}"
-        command = f"python3.10 ./MainProcess.py -r {root_dir} -m {module[1]}"
-    elif len(module) == 3:
-        # command = f"python3 ./MainProcess.py -r {module[0]} -m {module[1]} -j {module[2]}"
-        command = f"python3.10 ./MainProcess.py -r {root_dir} -m {module[1]} -j {module[2]}"
-    result = subprocess.run(command,shell=True,text=True,\
-        stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
-    # store_log(repo_name, module[1], result.stdout)
-    store_log(module[0], module[1], result.stdout)
-    return result
-
-def store_log(repo_name: str, relative_path_to_module: str, log:str):
-    """store the log"""
-    log_folder = os.path.join(RET_DIR,repo_name,relative_path_to_module)
-    if not os.path.exists(log_folder):
-        os.makedirs(log_folder)
-    log_path = os.path.join(log_folder,'stdout.txt')
-    with open(log_path,'w',encoding='utf-8') as f:
-        f.write(log)
-
-def store_ret_in_csv(repo_name: str, relative_path_to_module: str, ret:str):
-    """
-        store the ret in csv
-        note: ? means the corresponding value is not available, just skip such modules
-    """
-    csv_path = os.path.join(DATA_DIR, 'dataset.csv')
-    compile_flag = parse_ret(ret,'compile success:')
-    test_flag = parse_ret(ret,'test pass:')
-    original_tech_lag = parse_ret(ret,'original technical lag:')
-    current_tech_lag = parse_ret(ret,'current technical lag:')
-    reduced_tech_lag = parse_ret(ret,'reduced technical lag:')
-    original_dep_count = parse_ret(ret,'original dependency count:')
-    current_dep_count = parse_ret(ret,'current dependency count:')
-    reduced_dep_count = parse_ret(ret,'reduced dependency count:')
-    # depth_1_tech_lag = parse_ret(ret,'reduced technical lag in depth 1:')
-    # depth_2_tech_lag = parse_ret(ret,'reduced technical lag in depth 2:')
-    # depth_3_tech_lag = parse_ret(ret,'reduced technical lag in depth 3:')
-    # depth_4_tech_lag = parse_ret(ret,'reduced technical lag in depth 4:')
-    # depth_5_tech_lag = parse_ret(ret,'reduced technical lag in depth 5:')
-    # depth_6_tech_lag = parse_ret(ret,'reduced technical lag in depth 6:')
-    # depth_7_tech_lag = parse_ret(ret,'reduced technical lag in depth 7:')
-    # depth_8_tech_lag = parse_ret(ret,'reduced technical lag in depth 8:')
-    # depth_9_tech_lag = parse_ret(ret,'reduced technical lag in depth 9:')
-    # depth_10_tech_lag = parse_ret(ret,'reduced technical lag in depth 10:')
-    # depth_more_tech_lag = parse_ret(ret,'reduced technical lag in depth >10:')
-    new_row = pd.DataFrame([[repo_name, relative_path_to_module, compile_flag, test_flag,
-                         original_tech_lag, current_tech_lag, reduced_tech_lag,\
-                            #  depth_1_tech_lag, depth_2_tech_lag, depth_3_tech_lag,\
-                            #      depth_4_tech_lag, depth_5_tech_lag, depth_6_tech_lag,\
-                            #          depth_7_tech_lag, depth_8_tech_lag, depth_9_tech_lag,\
-                            #              depth_10_tech_lag, depth_more_tech_lag,\
-                                             original_dep_count, current_dep_count, reduced_dep_count]],\
-                       columns=['repo', 'module', 'compile_success', 'test_pass',
-                                'original_tech_lag', 'current_tech_lag', 'reduced_tech_lag',\
-                                    # '1_depth_reduction', '2_depth_reduction', '3_depth_reduction',\
-                                    #     '4_depth_reduction', '5_depth_reduction', '6_depth_reduction',\
-                                    #         '7_depth_reduction', '8_depth_reduction', '9_depth_reduction',\
-                                    #             '10_depth_reduction', 'more_than_10_depth_reduction',\
-                                        'original_dep_count', 'current_dep_count', 'reduced_dep_count'])
-    new_row.to_csv(csv_path, mode='a', header=False, index=False)
-
-def parse_ret(ret:str, prefix:str):
-    """get ret starts with prefix"""
-    pattern = rf'{prefix} (.*)'
-    match = re.search(pattern,ret)
-    if match:
-        return match.group(1)
-    else:
-        return '?'
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

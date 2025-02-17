@@ -113,6 +113,7 @@ def select_json():
         for file in files:
             if file == "version.json":
                 json_files.append(os.path.join(dir, file))
+    print(len(json_files))
     return json_files
 
 def get_max_depth(json_files: list):

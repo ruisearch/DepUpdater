@@ -100,7 +100,7 @@ def evaluate_dependabot(module):
 
     # compute the current tech lag and current dep count
     tree_path = os.path.join(dependabot_dir_path, 'verbose_tree.txt')
-    json_path = tree_to_json(tree_path, os.path.join('/home/kaixuan/ray/SRC_dataset/', repo_name), module_name)
+    json_path = tree_to_json(tree_path, os.path.join('/home/kaixuan/ray/Extended_dataset/', repo_name), module_name)
     if not json_path:
         # cann't generate dependency graph
         return [repo_name, module_name, compile_flag, test_flag, int(original_tech_lag[0]), '?', '?', int(original_dep_count), '?', '?']
@@ -114,7 +114,7 @@ def evaluate_dependabot(module):
 def recompile(repo_name, module_path):
     """recompile the module"""
     compile_log_path = os.path.join(DATA_DIR, 'dependabot', repo_name, module_path, 'compile_log.txt')
-    path_to_cloned_folder = os.path.join('/home/kaixuan/ray/SRC_dataset/', repo_name)
+    path_to_cloned_folder = os.path.join('/home/kaixuan/ray/Extended_dataset/', repo_name)
     command = f"cd {os.path.join(path_to_cloned_folder, module_path)} &&\
         mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true \
                 -Dspotless.check.skip=true compile"
@@ -141,8 +141,8 @@ def recompile(repo_name, module_path):
 def test(repo_name, module_path):
     """test the module"""
     test_log_path = os.path.join(DATA_DIR, 'dependabot', repo_name, module_path, 'test_log.txt')
-    path_to_cloned_folder = os.path.join('/home/kaixuan/ray/SRC_dataset/', repo_name)
-    path_to_project_folder = os.path.join('/home/kaixuan/ray/SRC_dataset/', repo_name)
+    path_to_cloned_folder = os.path.join('/home/kaixuan/ray/Extended_dataset/', repo_name)
+    path_to_project_folder = os.path.join('/home/kaixuan/ray/Extended_dataset/', repo_name)
     command = f"cd {os.path.join(path_to_project_folder, module_path)} && \
             mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -Dspotless.check.skip=true test"
     try:
@@ -459,7 +459,71 @@ def dataset():
         ('java-design-patterns', 'parameter-object'),
         ('java-design-patterns', 'arrange-act-assert'),
         ('java-design-patterns', 'iterator'),
-        ('java-design-patterns', 'lazy-loading')
+        ('java-design-patterns', 'lazy-loading'),
+        ('easyexcel', 'easyexcel'),
+        ('easyexcel', 'easyexcel-test'),
+        ('easyexcel', 'easyexcel-support'),
+        ('easyexcel', 'easyexcel-core'),
+        ('nacos', 'plugin'),
+        ('nacos', 'plugin/environment'),
+        ('nacos', 'plugin/trace'),
+        ('nacos', 'plugin/datasource'),
+        ('nacos', 'plugin/encryption'),
+        ('nacos', 'plugin/config'),
+        ('nacos', 'plugin/control'),
+        ('nacos', 'plugin/auth'),
+        ('nacos', 'common'),
+        ('nacos', 'client'),
+        ('nacos', 'api'),
+        ('nacos', 'logger-adapter-impl'),
+        ('nacos', 'logger-adapter-impl/log4j2-adapter'),
+        ('nacos', 'logger-adapter-impl/logback-adapter-12'),
+        ('nacos', 'consistency'),
+        ('nacos', 'plugin-default-impl'),
+        ('nacos', 'plugin-default-impl/nacos-default-control-plugin'),
+        ('spring-boot-demo', 'demo-oauth'),
+        ('spring-boot-demo', 'demo-dubbo'),
+        ('spring-boot-demo', 'demo-dubbo/dubbo-common'),
+        ('spring-boot-demo', 'demo-admin'),
+        ('WxJava', 'weixin-java-cp'),
+        ('WxJava', 'weixin-graal'),
+        ('WxJava', 'spring-boot-starters'),
+        ('WxJava', 'spring-boot-starters/wx-java-qidian-spring-boot-starter'),
+        ('WxJava', 'spring-boot-starters/wx-java-miniapp-multi-spring-boot-starter'),
+        ('WxJava', 'spring-boot-starters/wx-java-miniapp-spring-boot-starter'),
+        ('WxJava', 'spring-boot-starters/wx-java-channel-multi-spring-boot-starter'),
+        ('WxJava', 'spring-boot-starters/wx-java-cp-spring-boot-starter'),
+        ('WxJava', 'spring-boot-starters/wx-java-open-spring-boot-starter'),
+        ('WxJava', 'spring-boot-starters/wx-java-channel-spring-boot-starter'),
+        ('WxJava', 'spring-boot-starters/wx-java-mp-multi-spring-boot-starter'),
+        ('WxJava', 'spring-boot-starters/wx-java-mp-spring-boot-starter'),
+        ('WxJava', 'spring-boot-starters/wx-java-pay-spring-boot-starter'),
+        ('WxJava', 'spring-boot-starters/wx-java-cp-multi-spring-boot-starter'),
+        ('WxJava', 'weixin-java-miniapp'),
+        ('WxJava', 'weixin-java-mp'),
+        ('WxJava', 'weixin-java-pay'),
+        ('WxJava', 'weixin-java-qidian'),
+        ('WxJava', 'weixin-java-channel'),
+        ('WxJava', 'weixin-java-open'),
+        ('WxJava', 'weixin-java-common'),
+        ('WxJava', 'others/weixin-java-osgi'),
+        ('WxJava', 'solon-plugins'),
+        ('WxJava', 'solon-plugins/wx-java-pay-solon-plugin'),
+        ('WxJava', 'solon-plugins/wx-java-open-solon-plugin'),
+        ('WxJava', 'solon-plugins/wx-java-cp-multi-solon-plugin'),
+        ('WxJava', 'solon-plugins/wx-java-miniapp-multi-solon-plugin'),
+        ('WxJava', 'solon-plugins/wx-java-channel-solon-plugin'),
+        ('WxJava', 'solon-plugins/wx-java-miniapp-solon-plugin'),
+        ('WxJava', 'solon-plugins/wx-java-cp-solon-plugin'),
+        ('WxJava', 'solon-plugins/wx-java-mp-solon-plugin'),
+        ('WxJava', 'solon-plugins/wx-java-channel-multi-solon-plugin'),
+        ('WxJava', 'solon-plugins/wx-java-qidian-solon-plugin'),
+        ('WxJava', 'solon-plugins/wx-java-mp-multi-solon-plugin'),
+        ('zxing', 'core'),
+        ('zxing', 'zxing.appspot.com'),
+        ('zxing', 'javase')
+
+        
     ]
     return modules
 
