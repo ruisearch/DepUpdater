@@ -23,7 +23,7 @@ def read_json(file_path: str):
 def select_json():
     """select the json file"""
     root_dir_path = os.path.join("..","data","result")
-    print(root_dir_path)
+    # print(root_dir_path)
     json_files = []
     """递归读取root_dir_path下的所有子文件夹中的version.json文件"""
     for dir, _, files in os.walk(root_dir_path):
@@ -36,6 +36,6 @@ if __name__ == "__main__":
     json_files = select_json()
     for file in json_files:
         data = read_json(file)
-        print(file)
-        print('-------')
+        # print(file)
+        # print('-------')
         record_api(data)

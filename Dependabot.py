@@ -100,7 +100,7 @@ def evaluate_dependabot(module):
 
     # compute the current tech lag and current dep count
     tree_path = os.path.join(dependabot_dir_path, 'verbose_tree.txt')
-    json_path = tree_to_json(tree_path, os.path.join('/home/kaixuan/ray/Extended_dataset/', repo_name), module_name)
+    json_path = tree_to_json(tree_path, os.path.join('/home1/kaixuan/ray/Extended_dataset/', repo_name), module_name)
     if not json_path:
         # cann't generate dependency graph
         return [repo_name, module_name, compile_flag, test_flag, int(original_tech_lag[0]), '?', '?', int(original_dep_count), '?', '?']
@@ -114,7 +114,7 @@ def evaluate_dependabot(module):
 def recompile(repo_name, module_path):
     """recompile the module"""
     compile_log_path = os.path.join(DATA_DIR, 'dependabot', repo_name, module_path, 'compile_log.txt')
-    path_to_cloned_folder = os.path.join('/home/kaixuan/ray/Extended_dataset/', repo_name)
+    path_to_cloned_folder = os.path.join('/home1/kaixuan/ray/Extended_dataset/', repo_name)
     command = f"cd {os.path.join(path_to_cloned_folder, module_path)} &&\
         mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true \
                 -Dspotless.check.skip=true compile"
@@ -141,8 +141,8 @@ def recompile(repo_name, module_path):
 def test(repo_name, module_path):
     """test the module"""
     test_log_path = os.path.join(DATA_DIR, 'dependabot', repo_name, module_path, 'test_log.txt')
-    path_to_cloned_folder = os.path.join('/home/kaixuan/ray/Extended_dataset/', repo_name)
-    path_to_project_folder = os.path.join('/home/kaixuan/ray/Extended_dataset/', repo_name)
+    path_to_cloned_folder = os.path.join('/home1/kaixuan/ray/Extended_dataset/', repo_name)
+    path_to_project_folder = os.path.join('/home1/kaixuan/ray/Extended_dataset/', repo_name)
     command = f"cd {os.path.join(path_to_project_folder, module_path)} && \
             mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -Dspotless.check.skip=true test"
     try:

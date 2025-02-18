@@ -157,7 +157,7 @@ class Computation:
         """method to judge versions' compatibility"""
         # get entry points and caller of the dependency
         for dependent in self.cur_node['Dependents']:
-            # handle the version range
+            # handle the version range defined by dependant
             if '[' in dependent['Define_Version'] or ']' in dependent['Define_Version'] \
                 or '(' in dependent['Define_Version'] or ')' in dependent['Define_Version']:
                 # version range
@@ -200,6 +200,17 @@ class Computation:
                 # update the progress bar
                 pbar.update(1)
         pbar.close()
+        
+        # # serial to debug
+        # pbar = tqdm(total=len(all_versions), desc=f"analyze versions of {self.cur_node['GroupId']}:{self.cur_node['ArtifactId']}", position=0, leave=True)
+        # for version in all_versions:
+        #     breaking_reason = self.version_compatibility_checker(version, client_gav)
+        #     for version_dict in self.cur_node['Versions']:
+        #         if version_dict['version'] == breaking_reason['version']:
+        #             version_dict['breaking_reason'] = breaking_reason['breaking_reason']
+        #             break
+        #     pbar.update(1)
+        # pbar.close()
 
     def graph_to_set(self):
         """transform the node in self.graph into g:a set"""

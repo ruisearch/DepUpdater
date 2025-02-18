@@ -1,58 +1,278 @@
-"""script to run the tool on the dataset in one run"""
-import subprocess
+'''
+    execute GoblinUpdater for RQ1
+    GoblinWeaver should be executed firstly
+'''
 import os
-import logging
-import re
-import pandas as pd
+
+import requests
+import semver
+from pyparsing import Word, alphas, nums, Literal, Group, ZeroOrMore, SkipTo
+from io import StringIO
+from typing import Dict, List, Optional, Tuple
+import xml.etree.ElementTree as ET
+from datetime import datetime
+import shutil
+from dataclasses import dataclass
 from tqdm import tqdm
-from constants import DATA_DIR, RET_DIR
+
+import subprocess
+
+import pandas as pd
 
 
-def main():
-    """main function"""
-    log_path = os.path.join(DATA_DIR, 'DATASET.log')
-    # clear log
-    if os.path.exists(log_path):
-        os.remove(log_path)
-    # set log
-    logging.basicConfig(filename=log_path,level=logging.INFO,format='%(asctime)s - %(message)s')
+@dataclass
+class SolutionResult:
+    module: List[str]
+    # old_version: str
+    new_version: str
 
-    csv_path = os.path.join(DATA_DIR, 'dataset.csv')
-    # Create or load CSV file
-    if os.path.exists(csv_path):
-        dataset_df = pd.read_csv(csv_path)
-    else:
-        # Create a DataFrame with the header if the CSV does not exist
-        dataset_df = pd.DataFrame(columns=['repo', 'module', 'compile_success', 'test_pass',
-                                           'original_tech_lag', 'current_tech_lag', 'reduced_tech_lag', \
-                                               'original_dep_count', 'current_dep_count', 'reduced_dep_count'])
-        dataset_df.to_csv(csv_path, index=False)
+@dataclass
+class VersionInfo:
+    version: str
+    id: str
+    published_epoch_millis: int
+    
+@dataclass
+class DependencyInfo:
+    group_id: str
+    arch_id: str
+    version: str
+    scope: str
 
-    # set module
-    modules = dataset()
+def get_versions(group_id: str, artifact_id: str) -> List[VersionInfo]:
+    """
+    Request the first 5 pages and sort. For non-semver versions, sort by publication time.
+    """
+    components = list()
+    for i in range(0,5):
+        url = f"https://central.sonatype.com/api/internal/browse/component/versions?sortField=normalizedVersion&sortDirection=desc&page={i}&size=20&filter=namespace:{group_id},name:{artifact_id}"
+        response = requests.get(url)
+        data = response.json()
+        components+=data['components']
+    # print(components)
+    versions = [
+        VersionInfo(
+            version=component['version'],
+            id=component['id'],
+            published_epoch_millis=component['publishedEpochMillis']
+        )
+        for component in components
+    ]
 
-    with tqdm(total=len(modules)) as pbar:
-        for module in modules:
-            print(module)
-            repo_name, module_name = module[0], module[1]
-             # Check if this module has already been processed
-            if ((dataset_df['repo'] == repo_name) & (dataset_df['module'] == module_name)).any():
-                pbar.update(1)
-                continue
+    # versions.sort(key=lambda v: v.published_epoch_millis, reverse=True)
+    # versions.sort(key=lambda v: [int(x) for x in v.version.split('.')], reverse=True)
+    try:
+        versions.sort(key=lambda v: semver.VersionInfo.parse(v.version))
+    except ValueError:
+        versions.sort(key=lambda v: v.published_epoch_millis)
+    return versions
 
-            result = execute_tool(module)
-            if result.returncode != 0:
-                logging.info(f"{repo_name} : {module_name} crashes")
-                store_ret_in_csv(repo_name, module_name, result.stdout)
-                pbar.update(1)
-                continue
-            logging.info(f"{repo_name} : {module_name} done")
-            store_ret_in_csv(repo_name, module_name, result.stdout)
-            pbar.update(1)
+# Get the interval between two versions
+__version_cache = dict()
+__get_version_cache_key = lambda x, y: f"{x}:{y}"
+def get_version_distance(group_id: str, artifact_id: str, v1: str, v2: str) -> Optional[int]:
+    if v1 == v2:
+        return 0
+    key = __get_version_cache_key(group_id, artifact_id)
+    if key not in __version_cache:
+        __version_cache[key] = get_versions(group_id, artifact_id)
+    idx = list()
+    for i, v in enumerate(__version_cache[key]):
+        if v.version == v1 or v.version == v2:
+            idx.append(i)
 
-def dataset():
-    """set modules in the dataset"""
-    modules = [
+    return abs(idx[0]- idx[1])-1 if len(idx) == 2 else None
+
+def get_latest_version(group_id: str, artifact_id: str) -> str:
+    """
+    If not in cache, request it; otherwise, return the last one.
+    """
+    key = __get_version_cache_key(group_id, artifact_id)
+    if key not in __version_cache:
+        __version_cache[key] = get_versions(group_id, artifact_id)
+
+    return __version_cache[key][-1].version
+
+
+ET.register_namespace('', 'http://maven.apache.org/POM/4.0.0')
+
+class PomModifier:
+    def __init__(self, file_path):
+        self.file_path = file_path
+        self.tree = ET.parse(file_path)
+        self.root = self.tree.getroot()
+        self.namespaces = {'': 'http://maven.apache.org/POM/4.0.0'}
+        self.backup_file_path = ""
+        self.properties = self._parse_properties()
+
+    def _parse_properties(self) -> Dict[str, str]:
+        """
+        Parse properties
+        Returns:
+            Dict[str, str]: xml_key: xml_value
+        """
+        properties = {}
+        properties_element = self.root.find('.//properties', self.namespaces)
+        if properties_element is not None:
+            for prop in properties_element:
+                properties[prop.tag.lstrip("{"+self.namespaces['']+"}")] = prop.text
+        return properties
+
+    def list_dependency(self):
+        """
+        Print the dependencies in the current POM
+        """
+        dependencies = self.root.findall('.//dependencies/dependency', self.namespaces)
+        for dep in dependencies:
+            dep_group_id = dep.find('groupId', self.namespaces)
+            dep_artifact_id = dep.find('artifactId', self.namespaces)
+            if dep_group_id is not None and dep_artifact_id is not None:
+                dep_version = dep.find('version', self.namespaces)
+                if dep_version is not None:
+                    print(f"artifactId:{dep_artifact_id.text}, version:{dep_version.text}")
+
+
+    def modify(self, group_id: str, artifact_id: str, new_version: str) -> Optional[Tuple]:
+        """
+        Find the corresponding value, modify it if it exists, and return the values before and after the modification.
+        """
+        
+        dependencies = self.root.findall('.//dependencies/dependency', self.namespaces)
+
+        for dep in dependencies:
+            dep_group_id = dep.find('groupId', self.namespaces)
+            dep_artifact_id = dep.find('artifactId', self.namespaces)
+
+            if dep_group_id is not None and dep_artifact_id is not None:
+                if dep_group_id.text == group_id and dep_artifact_id.text == artifact_id:
+                    dep_version = dep.find('version', self.namespaces)
+                    if dep_version is not None:
+                        _old_version = dep_version.text
+                        if dep_version.text.startswith("$"):
+                            _old_version = self.properties[f"{dep_version.text.strip('${').strip('}')}"]
+                        dep_version.text = new_version
+                        print(f"Updated {group_id}:{artifact_id} to version {new_version}")
+                        return _old_version, new_version
+
+        print(f"Dependency {group_id}:{artifact_id} not found!")
+        return None
+    def save(self):
+        """
+        Generate a backup of the original file based on the time.
+        """
+        timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+        self.backup_file_path = f"{self.file_path}.{timestamp}.bak"
+        shutil.copy(self.file_path, self.backup_file_path)
+        self.tree.write(self.file_path)
+        
+    def rollback(self):
+        """
+        Restore the file from the backup.
+        """
+        os.remove(self.file_path)
+        shutil.copy(self.backup_file_path, self.file_path)
+
+
+def _parse_result(result: List) -> SolutionResult:
+    """
+    The parsed result is approximately (['a', ':', 'b', ':', '1.2.3']), extract and parse.
+    """
+    x1=list(filter(lambda x: x != ":", result[1]))
+    return SolutionResult(x1[:-1], x1[-1])
+
+
+class GoblinUpdaterParser:
+    module_part = Word(alphas + nums + "._-") + ZeroOrMore(Literal(":"))
+    module_parts = Group(ZeroOrMore(module_part))
+    version_part = Word(nums + ".")
+
+    parser = Literal("(") + module_parts + ZeroOrMore(version_part) + Literal(")") + Literal(":") + version_part
+
+    def __init__(self):
+        self.exec_result = ""
+
+    def exec(self, module_path, _cfg_path, _jar_path, _dweaver_url="http://localhost:8080"):
+        cmd = ['bash', '-c', f'java -DweaverUrl={_dweaver_url} -DprojectPath={module_path} -DconfFile={_cfg_path} -jar {_jar_path}']
+        try:
+            self.exec_result = subprocess.run(cmd, text=True, timeout=4800, stdout=subprocess.PIPE).stdout
+            print(self.exec_result)
+        except subprocess.TimeoutExpired as e:
+            self.exec_result = ""
+            print(f"Timeout: {e}")
+        except subprocess.CalledProcessError as e:
+            self.exec_result = ""
+            print(f"Check environment: {e}")
+        return self
+
+    def parse(self)->List[SolutionResult]:
+        """
+        Ignoring the text before 'solution', start parsing from the line after 'solution'
+        """
+        if self.exec_result == "":
+            return []
+        # buffer = StringIO(solution_with_version.strip())
+        buffer = StringIO(self.exec_result.strip())
+
+        while line := buffer.readline():
+            if line.__contains__("## Solution:"):
+                break
+        
+        return [_parse_result(m) for m in self.parser.searchString(buffer.read())]
+
+
+def mvn_compile(_module_path: str) -> bool:
+    cmd = ['bash', '-c', f"cd {_module_path} && mvn compile"]
+    try:
+        subprocess.check_call(cmd, text=True, timeout=4800)
+    except subprocess.CalledProcessError:
+        return False
+    return True
+
+
+def mvn_test(_module_path: str) -> bool:
+    cmd = ['bash', '-c', f"cd {_module_path} && mvn test"]
+    try:
+        subprocess.check_call(cmd, text=True, timeout=4800)
+    except subprocess.CalledProcessError:
+        return False
+    return True
+
+def get_maven_dependencies(path) -> Optional[List[DependencyInfo]]:
+    try:
+        exec_result = subprocess.run(['bash', '-c', f'cd {path} && mvn dependency:tree'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Check env: {e}")
+        return
+    if exec_result.returncode != 0:
+        print(f"Error executing mvn command: {exec_result.stderr}")
+        print(f"if mvn not found, can exec: export PATH=$PATH:/home1/kaixuan/ray/apache-maven-3.9.5/bin/")
+        return
+    return parse_dependencies_tree(extract_dep_tree(exec_result.stdout))
+
+def extract_dep_tree(output: str) -> str:
+    """
+    Extract the content between 'tree (default-cli) @' and 'BUILD SUCCESS'
+    """
+    start_marker = Literal(":tree (default-cli) @")
+    end_marker = Literal("BUILD SUCCESS")
+    content_parser =  SkipTo(start_marker) + SkipTo(end_marker)("content") + end_marker
+    return content_parser.parseString(output)["content"]
+
+def parse_dependencies_tree(output: str) -> List[DependencyInfo]:
+    """
+    The parsed result can be retrieved in a key-value (kv) format.
+    """
+    group = Word(alphas + ".")
+    artifact = Word(alphas + "-")
+    version = Word(nums + alphas + ".")
+    scope = Word(alphas)
+    dependency = group("group") + Literal(":") + artifact("artifact") + Literal(":jar:") + version("version") + Literal(":") + scope("scope")
+    return [DependencyInfo(x["group"], x["artifact"], x["version"], x["scope"]) for x in dependency.searchString(output)]
+
+if __name__ == "__main__":
+    cfg_path = "/home1/kaixuan/ray/Baselines/goblinUpdater/gUpdaterConfig.yml"
+    jar_path = "/home1/kaixuan/ray/Baselines/goblinUpdater/target/goblinUpdater-1.0.0-jar-with-dependencies.jar"
+    dataset = [
         ('mall','mall-common'),
         ('mall','mall-security'),
         # ('guava','guava'),
@@ -340,85 +560,90 @@ def dataset():
         # ('zxing', 'zxing.appspot.com'),
         # ('zxing', 'javase')
     ]
-    return modules
+    dataset_root_dir = "/home1/kaixuan/ray/Extended_dataset"
+    module_paths=[]
+    for module in dataset:
+        relative_path = os.path.join(module[0], module[1])
+        module_paths.append(os.path.join(dataset_root_dir, relative_path))
+    
+    module_data = list()
+    compile_data = list()
+    
+    pbar = tqdm(total=len(module_paths), desc=f"goblinUpdater", position=0, leave=True)
+    for mod_path in module_paths:
+        # solutions = GoblinUpdaterParser().exec(mod_path, cfg_path, jar_path).parse()
+        print(f"***** Processing {mod_path} *****")
+        dep_tree_old = get_maven_dependencies(mod_path)
+        dep_filtered_old = list(filter(lambda x: x.scope in ["compile", "runtime"], dep_tree_old))
+        dep_ga_list = [(x.group_id, x.arch_id) for x in dep_filtered_old]
+        
+        solutions = GoblinUpdaterParser().exec(mod_path, cfg_path, jar_path).parse()
+        modifier = PomModifier(rf"{mod_path}/pom.xml")
+        modifier.list_dependency()
+        for solution in solutions:
+            if len(solution.module) == 0:
+                continue
+            group_id, artifact_id = solution.module[0], solution.module[1]
+            if (group_id, artifact_id) not in dep_ga_list:
+                continue
+            if solution.module == ["ROOT"]:
+                continue
+            result = modifier.modify(group_id, artifact_id, solution.new_version)
+            if result is not None:
+                # old version, new_version
+                ov , nv = result[0], result[1]
+                # latest_version
+                lv = get_latest_version(group_id, artifact_id)
 
-def execute_tool(module: tuple):
-    """method to execute the tool on one module"""
-    dataset_root = "/home1/kaixuan/ray/Extended_dataset"
-    root_dir = os.path.join(dataset_root, module[0])
-    # repo_name = os.path.basename(module[0])
-    # logging.info(f"{repo_name} : {module[1]} start")
-    logging.info(f"{module[0]} : {module[1]} start")
-    if len(module) == 2:
-        # command = f"python3 ./MainProcess.py -r {module[0]} -m {module[1]}"
-        command = f"python3.10 ./MainProcess.py -r {root_dir} -m {module[1]}"
-    elif len(module) == 3:
-        # command = f"python3 ./MainProcess.py -r {module[0]} -m {module[1]} -j {module[2]}"
-        command = f"python3.10 ./MainProcess.py -r {root_dir} -m {module[1]} -j {module[2]}"
-    result = subprocess.run(command,shell=True,text=True,\
-        stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
-    # store_log(repo_name, module[1], result.stdout)
-    store_log(module[0], module[1], result.stdout)
-    return result
+                module_data.append(
+                    {
+                        "path": mod_path,
+                        "group_id": solution.module[0],
+                        "artifact_id": solution.module[1],
+                        "version_old":ov,
+                        "version_new": nv,
+                        "original_tech_lag": get_version_distance(group_id, artifact_id, ov, lv),
+                        "current_tech_lag": get_version_distance(group_id, artifact_id, nv, lv)
+                    }
+                )
+        modifier.save()
 
-def store_log(repo_name: str, relative_path_to_module: str, log:str):
-    """store the log"""
-    log_folder = os.path.join(RET_DIR,repo_name,relative_path_to_module)
-    if not os.path.exists(log_folder):
-        os.makedirs(log_folder)
-    log_path = os.path.join(log_folder,'stdout.txt')
-    with open(log_path,'w',encoding='utf-8') as f:
-        f.write(log)
+        dep_tree_new = get_maven_dependencies(mod_path)
+        dep_filtered_new = list(filter(lambda x: x.scope in ["compile", "runtime"], dep_tree_old))
 
-def store_ret_in_csv(repo_name: str, relative_path_to_module: str, ret:str):
-    """
-        store the ret in csv
-        note: ? means the corresponding value is not available, just skip such modules
-    """
-    csv_path = os.path.join(DATA_DIR, 'dataset.csv')
-    compile_flag = parse_ret(ret,'compile success:')
-    test_flag = parse_ret(ret,'test pass:')
-    original_tech_lag = parse_ret(ret,'original technical lag:')
-    current_tech_lag = parse_ret(ret,'current technical lag:')
-    reduced_tech_lag = parse_ret(ret,'reduced technical lag:')
-    original_dep_count = parse_ret(ret,'original dependency count:')
-    current_dep_count = parse_ret(ret,'current dependency count:')
-    reduced_dep_count = parse_ret(ret,'reduced dependency count:')
-    # depth_1_tech_lag = parse_ret(ret,'reduced technical lag in depth 1:')
-    # depth_2_tech_lag = parse_ret(ret,'reduced technical lag in depth 2:')
-    # depth_3_tech_lag = parse_ret(ret,'reduced technical lag in depth 3:')
-    # depth_4_tech_lag = parse_ret(ret,'reduced technical lag in depth 4:')
-    # depth_5_tech_lag = parse_ret(ret,'reduced technical lag in depth 5:')
-    # depth_6_tech_lag = parse_ret(ret,'reduced technical lag in depth 6:')
-    # depth_7_tech_lag = parse_ret(ret,'reduced technical lag in depth 7:')
-    # depth_8_tech_lag = parse_ret(ret,'reduced technical lag in depth 8:')
-    # depth_9_tech_lag = parse_ret(ret,'reduced technical lag in depth 9:')
-    # depth_10_tech_lag = parse_ret(ret,'reduced technical lag in depth 10:')
-    # depth_more_tech_lag = parse_ret(ret,'reduced technical lag in depth >10:')
-    new_row = pd.DataFrame([[repo_name, relative_path_to_module, compile_flag, test_flag,
-                         original_tech_lag, current_tech_lag, reduced_tech_lag,\
-                            #  depth_1_tech_lag, depth_2_tech_lag, depth_3_tech_lag,\
-                            #      depth_4_tech_lag, depth_5_tech_lag, depth_6_tech_lag,\
-                            #          depth_7_tech_lag, depth_8_tech_lag, depth_9_tech_lag,\
-                            #              depth_10_tech_lag, depth_more_tech_lag,\
-                                             original_dep_count, current_dep_count, reduced_dep_count]],\
-                       columns=['repo', 'module', 'compile_success', 'test_pass',
-                                'original_tech_lag', 'current_tech_lag', 'reduced_tech_lag',\
-                                    # '1_depth_reduction', '2_depth_reduction', '3_depth_reduction',\
-                                    #     '4_depth_reduction', '5_depth_reduction', '6_depth_reduction',\
-                                    #         '7_depth_reduction', '8_depth_reduction', '9_depth_reduction',\
-                                    #             '10_depth_reduction', 'more_than_10_depth_reduction',\
-                                        'original_dep_count', 'current_dep_count', 'reduced_dep_count'])
-    new_row.to_csv(csv_path, mode='a', header=False, index=False)
+        compile_success = mvn_compile(mod_path)
+        test_success = mvn_test(mod_path)
+        compile_data.append({
+            "path": mod_path,
+            "compile_success:": compile_success,
+            "test_pass": test_success,
+            "original_dep": len(dep_filtered_old),
+            "current_dep_count": len(dep_filtered_new),
+            "original_tech_lag": 0,
+            "current_tech_lag": 0,
+        })
+        # print(f"{mod_path}: compile:{compile_success}, test:{test_success}")
+        modifier.rollback()
+        
+        pbar.update(1)
+    pbar.close()
 
-def parse_ret(ret:str, prefix:str):
-    """get ret starts with prefix"""
-    pattern = rf'{prefix} (.*)'
-    match = re.search(pattern,ret)
-    if match:
-        return match.group(1)
-    else:
-        return '?'
+    df_module = pd.DataFrame(module_data)
+    df_compile = pd.DataFrame(compile_data)
 
-if __name__ == "__main__":
-    main()
+    for mod_path in module_paths:
+        compile_mask = df_compile["path"] == mod_path
+        module_mask = df_module["path"] == mod_path
+        df_compile.loc[compile_mask, "original_tech_lag"] = df_module[module_mask]["original_tech_lag"].sum()
+        df_compile.loc[compile_mask, "current_tech_lag"] = df_module[module_mask]["current_tech_lag"].sum()
+
+    pd.set_option('display.width',None)
+    df_compile["reduced_tech_lag"] =  df_compile["original_tech_lag"] - df_compile["current_tech_lag"]
+    df_compile["reduced_dep_count"] =  df_compile["original_dep"] - df_compile["current_dep_count"]
+
+    print(df_module)
+    print(df_compile)
+    
+    timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+    df_module.to_csv(f"./module_data_{timestamp}.csv")
+    df_compile.to_csv(f"./compile_data_{timestamp}.csv")

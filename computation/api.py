@@ -27,15 +27,19 @@ class Api:
         cg = query_call_graph(self.groupId, self.artifactId, self.version)
         if cg is not None:
             # call graph exists in the database
-            if cg == '':
-                self.store_empty_cases('cg')
-            return cg
+            # if cg == '':
+            #     self.store_empty_cases('cg')
+            # return cg
+            if cg != '':
+                # if cg is empty, then recompute it
+                return cg
+            
         # call graph does not exist in the database, so use sootCG to get the call graph
         # jar_path = self.get_jar()
         # can_download = Restore.get_dep_jar(self.groupId, self.artifactId, self.version)
         if self.can_download:
             # run sootCG
-            command = f"/home/kaixuan/ray/jdk-17.0.12/bin/java -jar {SOOTCG_PATH} {self.jar_path}"
+            command = f"java -jar {SOOTCG_PATH} {self.jar_path}"
             result = subprocess.run(command, shell=True, text=True, capture_output=True)
             cg = result.stdout
             store_call_graph(self.groupId, self.artifactId, self.version, cg)
@@ -58,11 +62,14 @@ class Api:
             type_dg = query_type_dependency_graph(self.groupId, self.artifactId, self.version)
             if type_dg is not None:
                 # type dependency graph exists in the database
-                if type_dg == '':
-                    self.store_empty_cases('type_dg')
-                return type_dg
+                # if type_dg == '':
+                #     self.store_empty_cases('type_dg')
+                # return type_dg
+                if type_dg != '':
+                    # if type_dg is empty, then recompute it
+                    return type_dg
             # run soot_Type_DG
-            command = f"/home/kaixuan/ray/jdk-17.0.12/bin/java -jar {SOOT_TYPE_DG_PATH} {self.jar_path}"
+            command = f"java -jar {SOOT_TYPE_DG_PATH} {self.jar_path}"
             result = subprocess.run(command, shell=True, text=True, capture_output=True)
             type_dg = result.stdout
             store_type_dependency_graph(self.groupId, self.artifactId, self.version, type_dg)
@@ -87,11 +94,14 @@ class Api:
             # query the methods from sqlite
             methods = query_methods(self.groupId, self.artifactId, self.version)
             if methods is not None:
-                if methods == '':
-                    return set(), False
-                return self.split_text(methods), True
+                # if methods == '':
+                #     return set(), False
+                # return self.split_text(methods), True
+                if methods != '':
+                    return self.split_text(methods), True
+            # if methods is empty, then recompute it
             # run BCELgetMethod
-            command = f"/home/kaixuan/ray/jdk-17.0.12/bin/java -jar {BCEL_METHOD_PATH} {self.jar_path}"
+            command = f"java -jar {BCEL_METHOD_PATH} {self.jar_path}"
             result = subprocess.run(command, shell=True, text=True, capture_output=True)
             methods = result.stdout
             store_methods(self.groupId, self.artifactId, self.version, methods)
@@ -107,11 +117,14 @@ class Api:
             # query the types from sqlite
             types = query_types(self.groupId, self.artifactId, self.version)
             if types is not None:
-                if types == '':
-                    return set(), False
-                return self.split_text(types), True
+                # if types == '':
+                #     return set(), False
+                # return self.split_text(types), True
+                if type != '':
+                    return self.split_text(types), True
+            # if type is empty, then recompute it
             # run BCELgetType
-            command = f"/home/kaixuan/ray/jdk-17.0.12/bin/java -jar {BCEL_TYPE_PATH} {self.jar_path}"
+            command = f"java -jar {BCEL_TYPE_PATH} {self.jar_path}"
             result = subprocess.run(command, shell=True, text=True, capture_output=True)
             types = result.stdout
             store_types(self.groupId, self.artifactId, self.version, types)
