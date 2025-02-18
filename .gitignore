@@ -39,3 +39,6 @@ test/
 
 # # script to execute the tool on dataset
 # Dataset.py
+
+# workspace of GoblinUpdater
+**/workspace/
