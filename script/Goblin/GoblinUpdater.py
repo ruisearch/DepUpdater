@@ -609,7 +609,7 @@ if __name__ == "__main__":
         modifier.save()
 
         dep_tree_new = get_maven_dependencies(mod_path)
-        dep_filtered_new = list(filter(lambda x: x.scope in ["compile", "runtime"], dep_tree_old))
+        dep_filtered_new = list(filter(lambda x: x.scope in ["compile", "runtime"], dep_tree_new))
 
         compile_success = mvn_compile(mod_path)
         test_success = mvn_test(mod_path)

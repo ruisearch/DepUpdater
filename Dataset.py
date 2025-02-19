@@ -35,10 +35,10 @@ def main():
         for module in modules:
             print(module)
             repo_name, module_name = module[0], module[1]
-             # Check if this module has already been processed
-            if ((dataset_df['repo'] == repo_name) & (dataset_df['module'] == module_name)).any():
-                pbar.update(1)
-                continue
+            # Check if this module has already been processed
+            # if ((dataset_df['repo'] == repo_name) & (dataset_df['module'] == module_name)).any():
+            #     pbar.update(1)
+            #     continue
 
             result = execute_tool(module)
             if result.returncode != 0:
