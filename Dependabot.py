@@ -69,9 +69,11 @@ def evaluate_dependabot(module):
     set_log_path(os.path.join(dependabot_dir_path, 'dependabot_evaluation.txt'))
     # read original_version.json to get the original tech lag and original dep count
     original_json_path = os.path.join(RET_DIR, repo_name, module_name, 'original_version.json')
+    if not os.path.exists(original_json_path):
+        return [repo_name, module_name, '?', '?', '?', '?', '?', '?', '?', '?']
     with open(original_json_path, 'r') as f:
         original_graph = json.load(f)
-    original_tech_lag = Restore.compute_original_tech_lag(original_graph)
+    original_tech_lag = Restore.compute_original_tech_lag(original_graph,[])
     original_dep_count = count_deps(original_json_path)
 
     # recompie and test
@@ -100,13 +102,13 @@ def evaluate_dependabot(module):
 
     # compute the current tech lag and current dep count
     tree_path = os.path.join(dependabot_dir_path, 'verbose_tree.txt')
-    json_path = tree_to_json(tree_path, os.path.join('/home1/kaixuan/ray/Extended_dataset/', repo_name), module_name)
+    json_path = tree_to_json(tree_path, os.path.join('/home1/kaixuan/ray/Dependabot_Snyk_dataset/Dependabot/', repo_name), module_name)
     if not json_path:
         # cann't generate dependency graph
         return [repo_name, module_name, compile_flag, test_flag, int(original_tech_lag[0]), '?', '?', int(original_dep_count), '?', '?']
     with open(json_path, 'r') as f:
         current_graph = json.load(f)
-    current_tech_lag = Restore.compute_original_tech_lag(current_graph)
+    current_tech_lag = Restore.compute_original_tech_lag(current_graph,[])
     current_dep_count = count_deps(json_path)
     return [repo_name, module_name, compile_flag, test_flag, int(original_tech_lag[0]), int(current_tech_lag[0]), int(original_tech_lag[0]-current_tech_lag[0]), int(original_dep_count), int(current_dep_count), int(original_dep_count-current_dep_count)]
 
@@ -114,7 +116,7 @@ def evaluate_dependabot(module):
 def recompile(repo_name, module_path):
     """recompile the module"""
     compile_log_path = os.path.join(DATA_DIR, 'dependabot', repo_name, module_path, 'compile_log.txt')
-    path_to_cloned_folder = os.path.join('/home1/kaixuan/ray/Extended_dataset/', repo_name)
+    path_to_cloned_folder = os.path.join('/home1/kaixuan/ray/Dependabot_Snyk_dataset/Dependabot/', repo_name)
     command = f"cd {os.path.join(path_to_cloned_folder, module_path)} &&\
         mvn -Dmaven.test.skip=true -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true \
                 -Dspotless.check.skip=true compile"
@@ -141,8 +143,8 @@ def recompile(repo_name, module_path):
 def test(repo_name, module_path):
     """test the module"""
     test_log_path = os.path.join(DATA_DIR, 'dependabot', repo_name, module_path, 'test_log.txt')
-    path_to_cloned_folder = os.path.join('/home1/kaixuan/ray/Extended_dataset/', repo_name)
-    path_to_project_folder = os.path.join('/home1/kaixuan/ray/Extended_dataset/', repo_name)
+    path_to_cloned_folder = os.path.join('/home1/kaixuan/ray/Dependabot_Snyk_dataset/Dependabot/', repo_name)
+    path_to_project_folder = os.path.join('/home1/kaixuan/ray/Dependabot_Snyk_dataset/Dependabot/', repo_name)
     command = f"cd {os.path.join(path_to_project_folder, module_path)} && \
             mvn -Dcheckstyle.skip=true -Denforcer.skip=true -Dflatten.skip=true -Dspotless.check.skip=true test"
     try:
@@ -181,7 +183,7 @@ def tree_to_json(tree_path:str, path_to_cloned_folder:str, relative_path_to_modu
         with open(tree_path, 'r', encoding='utf-8') as f:
             tree = f.read()
 
-    res = Restore(path_to_cloned_folder, relative_path_to_module, tree_path)
+    res = Restore(path_to_cloned_folder, relative_path_to_module, tree_path,[],[])
     # extract the original dependency graph from verbose_tree.txt
     # inspired by preprocess/Restore.py
     block_pattern = r'\[INFO\] Building .+?\n\[INFO\].+?from (.*?)pom.xml\n\[INFO\] -+?\[ (.+?) \]-+?\n.*?\[INFO\] (\S+?):(\S+?):\S+?:(\S+?)\n(.+?)\[INFO\] -'

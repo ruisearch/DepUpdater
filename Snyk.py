@@ -69,9 +69,12 @@ def evaluate_snyk(module):
     set_log_path(os.path.join(snyk_dir_path, 'snyk_evaluation.txt'))
     # read original_version.json to get the original tech lag and original dep count
     original_json_path = os.path.join(RET_DIR, repo_name, module_name, 'original_version.json')
+    if not os.path.exists(original_json_path):
+        # cann't find original_version.json
+        return [repo_name, module_name, '?', '?', '?', '?', '?', '?', '?', '?']
     with open(original_json_path, 'r') as f:
         original_graph = json.load(f)
-    original_tech_lag = Restore.compute_original_tech_lag(original_graph)
+    original_tech_lag = Restore.compute_original_tech_lag(original_graph,[])
     original_dep_count = count_deps(original_json_path)
 
     # recompie and test
@@ -181,7 +184,7 @@ def tree_to_json(tree_path:str, path_to_cloned_folder:str, relative_path_to_modu
         with open(tree_path, 'r', encoding='utf-8') as f:
             tree = f.read()
 
-    res = Restore(path_to_cloned_folder, relative_path_to_module, tree_path)
+    res = Restore(path_to_cloned_folder, relative_path_to_module, tree_path,[],[])
     # extract the original dependency graph from verbose_tree.txt
     # inspired by preprocess/Restore.py
     block_pattern = r'\[INFO\] Building .+?\n\[INFO\].+?from (.*?)pom.xml\n\[INFO\] -+?\[ (.+?) \]-+?\n.*?\[INFO\] (\S+?):(\S+?):\S+?:(\S+?)\n(.+?)\[INFO\] -'
