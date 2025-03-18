@@ -8,8 +8,15 @@ import semver
 import requests
 
 
-def get_candidate_versions(groupId, artifactId, original_version):
-    """main function to get all versions of a dependency to be computed"""
+def get_candidate_versions(groupId, artifactId, original_version, whether_rq3=False):
+    """
+        main function to get all versions of a dependency to be computed
+        Args:
+            groupId (str): groupId of the dependency
+            artifactId (str): artifactId of the dependency
+            original_version (str): original version of the dependency
+            whether_rq3 (bool): whether to compute the versions for RQ3, just compute MMP, MmP, mmP versions
+    """
     # all_versions are version from new to old
     all_versions = get_versions(groupId, artifactId)
     # the version to be computed are the versions after the original version
@@ -28,8 +35,33 @@ def get_candidate_versions(groupId, artifactId, original_version):
         candidate_versions.append(version)
     if original_version not in candidate_versions:
         candidate_versions.append(original_version)
+    if whether_rq3:
+        candidate_versions = get_MMP_MmP_mmP_versions(original_version, candidate_versions)
     return candidate_versions
 
+def get_MMP_MmP_mmP_versions(original_version:str, candidate_versions:list):
+    """get the MMP, MmP, mmP versions of the original version"""
+    original_major = original_version.split(".")[0]
+    original_minor = original_version.split(".")[1] if len(original_version.split(".")) > 1 else 0
+    resulting_versions = []
+    MMP_version = ""
+    mMP_version = ""
+    mmP_version = ""
+    for version in reversed(candidate_versions):
+        # reversed: from old to new
+        major = version.split(".")[0]
+        minor = version.split(".")[1] if len(version.split(".")) > 1 else 0
+        MMP_version = version
+        if major == original_major:
+            mMP_version = version
+        if major == original_major and minor == original_minor:
+            mmP_version = version    
+    resulting_versions.append(MMP_version)
+    resulting_versions.append(mMP_version)
+    resulting_versions.append(mmP_version)
+    # 现在的问题是，MMP,MmP,mmP可能重复，需要去重，同时还要保持原来的顺序,即从新到旧，MMP，MmP,mmP
+    # todo
+    return resulting_versions
 
 def find_original_version_idx(all_versions, original_version):
     """find the index of the original version in all versions"""

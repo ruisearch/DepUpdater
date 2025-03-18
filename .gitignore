@@ -42,3 +42,9 @@ test/
 
 # workspace of GoblinUpdater
 **/workspace/
+
+# ignore the Exec_logs
+Exec_logs/
+
+# ignore the false_cases
+false_cases/

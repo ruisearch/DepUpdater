@@ -76,7 +76,7 @@ class Restore:
         return valid_deps, omitted_deps
 
     @staticmethod
-    def get_dep_jar(group_id:str, artifact_id:str, version:str)->bool:
+    def get_dep_jar(group_id:str, artifact_id:str, version:str, whether_log=True)->bool:
         """get dep jar using GAV from maven central repository and store them in data/jar
             
         Returns:
@@ -115,8 +115,9 @@ class Restore:
                     print(f"{artifact_id}-{version}.jar downloaded successfully.")
                     return True
         except Exception as e:
-            # print(f"Failed to download {artifact_id}-{version}.jar from central repository; Reason: {str(e)}")
-            log_debug(f"Failed to download {artifact_id}-{version}.jar from central repository; Reason: {str(e)}")
+            if whether_log:
+                # print(f"Failed to download {artifact_id}-{version}.jar from central repository; Reason: {str(e)}")
+                log_debug(f"Failed to download {artifact_id}-{version}.jar from central repository; Reason: {str(e)}")
             return False
 
     def parse_tree_for_deps(self, dependency_tree:str, path_to_cloned_folder:str, relative_path_to_module:str, relative_path_to_client_jar:str):
@@ -180,7 +181,7 @@ class Restore:
                     # the jar name is not as expect
                     print(e)
                     print("the client jar is not in ... target/artifactId-version.jar, please input its relative path!")
-                    exit()
+                    exit(1)
                 # client jar has been stored in data/jar/
                 
                 # parse tree to get all deps
@@ -301,7 +302,10 @@ class Restore:
         # create json
         # stored in data/result/{repo_name}/{relative_path_to_module}/version.json
         repo_name = os.path.basename(self.path_to_cloned_folder)
-        json_folder = os.path.join(RET_DIR, f'{repo_name}/{self.relative_path_to_module}')
+        if self.relative_path_to_module == '.':
+            json_folder = os.path.join(RET_DIR, f'{repo_name}', '_')
+        else:
+            json_folder = os.path.join(RET_DIR, f'{repo_name}', f'{self.relative_path_to_module}')
         self.create_folder(json_folder)
         json_path = os.path.join(json_folder, 'version.json')
         with open(json_path, 'w', encoding='utf-8') as json_file:
@@ -313,28 +317,30 @@ class Restore:
         return json_path, original_json_path, original_tech_lag, local_dep_gav
 
     # remove the dependencies aren't compile or runtime and local module(if necessary)
-    def prune_graph(self, mappings:list):
+    def prune_graph(self, mappings:list, whether_log=True):
         """prune the graph: remove the dependencies aren't compile or runtime
         Return:
             local_dep (list): a list of gav of the local deps
         """
         print('\n****** prune graph ... ******\n')
-        log_debug('prune graph')
+        if whether_log:
+            log_debug('prune graph')
         # remove the dependencies aren't compile or runtime
         for node in mappings:
             if not node['Dependents']:
                 # client or node has been removed
                 continue
             if node['Type'] not in ['compile', 'runtime']:
-                log_debug(f'{node["GroupId"]}:{node["ArtifactId"]} is not compile or runtime, so remove it')
-                self.remove_node(node['GroupId']+':'+node['ArtifactId'], mappings)
+                if whether_log:
+                    log_debug(f'{node["GroupId"]}:{node["ArtifactId"]} is not compile or runtime, so remove it')
+                self.remove_node(node['GroupId']+':'+node['ArtifactId'], mappings, whether_log)
         # download the jar of the nodes in the graph and remove the local module if not aim to handle multi-module
         local_dep_gav = []
         for node in mappings:
             if not node['Dependents']:
                 # client or node has been removed
                 continue
-            flag = self.get_dep_jar(node['GroupId'], node['ArtifactId'], node['Original_Version'])
+            flag = self.get_dep_jar(node['GroupId'], node['ArtifactId'], node['Original_Version'], whether_log)
             if not flag:
                 # the node cannot download
                 # if want to handle multi-module which consider local dependency, use local_dep_handle
@@ -342,8 +348,9 @@ class Restore:
                 if not flag:
                     # a dep not local dep and unavailable
                     # log_debug(f'{node["GroupId"]}:{node["ArtifactId"]} is a local module, so remove it')
-                    log_debug(f'{node["GroupId"]}:{node["ArtifactId"]} is unavailable, so remove it')
-                    self.remove_node(node['GroupId']+':'+node['ArtifactId'], mappings)
+                    if whether_log:
+                        log_debug(f'{node["GroupId"]}:{node["ArtifactId"]} is unavailable, so remove it')
+                    self.remove_node(node['GroupId']+':'+node['ArtifactId'], mappings, whether_log)
                 else:
                     # a local dep
                     local_dep_gav.append(f"{node['GroupId']}:{node['ArtifactId']}:{node['Original_Version']}")
@@ -378,18 +385,19 @@ class Restore:
             print(e)
             print(f"the local dep {groupId}:{artifactId}:{version} is not \
                 in {local_dep_jar_path}, please input its relative path!")
-            exit()
+            exit(1)
         return True
 
     # remove a node from the graph
-    def remove_node(self, ga:str, mappings:list):
+    def remove_node(self, ga:str, mappings:list, whether_log=True):
         """remove the node and its outer-edges from the dependency graph recursively
         Args:
             ga (str): the groupId:artifactId of the dependency
             which should be removed from the graph
             mappings: list of dict representing the dependency graph
         """
-        log_debug(f'{ga} removed')
+        if whether_log:
+            log_debug(f'{ga} removed')
         # handle the dependencies of ga first
         for node in mappings:
             if node['GroupId']+':'+node['ArtifactId'] == ga:
@@ -410,7 +418,7 @@ class Restore:
                 node_ga = node['GroupId']+':'+node['ArtifactId']
                 if not node['Dependents']:
                     # if the node has no dependents now, remove the node from the graph
-                    self.remove_node(node_ga, mappings)
+                    self.remove_node(node_ga, mappings, whether_log)
 
     @staticmethod
     def compute_original_tech_lag(deps:list, local_dep_gav:list):

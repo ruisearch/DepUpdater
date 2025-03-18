@@ -409,6 +409,17 @@ class Update:
             is_ready (bool): if the dependency is ready to be computed(all dependents have been computed)
             ga (str): the groupId:artifactId of the dependency
         """
+        # first, check if the dep in the queue are all ready to be computed,
+        # because may be some dependent of the dep in the queue are cleared, so the dep in the queue should be removed
+        for dep in list(self.queue): # a copy of list is used to avoid the RuntimeError: deque mutated during iteration
+            dep_ga = dep['GroupId'] + ':' + dep['ArtifactId']
+            if not self.is_ready(dep_ga):
+                # the dependency is not ready to be computed
+                # remove the dependency from the queue
+                self.queue.remove(dep)
+                self.queue_dict.pop(dep_ga)
+
+                log_debug(f"{dep_ga} dequeue because it shoud not be computed now")
         # whether the dependency is in the queue
         is_in = ga in self.queue_dict
         if is_ready and not is_in:
@@ -420,6 +431,9 @@ class Update:
             self.queue_dict[ga] = self.graph[self.graph_dict[ga]]
 
             log_debug(f"{ga} enqueue because of {dependent_ga}.")
+            # the remaining nodes may be the dependency of the new node, which should be removed from the queue
+            # to guarantee all the nodes in the queue are ready to be computed
+            
         elif not is_ready and is_in:
             # the dependency is not ready to be computed and in the queue
             # remove the dependency from the queue

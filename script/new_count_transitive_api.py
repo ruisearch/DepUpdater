@@ -53,6 +53,8 @@ def record_api(dep: dict):
                         MMP_api.append(api)
                     if reason == "software debloating":
                         MMP_debloating_count += 1
+                        print(dep)
+
                     if "by semantic versioning" in reason:
                         MMP_semver_count += 1
 
@@ -145,6 +147,7 @@ if __name__ == "__main__":
         total_mmP_semver = 0
         
         for json_file in json_files:
+            print(json_file)
             module_dir = os.path.dirname(json_file)
             data = read_json(json_file)
             for dep in data:

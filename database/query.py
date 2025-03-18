@@ -288,3 +288,19 @@ def query_versions_from_mongo(groupId, artifactId):
         })
     db.close()
     return versions
+
+if __name__ == "__main__":
+    # # com.fasterxml.jackson.core:jachson-annotations:2.13.4 -> 2.15.4/2.16.0
+    # print('2.15.4')
+    # # print(query_revapi_report('com.fasterxml.jackson.core', 'jackson-annotations', '2.13.4', '2.15.4'))
+    # print(query_revapi_bc_api('com.fasterxml.jackson.core', 'jackson-annotations', '2.13.4', '2.15.4'))
+    # print('2.16.0')
+    # # print(query_revapi_report('com.fasterxml.jackson.core', 'jackson-annotations', '2.13.4', '2.16.0'))
+    # print(query_revapi_bc_api('com.fasterxml.jackson.core', 'jackson-annotations', '2.13.4', '2.16.0'))
+    
+    # com.github.pagehelper:pagehelper:5.3.2 -> 6.0.0/6.1.0
+    print('6.0.0')
+    print(query_revapi_report('com.github.pagehelper', 'pagehelper', '5.3.2', '6.0.0'))
+    print('6.1.0')
+    print(query_revapi_report('com.github.pagehelper', 'pagehelper', '5.3.2', '6.1.0'))
+    

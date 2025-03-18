@@ -43,16 +43,19 @@ def main():
             print(module)
             repo_name, module_name = module[0], module[1]
             # Check if this module has already been processed
-            if ((dataset_df['repo'] == repo_name) & (dataset_df['module'] == module_name)).any():
-                logging.info(f"{repo_name} : {module_name} done")
-                pbar.update(1)
-                continue
+            # if ((dataset_df['repo'] == repo_name) & (dataset_df['module'] == module_name)).any():
+            #     logging.info(f"{repo_name} : {module_name} done")
+            #     pbar.update(1)
+            #     continue
 
             logging.info(f"processing {repo_name} : {module_name}")
             row_value = evaluate_dependabot(module)
             row_df = pd.DataFrame([row_value], columns=['repo', 'module', 'compile_success', 'test_pass',\
                                                     'original_tech_lag', 'current_tech_lag', 'reduced_tech_lag', \
                                                         'original_dep_count', 'current_dep_count', 'reduced_dep_count'])
+            numeric_cols = ['original_tech_lag', 'current_tech_lag', 'reduced_tech_lag', 'original_dep_count', 'current_dep_count', 'reduced_dep_count']
+            for col in numeric_cols:
+                row_df[col] = pd.to_numeric(row_df[col], errors='coerce')
             row_df.to_csv(csv_path, mode='a', header=False, index=False)
             logging.info(f"{repo_name} : {module_name} done")
             pbar.update(1)
@@ -219,7 +222,7 @@ def tree_to_json(tree_path:str, path_to_cloned_folder:str, relative_path_to_modu
         mappings.append(future.result())
 
     res.process_omitted_deps(valid_deps, omitted_deps, mappings)
-    res.prune_graph(mappings)
+    res.prune_graph(mappings, False)
     mappings = [node for node in mappings if node['Dependents'] or node['Depth'] == 0]
     
     with open(json_path, 'w') as f:
@@ -238,15 +241,16 @@ def mvn_tree(path_to_folder:str, relative_path_to_module:str):
 def dataset():
     """set modules in the dataset"""
     modules = [
+        # 226 modules
         ('mall','mall-common'),
         ('mall','mall-security'),
         # ('guava','guava'),
-        ('guava','guava-testlib'),
+        # ('guava','guava-testlib'),
         ('dubbo','dubbo-test/dubbo-test-common'),
         # ('dubbo','dubbo-test/dubbo-test-check'),
         ('dubbo','dubbo-test/dubbo-test-modules'),
         # ('dubbo','dubbo-serialization/dubbo-serialization-api'),
-        ('dubbo','dubbo-serialization/dubbo-serialization-fastjson2'),
+        # ('dubbo','dubbo-serialization/dubbo-serialization-fastjson2'),
         ('dubbo','dubbo-serialization/dubbo-serialization-hessian2'),
         # ('dubbo','dubbo-maven-plugin'),
         ('dubbo','dubbo-spring-boot/dubbo-spring-boot-3-autoconfigure'),
@@ -254,31 +258,31 @@ def dataset():
         # ('dubbo','dubbo-configcenter/dubbo-configcenter-nacos'),
         # ('dubbo','dubbo-configcenter/dubbo-configcenter-file'),
         # ('dubbo','dubbo-configcenter/dubbo-configcenter-zookeeper'),
-        ('dubbo','dubbo-metrics/dubbo-metrics-api'),
+        # ('dubbo','dubbo-metrics/dubbo-metrics-api'),
         ('dubbo','dubbo-metrics/dubbo-metrics-event'),
         # ('dubbo','dubbo-metrics/dubbo-metrics-prometheus'),
         ('dubbo','dubbo-metrics/dubbo-metrics-config-center'),
         # ('dubbo','dubbo-metrics/dubbo-metrics-metadata'),
-        ('dubbo','dubbo-metrics/dubbo-metrics-default'),
+        # ('dubbo','dubbo-metrics/dubbo-metrics-default'),
         ('dubbo','dubbo-metrics/dubbo-metrics-netty'),
-        ('dubbo','dubbo-metrics/dubbo-tracing'),
+        # ('dubbo','dubbo-metrics/dubbo-tracing'),
         ('dubbo','dubbo-plugin/dubbo-auth'),
-        ('dubbo','dubbo-plugin/dubbo-filter-validation'),
-        ('dubbo','dubbo-plugin/dubbo-spring-security'),
+        # ('dubbo','dubbo-plugin/dubbo-filter-validation'),
+        # ('dubbo','dubbo-plugin/dubbo-spring-security'),
         ('dubbo','dubbo-plugin/dubbo-compiler'),
         # ('dubbo','dubbo-plugin/dubbo-qos-api'),
         ('dubbo','dubbo-plugin/dubbo-filter-cache'),
         ('dubbo','dubbo-remoting/dubbo-remoting-api'),
         # ('dubbo','dubbo-remoting/dubbo-remoting-netty4'),
         # ('dubbo','dubbo-remoting/dubbo-remoting-netty'),
-        ('dubbo','dubbo-remoting/dubbo-remoting-zookeeper-curator5'),
+        # ('dubbo','dubbo-remoting/dubbo-remoting-zookeeper-curator5'),
         ('dubbo','dubbo-cluster'),
         ('dubbo','dubbo-rpc/dubbo-rpc-api'),
         # ('dubbo','dubbo-rpc/dubbo-rpc-dubbo'),
         ('dubbo','dubbo-rpc/dubbo-rpc-injvm'),
         ('dubbo','dubbo-demo/dubbo-demo-interface'),
         ('dubbo','dubbo-demo/dubbo-demo-spring-boot/dubbo-demo-spring-boot-interface'),
-        ('netty','buffer'),
+        # ('netty','buffer'),
         # ('netty','handler-proxy'),
         ('netty','testsuite-autobahn'),
         # ('netty','handler-ssl-ocsp'),
@@ -313,7 +317,7 @@ def dataset():
         ('java-design-patterns', 'resource-acquisition-is-initialization'),
         ('java-design-patterns', 'page-controller'),
         ('java-design-patterns', 'version-number'),
-        ('java-design-patterns', 'command-query-responsibility-segregation'),
+        # ('java-design-patterns', 'command-query-responsibility-segregation'),
         ('java-design-patterns', 'data-locality'),
         ('java-design-patterns', 'double-checked-locking'),
         ('java-design-patterns', 'repository'),
@@ -358,7 +362,7 @@ def dataset():
         ('java-design-patterns', 'microservices-log-aggregation'),
         ('java-design-patterns', 'transaction-script'),
         ('java-design-patterns', 'poison-pill'),
-        ('java-design-patterns', 'service-layer'),
+        # ('java-design-patterns', 'service-layer'),
         ('java-design-patterns', 'data-transfer-object'),
         ('java-design-patterns', 'data-mapper'),
         ('java-design-patterns', 'builder'),
@@ -466,7 +470,7 @@ def dataset():
         ('easyexcel', 'easyexcel-test'),
         ('easyexcel', 'easyexcel-support'),
         ('easyexcel', 'easyexcel-core'),
-        ('nacos', 'plugin'),
+        # ('nacos', 'plugin'),
         ('nacos', 'plugin/environment'),
         ('nacos', 'plugin/trace'),
         ('nacos', 'plugin/datasource'),
@@ -476,20 +480,20 @@ def dataset():
         ('nacos', 'plugin/auth'),
         ('nacos', 'common'),
         ('nacos', 'client'),
-        ('nacos', 'api'),
-        ('nacos', 'logger-adapter-impl'),
+        # ('nacos', 'api'),
+        # ('nacos', 'logger-adapter-impl'),
         ('nacos', 'logger-adapter-impl/log4j2-adapter'),
         ('nacos', 'logger-adapter-impl/logback-adapter-12'),
         ('nacos', 'consistency'),
-        ('nacos', 'plugin-default-impl'),
+        # ('nacos', 'plugin-default-impl'),
         ('nacos', 'plugin-default-impl/nacos-default-control-plugin'),
-        ('spring-boot-demo', 'demo-oauth'),
-        ('spring-boot-demo', 'demo-dubbo'),
-        ('spring-boot-demo', 'demo-dubbo/dubbo-common'),
-        ('spring-boot-demo', 'demo-admin'),
+        # ('spring-boot-demo', 'demo-oauth'),
+        # ('spring-boot-demo', 'demo-dubbo'),
+        # ('spring-boot-demo', 'demo-dubbo/dubbo-common'),
+        # ('spring-boot-demo', 'demo-admin'),
         ('WxJava', 'weixin-java-cp'),
         ('WxJava', 'weixin-graal'),
-        ('WxJava', 'spring-boot-starters'),
+        # ('WxJava', 'spring-boot-starters'),
         ('WxJava', 'spring-boot-starters/wx-java-qidian-spring-boot-starter'),
         ('WxJava', 'spring-boot-starters/wx-java-miniapp-multi-spring-boot-starter'),
         ('WxJava', 'spring-boot-starters/wx-java-miniapp-spring-boot-starter'),
@@ -508,8 +512,8 @@ def dataset():
         ('WxJava', 'weixin-java-channel'),
         ('WxJava', 'weixin-java-open'),
         ('WxJava', 'weixin-java-common'),
-        ('WxJava', 'others/weixin-java-osgi'),
-        ('WxJava', 'solon-plugins'),
+        # ('WxJava', 'others/weixin-java-osgi'),
+        # ('WxJava', 'solon-plugins'),
         ('WxJava', 'solon-plugins/wx-java-pay-solon-plugin'),
         ('WxJava', 'solon-plugins/wx-java-open-solon-plugin'),
         ('WxJava', 'solon-plugins/wx-java-cp-multi-solon-plugin'),
@@ -521,11 +525,9 @@ def dataset():
         ('WxJava', 'solon-plugins/wx-java-channel-multi-solon-plugin'),
         ('WxJava', 'solon-plugins/wx-java-qidian-solon-plugin'),
         ('WxJava', 'solon-plugins/wx-java-mp-multi-solon-plugin'),
-        ('zxing', 'core'),
-        ('zxing', 'zxing.appspot.com'),
-        ('zxing', 'javase')
-
-        
+        # ('zxing', 'core'),
+        # ('zxing', 'zxing.appspot.com'),
+        # ('zxing', 'javase')
     ]
     return modules
 

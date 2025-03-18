@@ -57,6 +57,12 @@ TREE_DIR = os.path.join(DATA_DIR, 'tree/')
 JAR_DIR = os.path.join(DATA_DIR, 'jar/')
 # path to data/result/
 RET_DIR = os.path.join(DATA_DIR, 'result/')
+
+
+# path to version.json in RQ3
+# VERSIONS_DIR = os.path.join(DATA_DIR, 'rq3_result/')
+VERSIONS_DIR = os.path.join(DATA_DIR, 'extended_rq3_result/')
+
 # absolute to tqdm_log/
 TQDM_LOG_PATH = os.path.join(DATA_DIR, 'tqdm_log/')
 # path to data/reachableApi/

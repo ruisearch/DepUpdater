@@ -53,15 +53,16 @@ def main():
 def dataset():
     """set modules in the dataset"""
     modules = [
+        # 227 modules
         ('mall','mall-common'),
         ('mall','mall-security'),
         # ('guava','guava'),
-        ('guava','guava-testlib'),
+        # ('guava','guava-testlib'),
         ('dubbo','dubbo-test/dubbo-test-common'),
         # ('dubbo','dubbo-test/dubbo-test-check'),
         ('dubbo','dubbo-test/dubbo-test-modules'),
         # ('dubbo','dubbo-serialization/dubbo-serialization-api'),
-        ('dubbo','dubbo-serialization/dubbo-serialization-fastjson2'),
+        # ('dubbo','dubbo-serialization/dubbo-serialization-fastjson2'),
         ('dubbo','dubbo-serialization/dubbo-serialization-hessian2'),
         # ('dubbo','dubbo-maven-plugin'),
         ('dubbo','dubbo-spring-boot/dubbo-spring-boot-3-autoconfigure'),
@@ -69,31 +70,31 @@ def dataset():
         # ('dubbo','dubbo-configcenter/dubbo-configcenter-nacos'),
         # ('dubbo','dubbo-configcenter/dubbo-configcenter-file'),
         # ('dubbo','dubbo-configcenter/dubbo-configcenter-zookeeper'),
-        ('dubbo','dubbo-metrics/dubbo-metrics-api'),
+        # ('dubbo','dubbo-metrics/dubbo-metrics-api'),
         ('dubbo','dubbo-metrics/dubbo-metrics-event'),
         # ('dubbo','dubbo-metrics/dubbo-metrics-prometheus'),
         ('dubbo','dubbo-metrics/dubbo-metrics-config-center'),
         # ('dubbo','dubbo-metrics/dubbo-metrics-metadata'),
-        ('dubbo','dubbo-metrics/dubbo-metrics-default'),
+        # ('dubbo','dubbo-metrics/dubbo-metrics-default'),
         ('dubbo','dubbo-metrics/dubbo-metrics-netty'),
-        ('dubbo','dubbo-metrics/dubbo-tracing'),
+        # ('dubbo','dubbo-metrics/dubbo-tracing'),
         ('dubbo','dubbo-plugin/dubbo-auth'),
-        ('dubbo','dubbo-plugin/dubbo-filter-validation'),
-        ('dubbo','dubbo-plugin/dubbo-spring-security'),
+        # ('dubbo','dubbo-plugin/dubbo-filter-validation'),
+        # ('dubbo','dubbo-plugin/dubbo-spring-security'),
         ('dubbo','dubbo-plugin/dubbo-compiler'),
         # ('dubbo','dubbo-plugin/dubbo-qos-api'),
         ('dubbo','dubbo-plugin/dubbo-filter-cache'),
         ('dubbo','dubbo-remoting/dubbo-remoting-api'),
         # ('dubbo','dubbo-remoting/dubbo-remoting-netty4'),
         # ('dubbo','dubbo-remoting/dubbo-remoting-netty'),
-        ('dubbo','dubbo-remoting/dubbo-remoting-zookeeper-curator5'),
+        # ('dubbo','dubbo-remoting/dubbo-remoting-zookeeper-curator5'),
         ('dubbo','dubbo-cluster'),
         ('dubbo','dubbo-rpc/dubbo-rpc-api'),
         # ('dubbo','dubbo-rpc/dubbo-rpc-dubbo'),
         ('dubbo','dubbo-rpc/dubbo-rpc-injvm'),
         ('dubbo','dubbo-demo/dubbo-demo-interface'),
         ('dubbo','dubbo-demo/dubbo-demo-spring-boot/dubbo-demo-spring-boot-interface'),
-        ('netty','buffer'),
+        # ('netty','buffer'),
         # ('netty','handler-proxy'),
         ('netty','testsuite-autobahn'),
         # ('netty','handler-ssl-ocsp'),
@@ -128,7 +129,7 @@ def dataset():
         ('java-design-patterns', 'resource-acquisition-is-initialization'),
         ('java-design-patterns', 'page-controller'),
         ('java-design-patterns', 'version-number'),
-        ('java-design-patterns', 'command-query-responsibility-segregation'),
+        # ('java-design-patterns', 'command-query-responsibility-segregation'),
         ('java-design-patterns', 'data-locality'),
         ('java-design-patterns', 'double-checked-locking'),
         ('java-design-patterns', 'repository'),
@@ -173,7 +174,7 @@ def dataset():
         ('java-design-patterns', 'microservices-log-aggregation'),
         ('java-design-patterns', 'transaction-script'),
         ('java-design-patterns', 'poison-pill'),
-        ('java-design-patterns', 'service-layer'),
+        # ('java-design-patterns', 'service-layer'),
         ('java-design-patterns', 'data-transfer-object'),
         ('java-design-patterns', 'data-mapper'),
         ('java-design-patterns', 'builder'),
@@ -344,6 +345,7 @@ def dataset():
 
 def execute_tool(module: tuple):
     """method to execute the tool on one module"""
+    # dataset_root = "/home1/kaixuan/ray/RQ2_dataset"
     dataset_root = "/home1/kaixuan/ray/Extended_dataset"
     root_dir = os.path.join(dataset_root, module[0])
     # repo_name = os.path.basename(module[0])
@@ -409,6 +411,10 @@ def store_ret_in_csv(repo_name: str, relative_path_to_module: str, ret:str):
                                     #         '7_depth_reduction', '8_depth_reduction', '9_depth_reduction',\
                                     #             '10_depth_reduction', 'more_than_10_depth_reduction',\
                                         'original_dep_count', 'current_dep_count', 'reduced_dep_count'])
+    numeric_columns = ['original_tech_lag', 'current_tech_lag', 'reduced_tech_lag',\
+                            'original_dep_count', 'current_dep_count', 'reduced_dep_count']
+    for col in numeric_columns:
+        new_row[col] = pd.to_numeric(new_row[col], errors='coerce')
     new_row.to_csv(csv_path, mode='a', header=False, index=False)
 
 def parse_ret(ret:str, prefix:str):

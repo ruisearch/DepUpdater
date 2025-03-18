@@ -92,6 +92,8 @@ class Traverse:
         # test the project
         test_flag = self.test()
         # restore the pom.xml and back up the pom.xml after computation
+        # so: after the traverse, the pom is the original one while _backed_up_pom.xml is the one after updating
+        # the _original_pom.xml is the one before updating, which is the same as the pom.xml
         backed_up_pom_path = os.path.join(self.path_to_project_folder, self.relative_path_to_module, '_backed_up_pom.xml')
         Validation.restore_pom(original_pom_path, pom_path, backed_up_pom_path)
         return compile_flag, test_flag
@@ -143,17 +145,25 @@ class Traverse:
         val.validate(group_id, artifact_id, versions, best_version, method_entry_points, type_entry_points, direct_or_transitive)
         
     def change_pom(self, cur_dep, best_version):
-        """change the pom.xml to the best version of the dependency"""
+        """
+            change the pom.xml to the best version of the dependency
+            by set the value of the property tag in pom.xml and add the property in the corresponding tag\
+            in <dependencies> or <dependencyManagement>    
+        """
         val = Validation(self.path_to_project_folder, self.relative_path_to_module)
         group_id = cur_dep['GroupId']
         artifact_id = cur_dep['ArtifactId']
         property_tag_name = val.set_pom_property_value(group_id, artifact_id, best_version)
+        # way1: set the direct dependencies in <dependencies> while transitive dependencies in <dependencyManagement>
         if cur_dep['Depth'] == 1:
             # direct dependency
             val.add_direct_dependency(group_id, artifact_id, property_tag_name)
         else:
             # transitive dependency
             val.add_transitive_dependency(group_id, artifact_id, property_tag_name)
+        
+        # way2: set all dependencies in <dependencies>
+        # val.add_direct_dependency(group_id, artifact_id, property_tag_name)
 
     def recompile(self):
         """recompile the project finally

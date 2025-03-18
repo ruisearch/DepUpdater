@@ -56,15 +56,20 @@ def mvn_test(path_to_folder:str, relative_path_to_module:str):
 
 def mvn_verbose_dependency_tree(path_to_folder:str, relative_path_to_module:str):
     """execute mvn dependency:tree -Dverbose"""
-    
     command = f"cd {path_to_folder} && mvn dependency:tree -pl {relative_path_to_module} -am -Dverbose -fae"
     print("generating dependency tree...")
     result = subprocess.run(command, shell=True, text=True, capture_output=True)
     repo_name = os.path.basename(path_to_folder)
-    tree_folder = os.path.join(TREE_DIR, f'{repo_name}/{relative_path_to_module}')
+    if relative_path_to_module == '.':
+        tree_folder = os.path.join(TREE_DIR, f'{repo_name}', '_')
+    else:
+        tree_folder = os.path.join(TREE_DIR, f'{repo_name}', f'{relative_path_to_module}')
     create_folder(tree_folder)
     tree_file = os.path.join(tree_folder, 'verbose_tree.txt')
     with open(tree_file, 'w', encoding='utf-8') as f:
         f.write(f'{result.stdout}')
+        
+    # print(f"{result.stdout}")
+
     print("dependency tree is generated successfully")
     return tree_file, result.returncode

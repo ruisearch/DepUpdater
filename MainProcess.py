@@ -34,6 +34,7 @@ path_to_folder = expand_resolve_abspath(args.root)
 path_to_pom = os.path.join(path_to_folder, "pom.xml")
 # only handle the module in relative_path_to_module;'.' means the pom of the module is just at the root directory of project
 relative_path_to_module = args.module
+relative_path_to_module = relative_path_to_module.removeprefix('./')
 
 # get all local module
 local_module_inform = {}
@@ -50,9 +51,15 @@ if MULTI_MODULE_FLAG:
 
 # set path to log file and soot empty cases file
 repo_name = os.path.basename(path_to_folder)
-log_path = os.path.join(RET_DIR, repo_name, relative_path_to_module, 'log.txt')
+if relative_path_to_module == '.':
+    # if the module is located at the root directory of the project
+    # store the result of it in _ folder
+    data_dir = os.path.join(RET_DIR, repo_name, '_')
+else:
+    data_dir = os.path.join(RET_DIR, repo_name, relative_path_to_module)
+log_path = os.path.join(data_dir, 'log.txt')
 set_log_path(log_path)
-soot_empty_csv = os.path.join(RET_DIR, repo_name, relative_path_to_module, 'soot_empty_cases.csv')
+soot_empty_csv = os.path.join(data_dir, 'soot_empty_cases.csv')
 set_soot_empty_cases_csv(soot_empty_csv)
 # remove existing soot empty cases file
 if os.path.exists(soot_empty_csv):
@@ -63,6 +70,9 @@ if os.path.exists(log_path):
 # create the directory for result if not exist
 if not os.path.exists(os.path.dirname(log_path)):
     os.makedirs(os.path.dirname(log_path))
+# remove all the outdated files in the result directory if exist
+for file in os.listdir(data_dir):
+    os.remove(os.path.join(data_dir, file))
 
 print("\n****** preprocessing ... ******\n")
 log_debug(f"Start preprocessing for {repo_name}/{relative_path_to_module}")
