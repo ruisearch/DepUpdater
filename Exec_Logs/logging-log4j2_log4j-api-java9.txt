@@ -1,152 +1,0 @@
-Script started on 2024-05-31 17:00:20+08:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="100" LINES="39"]
-
-****** preprocessing ... ******
-
-****** set the git repository to the lastest tag status ******
-HEAD is now at fea2a71161 Update the `project.build.outputTimestamp` property
-remote: Enumerating objects: 31, done.[K
-remote: Counting objects:   3% (1/31)[Kremote: Counting objects:   6% (2/31)[Kremote: Counting objects:   9% (3/31)[Kremote: Counting objects:  12% (4/31)[Kremote: Counting objects:  16% (5/31)[Kremote: Counting objects:  19% (6/31)[Kremote: Counting objects:  22% (7/31)[Kremote: Counting objects:  25% (8/31)[Kremote: Counting objects:  29% (9/31)[Kremote: Counting objects:  32% (10/31)[Kremote: Counting objects:  35% (11/31)[Kremote: Counting objects:  38% (12/31)[Kremote: Counting objects:  41% (13/31)[Kremote: Counting objects:  45% (14/31)[Kremote: Counting objects:  48% (15/31)[Kremote: Counting objects:  51% (16/31)[Kremote: Counting objects:  54% (17/31)[Kremote: Counting objects:  58% (18/31)[Kremote: Counting objects:  61% (19/31)[Kremote: Counting objects:  64% (20/31)[Kremote: Counting objects:  67% (21/31)[Kremote: Counting objects:  70% (22/31)[Kremote: Counting objects:  74% (23/31)[Kremote: Counting objects:  77% (24/31)[Kremote: Counting objects:  80% (25/31)[Kremote: Counting objects:  83% (26/31)[Kremote: Counting objects:  87% (27/31)[Kremote: Counting objects:  90% (28/31)[Kremote: Counting objects:  93% (29/31)[Kremote: Counting objects:  96% (30/31)[Kremote: Counting objects: 100% (31/31)[Kremote: Counting objects: 100% (31/31), done.[K
-remote: Compressing objects:  20% (1/5)[Kremote: Compressing objects:  40% (2/5)[Kremote: Compressing objects:  60% (3/5)[Kremote: Compressing objects:  80% (4/5)[Kremote: Compressing objects: 100% (5/5)[Kremote: Compressing objects: 100% (5/5), done.[K
-remote: Total 17 (delta 11), reused 17 (delta 11), pack-reused 0[K
-Unpacking objects:   5% (1/17)Unpacking objects:  11% (2/17)Unpacking objects:  17% (3/17)Unpacking objects:  23% (4/17)Unpacking objects:  29% (5/17)Unpacking objects:  35% (6/17)Unpacking objects:  41% (7/17)Unpacking objects:  47% (8/17)Unpacking objects:  52% (9/17)Unpacking objects:  58% (10/17)Unpacking objects:  64% (11/17)Unpacking objects:  70% (12/17)Unpacking objects:  76% (13/17)Unpacking objects:  82% (14/17)Unpacking objects:  88% (15/17)Unpacking objects:  94% (16/17)Unpacking objects: 100% (17/17)Unpacking objects: 100% (17/17), 3.78 KiB | 429.00 KiB/s, done.
-From https://github.com/apache/logging-log4j2
-   0f85bdda75..3ff55882b9  2.x              -> origin/2.x
-   ac5bdb9026..1be83ccfcb  2.x-site-stg-out -> origin/2.x-site-stg-out
-HEAD is now at fea2a71161 Update the `project.build.outputTimestamp` property
-
-****** preprocess.package ... ******
-
-mvn clean and mvn package...
-[[1;34mINFO[m] Scanning for projects...
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--------------< [0;36morg.apache.logging.log4j:log4j-api-java9[0;1m >--------------[m
-[[1;34mINFO[m] [1mBuilding Apache Log4j API Java 9 support 2.23.1[m
-[[1;34mINFO[m]   from pom.xml
-[[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mclean:3.3.2:clean[m [1m(default-clean)[m @ [36mlog4j-api-java9[0;1m ---[m
-[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/logging-log4j2/log4j-api-java9/target
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mflatten:1.5.0:clean[m [1m(clean-flattened-pom)[m @ [36mlog4j-api-java9[0;1m ---[m
-[[1;34mINFO[m] Deleting /home/ray/Tool/Dataset/logging-log4j2/log4j-api-java9/.flattened-pom.xml
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32menforcer:3.4.1:enforce[m [1m(enforce-maven-version)[m @ [36mlog4j-api-java9[0;1m ---[m
-[[1;34mINFO[m] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32menforcer:3.4.1:enforce[m [1m(enforce-java-version)[m @ [36mlog4j-api-java9[0;1m ---[m
-[[1;34mINFO[m] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32menforcer:3.4.1:enforce[m [1m(enforce-upper-bound-deps)[m @ [36mlog4j-api-java9[0;1m ---[m
-[[1;34mINFO[m] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32menforcer:3.4.1:enforce[m [1m(ban-wildcard-imports)[m @ [36mlog4j-api-java9[0;1m ---[m
-[[1;34mINFO[m] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32menforcer:3.4.1:enforce[m [1m(ban-logging-dependencies)[m @ [36mlog4j-api-java9[0;1m ---[m
-[[1;34mINFO[m] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mbuild-helper:3.5.0:parse-version[m [1m(parse-version)[m @ [36mlog4j-api-java9[0;1m ---[m
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mclean:3.3.2:clean[m [1m(delete-module-descriptors)[m @ [36mlog4j-api-java9[0;1m ---[m
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mremote-resources:3.1.0:process[m [1m(process-resource-bundles)[m @ [36mlog4j-api-java9[0;1m ---[m
-[[1;34mINFO[m] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
-[[1;34mINFO[m] Copying 3 resources from 1 bundle.
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mflatten:1.5.0:flatten[m [1m(flatten-revision)[m @ [36mlog4j-api-java9[0;1m ---[m
-[[1;34mINFO[m] Generating flattened POM of project org.apache.logging.log4j:log4j-api-java9:pom:2.23.1...
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mclean:3.3.2:clean[m [1m(delete-module-descriptor)[m @ [36mlog4j-api-java9[0;1m ---[m
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mcompiler:3.11.0:compile[m [1m(default-compile)[m @ [36mlog4j-api-java9[0;1m ---[m
-[[1;34mINFO[m] Changes detected - recompiling the module! :source
-[[1;34mINFO[m] Compiling 16 source files with javac [debug release 9] to target/classes
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mbnd:7.0.0:bnd-process[m [1m(generate-module-descriptors)[m @ [36mlog4j-api-java9[0;1m ---[m
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mcompiler:3.11.0:testCompile[m [1m(default-test-compile)[m @ [36mlog4j-api-java9[0;1m ---[m
-[[1;34mINFO[m] Not compiling test sources
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32msurefire:3.2.5:test[m [1m(run-tests)[m @ [36mlog4j-api-java9[0;1m ---[m
-[[1;34mINFO[m] Tests are skipped.
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32massembly:3.6.0:single[m [1m(zip)[m @ [36mlog4j-api-java9[0;1m ---[m
-[[1;34mINFO[m] Reading assembly descriptor: src/assembly/java9.xml
-[[1;34mINFO[m] Building zip: /home/ray/Tool/Dataset/logging-log4j2/log4j-api-java9/target/log4j-api-java9-2.23.1.zip
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mcyclonedx:2.7.10:makeAggregateBom[m [1m(generate-sbom)[m @ [36mlog4j-api-java9[0;1m ---[m
-[[1;34mINFO[m] Skipping CycloneDX
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mbsh:1.4:run[m [1m(process-sbom)[m @ [36mlog4j-api-java9[0;1m ---[m
-[[1;34mINFO[m] Executing Script
-[[1;34mINFO[m] file class java.lang.Object
-[[1;34mINFO[m] script class java.lang.String
-[[1;34mINFO[m] evaluating script import java.io.*;
-import java.nio.file.*;
-import java.util.*;
-import javax.xml.transform.*;
-import javax.xml.transform.stream.*;
-import org.apache.commons.codec.digest.*;
-
-    // Compute parameters
-    final String xslt = project.getProperties().getProperty("sbom.xslt");
-    final File pomFile = project.getModel().getPomFile();
-    final byte[] digest = new DigestUtils(MessageDigestAlgorithms.SHA_256).digest(pomFile);
-    final UUID bomSerialNumber = UUID.nameUUIDFromBytes(digest);
-    final String vdrUrl = Objects.requireNonNull(project.getProperties().getProperty("vdr.url"), "vdr.url");
-
-    // Move original SBOM file
-    final Path basedir = project.getBasedir().toPath();
-    final Path destPath = basedir.resolve("target/bom.xml");
-    final Path sourcePath = basedir.resolve("target/bom.orig.xml");
-    if (!Files.isReadable(destPath)) {
-      System.out.println("No CycloneDX SBOM file found, skipping transformation.");
-      return;
-    }
-    Files.move(destPath, sourcePath, new CopyOption[] {StandardCopyOption.REPLACE_EXISTING});
-
-    // Apply XSLT transformation
-    final StreamSource xsltSource = new StreamSource(new StringReader(xslt));
-    final TransformerFactory factory = TransformerFactory.newInstance();
-    final Transformer transformer = factory.newTransformer(xsltSource);
-    transformer.setParameter("sbom.serialNumber", bomSerialNumber.toString());
-    transformer.setParameter("vdr.url", vdrUrl);
-    final StreamSource source = new StreamSource(sourcePath.toUri().toASCIIString());
-    final StreamResult result = new StreamResult(destPath.toUri().toASCIIString());
-    transformer.transform(source, result);
-No CycloneDX SBOM file found, skipping transformation.
-[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
-[[1;34mINFO[m] [1;32mBUILD SUCCESS[m
-[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
-[[1;34mINFO[m] Total time:  2.271 s
-[[1;34mINFO[m] Finished at: 2024-05-31T17:00:24+08:00
-[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
-[0m[0m
-****** preprocess.package done! ******
-
-
-****** preprocess.analysis_tree ... ******
-
-generating dependency tree...
-dependency tree is generated in ./data/dependency_tree.txt successfully
-
-****** preprocess.analysis_tree done! ******
-
-
-****** preprocess.getjar ... ******
-
-
-****** get client jar / dep jar... ******
-
-
-****** preprocess.getjar done! ******
-
-
-****** preprocess done! ******
-
-
-****** match ... ******
-
-jar doesn't exist, exit
-
-Script done on 2024-05-31 17:00:27+08:00 [COMMAND_EXIT_CODE="0"]
