@@ -1,6 +1,6 @@
 # DepUpdater
 
-`DepUpdater` is a dependency management tool that upgrades the outdated dependencies of Maven projects while preventing introducing compatibility issues or bloated dependencies.  To achieve this, `DepUpdater` first constructs a dependency graph that reflects the actual dependency relationships, derived from the dependency tree provided by Maven. It then traverses this dependency graph, and for each node encountered, filters out versions that violate the compatibility or debloating constraints. From the remaining versions, the latest one is selected to minimize the technical lag of the module. After processing each node, `DepUPdater` also updates the dependency graph in real-time.
+`DepUpdater` is a dependency management tool that upgrades the outdated dependencies of Maven projects while preventing introducing compatibility issues or bloated dependencies.  To achieve this, `DepUpdater` first constructs a dependency graph that reflects the actual dependency relationships, derived from the dependency tree provided by Maven. It then traverses this dependency graph, and for each node encountered, filters out versions that violate the compatibility or debloating constraints. From the remaining versions, the latest one is selected to minimize the technical lag of the module. After processing each node, `DepUpdater` also updates the dependency graph in real-time.
 
 ## Usage
 
@@ -12,7 +12,7 @@
 
 3. python 3.10.12
 
-4. Ubuntu 2020(test on Ubuntu 2020)
+4. Ubuntu 2020
 
 5. Necessary python packages :
 
@@ -55,9 +55,13 @@ docker exec maven_mongodb mongorestore --db maven --collection maven /data/maven
 
 retore the `maven_deps` collection
 
+```shell
+docker exec maven_mongodb mongorestore --db maven --collection maven_deps /data/maven_deps.bson
+```
+
 * Create indexes on the two collections 
 
-Add two compound indexes to the `maven` collection: (`group`, `artifact`) and (`group`, `artifact`, `version`);
+Add two compound indexes to the `maven` collection: (`group`, `artifact`) and (`group`, `artifact`, `version`).
 
 Add one compound index to the `maven_deps` collection: `parent`.
 
@@ -86,7 +90,7 @@ options:
                         the relative paths to the local module jar depended by client
 ```
 
-the `ROOT` and `MODULE` parameters are necessary.
+the `ROOT` and `MODULE` parameters are necessary, while `JAR` and `LOCAL_DEP_JAR` parameters are optional.
 
 An example usage:
 
@@ -95,6 +99,7 @@ python MainProcess.py -r /home/test/mall -m mall-common
 ```
 
 the `mall` repository is cloned from https://github.com/macrozheng/mall.git, and mall-common is a module of this repository.
+`/home/test/mall` is the local location of the cloned repository, and `mall-common` is the relative path of the mall-common module.
 
 ## Source code structure
 
@@ -107,7 +112,6 @@ The structure of this repository is as follows:
 ├── database # query and update the Mongodb and sqlite
 ├── docker-compose-mongodb.yml # docker file
 ├── evaluation # compute reduced tech lag and dep count
-├── __init__.py
 ├── logger # generate log
 ├── MainProcess.py # main function
 ├── maven.bson # maven collection
