@@ -6,15 +6,15 @@
 
 ### Requirements
 
-1. JDK 17
+**1.** JDK 17
 
-2. Maven 3.9.5
+**2.** Maven 3.9.5
 
-3. python 3.10.12
+**3.** python 3.10.12
 
-4. Ubuntu 2020
+**4.** Ubuntu 2020
 
-5. Necessary python packages :
+**5.** Necessary python packages :
 
 * Install a virtual environment
 
@@ -34,7 +34,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-6. A MongoDB docker container :
+**6.** A MongoDB docker container :
 
 * Download `maven_deps.zip`  from https://anonymfile.com/kWjEg/maven-deps.zip, then unzip it to get `maven_deps.bson`.
 * Download `maven.zip` from https://anonymfile.com/r1ke0/maven.zip , then unzip it to get `maven.bson`.
@@ -65,7 +65,7 @@ Add two compound indexes to the `maven` collection: (`group`, `artifact`) and (`
 
 Add one compound index to the `maven_deps` collection: `parent`.
 
-7. A `Sqlite`  database :
+**7.** A `Sqlite`  database :
 
 * Download `reusable_data.zip` from https://anonymfile.com/mkyRb/reusable-data.zip, then unzip it to get `reusable_data.sqlite`.
 * Place `reusable_data.sqlite` at the root directory of this repository.
