@@ -2,9 +2,7 @@
 
 `DepUpdater` is a dependency management tool that upgrades the outdated dependencies of Maven projects while preventing introducing compatibility issues or bloated dependencies.  To achieve this, `DepUpdater` first constructs a dependency graph that reflects the actual dependency relationships, derived from the dependency tree provided by Maven. It then traverses this dependency graph, and for each node encountered, filters out versions that violate the compatibility or debloating constraints. From the remaining versions, the latest one is selected to minimize the technical lag of the module. After processing each node, `DepUpdater` also updates the dependency graph in real time to keep the contextual information accurate and up to date.
 
-
 ![image](https://github.com/ruisearch/com_tool/blob/artifact/img/overview.png)
-Overview of DepUpdater.
 
 ## Usage
 
