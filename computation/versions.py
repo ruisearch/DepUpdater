@@ -59,8 +59,6 @@ def get_MMP_MmP_mmP_versions(original_version:str, candidate_versions:list):
     resulting_versions.append(MMP_version)
     resulting_versions.append(mMP_version)
     resulting_versions.append(mmP_version)
-    # 现在的问题是，MMP,MmP,mmP可能重复，需要去重，同时还要保持原来的顺序,即从新到旧，MMP，MmP,mmP
-    # todo
     return resulting_versions
 
 def find_original_version_idx(all_versions, original_version):
