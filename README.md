@@ -38,7 +38,7 @@ pip install -r requirements.txt
 
 **6.** A MongoDB docker container :
 
-* Download `maven_deps.zip`  from https://anonymfile.com/kWjEg/maven-deps.zip, then unzip it to get `maven_deps.bson`.
+* Download `maven_deps.zip`  from https://anonymfile.com/kWjEg/maven-deps.zip, then unzip it to get `maven_deps.bson`. (maven_des.zip is 2.42GB)
 * Download `maven.zip` from https://anonymfile.com/r1ke0/maven.zip , then unzip it to get `maven.bson`.
 * Place `maven_deps.bson` and `maven.bson` at the root directory of this repository.
 * Activate a MongoDB docker container named `maven_mongodb`.
