@@ -219,32 +219,3 @@ class Revapi:
             text = re.sub(r'<[^<>]*>', '', text)
         return text
 
-if __name__ == '__main__':
-    from constants import MainProcess_pwd
-    old_jar = os.path.join(MainProcess_pwd, 'test', 'byte-buddy-1.12.19.jar')
-    new_jar = os.path.join(MainProcess_pwd, 'test', 'byte-buddy-1.14.13.jar')
-    revapi = Revapi(old_jar, new_jar)
-    # report = revapi.compare('net.bytebuddy', 'byte-buddy', '1.12.19', '1.14.13')
-    
-    # # test extract_bc_api
-    # revapi.extract_bc_records(report)
-    # for record in revapi.source_bc_records:
-    #     revapi.extract_bc_api(record, 'source')
-    # for record in revapi.binary_bc_records:
-    #     revapi.extract_bc_api(record, 'binary')
-    # print(revapi.source_bc_type)
-    # print(revapi.source_bc_method)
-    # print(revapi.binary_bc_method)
-    # print(revapi.binary_bc_type)
-    
-    # # test transform_method
-    # test_method = '<S extends java.lang.annotation.Annotation> net.bytebuddy.asm.Advice.OffsetMapping.Factory<S> net.bytebuddy.asm.Advice.OffsetMapping.ForSerializedValue.Factory<T extends java.lang.annotation.Annotation>::of(java.lang.Class<S>, java.io.Serializable, java.lang.Class<?>)'
-    # test_method = '<T> T test.soot.CG.Cg_Main::test_generic(T)'
-    # test_method = '<T extends org.test> T org.test.A<T extends org.class.test>::test(T, lang.String)'
-    test_method = '<S extends test.soot.error, T> java.util.List<S> test.soot.CG.Cg_Main::test_multi_generic(S, T)'
-    print(Revapi.transform_method(test_method))
-    
-    # # test bc_api
-    # binary_bc_method, binary_bc_type = revapi.bc_api('net.bytebuddy', 'byte-buddy', '1.12.19', '1.14.13', 'binary')
-    # source_bc_method, source_bc_type = revapi.bc_api('net.bytebuddy', 'byte-buddy', '1.12.19', '1.14.13', 'source')
-    # print(source_bc_method)

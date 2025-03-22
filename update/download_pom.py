@@ -33,6 +33,3 @@ def download_pom_one(jar_info):
     except Exception as e:
         print(e)
         return False
-# test
-if __name__ == '__main__':
-    download_pom_one('io.netty|netty-common|4.1.113.Final')

@@ -159,19 +159,3 @@ def get_resource_with_retry(url, params=None, max_retries=5, backoff_factor=0.3)
             time.sleep(backoff_factor * (2 ** attempt))  # Exponential backoff
             if attempt == max_retries - 1:
                 raise  # Re-raise the last exception if all retries fail
-
-if __name__ == '__main__':
-    pass
-    # # test get_all_versions
-    # # http://search.maven.org/solrsearch/select?q=g:org.junit-pioneer+AND+a:junit-pioneer&core=gav&rows=200&wt=json
-    # g = "org.junit-pioneer"
-    # a = "junit-pioneer"
-    # v = '1.9.1'
-    # print(get_all_versions(g, a, v))
-    
-    # # test fetch_versions
-    # g = "org.apache.logging.log4j"
-    # a = "log4j-api"
-    # v = '2.24.0'
-    # # print(fetch_versions(g, a))
-    # print(get_all_versions(g, a, v))

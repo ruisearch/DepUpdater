@@ -280,29 +280,3 @@ class Api:
             dfs(entry)
         
         return reachable
-
-if __name__ == '__main__':
-    # # test cg and dg
-    # api = Api('joda-time', 'joda-time', '2.12.7')
-    # print("get cg")
-    # api.get_cg()
-    # print("get type dg")
-    # api.get_type_dg()
-    
-    # # test find_reachable_calls
-    # entry_points = set(['api_1', 'api_3'])
-    # call_relations = {
-    #     'api_1' : set(['api_4']),
-    #     'api_2' : set(['api_3']),
-    #     'api_3' : set(['api_5'])
-    # }
-    # print(Api.find_reachable_calls(entry_points, call_relations))
-    
-    # test find_matching_relations
-    target_callers = set(['api_6'])
-    call_relations = {
-        'api_1' : set(['api_4', 'api_6']),
-        'api_2' : set(['api_3']),
-        'api_3' : set(['api_5'])
-    }
-    print(Api.find_matching_relations(call_relations, target_callers))

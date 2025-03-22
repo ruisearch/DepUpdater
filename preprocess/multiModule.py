@@ -72,9 +72,3 @@ def parse_pom(pom:str):
     # print("- - - - - - -")
 
     return g_id.text, a_id.text, v.text
-
-if __name__ == '__main__':
-    # path = '/home/ray/Tool/Dataset/canal/admin/tmp_pom.xml'
-    
-    # print(parse_pom(path))
-    print(get_gav('/home/ray/Tool/Dataset/canal/admin/','/home/ray/Tool/Dataset/canal/'))

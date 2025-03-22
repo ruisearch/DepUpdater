@@ -120,31 +120,3 @@ class Japicmp:
                 complete_constructor_name = f'void {bc_type_name}::<init>{parameter_list}'
                 self.binary_bc_method.setdefault(complete_constructor_name, []).append(record)
                 continue
-
-if __name__ == '__main__':
-    # test extract_bc_records
-    japicmp = Japicmp('jars/commons-lang3-3.9.jar', 'jars/commons-lang3-3.10.jar')
-    report = """Comparing binary compatibility of /home/ray/Tool/test_soot-1.0-SNAPSHOT.jar against /home/ray/Tool/test_soot/target/test_soot-1.0-SNAPSHOT.jar
-WARNING: You are using the option '--ignore-missing-classes', i.e. superclasses and interfaces that could not be found on the classpath are ignored. Hence changes caused by these superclasses and interfaces are not reflected in the output.
-***! MODIFIED CLASS: PUBLIC test.soot.CG.Cg_Main  (not serializable)
-	===  CLASS FILE FORMAT VERSION: 61.0 <- 61.0
-	---! REMOVED METHOD: PUBLIC(-) void test_anonymousClass()
-	---! REMOVED METHOD: PUBLIC(-) java.util.List<S> test_multi_generic(test.soot.error, java.lang.Object)
-		GENERIC TEMPLATES: --- S:test.soot.error, --- T:java.lang.Object
-	---! REMOVED METHOD: PUBLIC(-) java.lang.String[] test_return_array()
-***! MODIFIED CLASS: PUBLIC test.soot.CG.Cg_Main$genericClass  (not serializable)
-	===  CLASS FILE FORMAT VERSION: 61.0 <- 61.0
-	GENERIC TEMPLATES: === T:test.soot.test_interface
-	---! REMOVED METHOD: PUBLIC(-) void print(java.util.List<? extends test.soot.test_interface>)
-***! MODIFIED CLASS: PROTECTED net.bytebuddy.asm.Advice$Dispatcher$RelocationHandler$ForValue$Bound  (not serializable)
-	===  CLASS FILE FORMAT VERSION: 49.0 <- 49.0
-	===! UNCHANGED INTERFACE: net.bytebuddy.asm.Advice$Dispatcher$RelocationHandler$Bound
-	---! REMOVED CONSTRUCTOR: PROTECTED(-) Advice$Dispatcher$RelocationHandler$ForValue$Bound(boolean)"""
-    japicmp.extract_bc_records(report)
-    for idx, record in enumerate(japicmp.binary_bc_records):
-        print(f'record {idx}: {record}')
-    # test extract_bc_api
-    for record in japicmp.binary_bc_records:
-        japicmp.extract_bc_api(record)
-    print(japicmp.binary_bc_method)
-    print(japicmp.binary_bc_type)

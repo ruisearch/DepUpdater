@@ -89,16 +89,3 @@ def populate_dep(go, ao, vo):
 
     return dependencies
 
-# test
-if __name__ == '__main__':
-    # g = 'org.apache.maven'
-    # a = 'maven-core'
-    # v = '3.9.9'
-    # populate_dep(g, a, v)
-    # # dependencies = populate_dep(g, a, v)
-    # # print(dependencies)
-    g = 'com.sun'
-    a = 'tools'
-    v = '17.0.9'
-    dependencies = populate_dep(g, a, v)
-    print(dependencies)
