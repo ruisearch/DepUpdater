@@ -42,3 +42,48 @@ class TechLag:
         for idx, v in enumerate(all_versions):
             if v['version'] == version:
                 return idx
+        # if the version is not found, we return None
+        return None
+
+    def compute_reduced_semver_lag(self):
+        """compute the reduced semver lag of the module"""
+        major_reduced_lag = 0
+        minor_reduced_lag = 0
+        patch_reduced_lag = 0
+        for dep in self.deps:
+            if dep['Depth'] == 0:
+                continue
+            all_versions = dep['Versions']
+            best_version = dep['Best_Version']
+            idx = self.find_idx(all_versions, best_version)
+            if idx is None:
+                # if the version is not found, we skip it
+                # this is the case when the best version is not in the versions list
+                continue
+            # compute the semver lag
+            if idx == 0:
+                considered_versions = all_versions[-1::-1]
+            else:
+                considered_versions = all_versions[-1:idx-1:-1]
+            major_version = ""
+            minor_version = ""
+            patch_version = ""
+            for version in considered_versions:
+                version_number = version['version']
+                major = version_number.split(".")[0]
+                minor = version_number.split(".")[1] if len(version_number.split(".")) > 1 else '0'
+                patch = version_number.split(".")[2] if len(version_number.split(".")) > 2 else '0'
+                if major != major_version:
+                    major_reduced_lag += 1
+                if minor != minor_version:
+                    minor_reduced_lag += 1
+                if patch != patch_version:
+                    patch_reduced_lag += 1
+                major_version = major
+                minor_version = minor
+                patch_version = patch
+        return [major_reduced_lag, minor_reduced_lag, patch_reduced_lag]
+    
+if __name__ == "__main__":
+    lag = TechLag('/home1/kaixuan/ray/com_tool/data/Lagease_result/debug.json')
+    print(lag.compute_reduced_semver_lag())
