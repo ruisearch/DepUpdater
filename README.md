@@ -146,3 +146,25 @@ Data for RQs is in the `RQs_data` folder, the structure of this folder is as fol
     └── RQ3_Client_Distribution.csv # Distribution of Broken-Client
 ```
 
+# For rebuttal: 
+
+**Version lag among different version level in RQ1 and RQ2**:
+
+RQ1:
+
+| Tool            | #Reduced Major VL(Versions) | Reduced Minor VL(Versions) | Reduced Patch VL(Versions) | Reduced VL(Versions) |
+| --------------- | --------------------------- | -------------------------- | -------------------------- | -------------------- |
+| `DepUpdater`    | 3,515                       | 7,062                      | 21,169                     | 22,877               |
+| `Dependabot`    | 1,430                       | 1,975                      | 2,053                      | 8,293                |
+| `Snyk`          | 1,600                       | 2,445                      | 4,311                      | 4,131                |
+| `GoblinUpdater` | 0                           | 0                          | 0                          | 0                    |
+
+RQ2:
+
+| Tool                 | #Reduced Major VL(Versions) | Reduced Minor VL(Versions) | Reduced Patch VL(Versions) | Reduced VL(Versions) |
+| -------------------- | --------------------------- | -------------------------- | -------------------------- | -------------------- |
+| `DepUpdater`         | 3,515                       | 7,062                      | 21,169                     | 22,877               |
+| `Debloating only`    | 3,503                       | 7,076                      | 21,123                     | 22,951               |
+| `Compatibility only` | 13,845                      | 27,163                     | 145,096                    | 23,438               |
+| `Naive`              | 14,514                      | 28,335                     | 147,256                    | 24,341               |
+
