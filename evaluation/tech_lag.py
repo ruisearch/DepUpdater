@@ -28,9 +28,16 @@ class TechLag:
         for dep in self.deps:
             if dep['Depth'] == 0:
                 continue
+            if 'Versions' not in dep or 'Best_Version' not in dep:
+                # if the dep has no versions or best version, we skip it
+                continue
             all_versions = dep['Versions']
             best_version = dep['Best_Version']
             idx = self.find_idx(all_versions, best_version)
+            if idx is None:
+                # if the version is not found, we skip it
+                # this is the case when the best version is not in the versions list
+                continue
             self.current_lag[0] += idx
             if dep['Depth'] <= 10:
                 self.current_lag[dep['Depth']] += idx
@@ -42,7 +49,6 @@ class TechLag:
         for idx, v in enumerate(all_versions):
             if v['version'] == version:
                 return idx
-        # if the version is not found, we return None
         return None
 
     def compute_reduced_semver_lag(self):
@@ -52,6 +58,9 @@ class TechLag:
         patch_reduced_lag = 0
         for dep in self.deps:
             if dep['Depth'] == 0:
+                continue
+            if 'Versions' not in dep or 'Best_Version' not in dep:
+                # if the dep has no versions or best version, we skip it
                 continue
             all_versions = dep['Versions']
             best_version = dep['Best_Version']
@@ -65,14 +74,20 @@ class TechLag:
                 considered_versions = all_versions[-1::-1]
             else:
                 considered_versions = all_versions[-1:idx-1:-1]
-            major_version = ""
-            minor_version = ""
-            patch_version = ""
+            # print(f"considered_versions: {considered_versions}")
+            original_version = considered_versions[0]['version']
+            major_version = original_version.split(".")[0]
+            minor_version = original_version.split(".")[1] if len(original_version.split(".")) > 1 else '0'
+            patch_version = original_version.split(".")[2] if len(original_version.split(".")) > 2 else '0'
             for version in considered_versions:
                 version_number = version['version']
+                # print(f"version_number: {version_number}")
                 major = version_number.split(".")[0]
+                # print(f"major: {major}")
                 minor = version_number.split(".")[1] if len(version_number.split(".")) > 1 else '0'
+                # print(f"minor: {minor}")
                 patch = version_number.split(".")[2] if len(version_number.split(".")) > 2 else '0'
+                # print(f"patch: {patch}")
                 if major != major_version:
                     major_reduced_lag += 1
                 if minor != minor_version:
@@ -84,6 +99,3 @@ class TechLag:
                 patch_version = patch
         return [major_reduced_lag, minor_reduced_lag, patch_reduced_lag]
     
-if __name__ == "__main__":
-    lag = TechLag('/home1/kaixuan/ray/com_tool/data/Lagease_result/debug.json')
-    print(lag.compute_reduced_semver_lag())

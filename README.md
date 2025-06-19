@@ -154,17 +154,19 @@ RQ1:
 
 | Tool            | #Reduced Major VL(Versions) | Reduced Minor VL(Versions) | Reduced Patch VL(Versions) | Reduced VL(Versions) |
 | --------------- | --------------------------- | -------------------------- | -------------------------- | -------------------- |
-| `DepUpdater`    | 3,515                       | 7,062                      | 21,169                     | 22,877               |
-| `Dependabot`    | 1,430                       | 1,975                      | 2,053                      | 8,293                |
-| `Snyk`          | 1,600                       | 2,445                      | 4,311                      | 4,131                |
+| `DepUpdater`    | 1,219                       | 4,766                      | 18,873                     | 22,877               |
+| `Dependabot`    | 33                          | 578                        | 656                        | 8,293                |
+| `Snyk`          | 90                          | 935                        | 2,801                      | 4,131                |
 | `GoblinUpdater` | 0                           | 0                          | 0                          | 0                    |
 
 RQ2:
 
 | Tool                 | #Reduced Major VL(Versions) | Reduced Minor VL(Versions) | Reduced Patch VL(Versions) | Reduced VL(Versions) |
 | -------------------- | --------------------------- | -------------------------- | -------------------------- | -------------------- |
-| `DepUpdater`         | 3,515                       | 7,062                      | 21,169                     | 22,877               |
-| `Debloating only`    | 3,503                       | 7,076                      | 21,123                     | 22,951               |
-| `Compatibility only` | 13,845                      | 27,163                     | 145,096                    | 23,438               |
-| `Naive`              | 14,514                      | 28,335                     | 147,256                    | 24,341               |
+| `DepUpdater`         | 1,219                       | 4,766                      | 18,873                     | 22,877               |
+| `Debloating only`    | 1,210                       | 4,783                      | 18,830                     | 22,951               |
+| `Compatibility only` | 3,578                       | 16,896                     | 134,829                    | 23,438               |
+| `Naive`              | 3,869                       | 17,690                     | 136,611                    | 24,341               |
+
+tip: Many artiacts in Maven projects do not follow semantic versioning, so the reduced version lag on major, minor, and patch levels may not reflect the version gap.
 
