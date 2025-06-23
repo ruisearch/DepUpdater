@@ -100,7 +100,7 @@ An example usage:
 python MainProcess.py -r /home/test/mall -m mall-common
 ```
 
-the `mall` repository is cloned from https://github.com/macrozheng/mall.git, and mall-common is a module of this repository.
+The `mall` repository is cloned from https://github.com/macrozheng/mall.git, and mall-common is a module of this repository.
 `/home/test/mall` is the local location of the cloned repository, and `mall-common` is the relative path of the mall-common module.
 
 ## Source code structure
@@ -168,5 +168,5 @@ RQ2:
 | `Compatibility only` | 3,578                       | 16,896                     | 134,829                    | 23,438               |
 | `Naive`              | 3,869                       | 17,690                     | 136,611                    | 24,341               |
 
-tip: Many artiacts in Maven projects do not follow semantic versioning, so the reduced version lag on major, minor, and patch levels may not reflect the version gap.
+Tip: Many artifacts in Maven projects do not follow semantic versioning, so the reduced version lag on major, minor, and patch levels may not reflect the version gap.
 
