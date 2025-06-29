@@ -1,5 +1,5 @@
 repo,module,compile_success,test_pass,original_tech_lag,current_tech_lag,reduced_tech_lag,original_dep_count,current_dep_count,reduced_dep_count
-mall,mall-common,True,True,2724,176.0,2548,92,93.0,-1
+mall,mall-common,True,True,2724,176.0,2548,93,93.0,0
 mall,mall-security,True,True,2987,153.0,2834,99,99.0,0
 dubbo,dubbo-test/dubbo-test-common,True,True,35,1.0,34,15,14.0,1
 dubbo,dubbo-test/dubbo-test-modules,True,True,2,0.0,2,5,5.0,0
@@ -44,7 +44,7 @@ java-design-patterns,page-controller,True,False,314,12.0,302,39,39.0,0
 java-design-patterns,version-number,True,True,7,4.0,3,3,3.0,0
 java-design-patterns,data-locality,True,True,7,4.0,3,3,3.0,0
 java-design-patterns,double-checked-locking,True,True,7,4.0,3,3,3.0,0
-java-design-patterns,repository,True,False,351,45.0,306,69,70.0,-1
+java-design-patterns,repository,True,False,351,45.0,306,70,70.0,0
 java-design-patterns,composite-entity,True,True,7,4.0,3,3,3.0,0
 java-design-patterns,gateway,True,True,7,4.0,3,3,3.0,0
 java-design-patterns,master-worker,True,True,7,4.0,3,3,3.0,0

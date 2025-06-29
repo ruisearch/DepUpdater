@@ -168,5 +168,5 @@ RQ2:
 | `Compatibility only` | 3,578                       | 16,896                     | 134,829                    | 23,438               |
 | `Naive`              | 3,869                       | 17,690                     | 136,611                    | 24,341               |
 
-tip: Many artiacts in Maven projects do not follow semantic versioning, so the reduced version lag on major, minor, and patch levels may not reflect the version gap.
+tip: Many artiacts in Maven projects do not follow semantic versioning, so the reduced version lag on major, minor, and patch levels may not reflect the version gap. We have also provided the above data in the paper.
 
