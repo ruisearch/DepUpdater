@@ -1,4 +1,6 @@
 # ![DepUpdater](img/DepUpdater.ico) Minimize Breaking Changes and Redundancy in Mitigating Technical Lag for Java Projects
+[![arXiv](https://img.shields.io/badge/arXiv-<25xx.xxxx>-<COLOR>.svg)](https://arxiv.org/abs/25xx.xxxx) [![Visit Our Website](https://img.shields.io/badge/Google_Site-DepUpdater-blue)](https://sites.google.com/view/icse2026-depupdater/home) [![](https://img.shields.io/badge/ICSE-2026-red?style=flat-square)](https://conf.researchr.org/home/icse-2026)
+
 
 ## Abstract 
 Re-using open-source software (OSS) can avoid reinventing the wheel, but failing to keep it up-to-date can lead to missing new features and persisting bugs or vulnerabilities that have already been resolved. The use of outdated OSS introduces technical lag,
@@ -173,5 +175,17 @@ RQ2:
 | `Compatibility only` | 3,578                       | 16,896                     | 134,829                    | 23,438               |
 | `Naive`              | 3,869                       | 17,690                     | 136,611                    | 24,341               |
 
-Tip: Many artifacts in Maven projects do not follow semantic versioning, so the reduced version lag on major, minor, and patch levels may not reflect the version gap. We have also provided the above data in the paper.
+> Tip: Many artifacts in Maven projects do not follow semantic versioning, so the reduced version lag on major, minor, and patch levels may not reflect the version gap. We have also provided the above data in the paper.
+
+
+
+## Website
+
+More details can be found on our [website](https://sites.google.com/view/icse2026-depupdater/home). 
+
+## 
+> [!IMPORTANT]
+>
+>  Feel free to share your suggestions for this process by opening issues or PRs. :)
+
 
