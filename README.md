@@ -1,4 +1,4 @@
-# ![DepUpdater](img/logo.svg) Ensuring Compatibility and Dependency Parsimony in Mitigating Technical Lags for Java Projects
+# ![DepUpdater](img/DepUpdater.png) Ensuring Compatibility and Dependency Parsimony in Mitigating Technical Lags for Java Projects
 
 ## Abstract 
 Re-using open-source software (OSS) can avoid reinventing the wheel, but failing to keep it up-to-date can lead to missing new features and persisting bugs or vulnerabilities that have already been resolved. The use of outdated OSS introduces technical lag,
