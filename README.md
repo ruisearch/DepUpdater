@@ -1,6 +1,11 @@
-# DepUpdater
+# ![DepUpdater](img/logo.svg) Ensuring Compatibility and Dependency Parsimony in Mitigating Technical Lags for Java Projects
 
-`DepUpdater` is a dependency management tool that upgrades the outdated dependencies of Maven projects while preventing introducing compatibility issues or bloated dependencies.  To achieve this, `DepUpdater` first constructs a dependency graph that reflects the actual dependency relationships, derived from the dependency tree provided by Maven. It then traverses this dependency graph, and for each node encountered, filters out versions that violate the compatibility or debloating constraints. From the remaining versions, the latest one is selected to minimize the technical lag of the module. After processing each node, `DepUpdater` also updates the dependency graph in real time to keep the contextual information accurate and up to date.
+## Abstract 
+Re-using open-source software (OSS) can avoid reinventing the wheel, but failing to keep it up-to-date can lead to missing new features and persisting bugs or vulnerabilities that have already been resolved. The use of outdated OSS introduces technical lag,
+necessitating timely upgrades. However, maintaining up-to-date libraries is challenging, as it may introduce compatibility issues that break the project or add redundant dependencies. These issues discourage developers from upgrading libraries, highlighting the
+need for a fully automated solution that balances version upgrades, reduces technical lag, ensures compatibility, and prunes redundant dependencies.
+
+To this end, we propose DepUpdater, which ensures that upgrades minimize technical lag as much as possible while avoiding compatibility issues and redundant dependencies. The comparison with existing dependency management tools demonstrates that DepUpdater more effectively reduces technical lag while ensuring compatibility and pruning redundant dependencies. Additionally, an ablation study highlights the potential benefits of considering pruning requirements during upgrades to mitigate compatibility issues. Finally, leveraging DepUpdater, we investigate the impact of transitive dependency upgrades on client compatibility, providing insights for future research.
 
 ![image](https://github.com/ruisearch/com_tool/blob/artifact/img/overview.png)
 
