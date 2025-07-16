@@ -9,7 +9,8 @@ need for a fully automated solution that balances version upgrades, reduces tech
 
 To this end, we propose DepUpdater, which ensures that upgrades minimize technical lag as much as possible while avoiding compatibility issues and redundant dependencies. The comparison with existing dependency management tools demonstrates that DepUpdater more effectively reduces technical lag while ensuring compatibility and pruning redundant dependencies. Additionally, an ablation study highlights the potential benefits of considering pruning requirements during upgrades to mitigate compatibility issues. Finally, leveraging DepUpdater, we investigate the impact of transitive dependency upgrades on client compatibility, providing insights for future research.
 
-![image](https://github.com/ruisearch/com_tool/blob/artifact/img/overview.png)
+<!-- ![image](https://github.com/ruisearch/com_tool/blob/artifact/img/overview.png) -->
+![image](img/overview.png)
 
 ## Usage
 
