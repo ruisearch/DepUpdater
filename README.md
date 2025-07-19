@@ -146,42 +146,17 @@ Data for RQs is in the `RQs_data` folder, the structure of this folder is as fol
 │   └── RQ1_Snyk.csv # Snyk in RQ1
 ├── RQ2
 │   ├── RQ2_Compatibility_Only.csv # Compatibility only in RQ1
-│   ├── RQ2_Debloating_Only.csv # Debloating only in RQ1
+│   ├── RQ2_Pruning_Only.csv # Pruning only in RQ1
 │   └── RQ2_Naive.csv # Naive in RQ1
 └── RQ3
     ├── RQ3_API_Distribution.csv # Distribution of client-impacting API
     └── RQ3_Client_Distribution.csv # Distribution of Broken-Client
 ```
 
-# For rebuttal: 
-
-**Version lag among different version level in RQ1 and RQ2**:
-
-RQ1:
-
-| Tool            | #Reduced Major VL(Versions) | Reduced Minor VL(Versions) | Reduced Patch VL(Versions) | Reduced VL(Versions) |
-| --------------- | --------------------------- | -------------------------- | -------------------------- | -------------------- |
-| `DepUpdater`    | 1,219                       | 4,766                      | 18,873                     | 22,877               |
-| `Dependabot`    | 33                          | 578                        | 656                        | 8,293                |
-| `Snyk`          | 90                          | 935                        | 2,801                      | 4,131                |
-| `GoblinUpdater` | 0                           | 0                          | 0                          | 0                    |
-
-RQ2:
-
-| Tool                 | #Reduced Major VL(Versions) | Reduced Minor VL(Versions) | Reduced Patch VL(Versions) | Reduced VL(Versions) |
-| -------------------- | --------------------------- | -------------------------- | -------------------------- | -------------------- |
-| `DepUpdater`         | 1,219                       | 4,766                      | 18,873                     | 22,877               |
-| `Debloating only`    | 1,210                       | 4,783                      | 18,830                     | 22,951               |
-| `Compatibility only` | 3,578                       | 16,896                     | 134,829                    | 23,438               |
-| `Naive`              | 3,869                       | 17,690                     | 136,611                    | 24,341               |
-
-> Tip: Many artifacts in Maven projects do not follow semantic versioning, so the reduced version lag on major, minor, and patch levels may not reflect the version gap. We have also provided the above data in the paper.
-
-
 
 ## Website
 
-More details can be found on our [website](https://sites.google.com/view/icse2026-depupdater/home). 
+More details can be found on our [website](https://anonymous.4open.science/r/DepUpdater/README.md). 
 
 ## 
 > [!IMPORTANT]
