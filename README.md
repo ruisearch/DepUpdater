@@ -1,5 +1,5 @@
 # ![DepUpdater](img/DepUpdater.ico) Minimizing Breaking Changes and Redundancy in Mitigating Technical Lag for Java Projects
-[![arXiv](https://img.shields.io/badge/arXiv-<25xx.xxxx>-<COLOR>.svg)](https://arxiv.org/abs/25xx.xxxx) [![Visit Our Website](https://img.shields.io/badge/Google_Site-DepUpdater-blue)](https://sites.google.com/view/icse2026-depupdater/home) [![](https://img.shields.io/badge/ICSE-2026-red?style=flat-square)](https://conf.researchr.org/home/icse-2026)
+[![arXiv](https://img.shields.io/badge/arXiv-<25xx.xxxx>-<COLOR>.svg)](https://arxiv.org/abs/25xx.xxxx)  [![](https://img.shields.io/badge/ICSE-2026-red?style=flat-square)](https://conf.researchr.org/home/icse-2026)
 
 
 ## Abstract 
@@ -152,11 +152,6 @@ Data for RQs is in the `RQs_data` folder, the structure of this folder is as fol
     ├── RQ3_API_Distribution.csv # Distribution of client-impacting API
     └── RQ3_Client_Distribution.csv # Distribution of Broken-Client
 ```
-
-
-## Website
-
-More details can be found on our [website](https://anonymous.4open.science/r/DepUpdater/README.md). 
 
 ## 
 > [!IMPORTANT]
