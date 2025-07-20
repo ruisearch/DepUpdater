@@ -164,6 +164,12 @@ Note:
 2. We have not listed the data for GoblinUpdater above, as all of its data points are zero.
 3. After upgrades by Dependabot, three projects (Apollo, Jenkins, Druid) were unable to generate a dependency tree. After upgrades by Snyk, two projects (Sentinel, Jenkins) could not generate a dependency tree. Since we compute technical lag based on the dependency tree, we have listed the data for these projects as N/A.
 
+## Pull Requests to Upgrade Dependencies
+
+### easyexcel-support module in easyexcel repositories:
+https://github.com/alibaba/easyexcel/pull/4123
+
+
 ## 
 > [!IMPORTANT]
 >
