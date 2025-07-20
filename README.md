@@ -156,6 +156,8 @@ Data for RQs is in the `RQs_data` folder, the structure of this folder is as fol
 ## For Major Revision
 
 We appreciate the suggestions in the Metareview and Review A to provide the data at the project level. We applied the data from different tools to each project as follows:
+
+
 ![image](img/RQ1_Extend_Table.png)
 
 Note: 
