@@ -153,6 +153,15 @@ Data for RQs is in the `RQs_data` folder, the structure of this folder is as fol
     └── RQ3_Client_Distribution.csv # Distribution of Broken-Client
 ```
 
+## For Major Revision
+
+We appreciate the suggestions in the Metareview and Review A to provide the data at the project level. We applied the data from different tools to each project as follows:
+![image](img/RQ1_Extend_Table.png)
+
+Note: 
+1. Because Dependabot and Snyk do not consider pruning during the upgrades, they often introduce redundant dependencies, which can increase overall technical lag. For example, Dependabot increased the total version lag by 150 versions for the Netty project.
+2. We have not listed the data for GoblinUpdater above, as all of its data points are zero.
+
 ## 
 > [!IMPORTANT]
 >
