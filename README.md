@@ -166,13 +166,14 @@ Note:
 
 ## Pull Requests to Upgrade Dependencies
 
-### easyexcel-support module in easyexcel repositories:
-https://github.com/alibaba/easyexcel/pull/4123
+|      Repository      |                           Link                            |  Status   |
+| :------------------: | :-------------------------------------------------------: | :-------: |
+|      easyexcel       |      https://github.com/alibaba/easyexcel/pull/4123       | submitted |
+| spring-cloud-alibaba | https://github.com/alibaba/spring-cloud-alibaba/pull/4023 | submitted |
 
 
-## 
+
 > [!IMPORTANT]
 >
 >  Feel free to share your suggestions for this process by opening issues or PRs. :)
-
 
