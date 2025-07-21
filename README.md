@@ -167,7 +167,7 @@ Note:
 ## Pull Requests to Upgrade Dependencies
 
 | Repository                                                   | Link                                                      | Status    |
-| :---------------------------------------------------------: | -------------------------------------------------------- | --------- |
+| --------------------------------------------------------- | -------------------------------------------------------- | --------- |
 | [easyexcel](https://github.com/alibaba/easyexcel)            | https://github.com/alibaba/easyexcel/pull/4123            | submitted |
 | [spring-cloud-alibaba](https://github.com/alibaba/spring-cloud-alibaba) | https://github.com/alibaba/spring-cloud-alibaba/pull/4023 | submitted |
 
