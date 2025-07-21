@@ -164,16 +164,20 @@ Note:
 2. We have not listed the data for GoblinUpdater above, **as all of its data points are zero**.
 3. After upgrades by Dependabot, three projects (Apollo, Jenkins, Druid) were unable to generate a dependency tree. After upgrades by Snyk, two projects (Sentinel, Jenkins) could not generate a dependency tree. Since we compute technical lag based on the dependency tree, we have listed the data for these projects as N/A.
 
+
+
 ## Pull Requests to Upgrade Dependencies
 
-| Repository                                                   | Link                                                      | Status    |
-| --------------------------------------------------------- | -------------------------------------------------------- | --------- |
-| [easyexcel](https://github.com/alibaba/easyexcel)            | https://github.com/alibaba/easyexcel/pull/4123            | submitted |
-| [spring-cloud-alibaba](https://github.com/alibaba/spring-cloud-alibaba) | https://github.com/alibaba/spring-cloud-alibaba/pull/4023 | submitted |
+| Repository                                                   | PR                                                           | Stars | Compatibility Verified | Status    |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ----- | --------------------- | --------- |
+| [easyexcel](https://github.com/alibaba/easyexcel)            | [#4123](https://github.com/alibaba/easyexcel/pull/4123)      | 33.5k |  &#10004;| submitted |
+| [spring-cloud-alibaba](https://github.com/alibaba/spring-cloud-alibaba) | [#4023](https://github.com/alibaba/spring-cloud-alibaba/pull/4023) | 28.6k | &#10004; | submitted |
+| [dubbo](https://github.com/apache/dubbo)                     | [#15577](https://github.com/apache/dubbo/pull/15577)                                                       | 41.2k | &#10004; | submitted |
+| [jenkins](https://github.com/jenkinsci/jenkins)                                                      | [#10860](https://github.com/jenkinsci/jenkins/pull/10860)                                                       | 24.2k | &#10004; | submitted |
+| [WxJava](https://github.com/binarywang/WxJava)                                                       | [#3643](https://github.com/binarywang/WxJava/pull/3643)                                                        | 31.6k | &#10004; | submitted |
 
 
 
-## 
 > [!IMPORTANT]
 >
 >  Feel free to share your suggestions for this process by opening issues or PRs. :)
