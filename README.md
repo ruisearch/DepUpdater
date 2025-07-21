@@ -168,17 +168,22 @@ Note:
 
 ## Pull Requests to Upgrade Dependencies
 
-| Repository                                                   | PR                                                           | Stars | Compatibility Verified | Status    |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ----- | --------------------- | --------- |
-| [easyexcel](https://github.com/alibaba/easyexcel)            | [#4123](https://github.com/alibaba/easyexcel/pull/4123)      | 33.5k |  &#10004;| submitted |
-| [spring-cloud-alibaba](https://github.com/alibaba/spring-cloud-alibaba) | [#4023](https://github.com/alibaba/spring-cloud-alibaba/pull/4023) | 28.6k | &#10004; | submitted |
-| [dubbo](https://github.com/apache/dubbo)                     | [#15577](https://github.com/apache/dubbo/pull/15577)                                                       | 41.2k | &#10004; | submitted |
-| [jenkins](https://github.com/jenkinsci/jenkins)                                                      | [#10862](https://github.com/jenkinsci/jenkins/pull/10862)                                                       | 24.2k | &#10004; | submitted |
-| [WxJava](https://github.com/binarywang/WxJava)                                                       | [#3643](https://github.com/binarywang/WxJava/pull/3643)                                                        | 31.6k | &#10004; | submitted |
+| Repository                                                   | PR                                                           | Stars | Compilation | Regression Test | Status    |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ----- | --------------------- | --------- | --------- |
+| [easyexcel](https://github.com/alibaba/easyexcel)            | [#4123](https://github.com/alibaba/easyexcel/pull/4123)      | 33.5k |  &#10004;| &#10004; | submitted |
+| [spring-cloud-alibaba](https://github.com/alibaba/spring-cloud-alibaba) | [#4023](https://github.com/alibaba/spring-cloud-alibaba/pull/4023) | 28.6k | &#10004; | &#10004; | submitted |
+| [dubbo](https://github.com/apache/dubbo)                     | [#15577](https://github.com/apache/dubbo/pull/15577)                                                       | 41.2k | &#10004; | &#10004; | rejected |
+| [jenkins](https://github.com/jenkinsci/jenkins)                                                      | [#10860](https://github.com/jenkinsci/jenkins/pull/10860)                                                       | 24.2k | &#10004; | &#10004; | submitted |
+| [WxJava](https://github.com/binarywang/WxJava)                                                       | [#3643](https://github.com/binarywang/WxJava/pull/3643)                                                        | 31.6k | &#10004; | No tests in this module | submitted |
 
+Stay informed about our ongoing efforts! 🤖
+
+---
 
 
 > [!IMPORTANT]
 >
->  Feel free to share your suggestions for this process by opening issues or PRs. :)
+> Feel free to share your suggestions for this process by opening issues or PRs. :)
+
+
 
