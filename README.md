@@ -45,8 +45,8 @@ pip install -r requirements.txt
 
 **6.** A MongoDB docker container :
 
-* Download `maven_deps.zip`  from https://anonymfile.com/kWjEg/maven-deps.zip, then unzip it to get `maven_deps.bson`. (maven_des.zip is 2.42GB)
-* Download `maven.zip` from https://anonymfile.com/r1ke0/maven.zip , then unzip it to get `maven.bson`.
+* Download `maven_deps.zip`  from https://anonymfile.com/m1z30/maven-deps.zip, then unzip it to get `maven_deps.bson`. (maven_des.zip is 2.42GB)
+* Download `maven.zip` from https://anonymfile.com/68L20/maven.zip , then unzip it to get `maven.bson`.
 * Place `maven_deps.bson` and `maven.bson` at the root directory of this repository.
 * Activate a MongoDB docker container named `maven_mongodb`.
 
@@ -76,7 +76,7 @@ Add one compound index to the `maven_deps` collection: `parent`.
 
 **7.** A `Sqlite`  database :
 
-* Download `reusable_data.zip` from https://anonymfile.com/mkyRb/reusable-data.zip, then unzip it to get `reusable_data.sqlite`.
+* Download `reusable_data.zip` from https://anonymfile.com/PN8KZ/reusable-data.zip, then unzip it to get `reusable_data.sqlite`.
 * Place `reusable_data.sqlite` at the root directory of this repository.
 
 
