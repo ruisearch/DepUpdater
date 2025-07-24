@@ -168,13 +168,15 @@ Note:
 
 ## Pull Requests to Upgrade Dependencies
 
+
 | Repository                                                   | PR                                                           | Stars | Compilation | Regression Test | Status    | Note |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ----- | --------------------- | --------- | --------- | --------- |
 | [easyexcel](https://github.com/alibaba/easyexcel)            | [#4123](https://github.com/alibaba/easyexcel/pull/4123)      | 33.5k |  &#10004;| &#10004; | submitted |  |
 | [spring-cloud-alibaba](https://github.com/alibaba/spring-cloud-alibaba) | [#4023](https://github.com/alibaba/spring-cloud-alibaba/pull/4023) | 28.6k | &#10004; | &#10004; | submitted |  |
 | [dubbo](https://github.com/apache/dubbo)                     | [#15577](https://github.com/apache/dubbo/pull/15577)                                                       | 41.2k | &#10004; | &#10004; | wont fix | The project maintains the same dependency versions across all modules, which is unrelated to our tool.|
 | [Sentinel](https://github.com/alibaba/Sentinel)                                             | [#3536](https://github.com/alibaba/Sentinel/pull/3536)                                                  | 22.8k | &#10004; | &#10004; | submitted |  |
-| [WxJava](https://github.com/binarywang/WxJava)                                                       | [#3643](https://github.com/binarywang/WxJava/pull/3643)                                                        | 31.6k | &#10004; | No tests in this module | submitted |  |
+| [WxJava](https://github.com/binarywang/WxJava)                                                       | [#3643](https://github.com/binarywang/WxJava/pull/3643)                                                        | 31.6k | &#10004; | No tests in this module | merged | The maintainer upgraded the dependencies after review our PR. |
+
 
 
 Stay informed about our ongoing efforts! 🤖
