@@ -1,5 +1,5 @@
 # ![DepUpdater](img/DepUpdater.ico) Minimizing Breaking Changes and Redundancy in Mitigating Technical Lag for Java Projects
-[![arXiv](https://img.shields.io/badge/arXiv-<25xx.xxxx>-<COLOR>.svg)](https://arxiv.org/abs/25xx.xxxx)  [![](https://img.shields.io/badge/ICSE-2026-red?style=flat-square)](https://conf.researchr.org/home/icse-2026)
+[![arXiv](https://img.shields.io/badge/arXiv-<2511.06762>-<COLOR>.svg)](https://arxiv.org/abs/2511.06762)  [![](https://img.shields.io/badge/ICSE-2026-red?style=flat-square)](https://conf.researchr.org/home/icse-2026)
 
 
 ## Abstract 
