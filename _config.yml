@@ -1,0 +1,37 @@
+# GitHub Pages configuration for DepUpdater
+
+# Theme
+theme: jekyll-theme-cayman
+title: "Minimizing Breaking Changes and Redundancy in Mitigating Technical Lag for Java Projects"
+description: "DepUpdater: Minimize technical lag as much as possible while avoiding compatibility issues and redundant dependencies"
+url: "https://ruisearch.github.io"
+baseurl: "/DepUpdater"
+
+# SEO
+lang: en-US
+author: "Rui Lu"
+
+# GitHub metadata
+github:
+  is_project_page: true
+  repository_name: "DepUpdater"
+  
+# Enable plugins
+plugins:
+  - jekyll-relative-links
+  - jekyll-seo-tag
+
+# Markdown settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# File handling
+include:
+  - README.md
+
+# Exclude from processing
+exclude:
+  - .gitignore
+  - LICENSE
